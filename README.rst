@@ -1,8 +1,7 @@
 Template
 ========
 
-$project will solve your problem of where to start with documentation,
-by providing a basic explanation of how to do it easily.
+$project is a next-generation distribution of Apache Hadoop.
 
 Look how easy it is to use:
 
@@ -26,14 +25,14 @@ Install $project by running:
 Contribute
 ----------
 
-- Issue Tracker: github.com/$project/$project/issues
-- Source Code: github.com/$project/$project
+- Issue Tracker: github.com/hopshadoop/$project/issues
+- Source Code: github.com/hopshadoop/
 
 Support
 -------
 
 If you are having issues, please let us know.
-We have a mailing list located at: project@google-groups.com
+We have a mailing list located at: hopshadoop@google-groups.com
 
 License
 -------
