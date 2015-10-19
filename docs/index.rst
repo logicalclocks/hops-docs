@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Read the Docs Template's documentation!
+Hops Documentation
 ==================================================
 
 Contents:
@@ -12,8 +12,13 @@ Contents:
    :maxdepth: 2
    :glob:
 
-   *
+   command_line.rst
 
+API Reference
+-------------
+
+.. autosummary::
+   :toctree: api
 
 
 Indices and tables
