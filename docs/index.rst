@@ -12,7 +12,7 @@ Contents:
    :maxdepth: 2
    :glob:
 
-   command_line.rst
+   *
 
 API Reference
 -------------
