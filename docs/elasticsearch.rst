@@ -2,3 +2,4 @@
 
 ElasticSearch 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Hopsworks provides 
