@@ -1,7 +1,6 @@
-.. highlight:: bash
 
 HopsFS
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. figure:: imgs/hopsfs.png
    :alt: HopsFS Architecture
@@ -12,5 +11,3 @@ HopsFS
 	 
 
 .. figure:: imgs/hdfs-arch.png
-   :alt: HDFS Architecture
-	 
