@@ -91,7 +91,7 @@ The default credentials are:
 * username: admin@kth.se
 * password: admin
 
-  Windows
+Windows
 -------------
 
 You can also install HopsWorks on vagrant and Windows. You will need to follow the vagrant instructions as above (installing the same software packages) aswell as installing:
