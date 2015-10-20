@@ -62,9 +62,9 @@ To do this, you will first need to prepare the machines as follows:
            18.31.0.190
            128.232.103.201      
 
-   $pscp -h ``hosts.txt`` -P ``PASSWORD`` -i ``USER`` ~/.ssh/id_rsa.pub /tmp
-   $pssh -h ``hosts.txt`` -i ``USER`` -P ``PASSWORD`` mkdir -p /home/``USER``/.ssh
-   $pssh -h ``hosts.txt`` -i ``USER`` -P ``PASSWORD`` cat /tmp/id_rsa.pub >> /home/``USER``/.ssh/authorized_keys
+   $pscp -h hosts.txt -P PASSWORD -i USER ~/.ssh/id_rsa.pub /tmp
+   $pssh -h hosts.txt -i USER -P PASSWORD mkdir -p /home/USER/.ssh
+   $pssh -h hosts.txt -i USER -P PASSWORD cat /tmp/id_rsa.pub >> /home/USER/.ssh/authorized_keys
    
 Update your Karamel cluster definition file to include the IP addresses of the *target* machines and the ``USER`` account. After you have clicked on the ``launch`` menu item, you will come to a ``Ssh`` dialog. On the ``ssh`` dialog, you need to open the advanced section. Here, you will need to enter the password for the ``USER`` account on the *target* machines (``sudo password`` text input box). 
 If you decided to enter a password for the ssh keypair, you will also need to enter it again here in the ``keypair password`` text input box.
