@@ -20,7 +20,7 @@ You can run HopsWorks (and the entire Hops stack with ElasticSearch and NDB) on 
 Component             Minimum Reqd        
 ==================   ================================
 Operating System      Linux, Mac, Windows (using Virtualbox)
-RAM                   At least 8 GB of RAM
+RAM                   8 GB of RAM
 CPU                   2 GHz dual-core minimum. 64-bit.
 Hard disk space       15 GB free space
 Network               1 Gb Ethernet

@@ -1,6 +1,19 @@
-============
+******************
 Installation
-============
+******************
+    
+Linux
+===========
+
+Ubuntu/Debian
+-------------
+
+Centos/Redhat
+-------------
+
+
+Windows
+===========
 
 Install HopsWorks and Hops with Vagrant::
 
@@ -13,3 +26,9 @@ Install HopsWorks and Hops with Vagrant::
 Install HopsWorks and Hops for AWS(EC2), GCE, OpenStack, or On-Premises (with Chef/Karamel)::
 
     $ wget https://github.com/hopshadoop/hopsworks-chef.git
+
+
+
+Mac
+===========
+
