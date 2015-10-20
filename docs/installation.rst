@@ -52,6 +52,7 @@ To do this, you will first need to prepare the machines as follows:
 #. Copy the $HOME/.ssh/id_rsa.pub file on the *master* to the /tmp folder of all the *target* hosts. A good way to do this is to use ``pscp`` utility along with a file (``hosts.txt``) containing the line-separated hostnames (or IP addresss) for all the *target* machines. You may need to install the pssh utility programs (``pssh``), first.
 
 .. code-block:: bash   
+
    $sudo apt-get install pssh
    or
    $yum install pssh
@@ -87,13 +88,13 @@ You can install HopsWorks and Hops with Vagrant. You will need to have the follo
 You can now run vagrant, using:
 
 .. code-block:: bash     
+
     $ git clone https://github.com/hopshadoop/hopsworks-chef.git
     $ cd hopsworks-chef
     $ berks vendor cookbooks
     $ vagrant up
 
-You can then access Hopsworks from your browser at http://127.0.0.1:8080/hopsworks.
-The default credentials are:
+You can then access Hopsworks from your browser at http://127.0.0.1:8080/hopsworks. The default credentials are:
 
 * username: admin@kth.se
 * password: admin
@@ -107,6 +108,7 @@ You can also install HopsWorks on vagrant and Windows. You will need to follow t
 After cloning the github repo, from the powershell, you can run:
 
 .. code-block:: bash     
+
     $ cd hopsworks-chef
     $ berks vendor cookbooks
     $ vagrant up
