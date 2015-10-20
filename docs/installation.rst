@@ -2,12 +2,13 @@
 Installation
 ******************
 The Hops stack includes a number of services also requires a number of third-party distributed services:
+
 * Java 1.7 (OpenJDK or Oracle JRE/JDK)
 * NDB 7.4+ (MySQl Cluster)
 * J2EE7 web application server (Glassfish by default)
 * ElasticSearch 1.7+
   
-  Due to the complexity of installing and configuring all Hops' services, we recommend installing Hops using the automated installer Karamel/Chef. We do not provide documentation for installing and configuring all services, but for the curious, the Chef cookbooks that install our services are available at: https://github.com/hopshadoop.
+Due to the complexity of installing and configuring all Hops' services, we recommend installing Hops using the automated installer Karamel/Chef (www.karamel.io). We do not provide documentation for installing and configuring all services, but for the curious, the Chef cookbooks that install our services are available at: https://github.com/hopshadoop.
 
 
 Installation for Cloud Platforms
@@ -36,11 +37,13 @@ Linux On-Premises (bare-metal)
 -------------
 
 You will need to prepare for installation by
+
 #. identifying a *master* host, from which you will run Karamel (it should have a display for Karamel's user interface);
 #. identifying a set of *target* hosts, on which the Hops software and 3rd party services will be installed.
 
 The *master* should be able to connect using SSH to all the *target* nodes on which the software will be installed.
 To do this, you will first need to prepare the machines as follows:
+
 #. Create an openssh public/private key pair on the *master* host for your user account. On Linux, you can use the ssh-keygen utility program to generate the keys, which will by default be stored in the $HOME/.ssh/id_rsa and $HOME/.ssh/id_rsa.pub files. If you decided to enter a password for the ssh keypair, you will need to enter it again in Karamel when you reach the ``ssh`` dialog, part of Karamel's ``Launch`` step.
 #. Create a user account ``USER`` on the all the *target* machines with full sudo privileges and the same password on all *target* machines. 
    
@@ -75,6 +78,7 @@ Vagrant
 -------------
 
 You can install HopsWorks and Hops with Vagrant. You will need to have the following software packages installed:
+
 * chef-dk, version 0.5+
 * git
 * vagrant
@@ -90,6 +94,7 @@ You can now run vagrant, using:
 
 You can then access Hopsworks from your browser at http://127.0.0.1:8080/hopsworks.
 The default credentials are:
+
 * username: admin@kth.se
 * password: admin
 
@@ -97,6 +102,7 @@ Windows
 -------------
 
 You can also install HopsWorks on vagrant and Windows. You will need to follow the vagrant instructions as above (installing the same software packages) aswell as installing:
+
 * Powershell
 After cloning the github repo, from the powershell, you can run:
 
