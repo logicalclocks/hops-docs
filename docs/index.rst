@@ -12,6 +12,7 @@ Contents:
    :maxdepth: 2
    :glob:
 
+   requirements.rst
    installation.rst
       karamel.rst
       vagrant.rst
