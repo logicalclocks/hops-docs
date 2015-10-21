@@ -108,7 +108,7 @@ html_theme = 'default'
 #html_theme_options = {}
 
 # Add any paths that contain custom themes here, relative to this directory.
-html_theme_path = []
+#html_theme_path = []
 #html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 #html_theme_path = ["_themes", ]
 
