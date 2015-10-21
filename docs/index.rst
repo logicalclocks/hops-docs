@@ -21,6 +21,7 @@ Contents:
    hopsfs.rst
    hopsyarn.rst
    developer_guide.rst
+   licensing.rst
    authors.rst
 
 API Reference

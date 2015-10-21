@@ -297,32 +297,200 @@ Data access layer configuration parameters
 
 Erasure Coding
 ==============
+Hops-FS provides erasure coding functionality in order to decrease storage costs without the loss of high-availability. Hops offers a powerful, on a per file basis configurable, erasure coding API. Codes can be freely configured and different configurations can be applied to different files. Given that Hops monitors your erasure-coded files directly in the NameNode, maximum control over encoded files is guaranteed. This page explains how to configure and use the erasure coding functionality of Hops. Apache HDFS stores 3 copies of your data to provide high-availability. So 1 petabyte of data actually requires 3 petabytes of storgae. For many organizations, this results in onorous storage costs. Hops-FS also supports erasure coding to reduce the storage required by by 44% compared to HDFS, while still providing high-availability for your data.
 
-Licensing
-==============
 
-We combine Apache and GPL licensed code, from Hops and MySQL Cluster, respectively, by
-providing a DAL API (similar to JDBC). We dynamically link our DAL implementation for
-MySQL Cluster with the Hops code. Both binaries are distributed separately.
-Hops derives from Hadoop and, as such, it is available under the Apache version 2.0 open-
-source licensing model. MySQL Cluster and its client connectors, on the other hand, are li-
-censed under the GPL version 2.0 licensing model. Similar to the JDBC model, we have in-
-troduced a Data Access Layer (DAL) API to bridge our code licensed under the Apache model
-with the MySQL Cluster connector libraries, licensed under the GPL v2.0 model. The DAL
-API is licensed under the Apache v2.0 model. The DAL API is statically linked to both Hops
-and our client library for MySQL Cluster that implements the DAL API. Our client library
-that implements the DAL API for MySQL Cluster, however, is licensed under the GPL v2.0
-model, but static linking of Apache v2 code to GPL V2 code is allowed, as stated in the MySQL
-FOSS license exception. The FOSS License Exception permits use of the GPL-licensed MySQL
-Client Libraries with software applications licensed under certain other FOSS licenses without
-causing the entire derivative work to be subject to the GPL. However, to comply with the terms
-of both licensing models, the DAL API needs to generic and different implementations of it
-for different databases are possible. Although, we only currently support MySQL Cluster, you
-are free to develop your own DAL API client and run Hops on a different database, see figure
-3.4. The main requirements for the database are support for transactions, read/write locks and
-at least read-committed isolation.
+Compatibility
+-------------
 
-.. figure:: imgs/license-work-around.png
+The erasure coding functionality is fully compatible to standard HDFS and availability of encoded files is ensured via fully transparent on the fly repairs on the client-side. Transparent repairs are provided through a special implementation of the FileSystem API and hence compatible to any existing code relying on this API. To enable transparent repairs, simply add the following configuration option to your HDFS configuration file.
+
+.. code-block:: xml
+
+	<property>
+  		<name>fs.hdfs.impl</name>
+  		<value>org.apache.hadoop.fs.ErasureCodingFileSystem</value>
+  		<description>FileSystem implementation to be used with HDFS</description>
+	</property>
+
+Note that code relying on the use of DistributedFileSystem instead of the FileSystem interface needs to be updated.
+
+
+
+.. _erasure-coding-configuration:
+
+Configuration
+---------------
+
+The erasure coding API is flexibly configurable and hence comes with some new configuration options that are shown here. All configuration options can be set by creating an erasure-coding-site.xml in the Hops configuration folder. Note that Hops comes with reasonable default values for all of these values. However, erasure coding needs to be enabled manually.
+
+.. code-block:: xml
+
+	<property>
+	  <name>dfs.erasure_coding.enabled</name>
+	  <value>true</value>
+	  <description>Enable erasure coding</description>
+	</property>
+
+	<property>
+	  <name>dfs.erasure_coding.codecs.json</name>
+	  <value>
+		[ 
+		  {
+			"id" : "xor",
+			"parity_dir" : "/raid",
+			"stripe_length" : 10,
+			"parity_length" : 1,
+			"priority" : 100,
+			"erasure_code" : "io.hops.erasure_coding.XORCode",
+			"description" : "XOR code"
+		  },
+		  {
+			"id" : "rs",
+			"parity_dir" : "/raidrs",
+			"stripe_length" : 10,
+			"parity_length" : 4,
+			"priority" : 300,
+			"erasure_code" : "io.hops.erasure_coding.ReedSolomonCode",
+			"description" : "ReedSolomonCode code"
+		  },
+		  {
+			"id" : "src",
+			"parity_dir" : "/raidsrc",
+			"stripe_length" : 10,
+			"parity_length" : 6,
+			"parity_length_src" : 2,
+			"erasure_code" : "io.hops.erasure_coding.SimpleRegeneratingCode",
+			"priority" : 200,
+			"description" : "SimpleRegeneratingCode code"
+		  },
+		]
+	  </value>
+	  <description>Erasure coding codecs to be available to the API</description>
+	</property>
+
+	<property>
+	  <name>dfs.erasure_coding.parity_folder</name>
+	  <value>/parity</value>
+	  <description>The HDFS folder to store parity information in</description>
+	</property>
+
+	<property>
+	  <name>dfs.erasure_coding.recheck_interval</name>
+	  <value>300000</value>
+	  <description>How frequently should the system schedule encoding or repairs and check their state</description>
+	</property>
+
+	<property>
+	  <name>dfs.erasure_coding.repair_delay</name>
+	  <value>1800000</value>
+	  <description>How long should the system wait before scheduling a parity repair</description>
+	</property>
+
+	<property>
+	  <name>dfs.erasure_coding.parity_repair_delay</name>
+	  <value>1800000</value>
+	  <description>How long should the system wait before scheduling a parity repair</description>
+	</property>
+
+	<property>
+	  <name>dfs.erasure_coding.active_encoding_limit</name>
+	  <value>10</value>
+	  <description>Maximum number of active encoding jobs</description>
+	</property>
+
+	<property>
+	  <name>dfs.erasure_coding.active_repair_limit</name>
+	  <value>10</value>
+	  <description>Maximum number of active repair jobs</description>
+	</property>
+
+	<property>
+	  <name>dfs.erasure_coding.active_parity_repair_limit</name>
+	  <value>10</value>
+	  <description>Maximum number of active parity repair jobs</description>
+	</property>
+
+	<property>
+	  <name>dfs.erasure_coding.deletion_limit</name>
+	  <value>100</value>
+	  <description>Delete operations to be handle during one round</description>
+	</property>
+
+	<property>
+	  <name>dfs.erasure_coding.encoding_manager</name>
+	  <value>io.hops.erasure_coding.MapReduceEncodingManager</value>
+	  <description>Implementation of the EncodingManager to be used</description>
+	</property>
+
+	<property>
+	  <name>dfs.erasure_coding.block_rapair_manager</name>
+	  <value>io.hops.erasure_coding.MapReduceBlockRepairManager</value>
+	  <description>Implementation of the repair manager to be used</description>
+	</property>
+
+
+Java API
+---------
+The erasure coding API is exposed to the client through the DistributedFileSystem class. The following sections give examples on how to use its functionality. Note that the following examples rely on erasure coding being properly configured. Information about how to do this can be found in :ref:`erasure-coding-configuration`.
+
+
+Creation of Encoded Files
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The erasure coding API offers the ability to request the encoding of a file while being created. Doing so has the benefit that file blocks can initially be placed in a way that the meets placements constraints for erasure-coded files without needing to rewrite them during the encoding process. The actual encoding process will take place asynchronously on the cluster.
+
+.. code-block:: java
+
+	Configuration conf = new Configuration();
+	DistributedFileSystem dfs = (DistributedFileSystem) FileSystem.get(conf);
+	// Use the configured "src" codec and reduce the replication to 1 after successful encoding
+	EncodingPolicy policy = new EncodingPolicy("src" /* Codec id as configured */, (short) 1);
+	// Create the file with the given policy and write it with an initial replication of 2
+	FSDataOutputStream out = dfs.create(path, (short) 2,  policy);
+	// Write some data to the stream and close it as usual
+	out.close();
+	// Done. The encoding will be executed asynchronously as soon as resources are available.
+
+
+Multiple versions of the create function complementing the original versions with erasure coding functionality exist. For more information please refer to the class documentation.
+
+Encoding of Existing Files
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The erasure coding API offers the ability to request the encoding for existing files. A replication factor to be applied after successfully encoding the file can be supplied as well as the desired codec. The actual encoding process will take place asynchronously on the cluster.
+
+.. code-block:: java
+
+	Configuration conf = new Configuration();
+	DistributedFileSystem dfs = (DistributedFileSystem) FileSystem.get(conf);
+	String path = "/testFile";
+	// Use the configured "src" codec and reduce the replication to 1 after successful encoding
+	EncodingPolicy policy = new EncodingPolicy("src" /* Codec id as configured */, (short) 1);
+	// Request the asynchronous encoding of the file
+	dfs.encodeFile(path, policy);
+	// Done. The encoding will be executed asynchronously as soon as resources are available.
+
+
+Reverting To Replication Only
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+The erasure coding API allows to revert the encoding and to default to replication only. A replication factor can be supplied and is guaranteed to be reached before deleting any parity information.
+
+.. code-block:: java
+
+	Configuration conf = new Configuration();
+	DistributedFileSystem dfs = (DistributedFileSystem) FileSystem.get(conf);
+	// The path to an encoded file
+	String path = "/testFile";
+	// Request the asynchronous revocation process and set the replication factor to be applied
+	 dfs.revokeEncoding(path, (short) 2);
+	// Done. The file will be replicated asynchronously and its parity will be deleted subsequently.
+
+
+Deletion Of Encoded Files
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Deletion of encoded files does not require any special care. The system will automatically take care of deletion of any additionally stored information.
 
 
 
