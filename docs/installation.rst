@@ -1,6 +1,7 @@
 ******************
 Installation
 ******************
+
 The Hops stack includes a number of services also requires a number of third-party distributed services:
 
 * Java 1.7 (OpenJDK or Oracle JRE/JDK)
