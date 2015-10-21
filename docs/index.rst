@@ -12,18 +12,6 @@ Contents:
    :maxdepth: 2
    :glob:
 
-   requirements.rst
-   installation.rst
-      karamel.rst
-      vagrant.rst
-      chef-solo.rst
-   hopsworks.rst
-   hopsfs.rst
-   hopsyarn.rst
-   developer_guide.rst
-   licensing.rst
-   authors.rst
-
 API Reference
 -------------
 
