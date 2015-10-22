@@ -1,5 +1,5 @@
 ******************
-Installation
+Installation Guide
 ******************
 
 The Hops stack includes a number of services also requires a number of third-party distributed services:
@@ -12,7 +12,7 @@ The Hops stack includes a number of services also requires a number of third-par
 Due to the complexity of installing and configuring all Hops' services, we recommend installing Hops using the automated installer Karamel/Chef (www.karamel.io). We do not provide documentation for installing and configuring all services, but for the curious, the Chef cookbooks that install our services are available at: https://github.com/hopshadoop.
 
 
-Installation for Cloud Platforms
+Cloud Platforms (EC2, GCE, OpenStack)
 -------------
 
 #. Download and install Karamel (www.karamel.io).
