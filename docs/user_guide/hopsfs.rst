@@ -1,6 +1,6 @@
-
-HopsFS
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+******************
+HopsFS User Guide
+******************
 
 .. figure:: ../imgs/hopsfs.png
    :alt: HopsFS Architecture

@@ -12,13 +12,14 @@ Contents:
    :maxdepth: 1
    :glob:
 
-   requirements.rst
+   overview.rst
    installation.rst
    user_guide.rst
    user_guide/hopsworks.rst
    user_guide/hopsfs.rst
    user_guide/yarn.rst
    developer_guide.rst
+   developer_guide/hopsfs_dev.rst
    licensing.rst
    authors.rst
 

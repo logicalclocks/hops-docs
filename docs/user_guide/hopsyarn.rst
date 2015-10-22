@@ -1,7 +1,9 @@
-.. highlight:: bash
+******************
+Hops Yar
+******************
 
 HopsYARN
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. figure:: imgs/hops-yarn.png
+.. figure:: ../imgs/hops-yarn.png
    :alt: Hops-YARN Architecture
