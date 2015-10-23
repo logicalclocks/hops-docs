@@ -1,9 +1,10 @@
-******************
-HopsFS Developer Guide
-******************
+************************************
+Developer Guide for Hops
+************************************
+
 
 Extending INode metadata
------------------
+-----------------------------
 For the implementation of new features, it is often necessary to modify INode in order to store additional metadata. With Hops-HDFS, this can be simply achieved by adding a new table with a foreign reference to INode. Thus, the original data structure does not need to be modified and old code paths not requiring the additional metadata are not burdened with additional reading costs. This guide gives a walkthrough on how to add additional INode-related metadata.
 
 **Example use case**

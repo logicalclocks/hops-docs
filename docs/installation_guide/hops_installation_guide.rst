@@ -1,6 +1,6 @@
-******************
+************************************
 Installation Guide
-******************
+************************************
 
 The Hops stack includes a number of services also requires a number of third-party distributed services:
 
@@ -13,7 +13,7 @@ Due to the complexity of installing and configuring all Hops' services, we recom
 
 
 Cloud Platforms (EC2, GCE, OpenStack)
--------------
+---------------------------------------
 
 #. Download and install Karamel (www.karamel.io).
 #. Run Karamel.
@@ -35,7 +35,7 @@ Coming soon..
 
 
 Linux On-Premises (bare-metal)
--------------
+---------------------------------------
 
 You will need to prepare for installation by
 
@@ -106,6 +106,7 @@ Windows
 You can also install HopsWorks on vagrant and Windows. You will need to follow the vagrant instructions as above (installing the same software packages) aswell as installing:
 
 * Powershell
+
 After cloning the github repo, from the powershell, you can run:
 
 .. code-block:: bash     
@@ -117,3 +118,25 @@ After cloning the github repo, from the powershell, you can run:
 Mac
 -------------
 You can follow the baremetal instructions to install for Apple Mac.
+
+
+
+
+Glassfish Configuration
+=============================
+
+
+
+ElasticSearch Configuration
+=============================
+
+
+MySQL Cluster (NDB) Configuration
+=======================================
+
+HopsFS Configuration
+========================
+
+HopsYARN Configuration
+=========================
+

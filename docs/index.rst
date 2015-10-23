@@ -13,13 +13,12 @@ Contents:
    :glob:
 
    overview.rst
-   installation_guide/installation.rst
+   installation_guide/hops_installation_guide.rst
    user_guide/hopsworks.rst
    user_guide/hopsfs.rst
-   user_guide/yarn.rst
-   administration_guide/hops.rst
-   developer_guide/dev_environment.rst
-   developer_guide/hopsfs_dev.rst
+   user_guide/hopsyarn.rst
+   admin_guide/hops_admin_guide.rst
+   developer_guide/hops_developer_guide.rst
    licensing.rst
    authors.rst
 

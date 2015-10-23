@@ -1,12 +1,12 @@
-******************
+************************************
 Hops Administrator Guide
-******************
+************************************
 
 
 
 
 HopsWorks Administration
-==================
+====================================
 
 **Activating users**
 
@@ -19,7 +19,7 @@ HopsWorks Administration
 
 
 HopsWorks Configuration
----------------------
+------------------------------------------
 
 **Installing databases**
 hopsworks.sql
@@ -29,7 +29,7 @@ hops_rows.sql
 
 
 Glassfish Configuration
----------------------
+------------------------------
 
 **JDBC Connection to HopsWorks**
 
@@ -49,28 +49,28 @@ Glassfish Configuration
 
 
 ElasticSearch Configuration
----------------------
+------------------------------
 
 
 
 MySQL Cluster (NDB) Configuration
----------------------
+-----------------------------------
 
 **config.ini**
 
 **my.cnf**
 
 MySQL Cluster (NDB) Commands
----------------------
+------------------------------
 
 
 
 
 HopFs Administration
-==================
+=========================
 
 HopsFS Configuration
----------------------
+------------------------------
 
 **hdfs-site.xml**
 
@@ -83,11 +83,11 @@ HopsFS Commands
 
 
 HopYARN Administration
-==================
+=========================
 
 
 HopsYARN Configuration
----------------------
+------------------------
 
 **yarn-site.xml**
 
