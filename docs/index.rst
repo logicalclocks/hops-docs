@@ -13,7 +13,7 @@ Contents:
    :glob:
 
    overview.rst
-   installation.rst
+   installation_guide/installation.rst
    user_guide/hopsworks.rst
    user_guide/hopsfs.rst
    user_guide/yarn.rst

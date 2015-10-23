@@ -1,4 +1,4 @@
 ******************
-Development Environment Guide
+Developing with Hops
 ******************
 
