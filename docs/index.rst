@@ -17,6 +17,7 @@ Contents:
    user_guide/hopsworks.rst
    user_guide/hopsfs.rst
    user_guide/yarn.rst
+   administration_guide/hops.rst
    developer_guide/dev_environment.rst
    developer_guide/hopsfs_dev.rst
    licensing.rst
