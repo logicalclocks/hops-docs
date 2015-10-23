@@ -127,6 +127,10 @@ You can follow the baremetal instructions to install for Apple Mac.
 
 
 
+Configuration
+-----------------
+
+This section discusses how to configure the services in Karamel before launching them.
 
 Glassfish Configuration
 =============================
