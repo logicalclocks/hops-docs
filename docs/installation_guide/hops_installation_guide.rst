@@ -100,6 +100,12 @@ You can then access Hopsworks from your browser at http://127.0.0.1:8080/hopswor
 * username: admin@kth.se
 * password: admin
 
+The Glassfish web application server is also available from your browser at http://127.0.0.1:8080/hopsworks. The default credentials are:
+
+* username: adminuser
+* password: adminpw
+
+
 Windows
 -------------
 
