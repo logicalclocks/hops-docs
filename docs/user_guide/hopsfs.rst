@@ -41,7 +41,7 @@ Following commands are not currently supported as HopsFS is under heavy developm
 
 HopsFs Configurations
 =====================
-This section contains new/modified configurations parameters for HopsFS. 
+This section contains new/modified configurations parameters for HopsFS. All the configuration parameters are defined in hdfs-site.xml file. 
 
 
 Leader Election
@@ -59,6 +59,9 @@ NameNode Cache
 --------------
 NameNode cache configuration parameters are 
 
+* **dfs.resolvingcache.enabled**
+	Enables/Disables the cache for the NameNode.
+
 * **dfs.resolvingcache.type**
 Each NameNode caches the inodes metadata in a local cache for quick file path resolution. We support different implementations for the cache; INodeMemcache, PathMemcache, OptimalMemcache and InMemory.
 
@@ -66,9 +69,6 @@ Each NameNode caches the inodes metadata in a local cache for quick file path re
 2. **PathMemcache** is a course grain cache where entire file path (key) along with its associated inodes objects are stored in the Memcached
 3. **OptimalMemcache** 	is combination of INodeMemcache and PathMemcache. 
 4. **InMemory** Same as INodeMemcache, but instead of using Memcached, it uses a LRU ConcurrentLinkedHashMap. We recommend **InMemory** cache as it gives higher throughput. 
-
-* **dfs.resolvingcache.enabled**
-	Enables/Disables the cache for the NameNode.
 
 
 For INodeMemcache/PathMemcache/OptimalMemcache following configurations parameters must be set.
@@ -86,126 +86,114 @@ InMemory cache specific configurations are
 Max number of entries that could be in the cache before the LRU algorithm kicks in.
 
 
+Distributed Transaction Hints 
+-----------------------------
+In HopsFS the metadata is partitioned using the inodes' id. HopsFS tries to to enlist the transactional filesystem operation on the database node that holds the metadata for the file/directory being manipulated by the operation. 
 
-
-
-
-
-* **dfs.block.pool.id**, and **dfs.name.space.id**
-	Due to shared state among the NameNodes, Hops-FS only supports single namespace and one block pool. The default namespace and block pool ids can be overridden using these parameters.
-
-PartitionKey 
-~~~~~~~~~~~~~~~
-
-* **dfs.ndb.setpartitionkey.enabled**
-	Partition hints can be used to start transactions on a specific MySQL datanodes. If this parameters is set to false then the transactions will start on random MySQL Cluster datanodes. For performance reasons it is better to start the transactions on the datanodes that hold the data for the transaction.
-* **dfs.ndb.setrandompartitionkey.enabled**
-	If there is no parition key found, just use a random number to start the transaction on a random NDB datanode.
+* **dfs.ndb.setpartitionkey.enabled** (true/false)
+	Enable/Disable transaction partition key hint.
+* **dfs.ndb.setrandompartitionkey.enabled** (true/false)
+	Enable/Disable random partition key hint when HopsFS fails to determine appropriate partition key for the transactional filesystem operation.
 
 
 Quota Management 
-~~~~~~~~~~~~~~~~
+----------------
+In order to boost the performance and increase the parallelism of metadata operations the quota updates are applied asynchronously i.e. disk and namespace usage statistics are asynchronously updated in the background. Using asynchronous quota system it is possible that some users over consume disk space before the background quota system throws an exception. Following parameters controls how aggressively the quota subsystem updates the quota statistics. 
 
 * **dfs.quota.enabled**
-	Quota can be en/disabled. By default quota is enabled.
-
+	En/Disabled quota. By default quota is enabled.
 * **dfs.namenode.quota.update.interval**
-	In order to boost the performance and increase the parallelism of metadata operations the quota updates are applied asynchronously. The quota update manager applies the outstanding quota updates after every dfs.namenode.quota.update.interval milliseconds.
+	 The quota update manager applies the outstanding quota updates after every dfs.namenode.quota.update.interval milliseconds.
 * **dfs.namenode.quota.update.limit**
 	The maximum number of outstanding quota updates that are applied in each round.
 
 
 Distributed unique ID generator
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------------
+ClusterJ API does not support any means to auto generate primary keys. Unique key generation is left to the application. Each NameNode has an ID generation daemon. ID generator keeps pools of pre-allocated IDs. The ID generation daemon keeps track of IDs for inodes, blocks and quota entities.
 
-ClusterJ APIs do not support any means to auto generate primary keys. Unique key generation is left to the application. Each NameNode has an ID generation daemon. ID generator keeps pools of pre-allocated IDs. The ID generation daemon keeps track of IDs for inodes, blocks and quota entities.
-
-* *Batch Sizes*
-	When the ID generator is about to run out of the IDs it pre-fetches a batch of new IDs. The batch size is specified by the following parameters:
-
-	- **dfs.namenode.quota.update.id.batchsize** 
-		Prefetch batch size for Quota Updates. As there are lot of quota updates in the system the default value is set to 100,000.
-	- **dfs.namenode.inodeid.batchsize**
-		 Prefetch batch size for inode IDs.
-	- **dfs.namenode.blockid.batchsize**
-		 Prefetch batch size for block IDs.
-* *Update Threshold*
+* **dfs.namenode.quota.update.id.batchsize**, **dfs.namenode.inodeid.batchsize**, **dfs.namenode.blockid.batchsize**
+	When the ID generator is about to run out of the IDs it pre-fetches a batch of new IDs. These parameters defines the prefetch batch size for Quota, inodes and blocks updates respectively. 
+*  **dfs.namenode.quota.update.updateThreshold**, **dfs.namenode.inodeid.updateThreshold**, **dfs.namenode.blockid.updateThreshold**
 	These parameters define when the ID generator should pre-fetch new batch of IDs. Values for these parameter are defined as percentages i.e. 0.5 means prefetch new batch of IDs if 50% of the IDs have been consumed by the NameNode.
-
-	- **dfs.namenode.quota.update.updateThreshold**
-		Threshold value for quota IDs.
-	- **dfs.namenode.inodeid.updateThreshold** 
-		Threshold value for inode IDs.
-	- **dfs.namenode.blockid.updateThreshold**
-		 Threshold value for block IDs.
 * **dfs.namenode.id.updateThreshold**
 	It defines how often the IDs Monitor should check if the ID pools are running low on pre-allocated IDs.
 
 
 
+Namespace and Block Pool ID
+---------------------------
 
-Transaction Statistics 
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* **dfs.transaction.stats.enabled**
-	Each NameNode collect statistics about currently running transactions. The statistics willbe written in a comma separated file format, that could be parsed afterwards to get an aggregated view over all or specific transactions. By default transaction stats is disabled.
-
-* **dfs.transaction.stats.detailed.enabled**
-	If enabled, The NameNode will write a more detailed and human readable version of the statistics. By default detailed transaction stats is disabled.
-
-.. code-block:: none
-
-	Transaction: LEADER_ELECTION
-	----------------------------------------
-	VariableContext
-		HdfsLeParams[PK] H=4 M=1
-	N=0 M=1 R=0
-	Hits=4(4) Misses=1(1)
-	Detailed Misses: PK 1(1)
-	----------------------------------------
-	----------------------------------------
-	HdfsLESnapshot
-		All[FT] H=0 M=1
-		ById[PK] H=1 M=0
-	N=1 M=0 R=0
-	Hits=1(0) Misses=1(0)
-	Detailed Misses: FT 1(0)
-	----------------------------------------
-	Tx. N=1 M=1 R=0
-	Tx. Hits=5(4) Misses=2(1)
-	Tx. Detailed Misses: PK 1(1) FT 1(0)
+* **dfs.block.pool.id**, and **dfs.name.space.id**
+	Due to shared state among the NameNodes, Hops-FS only supports single namespace and one block pool. The default namespace and block pool ids can be overridden using these parameters.
 
 
-* **dfs.transaction.stats.dir**
-	The directory where the stats are going to be written. Default directory is /tmp/hopsstats.
-* **dfs.transaction.stats.writerround**
-	How frequent the NameNode will write collected statistics to disk. Time is in seconds. Default is 120 seconds.
+
+.. Transaction Statistics 
+.. ----------------------
+
+.. * **dfs.transaction.stats.enabled**
+..	Each NameNode collect statistics about currently running transactions. The statistics willbe written in a comma separated file format, that could be parsed afterwards to get an aggregated view over all or specific transactions. By default transaction stats is disabled.
+
+.. * **dfs.transaction.stats.detailed.enabled**
+..	If enabled, The NameNode will write a more detailed and human readable version of the statistics. By default detailed transaction stats is disabled.
+
+.. .. code-block:: none
+
+.. 	Transaction: LEADER_ELECTION
+.. 	----------------------------------------
+.. 	VariableContext
+.. 		HdfsLeParams[PK] H=4 M=1
+.. 	N=0 M=1 R=0
+.. 	Hits=4(4) Misses=1(1)
+.. 	Detailed Misses: PK 1(1)
+.. 	----------------------------------------
+.. 	----------------------------------------
+.. 	HdfsLESnapshot
+.. 		All[FT] H=0 M=1
+.. 		ById[PK] H=1 M=0
+.. 	N=1 M=0 R=0
+.. 	Hits=1(0) Misses=1(0)
+.. 	Detailed Misses: FT 1(0)
+.. 	----------------------------------------
+.. 	Tx. N=1 M=1 R=0
+.. 	Tx. Hits=5(4) Misses=2(1)
+.. 	Tx. Detailed Misses: PK 1(1) FT 1(0)
+
+
+.. * **dfs.transaction.stats.dir**
+.. 	The directory where the stats are going to be written. Default directory is /tmp/hopsstats.
+.. * **dfs.transaction.stats.writerround**
+.. 	How frequent the NameNode will write collected statistics to disk. Time is in seconds. Default is 120 seconds.
 
 
 Client Configurations
 ----------------------
 
 * **dfs.namenodes.rpc.addresses**
-	HopsFs support multiple active NameNodes. A client can send a RPC request to any of the active NameNodes. This parameter specifies a list of active NameNodes in the system. The list has following format [hdfs://ip:port, hdfs://ip:port, ]. It is not necessary that this list contain all the active NameNodes in the system. Single valid reference to an active NameNode is sufficient. At the time of startup the client will obtain the updated list of all the NameNodes in the system from the given NameNode. If this list is empty then the client will connect to ’fs.default.name’.
-
+	HopsFS support multiple active NameNodes. A client can send a RPC request to any of the active NameNodes. This parameter specifies a list of active NameNodes in the system. The list has following format [hdfs://ip:port, hdfs://ip:port, ...]. It is not necessary that this list contain all the active NameNodes in the system. Single valid reference to an active NameNode is sufficient. At the time of startup the client obtains an updated list of NameNodes from a NameNode mentioned in the list. If this list is empty then the client will connect to ’fs.default.name’.
 
 * **dfs.namenode.selector-policy**
-	The clients uniformly distribute the RPC calls among the all the NameNodes in the system based on the following policies. 
+	The clients uniformly distributes the RPC calls among the all the NameNodes in the system based on the following policies. 
 	- ROUND ROBIN
 	- RANDOM
 	- RANDOM_STICKY
-	By default NameNode selection policy is set of ROUND ROBIN
+	By default NameNode selection policy is set to RANDOM_STICKY
 
 * **dfs.clinet.max.retires.on.failure**
-	The client will retry the RPC call if the RPC fails due to the failure of the NameNode. This property specifies how many times the client would retry the RPC before throwing an exception. This property is directly related to number of expected simultaneous failures of NameNodes. Set this value to 1 in case of low failure rates such as one dead NameNode at any given time. It is recommended that this property must be set to value >= 1.
+	The client will retry the RPC call if the RPC fails due to the failure of the NameNode. This configuration parameter specifies how many times the client would retry the RPC before throwing an exception. This property is directly related to number of expected simultaneous failures of NameNodes. Set this value to 1 in case of low failure rates such as one dead NameNode at any given time. It is recommended that this property must be set to value >= 1.
 * **dfs.client.max.random.wait.on.retry**
 	A RPC can fail because of many factors such as NameNode failure, network congestion etc. Changes in the membership of NameNodes can lead to contention on the remaining NameNodes. In order to avoid contention on the remaining NameNodes in the system the client would randomly wait between [0,MAX VALUE] ms before retrying the RPC. This property specifies MAX VALUE; by default it is set to 1000 ms.
 * **dfs.client.refresh.namenode.list**
 	All clients periodically refresh their view of active NameNodes in the system. By default after every minute the client checks for changes in the membership of the NameNodes. Higher values can be chosen for scenarios where the membership does not change frequently.
 
 
-Data access layer configuration parameters
-------------------------------------------
+Data Access Layer (DAL) Configuration Parameters
+================================================
+
+MySQL Cluster Driver Configuration
+----------------------------------
+Using DAL layer HopsFS's metadata can be stored in different databases. HopsFS provides a driver to store the metadata in MySQL Cluster Database. Database specific parameter are stored in a **.properties** file. 
 
 * **com.mysql.clusterj.connectstring**
 	Address of management server of MySQL NDB Cluster.
@@ -225,15 +213,23 @@ Data access layer configuration parameters
 	MySQL Server user password
 * **io.hops.metadata.ndb.mysqlserver.connection pool size**
 	Number of NDB connections used by the MySQL Server. The default is set to 10. 
-
 * *Session Pool* 
 	For performance reasons the data access layer maintains a pools of pre-allocated ClusterJ session objects. Following parameters are used to control the behavior the session pool.
-
 	- **io.hops.session.pool.size**
-		Defines the size of the session pool. The pool should be at least as big as the number of active transactions in the system. Number of active transactions in the system can be calculated as (num rpc handler threads +sub tree ops threds pool size). The default value is set to 1000.
+		Defines the size of the session pool. The pool should be at least as big as the number of active transactions in the system. Number of active transactions in the system can be calculated as (num rpc handler threads + sub tree ops threads pool size). 
 	- **io.hops.session.reuse.count**
-		 Session is used N times and then it is garbage collected. The default value is set to 5000.
+		 Session is used N times and then it is garbage collected.
 
+Loading DAL Driver
+------------------
+
+In order to load a DAL driver following configuration parameters are added to hdfs-site.xml
+
+* **dfs.storage.driver.jarFile** path of driver jar file.
+
+* **dfs.storage.driver.class** main class that initializes the driver.
+
+* **dfs.storage.driver.configfile** path to a file that contains configuration parameters for the jar file. The path is supplied to the **dfs.storage.driver.class** as an argument during initialization. 
 
 
 Erasure Coding
