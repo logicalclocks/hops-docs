@@ -18,7 +18,7 @@ Unsupported Features
 --------------------
 
 * **Secondary NameNode**
-	The secondary NameNode is no longer supported. Hops-FS supports multiple NameNodes and all the NameNodes are active.
+	The secondary NameNode is no longer supported. Hops-FS supports multiple NameNodes and all the NameNodes are active. **dfs.namenode.secondary.***
 * **EditLog**
 	The write ahead log (EditLog) is not needed as all the metadata mutations are stored in the highly available transactional memory.
 * **FSImage**
