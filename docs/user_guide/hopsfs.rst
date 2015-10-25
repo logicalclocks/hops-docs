@@ -3,34 +3,34 @@ HopsFS User Guide
 ******************
 
 
-Hops-FS is a new implementation of the the Hadoop Filesystem (HDFS) based on `Apache Hadoop`_ 2.0.4-alpha, that supports multiple stateless NameNodes, where the metadata is stored in an in-memory distributed database (MySQL Cluster). Hops-FS enables more scalable clusters than Apache HDFS (up to ten times larger clusters), and enables NameNode metadata to be both customized and analyzed, because it can now be easily accessed via a SQL API.
+HopsFS is a new implementation of the the Hadoop Filesystem (HDFS) based on `Apache Hadoop`_ 2.0.4-alpha, that supports multiple stateless NameNodes, where the metadata is stored in an in-memory distributed database (MySQL Cluster). HopsFS enables more scalable clusters than Apache HDFS (up to ten times larger clusters), and enables NameNode metadata to be both customized and analyzed, because it can now be easily accessed via a SQL API.
 
 .. figure:: ../imgs/hopsfs-arch.png
    :alt: HopsFS vs Apache HDFS Architecture
 
-We have replaced HDFS 2.x's Primary-Secondary Replication model with shared atomic transactional memory. This means that we no longer use the parameters in HDFS that are based on the (eventually consistent) replication of edit log entries from the Primary NameNode to the Secondary NameNode using a set of quorum-based replication servers. Simlarly, HopsFS, does not uses ZooKeeper and implements leader election and membership service using the transactional shared memory.
-Hops-FS is a drop-in replacement for HDFS and it supports most of the `configuration`_ parameters defined for Apache HDFS. Following is the list of HDFS features and configurations that are not applicable in HopsFS
+We have replaced HDFS 2.x's Primary-Secondary Replication model with shared atomic transactional memory. This means that we no longer use the parameters in HDFS that are based on the (eventually consistent) replication of edit log entries from the Primary NameNode to the Secondary NameNode using a set of quorum-based replication servers. Similarly, HopsFS, does not uses ZooKeeper and implements leader election and membership service using the transactional shared memory.
+HopsFS is a drop-in replacement for HDFS and it supports most of the `configuration`_ parameters defined for Apache HDFS. Following is the list of HDFS features and configurations that are not applicable in HopsFS
 
 Unsupported HDFS Features
 ===============
 * **Secondary NameNode**
-	The secondary NameNode is no longer supported. Hops-FS supports multiple NameNodes and all the NameNodes are active. Thus **hdfs haadmin *** command; and **dfs.namenode.secondary.*** and **dfs.ha.*** configuration parameters are not supported in HopsFS.
+	The secondary NameNode is no longer supported. HopsFS supports multiple NameNodes and all the NameNodes are active. Thus **hdfs haadmin *** command; and **dfs.namenode.secondary.*** and **dfs.ha.*** configuration parameters are not supported in HopsFS.
 * **Checkpoint Node**
-    HopsFS does not require checkpoint nodes as all the metadata is stored in highly available external database. Thus **dfs.namenode.checkpoint.*** configuration parameters are not supported in HopsFS.
+    HopsFS does not require checkpoint node as all the metadata is stored in highly available external database. Thus **dfs.namenode.checkpoint.*** configuration parameters are not supported in HopsFS.
 * **EditLog**
 	The write ahead log (EditLog) is not needed as all the metadata mutations are stored in the highly available transactional memory. Thus **dfs.namenode.num.extra.edits.*** and **dfs.namenode.edits.*** configuration parameters are not supported in HopsFS.
-* **FSImage** configuration parameters are not supported in HopsFS.
-	We don’t need to store checkpoints of the metadata (FSImage) as NameNodes in Hops-FS are stateless and metadata is stored in the external metadata store. Thus **hdfs dfsadmin -saveNamespace|metaSave|restoreFailedStorage|rollEdits|fetchImage** commands; and **dfs.namenode.name.dir.*** and **dfs.image.*** configuration parameters are not supported in HopsFS.
+* **FSImage** 
+	We don’t need to store checkpoints of the metadata (FSImage) as NameNodes in HopsFS are stateless and metadata is stored in the external metadata store. Thus **hdfs dfsadmin -saveNamespace|metaSave|restoreFailedStorage|rollEdits|fetchImage** commands; and **dfs.namenode.name.dir.*** and **dfs.image.*** configuration parameters are not supported in HopsFS.
 * **Quorum Based Journaling**
 	Replaced by the external metadata store. Thus **dfs.journalnode.*** configuration parameters are not supported in HopsFS.
 * **NameNode Federation and ViewFS**
-	To support very large namespace the namespace is statically partitioned among multiple namenodes. HDFS Federation and ViewFS, a HDFS Federation management tool, are no longer supported as the namespace in HopsFS scales to billions of files and directories. Thus **dfs.nameservices.*** configuration parameters are not supported in HopsFS.
+	In HDFS the namespace is statically partitioned among multiple namenodes to support large namespace. In essence these are independent HDFS clusters where ViewFS provides a unified view of the namespace. HDFS Federation and ViewFS are no longer supported as the namespace in HopsFS scales to billions of files and directories. Thus **dfs.nameservices.*** configuration parameters are not supported in HopsFS.
 * **ZooKeeper**
 	ZooKeeper is no long required as the coordination and membership `service`_ is implemented using the transactional shared memory. 
 	
 
 
-Temporary Unsupported Features
+Temporarily Unsupported Features
 --------------------
 Following commands are not currently supported as HopsFS is under heavy development. These commands will be activated in future releases. 
 
@@ -48,9 +48,9 @@ Leader Election
 ---------------
 
 * **dfs.leader.check.interval**
-	The length of the period in milliseconds on which NameNodes run the leader election protocol. One of the active NameNodes is chosen as a leader to perform housekeeping operations. All NameNodes periodically update a counter in the database to mark that they are active. All NameNodes also periodically check for changes in the membership of the NameNodes. By default the period is to one second. Increasing the time interval would lead to slow failure detection.
+	The length of the time period in milliseconds after which NameNodes run the leader election protocol. One of the active NameNodes is chosen as a leader to perform housekeeping operations. All NameNodes periodically update a counter in the database to mark that they are active. All NameNodes also periodically check for changes in the membership of the NameNodes. By default the time period is set to one second. Increasing the time interval leads to slow failure detection.
 * **dfs.leader.missed.hb**
-	This property specifies when a NameNode is declared dead. By default a NameNode is declared dead if it misses a HeartBeat. Higher values of this property would lead to slower failure detection.
+	This property specifies when a NameNode is declared dead. By default a NameNode is declared dead if it misses two consecutive heartbeats. Higher values of this property would lead to slower failure detection. The minimum supported value is 2.
 * **dfs.leader.tp.increment**
     HopsFS uses an eventual leader election algorithm where the heartbeat time period (**dfs.leader.check.interval**) is automatically incremented if it detects that the NameNodes are falsely declared dead due to missed heartbeats caused by network/database/CPU overload. By default the heartbeat time period is incremented by 100 milliseconds, however it can be overridden using this parameter. 
 
@@ -59,16 +59,16 @@ NameNode Cache
 --------------
 NameNode cache configuration parameters are 
 
-* **dfs.resolvingcache.enabled**
-	Enables/Disables the cache for the NameNode.
+* **dfs.resolvingcache.enabled** (true/false)
+	Enable/Disables the cache for the NameNode.
 
 * **dfs.resolvingcache.type**
-Each NameNode caches the inodes metadata in a local cache for quick file path resolution. We support different implementations for the cache; INodeMemcache, PathMemcache, OptimalMemcache and InMemory.
+Each NameNode caches the inodes metadata in a local cache for quick path resolution. We support different implementations for the cache i.e. INodeMemcache, PathMemcache, OptimalMemcache and InMemory.
 
 1. **INodeMemcache** stores individual inodes in Memcached. 
-2. **PathMemcache** is a course grain cache where entire file path (key) along with its associated inodes objects are stored in the Memcached
-3. **OptimalMemcache** 	is combination of INodeMemcache and PathMemcache. 
-4. **InMemory** Same as INodeMemcache, but instead of using Memcached, it uses a LRU ConcurrentLinkedHashMap. We recommend **InMemory** cache as it gives higher throughput. 
+2. **PathMemcache** is a course grain cache where entire file path (key) along with its associated inodes objects are stored in the Memcached.
+3. **OptimalMemcache** 	combines INodeMemcache and PathMemcache. 
+4. **InMemory** Same as INodeMemcache but instead of using Memcached it uses a LRU ConcurrentLinkedHashMap. We recommend **InMemory** cache as it yields higher throughput. 
 
 
 For INodeMemcache/PathMemcache/OptimalMemcache following configurations parameters must be set.
@@ -83,7 +83,7 @@ For INodeMemcache/PathMemcache/OptimalMemcache following configurations paramete
 InMemory cache specific configurations are
 
 * **dfs.resolvingcache.inmemory.maxsize**
-Max number of entries that could be in the cache before the LRU algorithm kicks in.
+Max number of entries that could be stored in the cache before the LRU algorithm kicks in.
 
 
 Distributed Transaction Hints 
@@ -98,10 +98,10 @@ In HopsFS the metadata is partitioned using the inodes' id. HopsFS tries to to e
 
 Quota Management 
 ----------------
-In order to boost the performance and increase the parallelism of metadata operations the quota updates are applied asynchronously i.e. disk and namespace usage statistics are asynchronously updated in the background. Using asynchronous quota system it is possible that some users over consume disk space before the background quota system throws an exception. Following parameters controls how aggressively the quota subsystem updates the quota statistics. 
+In order to boost the performance and increase the parallelism of metadata operations the quota updates are applied asynchronously i.e. disk and namespace usage statistics are asynchronously updated in the background. Using asynchronous quota system it is possible that some users over consume namespace/disk space before the background quota system throws an exception. Following parameters controls how aggressively the quota subsystem updates the quota statistics. 
 
 * **dfs.quota.enabled**
-	En/Disabled quota. By default quota is enabled.
+	Enable/Disabled quota. By default quota is enabled.
 * **dfs.namenode.quota.update.interval**
 	 The quota update manager applies the outstanding quota updates after every dfs.namenode.quota.update.interval milliseconds.
 * **dfs.namenode.quota.update.limit**
@@ -119,21 +119,18 @@ ClusterJ API does not support any means to auto generate primary keys. Unique ke
 * **dfs.namenode.id.updateThreshold**
 	It defines how often the IDs Monitor should check if the ID pools are running low on pre-allocated IDs.
 
-
-
 Namespace and Block Pool ID
 ---------------------------
 
 * **dfs.block.pool.id**, and **dfs.name.space.id**
-	Due to shared state among the NameNodes, Hops-FS only supports single namespace and one block pool. The default namespace and block pool ids can be overridden using these parameters.
-
+	Due to shared state among the NameNodes, HopsFS only supports single namespace and one block pool. The default namespace and block pool ids can be overridden using these parameters.
 
 
 .. Transaction Statistics 
 .. ----------------------
 
 .. * **dfs.transaction.stats.enabled**
-..	Each NameNode collect statistics about currently running transactions. The statistics willbe written in a comma separated file format, that could be parsed afterwards to get an aggregated view over all or specific transactions. By default transaction stats is disabled.
+..	Each NameNode collect statistics about currently running transactions. The statistics will be written in a comma separated file format, that could be parsed afterwards to get an aggregated view over all or specific transactions. By default transaction stats is disabled.
 
 .. * **dfs.transaction.stats.detailed.enabled**
 ..	If enabled, The NameNode will write a more detailed and human readable version of the statistics. By default detailed transaction stats is disabled.
@@ -181,7 +178,7 @@ Client Configurations
 	By default NameNode selection policy is set to RANDOM_STICKY
 
 * **dfs.clinet.max.retires.on.failure**
-	The client will retry the RPC call if the RPC fails due to the failure of the NameNode. This configuration parameter specifies how many times the client would retry the RPC before throwing an exception. This property is directly related to number of expected simultaneous failures of NameNodes. Set this value to 1 in case of low failure rates such as one dead NameNode at any given time. It is recommended that this property must be set to value >= 1.
+	The client retries the RPC call if the RPC fails due to the failure of the NameNode. This configuration parameter specifies how many times the client would retry the RPC before throwing an exception. This property is directly related to number of expected simultaneous failures of NameNodes. Set this value to 1 in case of low failure rates such as one dead NameNode at any given time. It is recommended that this property must be set to value >= 1.
 * **dfs.client.max.random.wait.on.retry**
 	A RPC can fail because of many factors such as NameNode failure, network congestion etc. Changes in the membership of NameNodes can lead to contention on the remaining NameNodes. In order to avoid contention on the remaining NameNodes in the system the client would randomly wait between [0,MAX VALUE] ms before retrying the RPC. This property specifies MAX VALUE; by default it is set to 1000 ms.
 * **dfs.client.refresh.namenode.list**
@@ -229,18 +226,18 @@ In order to load a DAL driver following configuration parameters are added to hd
 
 * **dfs.storage.driver.class** main class that initializes the driver.
 
-* **dfs.storage.driver.configfile** path to a file that contains configuration parameters for the jar file. The path is supplied to the **dfs.storage.driver.class** as an argument during initialization. 
+* **dfs.storage.driver.configfile** path to a file that contains configuration parameters for the driver jar file. The path is supplied to the **dfs.storage.driver.class** as an argument during initialization. 
 
 
 Erasure Coding
 ==============
-Hops-FS provides erasure coding functionality in order to decrease storage costs without the loss of high-availability. Hops offers a powerful, on a per file basis configurable, erasure coding API. Codes can be freely configured and different configurations can be applied to different files. Given that Hops monitors your erasure-coded files directly in the NameNode, maximum control over encoded files is guaranteed. This page explains how to configure and use the erasure coding functionality of Hops. Apache HDFS stores 3 copies of your data to provide high-availability. So 1 petabyte of data actually requires 3 petabytes of storgae. For many organizations, this results in onorous storage costs. Hops-FS also supports erasure coding to reduce the storage required by by 44% compared to HDFS, while still providing high-availability for your data.
+HopsFS provides erasure coding functionality in order to decrease storage costs without the loss of high-availability. Hops offers a powerful, on a per file basis configurable, erasure coding API. Codes can be freely configured and different configurations can be applied to different files. Given that Hops monitors your erasure-coded files directly in the NameNode, maximum control over encoded files is guaranteed. This page explains how to configure and use the erasure coding functionality of Hops. Apache HDFS stores 3 copies of your data to provide high-availability. So, 1 petabyte of data actually requires 3 petabytes of storage. For many organizations, this results in enormous storage costs. HopsFS also supports erasure coding to reduce the storage required by by 44% compared to HDFS, while still providing high-availability for your data.
 
 
 Compatibility
 -------------
 
-The erasure coding functionality is fully compatible to standard HDFS and availability of encoded files is ensured via fully transparent on the fly repairs on the client-side. Transparent repairs are provided through a special implementation of the FileSystem API and hence compatible to any existing code relying on this API. To enable transparent repairs, simply add the following configuration option to your HDFS configuration file.
+The erasure coding functionality is fully compatible to standard HDFS and availability of encoded files is ensured via fully transparent on the fly repairs on the client-side. Transparent repairs are provided through a special implementation of the filesystem API and hence compatible to any existing code relying on this API. To enable transparent repairs, simply add the following configuration option to your HDFS configuration file.
 
 .. code-block:: xml
 
