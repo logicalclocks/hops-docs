@@ -2,48 +2,36 @@
 HopsFS User Guide
 ******************
 
-.. figure:: ../imgs/hopsfs.png
-   :alt: HopsFS Architecture
-
 
 Hops-FS is a new implementation of the the Hadoop Filesystem (HDFS) based on `Apache Hadoop`_ 2.0.4-alpha, that supports multiple stateless NameNodes, where the metadata is stored in an in-memory distributed database (MySQL Cluster). Hops-FS enables more scalable clusters than Apache HDFS (up to ten times larger clusters), and enables NameNode metadata to be both customized and analyzed, because it can now be easily accessed via a SQL API.
 
 .. figure:: ../imgs/hopsfs-arch.png
    :alt: HopsFS vs Apache HDFS Architecture
-	 
 
-Hops-FS maintains the same semantics of Apache HDFS, so that all the existing application and systems using
-Apache HDFS can easily migrate to Hops-FS. Hops-FS supports most of the `configuration`_ parameters defined for Apache HDFS 
+We have replaced HDFS 2.x's Primary-Secondary Replication model with shared atomic transactional memory. This means that we no longer use the parameters in HDFS that are based on the (eventually consistent) replication of edit log entries from the Primary NameNode to the Secondary NameNode using a set of quorum-based replication servers. Simlarly, HopsFS, does not uses ZooKeeper and implements leader election and membership service using the transactional shared memory.
+Hops-FS is a drop-in replacement for HDFS and it supports most of the `configuration`_ parameters defined for Apache HDFS. Following is the list of HDFS features and configurations that are not applicable in HopsFS
 
 Unsupported HDFS Features, Configurations, and Commands
 ===============
 
 Unsupported Features
----------------------
+--------------------
 
 * **Secondary NameNode**
 	The secondary NameNode is no longer supported. Hops-FS supports multiple NameNodes and all the NameNodes are active.
 * **EditLog**
-	The write ahead log (EditLog) is not needed as all the metadata mutations are stored in the highly available data store.
+	The write ahead log (EditLog) is not needed as all the metadata mutations are stored in the highly available transactional memory.
 * **FSImage**
 	We don’t need to store checkpoints of the metadata (FSImage) as NameNodes in Hops-FS are stateless and metadata is stored in the external metadata store.
 * **Quorum Based Journaling**
 	Replaced by the external metadata store.
-* **NameNode Federation**
-	NameNode federations are no longer supported.
-* **Viewfs**
-	Viewfs is used by federated HDFS to view a namespace that contains multiple federated NameNodes.
+* **NameNode Federation and ViewFS**
+	To support very large namespace the namespace is statically partitioned among multiple namenodes. HDFS Federation and ViewFS, a HDFS Federation management tool, are no longer supported as the namespace in HopsFS scales to billions of files and directories. 
 * **ZooKeeper**
-	HDFS uses ZooKeeer for coordination services. Hops-FS has replaced ZooKeeper with a coordination service built on distributed shared memory.
-
-
+	ZooKeeper is no long required as the coordination and membership `service`_ is implemented using the transactional shared memory. 
+	
 Unsupported Configurations
----------------------
-
-We have replaced HDFS 2.x’s Primary-Secondary Replication model with shared atomic trans-
-actional memory. This means that we no longer use the parameters in HDFS that are based on
-the (eventually consistent) replication of edit log entries from the Primary NameNode to the
-Secondary NameNode using a set of quorum-based replication servers.
+--------------------------
 
 * **dfs.namenode.secondary.***
 	None of the secondary NameNode attributes are used.
@@ -496,3 +484,4 @@ Deletion of encoded files does not require any special care. The system will aut
 
 .. _Apache Hadoop: http://hadoop.apache.org/releases.html
 .. _configuration: http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/hdfs-default.xml
+.. _service: http://link.springer.com/chapter/10.1007%2F978-3-319-19129-4_13
