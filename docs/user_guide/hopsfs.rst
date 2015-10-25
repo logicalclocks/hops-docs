@@ -11,62 +11,28 @@ Hops-FS is a new implementation of the the Hadoop Filesystem (HDFS) based on `Ap
 We have replaced HDFS 2.x's Primary-Secondary Replication model with shared atomic transactional memory. This means that we no longer use the parameters in HDFS that are based on the (eventually consistent) replication of edit log entries from the Primary NameNode to the Secondary NameNode using a set of quorum-based replication servers. Simlarly, HopsFS, does not uses ZooKeeper and implements leader election and membership service using the transactional shared memory.
 Hops-FS is a drop-in replacement for HDFS and it supports most of the `configuration`_ parameters defined for Apache HDFS. Following is the list of HDFS features and configurations that are not applicable in HopsFS
 
-Unsupported HDFS Features, Configurations, and Commands
+Unsupported HDFS Features
 ===============
-
-Unsupported Features
---------------------
-
 * **Secondary NameNode**
-	The secondary NameNode is no longer supported. Hops-FS supports multiple NameNodes and all the NameNodes are active. **dfs.namenode.secondary.***
+	The secondary NameNode is no longer supported. Hops-FS supports multiple NameNodes and all the NameNodes are active. Thus **hdfs haadmin *** command; and **dfs.namenode.secondary.*** and **dfs.ha.*** configuration parameters are not supported in HopsFS.
+* **Checkpoint Node**
+    HopsFS does not require checkpoint nodes as all the metadata is stored in highly available external database. Thus **dfs.namenode.checkpoint.*** configuration parameters are not supported in HopsFS.
 * **EditLog**
-	The write ahead log (EditLog) is not needed as all the metadata mutations are stored in the highly available transactional memory.
-* **FSImage**
-	We don’t need to store checkpoints of the metadata (FSImage) as NameNodes in Hops-FS are stateless and metadata is stored in the external metadata store.
+	The write ahead log (EditLog) is not needed as all the metadata mutations are stored in the highly available transactional memory. Thus **dfs.namenode.num.extra.edits.*** and **dfs.namenode.edits.*** configuration parameters are not supported in HopsFS.
+* **FSImage** configuration parameters are not supported in HopsFS.
+	We don’t need to store checkpoints of the metadata (FSImage) as NameNodes in Hops-FS are stateless and metadata is stored in the external metadata store. Thus **hdfs dfsadmin -saveNamespace|metaSave|restoreFailedStorage|rollEdits|fetchImage** commands; and **dfs.namenode.name.dir.*** and **dfs.image.*** configuration parameters are not supported in HopsFS.
 * **Quorum Based Journaling**
-	Replaced by the external metadata store.
+	Replaced by the external metadata store. Thus **dfs.journalnode.*** configuration parameters are not supported in HopsFS.
 * **NameNode Federation and ViewFS**
-	To support very large namespace the namespace is statically partitioned among multiple namenodes. HDFS Federation and ViewFS, a HDFS Federation management tool, are no longer supported as the namespace in HopsFS scales to billions of files and directories. 
+	To support very large namespace the namespace is statically partitioned among multiple namenodes. HDFS Federation and ViewFS, a HDFS Federation management tool, are no longer supported as the namespace in HopsFS scales to billions of files and directories. Thus **dfs.nameservices.*** configuration parameters are not supported in HopsFS.
 * **ZooKeeper**
 	ZooKeeper is no long required as the coordination and membership `service`_ is implemented using the transactional shared memory. 
 	
-Unsupported Configurations
---------------------------
-
-* **dfs.namenode.secondary.***
-	None of the secondary NameNode attributes are used.
-* **dfs.namenode.checkpoint.***
-	None of the checkpoint attributes are used.
-* **dfs.image.***
-	None of the FSImage attributes are used.
-* **dfs.journalnode.***
-	None of the hadoop’s journaling attributes are used.
-* **dfs.ha.***
-	None of the hadoop high availability attributes are used.
-* **dfs.nameservices.***
-	None of the hadoop federation attributes are used.
-* **dfs.namenode.num.extra.edits.***
-	None of the edit logs attributes are used.
-* **dfs.namenode.name.dir.***
-	FSImage is not supported anymore.
-* **dfs.namenode.edits.***
-	None of the edit log attributes are used.
 
 
-Unsupported Commands
----------------------
-
-* **hdfs haadmin ***
-	None of high availability admin commands are supported since we don’t support Apache Hadoop high availability solution.
-* **hdfs dfsadmin -saveNamespace** 
-	The Namespace is already stored in a database, a dump could be created to save it to file instead.
-* **hdfs dfadmin -metaSave**
-* **hdfs dfadmin -restoreFailedStorage**
-* **hdfs dfadmin -rollEdits**
-* **hdfs dfadmin -fetchImage**
-
-
-There are some commands which we have disabled for now, but we could support in the future:
+Temporary Unsupported Features
+--------------------
+Following commands are not currently supported as HopsFS is under heavy development. These commands will be activated in future releases. 
 
 * **hdfs dfsadmin rollingUpgrade ***
 * **hdfs dfadmin -allowSnapshot**
@@ -74,60 +40,38 @@ There are some commands which we have disabled for now, but we could support in 
 
 
 HopsFs Configurations
-===============
-
-NameNode Configurations
-----------------------
-
-* **dfs.block.pool.id**
-	Due to shared state among the NameNodes, Hops-FS only support one block pool. Set this property to set a custom value for block pool. Default block pood id is HOP BLOCK POOL 123.
-* **dfs.name.space.id**
-	Due to shared state among NameNodes, Hops-FS only support one name space. Set this property to set a custom value for name space. Default name space id is 911.
-	
+=====================
+This section contains new/modified configurations parameters for HopsFS. 
 
 
 Leader Election
-~~~~~~~~~~~~~~~~
+---------------
 
 * **dfs.leader.check.interval**
-	The length of the period in seconds on which NameNodes run the leader election protocol. One of the active NameNodes is chosen as a leader to perform housekeeping operations. All NameNodes periodically update a counter in the database to mark that they are active. All NameNodes also periodically check for changes in the membership of the NameNodes. By default the period is to one second. Increasing the time interval would lead to slow failure detection.
+	The length of the period in milliseconds on which NameNodes run the leader election protocol. One of the active NameNodes is chosen as a leader to perform housekeeping operations. All NameNodes periodically update a counter in the database to mark that they are active. All NameNodes also periodically check for changes in the membership of the NameNodes. By default the period is to one second. Increasing the time interval would lead to slow failure detection.
 * **dfs.leader.missed.hb**
 	This property specifies when a NameNode is declared dead. By default a NameNode is declared dead if it misses a HeartBeat. Higher values of this property would lead to slower failure detection.
+* **dfs.leader.tp.increment**
+    HopsFS uses an eventual leader election algorithm where the heartbeat time period (**dfs.leader.check.interval**) is automatically incremented if it detects that the NameNodes are falsely declared dead due to missed heartbeats caused by network/database/CPU overload. By default the heartbeat time period is incremented by 100 milliseconds, however it can be overridden using this parameter. 
 
 
-Resolving Cache 
-~~~~~~~~~~~~~~~
+NameNode Cache 
+--------------
+NameNode cache configuration parameters are 
 
-Each NameNode caches the path metadata (inode ids) in a resolving cache for later use. Note
-this is not same as transaction cache used in the HopsFS NameNode Dal Implementation layer.
-Resolving Cache entries have longer life than the individual transaction caches.
-We support different implementations for the resolving cache; INodeMemcache, PathMem-
-cache, OptimalMemcache and InMemory.
+* **dfs.resolvingcache.type**
+Each NameNode caches the inodes metadata in a local cache for quick file path resolution. We support different implementations for the cache; INodeMemcache, PathMemcache, OptimalMemcache and InMemory.
 
-We support different implementations for the resolving cache; INodeMemcache, PathMem-
-cache, OptimalMemcache and InMemory.
-
-
-1. **INodeMemcache**
-	for each path component “INode” we associate a key (parentId, Name) with a value INodeId.
-2. **PathMemcache**
-	for each path, we associate a key md5(path) with list of INodeIds.
-3. **OptimalMemcache**
-	sits in a middle ground between INodeMemcache and PathMemcache. We divide the path into parentPath and file then we associate md5(parentPath) with list of INodeIds till parent, and associate (fileparentId, fileName) with fileINodeId.
-4. **InMemory**
-	The same as INodeMemcache, but instead of using Memcache, we use a ConcurrentLinkedHashMap with LRU.
-
-
-Common configuration:
+1. **INodeMemcache** stores individual inodes in Memcached. 
+2. **PathMemcache** is a course grain cache where entire file path (key) along with its associated inodes objects are stored in the Memcached
+3. **OptimalMemcache** 	is combination of INodeMemcache and PathMemcache. 
+4. **InMemory** Same as INodeMemcache, but instead of using Memcached, it uses a LRU ConcurrentLinkedHashMap. We recommend **InMemory** cache as it gives higher throughput. 
 
 * **dfs.resolvingcache.enabled**
-	Enables/Disables the resolving cache for the NameNode.
-* **dfs.resolvingcache.type**
-	Resolving cache type, could be INode, Path, Optimal, InMemory. Default is InMemory.
+	Enables/Disables the cache for the NameNode.
 
 
-Memcache specific configuration:
-
+For INodeMemcache/PathMemcache/OptimalMemcache following configurations parameters must be set.
 * **dfs.resolvingcache.memcached.server.address**
 	Memcached server address.
 * **dfs.resolvingcache.memcached.connectionpool.size**
@@ -135,11 +79,20 @@ Memcache specific configuration:
 * **dfs.resolvingcache.memcached.key.expiry**
 	It determines when the memcached entries expire. The default value is 0, that is, the entries never expire. Whenever the NameNode encounters an entry that is no longer valid, it updates it.
 
-InMemory cache specific configuration:
+
+InMemory cache specific configurations are
 
 * **dfs.resolvingcache.inmemory.maxsize**
-Max number of entries that could be in the cache before the LRU algorithm kick in.
+Max number of entries that could be in the cache before the LRU algorithm kicks in.
 
+
+
+
+
+
+
+* **dfs.block.pool.id**, and **dfs.name.space.id**
+	Due to shared state among the NameNodes, Hops-FS only supports single namespace and one block pool. The default namespace and block pool ids can be overridden using these parameters.
 
 PartitionKey 
 ~~~~~~~~~~~~~~~
