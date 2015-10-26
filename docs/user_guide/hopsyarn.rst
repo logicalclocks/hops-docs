@@ -1,9 +1,7 @@
-******************
-Hops Yarn
-******************
+************************************
+Hops Yarn User Guide
+************************************
 
-HopsYARN
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. figure:: ../imgs/hops-yarn.png
    :alt: Hops-YARN Architecture
