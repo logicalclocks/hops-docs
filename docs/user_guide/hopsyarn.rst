@@ -1,5 +1,5 @@
 ************************************
-Hops Yarn User Guide
+Hops Yarn Configurations
 ************************************
 
 

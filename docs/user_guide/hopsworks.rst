@@ -1,5 +1,6 @@
-HopsWorks User Guide
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+************************************
+HopsWorks Configurations
+************************************
 
 HopsWorks is the User Interface to the Hops platform. It provides support for:
 

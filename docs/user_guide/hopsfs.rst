@@ -1,5 +1,5 @@
 ******************
-HopsFS User Guide
+HopsFS Configurations
 ******************
 
 HopsFS is a drop-in replacement for HDFS and it supports most of the `configuration`_ parameters defined for Apache HDFS. Following is the list of HDFS features and configurations that are not applicable in HopsFS

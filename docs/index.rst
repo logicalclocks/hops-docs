@@ -6,33 +6,84 @@
 Hops Documentation
 ==================================================
 
-Contents:
+The main documentation for the site is organized into following sections:
+
+* :ref:`hops-overview`
+* :ref:`hops-installation`
+* :ref:`hops-configurations`
+* :ref:`hops-administration`
+* :ref:`hops-dev-guide`
+* :ref:`hops-license`
+* :ref:`hops-contributers`
+
+.. _hops-overview:
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
+   :caption: Overview
+
+   overview
+   
+
+.. _hops-installation:
+
+.. toctree::
+   :maxdepth: 2
    :glob:
-
-   overview.rst
-   installation_guide/hops_installation_guide.rst
-   user_guide/hopsworks.rst
-   user_guide/hopsfs.rst
-   user_guide/hopsyarn.rst
-   admin_guide/hops_admin_guide.rst
-   developer_guide/hops_developer_guide.rst
-   licensing.rst
-   authors.rst
-
-API Reference
--------------
-
-.. autosummary::
-   :toctree: api
+   :caption: Installation
+      
+   installation_guide/hops_installation_guide
 
 
-Indices and tables
-==================
+.. _hops-configurations:
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+.. toctree::
+   :maxdepth: 2
+   :glob:
+   :caption: Configurations
+      
+   user_guide/hopsworks
+   user_guide/hopsfs
+   user_guide/hopsyarn
+
+   
+.. _hops-administration:
+   
+.. toctree::
+   :maxdepth: 2
+   :glob:
+   :caption: Administration
+      
+   admin_guide/hops_admin_guide
+
+
+.. _hops-dev-guide:
+   
+.. toctree::
+   :maxdepth: 2
+   :glob:
+   :caption: Developer Guide   
+   
+   developer_guide/hops_developer_guide
+
+
+.. _hops-license:
+   
+.. toctree::
+   :maxdepth: 2
+   :glob:
+   :caption: License
+      
+   licensing
+
+
+.. _hops-contributers:
+   
+.. toctree::
+   :maxdepth: 2
+   :glob:
+   :caption: Contributers
+      
+   authors
+
 
