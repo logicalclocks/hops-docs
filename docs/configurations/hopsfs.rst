@@ -84,8 +84,12 @@ Namespace and Block Pool ID
 * **dfs.block.pool.id**, and **dfs.name.space.id**
   Due to shared state among the NameNodes, HopsFS only supports single namespace and one block pool. The default namespace and block pool ids can be overridden using these parameters.
 
+
 Client Configurations
 ---------------------
+
+.. _client-conf-parameters:
+
 * **dfs.namenodes.rpc.addresses**
   HopsFS support multiple active NameNodes. A client can send a RPC request to any of the active NameNodes. This parameter specifies a list of active NameNodes in the system. The list has following format [hdfs://ip:port, hdfs://ip:port, ...]. It is not necessary that this list contain all the active NameNodes in the system. Single valid reference to an active NameNode is sufficient. At the time of startup the client obtains an updated list of NameNodes from a NameNode mentioned in the list. If this list is empty then the client will connect to ’fs.default.name’.
 

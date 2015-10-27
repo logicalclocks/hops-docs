@@ -37,11 +37,14 @@ NameNodes
 
 Formating NameNode
 ~~~~~~~~~~~~~~~~~~
+Running the format command on any NameNode **truncates** all the tables in the database and insert defaults in the tables. NDB atomically performs the **truncate** operation which can fail or take very long time to complete for very large tables. In such cases run the **/hdfs namenode -dropAndCreateDB** command to drop and recreate the database followed by the **format** command to insert default values in the database tables. 
+
 
 Adding/Removing NameNodes
 ~~~~~~~~~~~~~~~~~~~~~~~~~
-Fail Over
-.........
+As the namenodes are stateless any NameNode can be removed during operation. All going operations that fail due to stopping the NameNode are automatically forwarded by the clients and the datanodes to remaining namenodes in the system.
+
+Similarly, the clients and the datanodes automatically find out the newly started namenodes. See :ref:`client configuration parameters <client-conf-parameters>` that determins how quickly a new NameNode starts receiving requests from the existing clients. 
 
 
 HopsFS Clients
@@ -55,6 +58,9 @@ Datanodes
 
 
 
+.. _Apache Hadoop: http://hadoop.apache.org/releases.html
+.. _configuration: http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/hdfs-default.xml
+.. _service: http://link.springer.com/chapter/10.1007%2F978-3-319-19129-4_13
 
 
 
