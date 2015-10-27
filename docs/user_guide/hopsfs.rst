@@ -32,7 +32,30 @@ Besides the unsupported features, there are some commands that are not currently
 
 
 
-
+NameNodes
+---------
 
 Formating NameNode
-------------------
+~~~~~~~~~~~~~~~~~~
+
+Adding/Removing NameNodes
+~~~~~~~~~~~~~~~~~~~~~~~~~
+Fail Over
+.........
+
+
+HopsFS Clients
+--------------
+Compatibility with HDFS Clients
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Datanodes
+---------
+
+
+
+
+
+
+
+

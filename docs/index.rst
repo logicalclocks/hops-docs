@@ -33,6 +33,7 @@ The documentation for Hops Hadoop distribution is organized into following secti
       
    user_guide/hopsworks
    user_guide/hopsfs
+   user_guide/hopsfsEC
    user_guide/hopsyarn
 
 
