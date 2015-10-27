@@ -37,14 +37,14 @@ NameNodes
 
 Formating NameNode
 ~~~~~~~~~~~~~~~~~~
-Running the format command on any NameNode **truncates** all the tables in the database and insert defaults in the tables. NDB atomically performs the **truncate** operation which can fail or take very long time to complete for very large tables. In such cases run the **/hdfs namenode -dropAndCreateDB** command to drop and recreate the database followed by the **format** command to insert default values in the database tables. 
+Running the format command on any NameNode **truncates** all the tables in the database and inserts defaults in the tables. NDB atomically performs the **truncate** operation which can fail or take very long time to complete for very large tables. In such cases run the **/hdfs namenode -dropAndCreateDB** command first to drop and recreate the database followed by the **format** command to insert default values in the database tables. In NDB dropping and recreating a database is much quicker than truncating the tables in the database. 
 
 
 Adding/Removing NameNodes
 ~~~~~~~~~~~~~~~~~~~~~~~~~
-As the namenodes are stateless any NameNode can be removed during operation. All going operations that fail due to stopping the NameNode are automatically forwarded by the clients and the datanodes to remaining namenodes in the system.
+As the namenodes are stateless any NameNode can be removed with out effecting the state of the system. All going operations that fail due to stopping the NameNode are automatically forwarded by the clients to the remaining namenodes in the system.
 
-Similarly, the clients and the datanodes automatically find out the newly started namenodes. See :ref:`client configuration parameters <client-conf-parameters>` that determins how quickly a new NameNode starts receiving requests from the existing clients. 
+Similarly, the clients automatically discover the newly started namenodes. See :ref:`client configuration parameters <client-conf-parameters>` that determines how quickly a new NameNode starts receiving requests from the existing clients. 
 
 
 HopsFS Clients
