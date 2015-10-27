@@ -23,3 +23,6 @@ We have replaced HDFS 2.x's Primary-Secondary Replication model with shared atom
 
 Hops Yarn
 =========
+
+.. figure:: ./imgs/hops-yarn.png
+   :alt: Hops-YARN Architecture

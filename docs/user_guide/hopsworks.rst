@@ -1,6 +1,5 @@
-************************************
-HopsWorks Configurations
-************************************
+HopsWorks User Guide
+====================
 
 HopsWorks is the User Interface to the Hops platform. It provides support for:
 
@@ -12,3 +11,5 @@ HopsWorks is the User Interface to the Hops platform. It provides support for:
 * batch-based YARN job submission (including Spark and Flink);
 * extended metadata designer;
 * fast dataset browsing and uploading.    
+
+

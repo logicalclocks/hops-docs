@@ -6,9 +6,10 @@
 Hops Documentation
 ==================================================
 
-The main documentation for the site is organized into following sections:
+The documentation for Hops Hadoop distribution is organized into following sections:
 
 * :ref:`hops-overview`
+* :ref:`hops-userguide`
 * :ref:`hops-installation`
 * :ref:`hops-configurations`
 * :ref:`hops-administration`
@@ -24,6 +25,16 @@ The main documentation for the site is organized into following sections:
 
    overview
    
+.. _hops-userguide:
+.. toctree::
+   :maxdepth: 2
+   :glob:
+   :caption: User Guide
+      
+   user_guide/hopsworks
+   user_guide/hopsfs
+   user_guide/hopsyarn
+
 
 .. _hops-installation:
 
@@ -42,9 +53,11 @@ The main documentation for the site is organized into following sections:
    :glob:
    :caption: Configurations
       
-   user_guide/hopsworks
-   user_guide/hopsfs
-   user_guide/hopsyarn
+   configurations/hopsworks
+   configurations/hopsfs
+   configurations/hopsfsEC
+   configurations/hopsyarn
+   configurations/other
 
    
 .. _hops-administration:
