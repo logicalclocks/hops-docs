@@ -1,7 +1,7 @@
 HopsFS Configurations
 =====================
 
-This section contains new/modified configurations parameters for HopsFS. All the configuration parameters are defined in hdfs-site.xml file. 
+This section contains new/modified configurations parameters for HopsFS. All the configuration parameters are defined in **hdfs-site.xml** file. 
 
 Leader Election
 ---------------
@@ -16,7 +16,7 @@ Leader Election
 
 NameNode Cache 
 --------------
-NameNode cache configuration parameters are 
+NameNode cache configuration parameters are
 
 * **dfs.resolvingcache.enabled**: (true/false)
   Enable/Disables the cache for the NameNode.
@@ -31,7 +31,7 @@ Each NameNode caches the inodes metadata in a local cache for quick path resolut
 3. **OptimalMemcache**:
    combines INodeMemcache and PathMemcache. 
 4. **InMemory**:
-   Same as INodeMemcache but instead of using Memcached it uses a LRU ConcurrentLinkedHashMap. We recommend **InMemory** cache as it yields higher throughput. 
+   Same as INodeMemcache but instead of using Memcached it uses an inmemory **LRU ConcurrentLinkedHashMap**. We recommend **InMemory** cache as it yields higher throughput. 
 
 
 For INodeMemcache/PathMemcache/OptimalMemcache following configurations parameters must be set.
@@ -98,10 +98,10 @@ Client Configurations
 .. _client-conf-parameters:
 
 * **dfs.namenodes.rpc.addresses**:
-  HopsFS support multiple active NameNodes. A client can send a RPC request to any of the active NameNodes. This parameter specifies a list of active NameNodes in the system. The list has following format [hdfs://ip:port, hdfs://ip:port, ...]. It is not necessary that this list contain all the active NameNodes in the system. Single valid reference to an active NameNode is sufficient. At the time of startup the client obtains an updated list of NameNodes from a NameNode mentioned in the list. If this list is empty then the client will connect to ’fs.default.name’.
+  HopsFS support multiple active NameNodes. A client can send a RPC request to any of the active NameNodes. This parameter specifies a list of active NameNodes in the system. The list has following format [hdfs://ip:port, hdfs://ip:port, ...]. It is not necessary that this list contain all the active NameNodes in the system. Single valid reference to an active NameNode is sufficient. At the time of startup the client obtains an updated list of NameNodes from a NameNode mentioned in the list. If this list is empty then the client tries to connect to **fs.default.name**.
 
 * **dfs.namenode.selector-policy**:
-  The clients uniformly distributes the RPC calls among the all the NameNodes in the system based on the following policies. 
+  The clients uniformly distribute the RPC calls among the all the NameNodes in the system based on the following policies. 
   - ROUND ROBIN
   - RANDOM
   - RANDOM_STICKY
@@ -117,18 +117,22 @@ Client Configurations
 Data Access Layer (DAL)
 -----------------------
 
-MySQL Cluster Driver Configuration
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Using DAL layer HopsFS's metadata can be stored in different databases. HopsFS provides a driver to store the metadata in MySQL Cluster Database. Database specific parameter are stored in a **.properties** file. 
+Using DAL layer HopsFS's metadata can be stored in different databases. HopsFS provides a driver to store the metadata in MySQL Cluster Network Database (NDB). 
+
+MySQL Cluster Network Database Driver Configuration
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. _ndb-conf-parameters:
+
+Database specific parameter are stored in a **.properties** file. The configuration files contains following parameters. 
 
 * **com.mysql.clusterj.connectstring**:
   Address of management server of MySQL NDB Cluster.
   
 * **com.mysql.clusterj.database**:
-  Name of the database that contains the metadata tables.
+  Name of the database schema that contains the metadata tables.
   
 * **com.mysql.clusterj.connection.pool.size**:
-  This is the number of connections that are created in the ClusterJ connection pool. If it is set to 1 then all the sessions share the same connection; all requests for a SessionFactory with the same connect string and database will share a single SessionFactory. A setting of 0 disables pooling; each request for a SessionFactory will receive its own unique SessionFactory. We set the default value of this parameter to 3.
+  This is the number of connections that are created in the ClusterJ connection pool. If it is set to 1 then all the sessions share the same connection; all requests for a SessionFactory with the same connect string and database will share a single SessionFactory. A setting of 0 disables pooling; each request for a SessionFactory will receive its own unique SessionFactory.
   
 * **com.mysql.clusterj.max.transactions**:
   Maximum number transactions that can be simultaneously executed using the clusterj client. The maximum support transactions are 1024.
@@ -154,22 +158,22 @@ Using DAL layer HopsFS's metadata can be stored in different databases. HopsFS p
   For performance reasons the data access layer maintains a pools of pre-allocated ClusterJ session objects. Following parameters are used to control the behavior the session pool.
   
   - **io.hops.session.pool.size**:
-    Defines the size of the session pool. The pool should be at least as big as the number of active transactions in the system. Number of active transactions in the system can be calculated as (num rpc handler threads + sub tree ops threads pool size). 
+    Defines the size of the session pool. The pool should be at least as big as the number of active transactions in the system. Number of active transactions in the system can be calculated as ( **dfs.datanode.handler.count** + **dfs.namenode.handler.count** + **dfs.namenode.subtree-executor-limit**). 
   - **io.hops.session.reuse.count**:
-    Session is used N times and then it is garbage collected.
+    Session is used N times and then it is garbage collected. Note: Due to imporoved memory management in ClusterJ >= 7.4.7, N can be set to higher values i.e. Integer.MAX_VALUE for latest ClusterJ libraries. 
 
-Loading DAL Driver
-~~~~~~~~~~~~~~~~~~
+Loading a DAL Driver
+~~~~~~~~~~~~~~~~~~~~
 
 In order to load a DAL driver following configuration parameters are added to hdfs-site.xml
 
 * **dfs.storage.driver.jarFile**:
-  path of driver jar file.
+  path of driver jar file if the driver's jar file is not included in the class path.
 
 * **dfs.storage.driver.class**: 
   main class that initializes the driver.
 
 * **dfs.storage.driver.configfile**:
-  path to a file that contains configuration parameters for the driver jar file. The path is supplied to the **dfs.storage.driver.class** as an argument during initialization. 
+  path to a file that contains configuration parameters for the driver jar file. The path is supplied to the **dfs.storage.driver.class** as an argument during initialization. See :ref:`ndb configuration parameters <ndb-conf-parameters>`
 
 
