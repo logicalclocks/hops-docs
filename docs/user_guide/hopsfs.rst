@@ -4,20 +4,16 @@ HopsFS User Guide
 Unsupported HDFS Features
 -------------------------
 
-HopsFS is a drop-in replacement for HDFS and it supports most of the `configuration`_ parameters defined for Apache HDFS. Following is the list of HDFS features and configurations that are not applicable in HopsFS
+HopsFS is a drop-in replacement for HDFS and it supports most of the `configuration`_ parameters defined for Apache HDFS. As the architecture of HopsFS is fundamentally different from HDFS, some of the features such as journaling, secondary NameNode etc., are not required in HopsFS. Following is the list of HDFS features and configurations that are not applicable in HopsFS
 
 .. _configuration: http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/hdfs-default.xml
 
 * **Secondary NameNode**
-	The secondary NameNode is no longer supported. HopsFS supports multiple NameNodes and all the NameNodes are active. Thus **hdfs haadmin *** command; and **dfs.namenode.secondary.*** and **dfs.ha.*** configuration parameters are not supported in HopsFS.
-* **Checkpoint Node**
-    HopsFS does not require checkpoint node as all the metadata is stored in highly available external database. Thus **dfs.namenode.checkpoint.*** configuration parameters are not supported in HopsFS.
-* **EditLog**
-	The write ahead log (EditLog) is not needed as all the metadata mutations are stored in the highly available transactional memory. Thus **dfs.namenode.num.extra.edits.*** and **dfs.namenode.edits.*** configuration parameters are not supported in HopsFS.
-* **FSImage** 
-	We don’t need to store checkpoints of the metadata (FSImage) as NameNodes in HopsFS are stateless and metadata is stored in the external metadata store. Thus **hdfs dfsadmin -saveNamespace|metaSave|restoreFailedStorage|rollEdits|fetchImage** commands; and **dfs.namenode.name.dir.*** and **dfs.image.*** configuration parameters are not supported in HopsFS.
-* **Quorum Based Journaling**
-	Replaced by the external metadata store. Thus **dfs.journalnode.*** configuration parameters are not supported in HopsFS.
+	The secondary NameNode is no longer supported. HopsFS supports multiple active NameNodes. Thus **hdfs haadmin *** command; and **dfs.namenode.secondary.*** and **dfs.ha.*** configuration parameters are not supported in HopsFS.
+* **Checkpoint Node and FSImage**
+    HopsFS does not require checkpoint node as all the metadata is stored in highly available external database. Thus **hdfs dfsadmin -{saveNamespace | metaSave | restoreFailedStorage | rollEdits | fetchImage}** command; and **dfs.namenode.name.dir.***, **dfs.image.***, **dfs.namenode.checkpoint.*** configuration parameters are not supported in HopsFS.
+* **Quorum Based Journaling** and **EditLog**
+	The write ahead log (EditLog) is not needed as all the metadata mutations are stored in the highly available transactional memory. Thus **dfs.namenode.num.extra.edits.***, **dfs.journalnode.*** and **dfs.namenode.edits.*** configuration parameters are not supported in HopsFS.
 * **NameNode Federation and ViewFS**
 	In HDFS the namespace is statically partitioned among multiple namenodes to support large namespace. In essence these are independent HDFS clusters where ViewFS provides a unified view of the namespace. HDFS Federation and ViewFS are no longer supported as the namespace in HopsFS scales to billions of files and directories. Thus **dfs.nameservices.*** configuration parameters are not supported in HopsFS.
 * **ZooKeeper**
@@ -26,17 +22,20 @@ HopsFS is a drop-in replacement for HDFS and it supports most of the `configurat
 
 Besides the unsupported features, there are some commands that are not currently supported as HopsFS is under heavy development. These commands will be activated in future releases. 
 
-* **hdfs dfsadmin rollingUpgrade ***
-* **hdfs dfadmin -allowSnapshot**
-* **hdfs dfadmin -disallowSnapshot**
+  *- **hdfs dfsadmin rollingUpgrade **
+  *- **hdfs dfadmin -allowSnapshot**
+  *- **hdfs dfadmin -disallowSnapshot**
+
 
 
 
 NameNodes
 ---------
 
-Formating NameNode
-~~~~~~~~~~~~~~~~~~
+Configuring HopsFS NameNode is very similar to configuring HDFS NameNode. While configuring a single Hops NameNode, the configuration files are written as if it is the only NameNode in the system. The NameNode automatically detect other NameNodes using the shared transactional memory (NDB). 
+
+Formating the Cluster
+~~~~~~~~~~~~~~~~~~~~~
 Running the format command on any NameNode **truncates** all the tables in the database and inserts defaults in the tables. NDB atomically performs the **truncate** operation which can fail or take very long time to complete for very large tables. In such cases run the **/hdfs namenode -dropAndCreateDB** command first to drop and recreate the database followed by the **format** command to insert default values in the database tables. In NDB dropping and recreating a database is much quicker than truncating the tables in the database. 
 
 
@@ -60,10 +59,10 @@ Compatibility with HDFS Clients
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 HopsFS is fully compatible with HDFS clients, although they do not distribute operations over NameNodes, as they assume there is a single active NameNode. 
 
+
 Datanodes
 ---------
-
-
+The datanodes periodically acquire an updated list of NameNodes in the system and establish a connection (register) with the new NameNodes. Like clients the datanodes also uniformly distribute the filesystem operation among all the NameNodes in the system. Currently the datanodes only round-robin policy to distribute the filesystem operations. 
 
 
 .. _Apache Hadoop: http://hadoop.apache.org/releases.html
