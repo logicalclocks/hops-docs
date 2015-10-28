@@ -49,8 +49,16 @@ Similarly, the clients automatically discover the newly started namenodes. See :
 
 HopsFS Clients
 --------------
+For load balancing the clients uniformly distributes the filesystem operations among all the NameNodes in the system. HopsFS clients support **random**, **round-robin** and **sticky policies** to distribute the filesystem operations among the NameNodes. Random and round-robin policies are self explanatory. Using sticky policy the filesystem client randomly picks a namenode and forwards all subsequent operation to the same NameNode. If the NameNode fails then the clients randomly picks another NameNode. 
+
+In published Hadoop workloads, metadata accesses follow a heavy-tail distribution where 3% of files account for 80% of accesses. This means that caching
+recently accessed metadata at Namnodes could give a significant performance boost. Each NameNode has a local cache that stores INode objects for recently accessed files and directories. Usually, the clients read/write files in the same sub-directory. Using sticky policies lowers the latencies for filesystem operations as most of the path components are already available in the NameNode cache.   
+
+When HopsFS is initialized it selects a valid NameNode from **dfs.namenodes.rpc.addresses** or **fs.default.name** configuration parameters. Using the NameNode the client then acquires an updated list of all the NameNodes in the system. Therefore at least one of the NameNode address defined by theses configuration parameters must belong to an alive NameNode. During initialization the client retries if it encounters a dead NameNode. The client initialization fails if all the NameNode address are invalid. 
+
 Compatibility with HDFS Clients
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+HopsFS is fully compatible with HDFS clients, although they do not distribute operations over NameNodes, as they assume there is a single active NameNode. 
 
 Datanodes
 ---------
