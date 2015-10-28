@@ -174,6 +174,6 @@ In order to load a DAL driver following configuration parameters are added to hd
   main class that initializes the driver.
 
 * **dfs.storage.driver.configfile**:
-  path to a file that contains configuration parameters for the driver jar file. The path is supplied to the **dfs.storage.driver.class** as an argument during initialization. See :ref:`ndb configuration parameters <ndb-conf-parameters>`
+  path to a file that contains configuration parameters for the driver jar file. The path is supplied to the **dfs.storage.driver.class** as an argument during initialization. See :ref:`hops ndb driver configuration parameters <ndb-conf-parameters>`.
 
 
