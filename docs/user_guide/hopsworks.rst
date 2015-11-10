@@ -13,3 +13,6 @@ HopsWorks is the User Interface to the Hops platform. It provides support for:
 * fast dataset browsing and uploading.    
 
 
+.. figure:: imgs/login.png
+   :alt: HopsWorks Login Page
+
