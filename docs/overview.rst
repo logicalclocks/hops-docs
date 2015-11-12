@@ -12,24 +12,60 @@ HopsWorks
 HopsWorks is the UI front-end to Hops. It supports user authentication through either a native solution, LDAP, or two-factor authentication. There are both user and adminstrator views for HopsWorks.
 HopsWorks implements a perimeter security model, where command-line access to Hadoop services is restricted, and all jobs and interactive analyses are run from the HopsWorks UI and Apache Zeppelin (an iPython notebook style web application).
 
+
+HopsWorks is the User Interface to the Hops platform. It provides support for:
+
+* authentication, authorization, and auditing;
+* project-based multi-tenancy with multiple roles;
+* secure dataset sharing between projects;
+* free-text search of metadata with ElasticSearch;
+* interactive analytics with Apache Zepplin for Spark and Flink;
+* batch-based YARN job submission (including Spark and Flink);
+* extended metadata designer;
+* fast dataset browsing and uploading.    
+
+HopsWorks provides first-class support for DataSets and Projects.
+Each DataSet has a home project. Each project has a number of default DataSets:
+
+-  *Resources*: contains programs and small amounts of data
+-  *Logs*: contains outputs (stdout, stderr) for YARN applications
+
+
 HopsWorks implements dynamic role-based access control for projects. That is, users do not have static privileges. If a user is able to upload and download data to/from a project, the user can only do so within the context of that project. She cannot run a MapReduce job that reads from that project and copies data to another project, where the user also happens to have data import/export privileges.
 
-.. figure:: imgs/dynamic_roles.png
-   :alt: HopsWorks Login Page
+.. figure:: imgs/dynamic_roles.eps
+   :alt: Dynamic Roles ensures strong multi-tenancy in HopsWorks
 
 We support two roles: Data Scientist and Data Owner.
-A Data Scientist can only upload restricted data (programs and resources) to projects.
+A Data Scientist can
+
+* run interactive analytics through Apache Zeppelin and YARN jobs (Spark, Flink, MR) that write output to the Logs DataSet for the project
+*  only upload restricted data (programs and resources) to projects.
+
+
 A Data Owner can
-upload/download data, 
-	 
-	 
+
+* upload/download data, 
+* add and remove  members of the project
+* change the role for project members
+* create and delete DataSets
+* import and export data from DataSets
+* design and update metadata for files/directories/DataSets	 
+
+
+The stack of services available through HopsWorks is:
+
+.. figure:: imgs/hopsworks-stack.eps
+   :alt: HopsWorks stack of services
+
+      
 
 BiobankCloud
 ===============
 
 BiobankCloud extends HopsWorks with platform-specific support for Biobanking and Bioinformatics.
 
-.. figure:: imgs/bbc-actors.png
+.. figure:: imgs/biobankcloud-actors.eps
    :alt: Actors in a BiobankCloud Ecosystem within the context of the EU GPDR.
 
 
