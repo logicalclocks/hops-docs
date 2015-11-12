@@ -14,10 +14,13 @@ First Login (no 2-Factor Authentication)
 ------------------------------------------------
 
 You can first login with the default username and password.
-username: admin@kth.se
-password: admin
 
-*If it goes wrong*
+::
+   
+    username: admin@kth.se
+    password: admin
+
+**If it goes wrong**
 	 If login does not succeed, something has gone wrong during installation. The possible sources of error and the Web Application Server (Glassfish) and
 the database (MySQL Clusters).
 _Actions_:
@@ -32,12 +35,17 @@ First Login with 2-Factor Authentication
 ------------------------------------------------
 
 First, you need to setup 2-factor authentication for the default account:
-username: admin@kth.se
-password: admin
+::
+   
+    username: admin@kth.se
+    password: admin
 
 Login to the target machine where HopsWorks is installed, and run:
 
-sudo /bin/hopsworks-2fa
+.. code-block:: bash
+   
+    sudo /bin/hopsworks-2fa
+
 
 It should return something like:
 
@@ -50,31 +58,39 @@ This should register your second factor on your phone.
 You can now go to the start-page on Google Authenticator. You will need to supply the 6-digit number shown for 'admin@kth.se' when on the login page, along with the username and password.
 
 
-*If it goes wrong*
+**If it goes wrong**
 
 * Double-check that system meets the minimum system requirements for HopsWorks. Is there enough available disk space and memory?
 * 
 
 
-Registering an Account on HopsWorks
+Registering a New Account on HopsWorks
 ---------------------------------------------
 
 .. figure:: ../imgs/user_registration.png
     :alt: HopsWorks User Registration
-    :width: 100px
-    :height: 150px	   
-    :align: center
-    :figclass: align-center
+#    :width: 100px
+#    :height: 150px	   
+#    :align: center
+#    :figclass: align-center
 
 Register a new account with a valid email account. You should receive an email asking you to validate your account. The sender of the email will be neither the default email address "hopsworks@gmail.com"
 or the gmail address you supplied while installing HopsWorks. If you do not receive an email address, wait a minute. If you still haven't received it, you need to troubleshoot.
 
-investigate the JavaMail settings.
+** Validate the email address used in registration **
+If you click on the link supplied in the registration email, it will validate your account and rdirect you to the login page.
+You will **not be able to login until an administrator has validated your account.**. You can jump now to the Hops Administration Guide to see how to  validate account registrations, so that users can logn.
+
+
+
 
 You can login
 
-*If it goes wrong*
+**If it goes wrong**
 
-* Login need to login to the Glassfish Webserver and
-
-If you want to test the new account, you can jump to the Administration Guide to validate account requests.
+* Contact an administrator or go to the Administration Guide section of this document.
+  
+* Does your organization have a firewall that blocks outbound SMTP access?
+* Login to login to the Glassfish Webserver and
+* Investigate the JavaMail settings. Is the gmail username/password correct? Are the smtp server settings correct (ip-address or hostname, port, protocol (SSL, TLS))?
+If you want to test the new account, 
