@@ -168,9 +168,44 @@ tab, you will see a button **Upload Files**.
 Jobs
 ---------------------------------------------
 
+The Jobs tabs is the way to create and run YARN applications.
+HopsWorks supports:
+
+* Apache Spark,
+* Apache Flink,
+* MapReduce (MR),
+* and bioinformatics data parallel frameworks Adam and SaasFee (Cuneiform).
+    
++------------------+-----------------------------------------+
+| Option           | Description                             |
++==================+=========================================+
+| **New Job**      | Create a Job for any of the following   |
+|                  | YARN frameworks by clicking **New Job**:|
+|                  | Spark/MR/Flink/Adam/Cuneiform.          |
+|                  | Step 1: enter job-specific parameters   |
+|                  | Step 2: enter YARN parameters.          |
+|                  | Step 3: click on **Create Job**.        |
++-------------------+----------------------------------------+
+| **Run Job**      | After a job has been created, it can    |
+|                  | be run by clicking on its **Run** button.|
++-------------------+----------------------------------------+
+
+The logs for jobs are viewable in HopsWorks, as stdout and stderr files. These output files are also stored
+in the **Logs/<app-framework>/<log-files>** directories.
+After a job has been created, it can be **edited**, **deleted**, and **scheduled** by clickin on the **More actions** button.
+
 
 Apache Zeppelin
 ---------------------------------------------
+
+Apache Zeppelin is an interactive notebook web application for running Spark or Flink code on Hops YARN.
+You can turn interpreters for Spark/Flink/etc on and off in the Zeppelin tab, helping, respectively, to reduce time required to execute a Note (paragraph) in Zeppelin or reclaim resources.
+More details can be found at:
+
+* https://zeppelin.incubator.apache.org/
+
+
+
 
 Metadata Management
 ====================
