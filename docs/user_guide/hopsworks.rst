@@ -111,7 +111,6 @@ Right click on the project to be deleted in the projects box. You have the optio
 * **Remove and keep data sets**.
 
 
-
 Share a Data Set
 ---------------------------------------------
 
@@ -142,6 +141,9 @@ Free-text Search
 Data Set Browser
 ---------------------------------------------
 
+The Data Set tab enables you to browse Data Sets, files and directories in this project.
+It is mostly used as a file browser for the project's HDFS subtree. You cannot navigate to
+directories outside of this project's subtree.
 
 Upload Data
 ---------------------------------------------
@@ -163,6 +165,25 @@ tab, you will see a button **Upload Files**.
 |                  | You can also upload folders.           |
 +------------------+----------------------------------------+
 
+Compress Files
+---------------------------------------------
+
+HopFS supports erasure-coded replication, which reduces storage requirements for large files by roughly 50%.
+If a file consists of 10 file blocks or more (that is, if the file is larger than 640 MB in size, for a default block size of 64 MB), then it can
+be compressed. Smaller files cannot be compressed. 
+
++------------------+----------------------------------------+
+| Option           | Description                            |
++==================+========================================+
+| **compress**     | You have to have the **Data Owner**    |
+| **file**         | role to be able to compress files.     |
+|                  | Select a file from your project.       |
+|                  | Right-click and select **Compress**    |
+|                  | to reduce the size of the file by      |
+|                  | changing its replication policy from   |
+|                  | triplica replication to Reed-Solomon   |
+|                  | erasure coding.                        |
++------------------+----------------------------------------+
 
 
 Jobs
@@ -208,7 +229,7 @@ More details can be found at:
 
 
 Metadata Management
-====================
+--------------------------
 Metadata enables **data curation**, that is, ensuring that data is properly catalogued and accessible to appropriate users.
 
 Metadata in HopsWorks is used primarily to discover and and retrieve relevant data sets or files by users by enabling users to
