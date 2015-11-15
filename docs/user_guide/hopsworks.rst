@@ -64,7 +64,7 @@ You can now go to the start-page on Google Authenticator. You will need to suppl
 * 
 
 
-Registering a New Account on HopsWorks
+Register a New Account on HopsWorks
 ---------------------------------------------
 
 .. figure:: ../imgs/user_registration.png
@@ -79,18 +79,145 @@ or the gmail address you supplied while installing HopsWorks. If you do not rece
 
 ** Validate the email address used in registration **
 If you click on the link supplied in the registration email, it will validate your account and rdirect you to the login page.
-You will **not be able to login until an administrator has validated your account.**. You can jump now to the Hops Administration Guide to see how to  validate account registrations, so that users can logn.
+**You will not be able to login until an administrator has validated your account.**. You can jump now to the Hops Administration Guide to see how to validate account registrations, if you have administrator privileges.
 
-
-
-
-You can login
 
 **If it goes wrong**
 
 * Contact an administrator or go to the Administration Guide section of this document.
+If you are an administrator:
+* Does your organization have a firewall that blocks outbound SMTP access? HopsWorks needs SMTP outbound access over TLS using SSL (port 587 or 465).
+* Is the Glassfish server up and running? Can you login to the Glassfish Administration console (on port 4848)?
+* Inside Glassfish, check the JavaMail settings. Is the gmail username/password correct? Are the SMTP server settings correct (hostname/ip, port, protocol (SSL, TLS))?
+
+
+Update your Profile/Password
+---------------------------------------------
+
+After you have logged in, in the upper right-hand corner of the screen, you will see your **email address with a caret icon**. Click on the caret icon, then click on the menu item **Account**.
+A modal dialog will pop-up, from where you can change your password and other parts of your profile. You cannot change your email address and will need to create a new account if you wish to change your email address. You can also logout by clicking on the **sign out** menu item.
+
   
-* Does your organization have a firewall that blocks outbound SMTP access?
-* Login to login to the Glassfish Webserver and
-* Investigate the JavaMail settings. Is the gmail username/password correct? Are the smtp server settings correct (ip-address or hostname, port, protocol (SSL, TLS))?
-If you want to test the new account, 
+ Create a New Project
+---------------------------------------------
+
+You can create a project by clicking on the **New** button in the *Projects* box. This will pop-up a modal dialog, in which you enter the project name, an optional description, and select an optional set of services to be used in the project. You can also select an initial set of members for the project, who will be the the role of Data Scientist in the project. The roles can later be updated in the Project settings.
+
+Delete a Project
+---------------------------------------------
+
+Right click on the project to be deleted in the projects box. You have the options to:
+* **Remove and delete data sets**
+* **Remove and keep data sets**.
+
+
+
+Share a Data Set
+---------------------------------------------
+
+Click on the project that is owner of the Data Set. The click on *Data Sets*, and then right click on the Data Set to be shared and select **Share**. A popup dialog will then prompt you to select (1) a target project with which the *Data Set* is to be Shared and whether the *Data Set* will be shared as read-only (**Can View**) or as read-write (**Can edit**). To complete the sharing process, a Data Owner in the target project has to click on the shared Data Set, and then click on **Acccept** to complete the process.
+
+
+Free-text Search 
+---------------------------------------------
+
+
++------------------+----------------------------------------+
+| Option           | Description                            |
++==================+========================================+
+| **Search from**  | On landing page, enter the search term |
+| **Landing Page** | in the search bar and press return.    |
+|                  | Returns project names and Data Set     |
+|                  | names that match the entered term.     |
++------------------+----------------------------------------+
+| **Search from**  | From within the context of a project,  |
+| **Project Page** | enter the search term in the search bar|
+|                  | and press return. The search returns   |
+|                  | any files or directories whose name or |
+|                  | extended metadata matches the search   |
+|                  | term.                                  |
++------------------+----------------------------------------+
+
+
+Data Set Browser
+---------------------------------------------
+
+
+Upload Data
+---------------------------------------------
+
+Files can be uploaded using HopsWorks' web interface. Go to the
+project you want to upload the file(s) to. You must have the **Data Owner**
+role for that project to be able to upload files. In the **Data Sets**
+tab, you will see a button **Upload Files**.
+
++------------------+----------------------------------------+
+| Option           | Description                            |
++==================+========================================+
+| **Upload File**  | You have to have the **Data Owner**    |
+|                  | role to be able to upload files.       |
+|                  | Click on the **Upload File** button to |
+|                  | select a file from your local disk.    |
+|                  | Then click **Upload All** to upload    |
+|                  | the file(s) you selected.              |
+|                  | You can also upload folders.           |
++------------------+----------------------------------------+
+
+
+
+Jobs
+---------------------------------------------
+
+
+Apache Zeppelin
+---------------------------------------------
+
+Metadata Management
+====================
+Metadata enables **data curation**, that is, ensuring that data is properly catalogued and accessible to appropriate users.
+
+Metadata in HopsWorks is used primarily to discover and and retrieve relevant data sets or files by users by enabling users to
+attach arbitrary metadata to Data Sets, directories or files in HopsWorks. Metadata is associated with an individual file
+or Data Set or directory. This extended metadata is stored in the same database as the metadata for HopsFS and foreign keys link
+the extended metadata with the target file/directory/Data Set, ensuring its integrity.
+Extended metadata is exported to Elastic Search, from where it can be queried and the associated Data Set/Project/file/directory
+can be identified (and acted upon).
+
+
+MetaData Designer
+---------------------------------------------
+
+Within the context of a project, click on the **Data Sets** tab. From here, click on the **Metadata Designer** button.
+It will bring up a designer dialog that can be used to:
+
+* **Design a new Metadata Template**
+* **Extend an existing Metadata Template**
+* **Import/Export a Metadata Template**
+    
+The Metadata Designer can be used to define a Metadata template as one or more tables. Each table consists of a number of typed columns. Supported
+column types are:
+
+* **string**,
+* **single-select selection box**,
+* **multi-select selection box**.
+
+Columns can also have constraints defined on them. On a column, click on cog icon (configure), where you can make the field:
+
+* searchable: included in the Elastic Search index;
+* required: when entering metadata, this column will make it is mandatory for users to enter a value for this column.
+
+  
+MetaData Attachment and Entry
+---------------------------------------------
+
+Within the context of a project, click on the **Data Sets** tab. From here, click on a Data Set. Inside the Data Set, if you
+select any file or directory, the rightmost panel will display any extended metadata associated with the file or directory.
+If no extended metadata is assocated with the file/directory, you will see "No metadata template attached" in the rightmost panel.
+You can attach an existing metadata template to the file or directory by right-clicking on it, and selecting **Add metadata template**.
+The metadata can then be selected from the set of *available templates* (designed or uploaded).
+
+After one or more metadata templates have been attached to the file/directory, if the file is selected, the metadata templates are now visible
+in the rightmost panel. The metadata can be edited in place by clicking on the **+** icon beside the metadata attribute. More than one extended
+metadata value can be added for each attribute, if the attribute is a string attribute. 
+
+Metadata values can also be removed, and metadata templates can be removed from files/directories using the Data Set service.
