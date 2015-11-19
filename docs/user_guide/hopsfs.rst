@@ -1,6 +1,11 @@
 HopsFS User Guide
 =================
 
+
+
+
+
+
 Unsupported HDFS Features
 -------------------------
 
@@ -63,6 +68,7 @@ The datanodes periodically acquire an updated list of NameNodes in the system an
 .. _Apache Hadoop: http://hadoop.apache.org/releases.html
 .. _configuration: http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/hdfs-default.xml
 .. _service: http://link.springer.com/chapter/10.1007%2F978-3-319-19129-4_13
+
 
 
 

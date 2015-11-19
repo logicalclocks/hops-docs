@@ -44,7 +44,8 @@ The documentation for Hops Hadoop distribution is organized into following secti
    :glob:
    :caption: Installation
       
-   installation_guide/hops_installation_guide
+   installation_guide/hops_auto_installation_guide.rst
+   installation_guide/hopsFS_manual_installation_guide.rst
 
 
 .. _hops-configurations:

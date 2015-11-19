@@ -1,8 +1,8 @@
 .. _hops-installer:
 
-*******************
-Hops Auto Installer
-*******************
+**************
+Hops Installer
+**************
 
 The Hops stack includes a number of services also requires a number of third-party distributed services:
 
