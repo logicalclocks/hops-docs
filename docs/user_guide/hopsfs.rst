@@ -1,10 +1,6 @@
 HopsFS User Guide
 =================
 
-
-
-
-
 .. _Unsupported_Features:
 Unsupported HDFS Features
 -------------------------
@@ -36,6 +32,7 @@ NameNodes
 Configuring HopsFS NameNode is very similar to configuring a HDFS NameNode. While configuring a single Hops NameNode, the configuration files are written as if it is the only NameNode in the system. The NameNode automatically detects other NameNodes using NDB. 
 
 .. _format_cluster:
+
 Formating the Cluster
 ~~~~~~~~~~~~~~~~~~~~~
 Running the format command on any NameNode **truncates** all the tables in the database and inserts default values in the tables. NDB atomically performs the **truncate** operation which can fail or take very long time to complete for very large tables. In such cases run the **/hdfs namenode -dropAndCreateDB** command first to drop and recreate the database schema followed by the **format** command to insert default values in the database tables. In NDB dropping and recreating a database is much quicker than truncating all the tables in the database. 
