@@ -1,3 +1,5 @@
+.. _hopsFS_Configuration:
+
 HopsFS Configurations
 =====================
 
@@ -161,6 +163,8 @@ Database specific parameter are stored in a **.properties** file. The configurat
     Defines the size of the session pool. The pool should be at least as big as the number of active transactions in the system. Number of active transactions in the system can be calculated as ( **dfs.datanode.handler.count** + **dfs.namenode.handler.count** + **dfs.namenode.subtree-executor-limit**). 
   - **io.hops.session.reuse.count**:
     Session is used N times and then it is garbage collected. Note: Due to imporoved memory management in ClusterJ >= 7.4.7, N can be set to higher values i.e. Integer.MAX_VALUE for latest ClusterJ libraries. 
+
+.. _loading_ndb_driver:
 
 Loading a DAL Driver
 ~~~~~~~~~~~~~~~~~~~~
