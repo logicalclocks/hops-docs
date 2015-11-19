@@ -18,8 +18,8 @@ Required Softwares
 Ensure that Java 1.6.X or higer, and Protocol Buffer 2.5 are installed.
 
 
-Download and Compile Source Code
---------------------------------
+Download and Compile Sources
+----------------------------
 HopsFS consists of two modules i.e. HopsFS source code and Database Driver consisting of Data Access Layer Interface, Data Access Layer Implementation projects. 
 
 Building Driver
@@ -52,6 +52,14 @@ This generates a hadoop distribution folder ``./hadoop-dist`` that uses HopsFS i
 
 
 
+Installing Distributed Database
+-------------------------------
+
+HopsFS uses Mysql Cluster Network Database (NDB) to store the filesystem metadata. NDB can be install using `Karamel`_. Karamel comes with many sample installation recipies for NDB that can be found in the ``examples`` folder of the Karamel installation. 
+
+Instructions for manually installing NDB is out of the scope of this documentation. We refer you to official `NDB Installation`_ manual for installing NDB. 
+
 
 
 .. _Karamel: http://www.karamel.io/
+.. _NDB Installation: https://dev.mysql.com/doc/refman/5.1/en/mysql-cluster-installation.html
