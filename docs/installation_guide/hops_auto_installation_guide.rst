@@ -17,6 +17,8 @@ Due to the complexity of installing and configuring all Hops' services, we recom
 Cloud Platforms (EC2, GCE, OpenStack)
 ---------------------------------------
 
+**Karamel/Chef**
+
 #. Download and install Karamel (www.karamel.io).
 #. Run Karamel.
 #. Click on the "Load Cluster Definition" menu item in Karamel. You are now prompted to select a cluster definition YAML file. Go to the examples/stable directory, and select a cluster definition file for your target cloud platform.
@@ -36,10 +38,10 @@ Cloud Platforms (EC2, GCE, OpenStack)
 Coming soon..
 
 
-Linux On-Premises (bare-metal)
+On-Premises
 ---------------------------------------
 
-You will need to prepare for installation by
+For on-premises (bare-metal) installations, You will need to prepare for installation by:
 
 #. identifying a *master* host, from which you will run Karamel (it should have a display for Karamel's user interface);
 #. identifying a set of *target* hosts, on which the Hops software and 3rd party services will be installed.
@@ -81,11 +83,12 @@ Redhat is not yet supported by Karamel, but you can install Hops using Chef-solo
 Vagrant
 -------------
 
-You can install HopsWorks and Hops with Vagrant. You will need to have the following software packages installed:
+You can install HopsWorks and Hops on your laptop/desktop  with Vagrant. You will need to have the following software packages installed:
 
-* chef-dk, version 0.5+
+* chef-dk, version >0.5+ (but not >0.8+)
 * git
 * vagrant
+* vagrant omnibus plugin (``vagrant plugin install vagrant-omnibus``)    
 * virtualbox
 
 You can now run vagrant, using:
