@@ -1,13 +1,35 @@
+******************
+Hops Overview
+******************
+
 Audience
-======================
-This document is intended for use by:
+*****************
+
+This document is structured as four different guides, each aimed at different types of readers:
+
 * Data Scientists
+
+  * Installation Guide (optional - it's easy)
+  * User Guide
+  
 * Hadoop Administrators
+
+  * Installation Guide
+  * Administration Guide
+  
 * Data Curators
 
+  * User Guide
 
+* Hops Developers
+
+  * Installation Guide  (optional)
+  * User Guide  (you should know how it is used!)
+  * Developer Guide  
+
+    
 Revision History
-=========================
+*****************
 
     .. csv-table:: 
        :header: "Date", "Release", "Description"
@@ -15,11 +37,12 @@ Revision History
 
        "Nov 2015", "0.1", "First version."
 
-   
+.. raw:: latex
 
-******************
-Hops Overview
-******************
+    \newpage
+
+Hops Introduction
+**********************       
 
 Hops is a next-generation distribution of Apache Hadoop that supports Hadoop-as-a-Service, Project-Based Multi-Tenancy, secure sharing of DataSets across projects, and extensible and searchable metadata.
 
@@ -58,7 +81,8 @@ Hops uses YARN to manage applications and resource management. All YARN framewor
 
 
 HopsWorks
-==========
+**************
+
 HopsWorks is the UI front-end to Hops. It supports user authentication through either a native solution, LDAP, or two-factor authentication. There are both user and adminstrator views for HopsWorks.
 HopsWorks implements a perimeter security model, where command-line access to Hadoop services is restricted, and all jobs and interactive analyses are run from the HopsWorks UI and Apache Zeppelin (an iPython notebook style web application).
 
@@ -72,6 +96,8 @@ HopsWorks provides first-class support for DataSets and Projects. Each DataSet h
 .. figure:: imgs/dynamic_roles.eps
    :alt: Dynamic Roles ensures strong multi-tenancy in HopsWorks
 
+   Dynamic Roles ensures strong multi-tenancy between projects in HopsWorks.
+	 
 The following roles are supported:
 	 
     A Data Scientist can
@@ -94,25 +120,38 @@ HopsWorks is built on a number of services, illustrated below:
 
 .. figure:: imgs/hopsworks-stack.eps
    :alt: HopsWorks stack of services
-      
-**HopsFS**
+   :scale: 80
+   :figclass: align-center
+
+   HopsWorks Layered Architecture.
+   
+HopsFS
+************
+
 HopsFS is a new implementation of the the Hadoop Filesystem (HDFS) based on `Apache Hadoop`_ 2x, that supports multiple stateless NameNodes, where the metadata is stored in an in-memory distributed database (NDB). HopsFS enables more scalable clusters than Apache HDFS (up to ten times larger clusters), and enables NameNode metadata to be both customized and analyzed, because it can now be easily accessed via a SQL API.
 
 .. figure:: imgs/hopsfs-arch.png
    :alt: HopsFS vs Apache HDFS Architecture
 
+   Apache HDFS versus HopsFS Architetures.
+	 
 We have replaced HDFS 2.x's Primary-Secondary Replication model with shared atomic transactional memory. This means that we no longer use the parameters in HDFS that are based on the (eventually consistent) replication of edit log entries from the Primary NameNode to the Secondary NameNode using a set of quorum-based replication servers. Similarly, HopsFS, does not uses ZooKeeper and implements leader election and membership service using the transactional shared memory.
 
 .. _Apache Hadoop: http://hadoop.apache.org/releases.html
 
 
-**HopsYarn**
+HopsYarn
+**********
+
 HopsYARN introduces a new metadata layer for Apache YARN, where the cluster state is stored in a distributed, in-memory, transactional database. Apart from improved scalabilty, HopsYARN enables us to provide quotas for Projects, in terms of how many CPU minutes and memory are available for use by each project. Quota-based scheduling is built on the capacity scheduler, so we can still prioritize certain projects over others.
 
 .. figure:: ./imgs/hops-yarn.png
    :alt: Hops-YARN Architecture
+   :scale: 50
+   :figclass: align-center
 
-
+   Hops YARN Architecture.
+	      
 **Apache Spark**
 We support Apache Spark for both interactive analytics and jobs.
 
@@ -128,11 +167,18 @@ Hopsworks is a web application that runs on a highly secure Glassfish server. El
 
 
 BiobankCloud
-===============
+********************
 
 BiobankCloud extends HopsWorks with platform-specific support for Biobanking and Bioinformatics.
+These services are:
+
+* Consent form management for projects (studies);
+* Charon, a service for securely sharing data between clusters using public clouds;
+* SaasFee (cuneiform), a YARN-based application for building scalable bioinformatics pipelines.
 
 .. figure:: imgs/biobankcloud-actors.eps
    :alt: Actors in a BiobankCloud Ecosystem within the context of the EU GPDR.
+   :scale: 100
+   :figclass: align-center
 
-	 
+   BiobankCloud Actors.

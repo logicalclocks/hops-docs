@@ -3,17 +3,10 @@ HopsWorks User Guide
 
 If you are using 2-Factor authentication, jump ahead to "First Login with 2-Factor Authentication".
 
-.. figure:: ../imgs/login.png
-    :alt: HopsWorks Login Page
-    :width: 300px
-    :height: 334px	   
-    :align: center
-    :figclass: align-center
-
 First Login (no 2-Factor Authentication)
 ------------------------------------------------
 
-You can first login with the default username and password.
+On initial installation, you can login with the default username and password.
 
 ::
    
@@ -21,7 +14,8 @@ You can first login with the default username and password.
     password: admin
 
 **If it goes wrong**
-	 If login does not succeed, something has gone wrong during installation. The possible sources of error and the Web Application Server (Glassfish) and
+
+If login does not succeed, something has gone wrong during installation. The possible sources of error and the Web Application Server (Glassfish) and
 the database (MySQL Clusters).
 _Actions_:
 
@@ -30,6 +24,14 @@ _Actions_:
 * Investigate Glassfish misconfiguration problems. Is Glassfish running? is the hopsworks.war application installed? Are the JDBC connections working? Is JavaMail correct?)
 * Investigate MySQL Cluster misconfiguration problems. Are the mgm server, data nodes, and MySQL server running? Do the hops and hopsworks databases exist and are they populated with tables and rows? If not, something went wrong during installation.
 
+.. figure:: ../imgs/login.png
+    :alt: HopsWorks Login Page
+    :scale: 75
+    :width: 200px
+    :height: 234px	   
+    :align: center
+    :figclass: align-center
+  
 	 
 First Login with 2-Factor Authentication
 ------------------------------------------------
@@ -61,7 +63,7 @@ You can now go to the start-page on Google Authenticator. You will need to suppl
 **If it goes wrong**
 
 * Double-check that system meets the minimum system requirements for HopsWorks. Is there enough available disk space and memory?
-* 
+
 
 
 Register a New Account on HopsWorks
@@ -69,15 +71,17 @@ Register a New Account on HopsWorks
 
 .. figure:: ../imgs/user_registration.png
     :alt: HopsWorks User Registration
-#    :width: 100px
-#    :height: 150px	   
-#    :align: center
-#    :figclass: align-center
+    :scale: 50
+    :width: 200px
+    :height: 250px	   
+    :align: center
+    :figclass: align-center
 
 Register a new account with a valid email account. You should receive an email asking you to validate your account. The sender of the email will be neither the default email address "hopsworks@gmail.com"
 or the gmail address you supplied while installing HopsWorks. If you do not receive an email address, wait a minute. If you still haven't received it, you need to troubleshoot.
 
 ** Validate the email address used in registration **
+
 If you click on the link supplied in the registration email, it will validate your account and rdirect you to the login page.
 **You will not be able to login until an administrator has validated your account.**. You can jump now to the Hops Administration Guide to see how to validate account registrations, if you have administrator privileges.
 
@@ -107,6 +111,7 @@ Delete a Project
 ---------------------------------------------
 
 Right click on the project to be deleted in the projects box. You have the options to:
+
 * **Remove and delete data sets**
 * **Remove and keep data sets**.
 

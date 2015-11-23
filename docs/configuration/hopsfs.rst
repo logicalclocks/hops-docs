@@ -1,9 +1,9 @@
 .. _hopsFS_Configuration:
 
-HopsFS Configurations
+HopsFS Configuration
 =====================
 
-This section contains new/modified configurations parameters for HopsFS. All the configuration parameters are defined in **hdfs-site.xml** file. 
+This section contains new/modified configuration parameters for HopsFS. All the configuration parameters are defined in **hdfs-site.xml**. 
 
 Leader Election
 ---------------
@@ -123,6 +123,7 @@ Using DAL layer HopsFS's metadata can be stored in different databases. HopsFS p
 
 MySQL Cluster Network Database Driver Configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 .. _ndb-conf-parameters:
 
 Database specific parameter are stored in a **.properties** file. The configuration files contains following parameters. 
@@ -154,8 +155,6 @@ Database specific parameter are stored in a **.properties** file. The configurat
 * **io.hops.metadata.ndb.mysqlserver.connection pool size**:
   Number of NDB connections used by the MySQL Server. The default is set to 10. 
   
-  
-  
 * **Database Sessions Pool**:
   For performance reasons the data access layer maintains a pools of pre-allocated ClusterJ session objects. Following parameters are used to control the behavior the session pool.
   
@@ -179,5 +178,3 @@ In order to load a DAL driver following configuration parameters are added to hd
 
 * **dfs.storage.driver.configfile**:
   path to a file that contains configuration parameters for the driver jar file. The path is supplied to the **dfs.storage.driver.class** as an argument during initialization. See :ref:`hops ndb driver configuration parameters <ndb-conf-parameters>`.
-
-

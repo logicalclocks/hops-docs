@@ -1,2 +1,3 @@
-Hops Yarn Configurations
+Hops Yarn Configuration
 ========================
+
