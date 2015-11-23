@@ -24,7 +24,8 @@ The documentation for Hops Hadoop distribution is organized into following secti
    :caption: Overview
 
    overview
-   
+   requirements
+      
 .. _hops-userguide:
 .. toctree::
    :maxdepth: 2
@@ -53,13 +54,13 @@ The documentation for Hops Hadoop distribution is organized into following secti
 .. toctree::
    :maxdepth: 2
    :glob:
-   :caption: Configurations
-      
-   configurations/hopsworks
-   configurations/hopsfs
-   configurations/hopsfsEC
-   configurations/hopsyarn
-   configurations/other
+   :caption: Configuration
+
+   configuration/hopsworks
+   configuration/hopsfs
+   configuration/hopsfsEC
+   configuration/hopsyarn
+   configuration/other
 
    
 .. _hops-administration:
