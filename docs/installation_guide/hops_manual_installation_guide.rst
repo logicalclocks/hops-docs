@@ -8,7 +8,7 @@ Hops Manual Installation Guide
 Purpose and Overview
 --------------------
 
-All applications running on HDFS and YARN can easily migrate to HopsFS and HopsYARN, as  HopsFS supports same client facing APIs as HDFS and HopsYARN supports the same APIs as YARN. Setting up HopsFS is similar to HDFS except HopsFS allows multiple NameNodes that store the metadata in an external database. Similarly, HopsYARN supports a multiple ResourceManagers, although internally there will be a leader that acts as the scheduler while other ResourceManagers will act as ResourceTrackers that handle communications with NodeManagers.
+All applications running on HDFS and YARN can easily migrate to HopsFS and HopsYARN, as both HopsFS and HopsYARN supports same client facing APIs as HDFS and YARN. Setting up HopsFS is similar to HDFS except HopsFS allows multiple NameNodes that store the metadata in an external database. Similarly, HopsYARN supports a multiple ResourceManagers, although internally there will be a leader that acts as the scheduler while other ResourceManagers will act as ResourceTrackers that handle communications with NodeManagers.
 
 Hops can be installed using `Karamel`_, an orchestration engine for Chef Solo, that enables the deployment of arbitrarily large distributed systems on both virtualized platforms (AWS, Vagrant) and bare-metal hosts (see :ref:`Hops Auto Installer <hops-installer>` for more details). This document serves as starting point for manually installing and configuring Hops. 
 
@@ -34,7 +34,7 @@ Download the source code for Data Access Layer Interface::
    > cd hops-metadata-dal
    > mvn install
 
-Download the source code for Data Access Layer Implementation:: 
+Download the source code for Data Access Layer Implementation for MySQL Cluster Network Database (NDB):: 
      
    > git clone https://github.com/hopshadoop/hops-metadata-dal-impl-ndb
    > cd hops-metadata-dal-impl
@@ -58,7 +58,7 @@ This generates a hadoop distribution folder ``./hadoop-dist`` that uses Hops ins
 Installing Distributed Database
 -------------------------------
 
-Hops uses Mysql Cluster Network Database (NDB) to store the filesystem metadata. NDB can be install using `Karamel`_. Karamel comes with many sample installation recopies for NDB that can be found in the ``examples`` folder of the Karamel installation. 
+Hops uses NDB to store the filesystem metadata. NDB can be install using `Karamel`_. Karamel comes with many sample installation recopies for NDB that can be found in the ``examples`` folder of the Karamel installation. 
 
 Instructions for manually installing NDB is out of the scope of this documentation. We refer you to official `NDB Installation Manual`_ for installing NDB. 
 
@@ -66,7 +66,7 @@ Instructions for manually installing NDB is out of the scope of this documentati
 Installation
 ------------
 
-Installation involves copying the ``hadoop-dist`` folder on all the machines in the cluster. Ensure that all the machines have Java 1.6 or higher installed. 
+Installation involves copying the ``hadoop-dist`` folder on all the machines in the cluster. Ensure that all the machines have Java 1.7.X or higher installed. 
 
 
 
