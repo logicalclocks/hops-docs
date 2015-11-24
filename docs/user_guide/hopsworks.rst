@@ -202,19 +202,19 @@ HopsWorks supports:
 * MapReduce (MR),
 * and bioinformatics data parallel frameworks Adam and SaasFee (Cuneiform).
     
-+------------------+-----------------------------------------+
-| Option           | Description                             |
-+==================+=========================================+
-| **New Job**      | Create a Job for any of the following   |
-|                  | YARN frameworks by clicking **New Job**:|
-|                  | Spark/MR/Flink/Adam/Cuneiform.          |
-|                  | Step 1: enter job-specific parameters   |
-|                  | Step 2: enter YARN parameters.          |
-|                  | Step 3: click on **Create Job**.        |
-+-------------------+----------------------------------------+
-| **Run Job**      | After a job has been created, it can    |
-|                  | be run by clicking on its **Run** button.|
-+-------------------+----------------------------------------+
++------------------+-------------------------------------------+
+| Option           | Description                               |
++==================+===========================================+
+| **New Job**      | Create a Job for any of the following     |
+|                  | YARN frameworks by clicking **New Job**:  |
+|                  | Spark/MR/Flink/Adam/Cuneiform.            |
+|                  | Step 1: enter job-specific parameters     |
+|                  | Step 2: enter YARN parameters.            |
+|                  | Step 3: click on **Create Job**.          |
++------------------+-------------------------------------------+
+| **Run Job**      | After a job has been created, it can      |
+|                  | be run by clicking on its **Run** button. |
++------------------+-------------------------------------------+
 
 The logs for jobs are viewable in HopsWorks, as stdout and stderr files. These output files are also stored
 in the **Logs/<app-framework>/<log-files>** directories.

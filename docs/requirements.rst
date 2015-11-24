@@ -8,7 +8,7 @@ System Requirements
 
 We recommend either Ubuntu/Debian or CentOS/Redhat as operating system (OS), with the same OS on all machines. A typical deployment of Hops Hadoop uses
 
-* DataNodes/NodeManagers: a homogeneous set of commodity servers in a 12-24 SATA hard-disk JBOD setup;
+* DataNodes/NodeManagers: a set of commodity servers in a 12-24 SATA hard-disk JBOD setup;
 * NameNodes/ResourceManagers/NDB-database-nodes/HopsWorks-app-server: a homogeneous set of commodity (blade) servers with good CPUs, a reasonable amount of RAM, and one or two hard-disks;
 * MySQL Cluster Data nodes: a homogeneous set of commodity (blade) servers with a good amount of RAM (up to 512 GB) and good CPU(s). A good quality SATA disk is needed to store database logs. SSDs can also be used, but are typically not required.
 * Hopsworks: a single commodity (blade) server with a good amount of RAM (up to 128 GB) and good CPU(s). A good quality disk is needed to store logs. Either SATA or a large SSD can be used.  
@@ -17,8 +17,9 @@ We recommend either Ubuntu/Debian or CentOS/Redhat as operating system (OS), wit
 
 You can run HopsWorks (and the entire Hops stack with ElasticSearch and NDB) on a single machine for development or testing purposes, but you will need at least:
 
+
 ==================   ================================
-Component             Minimum Reqd        
+Component             Minimum Requirements        
 ==================   ================================
 Operating System      Linux, Mac, Windows (using Virtualbox)
 RAM                   8 GB of RAM
@@ -27,9 +28,10 @@ Hard disk space       15 GB free space
 Network               1 Gb Ethernet
 ==================   ================================
 
+
 **DataNode & NodeManager**
 
-A typical deployment of Hops Hadoop installs both the Hops DataNode and NodeManager on a homogeneous set of commodity servers, running without RAID (replication is done in software) in a 12-24 harddisk JBOD setup. Depending on your expected workloads, you can put as much RAM and CPU in the nodes as needed. Configurations can have up to (and probably more) than 512 GB RAM and 32 cores.
+A typical deployment of Hops Hadoop installs both the Hops DataNode and NodeManager on a set of commodity servers, running without RAID (replication is done in software) in a 12-24 harddisk JBOD setup. Depending on your expected workloads, you can put as much RAM and CPU in the nodes as needed. Configurations can have up to (and probably more) than 512 GB RAM and 32 cores.
 
 The recommended setup for these machines in production (on a cost-performance basis) is:
 
@@ -38,7 +40,7 @@ Component             Recommended (late 2015)
 ==================   ================================
 Operating System      Linux, Mac, Windows (using Virtualbox)
 RAM                   128 GB RAM
-CPU                   Two CPUs with 10 cores. 64-bit.
+CPU                   Two CPUs with 12 cores. 64-bit.
 Hard disk             12 x 4 TB SATA disks
 Network               1 Gb Ethernet
 ==================   ================================
@@ -57,7 +59,7 @@ Component             Recommended (late 2015)
 ==================   ================================
 Operating System      Linux, Mac, Windows (using Virtualbox)
 RAM                   128 GB RAM
-CPU                   Two CPUs with 10 cores. 64-bit.
+CPU                   Two CPUs with 12 cores. 64-bit.
 Hard disk             12 x 4 TB SATA disks
 Network               1 Gb Ethernet
 ==================   ================================

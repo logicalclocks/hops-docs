@@ -15,7 +15,7 @@ Due to the complexity of installing and configuring all Hops' services, we recom
 
 
 Cloud Platforms (EC2, GCE, OpenStack)
----------------------------------------
+-------------------------------------
 
 **Karamel/Chef**
 
@@ -35,11 +35,11 @@ Cloud Platforms (EC2, GCE, OpenStack)
 
 **OpenStack**
 
-Coming soon..
+Coming soon ...
 
 
 On-Premises
----------------------------------------
+-----------
 
 For on-premises (bare-metal) installations, You will need to prepare for installation by:
 
@@ -49,7 +49,7 @@ For on-premises (bare-metal) installations, You will need to prepare for install
 The *master* should be able to connect using SSH to all the *target* nodes on which the software will be installed.
 To do this, you will first need to prepare the machines as follows:
 
-#. Create an openssh public/private key pair on the *master* host for your user account. On Linux, you can use the ssh-keygen utility program to generate the keys, which will by default be stored in the $HOME/.ssh/id_rsa and $HOME/.ssh/id_rsa.pub files. If you decided to enter a password for the ssh keypair, you will need to enter it again in Karamel when you reach the ``ssh`` dialog, part of Karamel's ``Launch`` step.
+#. Create an openssh public/private key pair on the *master* host for your user account. On Linux, you can use the ssh-keygen utility program to generate the keys, which will by default be stored in the ``$HOME/.ssh/id_rsa and $HOME/.ssh/id_rsa.pub`` files. If you decided to enter a password for the ssh keypair, you will need to enter it again in Karamel when you reach the ``ssh`` dialog, part of Karamel's ``Launch`` step.
 #. Create a user account ``USER`` on the all the *target* machines with full sudo privileges and the same password on all *target* machines. 
    
 **Preparing Password-less SSH**
