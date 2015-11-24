@@ -69,7 +69,7 @@ Register a New Account on HopsWorks
     :align: center
     :figclass: align-center
 
-Register a new account with a valid email account. You should receive an email asking you to validate your account. The sender of the email will be neither the default email address ``hopsworks@gmail.com``or the gmail address you supplied while installing HopsWorks. If you do not receive an email address, wait a minute. If you still haven't received it, you need to troubleshoot.
+Register a new account with a valid email account. You should receive an email asking you to validate your account. The sender of the email will be neither the default email address ``hopsworks@gmail.com`` or the gmail address you supplied while installing HopsWorks. If you do not receive an email address, wait a minute. If you still haven't received it, you need to troubleshoot.
 
 **Validate the email address used in registration**
 
@@ -194,7 +194,8 @@ HopsWorks supports:
 * Apache Flink,
 * MapReduce (MR),
 * and bioinformatics data parallel frameworks Adam and SaasFee (Cuneiform).
-    
+   
+
 +------------------+-------------------------------------------+
 | Option           | Description                               |
 +==================+===========================================+
