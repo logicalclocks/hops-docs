@@ -26,7 +26,7 @@ Hops consists of two modules:
 * a Data Access Layer (DAL) implementation (for a target database such as MySQL Cluster).
 
 Building the DAL Driver
-~~~~~~~~~~~~~~~---------
+~~~~~~~~~~~~~~~~~~~~~~~
 
 Download the source code for Data Access Layer Interface:: 
 
@@ -43,7 +43,7 @@ Download the source code for Data Access Layer Implementation::
 This generates a driver jar file ``./target/hops-metadata-dal-impl-ndb-1.0-SNAPSHOT.jar`` which is used by the HopsFS to communicate with the database. 
 
 Building Hops
-~~~~~~~~~~~~~~~----
+~~~~~~~~~~~~~
 
 Download the source code for Hops:: 
 
@@ -71,7 +71,7 @@ Installation involves copying the ``hadoop-dist`` folder on all the machines in 
 
 
 Configuring Hops in Non-Secure Mode
--------------------------------------
+-----------------------------------
 
 Hops consist of the following types of nodes: NameNodes, DataNodes, ResourceManagers, NodeManagers, and Clients. All the configurations parameters are defined in ``core-site.xml`` (common for HopsFS and HopsYARN), ``hdfs-site.xml`` (HopsFS), and ``yarn-site.xml`` (HopsYARN) files. 
 
@@ -110,7 +110,7 @@ The datanodes are started/stopped using the following commands::
 
 
 Configuring HDFS Clients
-~~~~~~~~~~~~~~~~~~~-------
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 In HDFS the client connects to the ``fs.defaultFS`` NameNode. In HopsFS the client obtains the list of active NameNodes from the NameNode defined using ``fs.defaultFS`` parameter. The client then uniformly distributes the subsequent filesystem operations among the list of NameNodes. 
 
@@ -124,18 +124,18 @@ HopsFS clients are invoked in an identical manner to HDFS::
 
    
 Configuring ResourceManagers
-~~~~~~~~~~~~~~~~~~~~~-------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 [Gautier]
 
 Configuring NodeManagers
-~~~~~~~~~~~~~~~~~~~~~-------
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 [Gautier]
 
 
 Configuring YARN Clients
-~~~~~~~~~~~~~~~~~~~--------
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 
 
