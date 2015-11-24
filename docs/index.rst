@@ -86,7 +86,7 @@ The documentation for Hops Hadoop distribution is organized into following secti
 .. toctree::
    :maxdepth: 2
    :glob:
-   :caption: License
+   :caption: License Compatibility
       
    licensing
 

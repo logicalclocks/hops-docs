@@ -22,8 +22,10 @@ Download and Compile Sources
 ----------------------------
 Hops consists of two modules:
 
+* A Data Access Layer (DAL) and its' implementation (for a target database such as MySQL Cluster).
 * Hops;
-* a Data Access Layer (DAL) implementation (for a target database such as MySQL Cluster).
+
+Separating the data access layer permits different (distributed) transactional database storage engines with different licensing models. :ref:`More ... <hops-licensing>`
 
 Building the DAL Driver
 ~~~~~~~~~~~~~~~~~~~~~~~

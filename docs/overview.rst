@@ -35,7 +35,7 @@ Revision History
        :header: "Date", "Release", "Description"
        :widths: 10, 10, 30
 
-       "Nov 2015", "0.1", "First version."
+       "Nov 2015", "1.0", "First version."
 
 .. raw:: latex
 
