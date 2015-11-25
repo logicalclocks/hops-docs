@@ -16,6 +16,8 @@ Leader Election
     HopsFS uses an eventual leader election algorithm where the heartbeat time period (**dfs.leader.check.interval**) is automatically incremented if it detects that the NameNodes are falsely declared dead due to missed heartbeats caused by network/database/CPU overload. By default the heartbeat time period is incremented by 100 milliseconds, however it can be overridden using this parameter. 
 
 
+.. _cache-parameters:
+
 NameNode Cache 
 --------------
 NameNode cache configuration parameters are
@@ -23,18 +25,12 @@ NameNode cache configuration parameters are
 * **dfs.resolvingcache.enabled**: (true/false)
   Enable/Disables the cache for the NameNode.
 
-* **dfs.resolvingcache.type**:
-Each NameNode caches the inodes metadata in a local cache for quick path resolution. We support different implementations for the cache i.e. INodeMemcache, PathMemcache, OptimalMemcache and InMemory.
+* **dfs.resolvingcache.type**: Each NameNode caches the inodes metadata in a local cache for quick path resolution. We support different implementations for the cache i.e. INodeMemcache, PathMemcache, OptimalMemcache and InMemory.
 
-1. **INodeMemcache**:
-   stores individual inodes in Memcached. 
-2. **PathMemcache**:
-   is a course grain cache where entire file path (key) along with its associated inodes objects are stored in the Memcached.
-3. **OptimalMemcache**:
-   combines INodeMemcache and PathMemcache. 
-4. **InMemory**:
-   Same as INodeMemcache but instead of using Memcached it uses an inmemory **LRU ConcurrentLinkedHashMap**. We recommend **InMemory** cache as it yields higher throughput. 
-
+    * **INodeMemcache**: stores individual inodes in Memcached. 
+    * **PathMemcache**: is a course grain cache where entire file path (key) along with its associated inodes objects are stored in the Memcached.
+    * **OptimalMemcache**: combines INodeMemcache and PathMemcache. 
+    * **InMemory**: Same as INodeMemcache but instead of using Memcached it uses an inmemory **LRU ConcurrentLinkedHashMap**. We recommend **InMemory** cache as it yields higher throughput. 
 
 For INodeMemcache/PathMemcache/OptimalMemcache following configurations parameters must be set.
 
@@ -63,6 +59,8 @@ In HopsFS the metadata is partitioned using the inodes' id. HopsFS tries to to e
 * **dfs.ndb.setrandompartitionkey.enabled**: (true/false)
   Enable/Disable random partition key hint when HopsFS fails to determine appropriate partition key for the transactional filesystem operation.
 
+
+.. _quota-parameters:
 
 Quota Management 
 ----------------
@@ -94,10 +92,10 @@ Namespace and Block Pool ID
   Due to shared state among the NameNodes, HopsFS only supports single namespace and one block pool. The default namespace and block pool ids can be overridden using these parameters.
 
 
+.. _client-conf-parameters:
+
 Client Configurations
 ---------------------
-
-.. _client-conf-parameters:
 
 * **dfs.namenodes.rpc.addresses**:
   HopsFS support multiple active NameNodes. A client can send a RPC request to any of the active NameNodes. This parameter specifies a list of active NameNodes in the system. The list has following format [hdfs://ip:port, hdfs://ip:port, ...]. It is not necessary that this list contain all the active NameNodes in the system. Single valid reference to an active NameNode is sufficient. At the time of startup the client obtains an updated list of NameNodes from a NameNode mentioned in the list. If this list is empty then the client tries to connect to **fs.default.name**.
@@ -116,6 +114,8 @@ Client Configurations
 * **dfs.client.refresh.namenode.list**:
   All clients periodically refresh their view of active NameNodes in the system. By default after every minute the client checks for changes in the membership of the NameNodes. Higher values can be chosen for scenarios where the membership does not change frequently.
 
+.. _ndb-conf-parameters:
+
 Data Access Layer (DAL)
 -----------------------
 
@@ -124,7 +124,6 @@ Using DAL layer HopsFS's metadata can be stored in different databases. HopsFS p
 MySQL Cluster Network Database Driver Configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. _ndb-conf-parameters:
 
 Database specific parameter are stored in a **.properties** file. The configuration files contains following parameters. 
 

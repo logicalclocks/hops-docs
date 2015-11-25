@@ -58,9 +58,8 @@ The documentation for Hops Hadoop distribution is organized into following secti
    configuration/hopsfs
    configuration/hopsfsEC
    configuration/hopsyarn
-   configuration/other
 
-   
+
 .. _hops-administration:
    
 .. toctree::
@@ -86,7 +85,7 @@ The documentation for Hops Hadoop distribution is organized into following secti
 .. toctree::
    :maxdepth: 2
    :glob:
-   :caption: License
+   :caption: License Compatibility
       
    licensing
 

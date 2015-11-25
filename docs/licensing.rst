@@ -1,5 +1,10 @@
-Licensing
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _hops-licensing:
+
+*********************
+License Compatibility
+*********************
+
 
 We combine Apache and GPL licensed code, from Hops and MySQL Cluster, respectively, by
 providing a DAL API (similar to JDBC). We dynamically link our DAL implementation for

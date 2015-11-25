@@ -15,31 +15,35 @@ Due to the complexity of installing and configuring all Hops' services, we recom
 
 
 Cloud Platforms (EC2, GCE, OpenStack)
----------------------------------------
+-------------------------------------
 
-**Karamel/Chef**
+Karamel/Chef
+~~~~~~~~~~~~
 
 #. Download and install Karamel (www.karamel.io).
 #. Run Karamel.
 #. Click on the "Load Cluster Definition" menu item in Karamel. You are now prompted to select a cluster definition YAML file. Go to the examples/stable directory, and select a cluster definition file for your target cloud platform.
       
-**Amazon Web Services (EC2)**
+Amazon Web Services (EC2)
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
    #. HopsWorks on a single node: *hopsworks-1node-aws-large.yml*
    #. HopsWorks on three nodes: *hopsworks-3node-aws-large.yml*
 
-**Google Compute Engine (GCE)**
+Google Compute Engine (GCE)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
    #. HopsWorks on a single node: *hopsworks-1node-gce-large.yml*
    #. HopsWorks on three nodes: *hopsworks-3node-gce-large.yml*
 
-**OpenStack**
+OpenStack
+~~~~~~~~~
 
-Coming soon..
+Coming soon ...
 
 
 On-Premises
----------------------------------------
+-----------
 
 For on-premises (bare-metal) installations, You will need to prepare for installation by:
 
@@ -49,10 +53,11 @@ For on-premises (bare-metal) installations, You will need to prepare for install
 The *master* should be able to connect using SSH to all the *target* nodes on which the software will be installed.
 To do this, you will first need to prepare the machines as follows:
 
-#. Create an openssh public/private key pair on the *master* host for your user account. On Linux, you can use the ssh-keygen utility program to generate the keys, which will by default be stored in the $HOME/.ssh/id_rsa and $HOME/.ssh/id_rsa.pub files. If you decided to enter a password for the ssh keypair, you will need to enter it again in Karamel when you reach the ``ssh`` dialog, part of Karamel's ``Launch`` step.
+#. Create an openssh public/private key pair on the *master* host for your user account. On Linux, you can use the ssh-keygen utility program to generate the keys, which will by default be stored in the ``$HOME/.ssh/id_rsa and $HOME/.ssh/id_rsa.pub`` files. If you decided to enter a password for the ssh keypair, you will need to enter it again in Karamel when you reach the ``ssh`` dialog, part of Karamel's ``Launch`` step.
 #. Create a user account ``USER`` on the all the *target* machines with full sudo privileges and the same password on all *target* machines. 
    
-**Preparing Password-less SSH**
+Preparing Password-less SSH
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 #. Copy the $HOME/.ssh/id_rsa.pub file on the *master* to the /tmp folder of all the *target* hosts. A good way to do this is to use ``pscp`` utility along with a file (``hosts.txt``) containing the line-separated hostnames (or IP addresss) for all the *target* machines. You may need to install the pssh utility programs (``pssh``), first.
 
@@ -75,13 +80,11 @@ Update your Karamel cluster definition file to include the IP addresses of the *
 If you decided to enter a password for the ssh keypair, you will also need to enter it again here in the ``keypair password`` text input box.
 
 
-**Centos/Redhat Notes**
-
-Redhat is not yet supported by Karamel, but you can install Hops using Chef-solo by logging into each machine separately. The chef cookbooks are written to work for both Ubuntu and Redhat platforms.
+:Note: `Redhat is not yet supported by Karamel, but you can install Hops using Chef-solo by logging into each machine separately. The chef cookbooks are written to work for both Ubuntu and Redhat platforms.`
 
 
 Vagrant
--------------
+-------
 
 You can install HopsWorks and Hops on your laptop/desktop  with Vagrant. You will need to have the following software packages installed:
 
@@ -102,17 +105,20 @@ You can now run vagrant, using:
 
 You can then access Hopsworks from your browser at http://127.0.0.1:8080/hopsworks. The default credentials are:
 
-* username: admin@kth.se
-* password: admin
+::
+
+  username: admin@kth.se
+  password: admin
 
 The Glassfish web application server is also available from your browser at http://127.0.0.1:8080/hopsworks. The default credentials are:
 
-* username: adminuser
-* password: adminpw
+::
 
+  username: adminuser
+  password: adminpw
 
 Windows
--------------
+-------
 
 You can also install HopsWorks on vagrant and Windows. You will need to follow the vagrant instructions as above (installing the same software packages) aswell as installing:
 
@@ -127,7 +133,7 @@ After cloning the github repo, from the powershell, you can run:
     $ vagrant up
   
 Mac
--------------
+---
 You can follow the baremetal instructions to install for Apple Mac.
 
 

@@ -1,17 +1,20 @@
-************************************
-Developer Guide for Hops
-************************************
+********************
+Hops Developer Guide
+********************
 
 
-Extending INode metadata
------------------------------
+Extending HopsFS INode metadata 
+-------------------------------
+
 For the implementation of new features, it is often necessary to modify INode in order to store additional metadata. With Hops-HDFS, this can be simply achieved by adding a new table with a foreign reference to INode. Thus, the original data structure does not need to be modified and old code paths not requiring the additional metadata are not burdened with additional reading costs. This guide gives a walkthrough on how to add additional INode-related metadata.
 
-**Example use case**
+Example use case
+~~~~~~~~~~~~~~~~
 
 Let's assume we would like to store per user access times for each INode. To do this, we need to store the id of the inode, the name of the user and the timestamp representing the most recent access.
 
-**Adding the table to the schema**
+Adding a table to the schema
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 First, we need to add a new table storing the metadata to our schema. Therefor we'll go to the *hops-metadata-dal-impl-ndb* project and add the following to the *schema/schema.sql* file.
 
@@ -37,9 +40,10 @@ Additionally we will make the table and column names available to the Java code 
 	}
 
 
-NOTE: Don't forget to update your database with the new schema.
+:Note: `Don't forget to update your database with the new schema.`
 
-**Defining the entity class**
+Defining the entity class
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Having defined the database table, we will need to defining an entity class representing our database entries in the java code. We will do this by adding the following AccessTimeLogEntry class *hops-metadata-dal* project.
 
@@ -71,7 +75,8 @@ Having defined the database table, we will need to defining an entity class repr
       }
     }
 
-**Defining the DataAccess interface**
+Defining the DataAccess interface
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 We will need a way for interacting with our new entity in the database. The preferred way of doing this in Hops is defining a DataAccess interface to be implemented by a database implementation. Let's define define the following interface in the *hops-metadata-dal* project. For now, we will only require functionality to add and modify log entries and to read individual entries for a given INode and user.
 
@@ -80,13 +85,14 @@ We will need a way for interacting with our new entity in the database. The pref
 
     package io.hops.metadata.hdfs.dal;
     
-    public interface AccessTimeLogDataAccess&lt;T&gt; extends EntityDataAccess {
-      void prepare(Collection&lt;T&gt; modified, Collection&lt;T&gt; removed) throws StorageException;
+    public interface AccessTimeLogDataAccess<T> extends EntityDataAccess {
+      void prepare(Collection<T> modified, Collection<T> removed) throws StorageException;
       T find(int inodeId, String user) throws StorageException;
     }
 
 
-**Implementing the DataAccess interface**
+Implementing the DataAccess interface
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Having defined the interface, we will need to implement it using ndb to read and persist our data. Therefor, we will add a clusterj implementation of our interface to the *hops-metadata-dal-impl-ndb* project.
 
@@ -95,7 +101,7 @@ Having defined the interface, we will need to implement it using ndb to read and
     package io.hops.metadata.ndb.dalimpl.hdfs;
     
     public class AccessTimeLogClusterj implements TablesDef.AccessTimeLogTableDef,
-        AccessTimeLogDataAccess&lt;AccessTimeLogEntry&gt; {
+        AccessTimeLogDataAccess<AccessTimeLogEntry> {
     
       private ClusterjConnector connector = ClusterjConnector.getInstance();
     
@@ -120,11 +126,11 @@ Having defined the interface, we will need to implement it using ndb to read and
       }
     
       @Override
-      public void prepare(Collection&lt;AccessTimeLogEntry&gt; modified,
-          Collection&lt;AccessTimeLogEntry&gt; removed) throws StorageException {
+      public void prepare(Collection<AccessTimeLogEntry> modified,
+          Collection<AccessTimeLogEntry> removed) throws StorageException {
         HopsSession session = connector.obtainSession();
-        List&lt;AccessTimeLogEntryDto&gt; changes = new ArrayList<accesstimelogentrydto>();
-        List&lt;AccessTimeLogEntryDto&gt; deletions = new ArrayList<accesstimelogentrydto>();
+        List<AccessTimeLogEntryDto> changes = new ArrayList<accesstimelogentrydto>();
+        List<AccessTimeLogEntryDto> deletions = new ArrayList<accesstimelogentrydto>();
         if (removed != null) {
           for (AccessTimeLogEntry logEntry : removed) {
             Object[] pk = new Object[2];
@@ -176,7 +182,7 @@ Having defined the interface, we will need to implement it using ndb to read and
 
   
 
-Having defined a concrete implementation of the DataAccess, we need to make it available to the *EntityManager* by adding it to *HdfsStorageFactory* in the *hops-metadata-dal-impl-ndb* project. Edit its *initDataAccessMap()* function by adding the newly defined DataAccess as following.
+Having defined a concrete implementation of the DataAccess, we need to make it available to the ``EntityManager`` by adding it to ``HdfsStorageFactory`` in the ``hops-metadata-dal-impl-ndb`` project. Edit its ``initDataAccessMap()`` function by adding the newly defined DataAccess as following.
 
 .. code-block:: java
 		
@@ -186,7 +192,8 @@ Having defined a concrete implementation of the DataAccess, we need to make it a
     }
 
 
-**Implementing the EntityContext**
+Implementing the EntityContext
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Hops-HDFS uses context objects to cache the state of entities during transactions before persisting them in the database during the commit phase. We will need to implement such a context for our new entity in the *hops* project.
 
@@ -195,11 +202,11 @@ Hops-HDFS uses context objects to cache the state of entities during transaction
 		
     package io.hops.transaction.context;
     
-    public class AccessTimeLogContext extends BaseEntityContext&lt;Object, AccessTimeLogEntry&gt; {
-      private final AccessTimeLogDataAccess&lt;AccessTimeLogEntry&gt; dataAccess;
+    public class AccessTimeLogContext extends BaseEntityContext<Object, AccessTimeLogEntry> {
+      private final AccessTimeLogDataAccess<AccessTimeLogEntry> dataAccess;
     
       /* Finder to be passed to the EntityManager */
-      public enum Finder implements FinderType&lt;AccessTimeLogEntry&gt; {
+      public enum Finder implements FinderType<AccessTimeLogEntry> {
         ByInodeIdAndUser;
     
         @Override
@@ -264,7 +271,7 @@ Hops-HDFS uses context objects to cache the state of entities during transaction
         }
       }
     
-      public AccessTimeLogContext(AccessTimeLogDataAccess&lt;AccessTimeLogEntry&gt; dataAccess) {
+      public AccessTimeLogContext(AccessTimeLogDataAccess<AccessTimeLogEntry> dataAccess) {
         this.dataAccess = dataAccess;
       }
     
@@ -276,14 +283,14 @@ Hops-HDFS uses context objects to cache the state of entities during transaction
       @Override
       public void prepare(TransactionLocks tlm)
           throws TransactionContextException, StorageException {
-        Collection&lt;AccessTimeLogEntry&gt; modified =
-            new ArrayList&lt;AccessTimeLogEntry&gt;(getModified());
+        Collection<AccessTimeLogEntry> modified =
+            new ArrayList<AccessTimeLogEntry>(getModified());
         modified.addAll(getAdded());
         dataAccess.prepare(modified, getRemoved());
       }
     
       @Override
-      public AccessTimeLogEntry find(FinderType&lt;AccessTimeLogEntry&gt; finder,
+      public AccessTimeLogEntry find(FinderType<AccessTimeLogEntry> finder,
           Object... params) throws TransactionContextException, StorageException {
         Finder afinder = (Finder) finder;
         switch (afinder) {
@@ -313,15 +320,15 @@ Hops-HDFS uses context objects to cache the state of entities during transaction
     }
 
 
-Having defined an *EntityContext*, we need to make it available through the EntityManger by adding it to the *HdfsStorageFactory* in the *hops* project by modifying it as follows.
+Having defined an ``EntityContext``, we need to make it available through the EntityManger by adding it to the ``HdfsStorageFactory`` in the ``hops`` project by modifying it as follows.
 
 .. code-block:: java
 		
     private static ContextInitializer getContextInitializer() {
       return new ContextInitializer() {
         @Override
-        public Map&lt;Class, EntityContext&gt; createEntityContexts() {
-          Map&lt;Class, EntityContext&gt; entityContexts = new HashMap<class, entitycontext="">();
+        public Map<Class, EntityContext> createEntityContexts() {
+          Map<Class, EntityContext> entityContexts = new HashMap<class, entitycontext="">();
           [...]
           entityContexts.put(AccessTimeLogEntry.class, new AccessTimeLogContext(
             (AccessLogDataAccess) getDataAccess(AccessTimeLogDataAccess.class)));
@@ -331,7 +338,8 @@ Having defined an *EntityContext*, we need to make it available through the Enti
     }
 
 
-**Using custom locks**
+Using custom locks
+~~~~~~~~~~~~~~~~~~
 
-YOur metadata extension relies on the inode object to be correctly locked in order to prevent concurrent modifications. However, it might be necessary to modify attributes without locking the INode in advance. In that case, one needs to add a new lock type. A good place to get started with this is looking at the *Lock*, *HdfsTransactionLocks*, *LockFactory* and *HdfsTransactionalLockAcquirer* classes in the *hops* project.
+YOur metadata extension relies on the inode object to be correctly locked in order to prevent concurrent modifications. However, it might be necessary to modify attributes without locking the INode in advance. In that case, one needs to add a new lock type. A good place to get started with this is looking at the ``Lock``, ``HdfsTransactionLocks``, ``LockFactory`` and ``HdfsTransactionalLockAcquirer`` classes in the ``hops`` project.
 

@@ -1,14 +1,14 @@
 .. _hops-manual-installation:
 
-********************************
+******************************
 Hops Manual Installation Guide
-********************************
+******************************
 
 
 Purpose and Overview
 --------------------
 
-All applications running on HDFS and YARN can easily migrate to HopsFS and HopsYARN, as  HopsFS supports same client facing APIs as HDFS and HopsYARN supports the same APIs as YARN. Setting up HopsFS is similar to HDFS except HopsFS allows multiple NameNodes that store the metadata in an external database. Similarly, HopsYARN supports a multiple ResourceManagers, although internally there will be a leader that acts as the scheduler while other ResourceManagers will act as ResourceTrackers that handle communications with NodeManagers.
+All applications running on HDFS and YARN can easily migrate to HopsFS and HopsYARN, as both HopsFS and HopsYARN supports same client facing APIs as HDFS and YARN. Setting up HopsFS is similar to HDFS except HopsFS allows multiple NameNodes that store the metadata in an external database. Similarly, HopsYARN supports a multiple ResourceManagers, although internally there will be a leader that acts as the scheduler while other ResourceManagers will act as ResourceTrackers that handle communications with NodeManagers.
 
 Hops can be installed using `Karamel`_, an orchestration engine for Chef Solo, that enables the deployment of arbitrarily large distributed systems on both virtualized platforms (AWS, Vagrant) and bare-metal hosts (see :ref:`Hops Auto Installer <hops-installer>` for more details). This document serves as starting point for manually installing and configuring Hops. 
 
@@ -22,8 +22,10 @@ Download and Compile Sources
 ----------------------------
 Hops consists of two modules:
 
+* A Data Access Layer (DAL) and its' implementation (for a target database such as MySQL Cluster).
 * Hops;
-* a Data Access Layer (DAL) implementation (for a target database such as MySQL Cluster).
+
+Separating the data access layer permits different (distributed) transactional database storage engines with different licensing models. :ref:`More ... <hops-licensing>`
 
 Building the DAL Driver
 -------------------------------
@@ -34,7 +36,7 @@ Download the source code for Data Access Layer Interface::
    > cd hops-metadata-dal
    > mvn install
 
-Download the source code for Data Access Layer Implementation:: 
+Download the source code for Data Access Layer Implementation for MySQL Cluster Network Database (NDB):: 
      
    > git clone https://github.com/hopshadoop/hops-metadata-dal-impl-ndb
    > cd hops-metadata-dal-impl
@@ -57,22 +59,22 @@ This generates a hadoop distribution folder ``./hadoop-dist`` that uses Hops ins
 Installing Distributed Database
 -------------------------------
 
-Hops uses Mysql Cluster Network Database (NDB) to store the filesystem metadata. NDB can be install using `Karamel`_. Karamel comes with many sample installation recopies for NDB that can be found in the ``examples`` folder of the Karamel installation. 
+Hops uses NDB to store the filesystem metadata. NDB can be install using `Karamel`_. Karamel comes with many sample installation recopies for NDB that can be found in the ``examples`` folder of the Karamel installation. 
 
 Instructions for manually installing NDB is out of the scope of this documentation. We refer you to official `NDB Installation Manual`_ for installing NDB. 
 
 
-Installation
-------------
+Hops Cluster Setup 
+------------------
 
-Installation involves copying the ``hadoop-dist`` folder on all the machines in the cluster. Ensure that all the machines have Java 1.6 or higher installed. 
+Installation involves copying the ``hadoop-dist`` folder on all the machines in the cluster. Ensure that all the machines have Java 1.7.X or higher installed. 
 
 
 
 Configuring Hops in Non-Secure Mode
--------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Hops consist of the following types of nodes: NameNodes, DataNodes, ResourceManagers, NodeManagers, and Clients. All the configurations parameters are defined in ``core-site.xml`` (common for HopsFS and HopsYARN), ``hdfs-site.xml`` (HopsFS), and ``yarn-site.xml`` (HopsYARN) files. 
+Hops consist of the following types of nodes: NameNodes, DataNodes, ResourceManagers, NodeManagers, and Clients. All the configurations parameters are defined in ``core-site.xml`` (common for HopsFS and HopsYARN), ``hdfs-site.xml`` (HopsFS), ``erasure-coding-site.xml`` (for erasure code) and ``yarn-site.xml`` (HopsYARN) files. 
 
 Currently Hops only supports non-secure mode of operations. In the following sections we will discuss how to configure the different types of nodes. As Hops is a fork of the Hadoop code  base, most of the `Hadoop configuration parameters`_ are supported in Hops. In this section we highlight only the new configuration parameters and the parameters that are not supported due to different metadata management scheme. 
 
@@ -93,6 +95,13 @@ The NameNodes are started/stopped using the following commands::
     > $HADOOP_HOME/sbin/hadoop-daemon.sh --script hdfs start namenode
     
     > $HADOOP_HOME/sbin/hadoop-daemon.sh --script hdfs stop namenode
+
+
+.. _format_cluster:
+
+Formating the Cluster
+~~~~~~~~~~~~~~~~~~~~~
+Running the format command on any NameNode **truncates** all the tables in the database and inserts default values in the tables. NDB atomically performs the **truncate** operation which can fail or take very long time to complete for very large tables. In such cases run the **/hdfs namenode -dropAndCreateDB** command first to drop and recreate the database schema followed by the **format** command to insert default values in the database tables. In NDB dropping and recreating a database is much quicker than truncating all the tables in the database. 
 
 See :ref:`section <format_cluster>` for instructions for formating the filesystem. 
 
@@ -125,20 +134,23 @@ HopsFS clients are invoked in an identical manner to HDFS::
 Configuring ResourceManagers
 ------------------------------------
 
-[Gautier]
+Hops Yarn ResourceManagers are configured the same way as Apache Yarn ResrouceManager. Few extra configuration lines have to be added to configure new services provided by Hops Yarn. These extra configuration parameters are described in :ref:`Hops Yarn Configuration <hops_yarn_Configuration>` and include for example the ports on which the different service are connected, the groupMembership service configuration and options to run in distributed mode.
 
 Configuring NodeManagers
 ------------------------------------
 
-[Gautier]
+Configuring NodeManagers
+~~~~~~~~~~~~~~~~~~~~~~~~
 
+In non-distributed mode the NodeManagers configuration is the same as the NodeManagers configuration in Apache Hadoop Yarn. The proxy provider can optionally be configured to use the ConfiguredLeaderFailoverHAProxyProvider.
+In distributed mode the configuration is the same as Apache Hadoop Yarn, except the proxy provider which should be configured to use the ConfiguredLeastLoadedRMFailoverHAProxyProvider (cf: :ref:`Hops Yarn Configuration <hops_yarn_Configuration>`)
 
 Configuring YARN Clients
 ------------------------------------
 
-[Gautier]
+The client configuration is the same in Hops Yarn as in Apache Hadoop Yarn. The proxy provider can optionally be configured to use the ConfiguredLeaderFailoverHAProxyProvide.
 
 
 .. _Karamel: http://www.karamel.io/
 .. _NDB Installation Manual: https://dev.mysql.com/doc/refman/5.1/en/mysql-cluster-installation.html
-.. _HDFS configuration parameters: http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/hdfs-default.xml
+.. _Hadoop configuration parameters: http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/hdfs-default.xml
