@@ -16,6 +16,8 @@ Leader Election
     HopsFS uses an eventual leader election algorithm where the heartbeat time period (**dfs.leader.check.interval**) is automatically incremented if it detects that the NameNodes are falsely declared dead due to missed heartbeats caused by network/database/CPU overload. By default the heartbeat time period is incremented by 100 milliseconds, however it can be overridden using this parameter. 
 
 
+.. _cache-parameters:
+
 NameNode Cache 
 --------------
 NameNode cache configuration parameters are
@@ -23,18 +25,12 @@ NameNode cache configuration parameters are
 * **dfs.resolvingcache.enabled**: (true/false)
   Enable/Disables the cache for the NameNode.
 
-* **dfs.resolvingcache.type**:
-Each NameNode caches the inodes metadata in a local cache for quick path resolution. We support different implementations for the cache i.e. INodeMemcache, PathMemcache, OptimalMemcache and InMemory.
+* **dfs.resolvingcache.type**: Each NameNode caches the inodes metadata in a local cache for quick path resolution. We support different implementations for the cache i.e. INodeMemcache, PathMemcache, OptimalMemcache and InMemory.
 
-1. **INodeMemcache**:
-   stores individual inodes in Memcached. 
-2. **PathMemcache**:
-   is a course grain cache where entire file path (key) along with its associated inodes objects are stored in the Memcached.
-3. **OptimalMemcache**:
-   combines INodeMemcache and PathMemcache. 
-4. **InMemory**:
-   Same as INodeMemcache but instead of using Memcached it uses an inmemory **LRU ConcurrentLinkedHashMap**. We recommend **InMemory** cache as it yields higher throughput. 
-
+    * **INodeMemcache**: stores individual inodes in Memcached. 
+    * **PathMemcache**: is a course grain cache where entire file path (key) along with its associated inodes objects are stored in the Memcached.
+    * **OptimalMemcache**: combines INodeMemcache and PathMemcache. 
+    * **InMemory**: Same as INodeMemcache but instead of using Memcached it uses an inmemory **LRU ConcurrentLinkedHashMap**. We recommend **InMemory** cache as it yields higher throughput. 
 
 For INodeMemcache/PathMemcache/OptimalMemcache following configurations parameters must be set.
 

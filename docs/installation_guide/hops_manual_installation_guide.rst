@@ -75,7 +75,7 @@ Installation involves copying the ``hadoop-dist`` folder on all the machines in 
 Configuring Hops in Non-Secure Mode
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Hops consist of the following types of nodes: NameNodes, DataNodes, ResourceManagers, NodeManagers, and Clients. All the configurations parameters are defined in ``core-site.xml`` (common for HopsFS and HopsYARN), ``hdfs-site.xml`` (HopsFS), and ``yarn-site.xml`` (HopsYARN) files. 
+Hops consist of the following types of nodes: NameNodes, DataNodes, ResourceManagers, NodeManagers, and Clients. All the configurations parameters are defined in ``core-site.xml`` (common for HopsFS and HopsYARN), ``hdfs-site.xml`` (HopsFS), ``erasure-coding-site.xml`` (for erasure code) and ``yarn-site.xml`` (HopsYARN) files. 
 
 Currently Hops only supports non-secure mode of operations. In the following sections we will discuss how to configure the different types of nodes. As Hops is a fork of the Hadoop code  base, most of the `Hadoop configuration parameters`_ are supported in Hops. In this section we highlight only the new configuration parameters and the parameters that are not supported due to different metadata management scheme. 
 
@@ -96,6 +96,13 @@ The NameNodes are started/stopped using the following commands::
     > $HADOOP_HOME/sbin/hadoop-daemon.sh --script hdfs start namenode
     
     > $HADOOP_HOME/sbin/hadoop-daemon.sh --script hdfs stop namenode
+
+
+.. _format_cluster:
+
+Formating the Cluster
+~~~~~~~~~~~~~~~~~~~~~
+Running the format command on any NameNode **truncates** all the tables in the database and inserts default values in the tables. NDB atomically performs the **truncate** operation which can fail or take very long time to complete for very large tables. In such cases run the **/hdfs namenode -dropAndCreateDB** command first to drop and recreate the database schema followed by the **format** command to insert default values in the database tables. In NDB dropping and recreating a database is much quicker than truncating all the tables in the database. 
 
 See :ref:`section <format_cluster>` for instructions for formating the filesystem. 
 
