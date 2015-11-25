@@ -96,10 +96,10 @@ Namespace and Block Pool ID
   Due to shared state among the NameNodes, HopsFS only supports single namespace and one block pool. The default namespace and block pool ids can be overridden using these parameters.
 
 
+.. _client-conf-parameters:
+
 Client Configurations
 ---------------------
-
-.. _client-conf-parameters:
 
 * **dfs.namenodes.rpc.addresses**:
   HopsFS support multiple active NameNodes. A client can send a RPC request to any of the active NameNodes. This parameter specifies a list of active NameNodes in the system. The list has following format [hdfs://ip:port, hdfs://ip:port, ...]. It is not necessary that this list contain all the active NameNodes in the system. Single valid reference to an active NameNode is sufficient. At the time of startup the client obtains an updated list of NameNodes from a NameNode mentioned in the list. If this list is empty then the client tries to connect to **fs.default.name**.
@@ -118,6 +118,8 @@ Client Configurations
 * **dfs.client.refresh.namenode.list**:
   All clients periodically refresh their view of active NameNodes in the system. By default after every minute the client checks for changes in the membership of the NameNodes. Higher values can be chosen for scenarios where the membership does not change frequently.
 
+.. _ndb-conf-parameters:
+
 Data Access Layer (DAL)
 -----------------------
 
@@ -126,7 +128,6 @@ Using DAL layer HopsFS's metadata can be stored in different databases. HopsFS p
 MySQL Cluster Network Database Driver Configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. _ndb-conf-parameters:
 
 Database specific parameter are stored in a **.properties** file. The configuration files contains following parameters. 
 
