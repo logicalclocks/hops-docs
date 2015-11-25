@@ -1,8 +1,8 @@
 .. _hops-manual-installation:
 
-********************************
+******************************
 Hops Manual Installation Guide
-********************************
+******************************
 
 
 Purpose and Overview
@@ -65,15 +65,15 @@ Hops uses NDB to store the filesystem metadata. NDB can be install using `Karame
 Instructions for manually installing NDB is out of the scope of this documentation. We refer you to official `NDB Installation Manual`_ for installing NDB. 
 
 
-Installation
-------------
+Hops Cluster Setup 
+------------------
 
 Installation involves copying the ``hadoop-dist`` folder on all the machines in the cluster. Ensure that all the machines have Java 1.7.X or higher installed. 
 
 
 
 Configuring Hops in Non-Secure Mode
------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Hops consist of the following types of nodes: NameNodes, DataNodes, ResourceManagers, NodeManagers, and Clients. All the configurations parameters are defined in ``core-site.xml`` (common for HopsFS and HopsYARN), ``hdfs-site.xml`` (HopsFS), and ``yarn-site.xml`` (HopsYARN) files. 
 
