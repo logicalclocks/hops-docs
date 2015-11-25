@@ -4,7 +4,8 @@ System Requirements
 **********************
 
 
-**Recommended Setup**
+Recommended Setup
+=================
 
 We recommend either Ubuntu/Debian or CentOS/Redhat as operating system (OS), with the same OS on all machines. A typical deployment of Hops Hadoop uses
 
@@ -13,7 +14,8 @@ We recommend either Ubuntu/Debian or CentOS/Redhat as operating system (OS), wit
 * MySQL Cluster Data nodes: a homogeneous set of commodity (blade) servers with a good amount of RAM (up to 512 GB) and good CPU(s). A good quality SATA disk is needed to store database logs. SSDs can also be used, but are typically not required.
 * Hopsworks: a single commodity (blade) server with a good amount of RAM (up to 128 GB) and good CPU(s). A good quality disk is needed to store logs. Either SATA or a large SSD can be used.  
 
-**Full Hops platform on a single machine**
+Entire Hops platform on a single machine
+========================================
 
 You can run HopsWorks (and the entire Hops stack with ElasticSearch and NDB) on a single machine for development or testing purposes, but you will need at least:
 
@@ -29,7 +31,8 @@ Network               1 Gb Ethernet
 ==================   ================================
 
 
-**DataNode & NodeManager**
+DataNode & NodeManager
+======================
 
 A typical deployment of Hops Hadoop installs both the Hops DataNode and NodeManager on a set of commodity servers, running without RAID (replication is done in software) in a 12-24 harddisk JBOD setup. Depending on your expected workloads, you can put as much RAM and CPU in the nodes as needed. Configurations can have up to (and probably more) than 512 GB RAM and 32 cores.
 
@@ -46,7 +49,8 @@ Network               1 Gb Ethernet
 ==================   ================================
 
 
-**NameNode, ResourceManager, Database Nodes, App-server, ElasticSearch**
+NameNode, ResourceManager, Database Nodes, App-server, ElasticSearch
+====================================================================
 
 NameNodes, ResourceManagers, NDB database nodes, ElasticSearch, and the HopsWorks application server require relatively more memory and not as much hard-disk space as DataNodes. The machines can be blade servers with only a disk or two. SSDs will not give significant performance improvements to any of these services, except the HopsWorks application server if you copy a lot of data in and out of the cluster via HopsWorks. The  NDB database nodes will require free disk space that is at least 20 times the size of the RAM they use. Depending on how large your cluster is, the ElasticSearch server can be colocated with the HopsWorks application server or moved to its own machine with lower RAM and CPU requirements than the other services.
 
