@@ -55,7 +55,7 @@ recently accessed metadata at NameNodes could give a significant performance boo
 When HopsFS is initialized it selects a valid NameNode from **dfs.namenodes.rpc.addresses** or **fs.default.name** configuration parameters. Using the NameNode the client then acquires an updated list of all the NameNodes in the system. Therefore at least one of the NameNodes addresses defined by theses configuration parameters must belong to an alive NameNode. During initialization the client retries if it encounters a dead NameNode. The client initialization fails if all the NameNode addresses are invalid. 
 
 Compatibility with HDFS Clients
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+...............................
 HopsFS is fully compatible with HDFS clients, although they do not distribute operations over NameNodes, as they assume there is a single active NameNode. 
 
 
@@ -64,9 +64,31 @@ Datanodes
 The datanodes periodically acquire an updated list of NameNodes in the system and establish a connection (register) with the new NameNodes. Like clients, the datanodes also uniformly distribute the filesystem operations among all the NameNodes in the system. Currently the datanodes only support round-robin policy to distribute the filesystem operations. 
 
 
+HopsFS Async Quota Management
+-----------------------------
+
+In HopsFS the commands and the APIs for quota management are identical to HDFS. In HDFS all Quota management operations are performed synchronously while in HopsFS Quota management is performed asynchronously for performance reasons. In the following example maximum namespace quota for ``/QDir`` is set to 10. When a new sub-directory or a file is created in this folder then the quota update information propagates up the filesystem tree until it reaches ``/QDir``. Each quota update propagation operation is implemented as an independent transaction. 
+
+.. figure:: ../imgs/quota-update.png
+  :alt: HopsFS Quota Update 
+  :scale: 100
+  :figclass: align-center
+
+  HopsFS Quota Update
+  
+For write heavy workloads a user might be able to consume more diskspace/namespace than it is allowed before the filesystem recognizes that the quota limits have been violated. After the quota updates are applied the filesystem will not allow the use to further violate the quota limits. In industry write operation are a tiny fraction of the workload. Additionally, considering the size of the filesystem we think this is a small trade off for achieving high throughput for read only operation that often comprise 90-95% a typical filesystem workload. 
+
+
+In HopsFS asynchronous quota updates are highly optimized. We bath the quota updates wherever possible.  :ref:`Here <quota-parameters>` is a complete list of parameters that determines how aggressively the quota updates are applied. 
+
+
+   
+   
+
 .. _Apache Hadoop: http://hadoop.apache.org/releases.html
 .. _configuration: http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/hdfs-default.xml
 .. _service: http://link.springer.com/chapter/10.1007%2F978-3-319-19129-4_13
+
 
 
 

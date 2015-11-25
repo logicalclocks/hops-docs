@@ -1,0 +1,1188 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 744.09448819 1052.3622047"
+   id="svg4905"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="quota-update.svg"
+   inkscape:export-filename="/home/salman/code/hopg/hops-docs/docs/imgs/quota-update.png"
+   inkscape:export-xdpi="197.02608"
+   inkscape:export-ydpi="197.02608">
+  <defs
+     id="defs4907">
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow1Mend"
+       style="overflow:visible;">
+      <path
+         id="path4085"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt;"
+         transform="scale(0.4) rotate(180) translate(10,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Tail"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Tail"
+       style="overflow:visible">
+      <g
+         id="g4112"
+         transform="scale(-1.2)">
+        <path
+           id="path4114"
+           d="M -3.8048674,-3.9585227 L 0.54352094,0"
+           style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.8;stroke-linecap:round" />
+        <path
+           id="path4116"
+           d="M -1.2866832,-3.9585227 L 3.0617053,0"
+           style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.8;stroke-linecap:round" />
+        <path
+           id="path4118"
+           d="M 1.3053582,-3.9585227 L 5.6537466,0"
+           style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.8;stroke-linecap:round" />
+        <path
+           id="path4120"
+           d="M -3.8048674,4.1775838 L 0.54352094,0.21974226"
+           style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.8;stroke-linecap:round" />
+        <path
+           id="path4122"
+           d="M -1.2866832,4.1775838 L 3.0617053,0.21974226"
+           style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.8;stroke-linecap:round" />
+        <path
+           id="path4124"
+           d="M 1.3053582,4.1775838 L 5.6537466,0.21974226"
+           style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.8;stroke-linecap:round" />
+      </g>
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Lend"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow2Lend"
+       style="overflow:visible;">
+      <path
+         id="path4097"
+         style="fill-rule:evenodd;stroke-width:0.62500000;stroke-linejoin:round;"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         transform="scale(1.1) rotate(180) translate(1,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker9686-8-9-3"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path9688-4-0-1"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 Z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker9686-8-9"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path9688-4-0"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 Z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker9686-8-9-3-8"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path9688-4-0-1-7"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 Z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker9686-8-9-9"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path9688-4-0-3"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 Z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker9686-8-9-9-0"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path9688-4-0-3-3"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.8"
+     inkscape:cx="168.95434"
+     inkscape:cy="903.74589"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1124"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata4910">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <text
+       xml:space="preserve"
+       style="font-size:8.89187527px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#2b0000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:'Sans, Bold'"
+       x="56.498135"
+       y="6.5160508"
+       id="text3792-1-64-8-1"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/jdowling/NetBeansProjects/hops-papers/hopsfs-2015/Diagrams/hierarchy-udp-ndb.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan3794-2-8-1-9"
+         x="56.498135"
+         y="6.5160508"
+         style="font-size:8.89187527px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#2b0000;font-family:Sans;-inkscape-font-specification:'Sans, Bold'">/</tspan></text>
+    <path
+       sodipodi:type="arc"
+       style="fill:#2b0000;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3790-9-0-2-1-7-0-7"
+       sodipodi:cx="30.28894"
+       sodipodi:cy="120.62923"
+       sodipodi:rx="4.1224995"
+       sodipodi:ry="4.228889"
+       d="m 34.41144,120.62923 a 4.1224995,4.228889 0 1 1 -6.9e-5,-0.0244"
+       sodipodi:start="0"
+       sodipodi:end="6.2774151"
+       sodipodi:open="true"
+       inkscape:export-filename="/home/jdowling/NetBeansProjects/hops-papers/hopsfs-2015/Diagrams/hierarchy-udp-ndb.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       transform="translate(0,-42.928571)" />
+    <path
+       style="fill:#2b0000;stroke:#000000;stroke-width:0.44459483;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="M 47.452929,43.190736 32.272349,74.051539"
+       id="path4312-6-6-8-2"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/jdowling/NetBeansProjects/hops-papers/hopsfs-2015/Diagrams/hierarchy-udp-ndb.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#2b0000;stroke:#000000;stroke-width:1.48198271;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1.4819827, 1.4819827;stroke-dashoffset:0"
+       d="m 39.111909,77.788009 c 10.57278,-0.0935 17.20987,0.0388 17.20987,0.0388"
+       id="path4278-3-9-0-1-7"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/jdowling/NetBeansProjects/hops-papers/hopsfs-2015/Diagrams/hierarchy-udp-ndb.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#2b0000;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3790-9-7-4-6-1-3-3-8-1"
+       sodipodi:cx="118.11902"
+       sodipodi:cy="120.80553"
+       sodipodi:rx="4.1224995"
+       sodipodi:ry="4.228889"
+       d="m 122.24152,120.80553 a 4.1224995,4.228889 0 1 1 -7e-5,-0.0244"
+       sodipodi:start="0"
+       sodipodi:end="6.2774151"
+       sodipodi:open="true"
+       inkscape:export-filename="/home/jdowling/NetBeansProjects/hops-papers/hopsfs-2015/Diagrams/hierarchy-udp-ndb.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       transform="translate(0,-42.928571)" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#2b0000;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3790-9-0-2-1-7-0-7-8"
+       sodipodi:cx="82.727905"
+       sodipodi:cy="121.35225"
+       sodipodi:rx="4.1224995"
+       sodipodi:ry="4.228889"
+       d="m 86.850405,121.35225 a 4.1224995,4.228889 0 1 1 -6.9e-5,-0.0244"
+       sodipodi:start="0"
+       sodipodi:end="6.2774151"
+       sodipodi:open="true"
+       inkscape:export-filename="/home/jdowling/NetBeansProjects/hops-papers/hopsfs-2015/Diagrams/hierarchy-udp-ndb.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       transform="translate(0,-42.928571)" />
+    <path
+       style="fill:#2b0000;stroke:#000000;stroke-width:0.44459483;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="M 95.141879,44.538736 83.461299,77.524539"
+       id="path4312-6-6-8-2-0"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/jdowling/NetBeansProjects/hops-papers/hopsfs-2015/Diagrams/hierarchy-udp-ndb.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       sodipodi:nodetypes="cc" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#2b0000;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3790-9-0-2-1-7-0"
+       sodipodi:cx="47.293396"
+       sodipodi:cy="86.75856"
+       sodipodi:rx="4.1224995"
+       sodipodi:ry="4.228889"
+       d="m 51.415895,86.75856 a 4.1224995,4.228889 0 1 1 -6.8e-5,-0.0244"
+       sodipodi:start="0"
+       sodipodi:end="6.2774151"
+       sodipodi:open="true"
+       inkscape:export-filename="/home/jdowling/NetBeansProjects/hops-papers/hopsfs-2015/Diagrams/hierarchy-udp-ndb.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       transform="translate(0,-42.928571)" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#2b0000;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3790-9-7-4-6-1-3-3"
+       sodipodi:cx="95.083954"
+       sodipodi:cy="86.75856"
+       sodipodi:rx="4.1224995"
+       sodipodi:ry="4.228889"
+       d="m 99.206453,86.75856 a 4.1224995,4.228889 0 1 1 -6.8e-5,-0.0244"
+       sodipodi:start="0"
+       sodipodi:end="6.2774151"
+       sodipodi:open="true"
+       inkscape:export-filename="/home/jdowling/NetBeansProjects/hops-papers/hopsfs-2015/Diagrams/hierarchy-udp-ndb.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       transform="translate(0,-42.928571)" />
+    <path
+       style="fill:#2b0000;stroke:#000000;stroke-width:0.44459483;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 63.814719,78.421669 15.18058,30.860781"
+       id="path4314-1-0-9-8-8"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/jdowling/NetBeansProjects/hops-papers/hopsfs-2015/Diagrams/hierarchy-udp-ndb.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#2b0000;stroke:#000000;stroke-width:0.44459483;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="M 64.423319,78.042859 49.242739,108.90365"
+       id="path4312-6-6-8-2-6"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/jdowling/NetBeansProjects/hops-papers/hopsfs-2015/Diagrams/hierarchy-udp-ndb.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#2b0000;stroke:#000000;stroke-width:0.44459483;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="M 118.30722,78.512519 103.12664,109.37331"
+       id="path4312-6-6-8-2-6-3"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/jdowling/NetBeansProjects/hops-papers/hopsfs-2015/Diagrams/hierarchy-udp-ndb.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#2b0000;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3790-9-7-4-6-1-3-3-8"
+       sodipodi:cx="63.88205"
+       sodipodi:cy="121.13432"
+       sodipodi:rx="4.1224995"
+       sodipodi:ry="4.228889"
+       d="m 68.004549,121.13432 a 4.1224995,4.228889 0 1 1 -6.9e-5,-0.0244"
+       sodipodi:start="0"
+       sodipodi:end="6.2774151"
+       sodipodi:open="true"
+       inkscape:export-filename="/home/jdowling/NetBeansProjects/hops-papers/hopsfs-2015/Diagrams/hierarchy-udp-ndb.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       transform="translate(0,-42.928571)" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#2b0000;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3790-9-0-2-1-7-0-7-8-1"
+       sodipodi:cx="49.282585"
+       sodipodi:cy="153.77019"
+       sodipodi:rx="4.1224995"
+       sodipodi:ry="4.228889"
+       d="m 53.405085,153.77019 a 4.1224995,4.228889 0 1 1 -6.9e-5,-0.0244"
+       sodipodi:start="0"
+       sodipodi:end="6.2774151"
+       sodipodi:open="true"
+       inkscape:export-filename="/home/jdowling/NetBeansProjects/hops-papers/hopsfs-2015/Diagrams/hierarchy-udp-ndb.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       transform="translate(0,-42.928571)" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#2b0000;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3790-9-0-2-1-7-0-7-8-7"
+       sodipodi:cx="78.627533"
+       sodipodi:cy="153.77019"
+       sodipodi:rx="4.1224995"
+       sodipodi:ry="4.228889"
+       d="m 82.750032,153.77019 a 4.1224995,4.228889 0 1 1 -6.8e-5,-0.0244"
+       sodipodi:start="0"
+       sodipodi:end="6.2774151"
+       sodipodi:open="true"
+       inkscape:export-filename="/home/jdowling/NetBeansProjects/hops-papers/hopsfs-2015/Diagrams/hierarchy-udp-ndb.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       transform="translate(0,-42.928571)" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#2b0000;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3790-9-0-2-1-7-0-7-8-1-6"
+       sodipodi:cx="102.97977"
+       sodipodi:cy="153.77019"
+       sodipodi:rx="4.1224995"
+       sodipodi:ry="4.228889"
+       d="m 107.10227,153.77019 a 4.1224995,4.228889 0 1 1 -7e-5,-0.0244"
+       sodipodi:start="0"
+       sodipodi:end="6.2774151"
+       sodipodi:open="true"
+       inkscape:export-filename="/home/jdowling/NetBeansProjects/hops-papers/hopsfs-2015/Diagrams/hierarchy-udp-ndb.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       transform="translate(0,-42.928571)" />
+    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ff0000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="100.87805"
+       y="41.100742"
+       id="text8200-9-5-3"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan8202-85-5-5"
+         x="100.87805"
+         y="41.100742"
+         style="font-size:6px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;font-family:Sans;-inkscape-font-specification:'Sans, Bold'">Max NS Quota 10</tspan><tspan
+         sodipodi:role="line"
+         x="100.87805"
+         y="48.600742"
+         style="font-size:6px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;font-family:Sans;-inkscape-font-specification:'Sans, Bold'"
+         id="tspan3169">Current NS Count 4</tspan></text>
+    <path
+       sodipodi:type="arc"
+       style="fill:#2b0000;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3790-9-7-48-8-9"
+       sodipodi:cx="66.18866"
+       sodipodi:cy="48.346081"
+       sodipodi:rx="4.1224995"
+       sodipodi:ry="4.228889"
+       d="m 70.311159,48.346081 a 4.1224995,4.228889 0 1 1 -6.8e-5,-0.0244"
+       sodipodi:start="0"
+       sodipodi:end="6.2774151"
+       sodipodi:open="true"
+       inkscape:export-filename="/home/jdowling/NetBeansProjects/hops-papers/hopsfs-2015/Diagrams/hierarchy-udp-ndb.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       transform="translate(0,-42.928571)" />
+    <path
+       style="fill:#2b0000;stroke:#000000;stroke-width:0.44499999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="M 68.707272,8.7656723 92.565342,40.481827"
+       id="path6786"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#path3790-9-7-48-8-9"
+       inkscape:connection-end="#path3790-9-7-4-6-1-3-3"
+       inkscape:connection-start-point="d4"
+       inkscape:connection-end-point="d4" />
+    <path
+       style="fill:#2b0000;stroke:#000000;stroke-width:0.44499999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="M 49.150952,40.053735 64.331092,9.1937874"
+       id="path7152"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#path3790-9-0-2-1-7-0"
+       inkscape:connection-end="#path3790-9-7-48-8-9"
+       inkscape:connection-start-point="d4"
+       inkscape:connection-end-point="d4" />
+    <path
+       style="fill:#2b0000;stroke:#000000;stroke-width:0.44499999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 97.43832,47.30185 19.88774,29.327409"
+       id="path7556"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#path3790-9-7-4-6-1-3-3"
+       inkscape:connection-start-point="d4" />
+    <text
+       xml:space="preserve"
+       style="font-size:8px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000080;fill-opacity:1;stroke:none;font-family:Courier;-inkscape-font-specification:Courier Bold"
+       x="65.154831"
+       y="45.748089"
+       id="text3171"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3173"
+         x="65.154831"
+         y="45.748089">/QDir</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:8.89187527px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#2b0000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:'Sans, Bold'"
+       x="210.69516"
+       y="6.4621501"
+       id="text3792-1-64-8-1-1"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/jdowling/NetBeansProjects/hops-papers/hopsfs-2015/Diagrams/hierarchy-udp-ndb.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan3794-2-8-1-9-9"
+         x="210.69516"
+         y="6.4621501"
+         style="font-size:8.89187527px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#2b0000;font-family:Sans;-inkscape-font-specification:'Sans, Bold'">/</tspan></text>
+    <path
+       transform="translate(154.19703,-42.982471)"
+       sodipodi:type="arc"
+       style="fill:#2b0000;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3790-9-0-2-1-7-0-7-1"
+       sodipodi:cx="30.28894"
+       sodipodi:cy="120.62923"
+       sodipodi:rx="4.1224995"
+       sodipodi:ry="4.228889"
+       d="m 34.41144,120.62923 a 4.1224995,4.228889 0 1 1 -6.9e-5,-0.0244"
+       sodipodi:start="0"
+       sodipodi:end="6.2774151"
+       sodipodi:open="true"
+       inkscape:export-filename="/home/jdowling/NetBeansProjects/hops-papers/hopsfs-2015/Diagrams/hierarchy-udp-ndb.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#2b0000;stroke:#000000;stroke-width:0.44459483;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="M 201.64996,43.136838 186.46938,73.997643"
+       id="path4312-6-6-8-2-9"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/jdowling/NetBeansProjects/hops-papers/hopsfs-2015/Diagrams/hierarchy-udp-ndb.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#2b0000;stroke:#000000;stroke-width:1.48198271;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1.48198273, 1.48198273;stroke-dashoffset:0"
+       d="m 193.30894,77.734113 c 10.57278,-0.0935 17.20987,0.0388 17.20987,0.0388"
+       id="path4278-3-9-0-1-7-7"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/jdowling/NetBeansProjects/hops-papers/hopsfs-2015/Diagrams/hierarchy-udp-ndb.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#2b0000;stroke:#000000;stroke-width:0.44459483;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="M 249.33891,44.484838 237.65833,77.470643"
+       id="path4312-6-6-8-2-0-5"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/jdowling/NetBeansProjects/hops-papers/hopsfs-2015/Diagrams/hierarchy-udp-ndb.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       sodipodi:nodetypes="cc" />
+    <path
+       transform="translate(154.19703,-42.982471)"
+       sodipodi:type="arc"
+       style="fill:#2b0000;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3790-9-0-2-1-7-0-6"
+       sodipodi:cx="47.293396"
+       sodipodi:cy="86.75856"
+       sodipodi:rx="4.1224995"
+       sodipodi:ry="4.228889"
+       d="m 51.415895,86.75856 a 4.1224995,4.228889 0 1 1 -6.8e-5,-0.0244"
+       sodipodi:start="0"
+       sodipodi:end="6.2774151"
+       sodipodi:open="true"
+       inkscape:export-filename="/home/jdowling/NetBeansProjects/hops-papers/hopsfs-2015/Diagrams/hierarchy-udp-ndb.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       transform="translate(154.19703,-42.982471)"
+       sodipodi:type="arc"
+       style="fill:#2b0000;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3790-9-7-4-6-1-3-3-2"
+       sodipodi:cx="95.083954"
+       sodipodi:cy="86.75856"
+       sodipodi:rx="4.1224995"
+       sodipodi:ry="4.228889"
+       d="m 99.206453,86.75856 a 4.1224995,4.228889 0 1 1 -6.8e-5,-0.0244"
+       sodipodi:start="0"
+       sodipodi:end="6.2774151"
+       sodipodi:open="true"
+       inkscape:export-filename="/home/jdowling/NetBeansProjects/hops-papers/hopsfs-2015/Diagrams/hierarchy-udp-ndb.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#2b0000;stroke:#000000;stroke-width:0.44459483;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 218.01175,78.367773 15.18058,30.860787"
+       id="path4314-1-0-9-8-8-0"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/jdowling/NetBeansProjects/hops-papers/hopsfs-2015/Diagrams/hierarchy-udp-ndb.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       transform="translate(154.19703,-42.982471)"
+       sodipodi:type="arc"
+       style="fill:#2b0000;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3790-9-0-2-1-7-0-7-8-3"
+       sodipodi:cx="82.727905"
+       sodipodi:cy="121.35225"
+       sodipodi:rx="4.1224995"
+       sodipodi:ry="4.228889"
+       d="m 86.850405,121.35225 a 4.1224995,4.228889 0 1 1 -6.9e-5,-0.0244"
+       sodipodi:start="0"
+       sodipodi:end="6.2774151"
+       sodipodi:open="true"
+       inkscape:export-filename="/home/jdowling/NetBeansProjects/hops-papers/hopsfs-2015/Diagrams/hierarchy-udp-ndb.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#2b0000;stroke:#000000;stroke-width:0.44459483;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="M 218.62035,77.988963 203.43977,108.84976"
+       id="path4312-6-6-8-2-6-5"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/jdowling/NetBeansProjects/hops-papers/hopsfs-2015/Diagrams/hierarchy-udp-ndb.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ff0000;stroke:#ff0005;stroke-width:0.44459483;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 271.89565,78.837433 15.18059,30.860787"
+       id="path4314-1-0-9-8-8-5-7"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/jdowling/NetBeansProjects/hops-papers/hopsfs-2015/Diagrams/hierarchy-udp-ndb.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#2b0000;stroke:#000000;stroke-width:0.44459483;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="M 272.50425,78.458623 257.32367,109.31942"
+       id="path4312-6-6-8-2-6-3-6"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/jdowling/NetBeansProjects/hops-papers/hopsfs-2015/Diagrams/hierarchy-udp-ndb.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       transform="translate(154.19703,-42.982471)"
+       sodipodi:type="arc"
+       style="fill:#2b0000;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3790-9-7-4-6-1-3-3-8-7"
+       sodipodi:cx="63.88205"
+       sodipodi:cy="121.13432"
+       sodipodi:rx="4.1224995"
+       sodipodi:ry="4.228889"
+       d="m 68.004549,121.13432 a 4.1224995,4.228889 0 1 1 -6.9e-5,-0.0244"
+       sodipodi:start="0"
+       sodipodi:end="6.2774151"
+       sodipodi:open="true"
+       inkscape:export-filename="/home/jdowling/NetBeansProjects/hops-papers/hopsfs-2015/Diagrams/hierarchy-udp-ndb.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       transform="translate(154.19703,-42.982471)"
+       sodipodi:type="arc"
+       style="fill:#2b0000;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3790-9-0-2-1-7-0-7-8-1-4"
+       sodipodi:cx="49.282585"
+       sodipodi:cy="153.77019"
+       sodipodi:rx="4.1224995"
+       sodipodi:ry="4.228889"
+       d="m 53.405085,153.77019 a 4.1224995,4.228889 0 1 1 -6.9e-5,-0.0244"
+       sodipodi:start="0"
+       sodipodi:end="6.2774151"
+       sodipodi:open="true"
+       inkscape:export-filename="/home/jdowling/NetBeansProjects/hops-papers/hopsfs-2015/Diagrams/hierarchy-udp-ndb.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       transform="translate(154.19703,-42.982471)"
+       sodipodi:type="arc"
+       style="fill:#2b0000;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3790-9-0-2-1-7-0-7-8-7-4"
+       sodipodi:cx="78.627533"
+       sodipodi:cy="153.77019"
+       sodipodi:rx="4.1224995"
+       sodipodi:ry="4.228889"
+       d="m 82.750032,153.77019 a 4.1224995,4.228889 0 1 1 -6.8e-5,-0.0244"
+       sodipodi:start="0"
+       sodipodi:end="6.2774151"
+       sodipodi:open="true"
+       inkscape:export-filename="/home/jdowling/NetBeansProjects/hops-papers/hopsfs-2015/Diagrams/hierarchy-udp-ndb.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       transform="translate(154.19703,-42.982471)"
+       sodipodi:type="arc"
+       style="fill:#2b0000;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3790-9-0-2-1-7-0-7-8-1-6-0"
+       sodipodi:cx="102.97977"
+       sodipodi:cy="153.77019"
+       sodipodi:rx="4.1224995"
+       sodipodi:ry="4.228889"
+       d="m 107.10227,153.77019 a 4.1224995,4.228889 0 1 1 -7e-5,-0.0244"
+       sodipodi:start="0"
+       sodipodi:end="6.2774151"
+       sodipodi:open="true"
+       inkscape:export-filename="/home/jdowling/NetBeansProjects/hops-papers/hopsfs-2015/Diagrams/hierarchy-udp-ndb.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       transform="translate(154.19703,-42.982471)"
+       sodipodi:type="arc"
+       style="fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3790-9-0-2-1-7-0-7-8-7-0-4"
+       sodipodi:cx="132.32471"
+       sodipodi:cy="153.77019"
+       sodipodi:rx="4.1224995"
+       sodipodi:ry="4.228889"
+       d="m 136.44721,153.77019 a 4.1224995,4.228889 0 1 1 -7e-5,-0.0244"
+       sodipodi:start="0"
+       sodipodi:end="6.2774151"
+       sodipodi:open="true"
+       inkscape:export-filename="/home/jdowling/NetBeansProjects/hops-papers/hopsfs-2015/Diagrams/hierarchy-udp-ndb.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#2b0000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="255.07509"
+       y="41.046841"
+       id="text8200-9-5-3-1"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan8202-85-5-5-1"
+         x="255.07509"
+         y="41.046841"
+         style="font-size:6px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#2b0000;font-family:Sans;-inkscape-font-specification:'Sans, Bold'">Max NS Quota 10</tspan><tspan
+         sodipodi:role="line"
+         x="255.07509"
+         y="48.546841"
+         style="font-size:6px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#2b0000;font-family:Sans;-inkscape-font-specification:'Sans, Bold'"
+         id="tspan3169-8">Current NS Count 4</tspan><tspan
+         sodipodi:role="line"
+         x="255.07509"
+         y="56.046841"
+         style="font-size:6px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#2b0000;font-family:Sans;-inkscape-font-specification:'Sans, Bold'"
+         id="tspan3274" /></text>
+    <path
+       transform="translate(154.19703,-42.982471)"
+       sodipodi:type="arc"
+       style="fill:#2b0000;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3790-9-7-48-8-9-7"
+       sodipodi:cx="66.18866"
+       sodipodi:cy="48.346081"
+       sodipodi:rx="4.1224995"
+       sodipodi:ry="4.228889"
+       d="m 70.311159,48.346081 a 4.1224995,4.228889 0 1 1 -6.8e-5,-0.0244"
+       sodipodi:start="0"
+       sodipodi:end="6.2774151"
+       sodipodi:open="true"
+       inkscape:export-filename="/home/jdowling/NetBeansProjects/hops-papers/hopsfs-2015/Diagrams/hierarchy-udp-ndb.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#2b0000;stroke:#000000;stroke-width:0.44499999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="M 222.9043,8.7117723 246.76237,40.427927"
+       id="path6786-5"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#path3790-9-7-48-8-9-7"
+       inkscape:connection-end="#path3790-9-7-4-6-1-3-3-2"
+       inkscape:connection-start-point="d4"
+       inkscape:connection-end-point="d4" />
+    <path
+       style="fill:#2b0000;stroke:#000000;stroke-width:0.44499999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="M 203.34798,39.999835 218.52812,9.1398874"
+       id="path7152-4"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#path3790-9-0-2-1-7-0-6"
+       inkscape:connection-end="#path3790-9-7-48-8-9-7"
+       inkscape:connection-start-point="d4"
+       inkscape:connection-end-point="d4" />
+    <path
+       style="fill:#2b0000;stroke:#000000;stroke-width:0.44499999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 251.63535,47.24795 19.88774,29.327413"
+       id="path7556-6"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#path3790-9-7-4-6-1-3-3-2"
+       inkscape:connection-start-point="d4" />
+    <path
+       transform="translate(154.19703,-42.982471)"
+       sodipodi:type="arc"
+       style="fill:#2b0000;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3790-9-7-4-6-1-3-3-8-1-3"
+       sodipodi:cx="118.11902"
+       sodipodi:cy="120.80553"
+       sodipodi:rx="4.1224995"
+       sodipodi:ry="4.228889"
+       d="m 122.24152,120.80553 a 4.1224995,4.228889 0 1 1 -7e-5,-0.0244"
+       sodipodi:start="0"
+       sodipodi:end="6.2774151"
+       sodipodi:open="true"
+       inkscape:export-filename="/home/jdowling/NetBeansProjects/hops-papers/hopsfs-2015/Diagrams/hierarchy-udp-ndb.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <text
+       xml:space="preserve"
+       style="font-size:8px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000080;fill-opacity:1;stroke:none;font-family:Courier;-inkscape-font-specification:Courier Bold"
+       x="219.35187"
+       y="45.694187"
+       id="text3171-1"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3173-0"
+         x="219.35187"
+         y="45.694187">/QDir</tspan></text>
+    <path
+       style="fill:#ffffff;fill-opacity:0;stroke:#ff0000;stroke-width:0.40000001000000002;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:0.40000002000000001, 0.80000002999999986;stroke-dashoffset:0;marker-end:url(#marker9686-8-9-9)"
+       d="m 290.42329,109.22354 c 0,0 15.39406,-61.694637 -11.499,-36.351367 -0.87745,0.82689 -1.79991,1.74643 -2.7694,2.76379"
+       id="path4070"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="csc"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <text
+       xml:space="preserve"
+       style="font-size:8px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
+       x="296.23166"
+       y="76.393578"
+       id="text5698"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan5700"
+         x="296.23166"
+         y="76.393578"
+         style="font-size:4px;fill:#ff0000">Propagate </tspan><tspan
+         sodipodi:role="line"
+         x="296.23166"
+         y="81.393578"
+         id="tspan5702"
+         style="font-size:4px;fill:#ff0000">Quota Change</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:8.89187527px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#2b0000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:'Sans, Bold'"
+       x="375.45102"
+       y="6.5403585"
+       id="text3792-1-64-8-1-1-5"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/jdowling/NetBeansProjects/hops-papers/hopsfs-2015/Diagrams/hierarchy-udp-ndb.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan3794-2-8-1-9-9-1"
+         x="375.45102"
+         y="6.5403585"
+         style="font-size:8.89187527px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#2b0000;font-family:Sans;-inkscape-font-specification:'Sans, Bold'">/</tspan></text>
+    <path
+       transform="translate(318.9529,-42.904266)"
+       sodipodi:type="arc"
+       style="fill:#2b0000;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3790-9-0-2-1-7-0-7-1-2"
+       sodipodi:cx="30.28894"
+       sodipodi:cy="120.62923"
+       sodipodi:rx="4.1224995"
+       sodipodi:ry="4.228889"
+       d="m 34.41144,120.62923 a 4.1224995,4.228889 0 1 1 -6.9e-5,-0.0244"
+       sodipodi:start="0"
+       sodipodi:end="6.2774151"
+       sodipodi:open="true"
+       inkscape:export-filename="/home/jdowling/NetBeansProjects/hops-papers/hopsfs-2015/Diagrams/hierarchy-udp-ndb.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#2b0000;stroke:#000000;stroke-width:0.44459483;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 366.40583,43.21505 -15.18058,30.8608"
+       id="path4312-6-6-8-2-9-6"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/jdowling/NetBeansProjects/hops-papers/hopsfs-2015/Diagrams/hierarchy-udp-ndb.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#2b0000;stroke:#000000;stroke-width:1.48198271;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1.48198276, 1.48198276;stroke-dashoffset:0"
+       d="m 358.06481,77.81232 c 10.57278,-0.0935 17.20987,0.0388 17.20987,0.0388"
+       id="path4278-3-9-0-1-7-7-0"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/jdowling/NetBeansProjects/hops-papers/hopsfs-2015/Diagrams/hierarchy-udp-ndb.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#2b0000;stroke:#000000;stroke-width:0.44459483;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="M 414.09478,44.56305 402.4142,77.54885"
+       id="path4312-6-6-8-2-0-5-9"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/jdowling/NetBeansProjects/hops-papers/hopsfs-2015/Diagrams/hierarchy-udp-ndb.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       sodipodi:nodetypes="cc" />
+    <path
+       transform="translate(318.9529,-42.904266)"
+       sodipodi:type="arc"
+       style="fill:#2b0000;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3790-9-0-2-1-7-0-6-1"
+       sodipodi:cx="47.293396"
+       sodipodi:cy="86.75856"
+       sodipodi:rx="4.1224995"
+       sodipodi:ry="4.228889"
+       d="m 51.415895,86.75856 a 4.1224995,4.228889 0 1 1 -6.8e-5,-0.0244"
+       sodipodi:start="0"
+       sodipodi:end="6.2774151"
+       sodipodi:open="true"
+       inkscape:export-filename="/home/jdowling/NetBeansProjects/hops-papers/hopsfs-2015/Diagrams/hierarchy-udp-ndb.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       transform="translate(318.9529,-42.904266)"
+       sodipodi:type="arc"
+       style="fill:#2b0000;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3790-9-7-4-6-1-3-3-2-5"
+       sodipodi:cx="95.083954"
+       sodipodi:cy="86.75856"
+       sodipodi:rx="4.1224995"
+       sodipodi:ry="4.228889"
+       d="m 99.206453,86.75856 a 4.1224995,4.228889 0 1 1 -6.8e-5,-0.0244"
+       sodipodi:start="0"
+       sodipodi:end="6.2774151"
+       sodipodi:open="true"
+       inkscape:export-filename="/home/jdowling/NetBeansProjects/hops-papers/hopsfs-2015/Diagrams/hierarchy-udp-ndb.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#2b0000;stroke:#000000;stroke-width:0.44459483;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 382.76762,78.44598 15.18058,30.86078"
+       id="path4314-1-0-9-8-8-0-5"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/jdowling/NetBeansProjects/hops-papers/hopsfs-2015/Diagrams/hierarchy-udp-ndb.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       transform="translate(318.9529,-42.904266)"
+       sodipodi:type="arc"
+       style="fill:#2b0000;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3790-9-0-2-1-7-0-7-8-3-8"
+       sodipodi:cx="82.727905"
+       sodipodi:cy="121.35225"
+       sodipodi:rx="4.1224995"
+       sodipodi:ry="4.228889"
+       d="m 86.850405,121.35225 a 4.1224995,4.228889 0 1 1 -6.9e-5,-0.0244"
+       sodipodi:start="0"
+       sodipodi:end="6.2774151"
+       sodipodi:open="true"
+       inkscape:export-filename="/home/jdowling/NetBeansProjects/hops-papers/hopsfs-2015/Diagrams/hierarchy-udp-ndb.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#2b0000;stroke:#000000;stroke-width:0.44459483;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 383.37622,78.06717 -15.18058,30.86079"
+       id="path4312-6-6-8-2-6-5-7"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/jdowling/NetBeansProjects/hops-papers/hopsfs-2015/Diagrams/hierarchy-udp-ndb.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#2b0000;stroke:#010100;stroke-width:0.44459483;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 436.65152,78.91564 15.18059,30.86078"
+       id="path4314-1-0-9-8-8-5-7-7"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/jdowling/NetBeansProjects/hops-papers/hopsfs-2015/Diagrams/hierarchy-udp-ndb.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#2b0000;stroke:#000000;stroke-width:0.44459483;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 437.26012,78.53683 -15.18058,30.86079"
+       id="path4312-6-6-8-2-6-3-6-5"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/jdowling/NetBeansProjects/hops-papers/hopsfs-2015/Diagrams/hierarchy-udp-ndb.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       transform="translate(318.9529,-42.904266)"
+       sodipodi:type="arc"
+       style="fill:#2b0000;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3790-9-7-4-6-1-3-3-8-7-7"
+       sodipodi:cx="63.88205"
+       sodipodi:cy="121.13432"
+       sodipodi:rx="4.1224995"
+       sodipodi:ry="4.228889"
+       d="m 68.004549,121.13432 a 4.1224995,4.228889 0 1 1 -6.9e-5,-0.0244"
+       sodipodi:start="0"
+       sodipodi:end="6.2774151"
+       sodipodi:open="true"
+       inkscape:export-filename="/home/jdowling/NetBeansProjects/hops-papers/hopsfs-2015/Diagrams/hierarchy-udp-ndb.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       transform="translate(318.9529,-42.904266)"
+       sodipodi:type="arc"
+       style="fill:#2b0000;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3790-9-0-2-1-7-0-7-8-1-4-6"
+       sodipodi:cx="49.282585"
+       sodipodi:cy="153.77019"
+       sodipodi:rx="4.1224995"
+       sodipodi:ry="4.228889"
+       d="m 53.405085,153.77019 a 4.1224995,4.228889 0 1 1 -6.9e-5,-0.0244"
+       sodipodi:start="0"
+       sodipodi:end="6.2774151"
+       sodipodi:open="true"
+       inkscape:export-filename="/home/jdowling/NetBeansProjects/hops-papers/hopsfs-2015/Diagrams/hierarchy-udp-ndb.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       transform="translate(318.9529,-42.904266)"
+       sodipodi:type="arc"
+       style="fill:#2b0000;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3790-9-0-2-1-7-0-7-8-7-4-4"
+       sodipodi:cx="78.627533"
+       sodipodi:cy="153.77019"
+       sodipodi:rx="4.1224995"
+       sodipodi:ry="4.228889"
+       d="m 82.750032,153.77019 a 4.1224995,4.228889 0 1 1 -6.8e-5,-0.0244"
+       sodipodi:start="0"
+       sodipodi:end="6.2774151"
+       sodipodi:open="true"
+       inkscape:export-filename="/home/jdowling/NetBeansProjects/hops-papers/hopsfs-2015/Diagrams/hierarchy-udp-ndb.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       transform="translate(318.9529,-42.904266)"
+       sodipodi:type="arc"
+       style="fill:#2b0000;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3790-9-0-2-1-7-0-7-8-1-6-0-3"
+       sodipodi:cx="102.97977"
+       sodipodi:cy="153.77019"
+       sodipodi:rx="4.1224995"
+       sodipodi:ry="4.228889"
+       d="m 107.10227,153.77019 a 4.1224995,4.228889 0 1 1 -7e-5,-0.0244"
+       sodipodi:start="0"
+       sodipodi:end="6.2774151"
+       sodipodi:open="true"
+       inkscape:export-filename="/home/jdowling/NetBeansProjects/hops-papers/hopsfs-2015/Diagrams/hierarchy-udp-ndb.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       transform="translate(318.9529,-42.904266)"
+       sodipodi:type="arc"
+       style="fill:#2b0000;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3790-9-0-2-1-7-0-7-8-7-0-4-0"
+       sodipodi:cx="132.32471"
+       sodipodi:cy="153.77019"
+       sodipodi:rx="4.1224995"
+       sodipodi:ry="4.228889"
+       d="m 136.44721,153.77019 a 4.1224995,4.228889 0 1 1 -7e-5,-0.0244"
+       sodipodi:start="0"
+       sodipodi:end="6.2774151"
+       sodipodi:open="true"
+       inkscape:export-filename="/home/jdowling/NetBeansProjects/hops-papers/hopsfs-2015/Diagrams/hierarchy-udp-ndb.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#2b0000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="419.83096"
+       y="41.125053"
+       id="text8200-9-5-3-1-4"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan8202-85-5-5-1-7"
+         x="419.83096"
+         y="41.125053"
+         style="font-size:6px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#2b0000;font-family:Sans;-inkscape-font-specification:'Sans, Bold'">Max NS Quota 10</tspan><tspan
+         sodipodi:role="line"
+         x="419.83096"
+         y="52.612049"
+         style="font-size:6px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#2b0000;font-family:Sans;-inkscape-font-specification:'Sans, Bold'"
+         id="tspan3169-8-4">Current NS Count <tspan
+   style="font-size:10px"
+   id="tspan7042">5</tspan></tspan><tspan
+         sodipodi:role="line"
+         x="419.83096"
+         y="65.112053"
+         style="font-size:6px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#2b0000;font-family:Sans;-inkscape-font-specification:'Sans, Bold'"
+         id="tspan3274-7" /></text>
+    <path
+       transform="translate(318.9529,-42.904266)"
+       sodipodi:type="arc"
+       style="fill:#2b0000;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3790-9-7-48-8-9-7-8"
+       sodipodi:cx="66.18866"
+       sodipodi:cy="48.346081"
+       sodipodi:rx="4.1224995"
+       sodipodi:ry="4.228889"
+       d="m 70.311159,48.346081 a 4.1224995,4.228889 0 1 1 -6.8e-5,-0.0244"
+       sodipodi:start="0"
+       sodipodi:end="6.2774151"
+       sodipodi:open="true"
+       inkscape:export-filename="/home/jdowling/NetBeansProjects/hops-papers/hopsfs-2015/Diagrams/hierarchy-udp-ndb.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#2b0000;stroke:#000000;stroke-width:0.44499999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="M 387.66017,8.7899773 411.51824,40.506132"
+       id="path6786-5-1"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#path3790-9-7-48-8-9-7-8"
+       inkscape:connection-end="#path3790-9-7-4-6-1-3-3-2-5"
+       inkscape:connection-start-point="d4"
+       inkscape:connection-end-point="d4" />
+    <path
+       style="fill:#2b0000;stroke:#000000;stroke-width:0.44499999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="M 368.10385,40.07804 383.28399,9.2180924"
+       id="path7152-4-2"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#path3790-9-0-2-1-7-0-6-1"
+       inkscape:connection-end="#path3790-9-7-48-8-9-7-8"
+       inkscape:connection-start-point="d4"
+       inkscape:connection-end-point="d4" />
+    <path
+       style="fill:#2b0000;stroke:#ff0000;stroke-width:0.44499999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="M 416.39122,47.326155 436.27896,76.65357"
+       id="path7556-6-4"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#path3790-9-7-4-6-1-3-3-2-5"
+       inkscape:connection-start-point="d4" />
+    <path
+       transform="translate(318.9529,-42.904266)"
+       sodipodi:type="arc"
+       style="fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3790-9-7-4-6-1-3-3-8-1-3-7"
+       sodipodi:cx="118.11902"
+       sodipodi:cy="120.80553"
+       sodipodi:rx="4.1224995"
+       sodipodi:ry="4.228889"
+       d="m 122.24152,120.80553 a 4.1224995,4.228889 0 1 1 -7e-5,-0.0244"
+       sodipodi:start="0"
+       sodipodi:end="6.2774151"
+       sodipodi:open="true"
+       inkscape:export-filename="/home/jdowling/NetBeansProjects/hops-papers/hopsfs-2015/Diagrams/hierarchy-udp-ndb.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <text
+       xml:space="preserve"
+       style="font-size:8px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000080;fill-opacity:1;stroke:none;font-family:Courier;-inkscape-font-specification:Courier Bold"
+       x="384.10773"
+       y="45.7724"
+       id="text3171-1-5"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3173-0-6"
+         x="384.10773"
+         y="45.7724">/QDir</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:8px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
+       x="415.27322"
+       y="64.328934"
+       id="text5698-9"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan5700-1"
+         x="415.27322"
+         y="64.328934"
+         style="font-size:4px;fill:#ff0000">Propagate </tspan><tspan
+         sodipodi:role="line"
+         x="415.27322"
+         y="69.328934"
+         id="tspan5702-3"
+         style="font-size:4px;fill:#ff0000">Quota Change</tspan></text>
+    <path
+       style="fill:none;stroke:#ff0000;stroke-width:0.40000001;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:0.40000002, 0.80000003;stroke-dashoffset:0;marker-end:url(#Arrow2Lend)"
+       d="m 432.89285,77.07647 c 0,0 -25.26785,16.07143 -18.12499,-29.285711"
+       id="path5828"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.27259552;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1.27259556, 2.54519113;stroke-dashoffset:0"
+       d="M 170.22084,0.35562971 170.13629,122.22589"
+       id="path7044"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.27259552;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1.27259559, 2.54519118;stroke-dashoffset:0"
+       d="M 338.04227,0.99848634 337.95777,122.86876"
+       id="path7044-3"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <text
+       xml:space="preserve"
+       style="font-size:8px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000080;fill-opacity:1;stroke:none;font-family:Courier;-inkscape-font-specification:Courier Bold"
+       x="291.70282"
+       y="114.36904"
+       id="text3171-1-7"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3173-0-8"
+         x="291.70282"
+         y="114.36904">NewDir</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.40000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker9686-8-9-9-0);stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 131.07143,133.07647 240.71428,0"
+       id="path3133"
+       inkscape:connector-curvature="0"
+       transform="translate(-4.9229925e-6,0)" />
+  </g>
+</svg>

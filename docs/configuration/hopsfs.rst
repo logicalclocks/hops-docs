@@ -64,6 +64,8 @@ In HopsFS the metadata is partitioned using the inodes' id. HopsFS tries to to e
   Enable/Disable random partition key hint when HopsFS fails to determine appropriate partition key for the transactional filesystem operation.
 
 
+.. _quota-parameters:
+
 Quota Management 
 ----------------
 In order to boost the performance and increase the parallelism of metadata operations the quota updates are applied asynchronously i.e. disk and namespace usage statistics are asynchronously updated in the background. Using asynchronous quota system it is possible that some users over consume namespace/disk space before the background quota system throws an exception. Following parameters controls how aggressively the quota subsystem updates the quota statistics. 
