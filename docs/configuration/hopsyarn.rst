@@ -27,11 +27,11 @@ RPCs batchs
 In order to push coherent states to the database Hops-Yarn resource manager process the incoming RPCs by batch. Hops-Yarn first accept a limited number of RPCs. Once this limit is reached the following RPCs are blocked until the accepted RPCs have been executed. The accepted RPCs are then executed. Once all of them have been completely executed the state of the resource manager is pushed to the database and the next RPCs are accepted.
 The size of the batch of rpc that are accepted is limited by two factors: the number of RPCs and the time for which this batch have been going. The first factor guaranty that the number of state change in the database will be limited and that the commit of the new state to the database won't be too long. The second factor guaranty that a new state will be committed in a given time even if few RPCs are received.
 
-**hops.yarn.resourcemanager.batch.max.size**: The maximum number of RPCs in a batch. 
+* **hops.yarn.resourcemanager.batch.max.size**: The maximum number of RPCs in a batch. 
 
-**hops.yarn.resourcemanager.batch.max.duration**: The maximum time before to finish a batch of RPCs.
+* **hops.yarn.resourcemanager.batch.max.duration**: The maximum time before to finish a batch of RPCs.
 
-**hops.yarn.resourcemanager.max.allocated.containers.per.request**: In very large clusters some application may try to allocate tens of thousands of containers at once. This can take few seconds and block any other RPC to be handled during this time, this is due to the RPCs batch system. In order to limit the impact of such big request it is possible to set this option to limit the number of containers an application get at each request. **This result in a suboptimal us of the cluster each time such application start**
+* **hops.yarn.resourcemanager.max.allocated.containers.per.request**: In very large clusters some application may try to allocate tens of thousands of containers at once. This can take few seconds and block any other RPC to be handled during this time, this is due to the RPCs batch system. In order to limit the impact of such big request it is possible to set this option to limit the number of containers an application get at each request. **This result in a suboptimal us of the cluster each time such application start**
 
 Database back pressure
 ......................
@@ -46,8 +46,8 @@ Proxy provider
 ..............
 * **yarn.client.failover-proxy-provider**: Two new proxy providers have been added to the existing ConfiguredRMFailoverProxyProvider
 
-     *  ConfiguredLeaderFailoverHAProxyProvider: this proxy provider has the same goal as the ConfiguredRMFailoverProxyProvider (connecting to the leading resourceManager) but it uses the groupMembershipService where the ConfiguredRMFailoverProxyProvider goes through all the resourceManager present in the configuration file to find the leader. This allows the ConfiguredLeaderFailoverHAProxyProvider to be faster and to find the leader even if it is not present in the configuration file.
-     * ConfiguredLeastLoadedRMFailoverHAProxyProvider: this proxy provider establish a connection with the resourceTracker which is the least loaded. This proxy provider is to be used in distributed mode in order to have the NodeManagers connect to the appropriate resourceTracker.
+     *  **ConfiguredLeaderFailoverHAProxyProvider**: this proxy provider has the same goal as the ConfiguredRMFailoverProxyProvider (connecting to the leading resourceManager) but it uses the groupMembershipService where the ConfiguredRMFailoverProxyProvider goes through all the resourceManager present in the configuration file to find the leader. This allows the ConfiguredLeaderFailoverHAProxyProvider to be faster and to find the leader even if it is not present in the configuration file.
+     * **ConfiguredLeastLoadedRMFailoverHAProxyProvider**: this proxy provider establish a connection with the resourceTracker which is the least loaded. This proxy provider is to be used in distributed mode in order to have the NodeManagers connect to the appropriate resourceTracker.
 
 Configuring Hops-Yarn distributed mode
 --------------------------------------

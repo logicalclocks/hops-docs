@@ -54,7 +54,7 @@ For load balancing the clients uniformly distributes the filesystem operations a
 
 When HopsFS is initialized it selects a valid NameNode from **dfs.namenodes.rpc.addresses** or **fs.default.name** configuration parameters. Using the NameNode the client then acquires an updated list of all the NameNodes in the system. Therefore at least one of the NameNodes addresses defined by theses configuration parameters must belong to an alive NameNode. During initialization the client retries if it encounters a dead NameNode. The client initialization fails if all the NameNode addresses are invalid. 
 
-See :ref:`here <client-conf-parameters>` for complete list of client configuration parameters.
+:ref:`Here <client-conf-parameters>` is a complete list of client configuration parameters.
 
 Compatibility with HDFS Clients
 -------------------------------
