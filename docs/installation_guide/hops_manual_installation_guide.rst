@@ -150,4 +150,4 @@ Configuring YARN Clients
 
 .. _Karamel: http://www.karamel.io/
 .. _NDB Installation Manual: https://dev.mysql.com/doc/refman/5.1/en/mysql-cluster-installation.html
-.. _HDFS configuration parameters: http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/hdfs-default.xml
+.. _Hadoop configuration parameters: http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/hdfs-default.xml
