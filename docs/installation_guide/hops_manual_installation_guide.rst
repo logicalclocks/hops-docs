@@ -135,17 +135,19 @@ HopsFS clients are invoked in an identical manner to HDFS::
 Configuring ResourceManagers
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-[Gautier]
+Hops Yarn ResourceManagers are configured the same way as Apache Yarn ResrouceManager. Few extra configuration lines have to be added to configure new services provided by Hops Yarn. These extra configuration parameters are described in :ref:`Hops Yarn Configuration <hops_yarn_Configuration>` and include for example the ports on which the different service are connected, the groupMembership service configuration and options to run in distributed mode.
+
 
 Configuring NodeManagers
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-[Gautier]
-
+In non-distributed mode the NodeManagers configuration is the same as the NodeManagers configuration in Apache Hadoop Yarn. The proxy provider can optionally be configured to use the ConfiguredLeaderFailoverHAProxyProvider.
+In distributed mode the configuration is the same as Apache Hadoop Yarn, except the proxy provider which should be configured to use the ConfiguredLeastLoadedRMFailoverHAProxyProvider (cf: :ref:`Hops Yarn Configuration <hops_yarn_Configuration>`)
 
 Configuring YARN Clients
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
+The client configuration is the same in Hops Yarn as in Apache Hadoop Yarn. The proxy provider can optionally be configured to use the ConfiguredLeaderFailoverHAProxyProvide.
 
 
 .. _Karamel: http://www.karamel.io/
