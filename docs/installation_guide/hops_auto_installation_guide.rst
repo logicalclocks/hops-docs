@@ -11,7 +11,7 @@ The Hops stack includes a number of services also requires a number of third-par
 * J2EE7 web application server (Glassfish by default)
 * ElasticSearch 1.7+
   
-Due to the complexity of installing and configuring all Hops' services, we recommend installing Hops using the automated installer Karamel/Chef (www.karamel.io). We do not provide documentation for installing and configuring all services, but for the curious, the Chef cookbooks that install our services are available at: https://github.com/hopshadoop.
+Due to the complexity of installing and configuring all Hops' services, we recommend installing Hops using the automated installer Karamel/Chef (http://www.karamel.io). We do not provide documentation for installing and configuring all services, but for the curious, the Chef cookbooks that install our services are available at: https://github.com/hopshadoop.
 
 
 Cloud Platforms (EC2, GCE, OpenStack)
