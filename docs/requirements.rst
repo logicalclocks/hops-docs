@@ -31,7 +31,7 @@ Network               1 Gb Ethernet
 ==================   ================================
 
 
-DataNode & NodeManager
+DataNode and NodeManager
 ======================
 
 A typical deployment of Hops Hadoop installs both the Hops DataNode and NodeManager on a set of commodity servers, running without RAID (replication is done in software) in a 12-24 harddisk JBOD setup. Depending on your expected workloads, you can put as much RAM and CPU in the nodes as needed. Configurations can have up to (and probably more) than 512 GB RAM and 32 cores.
@@ -49,8 +49,8 @@ Network               1 Gb Ethernet
 ==================   ================================
 
 
-NameNode, ResourceManager, Database Nodes, App-server, ElasticSearch
-====================================================================
+NameNode, ResourceManager, NDB Data Nodes, HopsWorks, and ElasticSearch
+========================================================================
 
 NameNodes, ResourceManagers, NDB database nodes, ElasticSearch, and the HopsWorks application server require relatively more memory and not as much hard-disk space as DataNodes. The machines can be blade servers with only a disk or two. SSDs will not give significant performance improvements to any of these services, except the HopsWorks application server if you copy a lot of data in and out of the cluster via HopsWorks. The  NDB database nodes will require free disk space that is at least 20 times the size of the RAM they use. Depending on how large your cluster is, the ElasticSearch server can be colocated with the HopsWorks application server or moved to its own machine with lower RAM and CPU requirements than the other services.
 

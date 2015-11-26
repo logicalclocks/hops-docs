@@ -22,13 +22,13 @@ Download and Compile Sources
 ----------------------------
 Hops consists of two modules:
 
-* A Data Access Layer (DAL) and its' implementation (for a target database such as MySQL Cluster).
-* Hops;
+* the Data Access Layer (DAL) and its' implementation (for a target database such as MySQL Cluster).
+* Hops Hadoop;
 
 Separating the data access layer permits different (distributed) transactional database storage engines with different licensing models. :ref:`More ... <hops-licensing>`
 
 Building the DAL Driver
-~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------------
 
 Download the source code for Data Access Layer Interface:: 
 
@@ -45,7 +45,7 @@ Download the source code for Data Access Layer Implementation for MySQL Cluster 
 This generates a driver jar file ``./target/hops-metadata-dal-impl-ndb-1.0-SNAPSHOT.jar`` which is used by the HopsFS to communicate with the database. 
 
 Building Hops
-~~~~~~~~~~~~~
+----------------
 
 Download the source code for Hops:: 
 
@@ -54,7 +54,6 @@ Download the source code for Hops::
    > mvn clean install generate-sources  package -Pdist,ndb,native -Dtar
    
 This generates a hadoop distribution folder ``./hadoop-dist`` that uses Hops instead of Hadoop.
-
 
 
 Installing Distributed Database
@@ -80,7 +79,7 @@ Hops consist of the following types of nodes: NameNodes, DataNodes, ResourceMana
 Currently Hops only supports non-secure mode of operations. In the following sections we will discuss how to configure the different types of nodes. As Hops is a fork of the Hadoop code  base, most of the `Hadoop configuration parameters`_ are supported in Hops. In this section we highlight only the new configuration parameters and the parameters that are not supported due to different metadata management scheme. 
 
 Configuring NameNodes
-~~~~~~~~~~~~~~~~~~~~~
+------------------------------------
 
 HopsFS supports multiple NameNodes. A NameNode is configured as if it is the only NameNode in the system. Using the database a NameNode discovers all the existing NameNodes in the system. One of the NameNodes is declared the leader for housekeeping and maintenance operations.  
 
@@ -107,7 +106,7 @@ Running the format command on any NameNode **truncates** all the tables in the d
 See :ref:`section <format_cluster>` for instructions for formating the filesystem. 
 
 Configuring DataNodes
-~~~~~~~~~~~~~~~~~~~~~
+------------------------------------
 
 HopsFS DataNodes configuration is identical to HDFS DataNodes. In HopsFS a DataNode connects to all the NameNodes. Make sure that the ``fs.defaultFS`` parameter points to valid NameNode in the system. The DataNode will connect to the NameNode and obtain a list of all the active NameNodes in the system, and then connects/registers with all the NameNodes in the system. 
 
@@ -119,7 +118,7 @@ The datanodes are started/stopped using the following commands::
 
 
 Configuring HDFS Clients
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------------------
 
 In HDFS the client connects to the ``fs.defaultFS`` NameNode. In HopsFS the client obtains the list of active NameNodes from the NameNode defined using ``fs.defaultFS`` parameter. The client then uniformly distributes the subsequent filesystem operations among the list of NameNodes. 
 

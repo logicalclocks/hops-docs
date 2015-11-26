@@ -216,7 +216,7 @@ latex_logo = "imgs/hops.png"
 #latex_show_pagerefs = False
 
 # If true, show URL addresses after external links.
-#latex_show_urls = False
+latex_show_urls = True
 
 # Documents to append as an appendix to all manuals.
 #latex_appendices = []
@@ -256,7 +256,7 @@ texinfo_documents = [
 #texinfo_domain_indices = True
 
 # How to display URL addresses: 'footnote', 'no', or 'inline'.
-#texinfo_show_urls = 'footnote'
+texinfo_show_urls = 'footnote'
 
 # If true, do not generate a @detailmenu in the "Top" node's menu.
 #texinfo_no_detailmenu = False

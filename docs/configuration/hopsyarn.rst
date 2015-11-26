@@ -1,10 +1,10 @@
 .. _hops_yarn_Configuration (yarn-site.xml):
-Hops Yarn Configuration
+Hops-YARN Configuration
 ========================
 
-Hops Yarn configuration is very similar to the Apache Hadoop Yarn configuration. Few extra configuration are needed to configure the new services provided by Hops Yarn. This section presents the new/modified configuration parameters for Hops Yarn. All the configuration parameters are defined in ``yarn-site.xml``.
+Hops-YARN configuration is very similar to the Apache Hadoop YARN configuration. Few extra configuration are needed to configure the new services provided by Hops-YARN. This section presents the new/modified configuration parameters for Hops Yarn. All the configuration parameters are defined in ``yarn-site.xml``.
 
-Configuring Hops-Yarn fail-over
+Configuring Hops-YARN fail-over
 -------------------------------
 * **yarn.resourcemanager.scheduler.port**: The port used by the scheduler service(the port still need to be specified in yarn.resourcemanager.scheduler.address)
 
@@ -24,7 +24,7 @@ Configuring Hops-Yarn fail-over
 
 RPCs batchs
 ...........
-In order to push coherent states to the database Hops-Yarn resource manager process the incoming RPCs by batch. Hops-Yarn first accept a limited number of RPCs. Once this limit is reached the following RPCs are blocked until the accepted RPCs have been executed. The accepted RPCs are then executed. Once all of them have been completely executed the state of the resource manager is pushed to the database and the next RPCs are accepted.
+In order to push coherent states to the database Hops-YARN resource manager process the incoming RPCs by batch. Hops-YARN first accept a limited number of RPCs. Once this limit is reached the following RPCs are blocked until the accepted RPCs have been executed. The accepted RPCs are then executed. Once all of them have been completely executed the state of the resource manager is pushed to the database and the next RPCs are accepted.
 The size of the batch of rpc that are accepted is limited by two factors: the number of RPCs and the time for which this batch have been going. The first factor guaranty that the number of state change in the database will be limited and that the commit of the new state to the database won't be too long. The second factor guaranty that a new state will be committed in a given time even if few RPCs are received.
 
 * **hops.yarn.resourcemanager.batch.max.size**: The maximum number of RPCs in a batch. 
@@ -49,7 +49,7 @@ Proxy provider
      *  **ConfiguredLeaderFailoverHAProxyProvider**: this proxy provider has the same goal as the ConfiguredRMFailoverProxyProvider (connecting to the leading resourceManager) but it uses the groupMembershipService where the ConfiguredRMFailoverProxyProvider goes through all the resourceManager present in the configuration file to find the leader. This allows the ConfiguredLeaderFailoverHAProxyProvider to be faster and to find the leader even if it is not present in the configuration file.
      * **ConfiguredLeastLoadedRMFailoverHAProxyProvider**: this proxy provider establish a connection with the resourceTracker which is the least loaded. This proxy provider is to be used in distributed mode in order to have the NodeManagers connect to the appropriate resourceTracker.
 
-Configuring Hops-Yarn distributed mode
+Configuring Hops-YARN distributed mode
 --------------------------------------
 Keep in mind that the distributed mode is under heavy development. As such, it is unstable and does not provide important features.
 

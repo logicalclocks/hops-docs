@@ -9,7 +9,6 @@ This document is structured as four different guides, each aimed at different ty
 
 * Data Scientists
 
-  * Installation Guide (optional - it's easy)
   * User Guide
   
 * Hadoop Administrators
@@ -23,8 +22,8 @@ This document is structured as four different guides, each aimed at different ty
 
 * Hops Developers
 
-  * Installation Guide  (optional)
-  * User Guide  (you should know how it is used!)
+  * Installation Guide 
+  * User Guide 
   * Developer Guide  
 
     
@@ -35,7 +34,8 @@ Revision History
        :header: "Date", "Release", "Description"
        :widths: 10, 10, 30
 
-       "Nov 2015", "1.0", "First version."
+
+       "Nov 2015", "2.4.0", "First release of Hops Documentation."
 
 .. raw:: latex
 
@@ -44,9 +44,14 @@ Revision History
 Hops Introduction
 **********************       
 
-Hops is a next-generation distribution of Apache Hadoop that supports Hadoop-as-a-Service, Project-Based Multi-Tenancy, secure sharing of DataSets across projects, and extensible and searchable metadata.
+Hops is a next-generation distribution of Apache Hadoop that supports
 
-HopsWorks is the User Interface to the Hops platform. Hadoop-as-a-Service, if you will. From a user perspective, it provides support for:
+* Hadoop-as-a-Service,
+* Project-Based Multi-Tenancy,
+* secure sharing of DataSets across projects,
+* extensible and searchable metadata using Elasticsearch.
+
+HopsWorks is the User Interface to Hops. HopsWorks covers:
 
 **Users**
 
@@ -75,9 +80,11 @@ HopsWorks is the User Interface to the Hops platform. Hadoop-as-a-Service, if yo
 * `Global free-text search` for projects and DataSets in the cluster;  
 * `Project-based free-text search` of all files and extended metadata within a project;
 
-The key innovation that enables these features is a new architecture for scale-out, consistent metadata for both the Hadoop Filesystem (HDFS) and YARN (Hadoop's resource manager). The new metadata layer enables us to support multiple stateless NameNodes and TBs of metadata stored in MySQL Cluster Network Database (NDB). NDB is a distributed, relational, in-memory, open-source database. This enabled us to provide services such as tools for designing extended metadata (whose integrity with filesystem data is ensured through foreign keys in the database), and also extending HDFS' metadata to enable new features such as erasure-coded replication, reducing storage requirements by 50\% compared to triple replication in Apache HDFS. Extended metadata has enabled us to implement quota-based scheduling for YARN, where projects can be given quotas of CPU hours/minutes and memory, thus enabling resource usage in Hadoop-as-a-Service to be accounted and enforced.
 
-Hops uses YARN to manage applications and resource management. All YARN frameworks can potentially run on Hops, but currently we support general data-parallel processing frameworks such as Apache Spark, Apache Flink, and MapReduce. We also support frameworks used by BiobankCloud for data-parallel bioinformatics workflows, including SaasFee and Adam. In future, other frameworks will be added to the mix.
+
+The key innovation that enables these features is a new architecture for scale-out, consistent metadata for both the Hadoop Filesystem (HDFS) and YARN (Hadoop's Resource Manager). The new metadata layer enables us to support multiple stateless NameNodes and TBs of metadata stored in MySQL Clustepr Network Database (NDB). NDB is a distributed, relational, in-memory, open-source database. This enabled us to provide services such as tools for designing extended metadata (whose integrity with filesystem data is ensured through foreign keys in the database), and also extending HDFS' metadata to enable new features such as erasure-coded replication, reducing storage requirements by 50\% compared to triple replication in Apache HDFS. Extended metadata has enabled us to implement quota-based scheduling for YARN, where projects can be given quotas of CPU hours/minutes and memory, thus enabling resource usage in Hadoop-as-a-Service to be accounted and enforced.
+
+Hops builds on YARN to provide support for application and resource management. All YARN frameworks can run on Hops, but currently we only provide UI support for general data-parallel processing frameworks such as Apache Spark, Apache Flink, and MapReduce. We also support frameworks used by BiobankCloud for data-parallel bioinformatics workflows, including SAASFEE and Adam. In future, other frameworks will be added to the mix.
 
 
 HopsWorks
@@ -91,7 +98,8 @@ HopsWorks provides first-class support for DataSets and Projects. Each DataSet h
 -  *Resources*: contains programs and small amounts of data
 -  *Logs*: contains outputs (stdout, stderr) for YARN applications
 
-HopsWorks implements dynamic role-based access control for projects. That is, users do not have static global privileges. A user's privileges depend on the active project. The user may be a *Data Owner* in one project, but only a *Data Scientist* in another project.
+
+HopsWorks implements dynamic role-based access control for projects. That is, users do not have static global privileges. A user's privileges depend on what the user's active project is. For example, the user may be a *Data Owner* in one project, but only a *Data Scientist* in another project. Depending on which project is active, the user may be a *Data Owner* or a *Data Scientist*.
    
 .. figure:: imgs/dynamic_roles.png
    :alt: Dynamic Roles ensures strong multi-tenancy in HopsWorks
