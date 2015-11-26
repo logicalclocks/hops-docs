@@ -9,7 +9,6 @@ This document is structured as four different guides, each aimed at different ty
 
 * Data Scientists
 
-  * Installation Guide (optional - it's easy)
   * User Guide
   
 * Hadoop Administrators
@@ -23,8 +22,8 @@ This document is structured as four different guides, each aimed at different ty
 
 * Hops Developers
 
-  * Installation Guide  (optional)
-  * User Guide  (you should know how it is used!)
+  * Installation Guide 
+  * User Guide 
   * Developer Guide  
 
     

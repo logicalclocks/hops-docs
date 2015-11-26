@@ -11,6 +11,42 @@ HopsWorks Administration
 Activating users
 ************************
 
+
+Ubikey Personalization GUI
+----------------------------
+
+.. code-block:: bash
+		
+   sudo apt-get install yubikey-personalization-gui
+   yubikey-personalization-gui
+
+
+   
+.. figure:: ../imgs/yubikey-gui.png
+    :alt: Registering YubiKey sticks
+    :width: 300px
+    :height: 400px   
+    :align: center
+    :figclass: align-center
+
+.. figure:: ../imgs/yubikey-quick.png
+    :alt: Registering YubiKey sticks
+    :width: 300px
+    :height: 400px   
+    :align: center
+    :figclass: align-center
+
+.. figure:: ../imgs/yubikey-public-identity-secret-key.png
+    :alt: Copy the Public Identity and Secret Key fields from Yubikey OTP to the corresponding fields when you validate a user in the Admin UI.
+    :width: 300px
+    :height: 400px   
+    :align: center
+    :figclass: align-center
+
+    Copy the Public Identity and Secret Key fields from Yubikey OTP to the corresponding fields when you validate a user in the Admin UI.
+
+    
+
 User fails to receive an email to validate her account
 ************************************************************************
 

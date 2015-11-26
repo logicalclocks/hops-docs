@@ -22,8 +22,8 @@ Download and Compile Sources
 ----------------------------
 Hops consists of two modules:
 
-* A Data Access Layer (DAL) and its' implementation (for a target database such as MySQL Cluster).
-* Hops;
+* the Data Access Layer (DAL) and its' implementation (for a target database such as MySQL Cluster).
+* Hops Hadoop;
 
 Separating the data access layer permits different (distributed) transactional database storage engines with different licensing models. :ref:`More ... <hops-licensing>`
 
@@ -138,9 +138,6 @@ Hops Yarn ResourceManagers are configured the same way as Apache Yarn ResrouceMa
 
 Configuring NodeManagers
 ------------------------------------
-
-Configuring NodeManagers
-~~~~~~~~~~~~~~~~~~~~~~~~
 
 In non-distributed mode the NodeManagers configuration is the same as the NodeManagers configuration in Apache Hadoop Yarn. The proxy provider can optionally be configured to use the ConfiguredLeaderFailoverHAProxyProvider.
 In distributed mode the configuration is the same as Apache Hadoop Yarn, except the proxy provider which should be configured to use the ConfiguredLeastLoadedRMFailoverHAProxyProvider (cf: :ref:`Hops Yarn Configuration <hops_yarn_Configuration>`)
