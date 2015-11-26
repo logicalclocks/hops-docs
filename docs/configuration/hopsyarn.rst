@@ -1,8 +1,8 @@
-.. _hops_yarn_Configuration:
-Hops YARN Configuration
+.. _hops_yarn_Configuration (yarn-site.xml):
+Hops-YARN Configuration
 ========================
 
-This section contains new/modified configuration parameters for Hops YARN. All the configuration parameters are defined in ``yarn-site.xml``.
+Hops-YARN configuration is very similar to the Apache Hadoop YARN configuration. Few extra configuration are needed to configure the new services provided by Hops-YARN. This section presents the new/modified configuration parameters for Hops Yarn. All the configuration parameters are defined in ``yarn-site.xml``.
 
 Configuring Hops-YARN fail-over
 -------------------------------
