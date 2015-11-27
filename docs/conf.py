@@ -198,12 +198,14 @@ latex_elements = {
 #'preamble': '',
 }
 
+
+
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
   ('index', 'hops.tex', u'Hops Documentation',
-   u'www.hops.io', 'manual'),
+   u'www.hops.io', 'report'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
