@@ -1,9 +1,11 @@
-******************
+*************
 Hops Overview
-******************
+*************
+
+  
 
 Audience
-*****************
+********
 
 This document is structured as four different guides, each aimed at different types of readers:
 

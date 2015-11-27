@@ -148,7 +148,8 @@ As the *master* must be able to connect using SSH to all the *target* nodes, on 
 
    $pscp -h hosts.txt -P PASSWORD -i USER ~/.ssh/id_rsa.pub /tmp
    $pssh -h hosts.txt -i USER -P PASSWORD mkdir -p /home/USER/.ssh
-   $pssh -h hosts.txt -i USER -P PASSWORD cat /tmp/id_rsa.pub >> /home/USER/.ssh/authorized_keys
+   $pssh -h hosts.txt -i USER -P PASSWORD cat /tmp/id_rsa.pub 
+          >> /home/USER/.ssh/authorized_keys
    
 Update your Karamel cluster definition file to include the IP addresses of the *target* machines and the ``USER`` account. After you have clicked on the ``launch`` menu item, you will come to a ``Ssh`` dialog. On the ``ssh`` dialog, you need to open the advanced section. Here, you will need to enter the password for the ``USER`` account on the *target* machines (``sudo password`` text input box). 
 If your ssh keypair is password protected, you will also need to enter it again here in the ``keypair password`` text input box.

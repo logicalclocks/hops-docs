@@ -138,13 +138,17 @@ The erasure coding API offers the ability to request the encoding of a file whil
 
 	Configuration conf = new Configuration();
 	DistributedFileSystem dfs = (DistributedFileSystem) FileSystem.get(conf);
-	// Use the configured "src" codec and reduce the replication to 1 after successful encoding
-	EncodingPolicy policy = new EncodingPolicy("src" /* Codec id as configured */, (short) 1);
-	// Create the file with the given policy and write it with an initial replication of 2
+	// Use the configured "src" codec and reduce 
+	// the replication to 1 after successful encoding
+	EncodingPolicy policy = new EncodingPolicy("src" /* Codec id as configured */,
+	                        (short) 1);
+	// Create the file with the given policy and 
+	// write it with an initial replication of 2
 	FSDataOutputStream out = dfs.create(path, (short) 2,  policy);
 	// Write some data to the stream and close it as usual
 	out.close();
-	// Done. The encoding will be executed asynchronously as soon as resources are available.
+	// Done. The encoding will be executed asynchronously 
+	// as soon as resources are available.
 
 
 Multiple versions of the create function complementing the original versions with erasure coding functionality exist. For more information please refer to the class documentation.
@@ -159,11 +163,14 @@ The erasure coding API offers the ability to request the encoding for existing f
 	Configuration conf = new Configuration();
 	DistributedFileSystem dfs = (DistributedFileSystem) FileSystem.get(conf);
 	String path = "/testFile";
-	// Use the configured "src" codec and reduce the replication to 1 after successful encoding
-	EncodingPolicy policy = new EncodingPolicy("src" /* Codec id as configured */, (short) 1);
+	// Use the configured "src" codec and reduce the replication to 1
+	// after successful encoding
+	EncodingPolicy policy = new EncodingPolicy("src" /* Codec id as configured */,
+	                                 (short) 1);
 	// Request the asynchronous encoding of the file
 	dfs.encodeFile(path, policy);
-	// Done. The encoding will be executed asynchronously as soon as resources are available.
+	// Done. The encoding will be executed asynchronously 
+	// as soon as resources are available.
 
 
 Reverting To Replication Only
@@ -176,9 +183,11 @@ The erasure coding API allows to revert the encoding and to default to replicati
 	DistributedFileSystem dfs = (DistributedFileSystem) FileSystem.get(conf);
 	// The path to an encoded file
 	String path = "/testFile";
-	// Request the asynchronous revocation process and set the replication factor to be applied
+	// Request the asynchronous revocation process and 
+	// set the replication factor to be applied
 	 dfs.revokeEncoding(path, (short) 2);
-	// Done. The file will be replicated asynchronously and its parity will be deleted subsequently.
+	// Done. The file will be replicated asynchronously and 
+	// its parity will be deleted subsequently.
 
 
 Deletion Of Encoded Files
@@ -191,7 +200,7 @@ Deletion of encoded files does not require any special care. The system will aut
    
 
 .. _Apache Hadoop: http://hadoop.apache.org/releases.html
-.. _configuration: http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/hdfs-default.xml
+.. _Hadoop configuration parameters: http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/hdfs-default.xml
 .. _service: http://link.springer.com/chapter/10.1007%2F978-3-319-19129-4_13
 
 

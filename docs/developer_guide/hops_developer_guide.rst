@@ -56,7 +56,8 @@ Having defined the database table, we will need to defining an entity class repr
       private final String user;
       private final long accessTime;
     
-      public AccessTimeLogEntry(int inodeId, String user, long accessTime) {
+      public AccessTimeLogEntry(int inodeId, String user
+        , long accessTime) {
         this.inodeId = inodeId;
         this.user = user;
         this.accessTime = accessTime;
@@ -86,7 +87,9 @@ We will need a way for interacting with our new entity in the database. The pref
     package io.hops.metadata.hdfs.dal;
     
     public interface AccessTimeLogDataAccess<T> extends EntityDataAccess {
-      void prepare(Collection<T> modified, Collection<T> removed) throws StorageException;
+    
+      void prepare(Collection<T> modified, 
+        Collection<T> removed) throws StorageException;
       T find(int inodeId, String user) throws StorageException;
     }
 
@@ -129,20 +132,24 @@ Having defined the interface, we will need to implement it using ndb to read and
       public void prepare(Collection<AccessTimeLogEntry> modified,
           Collection<AccessTimeLogEntry> removed) throws StorageException {
         HopsSession session = connector.obtainSession();
-        List<AccessTimeLogEntryDto> changes = new ArrayList<accesstimelogentrydto>();
-        List<AccessTimeLogEntryDto> deletions = new ArrayList<accesstimelogentrydto>();
+        List<AccessTimeLogEntryDto> changes =
+                        new ArrayList<accesstimelogentrydto>();
+        List<AccessTimeLogEntryDto> deletions = 
+                        new ArrayList<accesstimelogentrydto>();
         if (removed != null) {
           for (AccessTimeLogEntry logEntry : removed) {
             Object[] pk = new Object[2];
             pk[0] = logEntry.getInodeId();
             pk[1] = logEntry.getUser();
-            InodeDTO persistable = session.newInstance(AccessTimeLogEntryDto.class, pk);
+            InodeDTO persistable = 
+                  session.newInstance(AccessTimeLogEntryDto.class, pk);
             deletions.add(persistable);
           }
         }
         if (modified != null) {
           for (AccessTimeLogEntry logEntry : modified) {
-            AccessTimeLogEntryDto persistable = createPersistable(logEntry, session);
+            AccessTimeLogEntryDto persistable = 
+                  createPersistable(logEntry, session);
             changes.add(persistable);
           }
         }
@@ -151,7 +158,7 @@ Having defined the interface, we will need to implement it using ndb to read and
       }
     
       @Override
-      public AccessTimeLogEntry find(int inodeId, String user) throws StorageException {
+      public AccessTimeLogEntry find(int inodeId, String user) 
           throws StorageException {
         HopsSession session = connector.obtainSession();
         Object[] key = new Object[2];
@@ -202,7 +209,8 @@ Hops-HDFS uses context objects to cache the state of entities during transaction
 		
     package io.hops.transaction.context;
     
-    public class AccessTimeLogContext extends BaseEntityContext<Object, AccessTimeLogEntry> {
+    public class AccessTimeLogContext extends 
+              BaseEntityContext<Object, AccessTimeLogEntry> {
       private final AccessTimeLogDataAccess<AccessTimeLogEntry> dataAccess;
     
       /* Finder to be passed to the EntityManager */
@@ -271,7 +279,8 @@ Hops-HDFS uses context objects to cache the state of entities during transaction
         }
       }
     
-      public AccessTimeLogContext(AccessTimeLogDataAccess<AccessTimeLogEntry> dataAccess) {
+      public AccessTimeLogContext(AccessTimeLogDataAccess<AccessTimeLogEntry> 
+        dataAccess) {
         this.dataAccess = dataAccess;
       }
     
@@ -291,7 +300,8 @@ Hops-HDFS uses context objects to cache the state of entities during transaction
     
       @Override
       public AccessTimeLogEntry find(FinderType<AccessTimeLogEntry> finder,
-          Object... params) throws TransactionContextException, StorageException {
+          Object... params) throws TransactionContextException, 
+          StorageException {
         Finder afinder = (Finder) finder;
         switch (afinder) {
           case ByInodeIdAndUser:
@@ -310,7 +320,8 @@ Hops-HDFS uses context objects to cache the state of entities during transaction
           result = get(key);  // Get it from the cache
           hit(finder, result, params);
         } else {
-          aboutToAccessStorage(finder, params); // Throw an exception if reading after the reading phase
+          aboutToAccessStorage(finder, params); // Throw an exception 
+                                 //if reading after the reading phase
           result = dataAccess.find(inodeId, user); // Fetch the value
           gotFromDB(key, result); // Put the new value into the cache
           miss(finder, result, params);
@@ -328,8 +339,10 @@ Having defined an ``EntityContext``, we need to make it available through the En
       return new ContextInitializer() {
         @Override
         public Map<Class, EntityContext> createEntityContexts() {
-          Map<Class, EntityContext> entityContexts = new HashMap<class, entitycontext="">();
+          Map<Class, EntityContext> entityContexts = 
+                            new HashMap<class, entitycontext="">();
           [...]
+          
           entityContexts.put(AccessTimeLogEntry.class, new AccessTimeLogContext(
             (AccessLogDataAccess) getDataAccess(AccessTimeLogDataAccess.class)));
           return entityContexts;

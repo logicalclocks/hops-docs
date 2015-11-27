@@ -6,17 +6,6 @@
 Hops Documentation
 ==================================================
 
-The documentation for Hops Hadoop distribution is organized into following sections:
-
-* :ref:`hops-overview`
-* :ref:`hops-userguide`
-* :ref:`hops-installation`
-* :ref:`hops-configurations`
-* :ref:`hops-administration`
-* :ref:`hops-dev-guide`
-* :ref:`hops-license`
-* :ref:`hops-contributers`
-
 .. _hops-overview:
 
 .. toctree::

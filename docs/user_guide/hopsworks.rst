@@ -115,13 +115,13 @@ The user account status may not be in the correct state, see next section for ho
 User account has been disabled due to too many unsuccessful login attempts
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-You can login to the hopsworks database on the Mysql Server and update the status of the user account to valid using the user's email address (not admin@kth.se given below):
+You can login to the hopsworks database on the Mysql Server and update the status of the user account to valid using the user's email address (not ``admin@kth.se`` given below):
 
 .. code-block:: bash
    
     sudo su
     /var/lib/mysql-cluster/ndb/scripts/mysql-client.sh hopsworks
-    update users set status=4 where email='admin@kth.se'
+    update users set status=4 where email=``admin@kth.se``
     
 Ubikey Personalization GUI
 --------------------------
