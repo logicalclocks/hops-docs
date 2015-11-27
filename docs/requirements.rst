@@ -19,9 +19,10 @@ Entire Hops platform on a single machine
 
 You can run HopsWorks (and the entire Hops stack with ElasticSearch and NDB) on a single machine for development or testing purposes, but you will need at least:
 
+.. tabularcolumns:: {| p{\dimexpr 0.3\linewidth-2\tabcolsep} | p{\dimexpr 0.7\linewidth-2\tabcolsep}|}
 
 ==================   ================================
-Component             Minimum Requirements        
+**Component**             **Minimum Requirements**        
 ==================   ================================
 Operating System      Linux, Mac, Windows (using Virtualbox)
 RAM                   8 GB of RAM
@@ -38,8 +39,10 @@ A typical deployment of Hops Hadoop installs both the Hops DataNode and NodeMana
 
 The recommended setup for these machines in production (on a cost-performance basis) is:
 
+.. tabularcolumns:: {| p{\dimexpr 0.3\linewidth-2\tabcolsep} | p{\dimexpr 0.7\linewidth-2\tabcolsep}|}
+
 ==================   ================================
-Component             Recommended (late 2015)
+**Component**        **Recommended (late 2015)**
 ==================   ================================
 Operating System      Linux, Mac, Windows (using Virtualbox)
 RAM                   128 GB RAM
@@ -58,8 +61,10 @@ NameNodes, ResourceManagers, NDB database nodes, ElasticSearch, and the HopsWork
 
 The recommended setup for these machines in production (on a cost-performance basis) is:
 
+.. tabularcolumns:: {| p{\dimexpr 0.3\linewidth-2\tabcolsep} | p{\dimexpr 0.7\linewidth-2\tabcolsep}|}
+
 ==================   ================================
-Component             Recommended (late 2015)
+**Component**        **Recommended (late 2015)**
 ==================   ================================
 Operating System      Linux, Mac, Windows (using Virtualbox)
 RAM                   128 GB RAM

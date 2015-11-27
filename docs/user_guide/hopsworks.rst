@@ -27,9 +27,12 @@ the database (MySQL Clusters).
 .. figure:: ../imgs/login.png
     :alt: HopsWorks Login Page
     :width: 300px
-    :height: 400px   
+    :height: 334px 
+    :scale: 80
     :align: center
     :figclass: align-center
+    
+    HopsWorks Login Page
   
 	 
 First Login with 2-Factor Authentication
@@ -64,10 +67,13 @@ Register a New Account on HopsWorks
 
 .. figure:: ../imgs/user_registration.png
     :alt: HopsWorks User Registration
-    :width: 300px
-    :height: 400px	   
+    :width: 400px
+    :height: 534px	   
+    :scale: 70
     :align: center
     :figclass: align-center
+    
+    HopsWorks User Registration Page
 
 Register a new account with a valid email account. You should receive an email asking you to validate your account. The sender of the email will be neither the default email address ``hopsworks@gmail.com`` or the gmail address you supplied while installing HopsWorks. If you do not receive an email address, wait a minute. If you still haven't received it, you need to troubleshoot.
 
@@ -126,32 +132,35 @@ You can login to the hopsworks database on the Mysql Server and update the statu
 Ubikey Personalization GUI
 --------------------------
 
+Copy the Public Identity and Secret Key fields from Yubikey OTP to the corresponding fields when you validate a user in the Admin UI.
+
 .. code-block:: bash
 		
-   sudo apt-get install yubikey-personalization-gui
-   yubikey-personalization-gui
+   $ sudo apt-get install yubikey-personalization-gui
+   $ yubikey-personalization-gui
 
 
    
 .. figure:: ../imgs/yubikey-gui.png
     :alt: Registering YubiKey sticks
-    :width: 300px
-    :height: 400px   
+    :scale: 75
     :align: center
     :figclass: align-center
+    
+    Registering YubiKey sticks
 
 .. figure:: ../imgs/yubikey-quick.png
     :alt: Registering YubiKey sticks
-    :width: 300px
-    :height: 400px   
+    :scale: 75   
     :align: center
     :figclass: align-center
+    
+    Registering YubiKey sticks
 
 .. figure:: ../imgs/yubikey-public-identity-secret-key.png
-    :alt: Copy the Public Identity and Secret Key fields from Yubikey OTP to the corresponding fields when you validate a user in the Admin UI.
-    :width: 300px
-    :height: 400px   
+    :alt: Copy the Public Identity and Secret Key fields from Yubikey OTP to the corresponding fields when you validate a user in the Admin UI. 
     :align: center
+    :scale: 75
     :figclass: align-center
 
     Copy the Public Identity and Secret Key fields from Yubikey OTP to the corresponding fields when you validate a user in the Admin UI.    
@@ -180,9 +189,10 @@ Click on the project that is owner of the Data Set. The click on *Data Sets*, an
 Free-text Search 
 ----------------
 
-
+.. tabularcolumns:: {|p{\dimexpr 0.3\linewidth-2\tabcolsep}|p{\dimexpr 0.7\linewidth-2\tabcolsep}|}
+   
 +------------------+----------------------------------------+
-|Option            | Description                            |
+|**Option**        | **Description**                        |
 +==================+========================================+
 | **Search from**  | On landing page, enter the search term |
 | **Landing Page** | in the search bar and press return.    |
@@ -198,6 +208,8 @@ Free-text Search
 +------------------+----------------------------------------+
 
 
+   
+   
 Data Set Browser
 ----------------
 
@@ -213,8 +225,10 @@ project you want to upload the file(s) to. You must have the **Data Owner**
 role for that project to be able to upload files. In the **Data Sets**
 tab, you will see a button ``Upload Files``.
 
+.. tabularcolumns:: {|p{\dimexpr 0.3\linewidth-2\tabcolsep}|p{\dimexpr 0.7\linewidth-2\tabcolsep}|}
+
 +------------------+----------------------------------------+
-| Option           | Description                            |
+| **Option**       | **Description**                        |
 +==================+========================================+
 | **Upload File**  | You have to have the **Data Owner**    |
 |                  | role to be able to upload files.       |
@@ -232,8 +246,10 @@ HopFS supports erasure-coded replication, which reduces storage requirements for
 If a file consists of 10 file blocks or more (that is, if the file is larger than 640 MB in size, for a default block size of 64 MB), then it can
 be compressed. Smaller files cannot be compressed. 
 
+.. tabularcolumns:: {|p{\dimexpr 0.3\linewidth-2\tabcolsep}|p{\dimexpr 0.7\linewidth-2\tabcolsep}|}
+
 +------------------+----------------------------------------+
-| Option           | Description                            |
+| **Option**       | **Description**                        |
 +==================+========================================+
 | **compress**     | You have to have the **Data Owner**    |
 | **file**         | role to be able to compress files.     |
@@ -257,9 +273,12 @@ HopsWorks supports:
 * MapReduce (MR),
 * and bioinformatics data parallel frameworks Adam and SaasFee (Cuneiform).
    
+   
+
+.. tabularcolumns:: {|p{\dimexpr 0.3\linewidth-2\tabcolsep}|p{\dimexpr 0.7\linewidth-2\tabcolsep}|}
 
 +------------------+-------------------------------------------+
-| Option           | Description                               |
+| **Option**       | **Description**                           |
 +==================+===========================================+
 | **New Job**      | Create a Job for any of the following     |
 |                  | YARN frameworks by clicking ``New Job``   |

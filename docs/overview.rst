@@ -77,7 +77,7 @@ HopsWorks implements dynamic role-based access control for projects. That is, us
    :scale: 60
    :figclass: align-center
 
-Dynamic Roles ensures strong multi-tenancy between projects in HopsWorks.
+   Dynamic Roles ensures strong multi-tenancy between projects in HopsWorks.
 	 
 The following roles are supported:
 	 
@@ -101,7 +101,7 @@ HopsWorks is built on a number of services, illustrated below:
 
 .. figure:: imgs/hopsworks-stack.png
    :alt: HopsWorks stack of services
-   :scale: 100
+   :scale: 80
    :figclass: align-center
 
    HopsWorks Layered Architecture.
@@ -150,7 +150,8 @@ HopsFS is a new implementation of the the Hadoop Filesystem (HDFS) based on `Apa
 
 .. figure:: imgs/hopsfs-arch.png
    :alt: HopsFS vs Apache HDFS Architecture
-   :scale: 70
+   :width: 600
+   :height: 400
    :figclass: align-center
 
    Apache HDFS versus HopsFS Architetures.
@@ -167,7 +168,9 @@ HopsYARN introduces a new metadata layer for Apache YARN, where the cluster stat
 
 .. figure:: ./imgs/hops-yarn.png
    :alt: Hops-YARN Architecture
-   :scale: 20
+   :scale: 70
+   :width: 600
+   :height: 400
    :figclass: align-center
 
    Hops YARN Architecture.
@@ -198,7 +201,7 @@ These services are:
 
 .. figure:: imgs/biobankcloud-actors.png
    :alt: Actors in a BiobankCloud Ecosystem within the context of the EU GPDR.
-   :scale: 80
+   :scale: 75
    :figclass: align-center
 
    BiobankCloud Actors.

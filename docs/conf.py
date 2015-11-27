@@ -192,6 +192,8 @@ latex_elements = {
 # The font size ('10pt', '11pt' or '12pt').
 'pointsize': '11pt',
 
+'figure_align' : 'h',
+
 # Additional stuff for the LaTeX preamble.
 #'preamble': '',
 }
@@ -216,13 +218,15 @@ latex_use_parts = False
 latex_show_pagerefs = True
 
 # If true, show URL addresses after external links.
-latex_show_urls = True
+latex_show_urls = 'footnote'
 
 # Documents to append as an appendix to all manuals.
 #latex_appendices = []
 
 # If false, no module index is generated.
 latex_domain_indices = False
+
+
 
 
 # -- Options for manual page output ---------------------------------------
