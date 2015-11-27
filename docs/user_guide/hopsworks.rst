@@ -77,22 +77,84 @@ If you click on the link supplied in the registration email, it will validate yo
 **You will not be able to login until an administrator has validated your account.**. You can jump now to the Hops Administration Guide to see how to validate account registrations, if you have administrator privileges.
 
 
-**If it goes wrong**
+Update your Profile/Password
+----------------------------
 
-* Contact an administrator or go to the Administration Guide section of this document.
+After you have logged in, in the upper right-hand corner of the screen, you will see your **email address with a caret icon**. Click on the caret icon, then click on the menu item ``Account``.
+A dialog will pop-up, from where you can change your password and other parts of your profile. You cannot change your email address and will need to create a new account if you wish to change your email address. You can also logout by clicking on the ``sign out`` menu item.
 
-If you are an administrator:
+
+If it goes wrong
+----------------
+
+Contact an administrator or go to the Administration Guide section of this document. If you are an administrator:
 
 * Does your organization have a firewall that blocks outbound SMTP access? HopsWorks needs SMTP outbound access over TLS using SSL (port 587 or 465).
 * Is the Glassfish server up and running? Can you login to the Glassfish Administration console (on port 4848)?
 * Inside Glassfish, check the JavaMail settings. Is the gmail username/password correct? Are the SMTP server settings correct (hostname/ip, port, protocol (SSL, TLS))?
 
 
-Update your Profile/Password
-----------------------------
+User fails to receive an email to validate her account
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-After you have logged in, in the upper right-hand corner of the screen, you will see your **email address with a caret icon**. Click on the caret icon, then click on the menu item ``Account``.
-A dialog will pop-up, from where you can change your password and other parts of your profile. You cannot change your email address and will need to create a new account if you wish to change your email address. You can also logout by clicking on the ``sign out`` menu item.
+* Does your organization have a firewall that blocks outbound SMTP access?
+* Login to the Glassfish Webserver and check the JavaMail settings. The JNDI name should be *mail/BBCMail*. Is the gmail username/password correct? Are the smtp server settings correct (ip-address or hostname, port, protocol (SSL, TLS))?
+
+User receives email, but fails to validate the account
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* Can you successfully access the HopsWorks homepage?
+* Is the Glassfish webserver running and hopsworks.war application installed?
+* Is MySQL Cluster running?
+
+User successfully validates the account, but still can't login
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The user account status may not be in the correct state, see next section for how to update user account status.
+
+User account has been disabled due to too many unsuccessful login attempts
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can login to the hopsworks database on the Mysql Server and update the status of the user account to valid using the user's email address (not admin@kth.se given below):
+
+.. code-block:: bash
+   
+    sudo su
+    /var/lib/mysql-cluster/ndb/scripts/mysql-client.sh hopsworks
+    update users set status=4 where email='admin@kth.se'
+    
+Ubikey Personalization GUI
+--------------------------
+
+.. code-block:: bash
+		
+   sudo apt-get install yubikey-personalization-gui
+   yubikey-personalization-gui
+
+
+   
+.. figure:: ../imgs/yubikey-gui.png
+    :alt: Registering YubiKey sticks
+    :width: 300px
+    :height: 400px   
+    :align: center
+    :figclass: align-center
+
+.. figure:: ../imgs/yubikey-quick.png
+    :alt: Registering YubiKey sticks
+    :width: 300px
+    :height: 400px   
+    :align: center
+    :figclass: align-center
+
+.. figure:: ../imgs/yubikey-public-identity-secret-key.png
+    :alt: Copy the Public Identity and Secret Key fields from Yubikey OTP to the corresponding fields when you validate a user in the Admin UI.
+    :width: 300px
+    :height: 400px   
+    :align: center
+    :figclass: align-center
+
+    Copy the Public Identity and Secret Key fields from Yubikey OTP to the corresponding fields when you validate a user in the Admin UI.    
 
   
 Create a New Project

@@ -51,37 +51,6 @@ Hops is a next-generation distribution of Apache Hadoop that supports
 * secure sharing of DataSets across projects,
 * extensible and searchable metadata using Elasticsearch.
 
-HopsWorks is the User Interface to Hops. HopsWorks covers:
-
-**Users**
-
-* User authorization (with optional 2-factor authentication)
-
-  
-**Projects and DataSets**
-  
-* project-based multi-tenancy with dynamic roles (think GitHub projects, but you can't read/write data outside your project);
-* the ability to share DataSets securely between projects (enabling reuse of DataSets without copying);
-* fast DataSet navigation (due to our metadata layer);
-* import/export of data using the Browser for the *Data Owner* role.
-
-**Analytics**
-  
-* interactive analytics with Apache Zepplin for Spark and Flink;
-* batch-based YARN job submission (including Spark, MapReduce, Flink, Adam, and SaasFee);
-
-**MetaData Management**
- 
-* design your own extended metadata using an intuitive UI;
-* enter extended metadata using an intuitive UI;  
-
-**Free-text search**
-
-* `Global free-text search` for projects and DataSets in the cluster;  
-* `Project-based free-text search` of all files and extended metadata within a project;
-
-
-
 The key innovation that enables these features is a new architecture for scale-out, consistent metadata for both the Hadoop Filesystem (HDFS) and YARN (Hadoop's Resource Manager). The new metadata layer enables us to support multiple stateless NameNodes and TBs of metadata stored in MySQL Clustepr Network Database (NDB). NDB is a distributed, relational, in-memory, open-source database. This enabled us to provide services such as tools for designing extended metadata (whose integrity with filesystem data is ensured through foreign keys in the database), and also extending HDFS' metadata to enable new features such as erasure-coded replication, reducing storage requirements by 50\% compared to triple replication in Apache HDFS. Extended metadata has enabled us to implement quota-based scheduling for YARN, where projects can be given quotas of CPU hours/minutes and memory, thus enabling resource usage in Hadoop-as-a-Service to be accounted and enforced.
 
 Hops builds on YARN to provide support for application and resource management. All YARN frameworks can run on Hops, but currently we only provide UI support for general data-parallel processing frameworks such as Apache Spark, Apache Flink, and MapReduce. We also support frameworks used by BiobankCloud for data-parallel bioinformatics workflows, including SAASFEE and Adam. In future, other frameworks will be added to the mix.
@@ -135,6 +104,43 @@ HopsWorks is built on a number of services, illustrated below:
 
    HopsWorks Layered Architecture.
    
+   
+HopsWorks covers: users, projects and datasets, analytics, metadata mangement and free-text search. 
+
+Users
+-----
+
+* User authorization (with optional 2-factor authentication)
+
+  
+Projects and DataSets
+---------------------
+  
+* project-based multi-tenancy with dynamic roles (think GitHub projects, but you can't read/write data outside your project);
+* the ability to share DataSets securely between projects (enabling reuse of DataSets without copying);
+* fast DataSet navigation (due to our metadata layer);
+* import/export of data using the Browser for the *Data Owner* role.
+
+Analytics
+---------
+  
+* interactive analytics with Apache Zepplin for Spark and Flink;
+* batch-based YARN job submission (including Spark, MapReduce, Flink, Adam, and SaasFee);
+
+MetaData Management
+-------------------
+ 
+* design your own extended metadata using an intuitive UI;
+* enter extended metadata using an intuitive UI;  
+
+Free-text search
+----------------
+
+* `Global free-text search` for projects and DataSets in the cluster;  
+* `Project-based free-text search` of all files and extended metadata within a project;
+
+   
+   
 HopsFS
 ******
 
@@ -159,7 +165,7 @@ HopsYARN introduces a new metadata layer for Apache YARN, where the cluster stat
 
 .. figure:: ./imgs/hops-yarn.png
    :alt: Hops-YARN Architecture
-   :scale: 40
+   :scale: 20
    :figclass: align-center
 
    Hops YARN Architecture.

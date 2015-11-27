@@ -1,6 +1,10 @@
 HopsFS User Guide
 =================
 
+HopsFS consist of the following types of nodes: NameNodes, DataNodes, and Clients. All the configurations parameters are defined in ``core-site.xml`` and ``hdfs-site.xml`` files. 
+
+Currently Hops only supports non-secure mode of operations. As Hops is a fork of the Hadoop code  base, most of the `Hadoop configuration parameters`_ and features are supported in Hops. In the following sections we highlight differences between HDFS and HopsFS and point out new configuration parameters and the parameters that are not supported due to different metadata management scheme . 
+
 .. _Unsupported_Features:
 Unsupported HDFS Features
 -------------------------
@@ -29,14 +33,29 @@ As HopsFS is under heavy development some features such as rolling upgrades and 
 NameNodes
 ---------
 
+HopsFS supports multiple NameNodes. A NameNode is configured as if it is the only NameNode in the system. Using the database a NameNode discovers all the existing NameNodes in the system. One of the NameNodes is declared the leader for housekeeping and maintenance operations.  All the NameNodes in HopsFS are active. Secondary NameNode and Checkpoint Node configurations are not supported. See :ref:`section <Unsupported_Features>` for detail list of configuration parameters and features that are no longer supported in HopsFS. 
+
+For each NameNode define ``fs.defaultFS`` configuration parameter in the ``core-site.xml`` file. In order to load NDB driver set the ``dfs.storage.driver.*`` parameters in the ``hdfs-site.xml`` file. These parameter are defined in detail :ref:`here <loading_ndb_driver>`. 
+
+A detailed description of all the new configuration parameters for leader election, NameNode caches, distributed transaction handling, quota management, id generation and client configurations are defined :ref:`here<hopsFS_Configuration>`.
+
+The NameNodes are started/stopped using the following commands::
+
+    > $HADOOP_HOME/sbin/hadoop-daemon.sh --script hdfs start namenode
+    
+    > $HADOOP_HOME/sbin/hadoop-daemon.sh --script hdfs stop namenode
+
 Configuring HopsFS NameNode is very similar to configuring a HDFS NameNode. While configuring a single Hops NameNode, the configuration files are written as if it is the only NameNode in the system. The NameNode automatically detects other NameNodes using NDB. 
 
-See :ref:`section <format_cluster>` for instructions for formating the filesystem. 
+Formating the Filesystem
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Running the format command on any NameNode **truncates** all the tables in the database and inserts default values in the tables. NDB atomically performs the **truncate** operation which can fail or take very long time to complete for very large tables. In such cases run the **/hdfs namenode -dropAndCreateDB** command first to drop and recreate the database schema followed by the **format** command to insert default values in the database tables. In NDB dropping and recreating a database is much quicker than truncating all the tables in the database. 
 
 NameNode Caches
 ~~~~~~~~~~~~~~~
 
-In published Hadoop workloads, metadata accesses follow a heavy-tail distribution where 3% of files account for 80% of accesses. This means that caching recently accessed metadata at NameNodes could give a significant performance boost. Each NameNode has a local cache that stores INode objects for recently accessed files and directories. Usually, the clients read/write files in the same sub-directory. Using ``RANDOM_STICKY``  load balancing policy to distribute filesystem operations among the NameNodes lowers the latencies for filesystem operations as most of the path components are already available in the NameNode cache. See :ref:`HopsFS clients <hopsfs-clients>` and :ref:`cache configuration parameters <cache-parameters>` for more details. 
+In published Hadoop workloads, metadata accesses follow a heavy-tail distribution where 3% of files account for 80% of accesses. This means that caching recently accessed metadata at NameNodes could give a significant performance boost. Each NameNode has a local cache that stores INode objects for recently accessed files and directories. Usually, the clients read/write files in the same sub-directory. Using ``RANDOM_STICKY``  load balancing policy to distribute filesystem operations among the NameNodes lowers the latencies for filesystem operations as most of the path components are already available in the NameNode cache. See :ref:`HopsFS Client's <hopsfs-clients>` and :ref:`Cache Configuration Parameters <cache-parameters>` for more details. 
 
 
 Adding/Removing NameNodes
@@ -48,22 +67,33 @@ Similarly, the clients automatically discover the newly started namenodes. See :
 
 .. _hopsfs-clients:
 
+DataNodes
+---------
+The DataNodes periodically acquire an updated list of NameNodes in the system and establish a connection (register) with the new NameNodes. Like clients, the DataNodes also uniformly distribute the filesystem operations among all the NameNodes in the system. Currently the DataNodes only support round-robin policy to distribute the filesystem operations. 
+
+HopsFS DataNodes configuration is identical to HDFS DataNodes. In HopsFS a DataNode connects to all the NameNodes. Make sure that the ``fs.defaultFS`` parameter points to valid NameNode in the system. The DataNode will connect to the NameNode and obtain a list of all the active NameNodes in the system, and then connects/registers with all the NameNodes in the system. 
+
+The DataNodes can started/stopped using the following commands::
+   
+   > $HADOOP_HOME/sbin/hadoop-deamon.sh --script hdfs start datanode 
+   
+   > $HADOOP_HOME/sbin/hadoop-deamon.sh --script hdfs stop datanode
+
+
 HopsFS Clients
 --------------
 For load balancing the clients uniformly distributes the filesystem operations among all the NameNodes in the system. HopsFS clients support ``RANDOM``, ``ROUND_ROBIN``, and ``RANDOM_STICKY`` policies to distribute the filesystem operations among the NameNodes. Random and round-robin policies are self explanatory. Using sticky policy the filesystem client randomly picks a NameNode and forwards all subsequent operation to the same NameNode. If the NameNode fails then the clients randomly picks another NameNode. This maximizes the NameNode cache hits. 
 
-When HopsFS is initialized it selects a valid NameNode from **dfs.namenodes.rpc.addresses** or **fs.default.name** configuration parameters. Using the NameNode the client then acquires an updated list of all the NameNodes in the system. Therefore at least one of the NameNodes addresses defined by theses configuration parameters must belong to an alive NameNode. During initialization the client retries if it encounters a dead NameNode. The client initialization fails if all the NameNode addresses are invalid. 
+In HDFS the client connects to the ``fs.defaultFS`` NameNode. In HopsFS the client obtains the list of active NameNodes from the NameNode defined using ``fs.defaultFS`` parameter. The client then uniformly distributes the subsequent filesystem operations among the list of NameNodes. 
 
-:ref:`Here <client-conf-parameters>` is a complete list of client configuration parameters.
+In ``core-site.xml`` we have introduced a new parameter ``dfs.namenodes.rpc.addresses`` that holds the rpc address of all the NameNodes in the system. If the NameNode pointed by ``fs.defaultFS`` is dead then the client tries to connect to a NameNode defined by the ``dfs.namenodes.rpc.addresses``. As long as the NameNode addresses defined by the two parameters contain at least one valid address the client is able to communicate with the HopsFS. A detailed description of all the new client configuration parameters are :ref:`here<client-conf-parameters>`.
+
 
 Compatibility with HDFS Clients
--------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 HopsFS is fully compatible with HDFS clients, although they do not distribute operations over NameNodes, as they assume there is a single active NameNode. 
 
-
-Datanodes
----------
-The datanodes periodically acquire an updated list of NameNodes in the system and establish a connection (register) with the new NameNodes. Like clients, the datanodes also uniformly distribute the filesystem operations among all the NameNodes in the system. Currently the datanodes only support round-robin policy to distribute the filesystem operations. 
 
 
 HopsFS Async Quota Management
@@ -84,7 +114,80 @@ For write heavy workloads a user might be able to consume more diskspace/namespa
 In HopsFS asynchronous quota updates are highly optimized. We bath the quota updates wherever possible.  :ref:`Here <quota-parameters>` is a complete list of parameters that determines how aggressively the quota updates are applied. 
 
 
-   
+
+
+Erasure Coding
+--------------
+
+
+HopsFS provides erasure coding functionality in order to decrease storage costs without the loss of high-availability. Hops offers a powerful, on a per file basis configurable, erasure coding API. Codes can be freely configured and different configurations can be applied to different files. Given that Hops monitors your erasure-coded files directly in the NameNode, maximum control over encoded files is guaranteed. This page explains how to configure and use the erasure coding functionality of Hops. Apache HDFS stores 3 copies of your data to provide high-availability. So, 1 petabyte of data actually requires 3 petabytes of storage. For many organizations, this results in enormous storage costs. HopsFS also supports erasure coding to reduce the storage required by by 44% compared to HDFS, while still providing high-availability for your data.
+
+
+Java API
+~~~~~~~~
+
+The erasure coding API is exposed to the client through the DistributedFileSystem class. The following sections give examples on how to use its functionality. Note that the following examples rely on erasure coding being properly configured. Information about how to do this can be found in :ref:`erasure-coding-configuration`.
+
+
+Creation of Encoded Files
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The erasure coding API offers the ability to request the encoding of a file while being created. Doing so has the benefit that file blocks can initially be placed in a way that the meets placements constraints for erasure-coded files without needing to rewrite them during the encoding process. The actual encoding process will take place asynchronously on the cluster.
+
+.. code-block:: java
+
+	Configuration conf = new Configuration();
+	DistributedFileSystem dfs = (DistributedFileSystem) FileSystem.get(conf);
+	// Use the configured "src" codec and reduce the replication to 1 after successful encoding
+	EncodingPolicy policy = new EncodingPolicy("src" /* Codec id as configured */, (short) 1);
+	// Create the file with the given policy and write it with an initial replication of 2
+	FSDataOutputStream out = dfs.create(path, (short) 2,  policy);
+	// Write some data to the stream and close it as usual
+	out.close();
+	// Done. The encoding will be executed asynchronously as soon as resources are available.
+
+
+Multiple versions of the create function complementing the original versions with erasure coding functionality exist. For more information please refer to the class documentation.
+
+Encoding of Existing Files
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The erasure coding API offers the ability to request the encoding for existing files. A replication factor to be applied after successfully encoding the file can be supplied as well as the desired codec. The actual encoding process will take place asynchronously on the cluster.
+
+.. code-block:: java
+
+	Configuration conf = new Configuration();
+	DistributedFileSystem dfs = (DistributedFileSystem) FileSystem.get(conf);
+	String path = "/testFile";
+	// Use the configured "src" codec and reduce the replication to 1 after successful encoding
+	EncodingPolicy policy = new EncodingPolicy("src" /* Codec id as configured */, (short) 1);
+	// Request the asynchronous encoding of the file
+	dfs.encodeFile(path, policy);
+	// Done. The encoding will be executed asynchronously as soon as resources are available.
+
+
+Reverting To Replication Only
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The erasure coding API allows to revert the encoding and to default to replication only. A replication factor can be supplied and is guaranteed to be reached before deleting any parity information.
+
+.. code-block:: java
+
+	Configuration conf = new Configuration();
+	DistributedFileSystem dfs = (DistributedFileSystem) FileSystem.get(conf);
+	// The path to an encoded file
+	String path = "/testFile";
+	// Request the asynchronous revocation process and set the replication factor to be applied
+	 dfs.revokeEncoding(path, (short) 2);
+	// Done. The file will be replicated asynchronously and its parity will be deleted subsequently.
+
+
+Deletion Of Encoded Files
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Deletion of encoded files does not require any special care. The system will automatically take care of deletion of any additionally stored information.
+
+
+
    
 
 .. _Apache Hadoop: http://hadoop.apache.org/releases.html

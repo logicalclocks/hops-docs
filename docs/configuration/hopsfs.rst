@@ -3,10 +3,12 @@
 HopsFS Configuration
 =====================
 
-This section contains new/modified configuration parameters for HopsFS. All the configuration parameters are defined in **hdfs-site.xml**. 
+This section contains new/modified configuration parameters for HopsFS. All the configuration parameters are defined in ``hdfs-site.xml`` and ``core-site.xml`` files. 
 
 Leader Election
 ---------------
+
+Leader election service is used by HopsFS and Hops-YARN. The configuration parameters for Leader Election service are defined in ``core-site.xml`` file. 
 
 * **dfs.leader.check.interval**:
   The length of the time period in milliseconds after which NameNodes run the leader election protocol. One of the active NameNodes is chosen as a leader to perform housekeeping operations. All NameNodes periodically update a counter in the database to mark that they are active. All NameNodes also periodically check for changes in the membership of the NameNodes. By default the time period is set to one second. Increasing the time interval leads to slow failure detection.
@@ -20,7 +22,8 @@ Leader Election
 
 NameNode Cache 
 --------------
-NameNode cache configuration parameters are
+
+NameNode cache configuration parameters are defined in ``hdfs-site.xml`` file. NameNode cache configuration parameters are
 
 * **dfs.resolvingcache.enabled**: (true/false)
   Enable/Disables the cache for the NameNode.
@@ -52,7 +55,8 @@ InMemory cache specific configurations are
 
 Distributed Transaction Hints 
 -----------------------------
-In HopsFS the metadata is partitioned using the inodes' id. HopsFS tries to to enlist the transactional filesystem operation on the database node that holds the metadata for the file/directory being manipulated by the operation. 
+
+In HopsFS the metadata is partitioned using the inodes' id. HopsFS tries to to enlist the transactional filesystem operation on the database node that holds the metadata for the file/directory being manipulated by the operation. Distributed transaction hints configuration parameteres are defined in ``hdfs-site.xml`` file. 
 
 * **dfs.ndb.setpartitionkey.enabled**: (true/false)
   Enable/Disable transaction partition key hint.
@@ -64,7 +68,8 @@ In HopsFS the metadata is partitioned using the inodes' id. HopsFS tries to to e
 
 Quota Management 
 ----------------
-In order to boost the performance and increase the parallelism of metadata operations the quota updates are applied asynchronously i.e. disk and namespace usage statistics are asynchronously updated in the background. Using asynchronous quota system it is possible that some users over consume namespace/disk space before the background quota system throws an exception. Following parameters controls how aggressively the quota subsystem updates the quota statistics. 
+
+In order to boost the performance and increase the parallelism of metadata operations the quota updates are applied asynchronously i.e. disk and namespace usage statistics are asynchronously updated in the background. Using asynchronous quota system it is possible that some users over consume namespace/disk space before the background quota system throws an exception. Following parameters controls how aggressively the quota subsystem updates the quota statistics. Quota management configuration parameters are defined in ``hdfs-site.xml`` file. 
 
 * **dfs.quota.enabled**:
   Enable/Disabled quota. By default quota is enabled.
@@ -74,9 +79,10 @@ In order to boost the performance and increase the parallelism of metadata opera
   The maximum number of outstanding quota updates that are applied in each round.
 
 
-Distributed unique ID generator
+Distributed Unique ID generator
 -------------------------------
-ClusterJ API does not support any means to auto generate primary keys. Unique key generation is left to the application. Each NameNode has an ID generation daemon. ID generator keeps pools of pre-allocated IDs. The ID generation daemon keeps track of IDs for inodes, blocks and quota entities.
+
+ClusterJ API does not support any means to auto generate primary keys. Unique key generation is left to the application. Each NameNode has an ID generation daemon. ID generator keeps pools of pre-allocated IDs. The ID generation daemon keeps track of IDs for inodes, blocks and quota entities. Distributed unique ID generator configuration parameters are defined in ``hdfs-site.xml``.
 
 * **dfs.namenode.quota.update.id.batchsize**, **dfs.namenode.inodeid.batchsize**, **dfs.namenode.blockid.batchsize**:
   When the ID generator is about to run out of the IDs it pre-fetches a batch of new IDs. These parameters defines the prefetch batch size for Quota, inodes and blocks updates respectively. 
@@ -96,6 +102,8 @@ Namespace and Block Pool ID
 
 Client Configurations
 ---------------------
+
+All the client configuration parameters are defined in ``core-site.xml`` file. 
 
 * **dfs.namenodes.rpc.addresses**:
   HopsFS support multiple active NameNodes. A client can send a RPC request to any of the active NameNodes. This parameter specifies a list of active NameNodes in the system. The list has following format [hdfs://ip:port, hdfs://ip:port, ...]. It is not necessary that this list contain all the active NameNodes in the system. Single valid reference to an active NameNode is sufficient. At the time of startup the client obtains an updated list of NameNodes from a NameNode mentioned in the list. If this list is empty then the client tries to connect to **fs.default.name**.
@@ -125,7 +133,7 @@ MySQL Cluster Network Database Driver Configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-Database specific parameter are stored in a **.properties** file. The configuration files contains following parameters. 
+Database specific parameter are stored in a ``.properties`` file. The configuration files contains following parameters. 
 
 * **com.mysql.clusterj.connectstring**:
   Address of management server of MySQL NDB Cluster.
@@ -167,7 +175,7 @@ Database specific parameter are stored in a **.properties** file. The configurat
 Loading a DAL Driver
 ~~~~~~~~~~~~~~~~~~~~
 
-In order to load a DAL driver following configuration parameters are added to hdfs-site.xml
+In order to load a DAL driver following configuration parameters are added to ``hdfs-site.xml`` file.
 
 * **dfs.storage.driver.jarFile**:
   path of driver jar file if the driver's jar file is not included in the class path.
@@ -177,3 +185,74 @@ In order to load a DAL driver following configuration parameters are added to hd
 
 * **dfs.storage.driver.configfile**:
   path to a file that contains configuration parameters for the driver jar file. The path is supplied to the **dfs.storage.driver.class** as an argument during initialization. See :ref:`hops ndb driver configuration parameters <ndb-conf-parameters>`.
+  
+  
+  
+HopsFS-EC Configuration
+-----------------------
+
+The erasure coding API is flexibly configurable and hence comes with some new configuration options that are shown here. All configuration options can be set by creating an ``erasure-coding-site.xml`` in the Hops configuration folder. Note that Hops comes with reasonable default values for all of these values. However, erasure coding needs to be enabled manually.
+
+
+* **dfs.erasure_coding.enabled**: (true/false) Enable/Disable erasure coding.
+
+* **dfs.erasure_coding.codecs.json**: List of available erasure coding codecs available. This value is a json field i.e.
+
+.. code-block:: xml
+
+	  <value>
+		[ 
+		  {
+			"id" : "xor",
+			"parity_dir" : "/raid",
+			"stripe_length" : 10,
+			"parity_length" : 1,
+			"priority" : 100,
+			"erasure_code" : "io.hops.erasure_coding.XORCode",
+			"description" : "XOR code"
+		  },
+		  {
+			"id" : "rs",
+			"parity_dir" : "/raidrs",
+			"stripe_length" : 10,
+			"parity_length" : 4,
+			"priority" : 300,
+			"erasure_code" : "io.hops.erasure_coding.ReedSolomonCode",
+			"description" : "ReedSolomonCode code"
+		  },
+		  {
+			"id" : "src",
+			"parity_dir" : "/raidsrc",
+			"stripe_length" : 10,
+			"parity_length" : 6,
+			"parity_length_src" : 2,
+			"erasure_code" : "io.hops.erasure_coding.SimpleRegeneratingCode",
+			"priority" : 200,
+			"description" : "SimpleRegeneratingCode code"
+		  },
+		]
+	  </value>
+
+
+* **dfs.erasure_coding.parity_folder**: The HDFS folder to store parity information in. Default value is /parity
+
+* **dfs.erasure_coding.recheck_interval**: How frequently should the system schedule encoding or repairs and check their state. Default valude is 300000 ms.
+
+* **dfs.erasure_coding.repair_delay**: How long should the system wait before scheduling a repair. Default is 1800000 ms.
+
+* **dfs.erasure_coding.parity_repair_delay**: How long should the system wait before scheduling a parity repair. Default is 1800000 ms. 
+
+* **dfs.erasure_coding.active_encoding_limit**: Maximum number of active encoding jobs. Default is 10. 
+
+* **dfs.erasure_coding.active_repair_limit**: Maximum number of active repair jobs. Default is 10. 
+
+* **dfs.erasure_coding.active_parity_repair_limit**: Maximum number of active parity repair jobs. Default is 10. 
+
+* **dfs.erasure_coding.deletion_limit**: Delete operations to be handle during one round. Default is 100.
+
+* **dfs.erasure_coding.encoding_manager**: Implementation of the EncodingManager to be used. Default is ``io.hops.erasure_coding.MapReduceEncodingManager``.
+
+* **dfs.erasure_coding.block_rapair_manager**: Implementation of the repair manager to be used. Default is ``io.hops.erasure_coding.MapReduceBlockRepairManager``
+
+  
+  
