@@ -212,3 +212,45 @@ Apple OSX/Mac
 
 You can follow the baremetal instructions above to install for OSX. Note that NDB (MySQL Cluster is not recommended for production installation on OSX - although it should be OK, for developmenet setups).
 
+
+Hops Chef Cookbooks
+--------------------
+
+Hops' automated installation is orchestrated by Karamel, but the installation logic is written as ruby programs in Chef. Chef supports the modularization of related programs in a unit of software, called a Chef *cookbook*. A Chef cookbook can be seen as a collection of programs, where each program contains instructions for how to install and configure software services. A cookbook may consist one or more programs that are known as *recipes*. These Chef recipes are executed by either a Chef client (that can talk to a Chef server) or chef-solo, a standalone program that has no dependencies on a Chef Server. Karamel uses chef-solo to execute Chef recipes on nodes. Karamel also provides dependency injection for Chef recipes, updating the parameters (Chef *attributes*) used to execute recipes.
+
+The following is a brief description of the Chef cookbooks that we have developed to support the installation of Hops. The recipes are named after their location in GitHub. That is, you can determine the URL for each cookbook by prefixing the title with http://github.com/. All of the recipes have been *karamelized*, that is a Karamelfile containing orchestration rules has been added to all cookbooks.
+
+
+* hopshadoop/apache-hadoop-chef
+  This cookbook contains recipes for installing the Apache Hadoop services: HDFS NameNode (hadoop::nn), HDFS DataNode (hadoop::dn), YARN ResourceManager (hadoop::rm), YARN NodeManager (hadoop::nm), Hadoop Job HistoryServer for MapReduce (hadoop::jhs), Hadoop ProxyServer (hadoop::ps).
+  
+* hopshadoop/hops-hadoop-chef
+  This cookbook contains is a wrapper cookbook for the Apache Hadoop cookbook. It install Hops, but makes use of the Apache Hadoop Chef cookbook to install and configure software. The recipes it provides are: HopsFS NameNode (hops::nn), HopsFS DataNode (hops::dn), HopsYARN ResourceManager (hops::rm), HopsYARN NodeManager (hops::nm), Hadoop Job HistoryServer for MapReduce (hops::jhs), Hadoop ProxyServer (hops::ps).
+
+* hopshadoop/elasticsearch-chef
+  This cookbook is a wrapper cookbook for the official Elasticsearch Chef cookbook, but it has been extended with Karamel orchestration rules. 
+  
+* hopshadoop/ndb-chef
+  This cookbook contains recipes for installing MySQL Cluster services: NDB Management Server (ndb::mgmd), NDB Data Node (ndb::ndbd), MySQL Server (ndb::mysqld), Memcached for MySQL Cluster (ndb::memcached).
+  
+* hopshadoop/zeppelin-chef
+  This cookbook contains a default recipe for installing Apache Zeppelin.
+
+* hopshadoop/hopsworks-chef
+  This cookbook contains a default recipe for installing HopsWorks.
+  
+* hopshadoop/spark-chef
+  This cookbook contains recipes for installing the Apache Spark Master, Worker, and a YARN client.
+
+* hopshadoop/flink-chef
+  This cookbook contains recipes for installing the Apache Flink jobmanager, taskmanager, and a YARN client.
+
+
+BiobankCloud Chef Cookbooks
+--------------------------
+
+* biobankcloud/charon-chef
+  This cookbook contains a default recipe for installing Charon.
+
+* biobankcloud/hiway-chef
+  This cookbook contains recipes for installing HiWAY, Cuneiform, the BiobankCloud workflows, and some example workflows.
