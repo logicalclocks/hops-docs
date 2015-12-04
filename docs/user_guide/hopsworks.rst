@@ -53,17 +53,30 @@ Login to the target machine where HopsWorks is installed, and run:
 
 It should return something like:
 
+.. code-block:: bash
+		
+    +--------------+------------------+
+    | email        | secret           |
+    +--------------+------------------+
+    | admin@kth.se | V3WBPS4G2WMQ53VA |
+    +--------------+------------------+
 
-You now need to start ``Google Authenticator`` on your smartphone. If you don't have 'Google Authenticator' installed, install it from your app store. It is available for free on  Android, iPhone, and Windows Phone platforms.
 
-Now, add an account to Google Authenticator, and add as the account email ``admin@kth.se`` and add as the key, the secret value returned by ``/bin/hopsworks-2fa``.
-This should register your second factor on your phone.
+You now need to start ``Google Authenticator`` on your smartphone. If you don't have 'Google Authenticator' installed, install it from your app store. It is available for free on  Android, iPhone, and Windows Phone (but called Microsoft Authenticator) platforms.
 
-You can now go to the start-page on Google Authenticator. You will need to supply the 6-digit number shown for ``admin@kth.se`` when on the login page, along with the username and password.
+Now, add an account to Google Authenticator, and add as the account email ``admin@kth.se`` and add as the key, the secret value returned by ``/bin/hopsworks-2fa``, that is 'V3WBPS4G2WMQ53VA'. This should register your second factor on your phone.
+
+You can now go to the start-page on Google Authenticator. On HopsWorks login page, you will need to supply the 6-digit number shown for ``admin@kth.se`` when on the login page, along with the username and password.
 
 
 Register a New Account on HopsWorks
 -----------------------------------
+
+The process for registering a new account is as follows:
+
+#. Register your email address and details and use the camera from within Google Authenticator to store your 2nd factor credential;
+#. Validate your email address by clicking on the link in the validation email you received;
+#. Wait until an administrator has approved your account (you will receive a confirmation email).
 
 .. figure:: ../imgs/user_registration.png
     :alt: HopsWorks User Registration
@@ -75,13 +88,24 @@ Register a New Account on HopsWorks
     
     HopsWorks User Registration Page
 
-Register a new account with a valid email account. You should receive an email asking you to validate your account. The sender of the email will be neither the default email address ``hopsworks@gmail.com`` or the gmail address you supplied while installing HopsWorks. If you do not receive an email address, wait a minute. If you still haven't received it, you need to troubleshoot.
+Register a new account with a valid email account. You should receive an email asking you to validate your account. The sender of the email will be either the default ``hopsworks@gmail.com`` or a gmail address that was supplied while installing HopsWorks. If you do not receive an email, wait a minute. If you still haven't received it, you should contact the administrator.
 
 **Validate the email address used in registration**
 
-If you click on the link supplied in the registration email, it will validate your account and rdirect you to the login page.
-**You will not be able to login until an administrator has validated your account.**. You can jump now to the Hops Administration Guide to see how to validate account registrations, if you have administrator privileges.
+If you click on the link supplied in the registration email, it will validate your account.
+**You will not be able to login until an administrator has approved your account.** [#f1]_.
 
+.. rubric:: Footnotes
+
+.. [#f1] If you are an administrator, you can jump now to the Hops Administration Guide to see how to validate account registrations, if you have administrator privileges.
+
+After your account has been approved, you can now go to HopsWork's login page and start your Google Authenticator application on your smartphone. On HopsWorks login page, you will need to enter
+
+* the email address your registered with
+* the password you registered with
+* on Google Authenticator find the 6-digit number shown for the email address your registered with and enter it into HopsWorks.
+
+	 
 
 Update your Profile/Password
 ----------------------------
@@ -121,7 +145,7 @@ The user account status may not be in the correct state, see next section for ho
 User account has been disabled due to too many unsuccessful login attempts
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-You can login to the hopsworks database on the Mysql Server and update the status of the user account to valid using the user's email address (not ``admin@kth.se`` given below):
+You can login to the hopsworks database on the MySQL Server and update the status of the user account to valid using the user's email address (replacing ``admin@kth.se`` given below with the user who's account you want to re-enable):
 
 .. code-block:: bash
    

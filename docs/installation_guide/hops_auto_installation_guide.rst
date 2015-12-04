@@ -1,14 +1,14 @@
 .. _hops-installer:
 
 *******************
-Hops Auto Installer
+Hops Installation
 *******************
 
 The Hops stack includes a number of services also requires a number of third-party distributed services:
 
 * Java 1.7 (OpenJDK or Oracle JRE/JDK)
-* NDB 7.4+ (MySQl Cluster)
-* J2EE7 web application server (Glassfish by default)
+* NDB 7.4+ (MySQL Cluster)
+* J2EE7 web application server (default: Glassfish)
 * ElasticSearch 1.7+
   
 Due to the complexity of installing and configuring all Hops' services, we recommend installing Hops using the automated installer Karamel/Chef (http://www.karamel.io). We do not provide documentation for installing and configuring all services, but for the curious, the Chef cookbooks that install our services are available at: https://github.com/hopshadoop.
@@ -84,8 +84,7 @@ We recommend the following setup that includes six NodeGroups, and requires at l
 A highly available large cluster would require at least two instances of every NodeGroup. HopsWorks can also be deployed on mulitple instances, while Elasticsearch needs to be specially configured if it is to be sharded across many insances. Otherwise, the other services can be easily scaled out by simply adding instances in Karamel. For improved performance, the metadata layer could be deployed on a better network (10 GbE at the time of writing), and the last NodeGroup (DataNode/NodeManager) instances could be deployed on cheaper network infrastructure (bonded 1 GbE  or 10 GbE, at the time of writing).
 
 
-HopsWorks Configuration in Karamel
------------------------------------
+**HopsWorks Configuration in Karamel**
 
 Karamel Chef recipes support a large number of parameters that can be set while installing Hops. These parameters include, but are not limited to,:
 
@@ -112,8 +111,8 @@ Here are some of the most important sizing configuration parameters to set when 
 * Heap size for Elasticsearch
 
 
-On-Premises Installation
----------------------------
+On-Premises (baremetal) Installation
+-------------------------------------
 
 For on-premises (bare-metal) installations, You will need to prepare for installation by:
 
@@ -158,8 +157,8 @@ If your ssh keypair is password protected, you will also need to enter it again 
 :Note: `Redhat/Centos is not yet supported by Karamel, but you can install Hops using Chef-solo by logging into each machine separately. The chef cookbooks are written to work for both Ubuntu and Redhat platforms.`
 
 
-Vagrant
--------
+Vagrant (Virtualbox)
+-----------------------
 
 You can install HopsWorks and Hops on your laptop/desktop  with Vagrant. You will need to have the following software packages installed:
 
@@ -185,7 +184,15 @@ You can then access Hopsworks from your browser at http://127.0.0.1:8080/hopswor
   username: admin@kth.se
   password: admin
 
-The Glassfish web application server is also available from your browser at http://127.0.0.1:8080/hopsworks. The default credentials are:
+You can access the Hopsworks administration application from your browser at http://127.0.0.1:8080/hopsworks/index.xhtml. The default credentials are:
+
+::
+
+  username: admin@kth.se
+  password: admin
+  
+  
+The Glassfish web application server is also available from your browser at http://127.0.0.1:4848. The default credentials are:
 
 ::
 
