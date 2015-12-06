@@ -106,7 +106,7 @@ From the Yubikey OTP tool program, you will have to opy the Public Identity and 
     Copy the Public Identity and Secret Key fields from Yubikey OTP to the corresponding fields when you validate a user in the Admin UI.    
 
 
-
+		
 Managing Project Quotas
 ***********************
 

@@ -88,6 +88,9 @@ The process for registering a new account is as follows:
     
     HopsWorks User Registration Page
 
+.. raw:: latex
+
+    \newpage
 
 .. figure:: ../imgs/two-factor-smartphone-qr-code.png
     :alt: HopsWorks QR Code needs to be scanned with Google/Microsoft Authenticator
@@ -100,9 +103,9 @@ The process for registering a new account is as follows:
     Two-factor authentication: Scan the QR Code with Google Authenticator
 
     
-    Register a new account with a valid email account. If you have two-factor authentication enabled, you will then need to scan the QR code to save it on your phone. If you miss this step, you will have to recover your smartphone credentials at a later stage.
-
-    In both cases, you should receive an email asking you to validate your account. The sender of the email will be either the default ``hopsworks@gmail.com`` or a gmail address that was supplied while installing HopsWorks. If you do not receive an email, wait a minute. If you still haven't received it, you should contact the administrator.
+Register a new account with a valid email account. If you have two-factor authentication enabled, you will then need to scan the QR code to save it on your phone. If you miss this step, you will have to recover your smartphone credentials at a later stage.
+    
+In both cases, you should receive an email asking you to validate your account. The sender of the email will be either the default ``hopsworks@gmail.com`` or a gmail address that was supplied while installing HopsWorks. If you do not receive an email, wait a minute. If you still haven't received it, you should contact the administrator.
 
 **Validate the email address used in registration**
 
@@ -179,43 +182,6 @@ You can login to the hopsworks database on the MySQL Server and update the statu
     sudo su
     /var/lib/mysql-cluster/ndb/scripts/mysql-client.sh hopsworks
     update users set status=4 where email=``admin@kth.se``
-
-		
-Ubikey Personalization GUI
---------------------------
-
-Copy the Public Identity and Secret Key fields from Yubikey OTP to the corresponding fields when you validate a user in the Admin UI.
-
-.. code-block:: bash
-		
-   $ sudo apt-get install yubikey-personalization-gui
-   $ yubikey-personalization-gui
-
-
-   
-.. figure:: ../imgs/yubikey-gui.png
-    :alt: Registering YubiKey sticks
-    :scale: 75
-    :align: center
-    :figclass: align-center
-    
-    Registering YubiKey sticks
-
-.. figure:: ../imgs/yubikey-quick.png
-    :alt: Registering YubiKey sticks
-    :scale: 75   
-    :align: center
-    :figclass: align-center
-    
-    Registering YubiKey sticks
-
-.. figure:: ../imgs/yubikey-public-identity-secret-key.png
-    :alt: Copy the Public Identity and Secret Key fields from Yubikey OTP to the corresponding fields when you validate a user in the Admin UI. 
-    :align: center
-    :scale: 75
-    :figclass: align-center
-
-    Copy the Public Identity and Secret Key fields from Yubikey OTP to the corresponding fields when you validate a user in the Admin UI.    
 
   
 Create a New Project
