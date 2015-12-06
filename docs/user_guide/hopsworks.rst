@@ -3,7 +3,7 @@ HopsWorks User Guide
 
 If you are using 2-Factor authentication, jump ahead to "First Login with 2-Factor Authentication".
 
-First Login (Non 2-Factor Authentication)
+First Login (no 2-Factor Authentication)
 -----------------------------------------
 
 On initial installation, you can login with the default username and password.
@@ -88,7 +88,21 @@ The process for registering a new account is as follows:
     
     HopsWorks User Registration Page
 
-Register a new account with a valid email account. You should receive an email asking you to validate your account. The sender of the email will be either the default ``hopsworks@gmail.com`` or a gmail address that was supplied while installing HopsWorks. If you do not receive an email, wait a minute. If you still haven't received it, you should contact the administrator.
+
+.. figure:: ../imgs/two-factor-smartphone-qr-code.png
+    :alt: HopsWorks QR Code needs to be scanned with Google/Microsoft Authenticator
+    :width: 400px
+    :height: 534px	   
+    :scale: 70
+    :align: center
+    :figclass: align-center
+    
+    Two-factor authentication: Scan the QR Code with Google Authenticator
+
+    
+    Register a new account with a valid email account. If you have two-factor authentication enabled, you will then need to scan the QR code to save it on your phone. If you miss this step, you will have to recover your smartphone credentials at a later stage.
+
+    In both cases, you should receive an email asking you to validate your account. The sender of the email will be either the default ``hopsworks@gmail.com`` or a gmail address that was supplied while installing HopsWorks. If you do not receive an email, wait a minute. If you still haven't received it, you should contact the administrator.
 
 **Validate the email address used in registration**
 
@@ -105,7 +119,11 @@ After your account has been approved, you can now go to HopsWork's login page an
 * the password you registered with
 * on Google Authenticator find the 6-digit number shown for the email address your registered with and enter it into HopsWorks.
 
-	 
+
+Forgotten Password / Lost Smartphone
+-------------------------------------
+
+If you forget your password or lose your 2nd factor device (smartphone or yubikey), you will need to recover your credentials. On the login screen, click on **Need Help?** to recover your password or replace the QR code for your smartphone.
 
 Update your Profile/Password
 ----------------------------
@@ -127,20 +145,29 @@ Contact an administrator or go to the Administration Guide section of this docum
 User fails to receive an email to validate her account
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+* This may be a misconfigured gmail address/password or a network connectivity issue.
 * Does your organization have a firewall that blocks outbound SMTP access?
-* Login to the Glassfish Webserver and check the JavaMail settings. The JNDI name should be *mail/BBCMail*. Is the gmail username/password correct? Are the smtp server settings correct (ip-address or hostname, port, protocol (SSL, TLS))?
+* For administrators: was the correct gmail username/password supplied when installing? 
+* If you are not using a Gmail address, are the smtp server settings correct (ip-address or hostname, port, protocol (SSL, TLS))?
 
-User receives email, but fails to validate the account
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+User receives the validate-your-email message, but is not able to validate the account
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~------------------------------------
 
-* Can you successfully access the HopsWorks homepage?
-* Is the Glassfish webserver running and hopsworks.war application installed?
-* Is MySQL Cluster running?
+* Can you successfully access the HopsWorks homepage? If not, there may be a problem with the network or the webserver may be down.
+* Is the Glassfish webserver running and hopsworks.war application installed, but you still can't logon? It may be that MySQL Cluster is not running.
+* Check the Glassfish logs for problems and the Browser logs.
+    
 
 User successfully validates the account, but still can't login
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The user account status may not be in the correct state, see next section for how to update user account status.
+
+User account has been disabled due to too many unsuccessful login attempts
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+From the HopsWorks administration application, the administrator can re-enable the account by going to "User Administration" and taking the action "Approve account".
+
 
 User account has been disabled due to too many unsuccessful login attempts
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -152,7 +179,8 @@ You can login to the hopsworks database on the MySQL Server and update the statu
     sudo su
     /var/lib/mysql-cluster/ndb/scripts/mysql-client.sh hopsworks
     update users set status=4 where email=``admin@kth.se``
-    
+
+		
 Ubikey Personalization GUI
 --------------------------
 

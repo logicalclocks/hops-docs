@@ -34,6 +34,19 @@ Hops Documentation
    user_guide/hopsfs
    user_guide/hopsyarn
 
+.. _hops-admin-guide:
+   
+.. toctree::
+   :maxdepth: 2
+   :glob:
+   :caption: Administrator Guide   
+   
+   admin_guide/hops_admin_guide
+
+
+
+
+   
 .. _hops-configurations:
 
 .. toctree::
@@ -43,7 +56,7 @@ Hops Documentation
 
    configuration/hopsfs
    configuration/hopsyarn 
-
+   
 
 .. _hops-dev-guide:
    
