@@ -47,7 +47,7 @@ Hops Documentation
 
 
    
-.. _hops-configurations:
+.. _hops-configuration:
 
 .. toctree::
    :maxdepth: 2

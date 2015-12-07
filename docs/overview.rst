@@ -7,7 +7,7 @@ Hops Overview
 Audience
 ********
 
-This document is structured as four different guides, each aimed at different types of readers:
+This document contains four different guides: installation, user, administration, and developer guides. For the following different types of readers, we recommend reading the guides:
 
 * Data Scientists
 
