@@ -46,12 +46,13 @@ Revision History
 Hops Introduction
 **********************       
 
-Hops is a next-generation distribution of Apache Hadoop that supports
+Hops is a next-generation distribution of Apache Hadoop that supports:
 
 * Hadoop-as-a-Service,
 * Project-Based Multi-Tenancy,
-* secure sharing of DataSets across projects,
-* extensible and searchable metadata using Elasticsearch.
+* Secure sharing of DataSets across projects,
+* Extensible metadata that supports free-text search using Elasticsearch,
+* YARN quotas for projects.    
 
 The key innovation that enables these features is a new architecture for scale-out, consistent metadata for both the Hadoop Filesystem (HDFS) and YARN (Hadoop's Resource Manager). The new metadata layer enables us to support multiple stateless NameNodes and TBs of metadata stored in MySQL Clustepr Network Database (NDB). NDB is a distributed, relational, in-memory, open-source database. This enabled us to provide services such as tools for designing extended metadata (whose integrity with filesystem data is ensured through foreign keys in the database), and also extending HDFS' metadata to enable new features such as erasure-coded replication, reducing storage requirements by 50\% compared to triple replication in Apache HDFS. Extended metadata has enabled us to implement quota-based scheduling for YARN, where projects can be given quotas of CPU hours/minutes and memory, thus enabling resource usage in Hadoop-as-a-Service to be accounted and enforced.
 
@@ -97,14 +98,8 @@ The following roles are supported:
 * design and update metadata for files/directories/DataSets	 
 
 
-HopsWorks is built on a number of services, illustrated below:
-
-.. figure:: imgs/hopsworks-stack.png
-   :alt: HopsWorks stack of services
-   :scale: 80
-   :figclass: align-center
-
-   HopsWorks Layered Architecture.
+..  HopsWorks is built on a number of services, illustrated below:
+..  HopsWorks Layered Architecture.
    
    
 HopsWorks covers: users, projects and datasets, analytics, metadata mangement and free-text search. 
@@ -112,51 +107,61 @@ HopsWorks covers: users, projects and datasets, analytics, metadata mangement an
 Users
 -----
 
-* User authorization (with optional 2-factor authentication)
+* Users authenticate with a valid email address
+  * An optional 2nd factor can optionally be enabled for authentication. Supported devices are smartphones (Android, Apple, Windows) or Yubikey usb sticks.
 
   
 Projects and DataSets
 ---------------------
-  
-* project-based multi-tenancy with dynamic roles (think GitHub projects, but you can't read/write data outside your project);
-* the ability to share DataSets securely between projects (enabling reuse of DataSets without copying);
-* fast DataSet navigation (due to our metadata layer);
-* import/export of data using the Browser for the *Data Owner* role.
+
+HopsWorks provides the following features:
+
+* project-based multi-tenancy with dynamic roles;
+* CPU hour quotas for projects (supported by HopsYARN);
+* the ability to share DataSets securely between projects (reuse of DataSets without copying);
+* DataSet browser;
+* import/export of data using the Browser.
 
 Analytics
 ---------
-  
-* interactive analytics with Apache Zepplin for Spark and Flink;
-* batch-based YARN job submission (including Spark, MapReduce, Flink, Adam, and SaasFee);
+
+HopsWorks provides two services for executing applications on YARN:
+
+* Apache Zepplin: interactive analytics with for Spark, Flink, and other data parallel frameworks;
+* YARN batch jobs: batch-based submission (including Spark, MapReduce, Flink, Adam, and SaasFee);
 
 MetaData Management
 -------------------
- 
+
+HopsWorks provides support for the design and entry of extended metadata for files and directorsy:
+
 * design your own extended metadata using an intuitive UI;
-* enter extended metadata using an intuitive UI;  
+* enter extended metadata using an intuitive UI.
 
 Free-text search
 ----------------
 
-* `Global free-text search` for projects and DataSets in the cluster;  
-* `Project-based free-text search` of all files and extended metadata within a project;
+HopsWorks integrates with Elasticsearch to provide free-text search for files/directories and their extended metadata:
 
-   
+* `Global free-text search` for projects and DataSets in the filesystem;  
+* `Project-based free-text search` of all files and extended metadata within a project.
+
    
 HopsFS
 ******
 
-HopsFS is a new implementation of the the Hadoop Filesystem (HDFS) based on `Apache Hadoop`_ 2x, that supports multiple stateless NameNodes, where the metadata is stored in an in-memory distributed database (NDB). HopsFS enables more scalable clusters than Apache HDFS (up to ten times larger clusters), and enables NameNode metadata to be both customized and analyzed, because it can now be easily accessed via a SQL API.
+HopsFS is a new implementation of the the Hadoop Filesystem (HDFS) based on `Apache Hadoop`_ 2x, that supports multiple stateless NameNodes, where the metadata is stored in an in-memory distributed database (NDB). HopsFS enables NameNode metadata to be both customized and analyzed, because it can be easily accessed via SQL or the native API (NDB API).
 
 .. figure:: imgs/hopsfs-arch.png
-   :alt: HopsFS vs Apache HDFS Architecture
-   :width: 600
-   :height: 400
+   :alt: HopsFS Architecture
+   :scale: 80
+   :width: 370
+   :height: 303
    :figclass: align-center
 
-   Apache HDFS versus HopsFS Architetures.
+   HopsFS Architeture.
 	 
-We have replaced HDFS 2.x's Primary-Secondary Replication model with shared atomic transactional memory. This means that we no longer use the parameters in HDFS that are based on the (eventually consistent) replication of edit log entries from the Primary NameNode to the Secondary NameNode using a set of quorum-based replication servers. Similarly, HopsFS, does not uses ZooKeeper and implements leader election and membership service using the transactional shared memory.
+HopsFS replaces HDFS 2.x's Primary-Secondary Replication model with an in-memory, shared nothing database. HopsFS provides the DAL-API as an abstraction layer over the database, and implements a leader election protocol using the database. This means HopsFS no longer needs several services required by highly available Apache HDFS: quorum journal nodes, Zookeeper, and the Snapshot server.
 
 .. _Apache Hadoop: http://hadoop.apache.org/releases.html
 
@@ -164,7 +169,7 @@ We have replaced HDFS 2.x's Primary-Secondary Replication model with shared atom
 HopsYarn
 ********
 
-HopsYARN introduces a new metadata layer for Apache YARN, where the cluster state is stored in a distributed, in-memory, transactional database. Apart from improved scalabilty, HopsYARN enables us to provide quotas for Projects, in terms of how many CPU minutes and memory are available for use by each project. Quota-based scheduling is built on the capacity scheduler, so we can still prioritize certain projects over others.
+HopsYARN introduces a new metadata layer for Apache YARN, where the cluster state is stored in a distributed, in-memory, transactional database. HopsYARN enables us to provide quotas for Projects, in terms of how many CPU minutes and memory are available for use by each project. Quota-based scheduling is built as a layer on top of the capacity scheduler, enabling us to retain the benefits of the capacity scheduler.
 
 .. figure:: ./imgs/hops-yarn.png
    :alt: Hops-YARN Architecture
@@ -186,7 +191,7 @@ We have extended Zeppelin with access control, ensuring only users in the same p
 Apache Flink provides a dataflow processing model and is highly suitable for stream processing. We support it in HopsWorks.
 
 **Other Services**
-Hopsworks is a web application that runs on a highly secure Glassfish server. ElasticSearch is used to provide free-text search services. MySQL
+HopsWorks is a web application that runs on a highly secure Glassfish server. ElasticSearch is used to provide free-text search services. MySQL
 
 
 BiobankCloud
@@ -195,13 +200,16 @@ BiobankCloud
 BiobankCloud extends HopsWorks with platform-specific support for Biobanking and Bioinformatics.
 These services are:
 
+* An audit log for user actions;
+* Project roles compliant with the draft European General Data Protection Regulation;
 * Consent form management for projects (studies);
 * Charon, a service for securely sharing data between clusters using public clouds;
 * SaasFee (cuneiform), a YARN-based application for building scalable bioinformatics pipelines.
 
-.. figure:: imgs/biobankcloud-actors.png
-   :alt: Actors in a BiobankCloud Ecosystem within the context of the EU GPDR.
-   :scale: 75
-   :figclass: align-center
 
-   BiobankCloud Actors.
+..  .. figure:: imgs/biobankcloud-actors.png
+..   :alt: Actors in a BiobankCloud Ecosystem within the context of the EU GPDR.
+..   :scale: 75
+..   :figclass: align-center
+
+..   BiobankCloud Actors.
