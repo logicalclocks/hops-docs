@@ -35,6 +35,11 @@ Disabling a user account
 
 Go to the **User Administration** view. From here, select the user whose account will be disabled, and update the user's account status to **disabled**.
 
+Re-activating a user account
+--------------------------------
+
+In the ``user administration`` view, you can select the action that changes the user status to ``activated``.
+
 
 User fails to receive an email to validate her account
 ******************************************************

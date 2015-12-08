@@ -164,88 +164,50 @@ Contact an administrator or go to the Administration Guide section of this docum
 * Inside Glassfish, check the JavaMail settings. Is the gmail username/password correct? Are the SMTP server settings correct (hostname/ip, port, protocol (SSL, TLS))?
 
 
-User fails to receive an email to validate her account
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*User fails to receive an email to validate her account*
 
 * This may be a misconfigured gmail address/password or a network connectivity issue.
 * Does your organization have a firewall that blocks outbound SMTP access?
 * For administrators: was the correct gmail username/password supplied when installing? 
 * If you are not using a Gmail address, are the smtp server settings correct (ip-address or hostname, port, protocol (SSL, TLS))?
 
-User receives the validate-your-email message, but is not able to validate the account
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~------------------------------------
+*User receives the validate-your-email message, but is not able to validate the account*
 
 * Can you successfully access the HopsWorks homepage? If not, there may be a problem with the network or the webserver may be down.
 * Is the Glassfish webserver running and hopsworks.war application installed, but you still can't logon? It may be that MySQL Cluster is not running.
 * Check the Glassfish logs for problems and the Browser logs.
     
 
-User successfully validates the account, but still can't login
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*User successfully validates the account, but still can't login*
 
 The user account status may not be in the correct state, see next section for how to update user account status.
 
-User account has been disabled due to too many unsuccessful login attempts
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*User account has been disabled due to too many unsuccessful login attempts*
 
 From the HopsWorks administration application, the administrator can re-enable the account by going to "User Administration" and taking the action "Approve account".
 
 
-User account has been disabled due to too many unsuccessful login attempts
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*User account has been disabled due to too many unsuccessful login attempts*
 
-You can login to the hopsworks database on the MySQL Server and update the status of the user account to valid using the user's email address (replacing ``admin@kth.se`` given below with the user who's account you want to re-enable):
-
-.. code-block:: bash
-   
-    sudo su
-    /var/lib/mysql-cluster/ndb/scripts/mysql-client.sh hopsworks
-    update users set status=4 where email=``admin@kth.se``
-
+Contact your system administrator who will re-enable your account.
   
 Create a New Project
 --------------------
 
-You can create a project by clicking on the ``New`` button in the *Projects* box. This will pop-up a dialog, in which you enter the project name, an optional description, and select an optional set of services to be used in the project. You can also select an initial set of members for the project, who will be the the role of Data Scientist in the project. The roles can later be updated in the Project settings.
+You can create a project by clicking on the ``New`` button in the *Projects* box. This will pop-up a dialog, in which you enter the project name, an optional description, and select an optional set of services to be used in the project. You can also select an initial set of members for the project, who will be given the role of Data Scientist in the project. Member roles can later be updated in the Project settings by the `project owner` or a member with the `data owner` role.
 
 Delete a Project
 ----------------
 
 Right click on the project to be deleted in the projects box. You have the options to:
 
-* Remove and delete data sets
-* Remove and keep data sets
+* Remove and delete data sets;
+
+  * If the user deletes the project, the files are moved to trash in HopsFS;
+  
+* Remove and keep data sets.
 
 
-Share a Data Set
-----------------
-
-Click on the project that is owner of the Data Set. The click on *Data Sets*, and then right click on the Data Set to be shared and select ``Share``. A popup dialog will then prompt you to select (1) a target project with which the *Data Set* is to be Shared and whether the *Data Set* will be shared as read-only (**Can View**) or as read-write (**Can edit**). To complete the sharing process, a Data Owner in the target project has to click on the shared Data Set, and then click on ``Acccept`` to complete the process.
-
-
-Free-text Search 
-----------------
-
-.. tabularcolumns:: {|p{\dimexpr 0.3\linewidth-2\tabcolsep}|p{\dimexpr 0.7\linewidth-2\tabcolsep}|}
-   
-+------------------+----------------------------------------+
-|**Option**        | **Description**                        |
-+==================+========================================+
-| **Search from**  | On landing page, enter the search term |
-| **Landing Page** | in the search bar and press return.    |
-|                  | Returns project names and Data Set     |
-|                  | names that match the entered term.     |
-+------------------+----------------------------------------+
-| **Search from**  | From within the context of a project,  |
-| **Project Page** | enter the search term in the search bar|
-|                  | and press return. The search returns   |
-|                  | any files or directories whose name or |
-|                  | extended metadata matches the search   |
-|                  | term.                                  |
-+------------------+----------------------------------------+
-
-
-   
    
 Data Set Browser
 ----------------
@@ -279,9 +241,7 @@ tab, you will see a button ``Upload Files``.
 Compress Files
 --------------
 
-HopFS supports erasure-coded replication, which reduces storage requirements for large files by roughly 50%.
-If a file consists of 10 file blocks or more (that is, if the file is larger than 640 MB in size, for a default block size of 64 MB), then it can
-be compressed. Smaller files cannot be compressed. 
+HopFS supports erasure-coding of files, which reduces storage requirements for large files by roughly 50%. If a file consists of 6 file blocks or more (that is, if the file is larger than 384 MB in size, for a default block size of 64 MB), then it can be compressed. Smaller files cannot be compressed. 
 
 .. tabularcolumns:: {|p{\dimexpr 0.3\linewidth-2\tabcolsep}|p{\dimexpr 0.7\linewidth-2\tabcolsep}|}
 
@@ -294,23 +254,50 @@ be compressed. Smaller files cannot be compressed.
 |                  | Right-click and select ``Compress``    |
 |                  | to reduce the size of the file by      |
 |                  | changing its replication policy from   |
-|                  | triplica replication to Reed-Solomon   |
+|                  | triple replication to Reed-Solomon   |
 |                  | erasure coding.                        |
++------------------+----------------------------------------+
+
+
+Share a Data Set
+----------------
+
+Only a `data owner` or the `project owner` has privileges to share Data Sets. To share a Data Set, go to the `Data Sets Browser` in your project, and right-click on the Data Set to be shared and then select the ``Share`` option. A popup dialog will then prompt you to select (1) a target project with which the *Data Set* is to be Shared and whether the *Data Set* will be shared as read-only (**Can View**) or as read-write (**Can edit**). To complete the sharing process, a Data Owner in the target project has to click on the shared Data Set, and then click on ``Acccept`` to complete the process.
+
+
+Free-text Search 
+----------------
+
+.. tabularcolumns:: {|p{\dimexpr 0.3\linewidth-2\tabcolsep}|p{\dimexpr 0.7\linewidth-2\tabcolsep}|}
+   
++------------------+----------------------------------------+
+|**Option**        | **Description**                        |
++==================+========================================+
+| **Search from**  | On landing page, enter the search term |
+| **Landing Page** | in the search bar and press return.    |
+|                  | Returns project names and Data Set     |
+|                  | names that match the entered term.     |
++------------------+----------------------------------------+
+| **Search from**  | From within the context of a project,  |
+| **Project Page** | enter the search term in the search bar|
+|                  | and press return. The search returns   |
+|                  | any files or directories whose name or |
+|                  | extended metadata matches the search   |
+|                  | term.                                  |
 +------------------+----------------------------------------+
 
 
 Jobs
 ----
 
-The Jobs tabs is the way to create and run YARN applications.
-HopsWorks supports:
+The Jobs tabs is the way to create and run YARN applications. HopsWorks supports the following YARN applications:
 
 * Apache Spark,
 * Apache Flink,
 * MapReduce (MR),
-* and bioinformatics data parallel frameworks Adam and SaasFee (Cuneiform).
-   
-   
+* Adam (a bioinformatics data parallel framework),
+* SAASFEE (HiWAY/Cuneiform) (a bioinformatics data parallel framework).
+      
 
 .. tabularcolumns:: {|p{\dimexpr 0.3\linewidth-2\tabcolsep}|p{\dimexpr 0.7\linewidth-2\tabcolsep}|}
 
@@ -336,13 +323,29 @@ in the ``Logs/<app-framework>/<log-files>`` directories.
 After a job has been created, it can be **edited**, **deleted**, and **scheduled** by clickin on the ``More actions`` button.
 
 
+Charon
+---------------
+
+Charon is a cloud-of-clouds filesystem that enables the sharing of data between Hops clusters using public clouds. To do share data with a target cluster, you need to:
+
+* acquire the `cluster-id` of the target cluster and enter it as a `cluster-id` in the Charon service UI - you can read the `cluster-id` at the top of the page for the Charon service;
+
+* enter a token-id that is used as a secret key between the source and target cluster;
+
+* select a folder to share with the target `cluster-id`;
+
+* copy files to the shared folder from HDFS that you wish to share with the target cluster;
+
+* the files within that folder are copied to the public cloud(s), from where they are downloaded to the target cluster.
+
+
+
 Apache Zeppelin
 ---------------
 
 Apache Zeppelin is an interactive notebook web application for running Spark or Flink code on Hops YARN.
 You can turn interpreters for Spark/Flink/etc on and off in the Zeppelin tab, helping, respectively, to reduce time required to execute a Note (paragraph) in Zeppelin or reclaim resources.
 More details can be found at: https://zeppelin.incubator.apache.org/
-
 
 
 
@@ -361,14 +364,13 @@ can be identified (and acted upon).
 MetaData Designer
 -----------------
 
-Within the context of a project, click on the ``Data Sets`` tab. From here, click on the ``Metadata Designer`` button.
-It will bring up a designer dialog that can be used to:
+Within the context of a project, click on the ``Metadata Designer`` button in the left-hand panel. It will bring up a metadata designer view that can be used to:
 
 * Design a new Metadata Template
 * Extend an existing Metadata Template
 * Import/Export a Metadata Template
     
-The Metadata Designer can be used to define a Metadata template as one or more tables. Each table consists of a number of typed columns. Supported
+Within the Metadata Designer, you can define a Metadata template as one or more tables. Each table consists of a number of typed columns. Supported
 column types are:
 
 * string
@@ -384,14 +386,8 @@ Columns can also have constraints defined on them. On a column, click on cog ico
 MetaData Attachment and Entry
 -----------------------------
 
-Within the context of a project, click on the ``Data Sets`` tab. From here, click on a Data Set. Inside the Data Set, if you
-select any file or directory, the rightmost panel will display any extended metadata associated with the file or directory.
-If no extended metadata is assocated with the file/directory, you will see "No metadata template attached" in the rightmost panel.
-You can attach an existing metadata template to the file or directory by right-clicking on it, and selecting ``Add metadata template``.
-The metadata can then be selected from the set of *available templates* (designed or uploaded).
+Within the context of a project, click on the ``Data Sets`` tab. From here, click on a Data Set. Inside the Data Set, if you select any file or directory, the rightmost panel will display any extended metadata associated with the file or directory. If no extended metadata is assocated with the file/directory, you will see "No metadata template attached" in the rightmost panel. You can attach an existing metadata template to the file or directory by right-clicking on it, and selecting ``Add metadata template``. The metadata can then be selected from the set of *available templates* (designed or uploaded).
 
-After one or more metadata templates have been attached to the file/directory, if the file is selected, the metadata templates are now visible
-in the rightmost panel. The metadata can be edited in place by clicking on the ``+`` icon beside the metadata attribute. More than one extended
-metadata value can be added for each attribute, if the attribute is a string attribute. 
+After one or more metadata templates have been attached to the file/directory, if the file is selected, the metadata templates are now visible in the rightmost panel. The metadata can be edited in place by clicking on the ``+`` icon beside the metadata attribute. More than one extended metadata value can be added for each attribute, if the attribute is a string attribute.
 
 Metadata values can also be removed, and metadata templates can be removed from files/directories using the Data Set service.
