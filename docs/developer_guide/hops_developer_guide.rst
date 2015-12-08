@@ -6,7 +6,7 @@ Hops Developer Guide
 Extending HopsFS INode metadata 
 -------------------------------
 
-For the implementation of new features, it is often necessary to modify INode in order to store additional metadata. With Hops-HDFS, this can be simply achieved by adding a new table with a foreign reference to INode. Thus, the original data structure does not need to be modified and old code paths not requiring the additional metadata are not burdened with additional reading costs. This guide gives a walkthrough on how to add additional INode-related metadata.
+For the implementation of new features, it is often necessary to modify the ``hdfs_inodes`` table or add new tables in order to store extended metadata. With Hops-HDFS, this can be simply achieved by adding a new table with a foreign key that refers to ``hdfs_inodes``. Adding new tables has the benefit that the original data structures do not need to be modified and old code paths not requiring the additional metadata are not burdened with additional reading costs. This guide gives a walkthrough on how to add additional INode-related metadata.
 
 Example use case
 ~~~~~~~~~~~~~~~~
@@ -42,7 +42,7 @@ Additionally we will make the table and column names available to the Java code 
 
 :Note: `Don't forget to update your database with the new schema.`
 
-Defining the entity class
+Defining the Entity Class
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Having defined the database table, we will need to defining an entity class representing our database entries in the java code. We will do this by adding the following AccessTimeLogEntry class *hops-metadata-dal* project.
@@ -354,11 +354,12 @@ Having defined an ``EntityContext``, we need to make it available through the En
 Using custom locks
 ~~~~~~~~~~~~~~~~~~
 
-YOur metadata extension relies on the inode object to be correctly locked in order to prevent concurrent modifications. However, it might be necessary to modify attributes without locking the INode in advance. In that case, one needs to add a new lock type. A good place to get started with this is looking at the ``Lock``, ``HdfsTransactionLocks``, ``LockFactory`` and ``HdfsTransactionalLockAcquirer`` classes in the ``hops`` project.
+Your metadata extension relies on the inode object to be correctly locked in order to prevent concurrent modifications. However, it might be necessary to modify attributes without locking the INode in advance. In that case, one needs to add a new lock type. A good place to get started with this is looking at the ``Lock``, ``HdfsTransactionLocks``, ``LockFactory`` and ``HdfsTransactionalLockAcquirer`` classes in the ``hops`` project.
 
 
-Erasure Coding
---------------
+
+Erasure Coding API Access
+----------------------------
 
 
 HopsFS provides erasure coding functionality in order to decrease storage costs without the loss of high-availability. Hops offers a powerful, on a per file basis configurable, erasure coding API. Codes can be freely configured and different configurations can be applied to different files. Given that Hops monitors your erasure-coded files directly in the NameNode, maximum control over encoded files is guaranteed. This page explains how to configure and use the erasure coding functionality of Hops. Apache HDFS stores 3 copies of your data to provide high-availability. So, 1 petabyte of data actually requires 3 petabytes of storage. For many organizations, this results in enormous storage costs. HopsFS also supports erasure coding to reduce the storage required by by 44% compared to HDFS, while still providing high-availability for your data.
