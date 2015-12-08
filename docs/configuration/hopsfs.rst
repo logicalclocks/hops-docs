@@ -23,12 +23,12 @@ Leader election service is used by HopsFS and Hops-YARN. The configuration param
 NameNode Cache 
 --------------
 
-NameNode cache configuration parameters are defined in ``hdfs-site.xml`` file. NameNode cache configuration parameters are
+The NameNode cache configuration parameters are defined in ``hdfs-site.xml`` file. The NameNode cache configuration parameters are:
 
 * **dfs.resolvingcache.enabled**: (true/false)
   Enable/Disables the cache for the NameNode.
 
-* **dfs.resolvingcache.type**: Each NameNode caches the inodes metadata in a local cache for quick path resolution. We support different implementations for the cache i.e. INodeMemcache, PathMemcache, OptimalMemcache and InMemory.
+* **dfs.resolvingcache.type**: Each NameNode caches the inodes metadata in a local cache for quick path resolution. We support different implementations for the cache, i.e., INodeMemcache, PathMemcache, OptimalMemcache and InMemory.
 
     * **INodeMemcache**: stores individual inodes in Memcached. 
     * **PathMemcache**: is a course grain cache where entire file path (key) along with its associated inodes objects are stored in the Memcached.
@@ -47,7 +47,7 @@ For INodeMemcache/PathMemcache/OptimalMemcache following configurations paramete
   It determines when the memcached entries expire. The default value is 0, that is, the entries never expire. Whenever the NameNode encounters an entry that is no longer valid, it updates it.
 
 
-InMemory cache specific configurations are
+The InMemory cache specific configurations are:
 
 * **dfs.resolvingcache.inmemory.maxsize**:
   Max number of entries that could be stored in the cache before the LRU algorithm kicks in.
