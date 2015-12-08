@@ -38,13 +38,7 @@ the database (MySQL Clusters).
 First Login with 2-Factor Authentication
 ----------------------------------------
 
-First, you need to setup 2-factor authentication for the default account:
-::
-   
-    username: admin@kth.se
-    password: admin
-
-Login to the target machine where HopsWorks is installed, and run:
+For 2-Factor Authentication, you cannot login directly via the web browser. You first need to generate your 2nd factor credentials for the default account (`admin@kth.se`, `admin`). Login to the target machine where HopsWorks is installed, and run:
 
 .. code-block:: bash
    
@@ -62,11 +56,36 @@ It should return something like:
     +--------------+------------------+
 
 
-You now need to start ``Google Authenticator`` on your smartphone. If you don't have 'Google Authenticator' installed, install it from your app store. It is available for free on  Android, iPhone, and Windows Phone (but called Microsoft Authenticator) platforms.
 
-Now, add an account to Google Authenticator, and add as the account email ``admin@kth.se`` and add as the key, the secret value returned by ``/bin/hopsworks-2fa``, that is 'V3WBPS4G2WMQ53VA'. This should register your second factor on your phone.
+.. figure:: ../imgs/authenticator-provided-key.png
+    :alt: Google Authenticator Provided Key
+    :scale: 50
+    :align: center
+    :figclass: align-center
+    
+    Google Authenticator - Enter the Provided Key 'V3WBPS4G2WMQ53VA' for 'admin@kth.se' as a Time-Based Key.
 
-You can now go to the start-page on Google Authenticator. On HopsWorks login page, you will need to supply the 6-digit number shown for ``admin@kth.se`` when on the login page, along with the username and password.
+    
+You now need to start ``Google Authenticator`` on your smartphone. If you don't have 'Google Authenticator' installed, install it from your app store. It is available for free on:
+
+* Android as ``Google Authenticator``
+   
+* iOS (Apple iPhone) as ``OTP Auth``), and
+
+* Windows Phone as ``Microsoft Authenticator``).
+
+After starting your Google Authenticator application, create an account (``set up account``), and add as the account email the default installation email address (``admin@kth.se``) and add as the ``provided key`` , the secret value returned by ``/bin/hopsworks-2fa`` (for example, 'V3WBPS4G2WMQ53VA'). The key is a ``time-based`` key, if you need to specify the type of provided key. This should register your second factor on your phone.
+
+You can now go to the start-page on Google Authenticator to read the six-digit one-time password (OTP). Note that the OTP is updated every 30 seconds. On HopsWorks login page, you will need to supply the 6-digit number (OTP) shown for ``admin@kth.se`` when on the login page, along with the username and password.
+
+.. figure:: ../imgs/login-2fa.png
+    :alt: HopsWorks Login Page with Two-factor Authentication
+    :scale: 100
+    :align: center
+    :figclass: align-center
+    
+    HopsWorks Two-Factor Authentication Login Page
+
 
 
 Register a New Account on HopsWorks

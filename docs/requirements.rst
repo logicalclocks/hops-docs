@@ -3,6 +3,8 @@
 System Requirements
 **********************
 
+The Hops stack can be installed on both cloud platforms and on-premises (baremetal). The recommended machine specifications given below do not take into account whether local storage is used or a cloud storage platform is used. For best performance due to improved *data locality*, we recommend local storage (instance storage in Amazon Web Services (AWS)/EC2).
+
 
 Recommended Setup
 =================
@@ -12,7 +14,9 @@ We recommend either Ubuntu/Debian or CentOS/Redhat as operating system (OS), wit
 * DataNodes/NodeManagers: a set of commodity servers in a 12-24 SATA hard-disk JBOD setup;
 * NameNodes/ResourceManagers/NDB-database-nodes/HopsWorks-app-server: a homogeneous set of commodity (blade) servers with good CPUs, a reasonable amount of RAM, and one or two hard-disks;
 * MySQL Cluster Data nodes: a homogeneous set of commodity (blade) servers with a good amount of RAM (up to 512 GB) and good CPU(s). A good quality SATA disk is needed to store database logs. SSDs can also be used, but are typically not required.
-* Hopsworks: a single commodity (blade) server with a good amount of RAM (up to 128 GB) and good CPU(s). A good quality disk is needed to store logs. Either SATA or a large SSD can be used.  
+* Hopsworks: a single commodity (blade) server with a good amount of RAM (up to 128 GB) and good CPU(s). A good quality disk is needed to store logs. Either SATA or a large SSD can be used.
+
+For cloud platforms, such as AWS, we recommend using enhanced networking for the MySQL Cluster Data Nodes and the NameNodes/ResourceManagers. High latency connections between these machines will negatively affect system throughput.
 
 Entire Hops platform on a single baremetal machine
 ========================================
