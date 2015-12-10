@@ -9,10 +9,10 @@ Activating users
 ************************
 
 You, the administrator, have to approve each new user account before the user is able to login to HopsWorks.
-When you approve the account, you have to assign a role to a user as either a:
+When you approve the account, you have to assign a role to a user as either an:
 
- * normal user
- * administrator user
+ * user
+ * administrator
   
 Users that are assigned an **administrator** role will be granted privileges to login to the **administrator application** and control users and the system. Be careful in which users are assigned an **administrator** role. The vast majority of users will be assigned a **user** role.
    
@@ -38,6 +38,11 @@ User receives email, but fails to validate the account
 * Is the Glassfish webserver running and hopsworks.war application installed?
 * Is MySQL Cluster running?
 
+Configuring email for HopsWorks
+******************************************************
+
+Login to Glassfish, see :ref:`glassfish`, and update the JavaMail settings to set the email account, password, SMTP server IP and port, and whether SSL/TLS are used.
+  
 User successfully validates the account, but still can't login
 ************************************************************************
 
@@ -131,6 +136,8 @@ From the Yubikey OTP tool program, you will have to opy the Public Identity and 
     Copy the Public Identity and Secret Key fields from Yubikey OTP tool and enter them into the corresponding fields in the HopsWork's Administration UI when you validate a user.
 
 
+.. _glassfish:
+    
 Glassfish Adminstration
 -----------------------
 

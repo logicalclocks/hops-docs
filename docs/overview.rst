@@ -43,7 +43,7 @@ Revision History
 
     \newpage
 
-Hops Introduction
+What is Hops?
 **********************       
 
 Hops is a next-generation distribution of Apache Hadoop that supports:

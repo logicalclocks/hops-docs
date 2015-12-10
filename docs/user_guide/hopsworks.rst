@@ -6,12 +6,33 @@ If you are using 2-Factor authentication, jump ahead to "First Login with 2-Fact
 First Login (no 2-Factor Authentication)
 -----------------------------------------
 
+.. figure:: ../imgs/login.png
+    :alt: HopsWorks Login Page
+    :width: 300px
+    :height: 334px 
+    :scale: 80
+    :align: center
+    :figclass: align-center
+    
+    HopsWorks Login Page
+  
+
 On initial installation, you can login with the default username and password.
 ::
    
     username: admin@kth.se
     password: admin
 
+If you manage to login successfully, you will arrive on the landing page:
+
+
+    :align: center
+    :figclass: align-center
+    
+    HopsWorks Landing (Home) Page
+
+In the landing page, you can see a box for projects, a search bar (to find projects and data sets), an audit trail, and user menu (to change user settings or log out).
+    
 **If it goes wrong**
 
 If login does not succeed, something has gone wrong during installation. The possible sources of error and the Web Application Server (Glassfish) and
@@ -24,17 +45,11 @@ the database (MySQL Clusters).
 * Investigate Glassfish misconfiguration problems. Is Glassfish running? is the hopsworks.war application installed? Are the JDBC connections working? Is JavaMail configured correctly?
 * Investigate MySQL Cluster misconfiguration problems. Are the mgm server, data nodes, and MySQL server running? Do the hops and hopsworks databases exist and are they populated with tables and rows? If not, something went wrong during installation.
 
-.. figure:: ../imgs/login.png
-    :alt: HopsWorks Login Page
-    :width: 300px
-    :height: 334px 
-    :scale: 80
-    :align: center
-    :figclass: align-center
-    
-    HopsWorks Login Page
+
+.. raw:: latex
+
+    \newpage
   
-	 
 First Login with 2-Factor Authentication
 ----------------------------------------
 
@@ -56,14 +71,13 @@ It should return something like:
     +--------------+------------------+
 
 
-
 .. figure:: ../imgs/authenticator-provided-key.png
     :alt: Google Authenticator Provided Key
     :scale: 50
     :align: center
     :figclass: align-center
     
-    Google Authenticator - Enter the Provided Key 'V3WBPS4G2WMQ53VA' for 'admin@kth.se' as a Time-Based Key.
+    Google Authenticator - Enter the Provided Key **V3WBPS4G2WMQ53VA** for `admin@kth.se` as a Time-Based Key.
 
     
 You now need to start ``Google Authenticator`` on your smartphone. If you don't have 'Google Authenticator' installed, install it from your app store. It is available for free on:

@@ -3,7 +3,7 @@ HopsFS User Guide
 
 HopsFS consist of the following types of nodes: NameNodes, DataNodes, and Clients. All the configurations parameters are defined in ``core-site.xml`` and ``hdfs-site.xml`` files. 
 
-Currently Hops only supports non-secure mode of operations. As Hops is a fork of the Hadoop code  base, most of the `Hadoop configuration parameters`_ and features are supported in Hops. In the following sections we highlight differences between HDFS and HopsFS and point out new configuration parameters and the parameters that are not supported due to different metadata management scheme . 
+Currently Hops only supports non-secure mode of operations. As Hops is a fork of the Hadoop code  base, most of the `Hadoop configuration parameters` and features are supported in Hops. In the following sections we highlight differences between HDFS and HopsFS and point out new configuration parameters and the parameters that are not supported due to different metadata management scheme . 
 
 .. _Unsupported_Features:
 Unsupported HDFS Features
@@ -23,7 +23,7 @@ HopsFS is a drop-in replacement for HDFS and it supports most of the `configurat
 * **NameNode Federation and ViewFS**
 	In HDFS the namespace is statically partitioned among multiple namenodes to support large namespace. In essence these are independent HDFS clusters where ViewFS provides a unified view of the namespace. HDFS Federation and ViewFS are no longer supported as the namespace in HopsFS scales to billions of files and directories. Thus **dfs.nameservices.*** configuration parameters are not supported in HopsFS.
 * **ZooKeeper**
-	ZooKeeper is no longer required as the coordination and membership service. A coordination and membership management `service`_ is implemented using the transactional shared memory (NDB). 
+	ZooKeeper is no longer required as the coordination and membership service. A coordination and membership management `service` is implemented using the transactional shared memory (NDB). 
 	
 
 As HopsFS is under heavy development some features such as rolling upgrades and snapshots are not yet supported. These features will be activated in future releases. 
@@ -96,13 +96,13 @@ HopsFS Clients
 --------------
 For load balancing the clients uniformly distributes the filesystem operations among all the NameNodes in the system. HopsFS clients support ``RANDOM``, ``ROUND_ROBIN``, and ``RANDOM_STICKY`` policies to distribute the filesystem operations among the NameNodes. Random and round-robin policies are self explanatory. Using sticky policy the filesystem client randomly picks a NameNode and forwards all subsequent operation to the same NameNode. If the NameNode fails then the clients randomly picks another NameNode. This maximizes the NameNode cache hits. 
 
-In HDFS the client connects to the ``fs.defaultFS`` NameNode. In HopsFS the client obtains the list of active NameNodes from the NameNode defined using ``fs.defaultFS`` parameter. The client then uniformly distributes the subsequent filesystem operations among the list of NameNodes. 
+In HDFS the client connects to the ``fs.defaultFS`` NameNode. In HopsFS, clients obtain the list of active NameNodes from the NameNode defined using ``fs.defaultFS`` parameter. The client then uniformly distributes the subsequent filesystem operations among the list of NameNodes. 
 
 In ``core-site.xml`` we have introduced a new parameter ``dfs.namenodes.rpc.addresses`` that holds the rpc address of all the NameNodes in the system. If the NameNode pointed by ``fs.defaultFS`` is dead then the client tries to connect to a NameNode defined by the ``dfs.namenodes.rpc.addresses``. As long as the NameNode addresses defined by the two parameters contain at least one valid address the client is able to communicate with the HopsFS. A detailed description of all the new client configuration parameters are :ref:`here<client-conf-parameters>`.
 
 
 Compatibility with HDFS Clients
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+---------------------------------------
 
 HopsFS is fully compatible with HDFS clients, although they do not distribute operations over NameNodes, as they assume there is a single active NameNode. 
 
@@ -120,10 +120,10 @@ In HopsFS the commands and the APIs for quota management are identical to HDFS. 
 
   HopsFS Quota Update
   
-For write heavy workloads a user might be able to consume more diskspace/namespace than it is allowed before the filesystem recognizes that the quota limits have been violated. After the quota updates are applied the filesystem will not allow the use to further violate the quota limits. In industry write operation are a tiny fraction of the workload. Additionally, considering the size of the filesystem we think this is a small trade off for achieving high throughput for read only operation that often comprise 90-95% a typical filesystem workload. 
+For write heavy workloads a user might be able to consume more diskspace/namespace than it is allowed before the filesystem recognizes that the quota limits have been violated. After the quota updates are applied the filesystem will not allow the use to further violate the quota limits. In most existing Hadoop clusters, write operations are a small fraction of the workload. Additionally, considering the size of the filesystem we think this is a small trade off for improving throughput for read operations that typically comprise 90-95% a typical filesystem workload. 
 
 
-In HopsFS asynchronous quota updates are highly optimized. We bath the quota updates wherever possible.  :ref:`Here <quota-parameters>` is a complete list of parameters that determines how aggressively the quota updates are applied. 
+In HopsFS asynchronous quota updates are highly optimized. We batch the quota updates wherever possible.  :ref:`In the linked section  <quota-parameters>` there is a complete list of parameters that determines how aggressively asynchronous quota updates are applied.
 
 
 
