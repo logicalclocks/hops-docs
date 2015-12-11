@@ -85,6 +85,6 @@ Hops Documentation
    :glob:
    :caption: Contributers
       
-   authors
+..   authors
 
 
