@@ -154,9 +154,7 @@ HopsFS is a new implementation of the the Hadoop Filesystem (HDFS) based on `Apa
 
 .. figure:: imgs/hopsfs-arch.png
    :alt: HopsFS Architecture
-   :scale: 80
-   :width: 370
-   :height: 303
+   :scale: 100
    :figclass: align-center
 
    HopsFS Architeture.

@@ -44,7 +44,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Hops'
+project = u'HopsWorks'
 copyright = u'2015, www.hops.io'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -204,7 +204,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  ('index', 'hops.tex', u'Hops Documentation',
+  ('index', 'hops.tex', u'HopsWorks Documentation',
    u'www.hops.io', 'report'),
 ]
 
@@ -265,4 +265,4 @@ texinfo_domain_indices = False
 texinfo_show_urls = 'footnote'
 
 # If true, do not generate a @detailmenu in the "Top" node's menu.
-texinfo_no_detailmenu = True
+#texinfo_no_detailmenu = True
