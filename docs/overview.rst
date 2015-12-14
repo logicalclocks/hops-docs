@@ -171,7 +171,7 @@ HopsYARN introduces a new metadata layer for Apache YARN, where the cluster stat
 
 .. figure:: ./imgs/hops-yarn.png
    :alt: Hops-YARN Architecture
-   :scale: 65
+   :scale: 75
    :width: 600
    :height: 400
    :figclass: align-center
