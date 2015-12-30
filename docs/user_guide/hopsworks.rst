@@ -26,6 +26,9 @@ On initial installation, you can login with the default username and password.
 If you manage to login successfully, you will arrive on the landing page:
 
 
+.. figure:: ../imgs/landing-page.png
+    :alt: HopsWorks Landing Page
+    :scale: 80
     :align: center
     :figclass: align-center
     
