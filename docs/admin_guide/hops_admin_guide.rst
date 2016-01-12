@@ -143,10 +143,13 @@ Glassfish Adminstration
 
 If you didn't supply your own username/password for Glassfish administration during installation, you can login with the default username and password for Glassfish:
 
-:: 
-  https://<hostname>:4848
-  username: adminuser
-  password: adminpw
++------------+-------------------------+
+| Glassfish URL| https://localhost:4848|
++============+=========================+
+| username     | adminuser             |
++------------+-------------------------+
+| password     | adminpw               |
++------------+-------------------------+
 
 Users are referred to Glassfish documentation for more information regarding configuring Glassfish.
 

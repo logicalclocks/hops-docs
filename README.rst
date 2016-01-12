@@ -3,24 +3,11 @@ Template
 
 $project is a next-generation distribution of Apache Hadoop.
 
-Look how easy it is to use:
+Build the documentation
+------------------------
 
-    import project
-    # Get your stuff done
-    project.do_stuff()
-
-Features
---------
-
-- Be awesome
-- Make things faster
-
-Installation
-------------
-
-Install $project by running:
-
-    install project
+   cd docs
+   make latexpdf
 
 Contribute
 ----------
