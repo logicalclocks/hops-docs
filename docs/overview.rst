@@ -154,9 +154,7 @@ HopsFS is a new implementation of the the Hadoop Filesystem (HDFS) based on `Apa
 
 .. figure:: imgs/hopsfs-arch.png
    :alt: HopsFS Architecture
-   :scale: 80
-   :width: 370
-   :height: 303
+   :scale: 100
    :figclass: align-center
 
    HopsFS Architeture.
@@ -173,7 +171,7 @@ HopsYARN introduces a new metadata layer for Apache YARN, where the cluster stat
 
 .. figure:: ./imgs/hops-yarn.png
    :alt: Hops-YARN Architecture
-   :scale: 65
+   :scale: 75
    :width: 600
    :height: 400
    :figclass: align-center
