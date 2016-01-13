@@ -15,7 +15,7 @@ Hops Documentation
 .. toctree::
    :maxdepth: 2
    :glob:
-   :caption: Installation
+..   :caption: Installation
       
    installation_guide/hops_auto_installation_guide.rst
 
@@ -23,7 +23,7 @@ Hops Documentation
 .. toctree::
    :maxdepth: 2
    :glob:
-   :caption: User Guide
+..   :caption: User Guide
       
    user_guide/hopsworks
    user_guide/hopsfs
@@ -34,7 +34,7 @@ Hops Documentation
 .. toctree::
    :maxdepth: 2
    :glob:
-   :caption: Administrator Guide   
+..   :caption: Administrator Guide   
    
    admin_guide/hops_admin_guide
 
@@ -47,7 +47,7 @@ Hops Documentation
 .. toctree::
    :maxdepth: 2
    :glob:
-   :caption: Configuration
+..   :caption: Configuration
 
    configuration/hopsfs
    configuration/hopsyarn 
@@ -58,7 +58,7 @@ Hops Documentation
 .. toctree::
    :maxdepth: 2
    :glob:
-   :caption: Developer Guide   
+..   :caption: Developer Guide   
    
    developer_guide/hops_developer_guide
 
@@ -68,7 +68,7 @@ Hops Documentation
 .. toctree::
    :maxdepth: 2
    :glob:
-   :caption: License Compatibility
+..   :caption: License Compatibility
       
    licensing
 
