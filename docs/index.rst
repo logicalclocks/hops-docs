@@ -1,8 +1,3 @@
-.. Read the Docs Template documentation master file, created by
-   sphinx-quickstart on Tue Aug 26 14:19:49 2014.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
 Hops Documentation
 ==================================================
 
@@ -10,7 +5,6 @@ Hops Documentation
 
 .. toctree::
    :maxdepth: 2
-   :caption: Overview
 
    overview
    requirements
@@ -20,7 +14,6 @@ Hops Documentation
 .. toctree::
    :maxdepth: 2
    :glob:
-   :caption: Installation
       
    installation_guide/hops_auto_installation_guide.rst
 
@@ -28,29 +21,38 @@ Hops Documentation
 .. toctree::
    :maxdepth: 2
    :glob:
-   :caption: User Guide
       
    user_guide/hopsworks
    user_guide/hopsfs
    user_guide/hopsyarn
 
-.. _hops-configurations:
+.. _hops-admin-guide:
+   
+.. toctree::
+   :maxdepth: 2
+   :glob:
+   
+   admin_guide/hops_admin_guide
+
+
+
+
+   
+.. _hops-configuration:
 
 .. toctree::
    :maxdepth: 2
    :glob:
-   :caption: Configuration
 
    configuration/hopsfs
    configuration/hopsyarn 
-
+   
 
 .. _hops-dev-guide:
    
 .. toctree::
    :maxdepth: 2
    :glob:
-   :caption: Developer Guide   
    
    developer_guide/hops_developer_guide
 
@@ -60,18 +62,16 @@ Hops Documentation
 .. toctree::
    :maxdepth: 2
    :glob:
-   :caption: License Compatibility
       
    licensing
 
 
-.. _hops-contributers:
+.. .. _hops-contributers:
    
-.. toctree::
-   :maxdepth: 2
-   :glob:
-   :caption: Contributers
+.. .. toctree::
+..   :maxdepth: 2
+..   :glob:
       
-   authors
+.. ..   authors
 
 
