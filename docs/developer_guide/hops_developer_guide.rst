@@ -189,7 +189,7 @@ Having defined the interface, we will need to implement it using ndb to read and
 
   
 
-Having defined a concrete implementation of the DataAccess, we need to make it available to the ``EntityManager`` by adding it to ``HdfsStorageFactory`` in the ``hops-metadata-dal-impl-ndb`` project. Edit its ``initDataAccessMap()`` function by adding the newly defined DataAccess as following.
+Having defined a concrete implementation of the DataAccess, we need to make it available to the ``EntityManager`` by adding it to ``NdbStorageFactory`` in the ``hops-metadata-dal-impl-ndb`` project. Edit its ``initDataAccessMap()`` function by adding the newly defined DataAccess as following.
 
 .. code-block:: java
 		
