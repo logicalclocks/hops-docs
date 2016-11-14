@@ -303,6 +303,31 @@ The following is a brief description of the Chef cookbooks that we have develope
 
    * This cookbook contains recipes for installing the Apache Flink jobmanager, taskmanager, and a YARN client.
 
+* hopshadoop/dr-elephant-chef
+
+   * This cookbook contains recipes for installing Dr Elephant.
+
+* hopshadoop/livy-chef
+
+   * This cookbook contains recipes for installing Livy REST Server for Spark.
+
+* hopshadoop/epipe-chef
+
+   * This cookbook contains recipes for installing ePipe, exporting HopsFS' namespace to Elasticsearch for free-text search of the HDFS namespace.
+
+* hopshadoop/dela-chef
+
+   * This cookbook contains recipes for installing dela, the peer-to-peer tool for sharing datasets in Hopsworks.
+
+* hopshadoop/hopsmonitor-chef
+
+   * This cookbook contains recipes for installing tools for logging streaming applications - Kibana and Logstash.
+
+* hopshadoop/tensorflow-chef
+
+   * This cookbook contains recipes for installing tensorflow to work with Hopsworks and Zeppelin.
+  
+  
 
 BiobankCloud Chef Cookbooks
 --------------------------
@@ -312,3 +337,6 @@ BiobankCloud Chef Cookbooks
 
 * biobankcloud/hiway-chef
   This cookbook contains recipes for installing HiWAY, Cuneiform, the BiobankCloud workflows, and some example workflows.
+
+* hopshadoop/shibboleth-chef
+  This cookbook contains a default recipe for installing Shibboleth.
