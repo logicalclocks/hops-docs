@@ -38,6 +38,7 @@ Revision History
 
 
        "Nov 2015", "2.4.0", "First release of Hops Documentation."
+       "Jan 2017", "2.7.3", "Updated version of Hops and HopsWorks."
 
 .. raw:: latex
 
@@ -54,7 +55,7 @@ Hops is a next-generation distribution of Apache Hadoop that supports:
 * Extensible metadata that supports free-text search using Elasticsearch,
 * YARN quotas for projects.    
 
-The key innovation that enables these features is a new architecture for scale-out, consistent metadata for both the Hadoop Filesystem (HDFS) and YARN (Hadoop's Resource Manager). The new metadata layer enables us to support multiple stateless NameNodes and TBs of metadata stored in MySQL Clustepr Network Database (NDB). NDB is a distributed, relational, in-memory, open-source database. This enabled us to provide services such as tools for designing extended metadata (whose integrity with filesystem data is ensured through foreign keys in the database), and also extending HDFS' metadata to enable new features such as erasure-coded replication, reducing storage requirements by 50\% compared to triple replication in Apache HDFS. Extended metadata has enabled us to implement quota-based scheduling for YARN, where projects can be given quotas of CPU hours/minutes and memory, thus enabling resource usage in Hadoop-as-a-Service to be accounted and enforced.
+The key innovation that enables these features is a new architecture for scale-out, consistent metadata for both the Hadoop Filesystem (HDFS) and YARN (Hadoop's Resource Manager). The new metadata layer enables us to support multiple stateless NameNodes and TBs of metadata stored in MySQL Cluster Network Database (NDB). NDB is a distributed, relational, in-memory, open-source database. This enabled us to provide services such as tools for designing extended metadata (whose integrity with filesystem data is ensured through foreign keys in the database), and also extending HDFS' metadata to enable new features such as erasure-coded replication, reducing storage requirements by 50\% compared to triple replication in Apache HDFS. Extended metadata has enabled us to implement quota-based scheduling for YARN, where projects can be given quotas of CPU hours/minutes and memory, thus enabling resource usage in Hadoop-as-a-Service to be accounted and enforced.
 
 Hops builds on YARN to provide support for application and resource management. All YARN frameworks can run on Hops, but currently we only provide UI support for general data-parallel processing frameworks such as Apache Spark, Apache Flink, and MapReduce. We also support frameworks used by BiobankCloud for data-parallel bioinformatics workflows, including SAASFEE and Adam. In future, other frameworks will be added to the mix.
 
@@ -69,6 +70,8 @@ HopsWorks provides first-class support for DataSets and Projects. Each DataSet h
 
 -  *Resources*: contains programs and small amounts of data
 -  *Logs*: contains outputs (stdout, stderr) for YARN applications
+-  *notenook*: contains Apache Zeppelin saved notebooks along with
+   their configuration
 
 
 HopsWorks implements dynamic role-based access control for projects. That is, users do not have static global privileges. A user's privileges depend on what the user's active project is. For example, the user may be a *Data Owner* in one project, but only a *Data Scientist* in another project. Depending on which project is active, the user may be a *Data Owner* or a *Data Scientist*.
@@ -108,9 +111,13 @@ Users
 -----
 
 * Users authenticate with a valid email address
-  * An optional 2nd factor can optionally be enabled for authentication. Supported devices are smartphones (Android, Apple, Windows) or Yubikey usb sticks.
+  * A 2nd factor can optionally be enabled for
+    authentication. Supported devices are smartphones (Android, Apple,
+    Windows) with an one-time password generator such as `Google Authenticator`_.
 
-  
+
+.. _Google Authenticator: https://support.google.com/accounts/answer/1066447?hl=en
+
 Projects and DataSets
 ---------------------
 
@@ -127,13 +134,13 @@ Analytics
 
 HopsWorks provides two services for executing applications on YARN:
 
-* Apache Zepplin: interactive analytics with for Spark, Flink, and other data parallel frameworks;
+* Apache Zepplin: interactive analytics for Spark, Flink, and other data parallel frameworks;
 * YARN batch jobs: batch-based submission (including Spark, MapReduce, Flink, Adam, and SaasFee);
 
 MetaData Management
 -------------------
 
-HopsWorks provides support for the design and entry of extended metadata for files and directorsy:
+HopsWorks provides support for the design and entry of extended metadata for files and directories:
 
 * design your own extended metadata using an intuitive UI;
 * enter extended metadata using an intuitive UI.
@@ -146,11 +153,23 @@ HopsWorks integrates with Elasticsearch to provide free-text search for files/di
 * `Global free-text search` for projects and DataSets in the filesystem;  
 * `Project-based free-text search` of all files and extended metadata within a project.
 
-   
+
+Logs aggregation
+----------------
+
+HopsWorks provides Logstash/Kibana-as-a-Service for logs aggregation
+and visualization.
+
+Spark metrics
+-------------
+
+Monitor and debug your Spark applications with our Graphite/Graphana
+solution for real-time metrics visualization.
+
 HopsFS
 ******
 
-HopsFS is a new implementation of the the Hadoop Filesystem (HDFS) based on `Apache Hadoop`_ 2x, that supports multiple stateless NameNodes, where the metadata is stored in an in-memory distributed database (NDB). HopsFS enables NameNode metadata to be both customized and analyzed, because it can be easily accessed via SQL or the native API (NDB API).
+HopsFS is a new implementation of the the Hadoop Filesystem (HDFS) based on `Apache Hadoop`_ 2.x, that supports multiple stateless NameNodes, where the metadata is stored in an in-memory distributed database (NDB). HopsFS enables NameNode metadata to be both customized and analyzed, because it can be easily accessed via SQL or the native API (NDB API).
 
 .. figure:: imgs/hopsfs-arch.png
    :alt: HopsFS Architecture
@@ -187,6 +206,12 @@ We have extended Zeppelin with access control, ensuring only users in the same p
 
 **Apache Flink Streaming**
 Apache Flink provides a dataflow processing model and is highly suitable for stream processing. We support it in HopsWorks.
+
+**Apache Kafka**
+Apache Kafka is used as a broker for streaming applications. We have
+integrated Kafka to our project based model where only members of a
+project can produce/consume to/from a specific Kafka topic. Also, with our highly
+intuitive UI you can customize ACLs for your topic.
 
 **Other Services**
 HopsWorks is a web application that runs on a highly secure Glassfish server. ElasticSearch is used to provide free-text search services. MySQL

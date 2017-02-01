@@ -23,18 +23,23 @@ On initial installation, you can login with the default username and password.
     username: admin@kth.se
     password: admin
 
-If you manage to login successfully, you will arrive on the landing page:
+Upon successful login, you will arrive on the landing page:
 
 
-.. figure:: ../imgs/landing-page.png
+.. figure:: ../imgs/landing-page-new.png
     :alt: HopsWorks Landing Page
-    :scale: 80
+    :scale: 100
     :align: center
     :figclass: align-center
     
     HopsWorks Landing (Home) Page
 
-In the landing page, you can see a box for projects, a search bar (to find projects and data sets), an audit trail, and user menu (to change user settings or log out).
+In the landing page, on the left you can see the Guided tours which
+will guide you through launching a SparkPi application. On the top center
+part is the search bar where you can search for public projects and
+datasets. On the right side, your Projects are listed where you can
+click and select them. Finally, on the upper right corner is your
+personal menu and administration panel, and the notifications menu.
     
 **If it goes wrong**
 
@@ -43,10 +48,23 @@ the database (MySQL Clusters).
 
 **Actions**:
 
-* Double-check that system meets the minimum system requirements for HopsWorks. Is there enough available disk space and memory?
+* Double-check that system meets the minimum system requirements for
+  HopsWorks. Is there enough available disk space and memory?
+* Log in to Glassfish and make sure both hopsworks-ear and
+  hopsworks-web are deployed.
+* Default Glassfish credentials are:
+  ::
+     username: adminuser
+     password: adminpw
+     
+* Investigate Glassfish misconfiguration problems. Glassfish log file
+  is located at ``/srv/hops/domain1/logs/server.log``. Is Glassfish running? Are the JDBC connections working? Is JavaMail configured correctly?
+* Investigate MySQL Cluster misconfiguration problems. Are the mgm
+  server, data nodes, and MySQL server running? Do the hops and
+  hopsworks databases exist and are they populated with tables and
+  rows? If not, something went wrong during installation.
 * Re-run the installation, as something may have gone wrong during installation.
-* Investigate Glassfish misconfiguration problems. Is Glassfish running? is the hopsworks.war application installed? Are the JDBC connections working? Is JavaMail configured correctly?
-* Investigate MySQL Cluster misconfiguration problems. Are the mgm server, data nodes, and MySQL server running? Do the hops and hopsworks databases exist and are they populated with tables and rows? If not, something went wrong during installation.
+
 
 
 .. raw:: latex
@@ -191,7 +209,7 @@ Contact an administrator or go to the Administration Guide section of this docum
 *User receives the validate-your-email message, but is not able to validate the account*
 
 * Can you successfully access the HopsWorks homepage? If not, there may be a problem with the network or the webserver may be down.
-* Is the Glassfish webserver running and hopsworks.war application installed, but you still can't logon? It may be that MySQL Cluster is not running.
+* Is the Glassfish webserver running and hopsworks-war, hopsworks-ear application installed, but you still can't logon? It may be that MySQL Cluster is not running.
 * Check the Glassfish logs for problems and the Browser logs.
     
 
@@ -211,8 +229,49 @@ Contact your system administrator who will re-enable your account.
 Create a New Project
 --------------------
 
-You can create a project by clicking on the ``New`` button in the *Projects* box. This will pop-up a dialog, in which you enter the project name, an optional description, and select an optional set of services to be used in the project. You can also select an initial set of members for the project, who will be given the role of Data Scientist in the project. Member roles can later be updated in the Project settings by the `project owner` or a member with the `data owner` role.
+You can create a project by clicking on the ``New`` button in the
+*Projects* box. This will pop-up a dialog, in which you enter the
+project name, an optional description, and select an optional set of
+services to be used in the project. You can also select an initial set
+of members for the project, who will be given the role of Data
+Scientist in the project. Member roles can later be updated in the
+Project settings by the `project owner` or a member with the `data
+owner` role. A valid project name should not contain spaces or special
+characters such as __, /, \\, å, ä, etc.
 
+As soon as you have created a new project and click on it on the
+*Projects* box, you will see the project main page as illustrated in
+the picture below.
+
+.. figure:: ../imgs/project-main.png
+    :alt: Project main page
+    :scale: 100
+    :align: center
+    :figclass: align-center
+    
+    Project main page
+
+.. figure:: ../imgs/project-menu.png
+    :alt: Project Menu
+    :scale: 70
+    :align: center
+    :figclass: align-center
+    
+    Project Menu
+
+On the left-hand side of the project main page is the Project
+Menu. On the top section are the currently active services for your
+project such as Zeppelin, the job launcher UI, Kafka etc In the middle
+section is the Data Sets browser menu where you can explore your
+project's datasets. Finally, on the bottom section is various settings
+for the project. From the ``Settings`` menu you can modify the
+description of the project, the data retention period and see some
+statistics. From the ``Members`` menu you can add new members to your
+project and share your datasets or remove existing ones. Using the
+``Metadata Designer`` you can attach more intuitive metadata to your
+project. Also, in the project's menu you can always see the current
+cluster utilization.
+    
 Delete a Project
 ----------------
 
@@ -231,7 +290,21 @@ Data Set Browser
 
 The Data Set tab enables you to browse Data Sets, files and directories in this project.
 It is mostly used as a file browser for the project's HDFS subtree. You cannot navigate to
-directories outside of this project's subtree.
+directories outside of this project's subtree. For a quick preview of
+a file, go to the ``Datasets`` menu, navigate to a file, right click
+on that file and choose the ``Preview`` option. A pop-up window will
+appear with a small preview of the file. The picture below illustrates the Dataset Browser
+with a new sample dataset. You can add new datasets pressing the
+``Create New Dataset`` button. You can edit the datasets by right
+clicking on them. A README file is auto-generated for every dataset.
+
+.. figure:: ../imgs/datasets-browser.png
+    :alt: Datasets Browser
+    :scale: 100
+    :align: center
+    :figclass: align-center
+    
+    Datasets Browser
 
 Upload Data
 -----------
@@ -239,28 +312,41 @@ Upload Data
 Files can be uploaded using HopsWorks' web interface. Go to the
 project you want to upload the file(s) to. You must have the **Data Owner**
 role for that project to be able to upload files. In the **Data Sets**
-tab, you will see a button ``Upload Files``.
+tab, on the top left corner there is the *Upload* button.
 
-.. tabularcolumns:: {|p{\dimexpr 0.3\linewidth-2\tabcolsep}|p{\dimexpr 0.7\linewidth-2\tabcolsep}|}
+.. figure:: ../imgs/upload-file.png
+    :alt: Upload file(s)
+    :scale: 100
+    :align: center
+    :figclass: align-center
+    
+    Upload file(s)
 
-+------------------+----------------------------------------+
-| **Option**       | **Description**                        |
-+==================+========================================+
-| **Upload File**  | You have to have the **Data Owner**    |
-|                  | role to be able to upload files.       |
-|                  | Click on the ``Upload File`` button to |
-|                  | select a file from your local disk.    |
-|                  | Then click **Upload All** to upload    |
-|                  | the file(s) you selected.              |
-|                  | You can also upload folders.           |
-+------------------+----------------------------------------+
+After pressing on the *Upload* button, the following window will
+appear which will let you select the files or folders from your local
+hard drive by clicking on *Upload File* or *Upload Folder*. Next step
+is to click *Upload all* which will upload your datasets. At any time
+you can pause the uploading and resume it later. There is no limit at
+the size of the files.
+
+.. figure:: ../imgs/upload-screen.png
+    :alt: Upload screen
+    :scale: 100
+    :align: center
+    :figclass: align-center
+    
+    Upload screen
 
 Compress Files
 --------------
 
-HopFS supports erasure-coding of files, which reduces storage requirements for large files by roughly 50%. If a file consists of 6 file blocks or more (that is, if the file is larger than 384 MB in size, for a default block size of 64 MB), then it can be compressed. Smaller files cannot be compressed. 
+HopFS supports erasure-coding of files, which reduces storage
+requirements for large files by roughly 50%. If a file consists of 6
+file blocks or more (that is, if the file is larger than 384 MB in
+size, for a default block size of 64 MB), then it can be
+compressed. Smaller files cannot be compressed.
 
-.. tabularcolumns:: {|p{\dimexpr 0.3\linewidth-2\tabcolsep}|p{\dimexpr 0.7\linewidth-2\tabcolsep}|}
+.. tabularcolumns:: {|p{\dimexpr0.3\linewidth-2\tabcolsep}|p{\dimexpr 0.7\linewidth-2\tabcolsep}|}
 
 +------------------+----------------------------------------+
 | **Option**       | **Description**                        |
@@ -271,7 +357,7 @@ HopFS supports erasure-coding of files, which reduces storage requirements for l
 |                  | Right-click and select ``Compress``    |
 |                  | to reduce the size of the file by      |
 |                  | changing its replication policy from   |
-|                  | triple replication to Reed-Solomon   |
+|                  | triple replication to Reed-Solomon     |
 |                  | erasure coding.                        |
 +------------------+----------------------------------------+
 
@@ -279,8 +365,23 @@ HopFS supports erasure-coding of files, which reduces storage requirements for l
 Share a Data Set
 ----------------
 
-Only a `data owner` or the `project owner` has privileges to share Data Sets. To share a Data Set, go to the `Data Sets Browser` in your project, and right-click on the Data Set to be shared and then select the ``Share`` option. A popup dialog will then prompt you to select (1) a target project with which the *Data Set* is to be Shared and whether the *Data Set* will be shared as read-only (**Can View**) or as read-write (**Can edit**). To complete the sharing process, a Data Owner in the target project has to click on the shared Data Set, and then click on ``Acccept`` to complete the process.
+Only a `data owner` or the `project owner` has privileges to share
+Data Sets. To share a Data Set, go to the `Data Sets Browser` in your
+project, and right-click on the Data Set to be shared and then select
+the ``Share DataSet`` option. A popup dialog will then prompt you to
+select (1) a target project with which the *Data Set* is to be Shared
+and whether the *Data Set* will be shared as read-only (**Can View**)
+or as read-write (**Can edit**). To complete the sharing process, a
+Data Owner in the target project has to click on the shared Data Set,
+and then click on ``Acccept`` to complete the process.
 
+.. figure:: ../imgs/share-dataset.png
+    :alt: Share dataset
+    :scale: 100
+    :align: center
+    :figclass: align-center
+    
+    Share dataset
 
 Free-text Search 
 ----------------
