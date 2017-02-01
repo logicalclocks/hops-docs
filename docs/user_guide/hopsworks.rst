@@ -415,31 +415,51 @@ The Jobs tabs is the way to create and run YARN applications. HopsWorks supports
 * MapReduce (MR),
 * Adam (a bioinformatics data parallel framework),
 * SAASFEE (HiWAY/Cuneiform) (a bioinformatics data parallel framework).
-      
 
-.. tabularcolumns:: {|p{\dimexpr 0.3\linewidth-2\tabcolsep}|p{\dimexpr 0.7\linewidth-2\tabcolsep}|}
 
-+------------------+-------------------------------------------+
-| **Option**       | **Description**                           |
-+==================+===========================================+
-| **New Job**      | Create a Job for any of the following     |
-|                  | YARN frameworks by clicking ``New Job``   |
-|                  | : Spark/MR/Flink/Adam/Cuneiform.          |
-|                  |                                           |
-|                  | * Step 1: enter job-specific parameters   |
-|                  |                                           |
-|                  | * Step 2: enter YARN parameters.          |
-|                  |                                           |
-|                  | * Step 3: click on ``Create Job``.        |
-+------------------+-------------------------------------------+
-| **Run Job**      | After a job has been created, it can      |
-|                  | be run by clicking on its ``Run`` button. |
-+------------------+-------------------------------------------+
+To run a job upload the required jar files and libraries to your
+dataset using the Dataset Browser. Click on the ``Jobs`` tab from the Project Menu and
+follow the steps below:
 
-The logs for jobs are viewable in HopsWorks, as stdout and stderr files. These output files are also stored
-in the ``Logs/<app-framework>/<log-files>`` directories.
-After a job has been created, it can be **edited**, **deleted**, and **scheduled** by clickin on the ``More actions`` button.
+* Step 1: Press the ``New Job`` button on the top left corner
+* Step 2: Give a name for you job
+* Step 3: Select one of the available job types
+* Step 4: Select the jar file with your job that you have uploaded
+  earlier
+* Step 5: Give the main class and any possible arguments
+* (Optional) Step 6: In the *Pre-configuration* you can choose existing
+  configurations according to existing jobs history and our
+  heuristics
+* Step 6: In the *Configure and create* tab you can manually specify
+  the configuration you desire for your job and dependencies for the jar
+* Step 7: Click on the ``Create job`` button
+* Step 8: Click on the ``Run`` button to launch your job
 
+On the right-hand side you can view some information about your job
+such as the job UI and general job details.
+
+.. figure:: ../imgs/job-ui.png
+    :alt: Job UI
+    :scale: 100
+    :align: center
+    :figclass: align-center
+    
+    Job UI
+
+Job logs are available at the bottom of your screen by clicking on
+them.
+
+If you are a beginner it is **highly** advisable to click on the ``Tours``
+button at landing page which will guide you through launching your
+first Spark application!
+
+.. figure:: ../imgs/guided-tours.png
+    :alt: Guided tours
+    :scale: 100
+    :align: center
+    :figclass: align-center
+    
+    Guided tours
 
 Charon
 ---------------
@@ -462,10 +482,48 @@ Apache Zeppelin
 ---------------
 
 Apache Zeppelin is an interactive notebook web application for running Spark or Flink code on Hops YARN.
-You can turn interpreters for Spark/Flink/etc on and off in the Zeppelin tab, helping, respectively, to reduce time required to execute a Note (paragraph) in Zeppelin or reclaim resources.
-More details can be found at: https://zeppelin.incubator.apache.org/
+You can turn interpreters for Spark/Flink/Pythonetc on and off in the Zeppelin tab, helping, respectively, to reduce time required to execute a Note (paragraph) in Zeppelin or reclaim resources.
+More details about Zeppelin can be found at:
+https://zeppelin.incubator.apache.org/
 
+To run a job through Zeppelin simply select your project and select
+``Zeppelin`` from the project menu. The following screen will appear
+where you can create a new notebook and see the status of supported
+interpreters.
 
+.. figure:: ../imgs/zeppelin-main.png
+    :alt: Zeppelin main
+    :scale: 100
+    :align: center
+    :figclass: align-center
+    
+    Zeppelin main
+
+In the following steps we will guide you through running a Zeppelin
+tutorial in HopsWorks.
+
+* Step 1: Download the *bank* dataset from `Zeppelin tutorial page`_
+* Step 2: Unzip the downloaded file
+* Step 3: Select your project and upload the *bank-full.csv* file to
+  your dataset using the DataSets browser
+* Step 4: Select the uploaded file and copy the file location in HDFS
+  shown on top
+* Step 5: Click on the ``Zeppelin`` tab from the menu on the left
+* Step 6: Create a new notebook
+* Step 7: Click on the newly created notebook and you will be
+  redirected to Zeppelin where you can write your program. The default
+  interpreter is Spark.
+* Step 8: Copy the *Data Refine* code snippet from Zeppelin tutorial
+  and replace the path to the dataset in HDFS
+* Step 9: Click on the `Run` button on the right
+* Step 10: Upon successful execution of our job, we move on to *Data
+  Retrieval* section of Zeppelin tutorial, where we will visualize our
+  data. Paste the code snippets and press the `Run` button. Notice the
+  *%sql* header. This snippet will make use of Spark SQL.
+
+.. _Zeppelin tutorial page: https://zeppelin.apache.org/docs/0.5.5-incubating/tutorial/tutorial.html
+
+Your final page should look like the following
 
 Metadata Management
 -------------------
