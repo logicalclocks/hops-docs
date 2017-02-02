@@ -3,7 +3,7 @@ HopsWorks User Guide
 
 If you are using 2-Factor authentication, jump ahead to "First Login with 2-Factor Authentication".
 
-First Login (no 2-Factor Authentication)
+First Login (without 2-Factor Authentication)
 -----------------------------------------
 
 .. figure:: ../imgs/login.png
@@ -236,7 +236,7 @@ services to be used in the project. You can also select an initial set
 of members for the project, who will be given the role of Data
 Scientist in the project. Member roles can later be updated in the
 Project settings by the `project owner` or a member with the `data
-owner` role. A valid project name should not contain spaces or special
+owner` role. A valid project name can not contain spaces or special
 characters such as __, /, \\, å, ä, etc.
 
 As soon as you have created a new project and click on it on the
@@ -261,8 +261,9 @@ the picture below.
 
 On the left-hand side of the project main page is the Project
 Menu. On the top section are the currently active services for your
-project such as Zeppelin, the job launcher UI, Kafka etc In the middle
-section is the Data Sets browser menu where you can explore your
+project such as ``Zeppelin``, the ``Job`` launcher UI and ``History
+service``, ``Kafka`` etc In the middle
+section is the ``Data Sets`` browser menu where you can explore your
 project's datasets. Finally, on the bottom section is various settings
 for the project. From the ``Settings`` menu you can modify the
 description of the project, the data retention period and see some
@@ -410,13 +411,22 @@ Jobs
 
 The Jobs tabs is the way to create and run YARN applications. HopsWorks supports the following YARN applications:
 
-* Apache Spark,
-* Apache Flink,
-* MapReduce (MR),
-* Adam (a bioinformatics data parallel framework),
-* SAASFEE (HiWAY/Cuneiform) (a bioinformatics data parallel framework).
+* Apache Spark
+* Apache Flink
+* Adam (a bioinformatics data parallel framework)
 
+If you are a beginner it is **highly** advisable to click on the ``Tours``
+button at landing page. It will guide you through launching your
+first Spark application!
 
+.. figure:: ../imgs/guided-tours.png
+    :alt: Guided tours
+    :scale: 100
+    :align: center
+    :figclass: align-center
+    
+    Guided tours
+    
 To run a job upload the required jar files and libraries to your
 dataset using the Dataset Browser. Click on the ``Jobs`` tab from the Project Menu and
 follow the steps below:
@@ -436,7 +446,8 @@ follow the steps below:
 * Step 8: Click on the ``Run`` button to launch your job
 
 On the right-hand side you can view some information about your job
-such as the job UI and general job details.
+such as the Spark/Flink dashboard, YARN application UI, logs with
+Kibana and metrics with Grafana.
 
 .. figure:: ../imgs/job-ui.png
     :alt: Job UI
@@ -448,34 +459,6 @@ such as the job UI and general job details.
 
 Job logs are available at the bottom of your screen by clicking on
 them.
-
-If you are a beginner it is **highly** advisable to click on the ``Tours``
-button at landing page which will guide you through launching your
-first Spark application!
-
-.. figure:: ../imgs/guided-tours.png
-    :alt: Guided tours
-    :scale: 100
-    :align: center
-    :figclass: align-center
-    
-    Guided tours
-
-Charon
----------------
-
-Charon is a cloud-of-clouds filesystem that enables the sharing of data between Hops clusters using public clouds. To do share data with a target cluster, you need to:
-
-* acquire the `cluster-id` of the target cluster and enter it as a `cluster-id` in the Charon service UI - you can read the `cluster-id` at the top of the page for the Charon service;
-
-* enter a token-id that is used as a secret key between the source and target cluster;
-
-* select a folder to share with the target `cluster-id`;
-
-* copy files to the shared folder from HDFS that you wish to share with the target cluster;
-
-* the files within that folder are copied to the public cloud(s), from where they are downloaded to the target cluster.
-
 
 
 Apache Zeppelin
@@ -524,6 +507,117 @@ tutorial in HopsWorks.
 .. _Zeppelin tutorial page: https://zeppelin.apache.org/docs/0.5.5-incubating/tutorial/tutorial.html
 
 Your final page should look like the following
+
+.. figure:: ../imgs/zeppelin-tutorial-final.png
+    :alt: Zeppelin tutorial
+    :scale: 100
+    :align: center
+    :figclass: align-center
+    
+    Zeppelin tutorial
+
+Clicking on the gear on the top right corner as indicated in the
+picture below you can change the default interpreter binding. You can
+choose among Spark, Livy, Flink, etc just by drag them on the top.
+
+.. figure:: ../imgs/zeppelin-inter.png
+    :alt: Zeppelin interpreters
+    :scale: 100
+    :align: center
+    :figclass: align-center
+    
+    Zeppelin interpreters
+
+Apache Kafka
+------------
+In HopsWorks we provide Kafka-as-a-Service for streaming
+applications. In the following section we will guide you through
+creating a *Producer* job which will produce in a Kafka topic and a
+simple *Consumer* job which will consume from that topic. Our service
+is tightly coupled with our project-based model so only members of a
+project can use a specific Kafka topic.
+
+To begin with you have to download and compile our utilities library
+which will abstract away all the configuration boilerplate code such
+as Kafka endpoints, topics etc
+
+* Step 1: `git clone git@github.com:hopshadoop/hops-util.git` to clone
+  the library
+* Step 2: `cd hops-util/ && mvn package` to build it
+
+Then you need to download and compile a sample Spark
+streaming application.
+
+* Step 1: `git clone
+  git@github.com:hopshadoop/hops-kafka-examples.git` to clone our
+  sample application
+* Step 2: `cd hops-kafka-examples/ && mvn package` to build the
+  project
+
+Next step is to create a Kafka topic at HopsWorks that our application
+will produce to and consume from.
+
+* Step 1: From the project box on the landing page, select a project
+* Step 2: Click on the `Kafka` tab and the topics page will appear
+
+.. figure:: ../imgs/kafka-schemas.png
+    :alt: Kafka topics
+    :scale: 100
+    :align: center
+    :figclass: align-center
+    
+    Kafka topics & schemas
+
+* Step 3: First we need to create a schema for our topic, so click on
+  the `Schemas` tab and `New Avro Schema`. Copy the sample schema from
+  `here`_ and paste it in the `Content` box. Click on the `Validate`
+  button to validate the schema you provided and then `Create`.
+
+* Step 4: Click on `New Topic`, give a topic name, select the
+  schema you created at Step 3 and press `Create`.
+
+* Step 5: Upload `hops-kafka-examples/spark/target/hops-spark-0.1.jar`
+  and `hops-util/target/hops-util-0.1.jar` to a dataset
+  
+* Step 6: Click on the `Jobs` tabs at project menu and follow the
+  instructions from the **Jobs** section. Create a new job for the
+  Producer. Select `Spark` as job type and `hops-kafka-0.1.jar` as JAR
+  file. The name of the main class is
+  `io.hops.examples.spark.kafka.StreamingExample` and argument is
+  `producer`. At the `Configure and create` tab, click on `Kafka`
+  Services and select the Kafka topic you created at Step 4. Your job
+  page should look like the following
+
+.. figure:: ../imgs/kafka-producer.png
+    :alt: Kafka producer job
+    :scale: 100
+    :align: center
+    :figclass: align-center
+    
+    Kafka producer job
+
+* Step 7: We repeat the instructions on Step 6 for the Consumer
+  job. Type a different job name and as argument to the main class
+  pass `consumer /Projects/YOUR_PROJECT_NAME/Resources/Data`. The rest
+  remain the same as the Producer job.
+
+* Step 8: `Run` both jobs. While the consumer is running you can check
+  its execution log. Use the Dataset browser to navigate to the
+  directory `/Resources/Data-APPLICATION_ID/`. Right click on the file
+  `part-00000` and *Preview* the content.
+
+  A sample output would look like the following
+
+.. figure:: ../imgs/kafka-sink.png
+    :alt: Kafka ouput
+    :scale: 100
+    :align: center
+    :figclass: align-center
+    
+    Kafka output
+    
+.. _here: https://github.com/hopshadoop/hops-kafka-examples/tree/master/spark
+
 
 Metadata Management
 -------------------
