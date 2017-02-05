@@ -3,7 +3,7 @@ HopsWorks User Guide
 
 If you are using 2-Factor authentication, jump ahead to "First Login with 2-Factor Authentication".
 
-First Login (no 2-Factor Authentication)
+First Login (without 2-Factor Authentication)
 -----------------------------------------
 
 .. figure:: ../imgs/login.png
@@ -23,18 +23,23 @@ On initial installation, you can login with the default username and password.
     username: admin@kth.se
     password: admin
 
-If you manage to login successfully, you will arrive on the landing page:
+Upon successful login, you will arrive on the landing page:
 
 
-.. figure:: ../imgs/landing-page.png
+.. figure:: ../imgs/landing-page-new.png
     :alt: HopsWorks Landing Page
-    :scale: 80
+    :scale: 100
     :align: center
     :figclass: align-center
     
     HopsWorks Landing (Home) Page
 
-In the landing page, you can see a box for projects, a search bar (to find projects and data sets), an audit trail, and user menu (to change user settings or log out).
+In the landing page, on the left you can see the Guided tours which
+will guide you through launching a SparkPi application. On the top center
+part is the search bar where you can search for public projects and
+datasets. On the right side, your Projects are listed where you can
+click and select them. Finally, on the upper right corner is your
+personal menu and administration panel, and the notifications menu.
     
 **If it goes wrong**
 
@@ -43,10 +48,23 @@ the database (MySQL Clusters).
 
 **Actions**:
 
-* Double-check that system meets the minimum system requirements for HopsWorks. Is there enough available disk space and memory?
+* Double-check that system meets the minimum system requirements for
+  HopsWorks. Is there enough available disk space and memory?
+* Log in to Glassfish and make sure both hopsworks-ear and
+  hopsworks-web are deployed.
+* Default Glassfish credentials are:
+  ::
+     username: adminuser
+     password: adminpw
+     
+* Investigate Glassfish misconfiguration problems. Glassfish log file
+  is located at ``/srv/hops/domain1/logs/server.log``. Is Glassfish running? Are the JDBC connections working? Is JavaMail configured correctly?
+* Investigate MySQL Cluster misconfiguration problems. Are the mgm
+  server, data nodes, and MySQL server running? Do the hops and
+  hopsworks databases exist and are they populated with tables and
+  rows? If not, something went wrong during installation.
 * Re-run the installation, as something may have gone wrong during installation.
-* Investigate Glassfish misconfiguration problems. Is Glassfish running? is the hopsworks.war application installed? Are the JDBC connections working? Is JavaMail configured correctly?
-* Investigate MySQL Cluster misconfiguration problems. Are the mgm server, data nodes, and MySQL server running? Do the hops and hopsworks databases exist and are they populated with tables and rows? If not, something went wrong during installation.
+
 
 
 .. raw:: latex
@@ -191,7 +209,7 @@ Contact an administrator or go to the Administration Guide section of this docum
 *User receives the validate-your-email message, but is not able to validate the account*
 
 * Can you successfully access the HopsWorks homepage? If not, there may be a problem with the network or the webserver may be down.
-* Is the Glassfish webserver running and hopsworks.war application installed, but you still can't logon? It may be that MySQL Cluster is not running.
+* Is the Glassfish webserver running and hopsworks-war, hopsworks-ear application installed, but you still can't logon? It may be that MySQL Cluster is not running.
 * Check the Glassfish logs for problems and the Browser logs.
     
 
@@ -211,8 +229,50 @@ Contact your system administrator who will re-enable your account.
 Create a New Project
 --------------------
 
-You can create a project by clicking on the ``New`` button in the *Projects* box. This will pop-up a dialog, in which you enter the project name, an optional description, and select an optional set of services to be used in the project. You can also select an initial set of members for the project, who will be given the role of Data Scientist in the project. Member roles can later be updated in the Project settings by the `project owner` or a member with the `data owner` role.
+You can create a project by clicking on the ``New`` button in the
+*Projects* box. This will pop-up a dialog, in which you enter the
+project name, an optional description, and select an optional set of
+services to be used in the project. You can also select an initial set
+of members for the project, who will be given the role of Data
+Scientist in the project. Member roles can later be updated in the
+Project settings by the `project owner` or a member with the `data
+owner` role. A valid project name can not contain spaces or special
+characters such as __, /, \\, å, ä, etc.
 
+As soon as you have created a new project and click on it on the
+*Projects* box, you will see the project main page as illustrated in
+the picture below.
+
+.. figure:: ../imgs/project-main.png
+    :alt: Project main page
+    :scale: 100
+    :align: center
+    :figclass: align-center
+    
+    Project main page
+
+.. figure:: ../imgs/project-menu.png
+    :alt: Project Menu
+    :scale: 70
+    :align: center
+    :figclass: align-center
+    
+    Project Menu
+
+On the left-hand side of the project main page is the Project
+Menu. On the top section are the currently active services for your
+project such as ``Zeppelin``, the ``Job`` launcher UI and ``History
+service``, ``Kafka`` etc In the middle
+section is the ``Data Sets`` browser menu where you can explore your
+project's datasets. Finally, on the bottom section is various settings
+for the project. From the ``Settings`` menu you can modify the
+description of the project, the data retention period and see some
+statistics. From the ``Members`` menu you can add new members to your
+project and share your datasets or remove existing ones. Using the
+``Metadata Designer`` you can attach more intuitive metadata to your
+project. Also, in the project's menu you can always see the current
+cluster utilization.
+    
 Delete a Project
 ----------------
 
@@ -231,7 +291,21 @@ Data Set Browser
 
 The Data Set tab enables you to browse Data Sets, files and directories in this project.
 It is mostly used as a file browser for the project's HDFS subtree. You cannot navigate to
-directories outside of this project's subtree.
+directories outside of this project's subtree. For a quick preview of
+a file, go to the ``Datasets`` menu, navigate to a file, right click
+on that file and choose the ``Preview`` option. A pop-up window will
+appear with a small preview of the file. The picture below illustrates the Dataset Browser
+with a new sample dataset. You can add new datasets pressing the
+``Create New Dataset`` button. You can edit the datasets by right
+clicking on them. A README file is auto-generated for every dataset.
+
+.. figure:: ../imgs/datasets-browser.png
+    :alt: Datasets Browser
+    :scale: 100
+    :align: center
+    :figclass: align-center
+    
+    Datasets Browser
 
 Upload Data
 -----------
@@ -239,28 +313,41 @@ Upload Data
 Files can be uploaded using HopsWorks' web interface. Go to the
 project you want to upload the file(s) to. You must have the **Data Owner**
 role for that project to be able to upload files. In the **Data Sets**
-tab, you will see a button ``Upload Files``.
+tab, on the top left corner there is the *Upload* button.
 
-.. tabularcolumns:: {|p{\dimexpr 0.3\linewidth-2\tabcolsep}|p{\dimexpr 0.7\linewidth-2\tabcolsep}|}
+.. figure:: ../imgs/upload-file.png
+    :alt: Upload file(s)
+    :scale: 100
+    :align: center
+    :figclass: align-center
+    
+    Upload file(s)
 
-+------------------+----------------------------------------+
-| **Option**       | **Description**                        |
-+==================+========================================+
-| **Upload File**  | You have to have the **Data Owner**    |
-|                  | role to be able to upload files.       |
-|                  | Click on the ``Upload File`` button to |
-|                  | select a file from your local disk.    |
-|                  | Then click **Upload All** to upload    |
-|                  | the file(s) you selected.              |
-|                  | You can also upload folders.           |
-+------------------+----------------------------------------+
+After pressing on the *Upload* button, the following window will
+appear which will let you select the files or folders from your local
+hard drive by clicking on *Upload File* or *Upload Folder*. Next step
+is to click *Upload all* which will upload your datasets. At any time
+you can pause the uploading and resume it later. There is no limit at
+the size of the files.
+
+.. figure:: ../imgs/upload-screen.png
+    :alt: Upload screen
+    :scale: 100
+    :align: center
+    :figclass: align-center
+    
+    Upload screen
 
 Compress Files
 --------------
 
-HopFS supports erasure-coding of files, which reduces storage requirements for large files by roughly 50%. If a file consists of 6 file blocks or more (that is, if the file is larger than 384 MB in size, for a default block size of 64 MB), then it can be compressed. Smaller files cannot be compressed. 
+HopFS supports erasure-coding of files, which reduces storage
+requirements for large files by roughly 50%. If a file consists of 6
+file blocks or more (that is, if the file is larger than 384 MB in
+size, for a default block size of 64 MB), then it can be
+compressed. Smaller files cannot be compressed.
 
-.. tabularcolumns:: {|p{\dimexpr 0.3\linewidth-2\tabcolsep}|p{\dimexpr 0.7\linewidth-2\tabcolsep}|}
+.. tabularcolumns:: {|p{\dimexpr0.3\linewidth-2\tabcolsep}|p{\dimexpr 0.7\linewidth-2\tabcolsep}|}
 
 +------------------+----------------------------------------+
 | **Option**       | **Description**                        |
@@ -271,7 +358,7 @@ HopFS supports erasure-coding of files, which reduces storage requirements for l
 |                  | Right-click and select ``Compress``    |
 |                  | to reduce the size of the file by      |
 |                  | changing its replication policy from   |
-|                  | triple replication to Reed-Solomon   |
+|                  | triple replication to Reed-Solomon     |
 |                  | erasure coding.                        |
 +------------------+----------------------------------------+
 
@@ -279,8 +366,23 @@ HopFS supports erasure-coding of files, which reduces storage requirements for l
 Share a Data Set
 ----------------
 
-Only a `data owner` or the `project owner` has privileges to share Data Sets. To share a Data Set, go to the `Data Sets Browser` in your project, and right-click on the Data Set to be shared and then select the ``Share`` option. A popup dialog will then prompt you to select (1) a target project with which the *Data Set* is to be Shared and whether the *Data Set* will be shared as read-only (**Can View**) or as read-write (**Can edit**). To complete the sharing process, a Data Owner in the target project has to click on the shared Data Set, and then click on ``Acccept`` to complete the process.
+Only a `data owner` or the `project owner` has privileges to share
+Data Sets. To share a Data Set, go to the `Data Sets Browser` in your
+project, and right-click on the Data Set to be shared and then select
+the ``Share DataSet`` option. A popup dialog will then prompt you to
+select (1) a target project with which the *Data Set* is to be Shared
+and whether the *Data Set* will be shared as read-only (**Can View**)
+or as read-write (**Can edit**). To complete the sharing process, a
+Data Owner in the target project has to click on the shared Data Set,
+and then click on ``Acccept`` to complete the process.
 
+.. figure:: ../imgs/share-dataset.png
+    :alt: Share dataset
+    :scale: 100
+    :align: center
+    :figclass: align-center
+    
+    Share dataset
 
 Free-text Search 
 ----------------
@@ -309,68 +411,367 @@ Jobs
 
 The Jobs tabs is the way to create and run YARN applications. HopsWorks supports the following YARN applications:
 
-* Apache Spark,
-* Apache Flink,
-* MapReduce (MR),
-* Adam (a bioinformatics data parallel framework),
-* SAASFEE (HiWAY/Cuneiform) (a bioinformatics data parallel framework).
-      
+* Apache Spark
+* Apache Flink
+* Adam (a bioinformatics data parallel framework)
 
-.. tabularcolumns:: {|p{\dimexpr 0.3\linewidth-2\tabcolsep}|p{\dimexpr 0.7\linewidth-2\tabcolsep}|}
+If you are a beginner it is **highly** advisable to click on the ``Tours``
+button at landing page. It will guide you through launching your
+first Spark application!
 
-+------------------+-------------------------------------------+
-| **Option**       | **Description**                           |
-+==================+===========================================+
-| **New Job**      | Create a Job for any of the following     |
-|                  | YARN frameworks by clicking ``New Job``   |
-|                  | : Spark/MR/Flink/Adam/Cuneiform.          |
-|                  |                                           |
-|                  | * Step 1: enter job-specific parameters   |
-|                  |                                           |
-|                  | * Step 2: enter YARN parameters.          |
-|                  |                                           |
-|                  | * Step 3: click on ``Create Job``.        |
-+------------------+-------------------------------------------+
-| **Run Job**      | After a job has been created, it can      |
-|                  | be run by clicking on its ``Run`` button. |
-+------------------+-------------------------------------------+
+.. figure:: ../imgs/guided-tours.png
+    :alt: Guided tours
+    :scale: 100
+    :align: center
+    :figclass: align-center
+    
+    Guided tours
+    
+To run a job upload the required jar files and libraries to your
+dataset using the Dataset Browser. Click on the ``Jobs`` tab from the Project Menu and
+follow the steps below:
 
-The logs for jobs are viewable in HopsWorks, as stdout and stderr files. These output files are also stored
-in the ``Logs/<app-framework>/<log-files>`` directories.
-After a job has been created, it can be **edited**, **deleted**, and **scheduled** by clickin on the ``More actions`` button.
+* Step 1: Press the ``New Job`` button on the top left corner
+* Step 2: Give a name for you job
+* Step 3: Select one of the available job types
+* Step 4: Select the jar file with your job that you have uploaded
+  earlier
+* Step 5: Give the main class and any possible arguments
+* (Optional) Step 6: In the *Pre-configuration* you can choose existing
+  configurations according to existing jobs history and our
+  heuristics
+* Step 6: In the *Configure and create* tab you can manually specify
+  the configuration you desire for your job and dependencies for the jar
+* Step 7: Click on the ``Create job`` button
+* Step 8: Click on the ``Run`` button to launch your job
+
+On the right-hand side you can view some information about your job
+such as the Spark/Flink dashboard, YARN application UI, logs with
+Kibana and metrics with Grafana.
+
+.. figure:: ../imgs/job-ui.png
+    :alt: Job UI
+    :scale: 100
+    :align: center
+    :figclass: align-center
+    
+    Job UI
+
+Job logs are available at the bottom of your screen by clicking on
+them.
+
+Logs visualization
+------------------
+HopsWorks aggregates the logs of the applications launched and uses
+Kibana for visualization and discovery. To get access to your logs,
+upon a job completion, click on the ``Job UI`` button and then on
+``Logs`` tab. A sample output for the SparkPi job looks like the
+following.
+
+.. figure:: ../imgs/kibana-main.png
+    :alt: Kibana main
+    :scale: 100
+    :align: center
+    :figclass: align-center
+    
+    Job logs with Kibana
+
+At the top section of the left-hand side of the main screen are the
+selected fields of the log that are shown on the main page. At the
+bottom section are the rest of the available indexed fields. On the
+top is the search bar where you can search for specific fields. For
+example if you want to preview the warning messages type
+``priority=WARN``. On the right side of the search bar you can save
+your search query and load it later.
+
+Also you can visualize certain fields of your logs by clicking on the
+`Visualize` button. For example, assume we want to make a pie chart of
+the severity of the log messages.
+
+* Step 1: Click on the `Visualize` button
+* Step 2: Select the `Pie chart`
+* Step 3: Click `From a new search` and select your project's name
+  from the drop-down menu
+* Step 4: On the `buckets` section click `Split Slices`
+* Step 5: The severity level is text so in the `Aggregation` drop-down
+  select *Terms* and the `Field` we would like to visualize is the
+  *priority* field
+* Step 6: Click the green *Play* button on the top
+
+The pie chart should look like the following. On the top right-hand
+side is the legend. Hopefully most of your job's messages will be INFO
+and a few WARN! On the top right corner is the visualization menu
+where you can save, load or share the current chart.
+
+.. figure:: ../imgs/kibana-piechart.png
+    :alt: Kibana pie chart
+    :scale: 100
+    :align: center
+    :figclass: align-center
+    
+    Kibana visualization
 
 
-Charon
----------------
 
-Charon is a cloud-of-clouds filesystem that enables the sharing of data between Hops clusters using public clouds. To do share data with a target cluster, you need to:
+Job metrics
+-----------
+We provide live monitoring of your application with Grafana where you
+can view metrics such as JVM memory consumption, Garbage Collection
+activity, HDFS activity, completed tasks etc. After you have launched
+your job, click on the ``Job UI`` button on the right and select the
+``Metrics`` tab. A sample dashboard is illustrated below.
 
-* acquire the `cluster-id` of the target cluster and enter it as a `cluster-id` in the Charon service UI - you can read the `cluster-id` at the top of the page for the Charon service;
+.. figure:: ../imgs/grafana-dashboard.png
+    :alt: Graphana dashboard
+    :scale: 100
+    :align: center
+    :figclass: align-center
+    
+    Grafana dashboard
 
-* enter a token-id that is used as a secret key between the source and target cluster;
-
-* select a folder to share with the target `cluster-id`;
-
-* copy files to the shared folder from HDFS that you wish to share with the target cluster;
-
-* the files within that folder are copied to the public cloud(s), from where they are downloaded to the target cluster.
-
-
+You can zoom in at any panel by left clicking, hold and drag across
+the X axis. If you want to share the dashboard, click on the `Share
+dashboard` button on the top which gives the options of sharing a
+link, an interactive snapshot of your dashboard or exporting it in a
+JSON format.
 
 Apache Zeppelin
 ---------------
 
 Apache Zeppelin is an interactive notebook web application for running Spark or Flink code on Hops YARN.
-You can turn interpreters for Spark/Flink/etc on and off in the Zeppelin tab, helping, respectively, to reduce time required to execute a Note (paragraph) in Zeppelin or reclaim resources.
-More details can be found at: https://zeppelin.incubator.apache.org/
+You can turn interpreters for Spark/Flink/Pythonetc on and off in the Zeppelin tab, helping, respectively, to reduce time required to execute a Note (paragraph) in Zeppelin or reclaim resources.
+More details about Zeppelin can be found at:
+https://zeppelin.incubator.apache.org/
 
+To run a job through Zeppelin simply select your project and select
+``Zeppelin`` from the project menu. The following screen will appear
+where you can create a new notebook and see the status of supported
+interpreters.
 
+.. figure:: ../imgs/zeppelin-main.png
+    :alt: Zeppelin main
+    :scale: 100
+    :align: center
+    :figclass: align-center
+    
+    Zeppelin main
 
+In the following steps we will guide you through running a Zeppelin
+tutorial in HopsWorks.
+
+* Step 1: Download the *bank* dataset from `Zeppelin tutorial page`_
+* Step 2: Unzip the downloaded file
+* Step 3: Select your project and upload the *bank-full.csv* file to
+  your dataset using the DataSets browser
+* Step 4: Select the uploaded file and copy the file location in HDFS
+  shown on top
+* Step 5: Click on the ``Zeppelin`` tab from the menu on the left
+* Step 6: Create a new notebook
+* Step 7: Click on the newly created notebook and you will be
+  redirected to Zeppelin where you can write your program. The default
+  interpreter is Spark.
+* Step 8: Copy the *Data Refine* code snippet from Zeppelin tutorial
+  and replace the path to the dataset in HDFS
+* Step 9: Click on the `Run` button on the right
+* Step 10: Upon successful execution of our job, we move on to *Data
+  Retrieval* section of Zeppelin tutorial, where we will visualize our
+  data. Paste the code snippets and press the `Run` button. Notice the
+  *%sql* header. This snippet will make use of Spark SQL.
+
+.. _Zeppelin tutorial page: https://zeppelin.apache.org/docs/0.5.5-incubating/tutorial/tutorial.html
+
+Your final page should look like the following
+
+.. figure:: ../imgs/zeppelin-tutorial-final.png
+    :alt: Zeppelin tutorial
+    :scale: 100
+    :align: center
+    :figclass: align-center
+    
+    Zeppelin tutorial
+
+Clicking on the gear on the top right corner as indicated in the
+picture below you can change the default interpreter binding. You can
+choose among Spark, Livy, Flink, etc just by drag them on the top.
+
+.. figure:: ../imgs/zeppelin-inter.png
+    :alt: Zeppelin interpreters
+    :scale: 100
+    :align: center
+    :figclass: align-center
+    
+    Zeppelin interpreters
+
+Apache Kafka
+------------
+In HopsWorks we provide Kafka-as-a-Service for streaming
+applications. In the following section we will guide you through
+creating a *Producer* job which will produce in a Kafka topic and a
+simple *Consumer* job which will consume from that topic. Our service
+is tightly coupled with our project-based model so only members of a
+project can use a specific Kafka topic, unless specified as we see
+later on.
+
+To begin with you have to download and compile our utilities library
+which will abstract away all the configuration boilerplate code such
+as Kafka endpoints, topics etc
+
+* Step 1: `git clone git@github.com:hopshadoop/hops-util.git` to clone
+  the library
+* Step 2: `cd hops-util/ && mvn package` to build it
+
+Then you need to download and compile a sample Spark
+streaming application.
+
+* Step 1: `git clone
+  git@github.com:hopshadoop/hops-kafka-examples.git` to clone our
+  sample application
+* Step 2: `cd hops-kafka-examples/ && mvn package` to build the
+  project
+
+Next step is to create a Kafka topic at HopsWorks that our application
+will produce to and consume from.
+
+* Step 1: From the project box on the landing page, select a project
+* Step 2: Click on the `Kafka` tab and the topics page will appear
+
+.. figure:: ../imgs/kafka-schemas.png
+    :alt: Kafka topics
+    :scale: 100
+    :align: center
+    :figclass: align-center
+    
+    Kafka topics & schemas
+
+* Step 3: First we need to create a schema for our topic, so click on
+  the `Schemas` tab and `New Avro Schema`. Copy the sample schema from
+  `here`_ and paste it in the `Content` box. Click on the `Validate`
+  button to validate the schema you provided and then `Create`.
+
+* Step 4: Click on `New Topic`, give a topic name, select the
+  schema you created at Step 3 and press `Create`.
+
+* Step 5: Upload `hops-kafka-examples/spark/target/hops-spark-0.1.jar`
+  and `hops-util/target/hops-util-0.1.jar` to a dataset
+  
+* Step 6: Click on the `Jobs` tabs at project menu and follow the
+  instructions from the **Jobs** section. Create a new job for the
+  Producer. Select `Spark` as job type and `hops-kafka-0.1.jar` as JAR
+  file. The name of the main class is
+  `io.hops.examples.spark.kafka.StreamingExample` and argument is
+  `producer`. At the `Configure and create` tab, click on `Kafka`
+  Services and select the Kafka topic you created at Step 4. Your job
+  page should look like the following
+
+.. figure:: ../imgs/kafka-producer.png
+    :alt: Kafka producer job
+    :scale: 100
+    :align: center
+    :figclass: align-center
+    
+    Kafka producer job
+
+* Step 7: We repeat the instructions on Step 6 for the Consumer
+  job. Type a different job name and as argument to the main class
+  pass `consumer /Projects/YOUR_PROJECT_NAME/Resources/Data`. The rest
+  remain the same as the Producer job.
+
+* Step 8: `Run` both jobs. While the consumer is running you can check
+  its execution log. Use the Dataset browser to navigate to the
+  directory `/Resources/Data-APPLICATION_ID/`. Right click on the file
+  `part-00000` and *Preview* the content.
+
+  A sample output would look like the following
+
+.. figure:: ../imgs/kafka-sink.png
+    :alt: Kafka ouput
+    :scale: 100
+    :align: center
+    :figclass: align-center
+    
+    Kafka output
+    
+.. _here: https://github.com/hopshadoop/hops-kafka-examples/tree/master/spark
+
+A Kafka topic by default will be accessible only to members of a
+specific project. In order to *share* the topic with another project
+click on the ``Kafka`` service from the menu on the left. This will
+bring you to Kafka main page as illustrated below. Then press the
+the ``Share topic`` button on the appropriate topic and select the
+name of the project you would like to share with.
+
+.. figure:: ../imgs/kafka-main.png
+    :alt: Kafka main
+    :scale: 100
+    :align: center
+    :figclass: align-center
+    
+    Kafka main page
+
+You can also fine grain access to Kafka topics by adding ACLs easily
+through our UI. Once you have created a Kafka topic, click on the
+``Kafka`` service and then on the *Add new ACL* button.
+
+When creating a new ACL you are given the following options:
+
+* **Permission Type** - Whether you will *allow* or *deny* access
+  according to the ACL you are about to create
+  
+* **Operation Type** - The operation this ACL will affect:
+  
+  * *read* : Read from the topic
+  * *write* : Write to the topic
+  * *detail* : Get information about this topic
+  * \* : All above
+
+* **Role** - The user role this ACL will affect. It can be *Data
+  scientist*, *Data owner* or both.
+
+* **Host** - Originating host of the request to read, write or detail
+
+* **Project name** - The name of project this ACL concerns in case you
+  have shared the topic with another project
+
+* **Member email** - Email of the user that this ACL will apply or *
+  for everybody
+
+When you are done with the ACL parameters click on the `Create`
+button.
+
+As an example assume that we have already created a Kafka topic for
+our project and we have shared this topic with another project named
+`another_sample_project`. We would like members of the other project
+**NOT** to be able to produce on this topic. Then the ACL would look
+like the following.
+
+.. figure:: ../imgs/kafka-acl-example.png
+    :alt: Kafka acl example
+    :scale: 100
+    :align: center
+    :figclass: align-center
+    
+    Kafka ACL example
+
+If you would like to see more details about your Kafka topic click on
+the ``Advanced view`` button. In the picture below we
+can see that there are three ACLs. The first is the default ACL which
+is applied when a topic is created. The second was created when we
+shared the topic with another project, allowing full access and
+finally the third is the custom ACL we created before.
+
+.. figure:: ../imgs/kafka-topic-details.png
+    :alt: Kafka topic details
+    :scale: 100
+    :align: center
+    :figclass: align-center
+    
+    Kafka topic details
+    
 Metadata Management
 -------------------
 Metadata enables **data curation**, that is, ensuring that data is properly catalogued and accessible to appropriate users.
 
-Metadata in HopsWorks is used primarily to discover and and retrieve relevant data sets or files by users by enabling users to
+Metadata in HopsWorks is used primarily to discover and retrieve relevant data sets or files by users by enabling them to
 attach arbitrary metadata to Data Sets, directories or files in HopsWorks. Metadata is associated with an individual file
 or Data Set or directory. This extended metadata is stored in the same database as the metadata for HopsFS and foreign keys link
 the extended metadata with the target file/directory/Data Set, ensuring its integrity.

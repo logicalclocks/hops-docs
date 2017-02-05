@@ -4,10 +4,10 @@
 Hops Installation
 *******************
 
-The Hops stack includes a number of services also requires a number of third-party distributed services:
+The Hops stack includes a number of services, also requires a number of third-party distributed services:
 
-* Java 1.7 (OpenJDK or Oracle JRE/JDK)
-* NDB 7.4+ (MySQL Cluster)
+* Java 1.7+ (OpenJDK or Oracle JRE/JDK)
+* NDB 7.5 (MySQL Cluster)
 * J2EE7 web application server (default: Glassfish)
 * ElasticSearch 1.7+
   

@@ -45,7 +45,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'HopsWorks'
-copyright = u'2015, www.hops.io'
+copyright = u'2017, www.hops.io'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
