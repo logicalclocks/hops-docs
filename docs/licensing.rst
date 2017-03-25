@@ -1,4 +1,3 @@
-
 .. _hops-licensing:
 
 *********************
@@ -23,7 +22,7 @@ Client Libraries with software applications licensed under certain other FOSS li
 causing the entire derivative work to be subject to the GPL. However, to comply with the terms
 of both licensing models, the DAL API needs to generic and different implementations of it
 for different databases are possible. Although, we only currently support MySQL Cluster, you
-are free to develop your own DAL API client and run Hops on a different database. 
+are free to develop your own DAL API client and run Hops on a different database.
 The main requirements for the database are support for transactions, read/write locks and at least read-committed isolation.
 
 .. figure:: imgs/license-work-around.png

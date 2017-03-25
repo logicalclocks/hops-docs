@@ -1,0 +1,5 @@
+===========================
+Block Reporting
+===========================
+
+DataNodes periodically synchronize the set of blocks stored locally with the metadata representing those blocks using a block report. Block reports are sent from DataNodes to NameNodes to indicate the set of valid blocks at a DataNode, and the NameNode compares the sent list with its metadata. For block report load balancing the DataNodes ask the leader NameNode to which NameNode they should send the block report. The leader NameNode uses round robin policy to distribute block reports among the NameNodes. In order to avoid sudden influx of large number of block reports that can slow down the performance of other filesystem operations the leader NameNode also performs admission control for block reports. The leader NameNode only allows certain number of block reports, which is configurable, to be processed at a given time. :ref:`In the linked section  <block-reporting-parameteres>` there is a complete list of parameters for block report admission control.
