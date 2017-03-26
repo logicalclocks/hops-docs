@@ -6,7 +6,14 @@ $project is a next-generation distribution of Apache Hadoop.
 Build the documentation
 ------------------------
 
+   # Install sphinx
+   pip install sphinx sphinx-autobuild
+   pip install recommonmark
+   pip install sphinx_rtd_theme
+   pip install jupyter_sphinx_theme
+
    cd docs
+
    make latexpdf
 
 Contribute
