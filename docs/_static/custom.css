@@ -68,3 +68,8 @@ p.first.admonition-title {
       display: inline-block;
   }
 }
+
+.navbar-inverse {
+  background-color: #2e343d;
+}
+
