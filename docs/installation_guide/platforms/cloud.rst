@@ -87,12 +87,16 @@ Karamel Chef recipes support a large number of parameters that can be set while 
 
 Here are some of the most important security parameters to set when installing services:
 
-* Superuser username and password for the MySQL Server(s)
-  * Default: 'kthfs' and 'kthfs'
-* Administration username and password for the Glassfish administration account(s)
-  * Default: 'adminuser' and 'adminpw'
-* Administration username and password for HopsWorks
-  * Default: 'admin@kth.se' and 'admin'
+- Superuser username and password for the MySQL Server(s)
+
+  - Default: 'kthfs' and 'kthfs'
+- Administration username and password for the Glassfish administration account(s)
+      
+  - Default: 'adminuser' and 'adminpw'
+  
+- Administration username and password for HopsWorks
+
+  - Default: 'admin@kth.se' and 'admin'
 
 Here are some of the most important sizing configuration parameters to set when installing services:
 

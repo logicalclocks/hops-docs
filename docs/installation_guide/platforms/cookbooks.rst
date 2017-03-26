@@ -7,17 +7,11 @@ Hops' automated installation is orchestrated by Karamel and the installation/con
 The following is a brief description of the Chef cookbooks that we have developed to support the installation of Hops. The recipes have the naming convention: <cookbook>/<recipe>. You can determine the URL for each cookbook by prefixing the name with http://github.com/. All of the recipes have been *karamelized*, that is a Karamelfile containing orchestration rules has been added to all cookbooks.
 
 
-* hopshadoop/apache-hadoop-chef
 
-   * This cookbook contains recipes for installing the Apache Hadoop services: HDFS NameNode (hadoop::nn), HDFS DataNode (hadoop::dn), YARN ResourceManager (hadoop::rm), YARN NodeManager (hadoop::nm), Hadoop Job HistoryServer for MapReduce (hadoop::jhs), Hadoop ProxyServer (hadoop::ps).
 
 * hopshadoop/hops-hadoop-chef
 
-   * This cookbook contains is a wrapper cookbook for the Apache Hadoop cookbook. It install Hops, but makes use of the Apache Hadoop Chef cookbook to install and configure software. The recipes it provides are: HopsFS NameNode (hops::nn), HopsFS DataNode (hops::dn), HopsYARN ResourceManager (hops::rm), HopsYARN NodeManager (hops::nm), Hadoop Job HistoryServer for MapReduce (hops::jhs), Hadoop ProxyServer (hops::ps).
-
-* hopshadoop/elasticsearch-chef
-
-   * This cookbook is a wrapper cookbook for the official Elasticsearch Chef cookbook, but it has been extended with Karamel orchestration rules.
+   * This cookbook contains recipes for installing the Hops Hadoop services: HopsFS NameNode (hops::nn), HopsFS DataNode (hops::dn), YARN ResourceManager (hops::rm), YARN NodeManager (hops::nm), Hadoop Job HistoryServer for MapReduce (hops::jhs), Hadoop ProxyServer (hops::ps). 
 
 * hopshadoop/ndb-chef
 
@@ -39,6 +33,10 @@ The following is a brief description of the Chef cookbooks that we have develope
 
    * This cookbook contains recipes for installing the Apache Flink jobmanager, taskmanager, and a YARN client.
 
+* hopshadoop/elasticsearch-chef
+
+   * This cookbook is a wrapper cookbook for the official Elasticsearch Chef cookbook, but it has been extended with Karamel orchestration rules.
+
 * hopshadoop/dr-elephant-chef
 
    * This cookbook contains recipes for installing Dr Elephant.
@@ -57,8 +55,12 @@ The following is a brief description of the Chef cookbooks that we have develope
 
 * hopshadoop/hopsmonitor-chef
 
-   * This cookbook contains recipes for installing tools for logging streaming applications - Kibana and Logstash.
+   * This cookbook contains recipes for installing  InfluxDB, Grafana, Telegraf, and Kapacitor.
 
+* hopshadoop/hopslog-chef
+
+   * This cookbook contains recipes for installing Kibana, Filebeat  and Logstash.
+     
 * hopshadoop/tensorflow-chef
 
-   * This cookbook contains recipes for installing tensorflow to work with Hopsworks and Zeppelin.
+   * This cookbook contains recipes for installing tensorflow to work with Hopsworks.

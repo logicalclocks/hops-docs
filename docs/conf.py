@@ -58,8 +58,8 @@ source_suffix = ['.rst', '.md']
 master_doc = 'index'
 
 # General information about the project.
-project = 'HopsWorks Documentation'
-copyright = u'2017, www.hops.io'
+project = 'Hops Documentation'
+copyright = u'2017, www.hops.io. Based on jupyter-rtd-template.'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
