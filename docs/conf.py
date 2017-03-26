@@ -58,7 +58,7 @@ source_suffix = ['.rst', '.md']
 master_doc = 'index'
 
 # General information about the project.
-project = u'HopsWorks'
+project = 'HopsWorks Documentation'
 copyright = u'2017, www.hops.io'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -168,7 +168,7 @@ html_use_smartypants = True
 
 # Additional templates that should be rendered to pages, maps page names to
 # template names.
-#html_additional_pages = {}
+html_additional_pages = {'index': 'index.html'}
 
 # If false, no module index is generated.
 #html_domain_indices = True

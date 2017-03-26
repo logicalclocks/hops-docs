@@ -15,7 +15,7 @@ Hops Documentation
    :maxdepth: 2
    :glob:
 
-   installation_guide/hops_auto_installation_guide.rst
+   installation_guide/hops_auto_installation_guide
 
 .. _hops-userguide:
 .. toctree::
