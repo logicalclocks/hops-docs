@@ -7,10 +7,8 @@ Build the documentation
 ------------------------
 
    # Install sphinx
-   pip install sphinx sphinx-autobuild
-   pip install recommonmark
-   pip install sphinx_rtd_theme
-   pip install jupyter_sphinx_theme
+
+   pip install sphinx sphinx-autobuild recommonmark sphinx_rtd_theme jupyter_sphinx_theme
 
    cd docs
 
