@@ -1,0 +1,70 @@
+/* -- topics ------------------------------------------------------------- */
+
+div.topic {
+    border: 0px solid #ccc;
+    padding: 7px 7px 0 7px;
+    margin: 10px 0 10px 0;
+}
+
+p.topic-title {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.alert {
+    color: #222222;
+}
+
+p.first.admonition-title {
+	  color: #ffffff;
+}
+
+.bs-sidenav .nav > li > a {
+    display: block;
+    color: #222222;
+    padding: 5px 25px;
+}
+
+.bs-sidenav .nav > li > a:hover, .bs-sidenav .nav > li > a:focus {
+    text-decoration: none;
+    background-color: #e5e3e9;
+    border-right: 1px solid #dbd8e0;
+    border-left: 2px solid #563d7c;
+}
+
+.navbar-brand {
+    float: left;
+    padding: 0px 15px;
+    font-size: 19px;
+    line-height: 21px;
+    height: 45px;
+    display: inline-block;
+}
+
+.navbar-brand>img {
+    display: inline-block;
+    margin-left: 20px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    margin-right: 20px;
+}
+
+@media only screen and (max-width: 500px) {
+  .navbar-brand>img {
+      display: inline-block;
+      margin-left: 10px;
+      margin-top: 3px;
+      margin-bottom: 3px;
+      margin-right: 10px;
+  }
+
+  .navbar-brand {
+      float: left;
+      padding: 0px 15px;
+      font-size: 15px;
+      line-height: 21px;
+      height: 45px;
+      display: inline-block;
+  }
+}

@@ -1,0 +1,18 @@
+{% extends "!layout.html" %}
+
+{# Custom CSS overrides #}
+{% set bootswatch_css_custom = ['_static/custom.css'] %}
+
+{% block footer %}
+<div class="pull-center">
+	<ul class="pager">
+	  {% if prev %}
+	  <li class="previous"><a href="{{ prev.link|e }}">&larr; Previous</a></li>
+	  {% endif %}
+	  {%if next %}
+	  <li class="next"><a href="{{ next.link|e }}">Next &rarr;</a></li>
+	  {% endif %}
+	</ul>
+</div>
+{{ super() }}
+{% endblock %}
