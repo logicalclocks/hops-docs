@@ -59,7 +59,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'Hops Documentation'
-copyright = u'2017, www.hops.io. Based on jupyter-rtd-template.'
+copyright = u'2017, www.hops.io.'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
