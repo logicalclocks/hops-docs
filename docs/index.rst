@@ -42,6 +42,7 @@ Hops Documentation
 
    configuration/hopsfs
    configuration/hopsyarn
+   configuration/hopstls
 
 
 .. _hops-dev-guide:
