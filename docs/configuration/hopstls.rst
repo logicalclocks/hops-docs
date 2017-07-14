@@ -285,3 +285,23 @@ Follows a sample of ``yarn-site.xml`` when RM HA is enabled for two RMs::
    <value>10.0.2.16:8012</value>
   </property>
 
+--------------------------------------
+Enabling RPC/IPC TLS with Karamel/Chef
+--------------------------------------
+
+If you are using `Karamel`_, then in your cluster definition you need
+to set the property ``hops/ipc/server/ssl/enabled`` to true. By
+default it is disabled. Also, you need to override the attribute ``hops/url/primary`` to point
+to http://snurran.sics.se/hops/antonis/release/hops-2.7.3.tgz For example:::
+
+  hops:
+   url:
+    primary: http://snurran.sics.se/hops/antonis/release/hops-2.7.3.tgz
+   ipc:
+    server:
+     ssl:
+      enabled: true
+
+
+.. _Karamel: http://www.karamel.io/
+
