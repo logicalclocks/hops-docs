@@ -149,9 +149,6 @@ These properties enable SSL/TLS in the RPC server.
 |                                          | materialized the crypto material from| transient                  | domain1/kafkacerts     |
 |                                          | the database for a specific user     |                            |                        |
 +------------------------------------------+--------------------------------------+----------------------------+------------------------+
-| client.rpc.ssl.keystore.filepath         | Location of the keystore used by the | The same as ssl.server.    |                        |
-|                                          | service when creating a client       | keystore.location          |                        |
-+------------------------------------------+--------------------------------------+----------------------------+------------------------+
 | client.hopsworks.rest.endpoint           | Hopsworks REST endpoint              | http://192.168.63.101:8080 |                        |
 +------------------------------------------+--------------------------------------+----------------------------+------------------------+
 | client.rpc.ssl.enabled.protocol          | SSL protocol used by the client      | TLSv1.2                    | TLSv1                  |
