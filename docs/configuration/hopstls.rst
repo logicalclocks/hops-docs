@@ -124,48 +124,38 @@ Next is a list of properties required in ``$HADOOP_HOME/etc/hadoop/core-site.xml
 These properties enable SSL/TLS in the RPC server.
 
 
-+------------------------------------------+--------------------------------------+------------------------+------------------------+
-| property name                            | description                          | sample value           | default value          |
-+==========================================+======================================+========================+========================+
-| ipc.server.ssl.enabled                   | Switch between SSL/TLS support for   | true                   | false                  |
-|                                          | RPC server                           |                        |                        |
-+------------------------------------------+--------------------------------------+------------------------+------------------------+
-| ipc.server.read.threadpool.size          | The number of threads utilized to    | 3                      | 1                      |
-|                                          | read RPC requests                    |                        |                        |
-+------------------------------------------+--------------------------------------+------------------------+------------------------+
-| hadoop.rpc.socket.factory.class.default  | Default Hadoop socket factory        | org.apache.hadoop.net. | org.apache.hadoop.net. |
-|                                          |                                      | HopsSSLSocketFactory   | StandardSocketFactory  |
-+------------------------------------------+--------------------------------------+------------------------+------------------------+
-| hadoop.ssl.hostname.verifier             | Verifier used for the FQDN field at  | ALLOW_ALL              | DEFAULT                |
-|                                          | the presented x509 certificate       |                        |                        |
-+------------------------------------------+--------------------------------------+------------------------+------------------------+
-| hadoop.ssl.enabled.protocols             | Enabled SSL protocols for the SSL    | TLSv1.2,TLSv1.1,TLSv1  | TLSv1                  |
-|                                          | engine                               | SSLv3                  |                        |
-+------------------------------------------+--------------------------------------+------------------------+------------------------+
-| hops.service.certificates.directory      | Directory that contains keystore and | /srv/hops/kagent-certs/| /srv/hops/kagent-certs/|
-|                                          | truststore used by the service/server| keystores              | keystores              |
-+------------------------------------------+--------------------------------------+------------------------+------------------------+
-| client.materialize.directory             | Directory where Hopsworks has already| /srv/hops/certs-dir/   | /srv/hops/domains/     |
-|                                          | materialized the crypto material from| transient              | domain1/kafkacerts     |
-|                                          | the database for a specific user     |                        |                        |
-+------------------------------------------+--------------------------------------+------------------------+------------------------+
-| client.rpc.ssl.keystore.filepath         | Location of the keystore used by the | The same as ssl.server.|                        |
-|                                          | service when creating a client       | keystore.location      |                        |
-+------------------------------------------+--------------------------------------+------------------------+------------------------+
-| client.rpc.ssl.keystore.password         | Password of the keystore             | The same as ssl.server.|                        |
-|                                          |                                      | keystore.password      |                        |
-+------------------------------------------+--------------------------------------+------------------------+------------------------+
-| client.rpc.ssl.keypassword               | Password of the private key in the   | The same as ssl.server.|                        |
-|                                          | keystore                             | keystore.keypassword   |                        |
-+------------------------------------------+--------------------------------------+------------------------+------------------------+
-| client.rpc.ssl.truststore.filepath       | Location of the truststore used by   | The same as ssl.server.|                        |
-|                                          | the service when creating a client   | trusstore.location     |                        |
-+------------------------------------------+--------------------------------------+------------------------+------------------------+
-| client.rpc.ssl.truststore.password       | Password of the truststore           | The same as ssl.server.|                        |
-|                                          |                                      | truststore.password    |                        |
-+------------------------------------------+--------------------------------------+------------------------+------------------------+
-| client.rpc.ssl.enabled.protocol          | SSL protocol used by the client      | TLSv1.2                | TLSv1                  |
-+------------------------------------------+--------------------------------------+------------------------+------------------------+
++------------------------------------------+--------------------------------------+----------------------------+------------------------+
+| property name                            | description                          | sample value               | default value          |
++==========================================+======================================+============================+========================+
+| ipc.server.ssl.enabled                   | Switch between SSL/TLS support for   | true                       | false                  |
+|                                          | RPC server                           |                            |                        |
++------------------------------------------+--------------------------------------+----------------------------+------------------------+
+| ipc.server.read.threadpool.size          | The number of threads utilized to    | 3                          | 1                      |
+|                                          | read RPC requests                    |                            |                        |
++------------------------------------------+--------------------------------------+----------------------------+------------------------+
+| hadoop.rpc.socket.factory.class.default  | Default Hadoop socket factory        | org.apache.hadoop.net.     | org.apache.hadoop.net. |
+|                                          |                                      | HopsSSLSocketFactory       | StandardSocketFactory  |
++------------------------------------------+--------------------------------------+----------------------------+------------------------+
+| hadoop.ssl.hostname.verifier             | Verifier used for the FQDN field at  | ALLOW_ALL                  | DEFAULT                |
+|                                          | the presented x509 certificate       |                            |                        |
++------------------------------------------+--------------------------------------+----------------------------+------------------------+
+| hadoop.ssl.enabled.protocols             | Enabled SSL protocols for the SSL    | TLSv1.2,TLSv1.1,TLSv1      | TLSv1                  |
+|                                          | engine                               | SSLv3                      |                        |
++------------------------------------------+--------------------------------------+----------------------------+------------------------+
+| hops.service.certificates.directory      | Directory that contains keystore and | /srv/hops/kagent-certs/    | /srv/hops/kagent-certs/|
+|                                          | truststore used by the service/server| keystores                  | keystores              |
++------------------------------------------+--------------------------------------+----------------------------+------------------------+
+| client.materialize.directory             | Directory where Hopsworks has already| /srv/hops/certs-dir/       | /srv/hops/domains/     |
+|                                          | materialized the crypto material from| transient                  | domain1/kafkacerts     |
+|                                          | the database for a specific user     |                            |                        |
++------------------------------------------+--------------------------------------+----------------------------+------------------------+
+| client.rpc.ssl.keystore.filepath         | Location of the keystore used by the | The same as ssl.server.    |                        |
+|                                          | service when creating a client       | keystore.location          |                        |
++------------------------------------------+--------------------------------------+----------------------------+------------------------+
+| client.hopsworks.rest.endpoint           | Hopsworks REST endpoint              | http://192.168.63.101:8080 |                        |
++------------------------------------------+--------------------------------------+----------------------------+------------------------+
+| client.rpc.ssl.enabled.protocol          | SSL protocol used by the client      | TLSv1.2                    | TLSv1                  |
++------------------------------------------+--------------------------------------+----------------------------+------------------------+
 
 
 Example of ``core-site.xml`` configuration file::
@@ -206,30 +196,10 @@ Example of ``core-site.xml`` configuration file::
   </property>
   
   <property>
-   <name>client.rpc.ssl.keystore.filepath</name>
-   <value>/srv/hops/kagent-certs/keystores/hopsworks0__kstore.jks</value>
+   <name>client.hopsworks.rest.endpoint</name>
+   <value>http://192.168.63.101:8080</value>
   </property>
 
-  <property>
-   <name>client.rpc.ssl.keystore.password</name>
-   <value>password</value>
-  </property>
-
-  <property>
-   <name>client.rpc.ssl.keypassword</name>
-   <value>password</value>
-  </property>
-   
-  <property>
-   <name>client.rpc.ssl.truststore.filepath</name>
-   <value>/srv/hops/kagent-certs/keystores/hopsworks0__tstore.jks</value>
-  </property>
-
-  <property>
-   <name>client.rpc.ssl.truststore.password</name>
-   <value>password</value>
-  </property>
- 
   <property>
    <name>client.rpc.ssl.enabled.protocol</name>
    <value>TLSv1.2</value>
