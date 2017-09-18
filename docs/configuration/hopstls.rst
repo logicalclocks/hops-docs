@@ -262,7 +262,7 @@ default it is disabled. For example:::
 
   hops:
    rpc:
-    ssl_enabled: true
+    ssl: true
 
 
 .. _Karamel: http://www.karamel.io/
