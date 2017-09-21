@@ -4,5 +4,6 @@ Hops Developer Guide
 .. toctree::
    :maxdepth: 1
 
+   guide/microservices.rst
    guide/extend.rst
-   guide/api.rst
+   guide/erasurecoding.rst
