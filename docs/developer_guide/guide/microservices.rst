@@ -50,6 +50,6 @@ Swagger UI
 ==========
 To visualize and interact with the REST API’s without having to implement the front-end
 
-15. Annotate the REST service with ``@Api(value = "Name of the rest end point", description = "description of the rest end point")``
+15. Annotate the REST service with ``@Api(value = "Name of the rest endpoint", description = "description of the rest endpoint")``
 16. Build hopsworks-web with  ``mvn clean install -Pswagger-ui`` and deploy
 17. Goto ``hopsworks/swagger-ui``
