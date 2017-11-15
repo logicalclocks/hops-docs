@@ -98,7 +98,7 @@ All the parameters that can be set or modified are listed in the Hive wiki_
 
 LLAP Admin
 ----------------
-LLAP stands for *Live long and prosper*. It's a cluster of long living daemons ready to be used by Hive to read data from the filesystem and to process query fragments.
+LLAP stands for *Live long and process*. It's a cluster of long living daemons ready to be used by Hive to read data from the filesystem and to process query fragments.
 Admin users have the possibility of managing the lifecycle of the LLAP cluster. They can start and stop the LLAP cluster from the admin UI.
 In the admin UI they have the possibility of specifying the number of instances, the amount of memory each instance should get for the LLAP executors running inside the instance, the amount of memory for the cache and how many threads to use for the executors and for the IO.
 
