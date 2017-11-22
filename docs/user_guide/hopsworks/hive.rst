@@ -108,7 +108,7 @@ Try it out
 ------------
 
 To try HopsHive out, users can download a sample notebook_ and a csv file_ containing sample data. Users should then create an editable dataset (without README.md) and upload the data.
-From the Zeppelin interface, users can import the notebook, by clicking on *Import note* and selecting the Json file representing the notebook from their computers. Before running it, users should modify the LOCATION filed in the first paragraph to be *'/Projects/<projectName>/<datasetName>'* where *<datasetName>* is the name of the dataset containing the csv file.
+From the Zeppelin interface, users can import the notebook, by clicking on *Import note* and selecting the Json file representing the notebook from their computers. Before running it, users should modify the LOCATION filled in the first paragraph to be *'/Projects/<projectName>/<datasetName>'* where *<datasetName>* is the name of the dataset containing the csv file.
 Users should also make sure to select the HopsHive interpreter by clicking on the gear icon on top and drag the HopsHive box to the top of the list.
 
 .. _notebook: http://snurran.sics.se/hops/hive/sql.json
