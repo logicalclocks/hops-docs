@@ -16,7 +16,7 @@ understand the implications of these values.
 .. toctree::
 :maxdepth: 1
 
-       tensorflow/tensorflow_jupyter.rst
+       ../tensorflow/tensorflow_jupyter.rst
 
 
 `hops` python library was developed to make it simple to run TensorFlow on Hops and scale-out training.
@@ -25,7 +25,7 @@ It contains several submodules that can be used for interacting with services on
 .. toctree::
 :maxdepth: 1
 
-       tensorflow/hops.rst
+       ../tensorflow/hops.rst
 
 
 Hyperparameter search with tflauncher
@@ -41,7 +41,7 @@ versioned with the particular hyperparameters set for that job.
 .. toctree::
 :maxdepth: 1
 
-       tensorflow/tflauncher.rst
+       ../tensorflow/tflauncher.rst
 
 Distributed TensorFlow with TensorFlowOnSpark
 ---------------------------------------------
@@ -54,7 +54,7 @@ The `TFCluster` API remains the same, so any existing examples will run on Tenso
 .. toctree::
 :maxdepth: 1
 
-       tensorflow/tensorflow_on_spark.rst
+       ../tensorflow/tensorflow_on_spark.rst
 
 Near-linear scalability with Horovod
 ------------------------------------
@@ -69,5 +69,5 @@ We will soon support multiple hosts.
 .. toctree::
 :maxdepth: 1
 
-       tensorflow/horovod.rst
+       ../tensorflow/horovod.rst
 
