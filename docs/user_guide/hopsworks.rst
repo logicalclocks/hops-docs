@@ -22,6 +22,7 @@ HopsWorks User Guide
    hopsworks/jobMetrics.rst
    hopsworks/zeppelin.rst
    hopsworks/kafka.rst
+   hopsworks/hive.rst
    hopsworks/metaDataManagement.rst
    hopsworks/metaDataDesigner.rst
    hopsworks/metaDataAttachment.rst
