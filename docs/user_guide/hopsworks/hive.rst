@@ -7,7 +7,7 @@ Introduction
 
 HopsHive is a fork for Apache Hive. The main difference between Apache Hive and HopsHive is that when a user deletes their data, the metadata describing databases, tables and partitions is deleted as well, hence maintaining the metadata storage consistent against the filesystem.
 
-This page serves as a guide on how to use Hive from within HopsWorks. For information on how to write HiveQL (the language used to query the data) and configuration parameters available for tweaking, please refer to the Apache Hive `wiki`_:
+This page serves as a guide on how to use Hive from within HopsWorks. For information on how to write HiveQL (the language used to query the data) and configuration parameters available for tweaking, please refer to the Apache Hive `wiki`_
 
 .. _wiki: https://cwiki.apache.org/confluence/display/Hive/Home
 
@@ -102,7 +102,7 @@ To do that users can create a new paragraph in the Zeppelin notebook and execute
   set hive.exec.dynamic.partition.mode=nostrict
 This would enable dynamic partitioning for that session, other users will not be affected by this change and if users launch another ``hopshive`` interpreter they will find the default configuration.
 
-All the parameters that can be set or modified are listed in the Hive wiki_
+All the parameters that can be set or modified are listed in the Hive wiki under `Tez <https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-Tez>`_. 
 
 Try it out
 ------------
