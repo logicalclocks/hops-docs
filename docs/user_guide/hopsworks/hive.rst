@@ -12,7 +12,7 @@ This page serves as a guide on how to use Hive from within HopsWorks. For inform
 .. _wiki: https://cwiki.apache.org/confluence/display/Hive/Home
 
 Using HopsHive with HopsWorks
----------------------------
+------------------------------
 
 In order to use HopsHive from HopsWorks, users first need to create a database. Each project can have *at most one* Hive database, which is created when the Hive service is enabled for the project. Users can enable the Hive service either when creating a new project or via the *Settings* section.
 
@@ -24,7 +24,7 @@ Users can then run queries using *Apache Zeppelin* (the Zeppelin service needs t
 
 2. Selecting it as the default interpreter in the interpreter settings from within the notebook (`more info <https://zeppelin.apache.org/docs/latest/manual/interpreters.html>`_.)
 
-3. Typing ``%hopshive`` at the top of each paragraph. 
+3. Typing ``%hopshive`` at the top of each paragraph.
 
 After that, users can start writing and running queries.
 One caveat when writing queries in Zeppelin is that the ``;`` character at the end of a query is not allowed and, in general, it is good practice to spread queries over multiple paragraphs.
@@ -103,6 +103,18 @@ To do that users can create a new paragraph in the Zeppelin notebook and execute
 This would enable dynamic partitioning for that session, other users will not be affected by this change and if users launch another ``hopshive`` interpreter they will find the default configuration.
 
 All the parameters that can be set or modified are listed in the Hive wiki_
+
+Try it out
+------------
+
+To try HopsHive out, users can download a sample notebook_ and a csv file_ containing sample data. Users should then create an editable dataset (without README.md) and upload the data.
+From the Zeppelin interface, users can import the notebook, by clicking on *Import note* and selecting the Json file representing the notebook from their computers. Before running it, users should modify the LOCATION filed in the first paragraph to be *'/Projects/<projectName>/<datasetName>'* where *<datasetName>* is the name of the dataset containing the csv file.
+Users should also make sure to select the HopsHive interpreter by clicking on the gear icon on top and drag the HopsHive box to the top of the list.
+
+.. _notebook: http://snurran.sics.se/hops/hive/sql.json
+.. _file: http://snurran.sics.se/hops/hive/Sacramentorealestatetransactions.csv
+
+
 
 LLAP Admin
 ----------------
