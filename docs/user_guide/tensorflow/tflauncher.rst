@@ -131,14 +131,13 @@ When you run your job using tflauncher, TensorBoard will be started automaticall
 **Navigate to TensorBoard in HopsWorks**
 After launching your job using tflauncher, you can monitor training by observing the TensorBoard.
 
-.. figure:: ../../imgs/overview.png
+.. figure:: ../../imgs/jupyter.png
     :alt: Jupyter UI overview
     :scale: 100
     :align: center
     :figclass: align-center
-    
-    
-.. figure:: ../../imgs/jupyter.png
+
+.. figure:: ../../imgs/overview.png
     :alt: Jupyter UI overview
     :scale: 100
     :align: center
