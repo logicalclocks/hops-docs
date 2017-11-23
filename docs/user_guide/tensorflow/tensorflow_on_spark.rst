@@ -44,7 +44,7 @@ The `TFCluster` python module is used to launch the actual TensorFlowOnSpark pro
 Working with TensorBoard
 ------------------------
 
-When you run your job using tflauncher, TensorBoard will be started automatically. So the only thing you need to do in your code to interact with TensorBoard is to import the tensorboard module from the hops python library. In addition to writing summaries and your TensorBoard events of course.
+When you run your job using TFCluster, TensorBoard will be started automatically. So the only thing you need to do in your code to interact with TensorBoard is to import the tensorboard module from the hops python library. In addition to writing summaries and your TensorBoard events of course.
 
 ::
 
@@ -56,7 +56,7 @@ When you run your job using tflauncher, TensorBoard will be started automaticall
     ... TensorFlow code ...
     
 **Navigate to TensorBoard in HopsWorks**
-After launching your job using tflauncher, you can monitor training by observing the TensorBoard.
+After launching your job using TFCluster, you can monitor training by observing the TensorBoard.
 
     
 .. figure:: ../../imgs/jupyter.png
@@ -76,7 +76,7 @@ Execution Logs
 --------------
 
 **Navigate to Logs in HopsWorks**
-After launching your job using tflauncher, you can navigate to HopsWorks to see logs from the execution.
+After launching your job using TFCluster, you can navigate to HopsWorks to see logs from the execution.
 
 .. figure:: ../../imgs/logs.png
     :alt: Logs overview
