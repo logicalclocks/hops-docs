@@ -140,16 +140,6 @@ After defining the training code, and the hyperparameter combinations the next s
 
 As arguments it takes is simply the `spark` SparkSession object, which is automatically created when the first cell is evaluated in the notebook, in addition to the wrapper function and the dictionary with the hyperparameters. `tflauncher.launch` will simply run the wrapper function and inject the value of each hyperparameter that you have specified.
 
-Increasing job throughput, making it parallel
----------------------------------------------
-The default configuration is to run each job sequentially, so each one of the 6 jobs is run sequentially. It is possible to increase the number of jobs that can be executed at any time by increasing the value of the configuration property shown in the picture below. To do this you need to restart Jupyter, by navigating back to HopsWorks and shutting it down.
-
-.. figure:: ../../imgs/parallel.png
-    :alt: Increasing throughput
-    :scale: 100
-    :align: center
-    :figclass: align-center
-
 Working with TensorBoard
 ########################
 
