@@ -39,6 +39,57 @@ The `TFCluster` python module is used to launch the actual TensorFlowOnSpark pro
     # Get the number of parameter servers and executors configured for Jupyter
     num_param_servers = util.num_param_servers(spark)
     num_executors = util.num_executors(spark)
+    
+    
+Working with TensorBoard
+------------------------
+
+When you run your job using tflauncher, TensorBoard will be started automatically. So the only thing you need to do in your code to interact with TensorBoard is to import the tensorboard module from the hops python library. In addition to writing summaries and your TensorBoard events of course.
+
+::
+
+    ... TensorFlow code ...
+
+    from hops import tensorboard
+    logdir = tensorboard.logdir()
+
+    ... TensorFlow code ...
+    
+**Navigate to TensorBoard in HopsWorks**
+After launching your job using tflauncher, you can monitor training by observing the TensorBoard.
+
+    
+.. figure:: ../../imgs/jupyter.png
+    :alt: Jupyter UI overview
+    :scale: 100
+    :align: center
+    :figclass: align-center
+
+.. figure:: ../../imgs/overview.png
+    :alt: Jupyter UI overview
+    :scale: 100
+    :align: center
+    :figclass: align-center
+    
+
+Execution Logs
+--------------
+
+**Navigate to Logs in HopsWorks**
+After launching your job using tflauncher, you can navigate to HopsWorks to see logs from the execution.
+
+.. figure:: ../../imgs/logs.png
+    :alt: Logs overview
+    :scale: 100
+    :align: center
+    :figclass: align-center
+
+.. figure:: ../../imgs/viewlogs.png
+    :alt: View logs
+    :scale: 100
+    :align: center
+    :figclass: align-center
+
 
 
 
