@@ -2,7 +2,27 @@
 Parallel TensorFlow experiments
 ===============================
 
-To be able to run your TensorFlow code on Hops, the code for the whole program needs to be provided and put inside a wrapper function. Everything, from importing libraries to reading data and defining the model and running the program needs to be put inside a wrapper function.
+The use-case of this mode is to run multiple parallel experiments where you have a set of predefined hyperparameters and a list of values per hyperparameter that should be used to run training with. Based on this list of hyperparameter values, a grid can be constructed (cartesian product). Each of these possible hyperparameter combinations in the grid corresponds to a TensorFlow job, or an "experiment". Running each of these hyperparameters configuration sequentially would be slow, therefore we provide a simple API to parallelize execution on one or more "executors".
+
+
+Jupyter configuration
+#####################
+
+.. figure:: ../../imgs/tflauncher_mode.png
+    :alt: HopsWorks project path
+    :scale: 100
+    :align: center
+    :figclass: align-center
+    
+The programming model: Wrap your TensorFlow code in a function
+##############################################################
+
+To be able to run your TensorFlow code on Hops, the code for the whole program needs to be provided and put inside a wrapper function. Everything, from importing libraries to reading data and defining the model and running the program needs to be put inside a wrapper function. The arguments of the wrapper function would map directly to the name of your hyperparameters.
+
+::
+    # Hyperparameter are learning rate and dropout
+    def training(learning_rate, dropout):
+        # TensorFlow training code (including reading data, defining model, starting training...)
 
 Reading from HDFS
 #################
@@ -63,7 +83,6 @@ To define the hyperparameters, simply create a dictionary with the keys matching
 
     def training(learning_rate, dropout):
         # Training code
-        return training
 
 
 Next step is to generate all possible combinations, the grid, of the hyperparameter values. First import the util module from the hops python library and call the grid_params function with your args dictionary.
