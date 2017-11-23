@@ -20,6 +20,7 @@ The programming model: Wrap your TensorFlow code in a function
 To be able to run your TensorFlow code on Hops, the code for the whole program needs to be provided and put inside a wrapper function. Everything, from importing libraries to reading data and defining the model and running the program needs to be put inside a wrapper function. The arguments of the wrapper function would map directly to the name of your hyperparameters.
 
 ::
+
     # Hyperparameter are learning rate and dropout
     def training(learning_rate, dropout):
         # TensorFlow training code (including reading data, defining model, starting training...)
