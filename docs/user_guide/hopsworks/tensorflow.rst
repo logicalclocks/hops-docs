@@ -1,31 +1,35 @@
 TensorFlow on Hops
 ==================
 
-Hops provides support for running TensorFlow on a Hops cluster. The development environment for doing so is in Jupyter notebooks.
-The datasets that you are working with should be uploaded to your HopsWorks project, or you can add a dataset from a different project to be accessible by your project. HopsFS is the filesystem of Hops, it is essentially a fork of HDFS and is compliant with any API that can read data from an HDFS path, such as TensorFlow. In your TensorFlow code you can simply replace local file paths to the corresponding path in HDFS.
-
-https://www.tensorflow.org/deploy/hadoop
+Hops provides support for running TensorFlow using HopsWorks on a Hops cluster. The environment for doing so is ran in Jupyter notebooks.
+The datasets that you are working with can either be uploaded to your HopsWorks project or be shared among different projects the user has access to by sharing the actual datast. HopsFS is the filesystem of Hops, it is essentially a fork of Apache HDFS and is compliant with any API that can read data from an HDFS path, such as TensorFlow. In your TensorFlow code you can simply replace local file paths to the corresponding path in HDFS. More information is available `here <https://www.tensorflow.org/deploy/hadoop>`_..
 
 
 Working with TensorFlow in Jupyter
 ----------------------------------
-We currently support three different modes of running TensorFlow, that are meant for different purposes and use-cases.
-To execute the Python code in YARN containers on the Hops cluster, we make use of Spark to distribute and execute the code, so effectively we run TensorFlow on Spark. We also provide first-class support for TensorBoard, so you can easily monitor the progress of your training and compare different hyperparameter configurations while training or after a job has finished. And yes, we have logs too of course.
+We currently support *three* different modes for running TensorFlow, that are meant for different purposes and use-cases:
 
-When starting Jupyter in HopsWorks, certain configuration properties need to be filled in and understood, therefore it is recommended to look at each guide to understand the implications of these values. Each of the links below will go through the configuration properties that can be set for each mode.
+1. Parallel TensorFlow experiments
+2. Distributed TensorFlow with TensorFlowOnSpark
+3. Optimal scalability with Horovod
+
+To execute the Python code in YARN containers on the Hops cluster, we make use of `Apache Spark <https://spark.apache.org/>`_. to distribute and execute the code, so effectively we run TensorFlow on Spark. We also provide first-class support for TensorBoard, so you can easily monitor the progress of your training and compare different hyperparameter configurations while training or after a job has finished. And yes, we have logs too of course.
+
+When starting Jupyter in HopsWorks, certain configuration properties need to be filled in and understood, therefore it is recommended to look at each guide to understand the implications of these values. Each of the links below guide you through the configuration properties that can be set for each mode.
 
 
 Hops python library
 -------------------
-`hops` python library was developed to make it simple to run TensorFlow on Hops and scale-out training and increase productivity.
+`hops` python library was developed to make it simple to run TensorFlow on Hops, scale-out training and increase productivity.
 It contains several submodules that can be used for interacting with TensorBoard, GPUs, HopsFS and parallelizing training.
+
 
 Mode 1. Parallel TensorFlow experiments
 -----------------------------------------
 
 The use-case of this mode is to run multiple parallel experiments where you have a set of predefined hyperparameters and a list of values per hyperparameter that should be used to run training with. Based on this list of hyperparameter values, a grid can be constructed (cartesian product). Each of these possible hyperparameter combinations in the grid corresponds to a TensorFlow job, or an "experiment". Running each of these hyperparameters configuration sequentially would be slow, therefore we provide a simple API to parallelize execution on one or more "executors".
 
-Furthermore, we provide first-class support for the training for all the jobs can be visualized in the same TensorBoard in HopsWorks. Each TensorBoard logdir is then placed in your HopsWorks project, versioned with the hyperparameter values for that particular job.
+Furthermore, we provide first-class support for the training as all the jobs can be visualized in the same TensorBoard in HopsWorks. Each TensorBoard logdir is then placed in your HopsWorks project, versioned with the hyperparameter values for that particular job.
 
 Mode 2. Distributed TensorFlow with TensorFlowOnSpark
 ---------------------------------------------
