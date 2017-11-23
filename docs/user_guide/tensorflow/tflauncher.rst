@@ -14,9 +14,9 @@ When configuring Jupyter it is important to understand the configuration propert
 
 This configuration properties decides how many TensorFlow jobs may be run at any time. If you have specified 100 different hyperparameter configurations, this implies 100 TensorFlow jobs. Each job being one hyperparameter combination. If this configuration value is set to 1. Then each of these 100 jobs are run sequentially. Any value greater than 1 will mean that jobs are being parallelized, so 2 or more jobs may be run in parallel.
 
-**Executor MB**
+**Executor memory (MB)**
 
-This configuration property defines how much memory each executor should be allocated. Keep in mind that if the memory you configure is too small, the job will be killed by YARN. And you will have to restart Jupyter and increase this setting.
+This configuration property defines how much memory each executor should be allocated. Keep in mind that if your TensorFlow code is using alot of memory, the job will be killed by YARN. You will have to restart Jupyter and increase this setting.
 
 **Executor GPUs**
 
