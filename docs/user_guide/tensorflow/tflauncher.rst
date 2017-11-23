@@ -2,17 +2,33 @@
 Parallel TensorFlow experiments
 ===============================
 
-The use-case of this mode is to run multiple parallel experiments where you have a set of predefined hyperparameters and a list of values per hyperparameter that should be used to run training with. Based on this list of hyperparameter values, a grid can be constructed (cartesian product). Each of these possible hyperparameter combinations in the grid corresponds to a TensorFlow job, or an "experiment". Running each of these hyperparameters configuration sequentially would be slow, therefore we provide a simple API to parallelize execution on one or more "executors".
+The use-case of this mode is to run multiple parallel experiments where you have a set of predefined hyperparameters and a list of values per hyperparameter that should be used to run training with. Based on this list of hyperparameter values, a grid can be constructed (cartesian product). Each of these possible hyperparameter combinations in the grid corresponds to a TensorFlow job, or an "experiment". Running each of these hyperparameters configurations sequentially would be slow, therefore we provide a simple API to run jobs in parallel. Each job is run on a Spark executor.
 
 
 Jupyter configuration
 #####################
+
+When configuring Jupyter it is important to understand the configuration properties that are being set to achieve optimal training time.
+
+**Max parallel executions**
+
+This configuration properties decides how many TensorFlow jobs may be run at any time. If you have specified 100 different hyperparameter configurations, this implies 100 TensorFlow jobs. Each job being one hyperparameter combination. If this configuration value is set to 1. Then each of these 100 jobs are run sequentially. Any value greater than 1 will mean that jobs are being parallelized, so 2 or more jobs may be run in parallel.
+
+**Executor MB**
+
+This configuration property defines how much memory each executor should be allocated. Keep in mind that if the memory you configure is too small, the job will be killed by YARN. And you will have to restart Jupyter and increase this setting.
+
+**Executor GPUs**
+
+This configuration property defines how many GPUs that should be allocated for each executor, so how many GPUs each job will be able to access. To run only with CPU, simply set this value to 0.
+
 
 .. figure:: ../../imgs/tflauncher_mode.png
     :alt: HopsWorks project path
     :scale: 100
     :align: center
     :figclass: align-center
+   
     
 The programming model: Wrap your TensorFlow code in a function
 ##############################################################
