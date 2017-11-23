@@ -22,7 +22,7 @@ Reading from HDFS
 The path returned is to the root directory in HopsWorks.
 
 .. figure:: ../../imgs/datasets.png
-    :alt: Increasing throughput
+    :alt: HopsWorks project path
     :scale: 100
     :align: center
     :figclass: align-center
