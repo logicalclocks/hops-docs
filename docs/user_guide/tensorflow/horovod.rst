@@ -82,12 +82,6 @@ When launching your Horovod notebook, TensorBoard will be started automatically.
 **Navigate to TensorBoard in HopsWorks**
 After launching your Horovod notebook from the launcher notebook, you can monitor training by observing the TensorBoard.
 
-.. figure:: ../../imgs/overview.png
-    :alt: Jupyter UI overview
-    :scale: 100
-    :align: center
-    :figclass: align-center
-    
     
 .. figure:: ../../imgs/jupyter.png
     :alt: Jupyter UI overview
@@ -95,6 +89,12 @@ After launching your Horovod notebook from the launcher notebook, you can monito
     :align: center
     :figclass: align-center
 
+.. figure:: ../../imgs/overview.png
+    :alt: Jupyter UI overview
+    :scale: 100
+    :align: center
+    :figclass: align-center
+    
 
 **Navigate to Logs in HopsWorks**
 After launching your Horovod notebook from the launcher notebook, you can navigate to HopsWorks to see logs from the execution.
