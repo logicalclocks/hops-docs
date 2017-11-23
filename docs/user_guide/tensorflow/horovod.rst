@@ -17,7 +17,7 @@ The Horovod notebook
 Reading from HDFS
 #################
 
-Step 1. The first step is to upload a dataset to your project in HopsWorks. After having uploaded the dataset, your TensorFlow input pipeline code must point to the path in HopsFS where that particular dataset is stored. The first step is to get the root path to your project in HopsFS. This is easily done by the code below.
+**Step 1**. The first step is to upload a dataset to your project in HopsWorks. After having uploaded the dataset, your TensorFlow input pipeline code must point to the path in HopsFS where that particular dataset is stored. The first step is to get the root path to your project in HopsFS. This is easily done by the code below.
 
 
 ::
@@ -36,8 +36,9 @@ The path returned is to the root directory in HopsWorks.
     :scale: 100
     :align: center
     :figclass: align-center
-    
-Step 2. Append the relative path of your dataset to the root path. Assuming you uploaded a file named train.tfrecords in the Resources dataset. The path pointing to that particular dataset would then be.
+
+
+**Step 2**. Append the relative path of your dataset to the root path. Assuming you uploaded a file named train.tfrecords in the Resources dataset. The path pointing to that particular dataset would then be.
 
 ::
 
@@ -49,7 +50,7 @@ Step 2. Append the relative path of your dataset to the root path. Assuming you 
 
     ... TensorFlow/Horovod code ...
 
-Step 3. Use the path as any other path in a TensorFlow module
+**Step 3**. Use the path as any other path in a TensorFlow module
 
 ::
 
@@ -62,7 +63,9 @@ Step 3. Use the path as any other path in a TensorFlow module
 Working with TensorBoard
 ########################
 
-Every process (or GPU) depending on how you want to think of it. Will run the exact same python script. For this reason, it is import that if you are running any type of checkpointing or writing summaries to TensorBoard, that you wrap that particular code in an if statement where only process 0 performs this action. Otherwise concurrent writes to the same file will corrupt the data.
+When launching your Horovod notebook, TensorBoard will be started automatically. So the only thing you need to do in your code to interact with TensorBoard is to import the tensorboard module from the hops python library. In addition to writing summaries and your TensorBoard events of course.
+
+**Important**: Every process (or GPU) depending on how you want to think of it. Will run the exact same python script. For this reason, it is import that if you are running any type of checkpointing or writing summaries to TensorBoard, that you wrap that particular code in an if statement where only process 0 performs this action. Otherwise concurrent writes to the same file will corrupt the data.
 
 ::
 
