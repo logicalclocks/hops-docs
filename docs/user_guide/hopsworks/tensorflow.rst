@@ -50,4 +50,10 @@ Mode 3. Optimal scalability with Horovod
 Horovod is a distributed training framework for TensorFlow. The goal of Horovod is to make distributed Deep Learning fast and easy to use. Compared to TensorFlowOnSpark (Distributed TensorFlow), the programming model is significantly simpler, and it requires only a couple of changes to your existing code to convert a non-distributed training code to distributed and scale over 100s of GPUs.
 
        ../tensorflow/horovod.rst
+       
+.. figure:: ../../imgs/resnet101_benchmark.png
+    :alt: Increasing throughput
+    :scale: 100
+    :align: center
+    :figclass: align-center
 
