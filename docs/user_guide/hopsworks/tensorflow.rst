@@ -27,22 +27,22 @@ It contains several submodules that can be used for interacting with TensorBoard
 Mode 1. Parallel TensorFlow experiments
 -----------------------------------------
 
-The use-case of this mode is to run multiple parallel experiments where you have a set of predefined hyperparameters and a list of values per hyperparameter that should be used to run training with. Based on this list of hyperparameter values, a grid can be constructed (cartesian product). Each of these possible hyperparameter combinations in the grid corresponds to a TensorFlow job, or an "experiment". Running each of these hyperparameters configuration sequentially would be slow, therefore we provide a simple API to parallelize execution on one or more "executors".
+Its use case is to run multiple parallel experiments where you have a set of **predefined hyperparameters** and a list of values per hyperparameter that should be used to run training with. Based on this list of hyperparameter values, a grid can be constructed (cartesian product). Each of these possible hyperparameter combinations in the grid corresponds to a TensorFlow job, or an *experiment*. Running each of these hyperparameters configuration sequentially would be slow, therefore we provide a simple API to **parallelize** execution on one or more *executors*.
 
-Furthermore, we provide first-class support for the training as all the jobs can be visualized in the same TensorBoard in HopsWorks. Each TensorBoard logdir is then placed in your HopsWorks project, versioned with the hyperparameter values for that particular job.
+We provide first-class support for the training as all the jobs can be visualized in the same TensorBoard in HopsWorks. Each TensorBoard logdir is then placed in your HopsWorks project, versioned with the hyperparameter values for that particular job.
 
 Mode 2. Distributed TensorFlow with TensorFlowOnSpark
 ---------------------------------------------
 
-Originally developed by Yahoo, TensorFlowOnSpark is essentially a wrapper for Distributed TensorFlow (https://www.tensorflow.org/deploy/distributed) and in that sense, TensorFlowOnSpark supports all features which Distributed TensorFlow provides, such as asynchronous or synchronous training.
-Hops have since done some improvements since we have the ability to schedule GPUs, it is for example possible to define how many GPUs each worker should be allocated.
+Originally developed by Yahoo, TensorFlowOnSpark is essentially a wrapper for `Distributed TensorFlow <https://www.tensorflow.org/deploy/distributed>`_. and in that sense, TensorFlowOnSpark supports all features which Distributed TensorFlow provides, such as synchronous and asynchronous training.
+Hops has improved this model by adding the ability to **schedule GPUs**. For example possible to define how many GPUs each worker should be allocated.
 
 The `TFCluster` API remains the same, so any existing examples will run on TensorFlowOnSpark on Hops. We also provide TensorBoard for TensorFlowOnSpark to monitor the progress of your training.
 
 Mode 3. Optimal scalability with Horovod
 ------------------------------------
 
-Horovod is a distributed training framework for TensorFlow. The goal of Horovod is to make distributed Deep Learning fast and easy to use. Compared to TensorFlowOnSpark (Distributed TensorFlow), the programming model is significantly simpler, and it requires only a couple of changes to your existing code to convert a non-distributed training code to distributed and scale over 100s of GPUs.
+Horovod is a distributed training framework for TensorFlow. The goal of Horovod is to make distributed Deep Learning fast and easy to use. Compared to TensorFlowOnSpark (Distributed TensorFlow), the programming model is significantly simpler, and it requires minor changes to your existing code to convert a non-distributed training code to distributed and **scale over 100s of GPUs**.
 
 .. figure:: ../../imgs/resnet101_benchmark.png
     :alt: Increasing throughput
