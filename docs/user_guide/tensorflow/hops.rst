@@ -17,17 +17,22 @@ The *hdfs* module provides a single method to get the path in HopsFS where your 
 
 tensorboard
 ------------------------------
-The *tensorboard* module allow us to get the log directory for summaries and checkpoints that is to be written to the TensorBoard.
-The ``tflaunch.launch`` function, which you can then navigate to using HopsWorks to inspect the files.
+When the *launch* method in the *tflauncher* module is invoked, a TensorBoard server will be started and available for each job. The *tensorboard* module provides a *logdir* method to get the log directory for summaries and checkpoints that is to be written to the TensorBoard. After the each job is finished, the contents of the log directory will be placed in your HopsWorks project, specifically in the Logs dataset. The directory name will correspond to the values of the hyperparameters for that particular job. The log directory could therefore be used also write the final model or any other files that should be available after execution is finished, alternatively you can of course also write the model to a directory in your HopsWorks project.
 
-The directory could in practice be used to store other data that should be accessible after each hyperparameter configuration is finished.
+The *launch* function in *tflauncher*, will return the directory in HopsFS, where each log directory is stored after execution is finished. The *visualize* method in *tensorboard* takes this path as an argument, and will start a new TensorBoard containing all the log directories of the execution, which will provide an easy way to identify the best model. Using this method, it is also possible to visualize old runs by simply supplying the path to this log directory from old runs.
+
 ::
 
+    # Somewhere in your TensorFlow code 
     from hops import tensorboard
-
     # Get the log directory
     logdir = tensorboard.logdir()
 
+    
+    # Launching your training and visualizing everything in the same TensorBoard
+    from hops import tensorboard
+    import hops import tflauncher
+    hdfs_path = tflauncher.launch(spark, training_fun, args_dict)
     # Visualize TensorBoard from HopsFS
     tensorboard.visualize(spark, hdfs_path)
 
