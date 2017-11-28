@@ -24,9 +24,9 @@ The first step is to define a function containing all the logic for your program
 
 See the official Github `repo <https://github.com/yahoo/TensorFlowOnSpark>`_
 
-For the original `_example <https://github.com/yahoo/TensorFlowOnSpark/tree/master/examples/mnist>`_
+For the original `example <https://github.com/yahoo/TensorFlowOnSpark/tree/master/examples/mnist>`_
 
-Yahoo introduces `_TensorFlowOnSpark API <https://www.youtube.com/watch?v=b3lTvTKBatE>`_
+Yahoo introduces `TensorFlowOnSpark API <https://www.youtube.com/watch?v=b3lTvTKBatE>`_
 
 The TFCluster API
 -----------------
