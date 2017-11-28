@@ -59,7 +59,7 @@ Reading from HopsfS (HDFS)
     
 The path returned is to the root directory in HopsWorks.
 
-.. figure:: ../../imgs/datasets.png
+.. figure:: ../../imgs/datasets-browser.png
     :alt: HopsWorks project path
     :scale: 100
     :align: center

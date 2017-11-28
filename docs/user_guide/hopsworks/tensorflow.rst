@@ -1,6 +1,14 @@
 TensorFlow on Hops
 ==================
 
+.. toctree::
+   :maxdepth: 1
+
+   ../tensorflow/hops.rst
+   ../tensorflow/horovod.rst
+   ../tensorflow/tensorflow_on_spark.rst
+   ../tensorflow/tflauncher.rst
+
 Hops provides support for running TensorFlow using HopsWorks on a Hops cluster. The environment for doing so is ran in Jupyter notebooks.
 The datasets that you are working with can either be uploaded to your HopsWorks project or be shared among different projects the user has access to by sharing the actual datast. HopsFS is the filesystem of Hops, it is essentially a fork of Apache HDFS and is compliant with any API that can read data from an HDFS path, such as TensorFlow. In your TensorFlow code you can simply replace local file paths to the corresponding path in HDFS. More information is available `here <https://www.tensorflow.org/deploy/hadoop>`_..
 
