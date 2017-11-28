@@ -23,6 +23,7 @@ HopsWorks User Guide
    hopsworks/zeppelin.rst
    hopsworks/kafka.rst
    hopsworks/hive.rst
+   hopsworks/tensorflow.rst
    hopsworks/metaDataManagement.rst
    hopsworks/metaDataDesigner.rst
    hopsworks/metaDataAttachment.rst
