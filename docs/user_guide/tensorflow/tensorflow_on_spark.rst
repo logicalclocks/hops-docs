@@ -1,19 +1,20 @@
 TensorFlowOnSpark on Hops
 =========================
+.. highlight:: python
 
 What is TensorFlowOnSpark
 -------------------------
 
-Originally developed by Yahoo, TensorFlowOnSpark is essentially a wrapper for Distributed TensorFlow (https://www.tensorflow.org/deploy/distributed) and in that sense, TensorFlowOnSpark supports all features which Distributed TensorFlow provides, such as asynchronous or synchronous training.
+Originally developed by Yahoo, TensorFlowOnSpark is essentially a wrapper for `Distributed TensorFlow <https://www.tensorflow.org/deploy/distributed>`_ and in that sense, TensorFlowOnSpark supports all features which Distributed TensorFlow provides, such as asynchronous or synchronous training.
 
 Improvements by Hops
 --------------------
 
-1. Hops provides GPU scheduling! In the Jupyter configuration before starting Jupyter in HopsWorks, it is possible to configure the number of GPUs that should be accessible for each worker.
+1. **Hops provides GPU scheduling!** In the Jupyter configuration before starting Jupyter in HopsWorks, it is possible to configure the number of GPUs that should be accessible for each worker.
 
-2. Parameter servers are not allocated any GPUs since they perform relatively small computations.
+2. **Parameter servers are not allocated any GPUs** since they perform relatively small computations.
 
-3. GPUs are exclusively allocated, which mean workers will not crash due to Out-of-memory errors.
+3. **GPUs are exclusively allocated**, which mean workers will not crash due to Out-of-memory errors.
 
 
 Wrap your TensorFlowOnSpark code in a function
@@ -21,11 +22,11 @@ Wrap your TensorFlowOnSpark code in a function
 
 The first step is to define a function containing all the logic for your program. This means looking at existing code examples and offical TensorFlowOnSpark documentation.
 
-See the official Github repo: https://github.com/yahoo/TensorFlowOnSpark
+See the official Github `repo <https://github.com/yahoo/TensorFlowOnSpark>`_
 
-For the original example: https://github.com/yahoo/TensorFlowOnSpark/tree/master/examples/mnist
+For the original `_example <https://github.com/yahoo/TensorFlowOnSpark/tree/master/examples/mnist`_
 
-Yahoo introduces TensorFlowOnSpark API: https://www.youtube.com/watch?v=b3lTvTKBatE
+Yahoo introduces `_TensorFlowOnSpark API <https://www.youtube.com/watch?v=b3lTvTKBatE>`_
 
 The TFCluster API
 -----------------
@@ -44,7 +45,7 @@ The `TFCluster` python module is used to launch the actual TensorFlowOnSpark pro
 Working with TensorBoard
 ------------------------
 
-When you run your job using TFCluster, TensorBoard will be started automatically. So the only thing you need to do in your code to interact with TensorBoard is to import the tensorboard module from the hops python library. In addition to writing summaries and your TensorBoard events of course.
+When you run your job using TFCluster, TensorBoard will be started automatically. To interact with TensorBoard, import the tensorboard module from the hops python library. In addition to writing summaries and your TensorBoard events of course.
 
 ::
 
