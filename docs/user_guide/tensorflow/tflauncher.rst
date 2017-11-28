@@ -161,13 +161,13 @@ After launching your job using tflauncher, you can monitor training by observing
 
 .. figure:: ../../imgs/jupyter.png
     :alt: Jupyter UI overview
-    :scale: 100
+    :scale: 50
     :align: center
     :figclass: align-center
 
 .. figure:: ../../imgs/overview.png
     :alt: Jupyter UI overview
-    :scale: 100
+    :scale: 50
     :align: center
     :figclass: align-center
 
@@ -179,13 +179,13 @@ After launching your job using tflauncher, you can navigate to HopsWorks to view
 
 .. figure:: ../../imgs/logs.png
     :alt: Logs overview
-    :scale: 100
+    :scale: 50
     :align: center
     :figclass: align-center
 
 .. figure:: ../../imgs/viewlogs.png
     :alt: View logs
-    :scale: 100
+    :scale: 50
     :align: center
     :figclass: align-center
 

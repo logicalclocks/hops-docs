@@ -34,7 +34,7 @@ The path returned is to the root directory in HopsWorks.
 
 .. figure:: ../../imgs/datasets-browser.png
     :alt: HopsWorks project path
-    :scale: 50
+    :scale: 60
     :align: center
     :figclass: align-center
 
@@ -86,13 +86,13 @@ After launching your Horovod notebook from the launcher notebook, you can monito
     
 .. figure:: ../../imgs/jupyter.png
     :alt: Jupyter UI overview
-    :scale: 50
+    :scale: 60
     :align: center
     :figclass: align-center
 
 .. figure:: ../../imgs/overview.png
     :alt: Jupyter UI overview
-    :scale: 50
+    :scale: 40
     :align: center
     :figclass: align-center
     
@@ -102,13 +102,13 @@ After launching your Horovod notebook from the launcher notebook, you can naviga
 
 .. figure:: ../../imgs/logs.png
     :alt: Logs overview
-    :scale: 50
+    :scale: 40
     :align: center
     :figclass: align-center
 
 .. figure:: ../../imgs/viewlogs.png
     :alt: View logs
-    :scale: 50
+    :scale: 40
     :align: center
     :figclass: align-center
     
