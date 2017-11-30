@@ -41,6 +41,8 @@ The `TFCluster` python module is used to launch the actual TensorFlowOnSpark pro
     num_param_servers = util.num_param_servers(spark)
     num_executors = util.num_executors(spark)
     
+    TFCluster.run(.., num_executors, num_param_servers...)
+    
     
 Working with TensorBoard
 ------------------------
