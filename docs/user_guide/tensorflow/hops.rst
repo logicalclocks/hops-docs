@@ -8,12 +8,31 @@ hdfs
 -----------------------
 .. highlight:: python
 
-The *hdfs* module provides a single method to get the path in HopsFS where your data is stored, namely by calling ``hdfs.project_path()``. The path resolves to the root path for your project, which is the view that you see when you click ``Data Sets`` in HopsWorks. To point where your actual data resides in the project you to append the full path from there to your Dataset. For example if you create a mnist folder in your Resources Dataset, which is created automatically for each project, the path to the mnist data would be ``hdfs.project_path() + 'Resources/mnist'``
+The *hdfs* module provides a single method to get the path in HopsFS where your data is stored, namely by calling ``hdfs.project_path()``. The path resolves to the root path for your project, which is the view that you see when you click ``Data Sets`` in HopsWorks. To point where your actual data resides in the project you to append the full path from there to your Dataset. For example if you create a mnist folder in your ``Resources`` dataset, which is created automatically for each project, the path to the mnist data would be ``hdfs.project_path() + 'Resources/mnist'``
 
 ::
 
     from hops import hdfs
     hdfs.project_path()
+    
+    
+    
+    
+    
+    
+    
+tflauncher
+-----------------------------
+The ``tflauncher`` module is used for running TensorFlow experiments. After each job is finished, the log directory for that job execution is put in HopsFS.
+It can either be run with or without the ``args_dict argument`` that defines the hyperparameter values.
+::
+
+    from hops import tflauncher
+    root_tensorboard_logdir = tflauncher.launch(spark, wrapper)
+    
+    
+    
+    
 
 tensorboard
 ------------------------------
@@ -48,15 +67,6 @@ See the ``multi-gpu-cnn.ipynb`` example in the TensorFlow tour.
     from hops import devices
     num_gpus = devices.get_num_gpus()
 
-
-tflauncher
------------------------------
-The ``tflauncher`` module is used for running TensorFlow experiments. After each job is finished, the log directory for that job execution is put in HopsFS.
-It can either be run with or without the ``args_dict argument`` that defines the hyperparameter values.
-::
-
-    from hops import tflauncher
-    root_tensorboard_logdir = tflauncher.launch(spark, wrapper)
 
 allreduce
 ----------------------------
