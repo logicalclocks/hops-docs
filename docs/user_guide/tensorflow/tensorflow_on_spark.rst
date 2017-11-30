@@ -14,7 +14,7 @@ Improvements by Hops
 
 2. **Parameter servers are not allocated any GPUs** since they perform relatively small computations.
 
-3. **GPUs are exclusively allocated**, which mean workers will not crash due to Out-of-memory errors.
+3. **GPUs are exclusively allocated**, which mean workers will not crash due to Out-of-memory errors and synchronous training is faster.
 
 
 Wrap your TensorFlowOnSpark code in a function
@@ -24,7 +24,7 @@ The first step is to define a function containing all the logic for your program
 
 See the official Github `repo <https://github.com/yahoo/TensorFlowOnSpark>`_
 
-For the original `example <https://github.com/yahoo/TensorFlowOnSpark/tree/master/examples/mnist>`_
+For code `examples <https://github.com/yahoo/TensorFlowOnSpark/tree/master/examples>`_
 
 Yahoo introduces `TensorFlowOnSpark API <https://www.youtube.com/watch?v=b3lTvTKBatE>`_
 
