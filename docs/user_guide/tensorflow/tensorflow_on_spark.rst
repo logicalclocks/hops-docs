@@ -16,7 +16,6 @@ Improvements by Hops
 
 3. **GPUs are exclusively allocated**, which mean workers will not crash due to Out-of-memory errors and synchronous training is faster.
 
-
 Wrap your TensorFlowOnSpark code in a function
 ----------------------------------------------
 
@@ -24,7 +23,7 @@ The first step is to define a function containing all the logic for your program
 
 See the official Github `repo <https://github.com/yahoo/TensorFlowOnSpark>`_
 
-For code `examples <https://github.com/yahoo/TensorFlowOnSpark/tree/master/examples>`_
+For the original `example <https://github.com/yahoo/TensorFlowOnSpark/tree/master/examples/mnist>`_
 
 Yahoo introduces `TensorFlowOnSpark API <https://www.youtube.com/watch?v=b3lTvTKBatE>`_
 
@@ -64,13 +63,13 @@ After launching your job using TFCluster, you can monitor training by observing 
     
 .. figure:: ../../imgs/jupyter.png
     :alt: Jupyter UI overview
-    :scale: 100
+    :scale: 50
     :align: center
     :figclass: align-center
 
 .. figure:: ../../imgs/overview.png
     :alt: Jupyter UI overview
-    :scale: 100
+    :scale: 50
     :align: center
     :figclass: align-center
     
@@ -83,13 +82,13 @@ After launching your job using TFCluster, you can navigate to HopsWorks to see l
 
 .. figure:: ../../imgs/logs.png
     :alt: Logs overview
-    :scale: 100
+    :scale: 50
     :align: center
     :figclass: align-center
 
 .. figure:: ../../imgs/viewlogs.png
     :alt: View logs
-    :scale: 100
+    :scale: 50
     :align: center
     :figclass: align-center
 
