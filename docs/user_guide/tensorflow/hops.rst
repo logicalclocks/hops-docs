@@ -23,6 +23,10 @@ To write log entries, the ``hdfs.log(string)`` method is used. It will write the
     from hops import hdfs
     hdfs.log('Some string')    
     
+Read this! Known issues with hdfs module.
+-----------------------------------------
+
+If you are running parallel experiments using ``tflauncher`` or TensorFlowOnSpark using ``TFCluster``, the ``hdfs`` module can only be used in the wrapper function. Any use of them outside the wrapper functions will break the notebook, and you will need to restart Jupyter.
     
 tflauncher
 -----------------------------
@@ -30,9 +34,46 @@ The ``tflauncher`` module is used for running TensorFlow experiments. After each
 It can either be run with or without the ``args_dict argument`` that defines the hyperparameter values.
 ::
 
+    def single_experiments_wrapper():
+        # Wrapper function for a single experiment with hardcoded parameters
+
+    # A standalone job
     from hops import tflauncher
-    root_tensorboard_logdir = tflauncher.launch(spark, wrapper)
+    root_tensorboard_logdir = tflauncher.launch(spark, single_experiments_wrapper)
     
+    ............................................................
+    
+    def multiple_experiments_wrapper(lr, dropout):
+        # Wrapper function for arbitrarily many experiments
+        
+    # Running two experiments
+    from hops import tflauncher
+    args_dict = {'lr': [0.1, 0.3], 'dropout': [0.4, 0.7]}
+    
+    # This code will run two jobs
+    # job1: lr=0.1 and dropout=0.4
+    # job2: lr=0.3 and dropout=0.7
+    root_tensorboard_logdir = tflauncher.launch(spark, multiple_experiments_wrapper, args_dict)
+    
+    .............................................................
+    
+    def grid_experiments_wrapper(lr, dropout):
+        # Wrapper function for arbitrarily many experiments
+        
+    # Running a grid of hyperparameter experiments
+    from hops import tflauncher
+    args_dict = {'lr': [0.1, 0.3], 'dropout': [0.4, 0.7]}
+    
+    from hops import util
+    # This code creates a grid, so all possible hyperparameter combinations of ``lr`` and ``dropout``
+    args_dict_grid = util.grid_params(args_dict)
+    
+    # This code will run four jobs
+    # job1: lr=0.1 and dropout=0.4
+    # job2: lr=0.1 and dropout=0.7
+    # job3: lr=0.3 and dropout=0.4
+    # job4: lr=0.3 and dropout=0.7
+    root_tensorboard_logdir = tflauncher.launch(spark, grid_experiments_wrapper, args_dict_grid)  
     
     
     
