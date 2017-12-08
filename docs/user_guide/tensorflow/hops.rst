@@ -16,7 +16,7 @@ The *hdfs* module provides several for interacting with HopsFS where your data i
     hdfs.project_path()
     
     
-To perform logging, the ``hdfs.log(string)`` method is used. It will write the string to a specific logfile for each experiment. The logfiles are stored in the same directory as your TensorBoard events, namely in /Logs/TensorFlow/{appId}/{runId}.
+To write log entries, the ``hdfs.log(string)`` method is used. It will write the string to a specific logfile for each experiment. The logfiles are stored in the same directory as your TensorBoard events, namely in /Logs/TensorFlow/{appId}/{runId}. Keep in mind that this is a separate log from the one shown in the Spark UI in Jupyter, which is simply the stdout and stderr of the running job.
 
 ::
 
