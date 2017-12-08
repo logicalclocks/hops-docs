@@ -29,9 +29,8 @@ Read this! Known issues with hdfs module.
 If you are running parallel experiments using ``tflauncher`` or TensorFlowOnSpark using ``TFCluster``, the ``hdfs`` module can only be used in the wrapper function. Any use of them outside the wrapper functions will break the notebook, and you will need to restart Jupyter.
     
 tflauncher
------------------------------
-The ``tflauncher`` module is used for running TensorFlow experiments. After each job is finished, the log directory for that job execution is put in HopsFS.
-It can either be run with or without the ``args_dict argument`` that defines the hyperparameter values.
+----------
+The ``tflauncher`` module is used for running Parallel TensorFlow experiments. Which corresponds to selecting the TensorFlow mode in Jupyter. It can either be run with or without the ``args_dict argument`` that define hyperparameter values.
 ::
 
     def single_experiments_wrapper():
@@ -41,7 +40,7 @@ It can either be run with or without the ``args_dict argument`` that defines the
     from hops import tflauncher
     root_tensorboard_logdir = tflauncher.launch(spark, single_experiments_wrapper)
     
-    ............................................................
+    ...............................................................................................
     
     def multiple_experiments_wrapper(lr, dropout):
         # Wrapper function for arbitrarily many experiments
@@ -55,7 +54,7 @@ It can either be run with or without the ``args_dict argument`` that defines the
     # job2: lr=0.3 and dropout=0.7
     root_tensorboard_logdir = tflauncher.launch(spark, multiple_experiments_wrapper, args_dict)
     
-    .............................................................
+    ...............................................................................................
     
     def grid_experiments_wrapper(lr, dropout):
         # Wrapper function for arbitrarily many experiments
@@ -80,7 +79,7 @@ It can either be run with or without the ``args_dict argument`` that defines the
 tensorboard
 ------------------------------
 TensorBoard is supported for all TensorFlow modes (Parallel experiments, TensorFlowOnSpark and Horovod). 
-When the *launch* method in the *tflauncher* module is invoked, a TensorBoard server will be started and available for each job. The *tensorboard* module provides a *logdir* method to get the log directory for summaries and checkpoints that is to be written to the TensorBoard. After the each job is finished, the contents of the log directory will be placed in your HopsWorks project, in the path ``/Logs/TensorFlow/{appId}/{runId}/{hyperparameter}``. The directory name will correspond to the values of the hyperparameters for that particular job. The log directory could therefore be used also write the final model or any other files that should be available after execution is finished, alternatively you can of course also write the model to a directory in your HopsWorks project.
+When the ``tflauncher.launch`` function is invoked, a TensorBoard server will be started and available for each job. The *tensorboard* module provides a *logdir* method to get the log directory for summaries and checkpoints that is to be written to the TensorBoard. After the each job is finished, the contents of the log directory will be placed in your HopsWorks project, in the path ``/Logs/TensorFlow/{appId}/{runId}/{hyperparameter}``. The directory name will correspond to the values of the hyperparameters for that particular job. The log directory could therefore be used also write the final model or any other files that should be available after execution is finished, alternatively you can of course also write the model to a directory in your HopsWorks project.
 
 The *launch* function in *tflauncher*, will return the directory in HopsFS, where each log directory is stored after execution is finished. The *visualize* method in *tensorboard* takes this path as an argument, and will start a new TensorBoard containing all the log directories of the execution, which will provide an easy way to identify the best model. Using this method, it is also possible to visualize old runs by simply supplying the path to this log directory from old runs.
 
