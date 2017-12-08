@@ -8,7 +8,7 @@ hdfs
 -----------------------
 .. highlight:: python
 
-The *hdfs* module provides a single method to get the path in HopsFS where your data is stored, namely by calling ``hdfs.project_path()``. The path resolves to the root path for your project, which is the view that you see when you click ``Data Sets`` in HopsWorks. To point where your actual data resides in the project you to append the full path from there to your Dataset. For example if you create a mnist folder in your ``Resources`` dataset, which is created automatically for each project, the path to the mnist data would be ``hdfs.project_path() + 'Resources/mnist'``
+The *hdfs* module provides several for interacting with HopsFS where your data is stored. The first one is ``hdfs.project_path()`` The path resolves to the root path for your project, which is the view that you see when you click ``Data Sets`` in HopsWorks. To point where your actual data resides in the project you to append the full path from there to your Dataset. For example if you create a mnist folder in your ``Resources`` dataset, which is created automatically for each project, the path to the mnist data would be ``hdfs.project_path() + 'Resources/mnist'``
 
 ::
 
@@ -16,8 +16,12 @@ The *hdfs* module provides a single method to get the path in HopsFS where your 
     hdfs.project_path()
     
     
-    
-    
+To perform logging, the ``hdfs.log(string)`` method is used. It will write the string to a specific logfile for each experiment. The logfiles are stored in the same directory as your TensorBoard events, namely in /Logs/TensorFlow/{appId}/{runId}.
+
+::
+
+    from hops import hdfs
+    hdfs.log('Some string')    
     
     
 tflauncher
