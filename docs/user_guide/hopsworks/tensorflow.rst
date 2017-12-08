@@ -1,18 +1,7 @@
 TensorFlow on Hops
 ==================
 
-.. toctree::
-   :maxdepth: 1
-
-   ../tensorflow/hops.rst
-   ../tensorflow/horovod.rst
-   ../tensorflow/tensorflow_on_spark.rst
-   ../tensorflow/tflauncher.rst
-
-
-Hops provides support for running TensorFlow using HopsWorks on a Hops cluster. The environment for doing so is ran in Jupyter notebooks.
-The datasets that you are working with can either be uploaded to your HopsWorks project or be shared among different projects the user has access to by sharing the actual datast. HopsFS is the filesystem of Hops, it is essentially a fork of Apache HDFS and is compliant with any API that can read data from an HDFS path, such as TensorFlow. In your TensorFlow code you can simply replace local file paths to the corresponding path in HDFS. More information is available `here <https://www.tensorflow.org/deploy/hadoop>`_..
-
+Hops provides support for running TensorFlow using HopsWorks on a Hops cluster. The development environment for doing so is in Jupyter notebooks. It is important to understand the programming model for working with TensorFlow on HopsWorks to become the most productive as you can!
 
 Working with TensorFlow in Jupyter
 ----------------------------------
@@ -26,7 +15,17 @@ HopsWorks currently support *three* different modes for running TensorFlow, that
 
 To execute the Python code in YARN containers on the Hops cluster, we make use of `Apache Spark <https://spark.apache.org/>`_. to distribute and execute the code, so effectively we run TensorFlow on Spark. We also provide first-class support for TensorBoard, so you can easily monitor the progress of your training and compare different hyperparameter configurations while training or after a job has finished. And yes, we have logs too of course.
 
-When starting Jupyter in HopsWorks, certain configuration properties need to be filled in and understood, therefore it is recommended to look at each guide to understand the implications of these values. Each of the links below guide you through the configuration properties that can be set for each mode.
+The datasets that you are working with can either be uploaded to your HopsWorks project or be shared among different projects the user has access to by sharing the actual datast. HopsFS is the filesystem of Hops, it is essentially a fork of Apache HDFS and is compliant with any API that can read data from an HDFS path, such as TensorFlow. In your TensorFlow code you can simply replace local file paths to the corresponding path in HDFS. More information is available `here <https://www.tensorflow.org/deploy/hadoop>`_..
+
+When starting Jupyter in HopsWorks, certain configuration properties need to be filled in and understood, therefore it is recommended to look at each guide to understand the implications of these values. Each of the links below guide you through the configuration properties that can be set for each mode. Follow the links below to read the documentation.
+
+.. toctree::
+   :maxdepth: 1
+
+   ../tensorflow/hops.rst
+   ../tensorflow/tflauncher.rst
+   ../tensorflow/tensorflow_on_spark.rst
+   ../tensorflow/horovod.rst
 
 
 Hops python library
