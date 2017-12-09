@@ -8,7 +8,7 @@ hdfs
 -----------------------
 .. highlight:: python
 
-The *hdfs* module provides several for interacting with HopsFS where your data is stored. The first one is ``hdfs.project_path()`` The path resolves to the root path for your project, which is the view that you see when you click ``Data Sets`` in HopsWorks. To point where your actual data resides in the project you to append the full path from there to your Dataset. For example if you create a mnist folder in your ``Resources`` dataset, which is created automatically for each project, the path to the mnist data would be ``hdfs.project_path() + 'Resources/mnist'``. It is also possible to write to files in your HopsWorks project using the hdfs module. However this code must be wrapped in a function and executed using the tflauncher module.
+The ``hdfs`` module provides several for interacting with HopsFS where your data is stored. The first one is ``hdfs.project_path()`` The path resolves to the root path for your project, which is the view that you see when you click ``Data Sets`` in HopsWorks. To point where your actual data resides in the project you to append the full path from there to your Dataset. For example if you create a mnist folder in your ``Resources`` dataset, which is created automatically for each project, the path to the mnist data would be ``hdfs.project_path() + 'Resources/mnist'``. It is also possible to write to files in your HopsWorks project using the ``hdfs`` module. However this code must be wrapped in a function and executed using the ``tflauncher`` module.
 
 ::
 
@@ -42,13 +42,13 @@ Read this! Known issues with hdfs module.
 
 If you are running parallel experiments using ``tflauncher`` or TensorFlowOnSpark using ``TFCluster``, the ``hdfs`` module can only be used in the wrapper function. Any use of them outside the wrapper functions will break the notebook, and you will need to restart Jupyter. 
 
-In the case of ``Horovod`` the hdfs module can be used anywhere in the notebook when your Horovod code is, but should not be used in the launcher notebook. 
+In the case of ``Horovod`` the ``hdfs`` module can be used anywhere in the notebook when your Horovod code is, but should not be used in the launcher notebook. 
 
 
     
 tflauncher
 ----------
-The ``tflauncher`` module is used for running Parallel TensorFlow experiments. Which corresponds to selecting the TensorFlow mode in Jupyter. It can either be run with or without the ``args_dict argument`` that define hyperparameter values.
+The ``tflauncher`` module is used for running one or more Parallel TensorFlow experiments. Which corresponds to selecting the TensorFlow mode in Jupyter. It can either be run with or without the ``args_dict`` argument that define hyperparameter values.
 ::
 
     def single_experiments_wrapper():
