@@ -8,12 +8,22 @@ hdfs
 -----------------------
 .. highlight:: python
 
-The *hdfs* module provides several for interacting with HopsFS where your data is stored. The first one is ``hdfs.project_path()`` The path resolves to the root path for your project, which is the view that you see when you click ``Data Sets`` in HopsWorks. To point where your actual data resides in the project you to append the full path from there to your Dataset. For example if you create a mnist folder in your ``Resources`` dataset, which is created automatically for each project, the path to the mnist data would be ``hdfs.project_path() + 'Resources/mnist'``
+The *hdfs* module provides several for interacting with HopsFS where your data is stored. The first one is ``hdfs.project_path()`` The path resolves to the root path for your project, which is the view that you see when you click ``Data Sets`` in HopsWorks. To point where your actual data resides in the project you to append the full path from there to your Dataset. For example if you create a mnist folder in your ``Resources`` dataset, which is created automatically for each project, the path to the mnist data would be ``hdfs.project_path() + 'Resources/mnist'``. It is also possible to write to files in your HopsWorks project using the hdfs module. However this code must be wrapped in a function and executed using the tflauncher module.
 
 ::
 
-    from hops import hdfs
-    hdfs.project_path()
+    def wrapper():
+        from hops import hdfs
+        fs_handle = hdfs.get_fs()
+    
+        # Write to file in HopsWorks Resources dataset
+        logfile = hdfs.project_path() + "Resources/file.txt"
+        fd = fs_handle.open_file(logfile, flags='w')
+        fd.write('Hello HopsWorks')
+        
+    from hops import tflauncher
+    tflauncher.launch(spark, wrapper)       
+     
     
     
 To write log entries, the ``hdfs.log(string)`` method is used. It will write the string to a specific logfile for each experiment. The logfiles are stored in the same directory as your TensorBoard events, namely in ``/Logs/TensorFlow/{appId}/{runId}/{hyperparameter}``. Keep in mind that this is a separate log from the one shown in the Spark UI in Jupyter, which is simply the stdout and stderr of the running job.
