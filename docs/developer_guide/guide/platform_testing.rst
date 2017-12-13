@@ -48,8 +48,10 @@ Currently all the VMs are run on the same Jenkins node (same machine, same user)
   /usr/lib/virtualbox/VBoxSVC --pidfile VBoxSVC.pid &
 
 Βuilding HopsWorks build and running tests run are both done inside the VM for several reasons.
+
 1. Building HopsWorks outside the VM and copying the artifacts is slow.
-2. Installing Ruby and JS dependencies can be messy and it is safer to do that in a VM environment than on the actual machine running the testing pipeline. In additon, it is also easier to expand the set of configurations being tested and requires minimal changes to the pipeline code (add new parallel stage and new template) and/or using multiple nodes for testing various configurations.
+2. Installing Ruby and JS dependencies can be messy and it is safer to do that in a VM environment than on the actual machine running the testing pipeline. 
+3. It is to expand the set of configurations being tested and requires minimal changes to the pipeline code (add new parallel stage and new template) and/or using multiple nodes for testing various configurations.
 
 The workflow (pipeline) of a Jenkins build is defined in the ``Jenkinsfile`` and is composed of the following steps:
 
