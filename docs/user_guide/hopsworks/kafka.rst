@@ -2,6 +2,11 @@
 Apache Kafka
 ===========================
 
+
+
+
+.. _blabla: ../../imgs/kafka-producer.png
+
 In HopsWorks we provide Kafka-as-a-Service for streaming
 applications. In the following section we will guide you through
 creating a *Producer* job which will produce in a Kafka topic and a
@@ -63,7 +68,7 @@ will produce to and consume from.
 
 .. figure:: ../../imgs/kafka-producer.png
     :alt: Kafka producer job
-    :scale: 100
+    :target: `blabla`_
     :align: center
     :figclass: align-center
 
