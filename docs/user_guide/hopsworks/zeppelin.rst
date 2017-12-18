@@ -12,9 +12,10 @@ To run a job through Zeppelin simply select your project and select
 where you can create a new notebook and see the status of supported
 interpreters.
 
+.. _zeppelin-main.png: ../../_images/zeppelin-main.png
 .. figure:: ../../imgs/zeppelin-main.png
     :alt: Zeppelin main
-    :scale: 100
+    :target: `zeppelin-main.png`_
     :align: center
     :figclass: align-center
 
@@ -46,9 +47,10 @@ tutorial in HopsWorks.
 
 Your final page should look like the following
 
+.. _zeppelin-tutorial-final.png: ../../_images/zeppelin-tutorial-final.png
 .. figure:: ../../imgs/zeppelin-tutorial-final.png
     :alt: Zeppelin tutorial
-    :scale: 100
+    :target: `zeppelin-tutorial-final.png`_
     :align: center
     :figclass: align-center
 
@@ -58,9 +60,10 @@ Clicking on the gear on the top right corner as indicated in the
 picture below you can change the default interpreter binding. You can
 choose among Spark, Livy, Flink, etc just by drag them on the top.
 
+.. _zeppelin-inter.png: ../../_images/zeppelin-inter.png
 .. figure:: ../../imgs/zeppelin-inter.png
     :alt: Zeppelin interpreters
-    :scale: 100
+    :target: `zeppelin-inter.png`_
     :align: center
     :figclass: align-center
 

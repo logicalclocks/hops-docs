@@ -8,9 +8,10 @@ activity, HDFS activity, completed tasks etc. After you have launched
 your job, click on the ``Job UI`` button on the right and select the
 ``Metrics`` tab. A sample dashboard is illustrated below.
 
+.. _grafana-dashboard.png: ../../_images/grafana-dashboard.png
 .. figure:: ../../imgs/grafana-dashboard.png
     :alt: Graphana dashboard
-    :scale: 100
+    :target: `grafana-dashboard.png`_
     :align: center
     :figclass: align-center
 

@@ -8,9 +8,10 @@ upon a job completion, click on the ``Job UI`` button and then on
 ``Logs`` tab. A sample output for the SparkPi job looks like the
 following.
 
+.. _kibana-main.png: ../../_images/kibana-main.png
 .. figure:: ../../imgs/kibana-main.png
     :alt: Kibana main
-    :scale: 100
+    :target: `kibana-main.png`_
     :align: center
     :figclass: align-center
 
@@ -43,9 +44,10 @@ side is the legend. Hopefully most of your job's messages will be INFO
 and a few WARN! On the top right corner is the visualization menu
 where you can save, load or share the current chart.
 
+.. _kibana-piechart.png: ../../_images/kibana-piechart.png
 .. figure:: ../../imgs/kibana-piechart.png
     :alt: Kibana pie chart
-    :scale: 100
+    :target: `kibana-piechart.png`_
     :align: center
     :figclass: align-center
 
