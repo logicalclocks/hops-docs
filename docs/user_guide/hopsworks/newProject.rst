@@ -16,9 +16,10 @@ As soon as you have created a new project and click on it on the
 *Projects* box, you will see the project main page as illustrated in
 the picture below.
 
+.. _project-main.png: ../../_images/project-main.png
 .. figure:: ../../imgs/project-main.png
     :alt: Project main page
-    :scale: 100
+    :target: `project-main.png`_
     :align: center
     :figclass: align-center
 

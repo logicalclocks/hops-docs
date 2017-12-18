@@ -2,17 +2,31 @@
 Apache Kafka
 ===========================
 
-In HopsWorks we provide Kafka-as-a-Service for streaming
-applications. In the following section we will guide you through
-creating a *Producer* job which will produce in a Kafka topic and a
-simple *Consumer* job which will consume from that topic. Our service
-is tightly coupled with our project-based model so only members of a
-project can use a specific Kafka topic, unless specified as we see
-later on.
 
-To begin with you have to download and compile our utilities library
-which will abstract away all the configuration boilerplate code such
-as Kafka endpoints, topics etc
+HopsWorks provides Kafka-as-a-Service for streaming
+applications. In the following section we will guide you through
+creating a *Producer* job which produces messages to a Kafka topic and a
+simple *Consumer* job which consumes from the same topic. Our service
+is tightly coupled with our project-based model so only members of a
+project can use a specific Kafka topic, unless specified otherwise.
+
+If users prefer to be guided through the rest of the guide in Hopsworks, they can
+follow the `Kafka Tour` by selecting it from the available tours in the landing page.
+
+.. _kafka-tour.png: ../../_images/kafka-tour.png
+.. figure:: ../../imgs/kafka-tour.png
+    :alt: Kafka Tour
+    :target: `kafka-tour.png`_
+    :scale: 30%
+    :align: center
+    :figclass: align-center
+
+
+
+To begin with, Hopsworks provides by default the `HopsUtil`_ library which make programming easier
+by abstracting away all the configuration boilerplate code such
+as Kafka endpoints, topics etc. If users want to make changes to this library, they can use it with their jobs
+by doing the following:
 
 * Step 1: `git clone git@github.com:hopshadoop/hops-util.git` to clone
   the library
@@ -33,9 +47,10 @@ will produce to and consume from.
 * Step 1: From the project box on the landing page, select a project
 * Step 2: Click on the `Kafka` tab and the topics page will appear
 
+.. _kafka-schemas.png: ../../_images/kafka-schemas.png
 .. figure:: ../../imgs/kafka-schemas.png
     :alt: Kafka topics
-    :scale: 100
+    :target: `kafka-schemas.png`_
     :align: center
     :figclass: align-center
 
@@ -61,9 +76,10 @@ will produce to and consume from.
   Services and select the Kafka topic you created at Step 4. Your job
   page should look like the following
 
+.. _kafka-producer.png: ../../_images/kafka-producer.png
 .. figure:: ../../imgs/kafka-producer.png
     :alt: Kafka producer job
-    :scale: 100
+    :target: `kafka-producer.png`_
     :align: center
     :figclass: align-center
 
@@ -81,15 +97,17 @@ will produce to and consume from.
 
   A sample output would look like the following
 
+.. _kafka-sink.png: ../../_images/kafka-sink.png
 .. figure:: ../../imgs/kafka-sink.png
     :alt: Kafka ouput
-    :scale: 100
+    :target: `kafka-sink.png`_
     :align: center
     :figclass: align-center
 
     Kafka output
 
 .. _here: https://github.com/hopshadoop/hops-kafka-examples/tree/master/spark
+.. _HopsUtil: https://github.com/hopshadoop/hops-util
 
 A Kafka topic by default will be accessible only to members of a
 specific project. In order to *share* the topic with another project
@@ -98,9 +116,10 @@ bring you to Kafka main page as illustrated below. Then press the
 the ``Share topic`` button on the appropriate topic and select the
 name of the project you would like to share with.
 
+.. _kafka-main.png: ../../_images/kafka-main.png
 .. figure:: ../../imgs/kafka-main.png
     :alt: Kafka main
-    :scale: 100
+    :target: `kafka-main.png`_
     :align: center
     :figclass: align-center
 
@@ -142,9 +161,10 @@ our project and we have shared this topic with another project named
 **NOT** to be able to produce on this topic. Then the ACL would look
 like the following.
 
+.. _kafka-acl-example.png: ../../_images/kafka-acl-example.png
 .. figure:: ../../imgs/kafka-acl-example.png
     :alt: Kafka acl example
-    :scale: 100
+    :target: `kafka-acl-example.png`_
     :align: center
     :figclass: align-center
 
@@ -157,9 +177,10 @@ is applied when a topic is created. The second was created when we
 shared the topic with another project, allowing full access and
 finally the third is the custom ACL we created before.
 
+.. _kafka-topic-details.png: ../../_images/kafka-topic-details.png
 .. figure:: ../../imgs/kafka-topic-details.png
     :alt: Kafka topic details
-    :scale: 100
+    :target: `kafka-topic-details.png`_
     :align: center
     :figclass: align-center
 
