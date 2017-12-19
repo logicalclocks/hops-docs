@@ -8,12 +8,12 @@ Certificate Materialization
 
 Hops and Hopsworks support transparent TLS encryption of all Remote
 Procedure Calls (RPC). Every user in the system is associated with a
-x509 certificate that is stored in MySQL NDB database. For all RPCs
-originating from Hopsworks the keystore and truststore for the user in
+X.509 certificate that is stored in MySQL CLuster (NDB) database. For all RPCs
+originating from Hopsworks, the keystore and truststore for the user in
 question is materialized from the database in the local filesystem for
 future use. If multiple sources request the same cryptographic
 material, then a reference counter is incremented instead of
-materializing over and over again. The material from the local
+materializing over and over again. The materials from the local
 filesystem are deleted when there are no more references to
 them. Details for configuring Hops with TLS enabled can be found
 HERE_I_SHOULD_PUT_A_LINK.
@@ -39,7 +39,7 @@ and truststore from the local file-system unless there are no more
 references to them.
 
 Finally if you want get access to the material
-itself use ``CertificateMaterializer#getUserMaterial(String username,
+itself, use ``CertificateMaterializer#getUserMaterial(String username,
 String projectName)`` and
 ``CertificateMaterializer#getUserMaterial(String projectName)`` which
 will return a ``CertificateMaterializer.CryptoMaterial`` object
@@ -71,8 +71,8 @@ have called the *remove* method, you might be able to see them in the
 local filesystem.
 
 You can query the state of the *CertificateMaterializer* through a
-REST API, as well force remove a stale certificate. First, you have to
-login to Hopsworks as *admin* user. To get the state of the service do
+REST API, as well as force remove a stale certificate. First, you have to
+login to Hopsworks with an *admin* (*HOPS_ADMIN* role) user. To get the state of the service do
 a GET request to ``hopsworks-api/api/admin/materializer``. This will
 return a map of the username associated with a certificate along with
 its references number. Also, a list of certificates that are scheduled
@@ -100,11 +100,10 @@ Certificate Localization Service in Hops
 
 A similar service is running on the ResourceManager(s) and
 NodeManager(s) which is called *CertificateLocalizationService*. This
-service extracts the keystore, truststore and the password from RPCs
-and store them locally for internal consumption.
+service extracts the keystore, truststore and password from RPCs
+and stores them locally for internal consumption.
 
-On the
-ResourceManager, the material is piggybacked by YarnClient when
+On the ResourceManager, the material is piggybacked by YarnClient when
 submitting an application in the *ApplicationSubmittionContext*. The
 material can be set explicitly or read them automatically if they
 exist in the directory set by ``client.materialize.directory`` in
