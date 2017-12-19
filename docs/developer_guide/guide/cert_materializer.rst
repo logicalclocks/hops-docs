@@ -163,5 +163,30 @@ for the admin user, such as::
 The object name of the MXBean for the ResourceManager is
 ``Hadoop:service=RM,name=CertificateLocalizer`` while for the
 NodeManager ``Hadoop:service=NM,name=CertificateLocalizer``. You can
-use **JConsole** to graphically interact with the beans.
+use **VisualVM** to graphically interact with the beans. Open
+VisualVM, add a remote connection with the configured username and
+password. Once you connect, click on the MBeans tab (you might have to
+install the plugin). You will see something similar to the figure
+below. On the MBeans tab, under *Hadoop* > *RM* there is the
+*CertificateLocalizer* bean where you can get the state of the
+service. The return value is a JSON with the certificate name and the
+number of references.
 
+.. figure:: ../../imgs/visualvm_jmx_state.png
+    :alt: CertificateLocalizationService state
+    :align: center
+    :figclass: align-center
+
+    CertificateLocalization service state
+
+Next to the *Attributes* tabs there is the *Operations* tab where you
+can force delete a certificate by typing the username and click on the
+button. If there are still operations using the material, deleting
+them will **disrupt** the application.
+
+.. figure:: ../../imgs/visualvm_jmx_remove.png
+    :alt: CertificateLocalizationService force remove
+    :align: center
+    :figclass: align-center
+
+    CertificateLocalization service force remove material
