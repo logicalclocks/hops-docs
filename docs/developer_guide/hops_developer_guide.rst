@@ -8,3 +8,4 @@ Hops Developer Guide
    guide/platform_testing.rst
    guide/extend.rst
    guide/erasurecoding.rst
+   guide/cert_materializer.rst
