@@ -16,7 +16,7 @@ material, then a reference counter is incremented instead of
 materializing over and over again. The materials from the local
 filesystem are deleted when there are no more references to
 them. Details for configuring Hops with TLS enabled can be found
-HERE_I_SHOULD_PUT_A_LINK.
+in :doc:`/configuration/hopstls`
 
 Certificate Materializer in Hopsworks
 -------------------------------------
@@ -172,8 +172,10 @@ below. On the MBeans tab, under *Hadoop* > *RM* there is the
 service. The return value is a JSON with the certificate name and the
 number of references.
 
+.. _visualvm_jmx_state.png: ../../_images/visualvm_jmx_state.png
 .. figure:: ../../imgs/visualvm_jmx_state.png
     :alt: CertificateLocalizationService state
+    :target: `visualvm_jmx_state.png`_
     :align: center
     :figclass: align-center
 
@@ -184,8 +186,10 @@ can force delete a certificate by typing the username and click on the
 button. If there are still operations using the material, deleting
 them will **disrupt** the application.
 
+.. _visualvm_jmx_remove.png: ../../_images/visualvm_jmx_remove.png
 .. figure:: ../../imgs/visualvm_jmx_remove.png
     :alt: CertificateLocalizationService force remove
+    :target: `visualvm_jmx_remove.png`_
     :align: center
     :figclass: align-center
 
