@@ -50,5 +50,7 @@ Kibana and metrics with Grafana.
 
     Job UI
 
-Job logs are available at the bottom of your screen by clicking on
+Job logs are available in `Kibana`_ during runtime and are also aggregated once the job is finished. They are available at the bottom of the Jobs page by clicking on
 them.
+
+.. _Kibana: logs.html
