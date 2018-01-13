@@ -20,7 +20,8 @@ The ``hdfs`` module provides several for interacting with HopsFS where your data
         logfile = hdfs.project_path() + "Resources/file.txt"
         fd = fs_handle.open_file(logfile, flags='w')
         fd.write('Hello HopsWorks')
-        
+        fd.close()
+    
     from hops import tflauncher
     tflauncher.launch(spark, wrapper)       
      
