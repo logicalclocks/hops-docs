@@ -37,7 +37,29 @@ To write log entries, the ``hdfs.log(string)`` method is used. It will write the
         
     from hops import tflauncher
     tflauncher.launch(spark, wrapper)    
-    
+
+If you are using a framework such as TensorFlow you can read data directly from HopsFS, since it is an HDFS filesystem which TensorFlow supports.
+Some users may want to use other frameworks such as PyTorch, in this case you will have to download the data locally and then feed it in your program.
+In order to easily copy datasets from your working space and your HopsWorks project the ``hdfs.copy_from_project`` and ``hdfs.copy_to_project`` should be used.
+
+::
+    # When using the Python Kernel
+    # This code will copy the file mydata.json in the Resources dataset and place it in the root of your PDIR directory
+    from hops import hdfs
+    hdfs.copy_from_project("Resources/mydata.json", "")
+
+    # When using the PySpark Kernel
+    # This code will copy the file mydata.json in the Resources dataset and place it in the current working directory
+    # Important! This is not persistently stored and will be removed when the executor is killed (job is complete or timeout)
+    def wrapper():
+        from hops import hdfs
+        hdfs.copy_from_project("Resources/mydata.json", "")
+
+
+    # Launch using tflauncher
+    from hops import tflauncher
+    tflauncher.launch(spark, wrapper)
+
 
 tflauncher
 ----------
