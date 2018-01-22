@@ -21,7 +21,7 @@ The ``hdfs`` module provides several for interacting with HopsFS where your data
         fd = fs_handle.open_file(logfile, flags='w')
         fd.write('Hello HopsWorks')
         fd.close()
-    
+
     from hops import tflauncher
     tflauncher.launch(spark, wrapper)       
      
@@ -38,15 +38,7 @@ To write log entries, the ``hdfs.log(string)`` method is used. It will write the
     from hops import tflauncher
     tflauncher.launch(spark, wrapper)    
     
-Read this! Known issues with hdfs module.
------------------------------------------
 
-If you are running parallel experiments using ``tflauncher`` or TensorFlowOnSpark using ``TFCluster``, the ``hdfs`` module can only be used in the wrapper function. Any use of them outside the wrapper functions will break the notebook, and you will need to restart Jupyter. 
-
-In the case of ``Horovod`` the ``hdfs`` module can be used anywhere in the notebook when your Horovod code is, but should not be used in the launcher notebook. 
-
-
-    
 tflauncher
 ----------
 The ``tflauncher`` module is used for running one or more Parallel TensorFlow experiments. Which corresponds to selecting the TensorFlow mode in Jupyter. It can either be run with or without the ``args_dict`` argument that define hyperparameter values.
