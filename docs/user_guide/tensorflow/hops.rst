@@ -1,14 +1,14 @@
 Hops Python library
 =======================
 
-The Hops library provides a set of modules that makes it simple to run TensorFlow code on Jupyter in Hops.
+**Hops library** provides a set of modules that make it simple to run TensorFlow code with Jupyter on Hops.
 
 
 hdfs
 -----------------------
 .. highlight:: python
 
-The ``hdfs`` module provides several for interacting with the Hops filesystem where your project data is stored. The first one is ``hdfs.project_path()`` The path resolves to the root path for your project, which is the view that you see when you click ``Data Sets`` in HopsWorks. To point where your actual data resides in the project you to append the full path from there to your Dataset. A simply use-case might be to write to a file in your project. Depending on whether you are using Python or PySpark kernel in Jupyter there are two different approaches.
+The ``hdfs`` module provides several ways of interacting with the Hops filesystem, where the HopsWorks project's data is stored. The first one is ``hdfs.project_path()``. The path resolves to the root path of your project, which is the view shown when clicking at ``Data Sets`` in HopsWorks. To point where your actual data resides in the project, you need to append the full path from there to your Dataset. A simple use-case might be writing to a file in your project. Depending on whether you are using Python or PySpark kernel, you can follow one of two these different approaches in Jupyter.
 
 **Logging in the Python kernel**
 
@@ -25,7 +25,7 @@ The ``hdfs`` module provides several for interacting with the Hops filesystem wh
     
 **Logging in the PySpark kernel**
     
-When using the PySpark kernel you have to specify a wrapper function that you want to run on the executors. This wrapper function must be executed using the ``tflauncher`` module. To write log entries, the ``hdfs.log(string)`` method is used. It will write the string to a specific logfile for each experiment. The logfiles are stored in ``/Logs/TensorFlow/{appId}/{runId}/{hyperparameter}``. Keep in mind that this is a separate log from the one shown in the Spark UI in HopsWorks, which is simply the stdout and stderr of the running job.
+When using the PySpark kernel you have to specify a wrapper function that you want to run on the executors. This wrapper function must be executed using the ``tflauncher`` module. To write log entries, the ``hdfs.log(string)`` method is used. It will write the string to a specific logfile for each experiment. The logfiles are stored in ``/Logs/TensorFlow/{appId}/{runId}/{hyperparameter}``. Keep in mind that this is a separate log from the one shown in the Spark UI in HopsWorks, which is simply the *stdout* and *stderr* of the running job.
 
 ::
     
@@ -36,11 +36,12 @@ When using the PySpark kernel you have to specify a wrapper function that you wa
     from hops import tflauncher
     tflauncher.launch(spark, wrapper)
     
-**Accessing datasets in the Python or PySpark kernel**
+**Accessing datasets in Python or PySpark kernels**
 
-If you are using a framework such as TensorFlow you can read data directly from your project, since it is an HDFS filesystem which TensorFlow supports.
-This section is directed towards users which want to use other frameworks such as PyTorch or Theano that does not support directly reading from HDFS, in this case the solution is to download the datasets to the executor running your code and then feed it in your program.
-In order to easily copy datasets to and from your executor's working space and your HopsWorks project the ``hdfs.copy_from_project`` and ``hdfs.copy_to_project`` should be used.
+If you are using a framework such as TensorFlow you can read data directly from your project, since TensorFlow supports the HDFS filesystem and therefore HopsFS.
+
+This section is directed towards users that may want to use other frameworks such as *PyTorch* or *Theano* that do not support directly reading from HDFS. In this case the solution is to download the datasets to the executor running your code and then feed it in your program.
+In order to easily copy datasets to and from your executor's working space and your HopsWorks projec, the ``hdfs.copy_from_project`` and ``hdfs.copy_to_project`` functions should be used.
 
 ::
 
@@ -85,7 +86,7 @@ In order to easily copy datasets to and from your executor's working space and y
 
 tflauncher
 ----------
-The ``tflauncher`` module is used for running one or more Parallel TensorFlow experiments. Which corresponds to selecting the TensorFlow mode in Jupyter. It can either be run with or without the ``args_dict`` argument that define hyperparameter values.
+The ``tflauncher`` module is used for running one or more Parallel TensorFlow experiments, which corresponds to selecting the TensorFlow mode in Jupyter. It can either be ran with or without the ``args_dict`` argument that define hyperparameter values.
 ::
 
     def single_experiments_wrapper():
@@ -133,10 +134,10 @@ The ``tflauncher`` module is used for running one or more Parallel TensorFlow ex
     
 tensorboard
 ------------------------------
-TensorBoard is supported for all TensorFlow modes (Parallel experiments, TensorFlowOnSpark and Horovod). 
-When the ``tflauncher.launch`` function is invoked, a TensorBoard server will be started and available for each job. The *tensorboard* module provides a *logdir* method to get the log directory for summaries and checkpoints that is to be written to the TensorBoard. After the each job is finished, the contents of the log directory will be placed in your HopsWorks project, in the path ``/Logs/TensorFlow/{appId}/{runId}/{hyperparameter}``. The directory name will correspond to the values of the hyperparameters for that particular job. The log directory could therefore be used also write the final model or any other files that should be available after execution is finished, alternatively you can of course also write the model to a directory in your HopsWorks project.
+Hops supports TensorBoard for all TensorFlow modes (Parallel experiments, TensorFlowOnSpark and Horovod). 
+When the ``tflauncher.launch`` function is invoked, a TensorBoard server will be started and available for each job. The *tensorboard* module provides a *logdir* method to get the log directory for summaries and checkpoints that are to be written to the TensorBoard. After each job is finished, the contents of the log directory will be placed in your HopsWorks project, under ``/Logs/TensorFlow/{appId}/{runId}/{hyperparameter}``. The directory name will correspond to the values of the hyperparameters for that particular job. The log directory could therefore be used to also write the final model or any other files that should be made available after execution is finished. Alternatively you can of course also write the model to any directory in your HopsWorks project.
 
-The *launch* function in *tflauncher*, will return the directory in HopsFS, where each log directory is stored after execution is finished. The *visualize* method in *tensorboard* takes this path as an argument, and will start a new TensorBoard containing all the log directories of the execution, which will provide an easy way to identify the best model. Using this method, it is also possible to visualize old runs by simply supplying the path to this log directory from old runs.
+The *launch* function in *tflauncher* will return the directory in HopsFS, where each log directory is stored after execution is finished. The *visualize* method in *tensorboard* takes this path as an argument, and will start a new TensorBoard containing all the log directories of the execution, which will provide an easy way to identify the best model. Using this method, it is also possible to visualize old runs by simply supplying the path to this log directory from old runs.
 
 ::
 
