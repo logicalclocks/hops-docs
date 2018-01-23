@@ -43,6 +43,9 @@ Some users may want to use other frameworks such as PyTorch, in this case you wi
 In order to easily copy datasets from your working space and your HopsWorks project the ``hdfs.copy_from_project`` and ``hdfs.copy_to_project`` should be used.
 
 ::
+
+    # -- How to copy a dataset from your HopsWorks project --
+
     # When using the Python Kernel
     # This code will copy the file mydata.json in the Resources dataset and place it in the root of your PDIR directory
     from hops import hdfs
@@ -54,6 +57,25 @@ In order to easily copy datasets from your working space and your HopsWorks proj
     def wrapper():
         from hops import hdfs
         hdfs.copy_from_project("Resources/mydata.json", "")
+
+
+    # Launch using tflauncher
+    from hops import tflauncher
+    tflauncher.launch(spark, wrapper)
+
+
+    # -- How to upload a dataset to your HopsWorks project --
+
+    # When using the Python Kernel
+    # This code will copy the file mydata.json located in your PDIR directory and place it in the Resources dataset of your HopsWorks project
+    from hops import hdfs
+    hdfs.copy_to_project("mydata.json", "Resources/")
+
+    # When using the PySpark Kernel
+    # This code will copy the file mydata.json in your working directory and place it in the Resources dataset
+    def wrapper():
+        from hops import hdfs
+        hdfs.copy_to_project("mydata.json", "Resources/")
 
 
     # Launch using tflauncher
