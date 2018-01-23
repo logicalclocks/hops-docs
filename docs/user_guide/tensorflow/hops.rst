@@ -8,39 +8,39 @@ hdfs
 -----------------------
 .. highlight:: python
 
-The ``hdfs`` module provides several for interacting with HopsFS where your data is stored. The first one is ``hdfs.project_path()`` The path resolves to the root path for your project, which is the view that you see when you click ``Data Sets`` in HopsWorks. To point where your actual data resides in the project you to append the full path from there to your Dataset. For example if you create a mnist folder in your ``Resources`` dataset, which is created automatically for each project, the path to the mnist data would be ``hdfs.project_path() + 'Resources/mnist'``. It is also possible to write to files in your HopsWorks project using the ``hdfs`` module. However this code must be wrapped in a function and executed using the ``tflauncher`` module.
+The ``hdfs`` module provides several for interacting with the Hops filesystem where your project data is stored. The first one is ``hdfs.project_path()`` The path resolves to the root path for your project, which is the view that you see when you click ``Data Sets`` in HopsWorks. To point where your actual data resides in the project you to append the full path from there to your Dataset. A simply use-case might be to write to a file in your project. Depending on whether you are using Python or PySpark kernel in Jupyter there are two different approaches.
+
+**Logging in the Python kernel**
+
+::   
+
+    from hops import hdfs
+    fs_handle = hdfs.get_fs()
+    
+    # Write to file in HopsWorks Resources dataset
+    logfile = hdfs.project_path() + "Resources/file.txt"
+    fd = fs_handle.open_file(logfile, flags='w')
+    fd.write('Hello HopsWorks')
+    fd.close()    
+    
+**Logging in the PySpark kernel**
+    
+When using the PySpark kernel you have to specify a wrapper function that you want to run on the executors. This wrapper function must be executed using the ``tflauncher`` module. To write log entries, the ``hdfs.log(string)`` method is used. It will write the string to a specific logfile for each experiment. The logfiles are stored in ``/Logs/TensorFlow/{appId}/{runId}/{hyperparameter}``. Keep in mind that this is a separate log from the one shown in the Spark UI in HopsWorks, which is simply the stdout and stderr of the running job.
 
 ::
-
-    def wrapper():
-        from hops import hdfs
-        fs_handle = hdfs.get_fs()
     
-        # Write to file in HopsWorks Resources dataset
-        logfile = hdfs.project_path() + "Resources/file.txt"
-        fd = fs_handle.open_file(logfile, flags='w')
-        fd.write('Hello HopsWorks')
-        fd.close()
-
-    from hops import tflauncher
-    tflauncher.launch(spark, wrapper)       
-     
-    
-    
-To write log entries, the ``hdfs.log(string)`` method is used. It will write the string to a specific logfile for each experiment. The logfiles are stored in ``/Logs/TensorFlow/{appId}/{runId}/{hyperparameter}``. Keep in mind that this is a separate log from the one shown in the Spark UI in HopsWorks, which is simply the stdout and stderr of the running job.
-
-::
-
     def wrapper():
         from hops import hdfs
         hdfs.log('Hello HopsWorks')
         
     from hops import tflauncher
-    tflauncher.launch(spark, wrapper)    
+    tflauncher.launch(spark, wrapper)
+    
+**Accessing datasets in the Python or PySpark kernel**
 
-If you are using a framework such as TensorFlow you can read data directly from HopsFS, since it is an HDFS filesystem which TensorFlow supports.
-Some users may want to use other frameworks such as PyTorch, in this case you will have to download the data locally and then feed it in your program.
-In order to easily copy datasets from your working space and your HopsWorks project the ``hdfs.copy_from_project`` and ``hdfs.copy_to_project`` should be used.
+If you are using a framework such as TensorFlow you can read data directly from your project, since it is an HDFS filesystem which TensorFlow supports.
+This section is directed towards users which want to use other frameworks such as PyTorch or Theano that does not support directly reading from HDFS, in this case the solution is to download the datasets to the executor running your code and then feed it in your program.
+In order to easily copy datasets to and from your executor's working space and your HopsWorks project the ``hdfs.copy_from_project`` and ``hdfs.copy_to_project`` should be used.
 
 ::
 
