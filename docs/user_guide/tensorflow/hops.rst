@@ -102,7 +102,7 @@ In order to easily copy datasets to and from your executor's working space and y
     # Launch using experiment
     from hops import experiment
     experiment.launch(spark, wrapper)
-    
+
 
 experiment
 ----------
@@ -149,7 +149,7 @@ The ``experiment`` module is used for running one or more Parallel TensorFlow ex
     # job2: lr=0.1 and dropout=0.7
     # job3: lr=0.3 and dropout=0.4
     # job4: lr=0.3 and dropout=0.7
-    root_tensorboard_logdir = experiment.launch(spark, grid_experiments_wrapper, args_dict_grid)  
+    root_tensorboard_logdir = experiment.launch(spark, grid_experiments_wrapper, args_dict_grid)
     
     
     
