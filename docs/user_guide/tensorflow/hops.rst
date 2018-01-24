@@ -38,7 +38,7 @@ A simple use-case might be writing to a file in your project. Depending on wheth
     fs_handle = hdfs.get_fs()
     
     # Write to file in HopsWorks Resources dataset
-    logfile = hdfs.project_path() + "Resources/file.txt"
+    logfile = hdfs.project_path() + 'Resources/file.txt'
     fd = fs_handle.open_file(logfile, flags='w')
     fd.write('Hello HopsWorks')
     fd.close()    
@@ -70,14 +70,14 @@ In order to easily copy datasets to and from your executor's working space and y
     # When using the Python Kernel
     # This code will copy the file mydata.json in the Resources dataset and place it in the root of your PDIR directory
     from hops import hdfs
-    hdfs.copy_from_project("Resources/mydata.json", "")
+    hdfs.copy_from_project('Resources/mydata.json, '')
 
     # When using the PySpark Kernel
     # This code will copy the file mydata.json in the Resources dataset and place it in the current working directory
     # Important! This is not persistently stored and will be removed when the executor is killed (job is complete or timeout)
     def wrapper():
         from hops import hdfs
-        hdfs.copy_from_project("Resources/mydata.json", "")
+        hdfs.copy_from_project('Resources/mydata.json', '')
 
 
     # Launch using tflauncher
@@ -90,13 +90,13 @@ In order to easily copy datasets to and from your executor's working space and y
     # When using the Python Kernel
     # This code will copy the file mydata.json located in your PDIR directory and place it in the Resources dataset of your HopsWorks project
     from hops import hdfs
-    hdfs.copy_to_project("mydata.json", "Resources/")
+    hdfs.copy_to_project('mydata.json', 'Resources/')
 
     # When using the PySpark Kernel
     # This code will copy the file mydata.json in your working directory and place it in the Resources dataset
     def wrapper():
         from hops import hdfs
-        hdfs.copy_to_project("mydata.json", "Resources/")
+        hdfs.copy_to_project('mydata.json', 'Resources/')
 
 
     # Launch using tflauncher
