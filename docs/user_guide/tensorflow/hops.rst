@@ -61,7 +61,7 @@ When using the PySpark kernel you have to specify a wrapper function that you wa
 If you are using a framework such as TensorFlow you can read data directly from your project, since TensorFlow supports the HDFS filesystem and therefore HopsFS.
 
 This section is directed towards users that may want to use other frameworks such as *PyTorch* or *Theano* that do not support directly reading from HDFS. In this case the solution is to download the datasets to the executor running your code and then feed it in your program.
-In order to easily copy datasets to and from your executor's working space and your HopsWorks projec, the ``hdfs.copy_from_project`` and ``hdfs.copy_to_project`` functions should be used.
+In order to easily copy datasets to and from your executor's working space and your HopsWorks project, the ``hdfs.copy_from_project`` and ``hdfs.copy_to_project`` functions should be used.
 
 ::
 
