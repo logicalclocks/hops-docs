@@ -8,7 +8,27 @@ hdfs
 -----------------------
 .. highlight:: python
 
-The ``hdfs`` module provides several ways of interacting with the Hops filesystem, where the HopsWorks project's data is stored. The first one is ``hdfs.project_path()``. The path resolves to the root path of your project, which is the view shown when clicking at ``Data Sets`` in HopsWorks. To point where your actual data resides in the project, you need to append the full path from there to your Dataset. A simple use-case might be writing to a file in your project. Depending on whether you are using Python or PySpark kernel, you can follow one of two these different approaches in Jupyter.
+The ``hdfs`` module provides several ways of interacting with the Hops filesystem, where the HopsWorks project's data is stored. 
+
+**Pointing to a Dataset in HopsWorks**
+
+
+In order to point to a dataset in HopsWorks the ``hdfs.project_path()`` function should be called. The function will return the HDFS path of your project, which is the view shown when clicking at ``Data Sets`` in HopsWorks. To point where your actual data resides in the project, you need to append the full path from there to your Dataset. 
+
+::   
+
+    from hops import hdfs
+    my_project_path = hdfs.project_path()
+    
+It is also possible to pass an argument corresponding to a different project for which you want to resolve the path to.    
+
+::   
+
+    from hops import hdfs
+    other_project_path = hdfs.project_path('deep-learning-101')    
+   
+    
+A simple use-case might be writing to a file in your project. Depending on whether you are using Python or PySpark kernel, you can follow one of two these different approaches in Jupyter.
 
 **Logging in the Python kernel**
 
@@ -157,9 +177,7 @@ The *launch* function in *tflauncher* will return the directory in HopsFS, where
 
 devices
 --------------------------
-The *devices* module provides a single method ``get_num_gpus``, that depending on how many GPUs that were allocated per Spark Executor.
-This method is suitable for scaling out dynamically depending on how many GPUs have been configured, for example when using a multi-gpu tower.
-See the ``multi-gpu-cnn.ipynb`` example in the TensorFlow tour.
+The *devices* module provides a single method ``get_num_gpus``, which returns the number of GPUs that were discovered in the environment. This method is suitable for scaling out dynamically depending on how many GPUs have been configured, for example when using a multi-gpu tower.
 
 ::
 
