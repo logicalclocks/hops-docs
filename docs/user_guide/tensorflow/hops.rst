@@ -70,7 +70,7 @@ In order to easily copy datasets to and from your executor's working space and y
     # When using the Python Kernel
     # This code will copy the file mydata.json in the Resources dataset and place it in the root of your PDIR directory
     from hops import hdfs
-    hdfs.copy_from_project('Resources/mydata.json, '')
+    hdfs.copy_from_project('Resources/mydata.json', '')
 
     # When using the PySpark Kernel
     # This code will copy the file mydata.json in the Resources dataset and place it in the current working directory
@@ -107,6 +107,7 @@ In order to easily copy datasets to and from your executor's working space and y
 tflauncher
 ----------
 The ``tflauncher`` module is used for running one or more Parallel TensorFlow experiments, which corresponds to selecting the TensorFlow mode in Jupyter. It can either be ran with or without the ``args_dict`` argument that define hyperparameter values.
+
 ::
 
     def single_experiments_wrapper():
@@ -192,7 +193,7 @@ The *allreduce* module is used for launching Horovod jobs.
 ::
 
     from hops import allreduce
-    allreduce.launch(spark, '/Projects/ + hdfs.project_name() + '/Jupyter/horovod.ipynb')
+    allreduce.launch(spark, '/Projects/' + hdfs.project_name() + '/Jupyter/horovod.ipynb')
 
 util
 -----------------------
