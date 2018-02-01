@@ -104,6 +104,25 @@ In order to easily copy datasets to and from your executor's working space and y
     tflauncher.launch(spark, wrapper)
 
 
+    # -- How to upload a dataset to your HopsWorks project --
+
+    # When using the Python Kernel
+    # This code will copy the file mydata.json located in your PDIR directory and place it in the Resources dataset of your HopsWorks project
+    from hops import hdfs
+    hdfs.copy_to_project("mydata.json", "Resources/")
+
+    # When using the PySpark Kernel
+    # This code will copy the file mydata.json in your working directory and place it in the Resources dataset
+    def wrapper():
+        from hops import hdfs
+        hdfs.copy_to_project("mydata.json", "Resources/")
+
+
+    # Launch using tflauncher
+    from hops import tflauncher
+    tflauncher.launch(spark, wrapper)
+
+
 tflauncher
 ----------
 The ``tflauncher`` module is used for running one or more Parallel TensorFlow experiments, which corresponds to selecting the TensorFlow mode in Jupyter. It can either be ran with or without the ``args_dict`` argument that define hyperparameter values.
