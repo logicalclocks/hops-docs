@@ -45,7 +45,7 @@ A simple use-case might be writing to a file in your project. Depending on wheth
     
 **Logging in the PySpark kernel**
     
-When using the PySpark kernel you have to specify a wrapper function that you want to run on the executors. This wrapper function must be executed using the ``tflauncher`` module. To write log entries, the ``hdfs.log(string)`` method is used. It will write the string to a specific logfile for each experiment. The logfiles are stored in ``/Logs/TensorFlow/{appId}/{runId}/{hyperparameter}``. Keep in mind that this is a separate log from the one shown in the Spark UI in HopsWorks, which is simply the *stdout* and *stderr* of the running job.
+When using the PySpark kernel you have to specify a wrapper function that you want to run on the executors. This wrapper function must be executed using the ``experiment`` module. To write log entries, the ``hdfs.log(string)`` method is used. It will write the string to a specific logfile for each experiment. The logfiles are stored in ``/Logs/TensorFlow/{appId}/{runId}/{hyperparameter}``. Keep in mind that this is a separate log from the one shown in the Spark UI in HopsWorks, which is simply the *stdout* and *stderr* of the running job.
 
 ::
     
@@ -53,8 +53,8 @@ When using the PySpark kernel you have to specify a wrapper function that you wa
         from hops import hdfs
         hdfs.log('Hello HopsWorks')
         
-    from hops import tflauncher
-    tflauncher.launch(spark, wrapper)
+    from hops import experiment
+    experiment.launch(spark, wrapper)
     
 **Accessing datasets in Python or PySpark kernels**
 
@@ -80,9 +80,9 @@ In order to easily copy datasets to and from your executor's working space and y
         hdfs.copy_from_project('Resources/mydata.json', '')
 
 
-    # Launch using tflauncher
-    from hops import tflauncher
-    tflauncher.launch(spark, wrapper)
+    # Launch using experiment
+    from hops import experiment
+    experiment.launch(spark, wrapper)
 
 
     # -- How to upload a dataset to your HopsWorks project --
@@ -99,33 +99,14 @@ In order to easily copy datasets to and from your executor's working space and y
         hdfs.copy_to_project('mydata.json', 'Resources/')
 
 
-    # Launch using tflauncher
-    from hops import tflauncher
-    tflauncher.launch(spark, wrapper)
+    # Launch using experiment
+    from hops import experiment
+    experiment.launch(spark, wrapper)
+    
 
-
-    # -- How to upload a dataset to your HopsWorks project --
-
-    # When using the Python Kernel
-    # This code will copy the file mydata.json located in your PDIR directory and place it in the Resources dataset of your HopsWorks project
-    from hops import hdfs
-    hdfs.copy_to_project("mydata.json", "Resources/")
-
-    # When using the PySpark Kernel
-    # This code will copy the file mydata.json in your working directory and place it in the Resources dataset
-    def wrapper():
-        from hops import hdfs
-        hdfs.copy_to_project("mydata.json", "Resources/")
-
-
-    # Launch using tflauncher
-    from hops import tflauncher
-    tflauncher.launch(spark, wrapper)
-
-
-tflauncher
+experiment
 ----------
-The ``tflauncher`` module is used for running one or more Parallel TensorFlow experiments, which corresponds to selecting the TensorFlow mode in Jupyter. It can either be ran with or without the ``args_dict`` argument that define hyperparameter values.
+The ``experiment`` module is used for running one or more Parallel TensorFlow experiments, which corresponds to selecting the TensorFlow mode in Jupyter. It can either be ran with or without the ``args_dict`` argument that define hyperparameter values.
 
 ::
 
@@ -133,8 +114,8 @@ The ``tflauncher`` module is used for running one or more Parallel TensorFlow ex
         # Wrapper function for a single experiment with hardcoded parameters
 
     # A standalone job
-    from hops import tflauncher
-    root_tensorboard_logdir = tflauncher.launch(spark, single_experiments_wrapper)
+    from hops import experiment
+    root_tensorboard_logdir = experiment.launch(spark, single_experiments_wrapper)
     
     ...............................................................................................
     
@@ -142,13 +123,13 @@ The ``tflauncher`` module is used for running one or more Parallel TensorFlow ex
         # Wrapper function for arbitrarily many experiments
         
     # Running two experiments
-    from hops import tflauncher
+    from hops import experiment
     args_dict = {'lr': [0.1, 0.3], 'dropout': [0.4, 0.7]}
     
     # This code will run two jobs
     # job1: lr=0.1 and dropout=0.4
     # job2: lr=0.3 and dropout=0.7
-    root_tensorboard_logdir = tflauncher.launch(spark, multiple_experiments_wrapper, args_dict)
+    root_tensorboard_logdir = experiment.launch(spark, multiple_experiments_wrapper, args_dict)
     
     ...............................................................................................
     
@@ -156,7 +137,7 @@ The ``tflauncher`` module is used for running one or more Parallel TensorFlow ex
         # Wrapper function for arbitrarily many experiments
         
     # Running a grid of hyperparameter experiments
-    from hops import tflauncher
+    from hops import experiment
     args_dict = {'lr': [0.1, 0.3], 'dropout': [0.4, 0.7]}
     
     from hops import util
@@ -168,16 +149,16 @@ The ``tflauncher`` module is used for running one or more Parallel TensorFlow ex
     # job2: lr=0.1 and dropout=0.7
     # job3: lr=0.3 and dropout=0.4
     # job4: lr=0.3 and dropout=0.7
-    root_tensorboard_logdir = tflauncher.launch(spark, grid_experiments_wrapper, args_dict_grid)  
+    root_tensorboard_logdir = experiment.launch(spark, grid_experiments_wrapper, args_dict_grid)  
     
     
     
 tensorboard
 ------------------------------
 Hops supports TensorBoard for all TensorFlow modes (Parallel experiments, TensorFlowOnSpark and Horovod). 
-When the ``tflauncher.launch`` function is invoked, a TensorBoard server will be started and available for each job. The *tensorboard* module provides a *logdir* method to get the log directory for summaries and checkpoints that are to be written to the TensorBoard. After each job is finished, the contents of the log directory will be placed in your HopsWorks project, under ``/Logs/TensorFlow/{appId}/{runId}/{hyperparameter}``. The directory name will correspond to the values of the hyperparameters for that particular job. The log directory could therefore be used to also write the final model or any other files that should be made available after execution is finished. Alternatively you can of course also write the model to any directory in your HopsWorks project.
+When the ``experiment.launch`` function is invoked, a TensorBoard server will be started and available for each job. The *tensorboard* module provides a *logdir* method to get the log directory for summaries and checkpoints that are to be written to the TensorBoard. After each job is finished, the contents of the log directory will be placed in your HopsWorks project, under ``/Logs/TensorFlow/{appId}/{runId}/{hyperparameter}``. The directory name will correspond to the values of the hyperparameters for that particular job. The log directory could therefore be used to also write the final model or any other files that should be made available after execution is finished. Alternatively you can of course also write the model to any directory in your HopsWorks project.
 
-The *launch* function in *tflauncher* will return the directory in HopsFS, where each log directory is stored after execution is finished. The *visualize* method in *tensorboard* takes this path as an argument, and will start a new TensorBoard containing all the log directories of the execution, which will provide an easy way to identify the best model. Using this method, it is also possible to visualize old runs by simply supplying the path to this log directory from old runs.
+The *launch* function in *experiment* will return the directory in HopsFS, where each log directory is stored after execution is finished. The *visualize* method in *tensorboard* takes this path as an argument, and will start a new TensorBoard containing all the log directories of the execution, which will provide an easy way to identify the best model. Using this method, it is also possible to visualize old runs by simply supplying the path to this log directory from old runs.
 
 ::
 
@@ -189,8 +170,8 @@ The *launch* function in *tflauncher* will return the directory in HopsFS, where
     
     # Launching your training and visualizing everything in the same TensorBoard
     from hops import tensorboard
-    import hops import tflauncher
-    hdfs_path = tflauncher.launch(spark, training_fun, args_dict)
+    import hops import experiment
+    hdfs_path = experiment.launch(spark, training_fun, args_dict)
     # Visualize TensorBoard from HopsFS
     tensorboard.visualize(spark, hdfs_path)
 
