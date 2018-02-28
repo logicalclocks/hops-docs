@@ -21,7 +21,7 @@ Defines the amount of memory each executor should be allocated with. Keep in min
 
 **Executor GPUs**
 
-Defines how many GPUs should be allocated for each executor, effectivetly how many GPUs each job will be able to access. To run only with CPU, simply set this value to 0.
+Defines how many GPUs should be allocated for each executor, effectively how many GPUs each job will be able to access. To run only with CPU, simply set this value to 0.
 
 
 .. figure:: ../../imgs/experiment_mode.png
