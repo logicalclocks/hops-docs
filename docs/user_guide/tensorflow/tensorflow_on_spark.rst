@@ -30,7 +30,7 @@ Yahoo introduces `TensorFlowOnSpark API <https://www.youtube.com/watch?v=b3lTvTK
 The TFCluster API
 -----------------
 
-The `TFCluster` python module is used to launch the actual TensorFlowOnSpark program. It is similar to `tflauncher` in the sense that a wrapper function needs to be created that contains all the TensorFlow code. `TFCluster` provides a `run` function, that amongst other arguments, requires the number of executors and parameter servers to be specified as arguments. The number of executors and parameter servers are specified when you configure Jupyter, to avoid having to specify it twice, these methods will simply detect what you configured and get that value.
+The `TFCluster` python module is used to launch the actual TensorFlowOnSpark program. It is similar to `experiment` in the sense that a wrapper function needs to be created that contains all the TensorFlow code. `TFCluster` provides a `run` function, that amongst other arguments, requires the number of executors and parameter servers to be specified as arguments. The number of executors and parameter servers are specified when you configure Jupyter, to avoid having to specify it twice, these methods will simply detect what you configured and get that value.
 
 ::
 
