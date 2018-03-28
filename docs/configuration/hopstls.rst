@@ -166,8 +166,6 @@ These properties enable SSL/TLS in the RPC server.
 |                                          | materialized the crypto material from| transient                  | domain1/kafkacerts     |
 |                                          | the database for a specific user     |                            |                        |
 +------------------------------------------+--------------------------------------+----------------------------+------------------------+
-| client.hopsworks.rest.endpoint           | Hopsworks REST endpoint              | http://192.168.63.101:8080 |                        |
-+------------------------------------------+--------------------------------------+----------------------------+------------------------+
 | client.rpc.ssl.enabled.protocol          | SSL protocol used by the client      | TLSv1.2                    | TLSv1                  |
 +------------------------------------------+--------------------------------------+----------------------------+------------------------+
 
@@ -207,11 +205,6 @@ Example of ``core-site.xml`` configuration file::
   <property>
    <name>client.materialize.directory</name>
    <value>/srv/hops/certs-dir/transient</value>
-  </property>
-  
-  <property>
-   <name>client.hopsworks.rest.endpoint</name>
-   <value>http://192.168.63.101:8080</value>
   </property>
 
   <property>
