@@ -334,11 +334,10 @@ but trusts any web server certificate, usually in a development environment the 
 will be self-signed::
 
   hops:
-   rpc:
-    ssl: true
-   crl:
-    validation_enabled: true
-    fetcher_class: org.apache.hadoop.security.ssl.DevRemoteCRLFetcher
+   tls:
+    enabled: true
+    crl_enabled: true
+    crl_fetcher_class: org.apache.hadoop.security.ssl.DevRemoteCRLFetcher
 
 
 .. _Karamel: http://www.karamel.io/
