@@ -30,7 +30,7 @@ Yahoo introduces `TensorFlowOnSpark API <https://www.youtube.com/watch?v=b3lTvTK
 The TFCluster API
 -----------------
 
-The `TFCluster` python module is used to launch the actual TensorFlowOnSpark program. It is similar to `tflauncher` in the sense that a wrapper function needs to be created that contains all the TensorFlow code. `TFCluster` provides a `run` function, that amongst other arguments, requires the number of executors and parameter servers to be specified as arguments. The number of executors and parameter servers are specified when you configure Jupyter, to avoid having to specify it twice, these methods will simply detect what you configured and get that value.
+The `TFCluster` python module is used to launch the actual TensorFlowOnSpark program. It is similar to `experiment` in the sense that a wrapper function needs to be created that contains all the TensorFlow code. `TFCluster` provides a `run` function, that amongst other arguments, requires the number of executors and parameter servers to be specified as arguments. The number of executors and parameter servers are specified when you configure Jupyter, to avoid having to specify it twice, these methods will simply detect what you configured and get that value.
 
 ::
 
@@ -60,18 +60,20 @@ When you run your job using TFCluster, TensorBoard will be started automatically
 **Navigate to TensorBoard in HopsWorks**
 After launching your job using TFCluster, you can monitor training by observing the TensorBoard.
 
-    
+   
+.. _jupyter.png: ../../_images/jupyter.png
 .. figure:: ../../imgs/jupyter.png
-    :alt: Jupyter UI overview
-    :scale: 50
-    :align: center
-    :figclass: align-center
-
+   :alt: Expected file and folder structure for TensorFlow Serving
+   :target: `jupyter.png`_
+   :align: center
+   :figclass: align-center
+    
+.. _overview.png: ../../_images/overview.png
 .. figure:: ../../imgs/overview.png
-    :alt: Jupyter UI overview
-    :scale: 50
-    :align: center
-    :figclass: align-center
+   :alt: Expected file and folder structure for TensorFlow Serving
+   :target: `overview.png`_
+   :align: center
+   :figclass: align-center
     
 
 Execution Logs
@@ -79,22 +81,21 @@ Execution Logs
 
 **Navigate to Logs in HopsWorks**
 After launching your job using TFCluster, you can navigate to HopsWorks to see logs from the execution.
-
+   
+.. _logs.png: ../../_images/logs.png
 .. figure:: ../../imgs/logs.png
-    :alt: Logs overview
-    :scale: 50
-    :align: center
-    :figclass: align-center
+   :alt: Expected file and folder structure for TensorFlow Serving
+   :target: `logs.png`_
+   :align: center
+   :figclass: align-center
 
+.. _viewlogs.png: ../../_images/viewlogs.png
 .. figure:: ../../imgs/viewlogs.png
-    :alt: View logs
-    :scale: 50
-    :align: center
-    :figclass: align-center
-
-
-
-
+   :alt: Expected file and folder structure for TensorFlow Serving
+   :target: `viewlogs.png`_
+   :align: center
+   :figclass: align-center
+   
 Where do I go from here?
 ------------------------
 

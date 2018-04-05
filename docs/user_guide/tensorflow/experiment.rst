@@ -21,10 +21,10 @@ Defines the amount of memory each executor should be allocated with. Keep in min
 
 **Executor GPUs**
 
-Defines how many GPUs should be allocated for each executor, effectivetly how many GPUs each job will be able to access. To run only with CPU, simply set this value to 0.
+Defines how many GPUs should be allocated for each executor, effectively how many GPUs each job will be able to access. To run only with CPU, simply set this value to 0.
 
 
-.. figure:: ../../imgs/tflauncher_mode.png
+.. figure:: ../../imgs/experiment_mode.png
     :alt: HopsWorks project path
     :scale: 100
     :align: center
@@ -89,10 +89,13 @@ The path returned is to the root directory in HopsWorks.
     ... TensorFlow code ...
 
 
-Hyperparameter optimization
+Hyperparameter Optimization
 ---------------------------
 
-Hyperparameter optimization is critical to achieve the best accuracy for your model. With Hops, hyperparameter optimization is easier than ever.
+Hyperparameter optimization is critical to achieve the best accuracy for your model. With Hops, hyperparameter optimization is easier than ever. We provide grid-search or state-of-the-art evolutionary optimization which will automatically learn what hyperparameters are the best and iteratively improve metrics such as model accuracy.
+
+Grid search
+-----------
 
 To define the hyperparameters, simply create a dictionary with the keys matching the arguments of your wrapper function, and a list of values for each hyperparameter.
 
@@ -129,23 +132,42 @@ The length of each list is 6, which is interpreted as if you want to run 6 diffe
    "5", "0.0001", "0.45"
    "6", "0.0001", "0.7"
 
-Running the TensorFlow code
----------------------------
 
-After defining the training code and the hyperparameter combinations the next step is to start the actual training. This is done using the *tflauncher* module from the hops python library.
+After defining the training code and the hyperparameter combinations the next step is to start the actual training. This is done using the *experiment* module from the hops python library.
 
 ::
 
-    from hops import tflauncher
-    tflauncher.launch(spark, training, args_dict_grid)
+    from hops import experiment
+    experiment.launch(spark, training, args_dict_grid)
 
 
-Its input argument is simply the `spark` SparkSession object, which is automatically created when the first cell is evaluated in the notebook, in addition to the wrapper function and the dictionary with the hyperparameters. `tflauncher.launch` will simply run the wrapper function and inject the value of each hyperparameter that you have specified.
+Its input argument is simply the `spark` SparkSession object, which is automatically created when the first cell is evaluated in the notebook, in addition to the wrapper function and the dictionary with the hyperparameters. `experiment.launch` will simply run the wrapper function and inject the value of each hyperparameter that you have specified.
+
+Differential Evolution
+----------------------
+
+With differential evolution a search space for each hyperparameter needs to be defined. To define the search space, simply create a dictionary with the keys matching the arguments of your wrapper function, and a list with two values corresponding to the lower and upper bound of the search space. Compared to grid search, a metric needs to be returned by your code that will correspond to the fitness value of your configuration.
+
+::
+  
+    search_dict = {'learning_rate': [0.001, 0.0001], 'dropout': [0.45, 0.7]}
+
+    def training(learning_rate, dropout):
+        # model.eval corresponds to your own code, which results in a metric
+        metric = model.eval(learning_rate, dropout)
+        return metric
+        
+After defining the training code and the hyperparameter bounds, the next step is to tune some hyperparameters for the differential evolution algorithm and start the actual training. This is done using the *experiment* module from the hops python library.
+
+::
+
+    from hops import experiment
+    experiment.evolutionary_search(spark, training, args_dict_grid)
 
 Working with TensorBoard
 ########################
 
-When you run your job using tflauncher, TensorBoard will be started automatically. To interact with TensorBoard, import the tensorboard module from the hops python library. In addition to writing summaries and your TensorBoard events of course.
+When you run your job using experiment, TensorBoard will be started automatically. To interact with TensorBoard, import the tensorboard module from the hops python library. In addition to writing summaries and your TensorBoard events of course.
 
 ::
 
@@ -157,7 +179,7 @@ When you run your job using tflauncher, TensorBoard will be started automaticall
     ... TensorFlow code ...
     
 **Navigate to TensorBoard in HopsWorks**
-After launching your job using tflauncher, you can monitor training by observing the TensorBoard.
+After launching your job using experiment, you can monitor training by observing the TensorBoard.
 
 .. figure:: ../../imgs/jupyter.png
     :alt: Jupyter UI overview
@@ -175,7 +197,7 @@ Execution Logs
 ########################
 
 **Navigate to Logs in HopsWorks**
-After launching your job using tflauncher, you can navigate to HopsWorks to view execution logs.
+After launching your job using experiment, you can navigate to HopsWorks to view execution logs.
 
 .. figure:: ../../imgs/logs.png
     :alt: Logs overview

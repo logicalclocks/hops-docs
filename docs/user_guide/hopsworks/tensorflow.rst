@@ -6,7 +6,7 @@ Hops provides support for running TensorFlow using HopsWorks on a Hops cluster. 
 Working with TensorFlow in Jupyter
 ----------------------------------
 
-HopsWorks currently support *three* different modes for running TensorFlow, that are meant for different purposes and use-cases:
+HopsWorks currently support *three* different modes for training TensorFlow models, that are meant for different purposes and use-cases:
 
 1. Parallel TensorFlow experiments
 2. Distributed TensorFlow with TensorFlowOnSpark
@@ -23,9 +23,10 @@ When starting Jupyter in HopsWorks, certain configuration properties need to be 
    :maxdepth: 1
 
    ../tensorflow/hops.rst
-   ../tensorflow/tflauncher.rst
+   ../tensorflow/experiment.rst
    ../tensorflow/tensorflow_on_spark.rst
    ../tensorflow/horovod.rst
+   ../tensorflow/model_serving.rst
 
 
 Hops python library
@@ -38,7 +39,9 @@ It contains several submodules that can be used for interacting with TensorBoard
 Mode 1. Parallel TensorFlow experiments
 -----------------------------------------
 
-The use case of this mode is to run multiple parallel experiments where you have a set of **predefined hyperparameters** and a list of values per hyperparameter that should be used to run training with. Based on this list of hyperparameter values, a grid can be constructed (cartesian product). Each of these possible hyperparameter combinations in the grid corresponds to a TensorFlow job, or an *experiment*. Running each of these hyperparameters configuration sequentially would be slow, therefore we provide a simple API to **parallelize** execution on one or more *executors*. 
+The use case of this mode is to run multiple parallel experiments. To find the best model for your prediction task is not a trivial process. You need to decide on a model and some hyperparameters and then run your training/evaluation until you are satisfied.
+
+We provide different mechanisms to parallelize the search for your best model such as evolutionary hyperparameter optimization or grid search. Typically you will have a set of **predefined hyperparameters** and a list of values per hyperparameter that should be used to run training with. Based on this list of hyperparameter values, a grid can be constructed (cartesian product). Each of these possible hyperparameter combinations in the grid corresponds to a TensorFlow job, or an *experiment*. Running each of these hyperparameters configuration sequentially would be slow, therefore we provide a simple API to **parallelize** execution on one or more *executors*.
 
 While training you will be able to see how training progresses using TensorBoard. After running all the experiments, it is possible to visualize all experiments in the **same** TensorBoard to more easily identify which hyperparameter combinations yield the best results.
 

@@ -102,7 +102,7 @@ In order to easily copy datasets to and from your executor's working space and y
     # Launch using experiment
     from hops import experiment
     experiment.launch(spark, wrapper)
-    
+
 
 experiment
 ----------
@@ -123,12 +123,13 @@ The ``experiment`` module is used for running one or more Parallel TensorFlow ex
         # Wrapper function for arbitrarily many experiments
         
     # Running two experiments
-    from hops import experiment
     args_dict = {'lr': [0.1, 0.3], 'dropout': [0.4, 0.7]}
     
     # This code will run two jobs
     # job1: lr=0.1 and dropout=0.4
     # job2: lr=0.3 and dropout=0.7
+    
+    from hops import experiment
     root_tensorboard_logdir = experiment.launch(spark, multiple_experiments_wrapper, args_dict)
     
     ...............................................................................................
@@ -137,7 +138,6 @@ The ``experiment`` module is used for running one or more Parallel TensorFlow ex
         # Wrapper function for arbitrarily many experiments
         
     # Running a grid of hyperparameter experiments
-    from hops import experiment
     args_dict = {'lr': [0.1, 0.3], 'dropout': [0.4, 0.7]}
     
     from hops import util
@@ -149,8 +149,22 @@ The ``experiment`` module is used for running one or more Parallel TensorFlow ex
     # job2: lr=0.1 and dropout=0.7
     # job3: lr=0.3 and dropout=0.4
     # job4: lr=0.3 and dropout=0.7
-    root_tensorboard_logdir = experiment.launch(spark, grid_experiments_wrapper, args_dict_grid)  
     
+    from hops import experiment
+    root_tensorboard_logdir = experiment.launch(spark, grid_experiments_wrapper, args_dict_grid)
+    
+    ...............................................................................................
+    
+    def evolutionary_experiments_wrapper(lr, dropout):
+        # Wrapper function for arbitrarily many experiments
+        metric = mycode.evaluate(lr, dropout)
+        return metric
+        
+    # Running a grid of hyperparameter experiments
+    search_dict = {'lr': [0.1, 0.3], 'dropout': [0.4, 0.7]}
+    
+    from hops import experiment
+    root_tensorboard_logdir = experiment.evolutionary_search(spark, evolutionary_experiments_wrapper, search_dict)
     
     
 tensorboard
