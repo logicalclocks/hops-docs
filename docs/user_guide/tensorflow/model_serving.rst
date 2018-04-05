@@ -24,13 +24,7 @@ To demonstrate this we provide an example notebook which is also included in the
 https://github.com/hopshadoop/hops-examples/blob/master/tensorflow/notebooks/Serving/train_and_export_model.ipynb
 
 In order to serve a TensorFlow model on HopsWorks, the .pb file and the variables folder should be placed in the Models dataset in your HopsWorks project. Inside the dataset, the folder structure should mirror what is expected by TensorFlow Serving.
-
-.. figure:: ../../imgs/serving_structure.png
-    :alt: Expected Model Serving structure in HDFS
-    :scale: 100
-    :align: center
-    :figclass: align-center
-    
+   
 .. _serving_structure.png: ../../_images/serving_structure.png
 .. figure:: ../../imgs/serving_structure.png
    :alt: Expected file and folder structure for TensorFlow Serving
