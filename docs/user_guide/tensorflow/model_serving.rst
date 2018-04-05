@@ -77,13 +77,12 @@ After having created the serving definition the next step is to start it.
     
 After having started successfully the endpoint and logs for the TensorFlow Model server is exposed in the interface.
 
+.. _running_serving.png: ../../_images/running_serving.png
 .. figure:: ../../imgs/running_serving.png
-    :alt: Start serving
-    :scale: 100
-    :align: center
-    :figclass: align-center
-
-
+   :alt: Serving started successfully
+   :target: `running_serving.png`_
+   :align: center
+   :figclass: align-center
 
 
 
