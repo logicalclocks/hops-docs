@@ -6,7 +6,7 @@ Hops provides support for running TensorFlow using HopsWorks on a Hops cluster. 
 Working with TensorFlow in Jupyter
 ----------------------------------
 
-HopsWorks currently support *three* different modes for running TensorFlow, that are meant for different purposes and use-cases:
+HopsWorks currently support *three* different modes for training TensorFlow models, that are meant for different purposes and use-cases:
 
 1. Parallel TensorFlow experiments
 2. Distributed TensorFlow with TensorFlowOnSpark
@@ -26,6 +26,7 @@ When starting Jupyter in HopsWorks, certain configuration properties need to be 
    ../tensorflow/experiment.rst
    ../tensorflow/tensorflow_on_spark.rst
    ../tensorflow/horovod.rst
+   ../tensorflow/model_serving.rst
 
 
 Hops python library
