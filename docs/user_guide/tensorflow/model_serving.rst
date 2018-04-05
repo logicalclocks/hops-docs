@@ -14,7 +14,7 @@ The first step to serving your model is to export it as a servable model. This i
 
 Model Serving in Hopsworks
 --------------------------
-
+&nbsp;&nbsp;
 **Step 1.**
 
 The first step is to train and export a servable TensorFlow model to your Hopsworks project.
@@ -29,7 +29,7 @@ In order to serve a TensorFlow model on HopsWorks, the .pb file and the variable
     :scale: 100
     :align: center
     :figclass: align-center
-
+&nbsp;&nbsp;
 **Step 2.**
 
 The next step is to create a serving definition in the Hopsworks Model Serving service.
@@ -59,7 +59,7 @@ Select the .pb file in your Models dataset
     :figclass: align-center
     
 Then select batching if it should be used and create your serving.
-
+&nbsp;&nbsp;
 **Step 3.**
 
 
