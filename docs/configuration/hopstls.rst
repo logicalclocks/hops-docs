@@ -34,7 +34,7 @@ The file name pattern for the **truststore** should be following:
 First we will go through the properties in ``$HADOOP_HOME/etc/hadoop/ssl-server.xml``
 configuration file. This file contains information regarding the
 cryptographic material needed by the entities which run an RPC
-server. The properties are the same as in Apache Hadoop, a brief
+server. The properties are superset of Apache Hadoop, a brief
 description can be found `here`_.
 
 .. _here: https://hadoop.apache.org/docs/stable/hadoop-mapreduce-client/hadoop-mapreduce-client-core/EncryptedShuffle.html#ssl-server.xml_Shuffle_server_Configuration:
@@ -62,6 +62,11 @@ description can be found `here`_.
 |                                       | keystore                             |               |
 +---------------------------------------+--------------------------------------+---------------+
 | ssl.server.keystore.type              | Type of the keystore                 | jks           |
++---------------------------------------+--------------------------------------+---------------+
+| ssl.server.keystore.reload.interval   | Reload interval of the keystore      |  10000        |
++---------------------------------------+--------------------------------------+---------------+
+| ssl.server.keystore.reload.timeunit   | Keystore reload interval             | MILLISECONDS  |
+|                                       | TimeUnit (Java TimeUnit)             |               |
 +---------------------------------------+--------------------------------------+---------------+
 
 
@@ -118,6 +123,18 @@ Example of ``ssl-server.xml`` configuration file::
     <value>jks</value>
     <description>Optional. The keystore file format, default value is "jks".</description>
   </property>
+
+  <property>
+    <name>ssl.server.keystore.reload.interval</name>
+    <value>10</value>
+    <description>Optional. The keystore reload interval.</description>
+  </property>
+
+  <property>
+    <name>ssl.server.keystore.reload.timeunit</name>
+    <value>MINUTES</value>
+    <description>Optional. The keystore reload interval TimeUnit, see Java TimeUnit.</description>
+  </property>
   
   
 Next is a list of properties required in ``$HADOOP_HOME/etc/hadoop/core-site.xml`` configuration file.
@@ -148,8 +165,6 @@ These properties enable SSL/TLS in the RPC server.
 | client.materialize.directory             | Directory where Hopsworks has already| /srv/hops/certs-dir/       | /srv/hops/domains/     |
 |                                          | materialized the crypto material from| transient                  | domain1/kafkacerts     |
 |                                          | the database for a specific user     |                            |                        |
-+------------------------------------------+--------------------------------------+----------------------------+------------------------+
-| client.hopsworks.rest.endpoint           | Hopsworks REST endpoint              | http://192.168.63.101:8080 |                        |
 +------------------------------------------+--------------------------------------+----------------------------+------------------------+
 | client.rpc.ssl.enabled.protocol          | SSL protocol used by the client      | TLSv1.2                    | TLSv1                  |
 +------------------------------------------+--------------------------------------+----------------------------+------------------------+
@@ -190,11 +205,6 @@ Example of ``core-site.xml`` configuration file::
   <property>
    <name>client.materialize.directory</name>
    <value>/srv/hops/certs-dir/transient</value>
-  </property>
-  
-  <property>
-   <name>client.hopsworks.rest.endpoint</name>
-   <value>http://192.168.63.101:8080</value>
   </property>
 
   <property>
@@ -252,17 +262,82 @@ Follows a sample of ``yarn-site.xml`` when RM HA is enabled for two RMs::
    <value>10.0.2.16:8012</value>
   </property>
 
+
+
+--------------------------------------
+Certificate Revocation List validation
+--------------------------------------
+Since version 2.8.2.4 of Hops, Certificate Revocation List (CRL)
+validation is supported for the RPC servers. The CRL should be placed
+in publicly available location and it will be fetched periodically by
+Hops services - ResourceManagers, NameNodes, NodeManagers and
+DataNodes. Client's certificate is validated against this CRL and if
+the certificate has been revoked, the connection is dropped. The
+configuration properties for CRL validation should be in
+``core-site.xml``. To enable CRL validation, RPC TLS **should** also
+be enabled. 
+
++---------------------------------------+--------------------------------------+-------------------------------------------------+
+| property name                         | description                          | default value                                   |
++=======================================+======================================+=================================================+
+| hops.crl.validation.enabled           | Enable CRL validation                | false                                           |
++---------------------------------------+--------------------------------------+-------------------------------------------------+
+| hops.crl.input.uri                    | URI where CRL whill be fetched from  |                                                 |
++---------------------------------------+--------------------------------------+-------------------------------------------------+
+| hops.crl.output.file                  | File in the local filesystem where   |                                                 |
+|                                       | the CRL will be written to           |                                                 |
++---------------------------------------+--------------------------------------+-------------------------------------------------+
+| hops.crl.fetcher.interval             | CRL fetch interval (ns,us,ms,s,m,h,d)| 720m                                            |
++---------------------------------------+--------------------------------------+-------------------------------------------------+
+| hops.crl.fetcher.class                | Fetcher class which will fetch the   | org.apache.hadoop.security.ssl.RemoteCRLFetcher |
+|                                       | CRL periodically and write it to     |                                                 |
+|                                       | local filesystem                     |                                                 |
++---------------------------------------+--------------------------------------+-------------------------------------------------+
+
+The CRL section in ``core-site.xml`` whould look like this::
+
+  <property>
+   <name>hops.crl.validation.enabled</name>
+   <value>true</value>
+  </property>
+
+  <property>
+   <name>hops.crl.input.uri</name>
+   <value>http://my_host/hops.crl.pem</value>
+  </property>
+  
+  <property>
+   <name>hops.crl.output.file</name>
+   <value>hadoop_home/tmp/hops.crl.pem</value>
+  </property>
+  
+  <property>
+   <name>hops.crl.fetcher.interval</name>
+   <value>2d</value>
+  </property>
+
+  <property>
+   <name>hops.crl.fetcher.class</name>
+   <value>org.apache.hadoop.security.ssl.RemoteCRLFetcher</value>
+  </property>
+
+  
 --------------------------------------
 Enabling RPC/IPC TLS with Karamel/Chef
 --------------------------------------
 
-If you are using `Karamel`_, then in your cluster definition you need
-to set the property ``hops/rpc/ssl_enabled`` to true. By
-default it is disabled. For example:::
+If you are using `Karamel`_, then your cluster definition should look
+like the following in order to enable RPC TLS and CRL validation. CRL input URI
+would be ``HOPSWORKS_ENDPOINT/intermediate.crl.pem``, output file ``$HADOOP_TMP_DIR/hops_crl.pem``
+and fetcher interval ``1d``. The ``DevRemoteCRLFetcher`` class is the same as ``RemoteCRLFetcher``
+but trusts any web server certificate, usually in a development environment the certificate
+will be self-signed::
 
   hops:
-   rpc:
-    ssl: true
+   tls:
+    enabled: true
+    crl_enabled: true
+    crl_fetcher_class: org.apache.hadoop.security.ssl.DevRemoteCRLFetcher
 
 
 .. _Karamel: http://www.karamel.io/
