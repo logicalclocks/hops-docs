@@ -41,7 +41,8 @@ The next step is to create a serving definition in the Hopsworks Model Serving s
     :align: center
     :figclass: align-center
     
-click "Model"
+
+Click the Model button
     
 .. figure:: ../../imgs/serving_definition.png
     :alt: Creating serving definition
@@ -56,10 +57,28 @@ Select the .pb file in your Models dataset
     :scale: 100
     :align: center
     :figclass: align-center
+    
+Then select batching if it should be used and create your serving.
+
+**Step 3.**
 
 
+After having created the serving definition the next step is to start it.
 
+.. figure:: ../../imgs/created_serving.png
+    :alt: Start serving
+    :scale: 100
+    :align: center
+    :figclass: align-center
+    
+    
+After having started successfully the endpoint and logs for the TensorFlow Model server is exposed in the interface.
 
+.. figure:: ../../imgs/running_serving.png
+    :alt: Start serving
+    :scale: 100
+    :align: center
+    :figclass: align-center
 
 
 
