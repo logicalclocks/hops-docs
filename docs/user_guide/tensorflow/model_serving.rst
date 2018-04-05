@@ -32,14 +32,32 @@ In order to serve a TensorFlow model on HopsWorks, the .pb file and the variable
 
 **Step 2.**
 
-The second step is to create a serving definition in Hopsworks.
+The next step is to create a serving definition in the Hopsworks Model Serving service.
 
 
 .. figure:: ../../imgs/model_serving.png
-    :alt: Expected Model Serving structure in HDFS
+    :alt: Model Serving service
     :scale: 100
     :align: center
     :figclass: align-center
+    
+click "Model"
+    
+.. figure:: ../../imgs/serving_definition.png
+    :alt: Creating serving definition
+    :scale: 100
+    :align: center
+    :figclass: align-center
+    
+Select the .pb file in your Models dataset
+
+.. figure:: ../../imgs/select_model.png
+    :alt: Select the protobuf model
+    :scale: 100
+    :align: center
+    :figclass: align-center
+
+
 
 
 
