@@ -35,6 +35,14 @@ In order to serve a TensorFlow model on HopsWorks, the .pb file and the variable
 The second step is to create a serving definition in Hopsworks.
 
 
+.. figure:: ../../imgs/model_serving.png
+    :alt: Expected Model Serving structure in HDFS
+    :scale: 100
+    :align: center
+    :figclass: align-center
+
+
+
 
 
 
