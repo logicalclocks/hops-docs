@@ -63,14 +63,14 @@ After launching your job using TFCluster, you can monitor training by observing 
    
 .. _jupyter.png: ../../_images/jupyter.png
 .. figure:: ../../imgs/jupyter.png
-   :alt: Expected file and folder structure for TensorFlow Serving
+   :alt: Navigate to TensorBoard 1
    :target: `jupyter.png`_
    :align: center
    :figclass: align-center
     
 .. _overview.png: ../../_images/overview.png
 .. figure:: ../../imgs/overview.png
-   :alt: Expected file and folder structure for TensorFlow Serving
+   :alt: Navigate to TensorBoard 2
    :target: `overview.png`_
    :align: center
    :figclass: align-center
@@ -84,14 +84,14 @@ After launching your job using TFCluster, you can navigate to HopsWorks to see l
    
 .. _logs.png: ../../_images/logs.png
 .. figure:: ../../imgs/logs.png
-   :alt: Expected file and folder structure for TensorFlow Serving
+   :alt: Logs location
    :target: `logs.png`_
    :align: center
    :figclass: align-center
 
 .. _viewlogs.png: ../../_images/viewlogs.png
 .. figure:: ../../imgs/viewlogs.png
-   :alt: Expected file and folder structure for TensorFlow Serving
+   :alt: View execution logs
    :target: `viewlogs.png`_
    :align: center
    :figclass: align-center

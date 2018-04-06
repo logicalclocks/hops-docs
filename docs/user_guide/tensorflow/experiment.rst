@@ -24,11 +24,12 @@ Defines the amount of memory each executor should be allocated with. Keep in min
 Defines how many GPUs should be allocated for each executor, effectively how many GPUs each job will be able to access. To run only with CPU, simply set this value to 0.
 
 
+.. _experiment_mode.png: ../../_images/experiment_mode.png
 .. figure:: ../../imgs/experiment_mode.png
-    :alt: HopsWorks project path
-    :scale: 100
-    :align: center
-    :figclass: align-center
+   :alt: Experiment mode in Jupyter
+   :target: `experiment_mode.png`_
+   :align: center
+   :figclass: align-center
    
     
 The programming model: Wrap your TensorFlow code in a function
@@ -59,11 +60,13 @@ Reading from HopsfS (HDFS)
     
 The path returned is to the root directory in HopsWorks.
 
+
+.. _datasets-browser.png: ../../_images/datasets-browser.png
 .. figure:: ../../imgs/datasets-browser.png
-    :alt: HopsWorks project path
-    :scale: 100
-    :align: center
-    :figclass: align-center
+   :alt: Dataset browser
+   :target: `datasets-browser.png`_
+   :align: center
+   :figclass: align-center
 
 
 **Step 2**. Append the relative path of your dataset to the root path. Assuming you uploaded a file named ``train.tfrecord``s in the Resources dataset, the path pointing to that particular dataset would then be.
@@ -181,17 +184,19 @@ When you run your job using experiment, TensorBoard will be started automaticall
 **Navigate to TensorBoard in HopsWorks**
 After launching your job using experiment, you can monitor training by observing the TensorBoard.
 
+.. _jupyter.png: ../../_images/jupyter.png
 .. figure:: ../../imgs/jupyter.png
-    :alt: Jupyter UI overview
-    :scale: 50
-    :align: center
-    :figclass: align-center
+   :alt: Navigate to TensorBoard 1
+   :target: `jupyter.png`_
+   :align: center
+   :figclass: align-center
 
+.. _overview.png: ../../_images/overview.png
 .. figure:: ../../imgs/overview.png
-    :alt: Jupyter UI overview
-    :scale: 100
-    :align: center
-    :figclass: align-center
+   :alt: Navigate to TensorBoard 2
+   :target: `overview.png`_
+   :align: center
+   :figclass: align-center
 
 Execution Logs
 ########################
@@ -199,17 +204,19 @@ Execution Logs
 **Navigate to Logs in HopsWorks**
 After launching your job using experiment, you can navigate to HopsWorks to view execution logs.
 
+.. _logs.png: ../../_images/logs.png
 .. figure:: ../../imgs/logs.png
-    :alt: Logs overview
-    :scale: 50
-    :align: center
-    :figclass: align-center
+   :alt: Logs location
+   :target: `logs.png`_
+   :align: center
+   :figclass: align-center
 
+.. _viewlogs.png: ../../_images/viewlogs.png
 .. figure:: ../../imgs/viewlogs.png
-    :alt: View logs
-    :scale: 50
-    :align: center
-    :figclass: align-center
+   :alt: View execution logs
+   :target: `viewlogs.png`_
+   :align: center
+   :figclass: align-center
 
 
 Where do I go from here?
