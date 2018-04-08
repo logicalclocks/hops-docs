@@ -6,12 +6,11 @@ What is mmlspark?
 -------------------------
 
 MMLSpark provides support for image processing with Apache Spark using OpenCV, enabling you to quickly create powerful, highly-scalable predictive and analytical models for large image datasets. There is also support for Microsoft Cognitive Toolkit (CNTK).
-More information can be found at the official Github `repo < https://github.com/Azure/mmlspark`_
+More information can be found at the official Github `repo <https://github.com/Azure/mmlspark>`_
 
 
 Images API
 -----------------
-
 
 ::
 
@@ -39,7 +38,8 @@ Images API
 Starting a Jupyter Notebook with support for mmlspark
 -----------------
 
-In the 'More Spark Properties' textbox, add the following on its own line:
+MMLSpark is pre-installed as a python library for Hopsworks projects. However, it needs the mmlspark.jar file to be installed in Spark's classpath for the driver and executors.
+You can install mmlspark.jar by clicking on 'Cluster Setup' before starting Jupyter, and then adding to the 'More Spark Properties' textbox the following on its own line:
 
 ::
 
