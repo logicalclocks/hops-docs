@@ -26,6 +26,7 @@ When starting Jupyter in HopsWorks, certain configuration properties need to be 
    ../tensorflow/experiment.rst
    ../tensorflow/tensorflow_on_spark.rst
    ../tensorflow/horovod.rst
+   ../tensorflow/mml.rst	      
    ../tensorflow/model_serving.rst
 
 
