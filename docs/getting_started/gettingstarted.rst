@@ -2,54 +2,36 @@
 Getting Started
 ===========================
 
-The simplest way to get up and running with Hops is to use our VM installer script.
-It will create and initiate a single VM running on Vagrant with VirtualBox. Be aware that a Hops deployment runs many services, and therefore requires at least 10GB of RAM.
+Download the sandbox
+--------------------
 
-For detailed instructions on how to perform production deployments in-house or in the cloud, see :ref:`hops-installer`.
-
-Hops on Vagrant
-***************
-
-Install dependencies
---------------
-Firstly, install the following packages on your host machine:
-
-* chef-dk 0.5+
-* git
-* vagrant
-* vagrant omnibus plugin
-* virtualbox
-
-
-Get the code
-----------------
-Download the karamel-scripts from github
-::
-   git clone https://github.com/hopshadoop/karamel-chef.git
+The easiest way is to try Hops is to `download the sandbox
+<http://www.hops.io/get-started/>`_. This will run on any platform supporting a recent version of VirtualBox.
 
 Run the installer
 -----------------
-Enter the cloned directory and run the setup script
-::
-   cd karamel-chef
-   ./run.sh ubuntu 1 hopsworks
 
-This will create and start a single-node deployment of Hops. The initiation takes up to an hour depending on the host system.
+Otherwise, if you are using a debian based distribution, you can run the :download:`simplesetup.sh <simplesetup.sh>` script. (Tested on Ubuntu 16.04)
+::
 
-To track the progress of the initiation, check the ``nohup`` file where output logs are written.
-::
-   tail -f ./nohup
+    ./simplesetup.sh
 
-Once a success message has been printed in the ``nohup`` file, visit 127.0.0.1:8080/hopsworks with username admin@kth.se and password admin. If the port was already in use, use the "ports" command to see which port 8080 has been mapped to.
-::
-   ./run.sh ports
+It will install the required versions of virtualbox, vagrant and chefdk, and create a single node VM (needs ~15GB of RAM).
 
-If you want to inspect the VM, simply run ``vagrant ssh`` in the same directory
+After installing the dependencies, it will create and initiate the VM. This will take up to 1 hour depending on your host machine.
+To trace execution progress, tail the ``nohup`` file.
 ::
-   vagrant ssh
-   
-When you are done playing around
---------------------------------
-To destroy the VM, simply run the kill script
+
+    tail -f karamel-chef/nohup
+
+Once you see a success message, visit 127.0.0.1:8080/hopsworks with username ``admin@kth.se`` and password ``admin``.
+
+If you want to destroy your VM, run the kill script
 ::
-   ./kill.sh
+
+    ./karamel-chef/kill.sh
+
+Going further
+-------------
+
+For detailed instructions on how to perform production deployments in-house or in the cloud, see :ref:`hops-installer`.
