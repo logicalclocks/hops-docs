@@ -176,11 +176,14 @@ The *launch* function in *experiment* will return the directory in HopsFS, where
 
 ::
 
-    # Somewhere in your TensorFlow code 
+    # Import tensorboard
     from hops import tensorboard
+
     # Get the log directory
     logdir = tensorboard.logdir()
 
+    # Get the debugger endpoint of the TensorBoard
+    debugger_endpoint = tensorboard.debugger()
     
     # Launching your training and visualizing everything in the same TensorBoard
     from hops import tensorboard
@@ -188,6 +191,7 @@ The *launch* function in *experiment* will return the directory in HopsFS, where
     hdfs_path = experiment.launch(spark, training_fun, args_dict)
     # Visualize TensorBoard from HopsFS
     tensorboard.visualize(spark, hdfs_path)
+
 
 
 devices
