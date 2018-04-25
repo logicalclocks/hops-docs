@@ -1,4 +1,4 @@
-kINSTALL_DEPENDENCIES=false
+INSTALL_DEPENDENCIES=false
 DOWNLOAD_DIR=/tmp
 
 if [ "$1" == "--install-deps" ] ; then
