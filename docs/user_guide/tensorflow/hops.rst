@@ -139,11 +139,7 @@ The ``experiment`` module is used for running one or more Parallel TensorFlow ex
         
     # Running a grid of hyperparameter experiments
     args_dict = {'lr': [0.1, 0.3], 'dropout': [0.4, 0.7]}
-    
-    from hops import util
-    # This code creates a grid, so all possible hyperparameter combinations of ``lr`` and ``dropout``
-    args_dict_grid = util.grid_params(args_dict)
-    
+
     # This code will run four jobs
     # job1: lr=0.1 and dropout=0.4
     # job2: lr=0.1 and dropout=0.7
@@ -151,7 +147,8 @@ The ``experiment`` module is used for running one or more Parallel TensorFlow ex
     # job4: lr=0.3 and dropout=0.7
     
     from hops import experiment
-    root_tensorboard_logdir = experiment.launch(spark, grid_experiments_wrapper, args_dict_grid)
+
+    root_tensorboard_logdir = experiment.grid_search(spark, grid_experiments_wrapper, args_dict, direction='max')
     
     ...............................................................................................
     
@@ -164,7 +161,7 @@ The ``experiment`` module is used for running one or more Parallel TensorFlow ex
     search_dict = {'lr': [0.1, 0.3], 'dropout': [0.4, 0.7]}
     
     from hops import experiment
-    root_tensorboard_logdir = experiment.evolutionary_search(spark, evolutionary_experiments_wrapper, search_dict)
+    root_tensorboard_logdir = experiment.evolutionary_search(spark, evolutionary_experiments_wrapper, search_dict, direction='max')
     
     
 tensorboard
@@ -182,8 +179,11 @@ The *launch* function in *experiment* will return the directory in HopsFS, where
     # Get the log directory
     logdir = tensorboard.logdir()
 
-    # Get the debugger endpoint of the TensorBoard
-    debugger_endpoint = tensorboard.debugger()
+    # Get the interactive debugger endpoint of the TensorBoard
+    debugger_endpoint = tensorboard.interactive_debugger()
+
+    # Get the non-interactive debugger endpoint of the TensorBoard
+    debugger_endpoint = tensorboard.non_interactive_debugger()
     
     # Launching your training and visualizing everything in the same TensorBoard
     from hops import tensorboard
