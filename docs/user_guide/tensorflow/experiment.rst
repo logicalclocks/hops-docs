@@ -44,7 +44,7 @@ To be able to run your TensorFlow code on Hops, the code for the whole program n
         # TensorFlow training code (including reading data, defining model, starting training...)
 
 Reading from HopsfS (HDFS)
-#################
+##########################
 
 **Step 1**. The first step is to upload a dataset to your project in HopsWorks. After having uploaded the dataset, your TensorFlow input pipeline code must point to the path in HopsFS where that particular dataset is stored. The first step is to get the root path to your project in HopsFS. This is easily done by the code below.
 
@@ -110,20 +110,6 @@ To define the hyperparameters, simply create a dictionary with the keys matching
         # Training code
 
 
-Next step is to generate all possible combinations, the grid, of the hyperparameter values. First import the ``util module`` from the hops python library and call the ``grid_params`` function with your args dictionary.
-
-::
-
-    from hops import util
-    args_dict_grid = util.grid_params(args_dict)
-
-    print(args_dict_grid)
-
-    {'learning_rate': [0.001, 0.001, 0.0005, 0.0005, 0.0001, 0.0001],
-     'dropout': [0.45, 0.7, 0.45, 0.7, 0.45, 0.7]}
-
-The length of each list is 6, which is interpreted as if you want to run 6 different hyperparameter combinations, where index 0 in each list maps to the hyperparameter values to use in job 0. Index 1 in each list would map to job 1, and so on.
-
 .. csv-table:: Job number and hyperparameters
    :header: "Job number", "Learning rate", "Dropout"
    :widths: 20, 20, 10
@@ -136,20 +122,20 @@ The length of each list is 6, which is interpreted as if you want to run 6 diffe
    "6", "0.0001", "0.7"
 
 
-After defining the training code and the hyperparameter combinations the next step is to start the actual training. This is done using the *experiment* module from the hops python library.
+After defining the training code, the hyperparameter combinations and the direction to optimize ('min' or 'max') the next step is to start the actual training. This is done using the *experiment* module from the hops python library.
 
 ::
 
     from hops import experiment
-    experiment.launch(spark, training, args_dict_grid)
+    experiment.grid_search(spark, training, args_dict, direction='max')
 
 
-Its input argument is simply the `spark` SparkSession object, which is automatically created when the first cell is evaluated in the notebook, in addition to the wrapper function and the dictionary with the hyperparameters. `experiment.launch` will simply run the wrapper function and inject the value of each hyperparameter that you have specified.
+Its input argument is simply the `spark` SparkSession object, which is automatically created when the first cell is evaluated in the notebook, in addition to the wrapper function and the dictionary with the hyperparameters. `experiment.grid_search` will simply run the wrapper function and generate the grid of hyperparameters and inject the value of each hyperparameter that you have specified.
 
 Differential Evolution
 ----------------------
 
-With differential evolution a search space for each hyperparameter needs to be defined. To define the search space, simply create a dictionary with the keys matching the arguments of your wrapper function, and a list with two values corresponding to the lower and upper bound of the search space. Compared to grid search, a metric needs to be returned by your code that will correspond to the fitness value of your configuration.
+With differential evolution a search space for each hyperparameter needs to be defined. To define the search space, simply create a dictionary with the keys matching the arguments of your wrapper function, and a list with two values corresponding to the lower and upper bound of the search space. Compared to grid search, a metric needs to be returned by your code that will correspond to the fitness value of your configuration. You can then specify the direction to optimize, 'min' or 'max'.
 
 ::
   
@@ -165,7 +151,7 @@ After defining the training code and the hyperparameter bounds, the next step is
 ::
 
     from hops import experiment
-    experiment.evolutionary_search(spark, training, args_dict_grid)
+    experiment.evolutionary_search(spark, training, args_dict_grid, direction='max')
 
 Working with TensorBoard
 ########################
