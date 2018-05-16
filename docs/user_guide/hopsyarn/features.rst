@@ -11,7 +11,7 @@ Hops-YARN is a drop-in replacement for Apache Hadoop YARN and it supports most o
   ZooKeeper is no longer required as the coordination and membership `service` is implemented using the transactional shared memory (NDB). As a result the following options are not supported in Hops-YARN: yarn.resourcemanager.zk-address, yarn.resourcemanager.zk-num-retries, yarn.resourcemanager.zk-retry-interval-ms, yarn.resourcemanager.zk-state-store.parent-path, yarn.resourcemanager.zk-timeout-ms, yarn.resourcemanager.zk-acl, yarn.resourcemanager.zk-state-store.root-node.acl, yarn.resourcemanager.ha.automatic-failover.zk-base-path.
 |
 * **StateStore**
-  Hops-YARN in entirely designed to store its state in the transactional share memory (NDB). As a result NDBRMStateStore is the only state store that is still supported. It follows that option specific to other state store are not supported in Hops-YARN: yarn.resourcemanager.fs.state-store.uri, yarn.resourcemanager.fs.state-store.retry-policy-spec.
+  Hops-YARN in entirely designed to store its state in the transactional share memory (NDB). As a result DBRMStateStore is the only state store that is still supported. It follows that option specific to other state store are not supported in Hops-YARN: yarn.resourcemanager.fs.state-store.uri, yarn.resourcemanager.fs.state-store.retry-policy-spec.
 |
 * **Administration commands**
   Two administration commands are now obsolete: **transitionToActive** and **transitionToStandby**. The selection of the active ResourceManager is now completely automatized and managed by the group membership service. As a result **transitionToActive** is not supported anymore.
