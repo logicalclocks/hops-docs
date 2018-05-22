@@ -10,7 +10,7 @@ New fail-over Features:
 
 * **yarn.resourcemanager.groupMembership.address**: The address of the group membership service. The group membership service is used by the clients and NodeManagers to obtain the list of alive ResourcesManagers.
 
-* **yarn.resourcemanager.group_membership.client.thread-count**: The number of threads used by the group membership service that serve http requests. By default, it is set to `1`.
+* **yarn.resourcemanager.group_membership.client.thread-count**: The number of threads used by the group membership service that serve http requests. By default, it is set to ``1``.
   
 Proxy provider
 --------------
@@ -25,15 +25,15 @@ Supported State Store:
 =====================
 Since Hops YARN relies on the distributed database for the group membership management and its distributed model it was chosen not to support the existing state store to focus only on the database state store.
 
-* **yarn.resourcemanager.store.class**: Should be set to `org.apache.hadoop.yarn.server.resourcemanager.recovery.DBRMStateStore`
+* **yarn.resourcemanager.store.class**: Should be set to ``org.apache.hadoop.yarn.server.resourcemanager.recovery.DBRMStateStore``
 
 Distributed Mode
 ================
-Hops YARN distributed mode can be enabled by setting the following flags to `true`:
+Hops YARN distributed mode can be enabled by setting the following flags to ``true``:
 
-* **yarn.client.failover-distributed**: Set to `true` to indicate that the system should work in distributed mode.
+* **yarn.client.failover-distributed**: Set to ``true`` to indicate that the system should work in distributed mode.
 
 In order to run efficiently, the distributed mode relies on the database streaming mechanism. The port on which the database is listening for streaming requests can be configured with the following configuration:
 
-* **hops.yarn.resourcemanager.event-streaming.db.port**: the port on which the database is listening for streaming request, by default `1186`
+* **hops.yarn.resourcemanager.event-streaming.db.port**: the port on which the database is listening for streaming request, by default ``1186``
 
