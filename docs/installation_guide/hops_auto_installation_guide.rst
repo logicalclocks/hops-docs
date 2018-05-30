@@ -1,7 +1,7 @@
 .. _hops-installer:
 
 Hops Installation
-===========================
+=================
 
 .. toctree::
    :maxdepth: 1

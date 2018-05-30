@@ -1,2 +1,7 @@
 _build
 *~
+lib
+include
+.Python
+bin
+pip-selfcheck.json

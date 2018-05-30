@@ -1,6 +1,14 @@
 Hops Documentation
 ==================================================
 
+.. _getting-started:
+
+.. toctree::
+   :maxdepth: 2
+   :glob:
+
+   getting_started/gettingstarted
+
 .. _hops-overview:
 
 .. toctree::
