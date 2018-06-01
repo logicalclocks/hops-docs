@@ -1,6 +1,6 @@
-===========================
+========================================
 First Login with 2-Factor Authentication
-===========================
+========================================
 
 HopsWorks supports two factor authentication for enhanced
 protection. If your administrator has enabled 2 factor authentication,

@@ -4,7 +4,7 @@ HopsYarn
 
 HopsYARN introduces a new metadata layer for Apache YARN, where the cluster state is stored in a distributed, in-memory, transactional database. HopsYARN enables us to provide quotas for Projects, in terms of how many CPU minutes and memory are available for use by each project. Quota-based scheduling is built as a layer on top of the capacity scheduler, enabling us to retain the benefits of the capacity scheduler.
 
-.. figure:: ./imgs/hops-yarn.png
+.. figure:: /imgs/hops-yarn.png
    :alt: Hops-YARN Architecture
    :scale: 75
    :width: 600

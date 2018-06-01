@@ -1,6 +1,6 @@
-===========================
+===================================
 Register a New Account on HopsWorks
-===========================
+===================================
 
 The process for registering a new account is as follows:
 

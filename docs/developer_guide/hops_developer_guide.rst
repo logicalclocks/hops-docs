@@ -1,4 +1,4 @@
-Hops Developer Guide
+Developer Guide
 ===========================
 
 .. toctree::

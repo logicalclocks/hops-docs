@@ -1,6 +1,6 @@
-===========================
+=============================
 MetaData Attachment and Entry
-===========================
+=============================
 
 Within the context of a project, click on the ``Data Sets`` tab. From here, click on a Data Set. Inside the Data Set, if you select any file or directory, the rightmost panel will display any extended metadata associated with the file or directory. If no extended metadata is assocated with the file/directory, you will see "No metadata template attached" in the rightmost panel. You can attach an existing metadata template to the file or directory by right-clicking on it, and selecting ``Add metadata template``. The metadata can then be selected from the set of *available templates* (designed or uploaded).
 

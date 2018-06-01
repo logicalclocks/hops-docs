@@ -1,6 +1,6 @@
-===========================
+====================================
 On-Premises (baremetal) Installation
-===========================
+====================================
 
 For on-premises (bare-metal) installations, you will need to prepare for installation by:
 

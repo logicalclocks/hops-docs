@@ -3,8 +3,8 @@ HopsWorks
 ===========================
 
 .. contents:: Contents
-   :local:
-   :depth: 2
+  :local:
+  :depth: 2
 
 HopsWorks is the UI front-end to Hops. It supports user authentication through either a native solution, LDAP, or two-factor authentication. There are both user and adminstrator views for HopsWorks.
 HopsWorks implements a perimeter security model, where command-line access to Hadoop services is restricted, and all jobs and interactive analyses are run from the HopsWorks UI and Apache Zeppelin (an iPython notebook style web application).
@@ -20,11 +20,11 @@ HopsWorks provides first-class support for DataSets and Projects. Each DataSet h
 HopsWorks implements dynamic role-based access control for projects. That is, users do not have static global privileges. A user's privileges depend on what the user's active project is. For example, the user may be a *Data Owner* in one project, but only a *Data Scientist* in another project. Depending on which project is active, the user may be a *Data Owner* or a *Data Scientist*.
 
 .. figure:: ../imgs/dynamic_roles.png
-   :alt: Dynamic Roles ensures strong multi-tenancy in HopsWorks
-   :scale: 60
-   :figclass: align-center
+  :alt: Dynamic Roles ensures strong multi-tenancy in HopsWorks
+  :scale: 60
+  :figclass: align-center
 
-   Dynamic Roles ensures strong multi-tenancy between projects in HopsWorks.
+  Dynamic Roles ensures strong multi-tenancy between projects in HopsWorks.
 
 The following roles are supported:
 
@@ -55,8 +55,8 @@ Users
 
 * Users authenticate with a valid email address
   * A 2nd factor can optionally be enabled for
-    authentication. Supported devices are smartphones (Android, Apple,
-    Windows) with an one-time password generator such as `Google Authenticator`_.
+  authentication. Supported devices are smartphones (Android, Apple,
+  Windows) with an one-time password generator such as `Google Authenticator`_.
 
 
 .. _Google Authenticator: https://support.google.com/accounts/answer/1066447?hl=en

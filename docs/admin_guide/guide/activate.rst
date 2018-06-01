@@ -10,7 +10,7 @@ When you approve the account, you have to assign a role to a user as either an:
 
 Users that are assigned an **administrator** role will be granted privileges to login to the **administrator application** and control users and the system. Be careful in which users are assigned an **administrator** role. The vast majority of users will be assigned a **user** role.
 
-.. figure:: ../../imgs/approve-user-account.png
+.. figure:: /imgs/approve-user-account.png
     :alt: Approve User Accounts
     :scale: 100
     :align: center

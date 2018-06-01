@@ -1,19 +1,7 @@
-.. _hops-installer:
+.. _hops-auto-install:
 
-Hops Installation
-=================
-
-.. toctree::
-   :maxdepth: 1
-
-   platforms/cloud.rst
-   platforms/baremetal.rst
-   platforms/vagrant.rst
-   platforms/windows.rst
-   platforms/osx.rst
-   platforms/cookbooks.rst
-   platforms/biobank-cookbooks.rst
-
+Hops Automated installation
+===========================
 The Hops stack includes a number of services, also requires a number of third-party distributed services:
 
 * Java (OpenJDK or Oracle JRE/JDK)

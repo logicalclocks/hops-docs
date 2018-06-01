@@ -114,7 +114,7 @@ After launching your Horovod notebook from the launcher notebook, you can naviga
     
 
 Running your Horovod code: The Launcher notebook
--------------------------------
+------------------------------------------------
 
 In this "launcher" notebook, you will have to import the allreduce module from the hops library and then call the ``allreduce.launch`` function. The first argument is the SparkSession which is created automatically, the second argument is the HopsFS path to your notebook containing the Horovod code. 
 

@@ -69,7 +69,7 @@ The path returned is to the root directory in HopsWorks.
    :figclass: align-center
 
 
-**Step 2**. Append the relative path of your dataset to the root path. Assuming you uploaded a file named ``train.tfrecord``s in the Resources dataset, the path pointing to that particular dataset would then be.
+**Step 2**. Append the relative path of your dataset to the root path. Assuming you uploaded a file named ``train.tfrecord`` s in the Resources dataset, the path pointing to that particular dataset would then be.
 
 ::
 

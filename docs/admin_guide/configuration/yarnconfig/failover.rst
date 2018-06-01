@@ -22,7 +22,7 @@ Proxy provider
   - **ConfiguredLeastLoadedRMFailoverHAProxyProvider**: this proxy provider establishes a connection with the ResourceTracker that has the lowest current load (least loaded). This proxy provider is to be used in distributed mode in order to balance the load coming from NodeManagers across ResourceTrackers.
 
 Supported State Store:
-=====================
+======================
 Since Hops YARN relies on the distributed database for the group membership management and its distributed model it was chosen not to support the existing state store to focus only on the database state store.
 
 * **yarn.resourcemanager.store.class**: Should be set to ``org.apache.hadoop.yarn.server.resourcemanager.recovery.DBRMStateStore``

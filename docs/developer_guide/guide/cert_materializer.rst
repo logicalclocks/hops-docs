@@ -16,7 +16,7 @@ material, then a reference counter is incremented instead of
 materializing over and over again. The materials from the local
 filesystem are deleted when there are no more references to
 them. Details for configuring Hops with TLS enabled can be found
-in :doc:`/configuration/hopstls`
+in :doc:`/admin_guide/configuration/hopstls`
 
 Certificate Materializer in Hopsworks
 -------------------------------------

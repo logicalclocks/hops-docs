@@ -9,8 +9,9 @@ If you are using a debian based distribution, you can run the :download:`simples
 
     ./simplesetup.sh
 
-It is required that vagrant, virtualbox and chefdk are already installed on the host machine. If you run 
+It is required that vagrant, virtualbox and chefdk are already installed on the host machine. If you run
 ::
+
     ./simplesetup.sh --install-deps
 
 the script will automatically download and install the required versions of these dependencies.
@@ -33,4 +34,4 @@ If you want to destroy your VM, run the kill script
 Going further
 -------------
 
-For detailed instructions on how to perform production deployments in-house or in the cloud, see :ref:`hops-installer`.
+For detailed instructions on how to perform production deployments in-house or in the cloud, see :ref:`installation`.

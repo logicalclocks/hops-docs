@@ -1,4 +1,4 @@
-.. _Unsupported_Features:
+.. _hdfs_unsupported_Features:
 
 ===========================
 Unsupported HDFS Features

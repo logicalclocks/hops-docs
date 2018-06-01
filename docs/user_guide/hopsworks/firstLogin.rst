@@ -1,6 +1,6 @@
-===========================
+=============================================
 First Login (without 2-Factor Authentication)
-===========================
+=============================================
 
 .. figure:: ../../imgs/login.png
     :alt: HopsWorks Login Page
@@ -51,8 +51,9 @@ the database (MySQL Clusters).
   hopsworks-web are deployed.
 * Default Glassfish credentials are:
   ::
-     username: adminuser
-     password: adminpw
+  
+    username: adminuser
+    password: adminpw
 
 * Investigate Glassfish misconfiguration problems. Glassfish log file
   is located at ``/srv/hops/domain1/logs/server.log``. Is Glassfish running? Are the JDBC connections working? Is JavaMail configured correctly?

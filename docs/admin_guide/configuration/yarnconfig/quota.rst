@@ -5,7 +5,7 @@ Configuring Hops YARN quota system
 In order to set a price for the different cluster resources and to charge applications in a fine-grained way, but without causing too much load on the resource manager and the database, several configuration parameters need to be tuned:
 
 Basic parameters:
-==========
+=================
 These is the minimum configuration required in order to set up the quota system:
 
 * **yarn.resourcemanager.quota.containers.log.period**: Time, in milliseconds, between two evaluations of the containers status. This is the frequency at which the quota system is evaluating application resources utilization, we also call it a tick. The lower this value the finer the cluster utilization evaluation (more precision on exactly when a container changed state), but the higher the load on the resource manager and database. Default, ``1000``.
@@ -33,7 +33,7 @@ On top of charging for quota utilization, Hops YARN provides a variable pricing 
 * **yarn.resourcemanager.quota.multiplicator.interval**: Time, in milliseconds between two evaluations of the resource pricing. Default, ``1000``.
 
 Charging as it runs:
-===================
+====================
 Charging application when they finish running is not compatible with long-running streaming applications. The following options allow you to charge the application for the resources they have used so far, while they are running.
 
 * **yarn.resourcemanager.quota.containers.log.checkpoints.enabled**: Should the checkpointing system be enabled? If the checkpointing system is disabled, applications will only be charged for the resources they used when the containers finish running. This can cause problems for long running applications: impossible for the user to know how much quota they have used, resource price not adapting with time. Default, ``true``.

@@ -98,8 +98,11 @@ Session based configuration
 Hive default configuration cannot be modified by users. What they can do though is change the values of certain configuration parameters for their sessions.
 Example: By default Hive is configured to not allow dynamic partitions, this means that the query shown previously at point *3* that inserts the data in the new table **will** fail.
 To enable dynamic partitioning we need to set ``hive.exec.dynamic.partition.mode`` to be ``nostrict``.
-To do that users can create a new paragraph in the Zeppelin notebook and execute::
+To do that users can create a new paragraph in the Zeppelin notebook and execute
+::
+
   set hive.exec.dynamic.partition.mode=nostrict
+
 This would enable dynamic partitioning for that session, other users will not be affected by this change and if users launch another ``hopshive`` interpreter they will find the default configuration.
 
 All the parameters that can be set or modified are listed in the Hive wiki under `Tez <https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-Tez>`_. 

@@ -1,6 +1,6 @@
-===========================
+===============================
 Distributed Unique ID generator
-===========================
+===============================
 
 ClusterJ API does not support any means to auto generate primary keys. Unique key generation is left to the application. Each NameNode has an ID generation daemon. ID generator keeps pools of pre-allocated IDs. The ID generation daemon keeps track of IDs for inodes, blocks and quota entities. Distributed unique ID generator configuration parameters are defined in ``hdfs-site.xml``.
 

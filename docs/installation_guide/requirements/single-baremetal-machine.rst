@@ -1,6 +1,6 @@
-========================================
+==================================================
 Entire Hops platform on a single baremetal machine
-========================================
+==================================================
 
 You can run HopsWorks and the entire Hops stack on a bare-metal single machine for development or testing purposes, but you will need at least:
 

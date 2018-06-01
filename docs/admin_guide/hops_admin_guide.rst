@@ -1,8 +1,8 @@
-HopsWorks Administrator Guide
+Administrator Guide
 ===========================
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    guide/activate.rst
    guide/email-validation.rst
@@ -15,5 +15,6 @@ HopsWorks Administrator Guide
    guide/project-quota.rst
    guide/enable.rst
    guide/ubikeys.rst
+   hops-configuration
 
 HopsWorks has an **administrator application** that allows you, the administrator, to perform management actions, monitor HopsWorks and Hops, and control HopsWorks and Hops.
