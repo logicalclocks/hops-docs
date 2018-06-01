@@ -1,6 +1,8 @@
-===========================
-HopsFS-EC Configuration
-===========================
+.. _hops-erasure-coding-configuration:
+
+==============
+Erasure Coding
+==============
 
 The erasure coding API is flexibly configurable and hence comes with some new configuration options that are shown here. All configuration options can be set by creating an ``erasure-coding-site.xml`` in the Hops configuration folder. Note that Hops comes with reasonable default values for all of these values. However, erasure coding needs to be enabled manually.
 

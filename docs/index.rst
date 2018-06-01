@@ -4,7 +4,7 @@ Hops Documentation
 .. _getting-started:
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
    :glob:
 
    getting_started/gettingstarted
@@ -12,14 +12,14 @@ Hops Documentation
 .. _hops-installation:
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
    :glob:
 
    installation_guide/installation
 
 .. _hops-userguide:
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
    :glob:
 
    user_guide/user_guide.rst
@@ -27,7 +27,7 @@ Hops Documentation
 .. _hops-admin-guide:
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
    :glob:
 
    admin_guide/hops_admin_guide
@@ -43,7 +43,7 @@ Hops Documentation
 .. _hops-overview:
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 3
    :glob:
 
    overview
@@ -51,7 +51,7 @@ Hops Documentation
 .. _hops-license:
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
    :glob:
 
    licensing
@@ -60,7 +60,7 @@ Hops Documentation
 .. .. _hops-contributers:
 
 .. .. toctree::
-..   :maxdepth: 2
+..   :maxdepth: 3
 ..   :glob:
 
 .. ..   authors

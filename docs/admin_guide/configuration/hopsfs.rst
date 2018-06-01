@@ -15,6 +15,6 @@ HopsFS Configuration
    sfsconfig/namespace.rst
    sfsconfig/client.rst
    sfsconfig/access.rst
-   sfsconfig/hopsFS.rst
+   sfsconfig/erasure-coding.rst
 
 This section contains new/modified configuration parameters for HopsFS. All the configuration parameters are defined in ``hdfs-site.xml`` and ``core-site.xml`` files.
