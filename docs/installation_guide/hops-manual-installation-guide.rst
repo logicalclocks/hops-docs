@@ -8,7 +8,7 @@ Purpose and Overview
 
 All applications running on HDFS and YARN can easily migrate to HopsFS and HopsYARN, as both HopsFS and HopsYARN supports same client facing APIs as HDFS and YARN. Setting up HopsFS is similar to HDFS except HopsFS allows multiple NameNodes that store the metadata in an external database. Similarly, HopsYARN supports a multiple ResourceManagers, although internally there will be a leader that acts as the scheduler while other ResourceManagers will act as ResourceTrackers that handle communications with NodeManagers.
 
-Hops can be installed using `Karamel`_, an orchestration engine for Chef Solo, that enables the deployment of arbitrarily large distributed systems on both virtualized platforms (AWS, Vagrant) and bare-metal hosts (see :ref:`Hops Auto Installer <hops-auto-install>` for more details). This document serves as starting point for manually installing and configuring Hops. 
+Hops can be installed using `Karamel`_, an orchestration engine for Chef Solo, that enables the deployment of arbitrarily large distributed systems on both virtualized platforms (AWS, Vagrant) and bare-metal hosts (see :ref:`Hops Auto Installer <Installation>` for more details). This document serves as starting point for manually installing and configuring Hops. 
 
 
 Required Softwares
