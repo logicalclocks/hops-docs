@@ -13,7 +13,7 @@ if [ "$INSTALL_DEPENDENCIES" = true ] ; then
   sudo dpkg -i $DOWNLOAD_DIR/vagrant_2.0.2_x86_64.deb
   
   echo "Installing chefdk..."
-  wget -P $DOWNLOAD_DIR https://packages.chef.io/files/current/chefdk/2.4.17/ubuntu/16.04/chefdk_2.4.17-1_amd64.deb
+  wget -P $DOWNLOAD_DIR https://packages.chef.io/files/stable/chefdk/2.4.17/ubuntu/16.04/chefdk_2.4.17-1_amd64.deb
   sudo dpkg -i $DOWNLOAD_DIR/chefdk_2.4.17-1_amd64.deb
 
   echo "Installing virtualbox..."
