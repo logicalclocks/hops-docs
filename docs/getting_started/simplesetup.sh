@@ -31,7 +31,7 @@ git clone https://github.com/hopshadoop/karamel-chef.git
 
 echo "Creating VM"
 cd karamel-chef
-./run.sh ubuntu 1 hopsworks
+./run.sh ubuntu 1 hopsworks-0.5.0
 
 HOPSWORKS_PORT=$(./run.sh ports | grep "8080 ->" | awk '{print $3}') 
 
