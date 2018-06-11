@@ -2,9 +2,9 @@
 HopsFS ACLs
 ===========
 
-Hops Hadoop supports extended Access Control Lists (ACLs), in similar fashion to the feature introduced to Hadoop in version 2.4.0. Access Control Lists are a way of extending the standard unix file permissions, allowing users to extend file access based on additional group and user restrictions.
+HopsFS supports extended Access Control Lists (ACLs), in similar fashion to the feature introduced in Apache Hadoop 2.4.0. Access Control Lists are a way of extending the standard unix file permissions, allowing users to extend file access based on additional group and user restrictions.
 
-The implementation in HopsFS uses the same API as Hadoop, but with slightly changed semantics.
+The implementation in HopsFS uses the same API as Apache Hadoop, but with slightly changed semantics.
 
 API
 ===
@@ -23,7 +23,7 @@ Below you can find a summary of the most important commands.
 Permission Order
 ================
 
-In UNIX, HDFS and HopsFS, the file permission is checked in the following order:
+In UNIX, HDFS and HopsFS, file permission is checked in the following order:
 
 ::
   
@@ -37,7 +37,7 @@ Adding ACLs causes the order to alter like so:
 
   user > named user > Union(group, named groups) > other
 
-Worth noting is the meaning of 'Union' here. If the user's groups matches any in the third step, the checking will not proceed to the 'other' entry. Furthermore, if the user's group entries matches several in the Union step, an entry that provides access will overshadow an entry that denies access.
+Worth noting is the meaning of "Union" here. If the user's groups matches any entry in the third step, checking will not proceed to the 'other' entry. Furthermore, if the user's group entries matches several in the Union step, an entry that provides access will overshadow an entry that denies access.
 
 It is also important to note that the MASK entry of each file will limit permission in named user, group and named groups.
 
@@ -56,4 +56,4 @@ In HopsFS we only allow DEFAULT Named user, DEFAULT Named group, and DEFAULT gro
 
 References
 ==========
-For additional information, see the official Hadoop Documentation: `HDFS ACL docs <https://hadoop.apache.org/docs/r2.4.1/hadoop-project-dist/hadoop-hdfs/HdfsPermissionsGuide.html#ACLs_Access_Control_Lists>`_.
+For additional information, see the official Apache Hadoop Documentation: `HDFS ACL docs <https://hadoop.apache.org/docs/r2.4.1/hadoop-project-dist/hadoop-hdfs/HdfsPermissionsGuide.html#ACLs_Access_Control_Lists>`_.
