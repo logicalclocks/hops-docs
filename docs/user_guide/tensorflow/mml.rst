@@ -1,5 +1,5 @@
 Microsoft Machine Learning for Apache Spark
-=========================
+===========================================
 .. highlight:: python
 
 What is mmlspark?
@@ -36,7 +36,7 @@ Images API
 
 
 Starting a Jupyter Notebook with support for mmlspark
------------------
+-----------------------------------------------------
 
 MMLSpark is pre-installed as a python library for Hopsworks projects. However, it needs the mmlspark.jar file to be installed in Spark's classpath for the driver and executors.
 You can install mmlspark.jar by clicking on 'Cluster Setup' before starting Jupyter, and then adding to the 'More Spark Properties' textbox the following on its own line:

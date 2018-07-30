@@ -13,7 +13,7 @@ HopsFS provides erasure coding functionality in order to decrease storage costs 
 Java API
 --------
 
-The erasure coding API is exposed to the client through the DistributedFileSystem class. The following sections give examples on how to use its functionality. Note that the following examples rely on erasure coding being properly configured. Information about how to do this can be found in :ref:`erasure-coding-configuration`.
+The erasure coding API is exposed to the client through the DistributedFileSystem class. The following sections give examples on how to use its functionality. Note that the following examples rely on erasure coding being properly configured. Information about how to do this can be found in :ref:`hops-erasure-coding-configuration`.
 
 
 Creation of Encoded Files

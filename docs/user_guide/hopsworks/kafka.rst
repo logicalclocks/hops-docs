@@ -3,7 +3,7 @@ Apache Kafka
 ===========================
 
 
-HopsWorks provides Kafka-as-a-Service for streaming
+Hopsworks provides Kafka-as-a-Service for streaming
 applications. In the following section we will guide you through
 creating a *Producer* job which produces messages to a Kafka topic and a
 simple *Consumer* job which consumes from the same topic. Our service
@@ -41,7 +41,7 @@ streaming application.
 * Step 2: `cd hops-kafka-examples/ && mvn package` to build the
   project
 
-Next step is to create a Kafka topic at HopsWorks that our application
+Next step is to create a Kafka topic at Hopsworks that our application
 will produce to and consume from.
 
 * Step 1: From the project box on the landing page, select a project

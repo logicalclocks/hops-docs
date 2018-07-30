@@ -8,12 +8,12 @@ hdfs
 -----------------------
 .. highlight:: python
 
-The ``hdfs`` module provides several ways of interacting with the Hops filesystem, where the HopsWorks project's data is stored. 
+The ``hdfs`` module provides several ways of interacting with the Hops filesystem, where the Hopsworks project's data is stored. 
 
-**Pointing to a Dataset in HopsWorks**
+**Pointing to a Dataset in Hopsworks**
 
 
-In order to point to a dataset in HopsWorks the ``hdfs.project_path()`` function should be called. The function will return the HDFS path of your project, which is the view shown when clicking at ``Data Sets`` in HopsWorks. To point where your actual data resides in the project, you need to append the full path from there to your Dataset. 
+In order to point to a dataset in Hopsworks the ``hdfs.project_path()`` function should be called. The function will return the HDFS path of your project, which is the view shown when clicking at ``Data Sets`` in Hopsworks. To point where your actual data resides in the project, you need to append the full path from there to your Dataset. 
 
 ::   
 
@@ -37,21 +37,21 @@ A simple use-case might be writing to a file in your project. Depending on wheth
     from hops import hdfs
     fs_handle = hdfs.get_fs()
     
-    # Write to file in HopsWorks Resources dataset
+    # Write to file in Hopsworks Resources dataset
     logfile = hdfs.project_path() + 'Resources/file.txt'
     fd = fs_handle.open_file(logfile, flags='w')
-    fd.write('Hello HopsWorks')
+    fd.write('Hello Hopsworks')
     fd.close()    
     
 **Logging in the PySpark kernel**
     
-When using the PySpark kernel you have to specify a wrapper function that you want to run on the executors. This wrapper function must be executed using the ``experiment`` module. To write log entries, the ``hdfs.log(string)`` method is used. It will write the string to a specific logfile for each experiment. The logfiles are stored in ``/Logs/TensorFlow/{appId}/{runId}/{hyperparameter}``. Keep in mind that this is a separate log from the one shown in the Spark UI in HopsWorks, which is simply the *stdout* and *stderr* of the running job.
+When using the PySpark kernel you have to specify a wrapper function that you want to run on the executors. This wrapper function must be executed using the ``experiment`` module. To write log entries, the ``hdfs.log(string)`` method is used. It will write the string to a specific logfile for each experiment. The logfiles are stored in ``/Logs/TensorFlow/{appId}/{runId}/{hyperparameter}``. Keep in mind that this is a separate log from the one shown in the Spark UI in Hopsworks, which is simply the *stdout* and *stderr* of the running job.
 
 ::
     
     def wrapper():
         from hops import hdfs
-        hdfs.log('Hello HopsWorks')
+        hdfs.log('Hello Hopsworks')
         
     from hops import experiment
     experiment.launch(spark, wrapper)
@@ -61,11 +61,11 @@ When using the PySpark kernel you have to specify a wrapper function that you wa
 If you are using a framework such as TensorFlow you can read data directly from your project, since TensorFlow supports the HDFS filesystem and therefore HopsFS.
 
 This section is directed towards users that may want to use other frameworks such as *PyTorch* or *Theano* that do not support directly reading from HDFS. In this case the solution is to download the datasets to the executor running your code and then feed it in your program.
-In order to easily copy datasets to and from your executor's working space and your HopsWorks project, the ``hdfs.copy_from_project`` and ``hdfs.copy_to_project`` functions should be used.
+In order to easily copy datasets to and from your executor's working space and your Hopsworks project, the ``hdfs.copy_from_project`` and ``hdfs.copy_to_project`` functions should be used.
 
 ::
 
-    # -- How to copy a dataset from your HopsWorks project --
+    # -- How to copy a dataset from your Hopsworks project --
 
     # When using the Python Kernel
     # This code will copy the file mydata.json in the Resources dataset and place it in the root of your PDIR directory
@@ -85,10 +85,10 @@ In order to easily copy datasets to and from your executor's working space and y
     experiment.launch(spark, wrapper)
 
 
-    # -- How to upload a dataset to your HopsWorks project --
+    # -- How to upload a dataset to your Hopsworks project --
 
     # When using the Python Kernel
-    # This code will copy the file mydata.json located in your PDIR directory and place it in the Resources dataset of your HopsWorks project
+    # This code will copy the file mydata.json located in your PDIR directory and place it in the Resources dataset of your Hopsworks project
     from hops import hdfs
     hdfs.copy_to_project('mydata.json', 'Resources/')
 
@@ -167,7 +167,7 @@ The ``experiment`` module is used for running one or more Parallel TensorFlow ex
 tensorboard
 ------------------------------
 Hops supports TensorBoard for all TensorFlow modes (Parallel experiments, TensorFlowOnSpark and Horovod). 
-When the ``experiment.launch`` function is invoked, a TensorBoard server will be started and available for each job. The *tensorboard* module provides a *logdir* method to get the log directory for summaries and checkpoints that are to be written to the TensorBoard. After each job is finished, the contents of the log directory will be placed in your HopsWorks project, under ``/Logs/TensorFlow/{appId}/{runId}/{hyperparameter}``. The directory name will correspond to the values of the hyperparameters for that particular job. The log directory could therefore be used to also write the final model or any other files that should be made available after execution is finished. Alternatively you can of course also write the model to any directory in your HopsWorks project.
+When the ``experiment.launch`` function is invoked, a TensorBoard server will be started and available for each job. The *tensorboard* module provides a *logdir* method to get the log directory for summaries and checkpoints that are to be written to the TensorBoard. After each job is finished, the contents of the log directory will be placed in your Hopsworks project, under ``/Logs/TensorFlow/{appId}/{runId}/{hyperparameter}``. The directory name will correspond to the values of the hyperparameters for that particular job. The log directory could therefore be used to also write the final model or any other files that should be made available after execution is finished. Alternatively you can of course also write the model to any directory in your Hopsworks project.
 
 The *launch* function in *experiment* will return the directory in HopsFS, where each log directory is stored after execution is finished. The *visualize* method in *tensorboard* takes this path as an argument, and will start a new TensorBoard containing all the log directories of the execution, which will provide an easy way to identify the best model. Using this method, it is also possible to visualize old runs by simply supplying the path to this log directory from old runs.
 

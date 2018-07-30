@@ -11,6 +11,7 @@ ResourceManager
 Even though Hops YARN allows to distribute the ResourceManager in order to have scheduling run on one node (the Scheduler) and resource tracking running on several other nodes (the ResourceTrackers) the configuration of the resource manager is similar to the configuration of Apache Hadoop YARN. When running in distributed mode all the nodes participating in the resource management should be configured the same way as a ResourceManager would be configured. They will then automatically detect each other and elect a leader to be the Scheduler.
 
 .. _adding/removing_resource_manager:
+
 Adding/Removing a ResourceManager
 ---------------------------------
 

@@ -1,16 +1,16 @@
-===========================
+=============================================
 First Login (without 2-Factor Authentication)
-===========================
+=============================================
 
 .. figure:: ../../imgs/login.png
-    :alt: HopsWorks Login Page
+    :alt: Hopsworks Login Page
     :width: 300px
     :height: 334px
     :scale: 80
     :align: center
     :figclass: align-center
 
-    HopsWorks Login Page
+    Hopsworks Login Page
 
 
 On initial installation, you can login with the default username and password.
@@ -24,12 +24,12 @@ Upon successful login, you will arrive on the landing page:
 
 .. _landing-page-new.png: ../../_images/landing-page-new.png
 .. figure:: ../../imgs/landing-page-new.png
-    :alt: HopsWorks Landing Page
+    :alt: Hopsworks Landing Page
     :target: `landing-page-new.png`_
     :align: center
     :figclass: align-center
 
-    HopsWorks Landing (Home) Page
+    Hopsworks Landing (Home) Page
 
 In the landing page, on the left you can see the Guided tours which
 will guide you through launching a SparkPi application. On the top center
@@ -46,13 +46,14 @@ the database (MySQL Clusters).
 **Actions**:
 
 * Double-check that system meets the minimum system requirements for
-  HopsWorks. Is there enough available disk space and memory?
+  Hopsworks. Is there enough available disk space and memory?
 * Log in to Glassfish and make sure both hopsworks-ear and
   hopsworks-web are deployed.
 * Default Glassfish credentials are:
   ::
-     username: adminuser
-     password: adminpw
+  
+    username: adminuser
+    password: adminpw
 
 * Investigate Glassfish misconfiguration problems. Glassfish log file
   is located at ``/srv/hops/domain1/logs/server.log``. Is Glassfish running? Are the JDBC connections working? Is JavaMail configured correctly?

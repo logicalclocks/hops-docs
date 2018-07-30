@@ -1,8 +1,8 @@
-===========================
+========================================
 First Login with 2-Factor Authentication
-===========================
+========================================
 
-HopsWorks supports two factor authentication for enhanced
+Hopsworks supports two factor authentication for enhanced
 protection. If your administrator has enabled 2 factor authentication,
 then during registration opt-in for it.
 
@@ -12,7 +12,7 @@ then during registration opt-in for it.
     :align: center
     :figclass: align-center
 
-    HopsWorks registration with two factor authentication
+    Hopsworks registration with two factor authentication
 
 You should have a one-time password generator installed at your
 smartphone, such as `Google Authenticator`_. After you have clicked

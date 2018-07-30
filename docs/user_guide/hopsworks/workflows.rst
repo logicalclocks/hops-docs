@@ -7,7 +7,7 @@ Workflows
 .. _javadoc: http://snurran.sics.se/hops/hops-util-javadoc/0.1.0/
 .. _here: https://github.com/hopshadoop/hops-kafka-examples/blob/master/spark/src/main/java/io/hops/examples/spark/WorkflowManager.java
 
-HopsWorks provides a way to programmatically build Spark Job Workflows by using `HopsUtil`_. To build a workflow, users need to do the following:
+Hopsworks provides a way to programmatically build Spark Job Workflows by using `HopsUtil`_. To build a workflow, users need to do the following:
 
 * Create the `jobs`_ that need to be part of the project's workflow.
 * Create and run the *workflow* job, that is the one that implements and initiates the workflow.
@@ -15,7 +15,7 @@ HopsWorks provides a way to programmatically build Spark Job Workflows by using 
 API
 ============
 
-`HopsUtil`_ provides a simple API (please consult HopsUtil `javadoc`_ for detailed information) to manage HopsWorks jobs. The API consists of the following two methods that accept a number of different parameters for more fine grained workflow management.
+`HopsUtil`_ provides a simple API (please consult HopsUtil `javadoc`_ for detailed information) to manage Hopsworks jobs. The API consists of the following two methods that accept a number of different parameters for more fine grained workflow management.
 
 * **startJobs**: Gets a number of job IDs as input parameter and starts the respective jobs of the project for which the user invoking the jobs is also their creator. It can be used like ``HopsUtil.startJobs(1);``
 

@@ -1,4 +1,4 @@
-HopsWorks User Guide
+Hopsworks User Guide
 ====================
 
 .. toctree::

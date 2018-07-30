@@ -3,7 +3,7 @@ TensorFlow Model Serving
 ========================
 .. highlight:: python
 
-HopsWorks supports TensorFlow Serving, a flexible, high-performance serving system for machine learning models, designed for production environments.
+Hopsworks supports TensorFlow Serving, a flexible, high-performance serving system for machine learning models, designed for production environments.
 
 
 
@@ -23,7 +23,7 @@ The first step is to train and export a servable TensorFlow model to your Hopswo
 To demonstrate this we provide an example notebook which is also included in the TensorFlow tour.
 https://github.com/hopshadoop/hops-examples/blob/master/tensorflow/notebooks/Serving/train_and_export_model.ipynb
 
-In order to serve a TensorFlow model on HopsWorks, the .pb file and the variables folder should be placed in the Models dataset in your HopsWorks project. Inside the dataset, the folder structure should mirror what is expected by TensorFlow Serving.
+In order to serve a TensorFlow model on Hopsworks, the .pb file and the variables folder should be placed in the Models dataset in your Hopsworks project. Inside the dataset, the folder structure should mirror what is expected by TensorFlow Serving.
    
 .. _serving_structure.png: ../../_images/serving_structure.png
 .. figure:: ../../imgs/serving_structure.png

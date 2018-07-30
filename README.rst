@@ -12,7 +12,7 @@ Build the documentation
 
    cd docs
 
-   make latexpdf
+   make html
 
 Contribute
 ----------

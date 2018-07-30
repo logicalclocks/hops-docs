@@ -2,7 +2,7 @@
 Logs visualization
 ===========================
 
-HopsWorks aggregates the logs of the applications launched and uses
+Hopsworks aggregates the logs of the applications launched and uses
 Kibana for visualization and discovery. To get access to your logs,
 upon a job completion, click on the ``Job UI`` button and then on
 ``Logs`` tab. A sample output for the SparkPi job looks like the

@@ -10,7 +10,7 @@ Originally developed by Yahoo, TensorFlowOnSpark is essentially a wrapper for `D
 Improvements by Hops
 --------------------
 
-1. **Hops provides GPU scheduling!** In the Jupyter configuration before starting Jupyter in HopsWorks, it is possible to configure the number of GPUs that should be accessible for each worker.
+1. **Hops provides GPU scheduling!** In the Jupyter configuration before starting Jupyter in Hopsworks, it is possible to configure the number of GPUs that should be accessible for each worker.
 
 2. **Parameter servers are not allocated any GPUs** since they perform relatively small computations.
 
@@ -57,7 +57,7 @@ When you run your job using TFCluster, TensorBoard will be started automatically
 
     ... TensorFlow code ...
     
-**Navigate to TensorBoard in HopsWorks**
+**Navigate to TensorBoard in Hopsworks**
 After launching your job using TFCluster, you can monitor training by observing the TensorBoard.
 
    
@@ -79,8 +79,8 @@ After launching your job using TFCluster, you can monitor training by observing 
 Execution Logs
 --------------
 
-**Navigate to Logs in HopsWorks**
-After launching your job using TFCluster, you can navigate to HopsWorks to see logs from the execution.
+**Navigate to Logs in Hopsworks**
+After launching your job using TFCluster, you can navigate to Hopsworks to see logs from the execution.
    
 .. _logs.png: ../../_images/logs.png
 .. figure:: ../../imgs/logs.png
@@ -99,4 +99,4 @@ After launching your job using TFCluster, you can navigate to HopsWorks to see l
 Where do I go from here?
 ------------------------
 
-We have prepared several notebooks in the TensorFlow tour on HopsWorks with examples for running TensorFlowOnSpark on Hops.
+We have prepared several notebooks in the TensorFlow tour on Hopsworks with examples for running TensorFlowOnSpark on Hops.

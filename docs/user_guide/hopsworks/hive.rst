@@ -7,14 +7,14 @@ Introduction
 
 HopsHive is a fork for Apache Hive. The main difference between Apache Hive and HopsHive is that when a user deletes their data, the metadata describing databases, tables and partitions is deleted as well, hence maintaining the metadata storage consistent against the filesystem.
 
-This page serves as a guide on how to use Hive from within HopsWorks. For information on how to write HiveQL (the language used to query the data) and configuration parameters available for tweaking, please refer to the Apache Hive `wiki`_
+This page serves as a guide on how to use Hive from within Hopsworks. For information on how to write HiveQL (the language used to query the data) and configuration parameters available for tweaking, please refer to the Apache Hive `wiki`_
 
 .. _wiki: https://cwiki.apache.org/confluence/display/Hive/Home
 
-Using HopsHive with HopsWorks
+Using HopsHive with Hopsworks
 ------------------------------
 
-In order to use HopsHive from HopsWorks, users first need to create a database. Each project can have *at most one* Hive database, which is created when the Hive service is enabled for the project. Users can enable the Hive service either when creating a new project or via the *Settings* section.
+In order to use HopsHive from Hopsworks, users first need to create a database. Each project can have *at most one* Hive database, which is created when the Hive service is enabled for the project. Users can enable the Hive service either when creating a new project or via the *Settings* section.
 
 Once the database is created, users are able to see in the *Datasets* view a new dataset called ``projectName.db``. This new dataset is the Hive database for the project and contains Hive's data.
 
@@ -34,10 +34,10 @@ Workflow example
 
 The following is an example of a standard workflow when using Hive.
 
-The steps are the following: get the raw data into HopsWorks, load the data into Hive, convert the data in a more storage and computationaly efficient format, such as *ORC*, and finally query the new table.
+The steps are the following: get the raw data into Hopsworks, load the data into Hive, convert the data in a more storage and computationaly efficient format, such as *ORC*, and finally query the new table.
 The steps are the following:
 
-1. **Load the raw data into HopsWorks**: The easiest way to do it is to create a new dataset within the project and upload the data. Please remember to not generate the ``README.md`` file (or delete it after creating the dataset). This is because when creating the external table on the dataset, Hive will use all the files contained in the directory, README included if present. An alternative approach would be to create a directory inside the dataset and point Hive to that directory. Please note that, as the Zeppelin notebooks are run as the *ProjectGenericUser*, which is a user automatically created for your project and automatically added to each dataset user group, to be able to operate on the data, the dataset needs to be set to be editable by right clicking on the dataset and selecting *Make Editable*.
+1. **Load the raw data into Hopsworks**: The easiest way to do it is to create a new dataset within the project and upload the data. Please remember to not generate the ``README.md`` file (or delete it after creating the dataset). This is because when creating the external table on the dataset, Hive will use all the files contained in the directory, README included if present. An alternative approach would be to create a directory inside the dataset and point Hive to that directory. Please note that, as the Zeppelin notebooks are run as the *ProjectGenericUser*, which is a user automatically created for your project and automatically added to each dataset user group, to be able to operate on the data, the dataset needs to be set to be editable by right clicking on the dataset and selecting *Make Editable*.
 
 2. **Make Hive aware of the raw data**: To load the data into Hive, users can create a new Zeppelin Notebook, choosing ``hopshive`` as default interpreter and write a query to create an external table.
 
@@ -98,8 +98,11 @@ Session based configuration
 Hive default configuration cannot be modified by users. What they can do though is change the values of certain configuration parameters for their sessions.
 Example: By default Hive is configured to not allow dynamic partitions, this means that the query shown previously at point *3* that inserts the data in the new table **will** fail.
 To enable dynamic partitioning we need to set ``hive.exec.dynamic.partition.mode`` to be ``nostrict``.
-To do that users can create a new paragraph in the Zeppelin notebook and execute::
+To do that users can create a new paragraph in the Zeppelin notebook and execute
+::
+
   set hive.exec.dynamic.partition.mode=nostrict
+
 This would enable dynamic partitioning for that session, other users will not be affected by this change and if users launch another ``hopshive`` interpreter they will find the default configuration.
 
 All the parameters that can be set or modified are listed in the Hive wiki under `Tez <https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-Tez>`_. 

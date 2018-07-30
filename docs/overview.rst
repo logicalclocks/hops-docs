@@ -4,9 +4,10 @@ Hops Overview
 .. toctree::
    :maxdepth: 1
 
-   overview/audience.rst
-   overview/revision-history.rst
-   overview/what-hops.rst
-   overview/hopsWorks.rst
-   overview/hopsFS.rst
-   overview/bioBankCloud.rst
+   overview/audience
+   overview/revision-history
+   overview/what-hops
+   overview/hopsWorks
+   overview/hopsFS
+   overview/bioBankCloud
+   overview/hopsYarn

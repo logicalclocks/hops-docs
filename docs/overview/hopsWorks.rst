@@ -1,15 +1,15 @@
 ===========================
-HopsWorks
+Hopsworks
 ===========================
 
 .. contents:: Contents
-   :local:
-   :depth: 2
+  :local:
+  :depth: 2
 
-HopsWorks is the UI front-end to Hops. It supports user authentication through either a native solution, LDAP, or two-factor authentication. There are both user and adminstrator views for HopsWorks.
-HopsWorks implements a perimeter security model, where command-line access to Hadoop services is restricted, and all jobs and interactive analyses are run from the HopsWorks UI and Apache Zeppelin (an iPython notebook style web application).
+Hopsworks is the UI front-end to Hops. It supports user authentication through either a native solution, LDAP, or two-factor authentication. There are both user and adminstrator views for Hopsworks.
+Hopsworks implements a perimeter security model, where command-line access to Hadoop services is restricted, and all jobs and interactive analyses are run from the Hopsworks UI and Apache Zeppelin (an iPython notebook style web application).
 
-HopsWorks provides first-class support for DataSets and Projects. Each DataSet has a home project. Each project has a number of default DataSets:
+Hopsworks provides first-class support for DataSets and Projects. Each DataSet has a home project. Each project has a number of default DataSets:
 
 -  *Resources*: contains programs and small amounts of data
 -  *Logs*: contains outputs (stdout, stderr) for YARN applications
@@ -17,14 +17,14 @@ HopsWorks provides first-class support for DataSets and Projects. Each DataSet h
    their configuration
 
 
-HopsWorks implements dynamic role-based access control for projects. That is, users do not have static global privileges. A user's privileges depend on what the user's active project is. For example, the user may be a *Data Owner* in one project, but only a *Data Scientist* in another project. Depending on which project is active, the user may be a *Data Owner* or a *Data Scientist*.
+Hopsworks implements dynamic role-based access control for projects. That is, users do not have static global privileges. A user's privileges depend on what the user's active project is. For example, the user may be a *Data Owner* in one project, but only a *Data Scientist* in another project. Depending on which project is active, the user may be a *Data Owner* or a *Data Scientist*.
 
 .. figure:: ../imgs/dynamic_roles.png
-   :alt: Dynamic Roles ensures strong multi-tenancy in HopsWorks
-   :scale: 60
-   :figclass: align-center
+  :alt: Dynamic Roles ensures strong multi-tenancy in Hopsworks
+  :scale: 60
+  :figclass: align-center
 
-   Dynamic Roles ensures strong multi-tenancy between projects in HopsWorks.
+  Dynamic Roles ensures strong multi-tenancy between projects in Hopsworks.
 
 The following roles are supported:
 
@@ -44,19 +44,19 @@ The following roles are supported:
 * design and update metadata for files/directories/DataSets
 
 
-..  HopsWorks is built on a number of services, illustrated below:
-..  HopsWorks Layered Architecture.
+..  Hopsworks is built on a number of services, illustrated below:
+..  Hopsworks Layered Architecture.
 
 
-HopsWorks covers: users, projects and datasets, analytics, metadata mangement and free-text search.
+Hopsworks covers: users, projects and datasets, analytics, metadata mangement and free-text search.
 
 Users
 -----
 
 * Users authenticate with a valid email address
   * A 2nd factor can optionally be enabled for
-    authentication. Supported devices are smartphones (Android, Apple,
-    Windows) with an one-time password generator such as `Google Authenticator`_.
+  authentication. Supported devices are smartphones (Android, Apple,
+  Windows) with an one-time password generator such as `Google Authenticator`_.
 
 
 .. _Google Authenticator: https://support.google.com/accounts/answer/1066447?hl=en
@@ -64,7 +64,7 @@ Users
 Projects and DataSets
 ---------------------
 
-HopsWorks provides the following features:
+Hopsworks provides the following features:
 
 * project-based multi-tenancy with dynamic roles;
 * CPU hour quotas for projects (supported by HopsYARN);
@@ -75,7 +75,7 @@ HopsWorks provides the following features:
 Analytics
 ---------
 
-HopsWorks provides two services for executing applications on YARN:
+Hopsworks provides two services for executing applications on YARN:
 
 * Apache Zepplin: interactive analytics for Spark, Flink, and other data parallel frameworks;
 * YARN batch jobs: batch-based submission (including Spark, MapReduce, Flink, Adam, and SaasFee);
@@ -83,7 +83,7 @@ HopsWorks provides two services for executing applications on YARN:
 MetaData Management
 -------------------
 
-HopsWorks provides support for the design and entry of extended metadata for files and directories:
+Hopsworks provides support for the design and entry of extended metadata for files and directories:
 
 * design your own extended metadata using an intuitive UI;
 * enter extended metadata using an intuitive UI.
@@ -91,7 +91,7 @@ HopsWorks provides support for the design and entry of extended metadata for fil
 Free-text search
 ----------------
 
-HopsWorks integrates with Elasticsearch to provide free-text search for files/directories and their extended metadata:
+Hopsworks integrates with Elasticsearch to provide free-text search for files/directories and their extended metadata:
 
 * `Global free-text search` for projects and DataSets in the filesystem;
 * `Project-based free-text search` of all files and extended metadata within a project.
@@ -100,7 +100,7 @@ HopsWorks integrates with Elasticsearch to provide free-text search for files/di
 Logs aggregation
 ----------------
 
-HopsWorks provides Logstash/Kibana-as-a-Service for logs aggregation
+Hopsworks provides Logstash/Kibana-as-a-Service for logs aggregation
 and visualization.
 
 Spark metrics

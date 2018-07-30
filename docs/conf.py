@@ -221,7 +221,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  ('index', 'hops.tex', u'HopsWorks Documentation',
+  ('index', 'hops.tex', u'Hopsworks Documentation',
    u'www.hops.io', 'report'),
 ]
 

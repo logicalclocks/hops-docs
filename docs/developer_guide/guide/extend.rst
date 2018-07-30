@@ -1,6 +1,6 @@
-===========================
+===============================
 Extending HopsFS INode metadata
-===========================
+===============================
 
 .. contents:: Contents
    :local:
@@ -14,7 +14,7 @@ Example use case
 Let's assume we would like to store per user access times for each INode. To do this, we need to store the id of the inode, the name of the user and the timestamp representing the most recent access.
 
 Adding a table to the schema
----------------------
+----------------------------
 
 First, we need to add a new table storing the metadata to our schema. Therefor we'll go to the *hops-metadata-dal-impl-ndb* project and add the following to the *schema/schema.sql* file.
 
@@ -43,7 +43,7 @@ Additionally we will make the table and column names available to the Java code 
 :Note: `Don't forget to update your database with the new schema.`
 
 Defining the Entity Class
----------------------
+-------------------------
 
 Having defined the database table, we will need to defining an entity class representing our database entries in the java code. We will do this by adding the following AccessTimeLogEntry class *hops-metadata-dal* project.
 
@@ -77,7 +77,7 @@ Having defined the database table, we will need to defining an entity class repr
     }
 
 Defining the DataAccess interface
----------------------
+---------------------------------
 
 We will need a way for interacting with our new entity in the database. The preferred way of doing this in Hops is defining a DataAccess interface to be implemented by a database implementation. Let's define define the following interface in the *hops-metadata-dal* project. For now, we will only require functionality to add and modify log entries and to read individual entries for a given INode and user.
 
@@ -95,7 +95,7 @@ We will need a way for interacting with our new entity in the database. The pref
 
 
 Implementing the DataAccess interface
----------------------
+-------------------------------------
 
 Having defined the interface, we will need to implement it using ndb to read and persist our data. Therefor, we will add a clusterj implementation of our interface to the *hops-metadata-dal-impl-ndb* project.
 
@@ -200,7 +200,7 @@ Having defined a concrete implementation of the DataAccess, we need to make it a
 
 
 Implementing the EntityContext
----------------------
+------------------------------
 
 Hops-HDFS uses context objects to cache the state of entities during transactions before persisting them in the database during the commit phase. We will need to implement such a context for our new entity in the *hops* project.
 

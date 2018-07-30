@@ -5,7 +5,7 @@ Horovod on Hops
 Horovod programming model in Hops
 ---------------------------------
 
-To get started with your Horovod coding, you first need to select `Horovod` in Jupyter configuration on HopsWorks.
+To get started with your Horovod coding, you first need to select `Horovod` in Jupyter configuration on Hopsworks.
 Keep in mind that the memory allocated for each host will be the memory allocated for all processes on that host, configuring too little memory will result in the Spark Executor being killed.
 After starting Jupyter with the Horovod configuration, you can begin coding your TensorFlow code for Horovod.
 The modifications that should be done to your code can be found `here <https://github.com/uber/horovod#usage>`_.
@@ -18,7 +18,7 @@ The Horovod notebook
 Reading from HDFS
 #################
 
-**Step 1**. The first step is to upload a dataset to your project in HopsWorks. Then, your TensorFlow input pipeline code must point to the path in HopsFS where that particular dataset is stored. The first step is to get the root path to your project in HopsFS. This is easily done by the code below.
+**Step 1**. The first step is to upload a dataset to your project in Hopsworks. Then, your TensorFlow input pipeline code must point to the path in HopsFS where that particular dataset is stored. The first step is to get the root path to your project in HopsFS. This is easily done by the code below.
 
 
 ::
@@ -30,10 +30,10 @@ Reading from HDFS
 
     ... TensorFlow/Horovod code ...
     
-The path returned is to the root directory in HopsWorks.
+The path returned is to the root directory in Hopsworks.
 
 .. figure:: ../../imgs/datasets-browser.png
-    :alt: HopsWorks project path
+    :alt: Hopsworks project path
     :scale: 60
     :align: center
     :figclass: align-center
@@ -80,7 +80,7 @@ When launching your Horovod notebook, TensorBoard will be started automatically.
 
     ... TensorFlow/Horovod code ...
     
-**Navigate to TensorBoard in HopsWorks**
+**Navigate to TensorBoard in Hopsworks**
 After launching your Horovod notebook from the launcher notebook, you can monitor training by observing the TensorBoard.
 
     
@@ -97,8 +97,8 @@ After launching your Horovod notebook from the launcher notebook, you can monito
     :figclass: align-center
     
 
-**Navigate to Logs in HopsWorks**
-After launching your Horovod notebook from the launcher notebook, you can navigate to HopsWorks to see execution logs.
+**Navigate to Logs in Hopsworks**
+After launching your Horovod notebook from the launcher notebook, you can navigate to Hopsworks to see execution logs.
 
 .. figure:: ../../imgs/logs.png
     :alt: Logs overview
@@ -114,11 +114,11 @@ After launching your Horovod notebook from the launcher notebook, you can naviga
     
 
 Running your Horovod code: The Launcher notebook
--------------------------------
+------------------------------------------------
 
 In this "launcher" notebook, you will have to import the allreduce module from the hops library and then call the ``allreduce.launch`` function. The first argument is the SparkSession which is created automatically, the second argument is the HopsFS path to your notebook containing the Horovod code. 
 
-Example of your launcher notebook, assuming your ``horovod_program.ipynb`` is located in the Jupyter dataset in your HopsWorks project.
+Example of your launcher notebook, assuming your ``horovod_program.ipynb`` is located in the Jupyter dataset in your Hopsworks project.
 ::
 
     from hops import hdfs
@@ -130,7 +130,7 @@ Example of your launcher notebook, assuming your ``horovod_program.ipynb`` is lo
 Where do I go from here?
 ------------------------
 
-We have prepared several notebooks in the TensorFlow tour on HopsWorks with examples for running Horovod on Hops.
+We have prepared several notebooks in the TensorFlow tour on Hopsworks with examples for running Horovod on Hops.
 
 
 Current limitations
