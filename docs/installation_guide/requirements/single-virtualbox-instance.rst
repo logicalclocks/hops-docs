@@ -2,7 +2,7 @@
 Entire Hops platform on a single virtualbox instance (vagrant)
 ==============================================================
 
-You can run HopsWorks and the entire Hops stack on a single virtualbox instance for development or testing purposes, but you will need at least:
+You can run Hopsworks and the entire Hops stack on a single virtualbox instance for development or testing purposes, but you will need at least:
 
 .. tabularcolumns:: {| p{\dimexpr 0.3\linewidth-2\tabcolsep} | p{\dimexpr 0.7\linewidth-2\tabcolsep}|}
 

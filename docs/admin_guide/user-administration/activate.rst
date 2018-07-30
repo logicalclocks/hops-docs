@@ -2,7 +2,7 @@
 Activating users
 ===========================
 
-You, the administrator, have to approve each new user account before the user is able to login to HopsWorks.
+You, the administrator, have to approve each new user account before the user is able to login to Hopsworks.
 When you approve the account, you have to assign a role to a user as either an:
 
  * user

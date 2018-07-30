@@ -2,7 +2,7 @@
 Upload Data
 ===========================
 
-Files can be uploaded using HopsWorks' web interface. Go to the
+Files can be uploaded using Hopsworks' web interface. Go to the
 project you want to upload the file(s) to. You must have the **Data Owner**
 role for that project to be able to upload files. In the **Data Sets**
 tab, on the top left corner there is the *Upload* button.

@@ -36,16 +36,16 @@ We now provide two recommended setup:
 * a *large cluster* set of *light* stacks that includes fewer services on each node.
 
 **Single Node Setup**
-You can run the entire HopsWorks application platform on a single node. You will have a NodeGroup with the following services on the single node:
+You can run the entire Hopsworks application platform on a single node. You will have a NodeGroup with the following services on the single node:
 
-#. HopsWorks, Elasticsearch, Zeppelin, MySQL Server, NDB Mgmt Server, HDFS NameNode, YARN ResourceManager, NDB Data Node(s), HDFS DataNode, YARN NodeManager
+#. Hopsworks, Elasticsearch, Zeppelin, MySQL Server, NDB Mgmt Server, HDFS NameNode, YARN ResourceManager, NDB Data Node(s), HDFS DataNode, YARN NodeManager
 
 
 **Tiny Cluster Setup**
 
 We recommend the following setup that includes the following NodeGroups, and requires at least 2 nodes to be deployed:
 
-#. HopsWorks, Elasticsearch, Zeppelin, MySQL Server, NDB Mgmt Server, HDFS NameNode, YARN ResourceManager, NDB Data Node
+#. Hopsworks, Elasticsearch, Zeppelin, MySQL Server, NDB Mgmt Server, HDFS NameNode, YARN ResourceManager, NDB Data Node
 #. HDFS DataNode, YARN NodeManager
 
 This is really only a test setup, but you will have one node dedicated to YARN applications and file storage, while the other node handles the metadata layer services.
@@ -55,28 +55,28 @@ This is really only a test setup, but you will have one node dedicated to YARN a
 
 We recommend the following setup that includes four NodeGroups, and requires at least 4 nodes to be deployed:
 
-#. HopsWorks, Elasticsearch, Zeppelin, MySQL Server, NDB Mgmt Server,
+#. Hopsworks, Elasticsearch, Zeppelin, MySQL Server, NDB Mgmt Server,
 #. HDFS NameNode, YARN ResourceManager, MySQL Server
 #. NDB Data Node
 #. HDFS DataNode, YARN NodeManager
 
-A highly available small cluster would require at least two instances of the last three NodeGroups. HopsWorks can also be deployed on mulitple instances, but Elasticsearch needs to be specially configured if it is to be sharded across many insances.
+A highly available small cluster would require at least two instances of the last three NodeGroups. Hopsworks can also be deployed on mulitple instances, but Elasticsearch needs to be specially configured if it is to be sharded across many insances.
 
 **Large Cluster Setup**
 
 We recommend the following setup that includes six NodeGroups, and requires at least 4 nodes to be deployed:
 
 #. Elasticsearch
-#. HopsWorks, Zeppelin, MySQL Server, NDB Mgmt Server
+#. Hopsworks, Zeppelin, MySQL Server, NDB Mgmt Server
 #. HDFS NameNode, MySQL Server
 #. YARN ResourceManager, MySQL Server
 #. NDB Data Node
 #. HDFS DataNode, YARN NodeManager
 
-A highly available large cluster would require at least two instances of every NodeGroup. HopsWorks can also be deployed on mulitple instances, while Elasticsearch needs to be specially configured if it is to be sharded across many insances. Otherwise, the other services can be easily scaled out by simply adding instances in Karamel. For improved performance, the metadata layer could be deployed on a better network (10 GbE at the time of writing), and the last NodeGroup (DataNode/NodeManager) instances could be deployed on cheaper network infrastructure (bonded 1 GbE  or 10 GbE, at the time of writing).
+A highly available large cluster would require at least two instances of every NodeGroup. Hopsworks can also be deployed on mulitple instances, while Elasticsearch needs to be specially configured if it is to be sharded across many insances. Otherwise, the other services can be easily scaled out by simply adding instances in Karamel. For improved performance, the metadata layer could be deployed on a better network (10 GbE at the time of writing), and the last NodeGroup (DataNode/NodeManager) instances could be deployed on cheaper network infrastructure (bonded 1 GbE  or 10 GbE, at the time of writing).
 
 
-**HopsWorks Configuration in Karamel**
+**Hopsworks Configuration in Karamel**
 
 Karamel Chef recipes support a large number of parameters that can be set while installing Hops. These parameters include, but are not limited to,:
 
@@ -94,7 +94,7 @@ Here are some of the most important security parameters to set when installing s
       
   - Default: 'adminuser' and 'adminpw'
   
-- Administration username and password for HopsWorks
+- Administration username and password for Hopsworks
 
   - Default: 'admin@kth.se' and 'admin'
 

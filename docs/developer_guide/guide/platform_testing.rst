@@ -5,17 +5,17 @@ Platform Testing
 User Guide
 ----------------
 
-Every pull request to HopsWorks or the cookbooks, needs to be tested before being merged into the master branch.
+Every pull request to Hopsworks or the cookbooks, needs to be tested before being merged into the master branch.
 `hops-testing` performs end-to-end testing on the platform by executing the following steps:
 
 * Spin up a set of new VMs with differing configuration setup (default Ubuntu/CentOS)
-* Clone and build HopsWorks
+* Clone and build Hopsworks
 * Deploy the platform
-* Run the tests HopsWorks tests
+* Run the tests Hopsworks tests
 
 A failure in building/deployment or testing will fail the entire Jenkins build.
 
-Triggering the tests is trivial. Besides having a fork of the HopsWorks repo and of all the cookbook repos, developers need also have a fork of the ``hops-testing`` repo_.
+Triggering the tests is trivial. Besides having a fork of the Hopsworks repo and of all the cookbook repos, developers need also have a fork of the ``hops-testing`` repo_.
 
 Once developers are satisfied with their changes, they should open all the PRs necessary to merge their work to the upstream repository. In case of cookbook PRs, the links in the each Berksfile myst *always* point to master.
 
@@ -40,16 +40,16 @@ Developer Guide
 
 This part of the guide is meant to be for those who will have to touch/maintain the testing infrastructure.
 
-The HopsworksJenkins Github user has a fork of HopsWorks and each cookbook. All the interactions with GitHub done in the pipeline are done as this user using the git protocol and SSH key for authentication.
+The HopsworksJenkins Github user has a fork of Hopsworks and each cookbook. All the interactions with GitHub done in the pipeline are done as this user using the git protocol and SSH key for authentication.
 All the steps of the pipeline are run in the same node and the SSH key for the HopsworksJenkins user should be available on that node.
 
 Currently all the VMs are run on the same Jenkins node (same machine, same user), this is achieved by giving the VMs different names (e.g. ubuntu and centos). To avoid both machines to be killed when one of the two finishes, we need to start the ``VBoxSVC`` process as daemon::
 
   /usr/lib/virtualbox/VBoxSVC --pidfile VBoxSVC.pid &
 
-Βuilding HopsWorks build and running tests run are both done inside the VM for several reasons.
+Βuilding Hopsworks build and running tests run are both done inside the VM for several reasons.
 
-1. Building HopsWorks outside the VM and copying the artifacts is slow.
+1. Building Hopsworks outside the VM and copying the artifacts is slow.
 2. Installing Ruby and JS dependencies can be messy and it is safer to do that in a VM environment than on the actual machine running the testing pipeline. 
 3. It is to expand the set of configurations being tested and requires minimal changes to the pipeline code (add new parallel stage and new template) and/or using multiple nodes for testing various configurations.
 

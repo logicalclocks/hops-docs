@@ -7,4 +7,4 @@ Administrator Guide
    user-administration
    hops-configuration
 
-HopsWorks has an **administrator application** that allows you, the administrator, to perform management actions, monitor HopsWorks and Hops, and control HopsWorks and Hops.
+Hopsworks has an **administrator application** that allows you, the administrator, to perform management actions, monitor Hopsworks and Hops, and control Hopsworks and Hops.

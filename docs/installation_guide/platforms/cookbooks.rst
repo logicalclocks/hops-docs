@@ -23,7 +23,7 @@ The following is a brief description of the Chef cookbooks that we have develope
 
 * hopshadoop/hopsworks-chef
 
-   * This cookbook contains a default recipe for installing HopsWorks.
+   * This cookbook contains a default recipe for installing Hopsworks.
 
 * hopshadoop/spark-chef
 

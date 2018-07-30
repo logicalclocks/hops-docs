@@ -1,6 +1,6 @@
 Glassfish Configuration
 =======================
-**JDBC Connection to HopsWorks**
+**JDBC Connection to Hopsworks**
 
 **JDBC Connection for EJBTimers**
 

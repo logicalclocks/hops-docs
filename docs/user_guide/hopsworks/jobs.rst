@@ -2,7 +2,7 @@
 Jobs
 ===========================
 
-The Jobs tabs is the way to create and run YARN applications. HopsWorks supports the following YARN applications:
+The Jobs tabs is the way to create and run YARN applications. Hopsworks supports the following YARN applications:
 
 * Apache Spark
 * Apache Flink

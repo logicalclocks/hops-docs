@@ -2,7 +2,7 @@
 Vagrant (Virtualbox)
 ===========================
 
-You can install HopsWorks and Hops on your laptop/desktop  with Vagrant. You will need to have the following software packages installed:
+You can install Hopsworks and Hops on your laptop/desktop  with Vagrant. You will need to have the following software packages installed:
 
 * chef-dk, version >0.5+
 * git

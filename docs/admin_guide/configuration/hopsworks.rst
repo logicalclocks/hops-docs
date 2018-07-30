@@ -1,4 +1,4 @@
-HopsWorks Configuration
+Hopsworks Configuration
 ========================
 
 

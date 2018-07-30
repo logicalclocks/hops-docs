@@ -1,5 +1,5 @@
 ===========================
-Ubikeys in HopsWorks
+Ubikeys in Hopsworks
 ===========================
 
 .. contents:: Contents
@@ -7,7 +7,7 @@ Ubikeys in HopsWorks
    :depth: 2
 
 Ubikeys can be used as the 2nd factor authentication device, but a Ubikey needs to be programmed before it is given to a user. We recommend programming the Ubikey using Ubuntu's Yubikey OTP tool.
-From the Yubikey OTP tool program, you will have to opy the Public Identity and Secret Key fields (from Yubikey OTP) to the corresponding fields in the HopsWorks  Administration tool when you validate a user. That is, you should save the Public Identity and Secret Key fields for the Yubikey sticks, and when a user registers with one of those Ubikey sticks, you should then enter the Public Identity and Secret Key fields when approving the user's account.
+From the Yubikey OTP tool program, you will have to opy the Public Identity and Secret Key fields (from Yubikey OTP) to the corresponding fields in the Hopsworks  Administration tool when you validate a user. That is, you should save the Public Identity and Secret Key fields for the Yubikey sticks, and when a user registers with one of those Ubikey sticks, you should then enter the Public Identity and Secret Key fields when approving the user's account.
 
 .. code-block:: bash
 

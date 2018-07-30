@@ -22,7 +22,7 @@ interpreters.
     Zeppelin main
 
 In the following steps we will guide you through running a Zeppelin
-tutorial in HopsWorks.
+tutorial in Hopsworks.
 
 * Step 1: Download the *bank* dataset from `Zeppelin tutorial page`_
 * Step 2: Unzip the downloaded file

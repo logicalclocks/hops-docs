@@ -4,7 +4,7 @@ If it goes wrong
 
 Contact an administrator or go to the Administration Guide section of this document. If you are an administrator:
 
-* Does your organization have a firewall that blocks outbound SMTP access? HopsWorks needs SMTP outbound access over TLS using SSL (port 587 or 465).
+* Does your organization have a firewall that blocks outbound SMTP access? Hopsworks needs SMTP outbound access over TLS using SSL (port 587 or 465).
 * Is the Glassfish server up and running? Can you login to the Glassfish Administration console (on port 4848)?
 * Inside Glassfish, check the JavaMail settings. Is the gmail username/password correct? Are the SMTP server settings correct (hostname/ip, port, protocol (SSL, TLS))?
 
@@ -18,7 +18,7 @@ Contact an administrator or go to the Administration Guide section of this docum
 
 *User receives the validate-your-email message, but is not able to validate the account*
 
-* Can you successfully access the HopsWorks homepage? If not, there may be a problem with the network or the webserver may be down.
+* Can you successfully access the Hopsworks homepage? If not, there may be a problem with the network or the webserver may be down.
 * Is the Glassfish webserver running and hopsworks-war, hopsworks-ear application installed, but you still can't logon? It may be that MySQL Cluster is not running.
 * Check the Glassfish logs for problems and the Browser logs.
 
@@ -29,7 +29,7 @@ The user account status may not be in the correct state, see next section for ho
 
 *User account has been disabled due to too many unsuccessful login attempts*
 
-From the HopsWorks administration application, the administrator can re-enable the account by going to "User Administration" and taking the action "Approve account".
+From the Hopsworks administration application, the administrator can re-enable the account by going to "User Administration" and taking the action "Approve account".
 
 
 *User account has been disabled due to too many unsuccessful login attempts*

@@ -2,7 +2,7 @@
 BiobankCloud
 ===========================
 
-BiobankCloud extends HopsWorks with platform-specific support for Biobanking and Bioinformatics.
+BiobankCloud extends Hopsworks with platform-specific support for Biobanking and Bioinformatics.
 These services are:
 
 * An audit log for user actions;

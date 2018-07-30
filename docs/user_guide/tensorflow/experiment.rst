@@ -46,7 +46,7 @@ To be able to run your TensorFlow code on Hops, the code for the whole program n
 Reading from HopsfS (HDFS)
 ##########################
 
-**Step 1**. The first step is to upload a dataset to your project in HopsWorks. After having uploaded the dataset, your TensorFlow input pipeline code must point to the path in HopsFS where that particular dataset is stored. The first step is to get the root path to your project in HopsFS. This is easily done by the code below.
+**Step 1**. The first step is to upload a dataset to your project in Hopsworks. After having uploaded the dataset, your TensorFlow input pipeline code must point to the path in HopsFS where that particular dataset is stored. The first step is to get the root path to your project in HopsFS. This is easily done by the code below.
 
 
 ::
@@ -58,7 +58,7 @@ Reading from HopsfS (HDFS)
 
     ... TensorFlow code ...
     
-The path returned is to the root directory in HopsWorks.
+The path returned is to the root directory in Hopsworks.
 
 
 .. _datasets-browser.png: ../../_images/datasets-browser.png
@@ -167,7 +167,7 @@ When you run your job using experiment, TensorBoard will be started automaticall
 
     ... TensorFlow code ...
     
-**Navigate to TensorBoard in HopsWorks**
+**Navigate to TensorBoard in Hopsworks**
 After launching your job using experiment, you can monitor training by observing the TensorBoard.
 
 .. _jupyter.png: ../../_images/jupyter.png
@@ -187,8 +187,8 @@ After launching your job using experiment, you can monitor training by observing
 Execution Logs
 ########################
 
-**Navigate to Logs in HopsWorks**
-After launching your job using experiment, you can navigate to HopsWorks to view execution logs.
+**Navigate to Logs in Hopsworks**
+After launching your job using experiment, you can navigate to Hopsworks to view execution logs.
 
 .. _logs.png: ../../_images/logs.png
 .. figure:: ../../imgs/logs.png
@@ -208,4 +208,4 @@ After launching your job using experiment, you can navigate to HopsWorks to view
 Where do I go from here?
 ------------------------
 
-We have prepared several notebooks in the TensorFlow tour on HopsWorks with examples for running parallel experiments on Hops.
+We have prepared several notebooks in the TensorFlow tour on Hopsworks with examples for running parallel experiments on Hops.
