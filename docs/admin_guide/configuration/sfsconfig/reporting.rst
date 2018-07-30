@@ -12,3 +12,4 @@ Block Reporting
 
 * **dfs.blk.report.load.balancing.update.threashold.time**
   Using command ``hdfs namenode -setBlkRptProcessSize noOfBlks`` the parameter **dfs.block.report.load.balancing.max.blks.per.time.window** can be changed. The parameter is stored in the database and the NameNodes periodically read the new value from the database. This parameter determines how frequently a NameNode checks for changes in this parameter. The default is set to 60*1000 milliseconds.
+  **dfs.blockreport.numbuckets** This parameter defines the number of buckets in the hash-based report. Reconfiguration requires a complete restart of the cluster, and datanodes and namenodes alike must share the same configuration value. ONLY USE THIS IN VERSION 2.8.2.5+.
