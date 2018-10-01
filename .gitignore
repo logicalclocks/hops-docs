@@ -5,3 +5,6 @@ include
 .Python
 bin
 pip-selfcheck.json
+
+.doctrees/
+.vscode
