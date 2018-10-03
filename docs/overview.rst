@@ -9,5 +9,4 @@ Hops Overview
    overview/what-hops
    overview/hopsWorks
    overview/hopsFS
-   overview/bioBankCloud
    overview/hopsYarn

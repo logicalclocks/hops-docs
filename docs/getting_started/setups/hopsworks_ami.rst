@@ -91,14 +91,14 @@ In **step 6** you need to configure the security group. Make sure you allow inco
 
 Once you are done with the configuration, you can launch you instance by clicking *Review and Launch* and finally on *Launch*. 
 
-.. _ami11.png: ../../_images/ami/ami11.png 
-.. figure:: ../../imgs/ami/ami11.png
+.. _ami10.png: ../../_images/ami/ami10.png 
+.. figure:: ../../imgs/ami/ami10.png
     :alt: Review the configuration and launch 
-    :target: `ami11.png`_
+    :target: `ami10.png`_
     :align: center
     :figclass: align-center
 
-    Review the configuration and launch
+    Review configuration and launch
 
 In this **final step** AWS will ask you which key you want to use to SSH into the machine. 
 Create a new pair (1), give it a name (2) and download the key (3). Finally click Launch Instances (4)
