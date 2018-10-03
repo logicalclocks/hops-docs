@@ -13,7 +13,6 @@ Installation
    platforms/windows.rst
    platforms/osx.rst
    platforms/cookbooks.rst
-   platforms/biobank-cookbooks.rst
    requirements.rst
 
 The Hops stack includes a number of services, also requires a number of third-party distributed services:
