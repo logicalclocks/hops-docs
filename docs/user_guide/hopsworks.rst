@@ -21,6 +21,7 @@ Hopsworks User Guide
    hopsworks/workflows.rst
    hopsworks/logs.rst
    hopsworks/jobMetrics.rst
+   hopsworks/jupyter.rst
    hopsworks/zeppelin.rst
    hopsworks/kafka.rst
    hopsworks/hive.rst
