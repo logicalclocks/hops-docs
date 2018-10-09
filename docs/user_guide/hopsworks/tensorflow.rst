@@ -1,7 +1,7 @@
 TensorFlow on Hops
 ==================
 
-Hops provides support for running TensorFlow using Hopsworks on a Hops cluster. The development environment for doing so is in Jupyter notebooks. It is important to understand the programming model for working with TensorFlow on Hopsworks to become the most productive as you can!
+Hops provides support for running TensorFlow using Hopsworks on a Hops cluster. The development environment for doing so is in Jupyter notebooks (documentation for Jupyter on Hopsworks: jupyter-documentation_). It is important to understand the programming model for working with TensorFlow on Hopsworks to become the most productive as you can!
 
 Working with TensorFlow in Jupyter
 ----------------------------------
@@ -26,7 +26,7 @@ When starting Jupyter in Hopsworks, certain configuration properties need to be 
    ../tensorflow/experiment.rst
    ../tensorflow/tensorflow_on_spark.rst
    ../tensorflow/horovod.rst
-   ../tensorflow/mml.rst	      
+   ../tensorflow/mml.rst
    ../tensorflow/model_serving.rst
 
 
@@ -61,12 +61,14 @@ The `TFCluster` API remains the same, so any existing examples will run on Tenso
 Mode 3. Optimal scalability with Horovod
 ----------------------------------------
 
-Horovod is a distributed training framework for TensorFlow. The goal of Horovod is to make distributed Deep Learning fast and easy to use. Compared to TensorFlowOnSpark (Distributed TensorFlow), the programming model is significantly simpler, and it requires minor changes to your existing code to convert a non-distributed training code to distributed and **scale over 100s of GPUs**. 
+Horovod is a distributed training framework for TensorFlow. The goal of Horovod is to make distributed Deep Learning fast and easy to use. Compared to TensorFlowOnSpark (Distributed TensorFlow), the programming model is significantly simpler, and it requires minor changes to your existing code to convert a non-distributed training code to distributed and **scale over 100s of GPUs**.
 
 .. figure:: ../../imgs/resnet101_benchmark.png
     :alt: Increasing throughput
     :scale: 100
     :align: center
     :figclass: align-center
-    
+
 Horovod scaling ResNet-101 with commodity GPUs
+
+.. _jupyter-documentation: ./jupyter.html
