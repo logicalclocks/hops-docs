@@ -21,7 +21,7 @@ Jupyter is provided as a micro-service on Hopsworks and can be found in the main
 
 **Start a Jupyter notebook server**
 
-When you start a Jupyter notebook server you have the possibility to specify Spark properties of the notebooks you will create on the server. Hopsworks provides *Machine learning as a service* with tensorflow and spark, supporting distirbuted training, parallel experiments, hyperparameter tuning, and model serving (HopsML). If you are doing machine learning on hops you probably want to select the notebook servers "Experiment", "Parallel Experiment" or "Distributed training" as shown in the figure below. For more information about *HopsML*, see the hops-tensorflow_ documentation. For general purpose notebooks, select the type "Spark (Static)" or "Spark (Dynamic)".
+When you start a Jupyter notebook server you have the possibility to specify Spark properties of the notebooks you will create on the server. Hopsworks provides *Machine Learning-as-a-Service* with Tensorflow, Spark, supporting distributed training, parallel experiments, hyperparameter tuning, and model serving (HopsML). If you are doing machine learning on hops you probably want to select the notebook servers "Experiment", "Parallel Experiment" or "Distributed training" as shown in the figure below. For more information about *HopsML*, see the hops-tensorflow_ documentation. For general purpose notebooks, select the type "Spark (Static)" or "Spark (Dynamic)".
 
 .. _jupyter2.png: ../../_images/jupyter2.png
 .. figure:: ../../imgs/jupyter2.png
@@ -34,16 +34,16 @@ When you start a Jupyter notebook server you have the possibility to specify Spa
 
 **Jupyter + Spark on Hopsworks**
 
-As a user, you will just interact with the Jupyter notebooks, but if you are interested about the technologies behind it, it is explained below.
+As a user, you will just interact with the Jupyter notebooks, but below you can find a detailed explanation of the technology behind the scenes.
 
-When using Jupyter on Hopsworks, a library called `sparkmagic`_ is used to interact with the Hops (hadoop) cluster. When you create a Jupyter notebook on Hopsworks, you first select a **kernel**. A kernel is simply a program that executes the code that you have in the Jupyter cells, you can think of it as a REPL-backend to your jupyter notebook that acts as a frontend.
+When using Jupyter on Hopsworks, a library called `sparkmagic`_ is used to interact with the Hops cluster. When you create a Jupyter notebook on Hopsworks, you first select a **kernel**. A kernel is simply a program that executes the code that you have in the Jupyter cells, you can think of it as a REPL-backend to your jupyter notebook that acts as a frontend.
 
-Sparkmagic works with a remote REST server for Spark, called `livy`_, running inside the Hops cluster. Livy is an interface that Jupyter-on-Hopsworks use to interact with the Hops cluster. When you run Jupyter cells using the pyspark kernel, the kernel will automatically send commands to livy in the background for executing the commands on the cluster. Thus, the work that happens in the background when you run a Jupyter cell is as follows:
+Sparkmagic works with a remote REST server for Spark, called `livy`_, running inside the Hops cluster. Livy is an interface that Jupyter-on-Hopsworks uses to interact with the Hops cluster. When you run Jupyter cells using the pyspark kernel, the kernel will automatically send commands to livy in the background for executing the commands on the cluster. Thus, the work that happens in the background when you run a Jupyter cell is as follows:
 
 - The code in the cell will first go to the kernel.
 - Next, the kernel kernel sends the code as a HTTP REST request to livy.
 - When receiving the REST request, livy executes the code on the Spark driver in the cluster.
-- If the code is regular python/scala/R code, it will be run inside a python/scala/R interpreter on the Spark driver.
+- If the code is regular python/scala/R code, it will run inside a python/scala/R interpreter on the Spark driver.
 - If the code includes a spark command, using the spark session, a spark job will be launched on the cluster from the Spark driver.
 - When the python/scala/R or spark execution is finished, the results are sent back from livy to the pyspark kernel/sparkmagic.
 - Finally, the pyspark kernel displays the result in the Jupyter notebook.
@@ -74,7 +74,7 @@ After you have started the Jupyter notebook server, you can create a pyspark not
 
     Create a pyspark notebook
 
-When you execute the first cell in a pyspark notebook, the spark session is automatically created, refering to the Hops cluster.
+When you execute the first cell in a pyspark notebook, the spark session is automatically created, referring to the Hops cluster.
 
 .. _jupyter4.png: ../../_images/jupyter4.png
 .. figure:: ../../imgs/jupyter4.png
@@ -108,7 +108,7 @@ Since you are executing on the spark driver, you can also launch jobs on spark e
     Starting a spark job from Jupyter
 
 
-When you execute a cell in Jupyter that starts a Spark job, you can go back to the Hopsworks-Jupyter-UI and you will se that a link to the SparkUI for the job have been created.
+When you execute a cell in Jupyter that starts a Spark job, you can go back to the Hopsworks-Jupyter-UI and you will see that a link to the SparkUI for the job that has been created.
 
 .. _jupyter11.png: ../../_images/jupyter11.png
 .. figure:: ../../imgs/jupyter11.png
@@ -159,7 +159,7 @@ Since the code in a pyspark notebook is being executed remotely, in the spark cl
 
 **Step 2 : Download the Spark Dataframe to a local Pandas Dataframe using %%sql or %%spark**:
 
-Note: you should **not** try to download large spark dataframes for plotting. When you plot a dataframe, the entire dataframe must fit into memory, so add the flag `--maxrows x` to limit the dataframe size when you download it to the local Jupyter server for plotting.
+**Note:** you should **not** try to download large spark dataframes for plotting. When you plot a dataframe, the entire dataframe must fit into memory, so add the flag `--maxrows x` to limit the dataframe size when you download it to the local Jupyter server for plotting.
 
 Using %%sql:
 
@@ -219,7 +219,7 @@ When you download a dataframe from spark to pandas with sparkmagic, it gives you
 Want to Learn More?
 -------------------
 
-We have provided a large number of example notebooks, available here_, upload them to your project on Hopsworks and try it out! You can also have a look at HopsML (hops-tensorflow_), which enables large-scale distributed deep learning on Hops.
+We have provided a large number of example notebooks, available here_. Go to Hopsworks and try them out! You can do this either by taking one of the built-in *tours* on Hopsworks, or by uploading one of the example notebooks to your project and run it through the Jupyter service. You can also have a look at HopsML (hops-tensorflow_), which enables large-scale distributed deep learning on Hops.
 
 .. _here: https://github.com/logicalclocks/hops-examples
 .. _hops-tensorflow: ./tensorflow.html
