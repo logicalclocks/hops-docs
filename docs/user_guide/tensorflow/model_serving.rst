@@ -137,4 +137,4 @@ From the dropdown menu you can select the newer version (1) and click *Update se
 Where do I go from here?
 ========================
 
-Take a look at the inference documentation to see how you can send inference requests to the serving server serving your model.
+Take a look at the :doc:`inference` documentation to see how you can send inference requests to the serving server serving your model.

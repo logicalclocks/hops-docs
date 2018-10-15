@@ -28,6 +28,7 @@ When starting Jupyter in Hopsworks, certain configuration properties need to be 
    ../tensorflow/horovod.rst
    ../tensorflow/mml.rst
    ../tensorflow/model_serving.rst
+   ../tensorflow/inference.rst
 
 
 Hops python library
