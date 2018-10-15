@@ -38,13 +38,13 @@ In order to serve a TensorFlow model on Hopsworks, the .pb file and the variable
                 ├── variables.data-00000-of-00001
                 └── variables.index
 
-TensorFlow serving expects the model directory (In this case *mnist*) to contain one or more sub-directories.
+TensorFlow serving expects the model directory (in this case *mnist*) to contain one or more sub-directories.
 The name of each sub-directory is a number representing the version of the model, the higher the version, the more recent the model.
-Inside each version directory TensorFlow serving expects a file named *saved_mode.pb*, which contains the graph of the model, and a directory called *variables* which contains the weights of the model.
+Inside each version directory TensorFlow serving expects a file named *saved_mode.pb*, which contains the model graph, and a directory called *variables* which contains the weights of the model.
 
 **Step 2.**
 
-To start serving your model, create a serving definition in the Hopsworks Model Serving service. Clik on the Model Serving service on the left panel (1) and then click on *Create new serving* (2).
+To start serving your model, create a serving definition in the Hopsworks Model Serving service. Select on the Model Serving service on the left panel (1) and then select on *Create new serving* (2).
    
 .. _serving1.png: ../../_images/serving/serving1.png
 .. figure:: ../../imgs/serving/serving1.png
@@ -64,7 +64,7 @@ Next click on the model button to select from your project the model you want to
    :align: center
    :figclass: align-center
 
-This will open a popup window that will allow you to browse your project and select directory containing  the mdoel you want to serve. You should select the model directory, meaning the directory containing the sub-directories with the different versions of your model. In the example below we have exported two versions of the *mnist* model. In this step we select the *mnist* directory containing the two versions. 
+This will open a popup window that will allow you to browse your project and select directory containing  the model you want to serve. You should select the model directory, meaning the directory containing the sub-directories with the different versions of your model. In the example below we have exported two versions of the *mnist* model. In this step we select the *mnist* directory containing the two versions. 
    
 .. _serving3.png: ../../_images/serving/serving3.png
 .. figure:: ../../imgs/serving/serving3.png
@@ -73,9 +73,9 @@ This will open a popup window that will allow you to browse your project and sel
    :align: center
    :figclass: align-center
     
-After clicking select the popup window close and the information in the create serving menu will be filled in automatically. 
-By default Hopsworks picks the latest available version to server, however, you can switch to a specific version using the dropdown menu. 
-You can also change the name of the model, remember that model names should be **unique** in your project.
+After clicking *select* the popup window close and the information in the create serving menu will be filled in automatically. 
+By default Hopsworks picks the latest available version to server. You can switch to a specific version using the dropdown menu. 
+You can also change the name of the model, remember that model namesshould be **unique** in your project.
 
 .. _serving4.png: ../../_images/serving/serving4.png
 .. figure:: ../../imgs/serving/serving4.png
@@ -108,11 +108,11 @@ After having created the serving instance, a new entry is added to the list.
    :align: center
    :figclass: align-center
 
-Click on the *Run* button to start the serving. After a few seconds the instance will be up and running, ready to start processing incoming inference requests.
+Click on the *Run* button to start the serving instance. After a few seconds the instance will be up and running, ready to start processing incoming inference requests.
     
 **Step 4.**
 
-After a while your model will become stale and you will have to re-train it and export it again. To update your serving instance to serve the newer version of the model click on the edit button. You don't need to stop your serving instance, you can update the model version while the serving server is running.
+After a while your model will become stale and you will have to re-train it and export it again. To update your serving instance to serve the newer version of the model, click on the edit button. You don't need to stop your serving instance, you can update the model version while the serving server is running.
 
 .. _serving6.5.png: ../../_images/serving/serving6.5.png
 .. figure:: ../../imgs/serving/serving6.5.png
