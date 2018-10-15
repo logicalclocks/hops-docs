@@ -1,7 +1,7 @@
 Hops Python library
 =======================
 
-**Hops library** provides a set of modules that make it simple to run TensorFlow code with Jupyter on Hops.
+**Hops library** provides a set of modules that make it simple to run TensorFlow code with Jupyter on Hops. The API documentation is available here: API-docs_.
 
 
 hdfs
@@ -20,7 +20,7 @@ The ``hdfs`` module provides several ways of interacting with the Hops filesyste
     project_path = hdfs.project_path() # returns: hdfs://ip:port/Projects/ProjectName/
 
 
-A common use-case for using the hdfs module to get project information is when you need to provide a path to your project-datasets for reading the dataset in your program, for example using a framework like Spark or Tensorflow. When providing a path to a dataset in your project, you'll typically write ``hdfs.project_path() + DATASET_NAME/...``. What's happening here is that ``hdfs.project_path()`` returns HDFS path to your project, this is the path you preview when you visit the ``Data Sets`` view in the Hopsworks UI. To get the full HDFS path to the dataset, the dataset name is appended to the project path.
+A common use-case for using the hdfs module to get project information is when you need to provide a path to your project-datasets for reading the dataset in your program, for example using a framework like Spark or Tensorflow. When providing a path to a dataset in your project, you'll typically write ``hdfs.project_path() + DATASET_NAME/...``. What's happening here is that ``hdfs.project_path()`` returns the HDFS path to your project, this is the path you preview when you visit the ``Data Sets`` view in Hopsworks. To get the full HDFS path to the dataset, the dataset name is appended to the project path.
 
 By default, ``hdfs.project_path()`` returns the path to the project that you are using while running the code. However, if you want to get the HDFS path to another project, you can pass an argument to the function with the project name:
 
@@ -30,7 +30,7 @@ By default, ``hdfs.project_path()`` returns the path to the project that you are
     other_project_path = hdfs.project_path('deep-learning-101') #returns hdfs://ip:port/Projects/deep-learning-101/
 
 
-The practice of passing an argument to  ``hdfs.project_path()`` is commonly used when another project have shared a dataset with your project and you want to read that dataset in your program.
+The practice of passing an argument to  ``hdfs.project_path()`` is commonly used when another project has shared a dataset with your project and you want to read that dataset in your program.
 
 **Read/Write From/To HDFS**
 
@@ -178,7 +178,7 @@ The ``experiment`` module is used for running one or more Parallel TensorFlow ex
 
 tensorboard
 ------------------------------
-Hops supports TensorBoard for all TensorFlow modes (Parallel experiments, TensorFlowOnSpark and Horovod).
+Hops supports TensorBoard for all TensorFlow modes (Experiments, Parallel experiments, and Distributed training).
 When the ``experiment.launch`` function is invoked, a TensorBoard server will be started and available for each job. The *tensorboard* module provides a *logdir* method to get the log directory for summaries and checkpoints that are to be written to the TensorBoard. After each job is finished, the contents of the log directory will be placed in your Hopsworks project, under ``/Logs/TensorFlow/{appId}/{runId}/{hyperparameter}``. The directory name will correspond to the values of the hyperparameters for that particular job. The log directory could therefore be used to also write the final model or any other files that should be made available after execution is finished. Alternatively you can of course also write the model to any directory in your Hopsworks project.
 
 The *launch* function in *experiment* will return the directory in HopsFS, where each log directory is stored after execution is finished. The *visualize* method in *tensorboard* takes this path as an argument, and will start a new TensorBoard containing all the log directories of the execution, which will provide an easy way to identify the best model. Using this method, it is also possible to visualize old runs by simply supplying the path to this log directory from old runs.
@@ -246,7 +246,7 @@ kafka
 -----------------------
 The *kafka* module is used for creating Kafka consumers/producers to communicate with a Kafka cluster running in Hops using secure SSL/TLS communication.
 
-For using kafka with the hops library you should already have created your kafka topics through the Hopsworks UI (see instructions here: hopskafka_.)
+For using kafka with the hops library you should already have created your kafka topics through Hopsworks (see instructions here: hopskafka_.)
 
 .. _hopskafka: ../hopsworks/kafka.html
 **Defining the Kafka configuration**
@@ -302,6 +302,7 @@ Once the configuration is set up, you can use the Kafka libraries of your choice
 Once you have created the consumers/producers with the right configuration, you can use the API of your choice to write/read to the Kafka cluster in Hops. Some examples are given here: hops_examples_, and you can find more examples on the documentation pages of respective framework (e.g. ``kafka-confluent-python`` or  ``Spark``)
 
 .. _hops_examples: https://github.com/logicalclocks/hops-examples
+.. _API-docs: http://hops-py.logicalclocks.com/
 
 **Getting the schema for a topic**
 

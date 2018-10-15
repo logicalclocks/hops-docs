@@ -7,8 +7,8 @@ Hopsworks provides by default the `HopsUtil`_ and `hops-util-py`_ libraries whic
 
 The following sections demonstrate different ways for writing Kafka applications on Hopsworks:
 
-- Using the hopsworks **Kafka service** to setup Kafka topics in the cluster.
-- Using the hopsworks **jobs service** to submit jobs that produce/consume to/from Kafka.
+- Using the **Kafka service** on Hopsworks to setup Kafka topics in the cluster.
+- Using the **Jobs service** on Hopsworks to submit jobs that produce/consume to/from Kafka.
 - Using **Jupyter notebooks** on Hopsworks for producing/consuming to/from Kafka.
 
 Our service is tightly coupled with our project-based model so only members of a project can use a specific Kafka topic, unless specified otherwise. The Kafka service on Hops is multi-tenant, allowing users to share topics between projects as desired.
@@ -40,7 +40,7 @@ You can download and compile a sample Spark streaming by following these steps:
 
 **Create a Kafka topic and schema**
 
-The next step is to create a Kafka topic that the sample spark streaming application will produce to and consume from. To create a topic, we use the Kafka service available in the Hopsworks UI.
+The next step is to create a Kafka topic that the sample spark streaming application will produce to and consume from. To create a topic, we use the Kafka service available in Hopsworks.
 
 * Step 1: From the project box on the landing page, select a project
 * Step 2: Click on the `Kafka` tab and the topics page will appear
@@ -106,7 +106,7 @@ name of the project you would like to share with.
     Kafka main page
 
 You can also fine grain access to Kafka topics by adding ACLs easily
-through our UI. Once you have created a Kafka topic, click on the
+through Hopsworks. Once you have created a Kafka topic, click on the
 ``Kafka`` service and then on the *Add new ACL* button.
 
 When creating a new ACL you are given the following options:
@@ -170,7 +170,7 @@ finally the third is the custom ACL we created before.
 
 * Step 1: Upload the jar file from `hops-examples/spark/target/` to a dataset. The jar is named: `hops-examples-spark-X.Y.Z-SNAPSHOT.jar`.
 
-* Step 2: Click on the `Jobs` tabs at project menu and follow the instructions from the **Jobs** section. Create a new job for the Producer. Select `Spark` as job type and specify the jar file that you just uploaded. The name of the main class is `io.hops.examples.spark.kafka.StreamingExample` and argument is `producer`. At the `Configure and create` tab, click on `Kafka` Services and select the Kafka topic you created at Step 4. Your job page should look like the following:
+* Step 2: Click on the `Jobs` tabs at project menu and follow the instructions from the **Jobs** section. Create a new job for the Producer. Select `Spark` as job type and specify the jar file that you just uploaded. The name of the main class is `io.hops.examples.spark.kafka.StructuredStreamingKafka` and argument is `producer`. At the `Configure and create` tab, click on `Kafka` Services and select the Kafka topic you created at Step 4. Your job page should look like the following:
 
 .. _kafka-producer.png: ../../_images/kafka-producer.png
 .. figure:: ../../imgs/kafka-producer.png
