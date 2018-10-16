@@ -64,9 +64,15 @@ When using the PySpark kernel and Hops experiments you have to specify a wrapper
         hdfs.log('Hello Hopsworks')
 
     from hops import experiment
+<<<<<<< e2657dfd4d8a575b9cb44893fd2c604670858d77
     experiment.launch(spark, wrapper)
 
 **Copying Datasets From/To HDFS**
+=======
+    experiment.launch(wrapper)
+    
+**Accessing datasets in Python or PySpark kernels**
+>>>>>>> Update hops.rst
 
 If you are using a framework such as TensorFlow you can read data directly from your project, since TensorFlow supports the HDFS filesystem and therefore HopsFS.
 
@@ -94,7 +100,7 @@ In order to easily copy datasets to and from your executor's working space and y
 
     # Launch using experiment
     from hops import experiment
-    experiment.launch(spark, wrapper)
+    experiment.launch(wrapper)
 
 
     # -- How to upload a dataset to your Hopsworks project --
@@ -113,7 +119,7 @@ In order to easily copy datasets to and from your executor's working space and y
 
     # Launch using experiment
     from hops import experiment
-    experiment.launch(spark, wrapper)
+    experiment.launch(wrapper)
 
 
 experiment
@@ -127,8 +133,13 @@ The ``experiment`` module is used for running one or more Parallel TensorFlow ex
 
     # A standalone job
     from hops import experiment
+<<<<<<< e2657dfd4d8a575b9cb44893fd2c604670858d77
     root_tensorboard_logdir = experiment.launch(spark, single_experiments_wrapper)
 
+=======
+    root_tensorboard_logdir = experiment.launch(single_experiments_wrapper)
+    
+>>>>>>> Update hops.rst
     ...............................................................................................
 
     def multiple_experiments_wrapper(lr, dropout):
@@ -142,8 +153,13 @@ The ``experiment`` module is used for running one or more Parallel TensorFlow ex
     # job2: lr=0.3 and dropout=0.7
 
     from hops import experiment
+<<<<<<< e2657dfd4d8a575b9cb44893fd2c604670858d77
     root_tensorboard_logdir = experiment.launch(spark, multiple_experiments_wrapper, args_dict)
 
+=======
+    root_tensorboard_logdir = experiment.launch(multiple_experiments_wrapper, args_dict)
+    
+>>>>>>> Update hops.rst
     ...............................................................................................
 
     def grid_experiments_wrapper(lr, dropout):
@@ -160,25 +176,44 @@ The ``experiment`` module is used for running one or more Parallel TensorFlow ex
 
     from hops import experiment
 
+<<<<<<< e2657dfd4d8a575b9cb44893fd2c604670858d77
     root_tensorboard_logdir = experiment.grid_search(spark, grid_experiments_wrapper, args_dict, direction='max')
 
+=======
+    root_tensorboard_logdir = experiment.grid_search(grid_experiments_wrapper, args_dict, direction='max')
+    
+>>>>>>> Update hops.rst
     ...............................................................................................
 
     def evolutionary_experiments_wrapper(lr, dropout):
         # Wrapper function for arbitrarily many experiments
         metric = mycode.evaluate(lr, dropout)
         return metric
+<<<<<<< e2657dfd4d8a575b9cb44893fd2c604670858d77
 
     # Running a grid of hyperparameter experiments
+=======
+        
+    # Defining a space to search for lr and dropout
+>>>>>>> Update hops.rst
     search_dict = {'lr': [0.1, 0.3], 'dropout': [0.4, 0.7]}
 
     from hops import experiment
+<<<<<<< e2657dfd4d8a575b9cb44893fd2c604670858d77
     root_tensorboard_logdir = experiment.evolutionary_search(spark, evolutionary_experiments_wrapper, search_dict, direction='max')
 
 
 tensorboard
 ------------------------------
 Hops supports TensorBoard for all TensorFlow modes (Experiments, Parallel experiments, and Distributed training).
+=======
+    root_tensorboard_logdir = experiment.differential_evolution(evolutionary_experiments_wrapper, search_dict, direction='max')
+    
+    
+tensorboard
+------------------------------
+Hops supports TensorBoard for all TensorFlow modes (Experiments, Parallel Experiments and Distributed Training). 
+>>>>>>> Update hops.rst
 When the ``experiment.launch`` function is invoked, a TensorBoard server will be started and available for each job. The *tensorboard* module provides a *logdir* method to get the log directory for summaries and checkpoints that are to be written to the TensorBoard. After each job is finished, the contents of the log directory will be placed in your Hopsworks project, under ``/Logs/TensorFlow/{appId}/{runId}/{hyperparameter}``. The directory name will correspond to the values of the hyperparameters for that particular job. The log directory could therefore be used to also write the final model or any other files that should be made available after execution is finished. Alternatively you can of course also write the model to any directory in your Hopsworks project.
 
 The *launch* function in *experiment* will return the directory in HopsFS, where each log directory is stored after execution is finished. The *visualize* method in *tensorboard* takes this path as an argument, and will start a new TensorBoard containing all the log directories of the execution, which will provide an easy way to identify the best model. Using this method, it is also possible to visualize old runs by simply supplying the path to this log directory from old runs.
@@ -214,16 +249,6 @@ The *devices* module provides a single method ``get_num_gpus``, which returns th
 
     from hops import devices
     num_gpus = devices.get_num_gpus()
-
-
-allreduce
-----------------------------
-The *allreduce* module is used for launching Horovod jobs.
-
-::
-
-    from hops import allreduce
-    allreduce.launch(spark, '/Projects/' + hdfs.project_name() + '/Jupyter/horovod.ipynb')
 
 util
 -----------------------
