@@ -208,7 +208,7 @@ Example Python Notebook with Kafka Producer and Consumer
 
 You can find several example notebooks using kafka at hops_examples_.
 
-In this section we will demonstrate how you can use a jupyter notebook and python to produce/consume kafka messages. In this section it is assumed that you have already created a Kafka topic named "test" to produce/consume from and that you have enabled anaconda and installed the python package `kafka-confluent` in your project anaconda environment.
+In this section we will demonstrate how you can use a jupyter notebook and python to produce/consume kafka messages. In this section it is assumed that you have already created a Kafka topic named "test" to produce/consume from and that you have enabled anaconda (which comes with some pre-installed packages, including the python package `kafka-confluent`) in your project.
 
 **Start Jupyter**
 
