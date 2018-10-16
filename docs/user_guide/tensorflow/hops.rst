@@ -1,7 +1,11 @@
 Hops Python library
 =======================
 
+<<<<<<< a2c5d395396d6cfbea2fddd54af1a05b24f9e46a
 **Hops library** provides a set of modules that make it simple to run TensorFlow code with Jupyter on Hops. The API documentation is available here: API-docs_.
+=======
+**Hops library** provides a set of modules that make it simple to run Python applications for large-scale processing on Hops.
+>>>>>>> Update hops.rst
 
 
 hdfs
@@ -124,7 +128,7 @@ In order to easily copy datasets to and from your executor's working space and y
 
 experiment
 ----------
-The ``experiment`` module is used for running one or more Parallel TensorFlow experiments, which corresponds to selecting the TensorFlow mode in Jupyter. It can either be ran with or without the ``args_dict`` argument that define hyperparameter values.
+The ``experiment`` module is used for running Experiment, Parallel Experiment or Distributed Training on Hops.
 
 ::
 
@@ -213,10 +217,14 @@ Hops supports TensorBoard for all TensorFlow modes (Experiments, Parallel experi
 tensorboard
 ------------------------------
 Hops supports TensorBoard for all TensorFlow modes (Experiments, Parallel Experiments and Distributed Training). 
+<<<<<<< a2c5d395396d6cfbea2fddd54af1a05b24f9e46a
 >>>>>>> Update hops.rst
 When the ``experiment.launch`` function is invoked, a TensorBoard server will be started and available for each job. The *tensorboard* module provides a *logdir* method to get the log directory for summaries and checkpoints that are to be written to the TensorBoard. After each job is finished, the contents of the log directory will be placed in your Hopsworks project, under ``/Logs/TensorFlow/{appId}/{runId}/{hyperparameter}``. The directory name will correspond to the values of the hyperparameters for that particular job. The log directory could therefore be used to also write the final model or any other files that should be made available after execution is finished. Alternatively you can of course also write the model to any directory in your Hopsworks project.
 
 The *launch* function in *experiment* will return the directory in HopsFS, where each log directory is stored after execution is finished. The *visualize* method in *tensorboard* takes this path as an argument, and will start a new TensorBoard containing all the log directories of the execution, which will provide an easy way to identify the best model. Using this method, it is also possible to visualize old runs by simply supplying the path to this log directory from old runs.
+=======
+When the ``experiment.launch`` function is invoked, a TensorBoard server will be started and available for each job. The *tensorboard* module provides a *logdir* method to get the log directory for summaries and checkpoints that are to be written to the TensorBoard. After each job is finished, the contents of the log directory will be placed in your Hopsworks project, in the ``Experiments`` dataset. The log directory could therefore be used to also write the final model or any other files that should be made available after execution is finished. Alternatively you can of course also write the model to any directory in your Hopsworks project.
+>>>>>>> Update hops.rst
 
 ::
 
