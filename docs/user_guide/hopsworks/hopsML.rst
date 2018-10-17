@@ -34,8 +34,9 @@ Feature Extraction
 ------------------
 
 
-Experimentation
----------------
+Experimentation, Training and Testing
+-------------------------------------
+
 This section will give an overview of running Machine Learning experiments on Hops. See experiments_ for more information.
 
 In HopsML we separate Machine Learning experiments into three differents categories.
