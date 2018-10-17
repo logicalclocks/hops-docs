@@ -4,9 +4,10 @@ HopsML
 The Pipeline
 ------------
 
+.. _pipeline.png: ../../_images/pipeline.png
 .. figure:: ../../imgs/pipeline.png
     :alt: Increasing throughput
-    :scale: 100
+    :target: `pipeline.png`_
     :align: center
     :figclass: align-center
     
