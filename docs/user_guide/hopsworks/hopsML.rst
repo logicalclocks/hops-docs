@@ -8,12 +8,15 @@ HopsML
     :scale: 100
     :align: center
     :figclass: align-center
+    
+PySpark
+-------
 
+On Hopsworks we make use of `Apache Spark <https://spark.apache.org/>`_ to distribute and execute your Machine Learning code, so in terms of architure the entire pipeline except for serving is run on top of PySpark.
 
 Data Collection
 ---------------
-
-On Hopsworks we make use of `Apache Spark <https://spark.apache.org/>`_ to distribute and execute your TensorFlow code, so effectively we run TensorFlow on Spark. We also provide first-class support for TensorBoard, so you can easily monitor the progress of your training and compare different hyperparameter configurations while training or after a job has finished. Futhermore we have other useful features such as monitoring GPU utilization and writing to log files.
+We also provide first-class support for TensorBoard, so you can easily monitor the progress of your training and compare different hyperparameter configurations while training or after a job has finished. Futhermore we have other useful features such as monitoring GPU utilization and writing to log files.
 
 The datasets that you are working with can either be uploaded to your Hopsworks project or be shared among different projects the user has access to by sharing the actual datast. HopsFS is the filesystem of Hops, it is essentially a fork of Apache HDFS and is compliant with any API that can read data from an HDFS path, such as TensorFlow. In your TensorFlow code you can simply replace local file paths to the corresponding path in HDFS. More information is available `here <https://www.tensorflow.org/deploy/hadoop>`_..
 
