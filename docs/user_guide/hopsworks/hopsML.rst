@@ -12,7 +12,7 @@ HopsML
 PySpark
 -------
 
-On Hopsworks we make use of `Apache Spark <https://spark.apache.org/>`_ to distribute and execute your Machine Learning code. There are several upsides of having our 
+On Hopsworks we make use of `Apache Spark <https://spark.apache.org/>`_ to provide distributed processing capabilities for our Machine Learning pipeline. Spark, as defined by its creators is a fast and general engine for large-scale data processing. It is a general distributed processing engine that can fit many use-cases. In the HopsML pipeline we have two main use cases for Spark. The first use-case being data validation, transformations and feature extractions on potentially huge datasets. The second use-case is to orchestrate allocation of resources and executions of Machine Learning applications such as TensorFlow, Keras and PyTorch.
 
 Data Collection
 ---------------
