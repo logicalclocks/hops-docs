@@ -12,7 +12,13 @@ HopsML
 PySpark
 -------
 
-In the HopsML pipeline we make use of `Apache Spark <https://spark.apache.org/>`_ to leverage distributed processing capabilities. Spark, as defined by its creators is a fast and general engine for large-scale data processing. In the HopsML pipeline we have two main use cases for Spark. The first use-case being data validation, transformations and feature extractions on potentially huge datasets. The second use-case is to orchestrate allocation of cluster resources and execution of Machine Learning applications such as TensorFlow, Keras and PyTorch.
+In the HopsML pipeline we make use of `Apache Spark <https://spark.apache.org/>`_ to leverage distributed processing capabilities. Spark, as defined by its creators is a fast and general engine for large-scale data processing. In the HopsML pipeline we have two main use cases for Spark. The first use-case being data validation, transformations and feature extractions on potentially huge datasets.
+
+In PySpark, Hops runs a different experiment on each executor – not all of the experiments will finish at the same time. Some experiments may finish early, some later. And GPUs cannot currently be shared (multiplexed) by concurrent applications. Population-based approaches for AutoML, typically proceed in stages or iterations, meaning all experiments wait for other experiments to finish, resulting in idle GPU time. That is, GPUs lie idle waiting for other experiments to finish.
+
+As such, we have the problem of how to free up the GPUs as soon as its experiment is finished. Hops leverages dynamic executors in PySpark/YARN to free up the GPU(s) attached to an executor immediately if it sits idle waiting for other experiments to finish, ensuring that (expensive) GPUs are held no longer than needed.
+
+Each Spark executor runs a local TensorFlow process. Hops also supports cluster-wide Conda for managing python library dependencies. Hops supports the creation of projects, and each project has its own conda environment, replicated at all hosts in the cluster. When you launch a PySpark job, it uses the local conda environment for that project. This way, users can install whatever libraries they like using conda and pip, and then use them directly inside Spark Executors. It makes programming PySpark one step closer to the single-host experience of programming Python. Hops also supports Jupyter and the SparkMagic kernel for running PySpark jobs.
 
 Data Collection
 ---------------
@@ -30,7 +36,7 @@ Feature Extraction
 Experimentation
 ---------------------------
 
-In HopsML we separate machine learning experiments into three differents categories.
+In HopsML we separate Machine Learning experiments into three differents categories.
 
 **Experiment**
 
@@ -52,16 +58,3 @@ Training involving multiple gpus and/or multiple hosts.
    ../tensorflow/mml.rst
    ../tensorflow/model_serving.rst
    ../tensorflow/inference.rst
-
-
-Mode 1. Parallel Experiments
-----------------------------
-
-The use case of this mode is to run multiple parallel experiments. To find the best model for your prediction task is not a trivial process. You need to decide on a model and some hyperparameters and then run your training/evaluation until you are satisfied.
-
-We provide different mechanisms to parallelize the search for your best model such as evolutionary hyperparameter optimization or grid search. Typically you will have a set of **predefined hyperparameters** and a list of values per hyperparameter that should be used to run training with. Based on this list of hyperparameter values, a grid can be constructed (cartesian product). Each of these possible hyperparameter combinations in the grid corresponds to a TensorFlow job, or an *experiment*. Running each of these hyperparameters configuration sequentially would be slow, therefore we provide a simple API to **parallelize** execution on one or more *executors*.
-
-While training you will be able to see how training progresses using TensorBoard. After running all the experiments, it is possible to visualize all experiments in the **same** TensorBoard to more easily identify which hyperparameter combinations yield the best results.
-
-Each TensorBoard log directory is then placed in your Hopsworks project, versioned with the hyperparameter values for that particular hyperparameter combination, so that you can visualize experiments from previous jobs too.
-
