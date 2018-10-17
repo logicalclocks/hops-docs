@@ -1,39 +1,16 @@
-===============================
-Parallel TensorFlow experiments
-===============================
+===========================
+The Experiments abstraction
+===========================
 .. highlight:: python
 
-The use-case of this mode is to run multiple parallel experiments where you have a set of *predefined hyperparameters* and a list of values per hyperparameter that should be used to run *training* with. Based on this list of hyperparameter values, a *grid* can be constructed (cartesian product). Each of these possible hyperparameter combinations in the grid corresponds to a TensorFlow job, or an *experiment*. Running each of these hyperparameters configurations sequentially would be slow, therefore we provide a simple API to run jobs in parallel. Each job runs on a Spark executor.
+In PySpark, Hops runs a different experiment on each executor – not all of the experiments will finish at the same time. Some experiments may finish early, some later. And GPUs cannot currently be shared (multiplexed) by concurrent applications. Population-based approaches for AutoML, typically proceed in stages or iterations, meaning all experiments wait for other experiments to finish, resulting in idle GPU time. That is, GPUs lie idle waiting for other experiments to finish.
 
+As such, we have the problem of how to free up the GPUs as soon as its experiment is finished. Hops leverages dynamic executors in PySpark/YARN to free up the GPU(s) attached to an executor immediately if it sits idle waiting for other experiments to finish, ensuring that (expensive) GPUs are held no longer than needed.
 
-Jupyter configuration
-#####################
-
-When configuring Jupyter, it is important to understand the configuration properties that are being set to achieve optimal training time.
-
-**Max parallel executions**
-
-Defines how many TensorFlow jobs may be run at any time. If you have specified 100 different hyperparameter configurations, this implies 100 TensorFlow jobs. Each job being one hyperparameter combination. If this configuration value is set to 1, then each of these 100 jobs are run sequentially. Any value greater than 1 will mean that jobs are being parallelized, so 2 or more jobs may be run in parallel.
-
-**Executor memory (MB)**
-
-Defines the amount of memory each executor should be allocated with. Keep in mind that if your TensorFlow code is using a lot of memory, the job will be killed by YARN. You will have to restart Jupyter and increase this setting.
-
-**Executor GPUs**
-
-Defines how many GPUs should be allocated for each executor, effectively how many GPUs each job will be able to access. To run only with CPU, simply set this value to 0.
-
-
-.. _experiment_mode.png: ../../_images/experiment_mode.png
-.. figure:: ../../imgs/experiment_mode.png
-   :alt: Experiment mode in Jupyter
-   :target: `experiment_mode.png`_
-   :align: center
-   :figclass: align-center
-   
+Each Spark executor runs a local TensorFlow process. Hops also supports cluster-wide Conda for managing python library dependencies. Hops supports the creation of projects, and each project has its own conda environment, replicated at all hosts in the cluster. When you launch a PySpark job, it uses the local conda environment for that project. This way, users can install whatever libraries they like using conda and pip, and then use them directly inside Spark Executors. It makes programming PySpark one step closer to the single-host experience of programming Python. Hops also supports Jupyter and the SparkMagic kernel for running PySpark jobs.   
     
-The programming model: Wrap your TensorFlow code in a function
-##############################################################
+The programming model: Wrap your Machine Learning code in a function
+####################################################################
 
 To be able to run your TensorFlow code on Hops, the code for the whole program needs to be provided and put inside a wrapper function. Everything, from importing libraries to reading data and defining the model and running the program, needs to be put inside a wrapper function. The arguments of the wrapper function would map directly to the name of your hyperparameters.
 
@@ -41,7 +18,7 @@ To be able to run your TensorFlow code on Hops, the code for the whole program n
 
     # Hyperparameter are learning rate and dropout
     def training(learning_rate, dropout):
-        # TensorFlow training code (including reading data, defining model, starting training...)
+        # Experiment code (including reading data, defining model, starting training...)
 
 Reading from HopsfS (HDFS)
 ##########################
@@ -51,12 +28,12 @@ Reading from HopsfS (HDFS)
 
 ::
 
-    ... TensorFlow code ...
+    ... Experiment code ...
 
     from hops import hdfs
     project_root_path = hdfs.project_path()
 
-    ... TensorFlow code ...
+    ... Experiment code ...
     
 The path returned is to the root directory in Hopsworks.
 
@@ -73,23 +50,23 @@ The path returned is to the root directory in Hopsworks.
 
 ::
 
-    ... TensorFlow code ...
+    ... Experiment code ...
 
     from hops import hdfs
     project_root_path = hdfs.project_path()
     tfrecords_dataset = project_root_path + "Resources/train.tfrecords"
 
-    ... TensorFlow code ...
+    ... Experiment code ...
 
 **Step 3**. Use the path as any other path in a TensorFlow module
 
 ::
 
-    ... TensorFlow code ...
+    ... Experiment code ...
     
     dataset = tf.data.TFRecordDataset(tfrecords_dataset)
     
-    ... TensorFlow code ...
+    ... Experiment code ...
 
 
 Hyperparameter Optimization
