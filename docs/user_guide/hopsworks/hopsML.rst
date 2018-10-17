@@ -12,7 +12,7 @@ HopsML
 PySpark
 -------
 
-On Hopsworks we make use of `Apache Spark <https://spark.apache.org/>`_ to distribute and execute your Machine Learning code, so in terms of architure the entire pipeline except for serving is run on top of PySpark.
+On Hopsworks we make use of `Apache Spark <https://spark.apache.org/>`_ to distribute and execute your Machine Learning code. There are several upsides of having our 
 
 Data Collection
 ---------------
