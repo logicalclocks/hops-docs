@@ -64,7 +64,6 @@ Training involving multiple gpus and/or multiple hosts.
 
 .. _experiments: ./experiments.html
 
-
 Serving
 -------
 
