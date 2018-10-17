@@ -42,9 +42,13 @@ Data can also be ingested using Kafka or Spark Streaming.
 Data Transformation & Verification
 ----------------------------------
 
+Spark Dataframes can be used to transform and validate large datasets in a distributed manner.
+
 
 Feature Extraction
 ------------------
+
+Spark Dataframes can be used for feature extraction.
 
 
 Experimentation, Training and Testing
@@ -65,13 +69,6 @@ A set of hyperparameters to try given some hyperparameter optimization algorithm
 **Distributed Training**
 
 Training involving multiple gpus and/or multiple hosts. Distributed Training is only supported for TensorFlow and Keras using CollectiveAllReduceStrategy, ParameterServerStrategy and MirroredStrategy.
-
-
-
-For each 
-
-
-
 
 
 Serving
