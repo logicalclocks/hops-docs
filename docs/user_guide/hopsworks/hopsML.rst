@@ -17,7 +17,7 @@ Hops Python Library
 
 The Hops Python Library simply named ´hops´ is used for running Python applications and consequently a library which is used throughout the entire pipeline. It simplifies interacting with services such as Kafka, Model Serving and TensorBoard, moreover it provides an experiment API for Machine Learning training.
 
-See hops-py_
+See the full documentation here: hops-py_ 
 
     
 PySpark
@@ -54,15 +54,19 @@ In HopsML we separate Machine Learning experiments into three differents categor
 
 **Experiment**
 
-A single python program that runs with a set of predefined hyperparameters. This is the basic mode
+A single python program that runs with a set of predefined hyperparameters. 
 
 **Parallel Experiments**
 
-A set of hyperparameters to try given some hyperparameter optimization algorithm.
+A set of hyperparameters to try given some hyperparameter optimization algorithm. Supported algorithms currently include grid search and differential evolution. In the future more algorithms will be added.
 
 **Distributed Training**
 
-Training involving multiple gpus and/or multiple hosts.
+Training involving multiple gpus and/or multiple hosts. Distributed Training is only supported for TensorFlow and Keras using CollectiveAllReduceStrategy, ParameterServerStrategy and MirroredStrategy.
+
+
+
+For each 
 
 
 
