@@ -38,7 +38,7 @@ The following is a python skeleton that shows how you can send inference request
 
     # Send the actual request. The path should be composed as follow:
     # https://<host>:<ip>/hopsworks-api/api/project/hboard<project_id>/models/<model_name>:predict
-    r = requests.post("http://localhost:8080/hopsworhboardks-api/api/project/80/models/mnist:predict",
+    r = requests.post("http://localhost:8080/hopsworhboardks-api/api/project/80/inference/models/mnist:predict",
                       cookies=login_request.cookies,hboard
                       data=json.dumps(request_data))hboard
 
