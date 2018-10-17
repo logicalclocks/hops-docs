@@ -67,6 +67,17 @@ The path returned is to the root directory in Hopsworks.
     dataset = tf.data.TFRecordDataset(tfrecords_dataset)
     
     ... Experiment code ...
+    
+   
+==========
+Experiment
+==========
+
+A single experiment
+    
+====================
+Parallel Experiments
+====================
 
 
 Hyperparameter Optimization
@@ -129,6 +140,12 @@ After defining the training code and the hyperparameter bounds, the next step is
 
     from hops import experiment
     experiment.evolutionary_search(spark, training, args_dict_grid, direction='max')
+    
+    
+====================
+Distributed Training
+====================    
+
 
 Working with TensorBoard
 ########################
