@@ -12,12 +12,14 @@ HopsML
 PySpark
 -------
 
-In the HopsML pipeline we make use of `Apache Spark <https://spark.apache.org/>`_ to provide distributed processing capabilities for our Machine Learning pipeline. Spark, as defined by its creators is a fast and general engine for large-scale data processing. It is a general distributed processing engine that can fit many use-cases. In the HopsML pipeline we have two main use cases for Spark. The first use-case being data validation, transformations and feature extractions on potentially huge datasets. The second use-case is to orchestrate allocation of resources and executions of Machine Learning applications such as TensorFlow, Keras and PyTorch.
+In the HopsML pipeline we make use of `Apache Spark <https://spark.apache.org/>`_ to leverage distributed processing capabilities. Spark, as defined by its creators is a fast and general engine for large-scale data processing. It is a general distributed processing engine that can fit many use-cases. In the HopsML pipeline we have two main use cases for Spark. The first use-case being data validation, transformations and feature extractions on potentially huge datasets. The second use-case is to orchestrate allocation of cluster resources and execution of Machine Learning applications such as TensorFlow, Keras and PyTorch.
 
 Data Collection
 ---------------
 
 The datasets that you are working with will reside in your project in HopsFS. Datasets can be uploaded to your Hopsworks project or be shared from an other project. HopsFS is the filesystem of Hops, it is essentially a fork of Apache HDFS and is compliant with any API that can read data from an HDFS path, such as TensorFlow. In your TensorFlow code you can simply replace local file paths to the corresponding path in HDFS. More information is available `here <https://www.tensorflow.org/deploy/hadoop>`_..
+
+Kafka
 
 Data Transformation & Verification
 ----------------------------------
@@ -27,7 +29,7 @@ Feature Extraction
 ------------------
 
 
-The Experiments abstraction
+Experimentation
 ---------------------------
 
 In HopsML we separate machine learning experiments into three differents categories.
