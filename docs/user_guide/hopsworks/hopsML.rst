@@ -11,6 +11,15 @@ The Pipeline
     :align: center
     :figclass: align-center
     
+    
+Hops Python Library
+-------------------
+
+The Hops Python Library simply named ´hops´ is used for running Python applications and consequently a library which is used throughout the entire pipeline. It simplifies interacting with services such as Kafka, Model Serving and TensorBoard, moreover it provides an experiment API for Machine Learning training.
+
+See hops-py_
+
+    
 PySpark
 -------
 
@@ -54,3 +63,14 @@ A set of hyperparameters to try given some hyperparameter optimization algorithm
 
 Training involving multiple gpus and/or multiple hosts.
 
+
+Serving
+-------
+See model_serving_ for more information.
+
+
+
+
+.. _experiments: ../tensorflow/experiment.html
+.. _model_serving: ../tensorflow/model_serving.html
+.. _hops-py: http://hops-py.logicalclocks.com
