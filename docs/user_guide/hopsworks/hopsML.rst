@@ -54,18 +54,3 @@ A set of hyperparameters to try given some hyperparameter optimization algorithm
 
 Training involving multiple gpus and/or multiple hosts.
 
-
-.. toctree::
-   :maxdepth: 1
-
-   ../tensorflow/experiment.rst
-   ../tensorflow/mml.rst
-   ../tensorflow/model_serving.rst
-   ../tensorflow/inference.rst
-
-.. _experiments: ./experiments.html
-
-Serving
--------
-
-
