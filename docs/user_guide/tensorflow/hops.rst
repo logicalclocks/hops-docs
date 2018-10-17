@@ -9,6 +9,8 @@ Hops Python library
 
 `hops-util-py` is a helper library for Hops that facilitates development by hiding the complexity of running applications, discovering services and interacting with HopsFS.
 
+For documentation and examples see: `Python <http://www.hops-py.logicalclocks.com/>`
+
 It provides an Experiment API to run Python programs such as TensorFlow, Keras and PyTorch on a Hops Hadoop cluster. A TensorBoard will be started when an Experiment begins and the contents of the logdir saved in your Project. An Experiment could be a single Python program, which we refer to as an *Experiment*.
 
 <<<<<<< cf11bea59bd66ec796caccdce04ebb7849c0b2d8
