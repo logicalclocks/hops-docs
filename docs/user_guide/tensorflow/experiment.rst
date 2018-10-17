@@ -70,21 +70,19 @@ The path returned is to the root directory in Hopsworks.
     
    
 
-**Experiment**
+Experiment
+----------
 
 A single experiment
     
-**Parallel Experiments**
+Parallel Experiments
+--------------------
 
-
-
-Hyperparameter Optimization
----------------------------
 
 Hyperparameter optimization is critical to achieve the best accuracy for your model. With Hops, hyperparameter optimization is easier than ever. We provide grid-search or state-of-the-art evolutionary optimization which will automatically learn what hyperparameters are the best and iteratively improve metrics such as model accuracy.
 
-Grid search
------------
+**Grid search**
+
 
 To define the hyperparameters, simply create a dictionary with the keys matching the arguments of your wrapper function, and a list of values for each hyperparameter.
 
@@ -141,14 +139,14 @@ After defining the training code and the hyperparameter bounds, the next step is
     
     
 
-**Distributed Training**
-
+Distributed Training
+--------------------
 
 
 Working with TensorBoard
 ########################
 
-When you run your job using experiment, TensorBoard will be started automatically. To interact with TensorBoard, import the tensorboard module from the hops python library. In addition to writing summaries and your TensorBoard events of course.
+When you run your job using the experiment API a TensorBoard will be started automatically. To interact with TensorBoard, import the tensorboard module from the hops python library. In addition to writing summaries and your TensorBoard events of course.
 
 ::
 
