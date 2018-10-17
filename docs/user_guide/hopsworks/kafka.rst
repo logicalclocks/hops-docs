@@ -2,13 +2,19 @@
 Apache Kafka
 ===========================
 
+Hopsworks provides Kafka-as-a-Service for streaming applications.
+Hopsworks provides by default the `HopsUtil`_ and `hops-util-py`_ libraries which make programming easier by abstracting away all the configuration boilerplate code such as Kafka endpoints, topics etc. Using these libraries, you can be up and running a simple Kafka on Hopsworks `in minutes`.
 
-Hopsworks provides Kafka-as-a-Service for streaming
-applications. In the following section we will guide you through
-creating a *Producer* job which produces messages to a Kafka topic and a
-simple *Consumer* job which consumes from the same topic. Our service
-is tightly coupled with our project-based model so only members of a
-project can use a specific Kafka topic, unless specified otherwise.
+The following sections demonstrate different ways for writing Kafka applications on Hopsworks:
+
+- Using the **Kafka service** on Hopsworks to setup Kafka topics in the cluster.
+- Using the **Jobs service** on Hopsworks to submit jobs that produce/consume to/from Kafka.
+- Using **Jupyter notebooks** on Hopsworks for producing/consuming to/from Kafka.
+
+Our service is tightly coupled with our project-based model so only members of a project can use a specific Kafka topic, unless specified otherwise. The Kafka service on Hops is multi-tenant, allowing users to share topics between projects as desired.
+
+Kafka Tour
+-----------------------
 
 If users prefer to be guided through the rest of the guide in Hopsworks, they can
 follow the `Kafka Tour` by selecting it from the available tours in the landing page.
@@ -22,27 +28,19 @@ follow the `Kafka Tour` by selecting it from the available tours in the landing 
     :figclass: align-center
 
 
+Example Spark Streaming Jobs with Kafka on Hopsworks
+-----------------------
 
-To begin with, Hopsworks provides by default the `HopsUtil`_ library which make programming easier
-by abstracting away all the configuration boilerplate code such
-as Kafka endpoints, topics etc. If users want to make changes to this library, they can use it with their jobs
-by doing the following:
+**Download and compile the example application**
 
-* Step 1: `git clone git@github.com:hopshadoop/hops-util.git` to clone
-  the library
-* Step 2: `cd hops-util/ && mvn package` to build it
+You can download and compile a sample Spark streaming by following these steps:
 
-Then you need to download and compile a sample Spark
-streaming application.
+* Step 1: run `git clone https://github.com/logicalclocks/hops-examples` to clone the example project
+* Step 2: run  `cd hops-examples/spark/ && mvn package` to build the example project
 
-* Step 1: `git clone
-  git@github.com:hopshadoop/hops-kafka-examples.git` to clone our
-  sample application
-* Step 2: `cd hops-kafka-examples/ && mvn package` to build the
-  project
+**Create a Kafka topic and schema**
 
-Next step is to create a Kafka topic at Hopsworks that our application
-will produce to and consume from.
+The next step is to create a Kafka topic that the sample spark streaming application will produce to and consume from. To create a topic, we use the Kafka service available in Hopsworks.
 
 * Step 1: From the project box on the landing page, select a project
 * Step 2: Click on the `Kafka` tab and the topics page will appear
@@ -57,57 +55,39 @@ will produce to and consume from.
     Kafka topics & schemas
 
 * Step 3: First we need to create a schema for our topic, so click on
-  the `Schemas` tab and `New Avro Schema`. Copy the sample schema from
-  `here`_ and paste it in the `Content` box. Click on the `Validate`
+  the `Schemas` tab and `New Avro Schema`. Copy the sample schema from below and paste it into the `Content` box. Then click on the `Validate`
   button to validate the schema you provided and then `Create`.
+
+.. code-block:: JSON
+
+    {
+	"fields": [
+		{
+			"name": "timestamp",
+			"type": "string"
+		},
+		{
+			"name": "priority",
+			"type": "string"
+		},
+		{
+			"name": "logger",
+			"type": "string"
+		},
+		{
+			"name": "message",
+			"type": "string"
+		}
+	],
+	"name": "myrecord",
+	"type": "record"
+    }
+
 
 * Step 4: Click on `New Topic`, give a topic name, select the
   schema you created at Step 3 and press `Create`.
 
-* Step 5: Upload `hops-kafka-examples/spark/target/hops-spark-0.1.jar`
-  and `hops-util/target/hops-util-0.1.jar` to a dataset
-
-* Step 6: Click on the `Jobs` tabs at project menu and follow the
-  instructions from the **Jobs** section. Create a new job for the
-  Producer. Select `Spark` as job type and `hops-kafka-0.1.jar` as JAR
-  file. The name of the main class is
-  `io.hops.examples.spark.kafka.StreamingExample` and argument is
-  `producer`. At the `Configure and create` tab, click on `Kafka`
-  Services and select the Kafka topic you created at Step 4. Your job
-  page should look like the following
-
-.. _kafka-producer.png: ../../_images/kafka-producer.png
-.. figure:: ../../imgs/kafka-producer.png
-    :alt: Kafka producer job
-    :target: `kafka-producer.png`_
-    :align: center
-    :figclass: align-center
-
-    Kafka producer job
-
-* Step 7: We repeat the instructions on Step 6 for the Consumer
-  job. Type a different job name and as argument to the main class
-  pass `consumer /Projects/YOUR_PROJECT_NAME/Resources/Data`. The rest
-  remain the same as the Producer job.
-
-* Step 8: `Run` both jobs. While the consumer is running you can check
-  its execution log. Use the Dataset browser to navigate to the
-  directory `/Resources/Data-APPLICATION_ID/`. Right click on the file
-  `part-00000` and *Preview* the content.
-
-  A sample output would look like the following
-
-.. _kafka-sink.png: ../../_images/kafka-sink.png
-.. figure:: ../../imgs/kafka-sink.png
-    :alt: Kafka ouput
-    :target: `kafka-sink.png`_
-    :align: center
-    :figclass: align-center
-
-    Kafka output
-
-.. _here: https://github.com/hopshadoop/hops-kafka-examples/tree/master/spark
-.. _HopsUtil: https://github.com/hopshadoop/hops-util
+**Advanced Kafka Topic Creation**
 
 A Kafka topic by default will be accessible only to members of a
 specific project. In order to *share* the topic with another project
@@ -126,7 +106,7 @@ name of the project you would like to share with.
     Kafka main page
 
 You can also fine grain access to Kafka topics by adding ACLs easily
-through our UI. Once you have created a Kafka topic, click on the
+through Hopsworks. Once you have created a Kafka topic, click on the
 ``Kafka`` service and then on the *Add new ACL* button.
 
 When creating a new ACL you are given the following options:
@@ -185,3 +165,81 @@ finally the third is the custom ACL we created before.
     :figclass: align-center
 
     Kafka topic details
+
+**Upload the compiled sample application and use it to create Spark jobs on Hopsworks**
+
+* Step 1: Upload the jar file from `hops-examples/spark/target/` to a dataset. The jar is named: `hops-examples-spark-X.Y.Z-SNAPSHOT.jar`.
+
+* Step 2: Click on the `Jobs` tabs at project menu and follow the instructions from the **Jobs** section. Create a new job for the Producer. Select `Spark` as job type and specify the jar file that you just uploaded. The name of the main class is `io.hops.examples.spark.kafka.StructuredStreamingKafka` and argument is `producer`. At the `Configure and create` tab, click on `Kafka` Services and select the Kafka topic you created at Step 4. Your job page should look like the following:
+
+.. _kafka-producer.png: ../../_images/kafka-producer.png
+.. figure:: ../../imgs/kafka-producer.png
+    :alt: Kafka producer job
+    :target: `kafka-producer.png`_
+    :align: center
+    :figclass: align-center
+
+    Kafka producer job
+
+* Step 3: We repeat the instructions on Step 6 for the Consumer job. Type a different job name and as argument to the main class
+  pass `consumer /Projects/YOUR_PROJECT_NAME/Resources/Data`. The rest
+  remain the same as the Producer job.
+
+**Run the created producer/consumer jobs**
+`Run` both jobs. While the consumer is running you can check its execution log. Use the Dataset browser to navigate to the directory `/Resources/Data-APPLICATION_ID/`. Right click on the file `part-00000` and *Preview* the content.
+
+A sample output would look like the following:
+
+.. _kafka-sink.png: ../../_images/kafka-sink.png
+.. figure:: ../../imgs/kafka-sink.png
+    :alt: Kafka ouput
+    :target: `kafka-sink.png`_
+    :align: center
+    :figclass: align-center
+
+    Kafka output
+
+.. _here: https://github.com/hopshadoop/hops-kafka-examples/tree/master/spark
+.. _HopsUtil: https://github.com/hopshadoop/hops-util
+.. _hops-util-py: https://github.com/logicalclocks/hops-util-py
+
+Example Python Notebook with Kafka Producer and Consumer
+-----------------------
+
+You can find several example notebooks using kafka at hops_examples_.
+
+In this section we will demonstrate how you can use a jupyter notebook and python to produce/consume kafka messages. In this section it is assumed that you have already created a Kafka topic named "test" to produce/consume from and that you have enabled anaconda (which comes with some pre-installed packages, including the python package `kafka-confluent`) in your project.
+
+**Start Jupyter**
+
+Start Jupyter by going to the Jupyter tab, selecting Spark(static or dynamic), filling in the system properties and pressing "Start".
+
+**Create the new notebook**
+
+Create a new notebook and paste the following
+
+.. code-block:: python
+
+    from hops import kafka
+    from hops import tls
+    from confluent_kafka import Producer, Consumer
+    TOPIC_NAME = "test"
+    config = kafka.get_kafka_default_config()
+    producer = Producer(config)
+    consumer = Consumer(config)
+    consumer.subscribe(["test"])
+    # wait a little while before executing the rest of the code (put it in a different Jupyter cell)
+    # so that the consumer get chance to subscribe (asynchronous call)
+    for i in range(0, 10):
+    producer.produce(TOPIC_NAME, "message {}".format(i), "key", callback=delivery_callback)
+    # Trigger the sending of all messages to the brokers, 10sec timeout
+    producer.flush(10)
+    for i in range(0, 10):
+    msg = consumer.poll(timeout=5.0)
+    if msg is not None:
+        print('Consumed Message: {} from topic: {}'.format(msg.value(), msg.topic()))
+    else:
+        print("Topic empty, timeout when trying to consume message")
+
+
+.. _hops_examples: https://github.com/logicalclocks/hops-examples

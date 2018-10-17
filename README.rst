@@ -17,8 +17,8 @@ Build the documentation
 Contribute
 ----------
 
-- Issue Tracker: github.com/hopshadoop/$project/issues
-- Source Code: github.com/hopshadoop/
+- Issue Tracker: github.com/logicalclocks/$project/issues
+- Source Code: github.com/logicalclocks/
 
 Support
 -------
