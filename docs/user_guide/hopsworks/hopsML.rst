@@ -13,12 +13,18 @@ The Pipeline
 PySpark
 -------
 
-In the HopsML pipeline we make use of `Apache Spark <https://spark.apache.org/>`_ to leverage distributed processing capabilities. Spark, as defined by its creators is a fast and general engine for large-scale data processing. In the HopsML pipeline we have two main use cases for Spark. The first use-case being data validation, transformations and feature extractions on potentially huge datasets.
+In the HopsML pipeline we make use of `Apache Spark <https://spark.apache.org/>`_ to leverage distributed processing capabilities. Spark, as defined by its creators is a fast and general engine for large-scale data processing. In the HopsML pipeline we have three main use cases for Spark. 
+
+The first use-case being data validation, transformations and feature extractions on potentially huge datasets.
+
+The second use-case being dynamic resource allocation in the cluster.
+
+The third use-case being orchestration and execution of Machine Learning code.
 
 Data Collection
 ---------------
 
-The datasets that you are working with will reside in your project in HopsFS. Datasets can be uploaded to your Hopsworks project or be shared from an other project. HopsFS is the filesystem of Hops, it is essentially a fork of Apache HDFS and is compliant with any API that can read data from an HDFS path, such as TensorFlow. In your TensorFlow code you can simply replace local file paths to the corresponding path in HDFS. More information is available `here <https://www.tensorflow.org/deploy/hadoop>`_..
+The datasets that you are working with will reside in your project in HopsFS. Datasets can be uploaded to your Hopsworks project or be shared from an other project. HopsFS is the filesystem of Hops, it is essentially a fork of Apache HDFS and is compliant with any API that can read data from an HDFS path, such as TensorFlow. In your TensorFlow code you can simply replace local file paths to the corresponding path in HDFS. More information is available `here <https://www.tensorflow.org/deploy/hadoop>`_.
 
 Data Transformation & Verification
 ----------------------------------
@@ -30,7 +36,7 @@ Feature Extraction
 
 Experimentation
 ---------------
-This section will give an overview of running Machine Learning experiments on Hops. For more detailed information see experiments_.
+This section will give an overview of running Machine Learning experiments on Hops. See experiments_ for more information.
 
 In HopsML we separate Machine Learning experiments into three differents categories.
 
