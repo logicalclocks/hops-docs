@@ -30,8 +30,7 @@ Feature Extraction
 
 Experimentation
 ---------------
-
-Jupyter notebooks (documentation for Jupyter on Hopsworks: experimentation_)
+This section will give an overview of running Machine Learning experiments on Hops. For more detailed information see experiments_.
 
 In HopsML we separate Machine Learning experiments into three differents categories.
 
@@ -55,3 +54,5 @@ Training involving multiple gpus and/or multiple hosts.
    ../tensorflow/mml.rst
    ../tensorflow/model_serving.rst
    ../tensorflow/inference.rst
+
+.. _experiments: ./experiments.html
