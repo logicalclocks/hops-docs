@@ -16,12 +16,8 @@ On Hopsworks we make use of `Apache Spark <https://spark.apache.org/>`_ to distr
 
 Data Collection
 ---------------
-We also provide first-class support for TensorBoard, so you can easily monitor the progress of your training and compare different hyperparameter configurations while training or after a job has finished. Futhermore we have other useful features such as monitoring GPU utilization and writing to log files.
 
-The datasets that you are working with can either be uploaded to your Hopsworks project or be shared among different projects the user has access to by sharing the actual datast. HopsFS is the filesystem of Hops, it is essentially a fork of Apache HDFS and is compliant with any API that can read data from an HDFS path, such as TensorFlow. In your TensorFlow code you can simply replace local file paths to the corresponding path in HDFS. More information is available `here <https://www.tensorflow.org/deploy/hadoop>`_..
-
-When starting Jupyter in Hopsworks, certain configuration properties need to be filled in and understood, therefore it is recommended to look at each guide to understand the implications of these values. Each of the links below guide you through the configuration properties that can be set for each mode. Follow the links below to read the documentation.
-
+The datasets that you are working with will reside in your project in HopsFS. Datasets can be uploaded to your Hopsworks project or be shared from an other project. HopsFS is the filesystem of Hops, it is essentially a fork of Apache HDFS and is compliant with any API that can read data from an HDFS path, such as TensorFlow. In your TensorFlow code you can simply replace local file paths to the corresponding path in HDFS. More information is available `here <https://www.tensorflow.org/deploy/hadoop>`_..
 
 Data Transformation & Verification
 ----------------------------------
