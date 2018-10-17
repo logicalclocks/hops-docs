@@ -69,15 +69,14 @@ The path returned is to the root directory in Hopsworks.
     ... Experiment code ...
     
    
-==========
+
 Experiment
-==========
+----------
 
 A single experiment
     
-====================
 Parallel Experiments
-====================
+--------------------
 
 
 Hyperparameter Optimization
@@ -142,9 +141,10 @@ After defining the training code and the hyperparameter bounds, the next step is
     experiment.evolutionary_search(spark, training, args_dict_grid, direction='max')
     
     
-====================
+
 Distributed Training
-====================    
+--------------------
+
 
 
 Working with TensorBoard
