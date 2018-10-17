@@ -1,5 +1,5 @@
 HopsML
-==================
+======
 
 The Pipeline
 ------------
@@ -25,7 +25,7 @@ PySpark
 
 In the HopsML pipeline we make use of `Apache Spark <https://spark.apache.org/>`_ to leverage distributed processing capabilities. Spark, as defined by its creators is a fast and general engine for large-scale data processing. In the HopsML pipeline we have three main use cases for Spark. 
 
-1. Data validation, transformations and feature extraction.
+1. Data validation, transformations and feature extraction
 
 2. Dynamic resource allocation of the resources (CPU, Memory and GPUs) in the cluster.
 
@@ -34,7 +34,8 @@ In the HopsML pipeline we make use of `Apache Spark <https://spark.apache.org/>`
 Data Collection
 ---------------
 
-The datasets that you are working with will reside in your project in HopsFS. Datasets can be uploaded to your Hopsworks project or be shared from an other project. HopsFS is the filesystem of Hops, it is essentially a fork of Apache HDFS and is compliant with any API that can read data from an HDFS path, such as TensorFlow. In your TensorFlow code you can simply replace local file paths to the corresponding path in HDFS. More information is available `here <https://www.tensorflow.org/deploy/hadoop>`_.
+The datasets that you are working with will reside in your project in HopsFS. Datasets can be uploaded to your Hopsworks project or be shared from another project. HopsFS is the filesystem of Hops, it is essentially a fork of Apache HDFS and is compliant with any API that can read data from an HDFS path, such as TensorFlow. In your TensorFlow code you can simply replace local file paths to the corresponding path in HDFS. More information is available `here <https://www.tensorflow.org/deploy/hadoop>`_.
+Data can also be ingested using Kafka or Spark Streaming.
 
 Data Transformation & Verification
 ----------------------------------
@@ -53,7 +54,7 @@ In HopsML we separate Machine Learning experiments into three differents categor
 
 **Experiment**
 
-A single python program that runs with a set of predefined hyperparameters. 
+A single python program that runs with a set of predefined hyperparameters. This is the basic mode
 
 **Parallel Experiments**
 
@@ -64,12 +65,15 @@ A set of hyperparameters to try given some hyperparameter optimization algorithm
 Training involving multiple gpus and/or multiple hosts.
 
 
+
+
+
 Serving
 -------
+
+In the pipeline we support a scalable architecture for serving of TensorFlow and Keras models. We use the TensorFlow Serving running on K8s to scale up the number of serving instances dynamically and handle load balancing.
+
 See model_serving_ for more information.
-
-
-
 
 .. _experiments: ../tensorflow/experiment.html
 .. _model_serving: ../tensorflow/model_serving.html
