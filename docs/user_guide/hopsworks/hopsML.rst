@@ -17,7 +17,8 @@ Hops Python Library
 
 The Hops Python Library simply named ´hops´ is used for running Python applications and consequently a library which is used throughout the entire pipeline. It simplifies interacting with services such as Kafka, Model Serving and TensorBoard, moreover it provides an experiment API for Machine Learning training.
 
-See the full documentation here: hops-py_ 
+Documentation: hops-py_ 
+Code examples: hops-examples_ 
 
     
 PySpark
@@ -82,3 +83,4 @@ See model_serving_ for more information.
 .. _experiments: ../tensorflow/experiment.html
 .. _model_serving: ../tensorflow/model_serving.html
 .. _hops-py: http://hops-py.logicalclocks.com
+.. _hops-examples: https://github.com/logicalclocks/hops-examples/tree/master/tensorflow/notebooks
