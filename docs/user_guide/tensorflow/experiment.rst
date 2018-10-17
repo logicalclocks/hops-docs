@@ -70,13 +70,12 @@ The path returned is to the root directory in Hopsworks.
     
    
 
-Experiment
-----------
+**Experiment**
 
 A single experiment
     
-Parallel Experiments
---------------------
+**Parallel Experiments**
+
 
 
 Hyperparameter Optimization
@@ -142,8 +141,7 @@ After defining the training code and the hyperparameter bounds, the next step is
     
     
 
-Distributed Training
---------------------
+**Distributed Training**
 
 
 
