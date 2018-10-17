@@ -1,7 +1,8 @@
 HopsML
 ==================
 
-**The Pipeline on Hops**
+The Pipeline
+------------
 
 .. figure:: ../../imgs/pipeline.png
     :alt: Increasing throughput
