@@ -1,16 +1,31 @@
-TensorFlow on Hops
+HopsML
 ==================
 
-Hops provides support for running TensorFlow using Hopsworks on a Hops cluster. The development environment for doing so is in Jupyter notebooks (documentation for Jupyter on Hopsworks: jupyter-documentation_). It is important to understand the programming model for working with TensorFlow on Hopsworks to become the most productive as you can!
+**The Pipeline on Hops**
 
-Working with TensorFlow in Jupyter
+
+
+
+
+
+
+The Experiments abstraction
 ----------------------------------
 
-Hopsworks currently support *three* different modes for training TensorFlow models, that are meant for different purposes and use-cases:
+In HopsML we separate machine learning experiments into three differents categories.
 
-1. Parallel TensorFlow experiments
-2. Distributed TensorFlow with TensorFlowOnSpark
-3. Optimal scalability with Horovod
+**Experiment**
+
+A single python program that runs with a set of predefined hyperparameters. 
+
+**Parallel Experiments**
+
+A set of hyperparameters to try given some hyperparameter optimization algorithm.
+
+**Distributed Training**
+
+Training involving multiple gpus and/or multiple hosts.
+
 
 
 On Hopsworks we make use of `Apache Spark <https://spark.apache.org/>`_ to distribute and execute your TensorFlow code, so effectively we run TensorFlow on Spark. We also provide first-class support for TensorBoard, so you can easily monitor the progress of your training and compare different hyperparameter configurations while training or after a job has finished. Futhermore we have other useful features such as monitoring GPU utilization and writing to log files.
@@ -22,10 +37,7 @@ When starting Jupyter in Hopsworks, certain configuration properties need to be 
 .. toctree::
    :maxdepth: 1
 
-   ../tensorflow/hops.rst
    ../tensorflow/experiment.rst
-   ../tensorflow/tensorflow_on_spark.rst
-   ../tensorflow/horovod.rst
    ../tensorflow/mml.rst
    ../tensorflow/model_serving.rst
    ../tensorflow/inference.rst
@@ -64,12 +76,10 @@ Mode 3. Optimal scalability with Horovod
 
 Horovod is a distributed training framework for TensorFlow. The goal of Horovod is to make distributed Deep Learning fast and easy to use. Compared to TensorFlowOnSpark (Distributed TensorFlow), the programming model is significantly simpler, and it requires minor changes to your existing code to convert a non-distributed training code to distributed and **scale over 100s of GPUs**.
 
-.. figure:: ../../imgs/resnet101_benchmark.png
+.. figure:: ../../imgs/pipeline.png
     :alt: Increasing throughput
     :scale: 100
     :align: center
     :figclass: align-center
 
 Horovod scaling ResNet-101 with commodity GPUs
-
-.. _jupyter-documentation: ./jupyter.html
