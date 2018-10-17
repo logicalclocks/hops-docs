@@ -7,11 +7,11 @@ Hops Python library
 **Hops library** provides a set of modules that make it simple to run Python applications for large-scale processing on Hops.
 >>>>>>> Update hops.rst
 
+`hops-util-py` is a helper library for Hops that facilitates development by hiding the complexity of running applications, discovering services and interacting with HopsFS.
 
-hdfs
------------------------
-.. highlight:: python
+It provides an Experiment API to run Python programs such as TensorFlow, Keras and PyTorch on a Hops Hadoop cluster. A TensorBoard will be started when an Experiment begins and the contents of the logdir saved in your Project. An Experiment could be a single Python program, which we refer to as an *Experiment*.
 
+<<<<<<< cf11bea59bd66ec796caccdce04ebb7849c0b2d8
 The ``hdfs`` module provides several ways of interacting with the Hops filesystem, where the Hopsworks project's data is stored.
 
 **Getting Project Information**
@@ -345,3 +345,10 @@ After you have created a kafka consumer or producer, you might need the schema f
 
     from hops import kafka
     kafka.get_schema(TOPIC_NAME)
+=======
+Grid search or genetic hyperparameter optimization such as differential evolution which runs several Experiments in parallel, which we refer to as *Parallel Experiment*.
+
+The library supports ParameterServerStrategy and CollectiveAllReduceStrategy, making multi-machine/multi-gpu training as simple as invoking a function for orchestration. This mode is referred to as *Distributed Training*.
+
+Moreover it provides an easy-to-use API for defining TLS-secured Kafka producers and consumers on the Hops platform.
+>>>>>>> Update hops.rst
