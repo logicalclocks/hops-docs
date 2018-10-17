@@ -20,10 +20,10 @@ To be able to run your TensorFlow code on Hops, the code for the whole program n
     def training(learning_rate, dropout):
         # Experiment code (including reading data, defining model, starting training...)
 
-Reading from HopsfS (HDFS)
+Reading from HopsFS (HDFS)
 ##########################
 
-**Step 1**. The first step is to upload a dataset to your project in Hopsworks. After having uploaded the dataset, your TensorFlow input pipeline code must point to the path in HopsFS where that particular dataset is stored. The first step is to get the root path to your project in HopsFS. This is easily done by the code below.
+**Step 1**. The first step is to upload a dataset to your project in Hopsworks. After having uploaded the dataset, your Machine Learning input pipeline code must read from the path in HopsFS where that particular dataset is stored. The first step is to get the root path to your project in HopsFS. This is easily done by the code below.
 
 
 ::
