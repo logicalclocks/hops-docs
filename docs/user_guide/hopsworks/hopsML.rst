@@ -29,9 +29,9 @@ Feature Extraction
 
 
 Experimentation
----------------------------
+---------------
 
-Jupyter notebooks (documentation for Jupyter on Hopsworks: experimentation)
+Jupyter notebooks (documentation for Jupyter on Hopsworks: experimentation_)
 
 In HopsML we separate Machine Learning experiments into three differents categories.
 
