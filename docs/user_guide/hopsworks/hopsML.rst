@@ -18,6 +18,7 @@ Hops Python Library
 The Hops Python Library simply named ´hops´ is used for running Python applications and consequently a library which is used throughout the entire pipeline. It simplifies interacting with services such as Kafka, Model Serving and TensorBoard, moreover it provides an experiment API for Machine Learning training.
 
 Documentation: hops-py_ 
+
 Code examples: hops-examples_ 
 
     
