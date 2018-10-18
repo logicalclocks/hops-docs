@@ -24,7 +24,7 @@ Code examples: hops-examples_
 PySpark
 -------
 
-In the HopsML pipeline we make use of `Apache Spark <https://spark.apache.org/>`_ to leverage distributed processing capabilities. Spark, as defined by its creators is a fast and general engine for large-scale data processing. In the HopsML pipeline we have three main use cases for Spark. 
+The HopsML pipeline makes use of `Apache Spark <https://spark.apache.org/>`_ to leverage distributed processing capabilities. Spark, as defined by its creators is a fast and general engine for large-scale data processing. There are three main use-cases for Spark in the HopsML pipeline.
 
 1. Data validation, transformations and feature extraction
 
@@ -48,7 +48,7 @@ Validation and visualization is easily done in Jupyter. See visualizations_ here
 Feature Extraction
 ------------------
 
-This part of the pipeline is still in development. We plan on releasing a Feature Store.
+This part of the pipeline is still in development. The plan is to release a Feature Store.
 
 
 Experimentation, Training and Testing
