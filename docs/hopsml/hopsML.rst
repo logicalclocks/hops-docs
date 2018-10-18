@@ -35,7 +35,7 @@ It is important to validate the datasets used in your pipeline, for example imba
 
 Spark Dataframes can be used to transform and validate large datasets in a distributed manner. For example schemas can be used to validate the datasets. Useful insights can be calculated such as class imbalance, null values for fields and making sure values are inside certain ranges. Datasets can be transformed by dropping or filtering fields.
 
-For visualizations on datasets See spark-magic_ or facets_ here. 
+For visualizations on datasets, see spark-magic_ or facets_ examples here. 
 
 Feature Extraction
 ------------------
