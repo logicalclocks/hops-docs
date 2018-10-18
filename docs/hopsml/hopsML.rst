@@ -111,7 +111,6 @@ Hops uses PySpark to manage resource allocation of CPU, Memory and GPUs. PySpark
     :scale: 60 %
     :figclass: align-center
 
-
 Hops supports cluster-wide Conda for managing Python library dependencies. Hops supports the creation of projects, and each project has its own conda environment, replicated at all hosts in the cluster. When you launch a PySpark job, it uses the local conda environment for that project. This way, users can install whatever libraries they like using conda and pip package managers, and then use them directly inside Spark Executors. It makes programming PySpark one step closer to the single-host experience of programming Python.
 
 
@@ -148,7 +147,7 @@ See model_serving_ and inferencing_ for more information.
 
 .. _experiments: ./experiment.html
 .. _model_serving: ./model_serving.html
-.. _inferencing: ../user_guide/tensorflow/inference.html
+.. _inferencing: ./inference.html
 .. _hops-py: http://hops-py.logicalclocks.com
 .. _experiment: http://hops-py.logicalclocks.com/hops.html#module-hops.experiment
 .. _hops-examples: https://github.com/logicalclocks/hops-examples/tree/master/tensorflow/notebooks
