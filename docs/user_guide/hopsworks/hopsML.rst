@@ -58,7 +58,11 @@ This part of the pipeline is still in development. The plan is to release a Feat
 Experimentation, Training and Testing
 -------------------------------------
 
-This section will give an overview of running Machine Learning experiments on Hops. See experiments_ for more information.
+This section will give an overview of running Machine Learning experiments on Hops. 
+
+See experiments_ for more information.
+
+See jupyter_ for development using Jupyter notebooks.
 
 In PySpark, Hops runs a different experiment on each executor – not all of the experiments will finish at the same time. Some experiments may finish early, some later. And GPUs cannot currently be shared (multiplexed) by concurrent applications. Population-based approaches for AutoML, typically proceed in stages or iterations, meaning all experiments wait for other experiments to finish, resulting in idle GPU time. That is, GPUs lie idle waiting for other experiments to finish.
 
@@ -79,3 +83,4 @@ See model_serving_ for more information.
 .. _hops-examples: https://github.com/logicalclocks/hops-examples/tree/master/tensorflow/notebooks
 .. _visualizations: https://github.com/logicalclocks/hops-examples/blob/master/tensorflow/notebooks/Plotting/Data_Visualizations.ipynb
 .. _papers: https://arxiv.org/abs/1707.02968
+.. _jupyter: ../jupyter.html
