@@ -15,7 +15,7 @@ The Pipeline
 Hops Python Library
 -------------------
 
-The Hops Python Library simply named ´hops´ is used for running Python applications and consequently a library which is used throughout the entire pipeline. It simplifies interacting with services such as Kafka, Model Serving and TensorBoard. The experiment module provides a rich API for running versioned Machine Learning experiments, whether it be a simple single-process Python application or RingAllReduce over many machines.
+The Hops Python Library simply named *hops* is used for running Python applications and consequently a library which is used throughout the entire pipeline. It simplifies interacting with services such as Kafka, Model Serving and TensorBoard. The experiment module provides a rich API for running versioned Machine Learning experiments, whether it be a simple single-process Python application or RingAllReduce over many machines.
 
 Documentation: hops-py_ 
 
@@ -41,6 +41,7 @@ Data can also be ingested using Kafka or Spark Streaming.
 Data Transformation & Verification
 ----------------------------------
 
+It is important to validate the datasets used in your pipeline since imbalanced datasets 
 Big data and machine learning deal with data. So, its important to keep the data correct in the system. If data is not accurate, it not only reduces the efficiency of the system, but also leads to some unfavourable insights. One of the big steps toward ensuring the correctness of data is through data quality and validation. With an increasing volume of data, and the noise that goes along with that, new methods or checks are getting added every day to ensure this data's quality. Since the amount of data is huge, one more thing which needs to be considered here is how to ensure fast processing of all of these checks and validations; i.e., a system which can go through each and every record ingested in a highly distributed way. This post talks about some examples of data quality and validation checks and how easy it is to programmatically ensure data quality with the help of Apache Spark and Scala.
 
 Spark Dataframes can be used to transform and validate large datasets in a distributed manner. For example schemas can be used to validate the datasets. Useful insights can be calculated such as class imbalance, null values for fields and value ranges. Datasets can be transformed by dropping or filtering fields.
