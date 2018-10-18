@@ -129,7 +129,7 @@ Its input argument is simply the wrapper function and the dictionary with the hy
 Differential Evolution
 ----------------------
 
-In evolutionary computation, differential evolution (DE) is a method that optimizes a problem by iteratively trying to improve a candidate solution with regard to a given measure of quality. A neural network can be thought of as an optimization problem, given a set of hyperparameters and a lower and uppper bound for each hyperparameter value there should be a configuration for which the `quality` (accuracy on the testing set) is highest.
+In evolutionary computation, differential evolution (DE) is a method that optimizes a problem by iteratively trying to improve a candidate solution with regard to a given measure of quality. A neural network can be thought of as an optimization problem, given a set of hyperparameters and a lower and upper bound for each hyperparameter value there should be a configuration for which the `quality` (accuracy on the testing set) is highest.
 
 In HopsML, we support differential evolution, and a search space for each hyperparameter needs to be defined. To define the search space, simply create a dictionary with the keys matching the arguments of your wrapper function, and a list with two values corresponding to the lower and upper bound of the search space. Compared to grid search, a metric needs to be returned by your code that will correspond to the fitness value of your configuration. You can then specify the direction to optimize, 'min' or 'max'.
 
@@ -207,8 +207,10 @@ After launching your job using experiment, you can navigate to Hopsworks to view
    :figclass: align-center
 
 
-Where do I go from here?
-------------------------
+Experiments service
+-------------------
+
+
 
 We have prepared several notebooks in the TensorFlow tour on Hopsworks with examples for running parallel experiments on Hops.
 
