@@ -75,7 +75,12 @@ This section will give an overview of running Machine Learning experiments on Ho
 
 In HopsML we offer a rich experiment_ API for data scientists to run their Machine Learning code, whether it be TensorFlow, Keras PyTorch or another framework with a Python API. To mention some of features it provides versioning of notebooks and other resources, AutoML algorithms that will find the best hyperparameters for your model and managing TensorBoard.
 
-
+.. _pyspark_tf.png: ../_images/pyspark_tf.png
+.. figure:: ../imgs/pyspark_tf.png
+    :alt: Increasing throughput
+    :target: `pyspark_tf.png`_
+    :align: center
+    :figclass: align-center
 
 In the Experiments service data scienstist can visualize multiple experiments as they are training in the same TensorBoard. Or look 
 
