@@ -9,6 +9,7 @@ Python-First ML Pipelines
     :alt: HopsML Pipeline
     :target: `hopsml-pipeline.png`_
     :align: center
+    :scale: 50%	   
     :figclass: align-center
 
 
@@ -19,6 +20,7 @@ Python-First ML Pipelines
     :alt: HopsML Pipeline with HopsFS
     :target: `hopsml-hopsfs-pipeline.png`_
     :align: center
+    :scale: 50%
     :figclass: align-center
 
 
