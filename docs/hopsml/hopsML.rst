@@ -4,12 +4,14 @@ HopsML
 Python-First ML Pipelines
 ------------
 
+HopsML pipelines are typically run as Airflow DAGs (directed acyclic graphs), written in Python.
+
 .. _hopsml-pipeline.png: ../_images/hopsml-pipeline.png
 .. figure:: ../imgs/hopsml-pipeline.png
     :alt: HopsML Pipeline
     :target: `hopsml-pipeline.png`_
     :align: center
-    :scale: 50%	   
+    :scale: 50 %
     :figclass: align-center
 
 
@@ -20,7 +22,7 @@ Python-First ML Pipelines
     :alt: HopsML Pipeline with HopsFS
     :target: `hopsml-hopsfs-pipeline.png`_
     :align: center
-    :scale: 50%
+    :scale: 50 %
     :figclass: align-center
 
 
@@ -132,12 +134,14 @@ See model_serving_ for more information.
 Pipeline Orchestration
 -------
 
-HopsML pipelines are typically run as Airflow pipelines. A workflow is defined as a directed acyclic graph (DAG) of tasks to be executed, and Airflow adds orchestration rules, failure handling, and notifications. 
+HopsML pipelines are typically run as Airflow DAGs, written in Python. An Airflow pipline is a directed acyclic graph (DAG) of tasks to be executed, orchestration rules, failure handling logic, and notifications. Airflow DAGs can be scheduled to run periodically, for example, once per hour, or Airflow can wait for an event (with sensors) before executing a task - for example, wait for _SUCCESS file in a parquet directory before understanding that the Parquet file(s) are finished being written.
+Typical tasks in a production Airflow ML pipeline on Hops involve Data Prep as a PySpark job, training using HopsML (PySpark + TensorFlow), model optimization using a PySpark job or a bash job, and model deployment as either a Python program or bash script.
 
 .. _hopsml-airflow.png: ../_images/hopsml-airflow.png
 .. figure:: ../imgs/hopsml-airflow.png
     :alt: HopsML Pipeline orchestrated by Airflow
     :target: `hopsml-airflow.png`_
+    :scale: 60 %
     :align: center
     :figclass: align-center
 
