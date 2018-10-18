@@ -14,6 +14,8 @@ The Hops Python Library simply named *hops* is used for running Python applicati
 
 Documentation: hops-py_ 
 
+Experiment examples: hops-examples_ 
+
 Reading from HopsFS (HDFS)
 ##########################
 
@@ -207,3 +209,4 @@ Where do I go from here?
 We have prepared several notebooks in the TensorFlow tour on Hopsworks with examples for running parallel experiments on Hops.
 
 .. _hops-py: http://hops-py.logicalclocks.com
+.. _hops-examples: https://github.com/logicalclocks/hops-examples/tree/master/tensorflow/notebooks
