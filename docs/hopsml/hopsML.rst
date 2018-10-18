@@ -14,15 +14,20 @@ Python-First ML Pipelines
     :scale: 50 %
     :figclass: align-center
 
-A machine learning pipeline is a series of processing steps that:
-- ingests (raw) input data,
-- wrangles the input data in an ETL job (data cleaning/validation, feature extraction, etc) to output clean training data,
-- trains a model (using GPUs) with the training data,
+A machine learning (ML) pipeline is a series of processing steps that:
+- optionally ingests (raw) input data from external sources,
+- wrangles the input data in an ETL job (data cleaning/validation, feature extraction, etc) to generate clean training data,
+- trains a model (using GPUs) with the clean training data,
 - validates and optimizes the model,
 - deploys the model to production,
-- monitor the model performance in production.
+- monitors model performance in production.
 
-HopsML pipelines are typically run as Airflow DAGs (directed acyclic graphs), written in Python.
+HopsML pipelines are written as a different programs for each stage in the pipeline, and the pipeline itself is written as a Airflow DAGs (directed acyclic graph).
+Typically all programs in the pipeline are written in Python, although Scala/Java ca be used at the ETL stage, in particular when dealing with large volumes of input data.
+
+For ML pipelines processing small amounts of data, developers can write a Keras/TensorFlow/PyTorch application to perform both ETL and training in a single program, although developers should be careful that the ETL stage is not so CPU intensive that GPUs cannot be fully utilized when training. For example, in an image processing pipeline, if the same Keras/TensorFlow/PyTorch application is used to both decode/scale/rotate images as well as train a deep neural network (DNN), the application will probably be CPU-bound or I/O bound, and GPUs will be underutilized.
+
+For ML pipelines processing large amounts of data, developers can write a seperate Spark or PySpark application to perform ETL and generate training data. When that application has completed, Airflow will then schedule a PySpark application with Keras/TensorFlow/PyTorch to train the DNN, on possibly many GPUs. The training data will be read from a distributed filesystem (HopsFS), and all logs, TensorBoard events, checkpoints, and the model will be written to the same distributed filesystem. When training has completed, Airflow can schedule a simple Python/Bash job to optimize the trained model (e.g., quantize model weights, remove batch norm layers,  shrink models for mobile devices), using either Nvidia's TensorRT library or TensorFlow's *transform_graph* utility. The optimized model (a .pb (protocol buffers) file in TensorFlow) can then be deployed directly from HopsFS to a model serving server (TensorFlow serving Server on Kubernetes) using a REST call on Hopsworks. Finally, Airflow can start a Spark Streaming job to monitor the deployed model by consuing logs for the deployed model from Kafka.
 	       
 .. _hopsml-hopsfs-pipeline.png: ../_images/hopsml-hopsfs-pipeline.png
 .. figure:: ../imgs/hopsml-hopsfs-pipeline.png
@@ -32,7 +37,9 @@ HopsML pipelines are typically run as Airflow DAGs (directed acyclic graphs), wr
     :scale: 50 %
     :figclass: align-center
 
-HopsML uses HopsFS, a next-generation version of HDFS, to coordinate the different steps of an ML pipeline. Input data for pipelines can come from external sources, such as an existing Hadoop cluster or a S3 datalake, a feature store, or existing training datasets. During a ML pipeline HopsFS as a central coordinator for sharing data between the different stages. Examples of such data include features from the store, existing training data, PySpark/TensorFlow application logs, Tensorboard events (aggregate from many different executors/GPUs), output models, checkpoints, partial/full results from hyperparameter optimization.
+HopsML uses HopsFS, a next-generation version of HDFS, to coordinate the different steps of an ML pipeline. Input data for pipelines can come from external sources, such as an existing Hadoop cluster or a S3 datalake, a feature store, or existing training datasets. External datasources can push data to HopsFS using either the Hopsworks REST-API or using Kafka in Hopsworks.
+
+During a ML pipeline HopsFS acts as a central coordinator for sharing data between the different stages. Examples of such data include features from the store, existing training data, PySpark/TensorFlow application logs, Tensorboard events (aggregate from many different executors/GPUs), output models, checkpoints, partial/full results from hyperparameter optimization. 
 
 
 	       
