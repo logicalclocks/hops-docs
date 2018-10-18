@@ -13,17 +13,6 @@ Hops Python Library
 The Hops Python Library simply named *hops* is used for running Python applications and consequently a library which is used throughout the entire pipeline. It simplifies interacting with services such as Kafka, Model Serving and TensorBoard. The experiment module provides a rich API for running versioned Machine Learning experiments, whether it be a simple single-process Python application or RingAllReduce over many machines.
 
 Documentation: hops-py_ 
-    
-The programming model: Wrap your Machine Learning code in a function
-####################################################################
-
-To be able to run your TensorFlow code on Hops, the code for the whole program needs to be provided and put inside a wrapper function. Everything, from importing libraries to reading data and defining the model and running the program, needs to be put inside a wrapper function. The arguments of the wrapper function would map directly to the name of your hyperparameters.
-
-::
-
-    # Hyperparameter are learning rate and dropout
-    def training(learning_rate, dropout):
-        # Experiment code (including reading data, defining model, starting training...)
 
 Reading from HopsFS (HDFS)
 ##########################
@@ -72,6 +61,18 @@ The path returned is to the root directory in Hopsworks of your project.
     dataset = tf.data.TFRecordDataset(tfrecords_dataset)
     
     ... Experiment code ...
+    
+    
+The programming model: Wrap your Machine Learning code in a function
+####################################################################
+
+To be able to run your TensorFlow code on Hops, the code for the whole program needs to be provided and put inside a wrapper function. Everything, from importing libraries to reading data and defining the model and running the program, needs to be put inside a wrapper function. The arguments of the wrapper function would map directly to the name of your hyperparameters.
+
+::
+
+    # Hyperparameter are learning rate and dropout
+    def training(learning_rate, dropout):
+        # Experiment code (including reading data, defining model, starting training...)
     
    
 
