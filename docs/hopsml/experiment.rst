@@ -87,7 +87,7 @@ Parallel Experiments
 --------------------
 
 
-Hyperparameter optimization is critical to achieve the best accuracy for your model. With Hops, hyperparameter optimization is easier than ever. We provide grid-search or state-of-the-art evolutionary optimization which will automatically learn what hyperparameters are the best and iteratively improve metrics such as model accuracy.
+Hyperparameter optimization is critical to achieve the best accuracy for your model. With HopsML, hyperparameter optimization is easier than ever. We provide grid-search or state-of-the-art evolutionary optimization which will automatically learn what hyperparameters are the best and iteratively improve metrics such as model accuracy.
 
 **Grid search**
 
@@ -153,6 +153,12 @@ After defining the training code and the hyperparameter bounds, the next step is
 
 Distributed Training
 --------------------
+
+**What is Distributed Training?**
+
+Compared to Experiment and Parallel Experiments, Distributed Training involves making use of multiple machines with potentially multiple GPUs per machine in order to train the model.
+
+HopsML supports the newly released MirroredStrategy, ParameterServerStrategy and CollectiveAllReduceStrategy in TensorFlow. Making distributed training with TensorFlow or Keras as simple as invoking a function with your code in order to setup the cluster and start the training.
 
 
 Working with TensorBoard
