@@ -197,3 +197,5 @@ Where do I go from here?
 ------------------------
 
 We have prepared several notebooks in the TensorFlow tour on Hopsworks with examples for running parallel experiments on Hops.
+
+.. _hops-py: http://hops-py.logicalclocks.com
