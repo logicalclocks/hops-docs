@@ -26,7 +26,7 @@ PySpark
 
 The HopsML pipeline makes use of `Apache Spark <https://spark.apache.org/>`_ to leverage distributed processing capabilities. Spark, as defined by its creators is a fast and general engine for large-scale data processing. There are three main use-cases for Spark in the HopsML pipeline.
 
-1. Data validation, transformations and feature extraction
+1. Data validation and quality
 
 2. Dynamic resource allocation of the resources (CPU, Memory and GPUs) in the cluster.
 
