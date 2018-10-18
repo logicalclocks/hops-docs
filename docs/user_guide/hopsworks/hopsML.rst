@@ -41,6 +41,8 @@ Data can also be ingested using Kafka or Spark Streaming.
 Data Transformation & Verification
 ----------------------------------
 
+Big data and machine learning deal with data. So, its important to keep the data correct in the system. If data is not accurate, it not only reduces the efficiency of the system, but also leads to some unfavourable insights. One of the big steps toward ensuring the correctness of data is through data quality and validation. With an increasing volume of data, and the noise that goes along with that, new methods or checks are getting added every day to ensure this data's quality. Since the amount of data is huge, one more thing which needs to be considered here is how to ensure fast processing of all of these checks and validations; i.e., a system which can go through each and every record ingested in a highly distributed way. This post talks about some examples of data quality and validation checks and how easy it is to programmatically ensure data quality with the help of Apache Spark and Scala.
+
 Spark Dataframes can be used to transform and validate large datasets in a distributed manner. For example schemas can be used to validate the datasets. Useful insights can be calculated such as class imbalance, null values for fields and value ranges. Datasets can be transformed by dropping or filtering fields.
 
 Validation and visualization is easily done in Jupyter. See visualizations_ here.
