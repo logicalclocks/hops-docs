@@ -15,12 +15,11 @@ The Pipeline
 Hops Python Library
 -------------------
 
-The Hops Python Library simply named ´hops´ is used for running Python applications and consequently a library which is used throughout the entire pipeline. It simplifies interacting with services such as Kafka, Model Serving and TensorBoard, moreover it provides an experiment API for Machine Learning training.
+The Hops Python Library simply named ´hops´ is used for running Python applications and consequently a library which is used throughout the entire pipeline. It simplifies interacting with services such as Kafka, Model Serving and TensorBoard. The experiment module provides a rich API for running versioned Machine Learning experiments, whether it be a simple single-process Python application or RingAllReduce over many machines.
 
 Documentation: hops-py_ 
 
 Code examples: hops-examples_ 
-
     
 PySpark
 -------
@@ -42,13 +41,14 @@ Data can also be ingested using Kafka or Spark Streaming.
 Data Transformation & Verification
 ----------------------------------
 
-Spark Dataframes can be used to transform and validate large datasets in a distributed manner.
+Spark Dataframes can be used to transform and validate large datasets in a distributed manner. For example schemas can be used to validate the datasets. Useful insights can be calculated such as class imbalance, null values for fields and value ranges. Datasets can be transformed by dropping or filtering fields.
 
+Validation and visualization is easily done in Jupyter. See visualizations_ here.
 
 Feature Extraction
 ------------------
 
-Spark Dataframes can be used for feature extraction.
+This part of the pipeline is still in development. We plan on releasing a Feature Store.
 
 
 Experimentation, Training and Testing
@@ -84,7 +84,8 @@ In the pipeline we support a scalable architecture for serving of TensorFlow and
 
 See model_serving_ for more information.
 
-.. _experiments: ../tensorflow/experiment.html
-.. _model_serving: ../tensorflow/model_serving.html
+.. _experiments: ../hopsml/experiment.html
+.. _model_serving: ../hopsml/model_serving.html
 .. _hops-py: http://hops-py.logicalclocks.com
 .. _hops-examples: https://github.com/logicalclocks/hops-examples/tree/master/tensorflow/notebooks
+.. _visualizations: https://github.com/logicalclocks/hops-examples/blob/master/tensorflow/notebooks/Plotting/Data_Visualizations.ipynb
