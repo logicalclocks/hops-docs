@@ -15,6 +15,7 @@ Python-First ML Pipelines
     :figclass: align-center
 
 A machine learning (ML) pipeline is a series of processing steps that:
+
 - optionally ingests (raw) input data from external sources,
 - wrangles the input data in an ETL job (data cleaning/validation, feature extraction, etc) to generate clean training data,
 - trains a model (using GPUs) with the clean training data,
@@ -78,11 +79,37 @@ Spark Dataframes can be used to transform and validate large datasets in a distr
 
 Visual validation and quality checks is supported in Jupyter. See visualizations_ here.
 
-Feature Extraction
+Feature Store
 ------------------
 
-This part of the pipeline is still in development. The plan is to release a Feature Store.
+    "A feature store allows teams to share, discover, and use a highly curated set of features for their machine learning problems"
+        `Michelangelo <https://eng.uber.com/michelangelo/>` by Uber
 
+Hopsworks provides a feature store to curate, store, and document features for use in ML pipelines. The feature store requires a change data engineers and data scientists extract features and use features from data sources. Feature engineering now becomes a separate, documented step that enables:
+
+1. Feature Reuse/Collaboration,
+2. Feature Documentation,
+3. Feature Backfilling
+4. Feature Versioning
+5. DRY (not repeat yourself) feature engineering.
+
+.. _feature-store.png: ../_images/feature-store.png
+.. figure:: ../imgs/feature-store.png
+    :alt: Feature Store
+    :target: `feature-store.png`_
+    :align: center
+    :scale: 40 %
+    :figclass: align-center
+
+
+.. _hopsworks_feature_store.png: ../_images/hopsworks_feature_store.png
+.. figure:: ../imgs/hopsworks_feature_store.png
+    :alt: Feature Store
+    :target: `hopsworks_feature_store.png`_
+    :align: center
+    :scale: 60 %
+    :figclass: align-center
+	       
 
 Experimentation
 ---------------
