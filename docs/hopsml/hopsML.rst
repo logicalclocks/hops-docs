@@ -20,17 +20,6 @@ The Hops Python Library simply named *hops* is used for running Python applicati
 Documentation: hops-py_ 
 
 Code examples: hops-examples_ 
-    
-PySpark
--------
-
-The HopsML pipeline makes use of `Apache Spark <https://spark.apache.org/>`_ to leverage distributed processing capabilities. Spark is a fast and general engine for large-scale data processing. There are three main use-cases for Spark in the HopsML pipeline.
-
-**Data validation and quality**
-
-**Dynamic resource allocation of the resources (CPU, Memory and GPUs) in the cluster**
-
-**Orchestration and execution of Machine Learning code**
 
 Data Collection
 ---------------
