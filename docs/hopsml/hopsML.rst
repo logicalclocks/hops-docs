@@ -66,7 +66,7 @@ In the Experiments service data scienstist can visualize multiple experiments as
 
 .. _tensorboard.png: ../_images/tensorboard.png
 .. figure:: ../imgs/tensorboard.png
-    :alt: Increasing throughput
+    :alt: TensorBoard
     :target: `tensorboard.png`_
     :align: center
     :figclass: align-center
