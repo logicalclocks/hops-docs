@@ -24,6 +24,13 @@ Hops Documentation
 
    user_guide/user_guide.rst
 
+.. _hops-ml:
+.. toctree::
+   :maxdepth: 3
+   :glob:
+
+   hopsml/hopsML.rst
+
 .. _hops-admin-guide:
 
 .. toctree::
