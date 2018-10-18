@@ -64,21 +64,6 @@ As such, we have the problem of how to free up the GPUs as soon as its experimen
 
 Each Spark executor runs a local TensorFlow process. Hops also supports cluster-wide Conda for managing python library dependencies. Hops supports the creation of projects, and each project has its own conda environment, replicated at all hosts in the cluster. When you launch a PySpark job, it uses the local conda environment for that project. This way, users can install whatever libraries they like using conda and pip, and then use them directly inside Spark Executors. It makes programming PySpark one step closer to the single-host experience of programming Python.
 
-In HopsML we separate Machine Learning experiments into three differents categories.
-
-**Experiment**
-
-A single python program that runs with a set of predefined hyperparameters. 
-
-**Parallel Experiments**
-
-A set of hyperparameters to try given some hyperparameter optimization algorithm. Supported algorithms currently include grid search and differential evolution. In the future more algorithms will be added.
-
-**Distributed Training**
-
-Training involving multiple gpus and/or multiple hosts. Distributed Training is only supported for TensorFlow and Keras using CollectiveAllReduceStrategy, ParameterServerStrategy and MirroredStrategy.
-
-
 Serving
 -------
 
