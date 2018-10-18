@@ -97,6 +97,13 @@ Serving
 
 In the pipeline we support a scalable architecture for serving of TensorFlow and Keras models. We use the TensorFlow Serving running on K8s to scale up the number of serving instances dynamically and handle load balancing.
 
+.. _serving_architecture.png: ../_images/serving_architecture.png
+.. figure:: ../imgs/serving_architecture.png
+    :alt: TensorBoard
+    :target: `serving_architecture.png`_
+    :align: center
+    :figclass: align-center
+
 See model_serving_ for more information.
 
 .. _experiments: ./experiment.html
