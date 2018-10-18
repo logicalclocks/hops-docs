@@ -83,6 +83,8 @@ Experiment
 
 The simple Experiment abstraction corresponds to a single Python ML program, for example any hyperparameters or other configuration is hard-coded in the code itself.
 
+See experiment_ for full examples, below is a pseudo-code snippet.
+
 ::
 
     def code_to_run():
@@ -111,6 +113,7 @@ Parallel Experiments
 
 
 Hyperparameter optimization is critical to achieve the best accuracy for your model. With HopsML, hyperparameter optimization is easier than ever. We provide grid-search or state-of-the-art evolutionary optimization which will automatically learn what hyperparameters are the best and iteratively improve metrics such as model accuracy.
+See parallel_experiment_ for full examples.
 
 **Grid search**
 
@@ -183,6 +186,8 @@ Compared to Experiment and Parallel Experiments, Distributed Training involves m
 
 HopsML supports the newly released MirroredStrategy, ParameterServerStrategy and CollectiveAllReduceStrategy in TensorFlow. Making distributed training with TensorFlow or Keras as simple as invoking a function with your code in order to setup the cluster and start the training.
 
+See distributed_training_ for full examples.
+
 
 Working with TensorBoard
 ########################
@@ -250,3 +255,11 @@ We have prepared several notebooks in the TensorFlow tour on Hopsworks with exam
 
 .. _hops-py: http://hops-py.logicalclocks.com
 .. _hops-examples: https://github.com/logicalclocks/hops-examples/tree/master/tensorflow/notebooks
+
+.. _experiment: https://github.com/logicalclocks/hops-examples/tree/master/tensorflow/notebooks/Experiment
+.. _parallel_experiment: https://github.com/logicalclocks/hops-examples/tree/master/tensorflow/notebooks/Parallel_Experiments
+.. _distributed_training: https://github.com/logicalclocks/hops-examples/tree/master/tensorflow/notebooks/Distributed_Training
+
+
+
+https://github.com/logicalclocks/hops-examples/tree/master/tensorflow/notebooks/Distributed_Training
