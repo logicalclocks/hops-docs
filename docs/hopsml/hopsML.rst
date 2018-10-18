@@ -4,7 +4,7 @@ HopsML
 Python-First ML Pipelines
 ------------
 
-HopsML pipelines are typically run as Airflow DAGs (directed acyclic graphs), written in Python.
+
 
 .. _hopsml-pipeline.png: ../_images/hopsml-pipeline.png
 .. figure:: ../imgs/hopsml-pipeline.png
@@ -14,8 +14,15 @@ HopsML pipelines are typically run as Airflow DAGs (directed acyclic graphs), wr
     :scale: 50 %
     :figclass: align-center
 
+A machine learning pipeline is a series of processing steps that:
+- ingests (raw) input data,
+- wrangles the input data in an ETL job (data cleaning/validation, feature extraction, etc) to output clean training data,
+- trains a model (using GPUs) with the training data,
+- validates and optimizes the model,
+- deploys the model to production,
+- monitor the model performance in production.
 
-
+HopsML pipelines are typically run as Airflow DAGs (directed acyclic graphs), written in Python.
 	       
 .. _hopsml-hopsfs-pipeline.png: ../_images/hopsml-hopsfs-pipeline.png
 .. figure:: ../imgs/hopsml-hopsfs-pipeline.png
@@ -24,6 +31,8 @@ HopsML pipelines are typically run as Airflow DAGs (directed acyclic graphs), wr
     :align: center
     :scale: 50 %
     :figclass: align-center
+
+HopsML uses HopsFS, a next-generation version of HDFS, to coordinate the different steps of an ML pipeline. Input data for pipelines can come from external sources, such as an existing Hadoop cluster or a S3 datalake, a feature store, or existing training datasets. During a ML pipeline HopsFS as a central coordinator for sharing data between the different stages. Examples of such data include features from the store, existing training data, PySpark/TensorFlow application logs, Tensorboard events (aggregate from many different executors/GPUs), output models, checkpoints, partial/full results from hyperparameter optimization.
 
 
 	       
