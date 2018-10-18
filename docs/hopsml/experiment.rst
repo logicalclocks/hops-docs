@@ -7,23 +7,19 @@ In PySpark, Hops runs a different experiment on each executor – not all of the
 
 As such, we have the problem of how to free up the GPUs as soon as its experiment is finished. Hops leverages dynamic executors in PySpark/YARN to free up the GPU(s) attached to an executor immediately if it sits idle waiting for other experiments to finish, ensuring that (expensive) GPUs are held no longer than needed.
 
-Each Spark executor runs a local TensorFlow process. Hops also supports cluster-wide Conda for managing python library dependencies. Hops supports the creation of projects, and each project has its own conda environment, replicated at all hosts in the cluster. When you launch a PySpark job, it uses the local conda environment for that project. This way, users can install whatever libraries they like using conda and pip, and then use them directly inside Spark Executors. It makes programming PySpark one step closer to the single-host experience of programming Python. Hops also supports Jupyter and the SparkMagic kernel for running PySpark jobs.   
-    
-The programming model: Wrap your Machine Learning code in a function
-####################################################################
+Hops Python Library
+-------------------
 
-To be able to run your TensorFlow code on Hops, the code for the whole program needs to be provided and put inside a wrapper function. Everything, from importing libraries to reading data and defining the model and running the program, needs to be put inside a wrapper function. The arguments of the wrapper function would map directly to the name of your hyperparameters.
+The Hops Python Library simply named *hops* is used for running Python applications and consequently a library which is used throughout the entire pipeline. It simplifies interacting with services such as Kafka, Model Serving and TensorBoard. The experiment module provides a rich API for running versioned Machine Learning experiments, whether it be a simple single-process Python application or RingAllReduce over many machines.
 
-::
+Documentation: hops-py_ 
 
-    # Hyperparameter are learning rate and dropout
-    def training(learning_rate, dropout):
-        # Experiment code (including reading data, defining model, starting training...)
+Experiment examples: hops-examples_ 
 
 Reading from HopsFS (HDFS)
 ##########################
 
-**Step 1**. The first step is to upload a dataset to your project in Hopsworks. After having uploaded the dataset, your Machine Learning input pipeline code must read from the path in HopsFS where that particular dataset is stored. The first step is to get the root path to your project in HopsFS. This is easily done by the code below.
+**Step 1**. The first step is to ingest data to your experiment. The first step is to get the root path to your project in HopsFS. This is easily done by using the hdfs module as below.
 
 
 ::
@@ -35,18 +31,18 @@ Reading from HopsFS (HDFS)
 
     ... Experiment code ...
     
-The path returned is to the root directory in Hopsworks.
+The path returned is to the root directory in Hopsworks of your project.
 
 
-.. _datasets-browser.png: ../../_images/datasets-browser.png
-.. figure:: ../../imgs/datasets-browser.png
+.. _datasets-browser.png: ../_images/datasets-browser.png
+.. figure:: ../imgs/datasets-browser.png
    :alt: Dataset browser
    :target: `datasets-browser.png`_
    :align: center
    :figclass: align-center
 
 
-**Step 2**. Append the relative path of your dataset to the root path. Assuming you uploaded a file named ``train.tfrecord`` s in the Resources dataset, the path pointing to that particular dataset would then be.
+**Step 2**. Append the relative path of your dataset to the root path. Assuming you uploaded a file named ``train.tfrecords`` in the Resources dataset, the path pointing to that particular dataset would then be.
 
 ::
 
@@ -58,7 +54,7 @@ The path returned is to the root directory in Hopsworks.
 
     ... Experiment code ...
 
-**Step 3**. Use the path as any other path in a TensorFlow module
+**Step 3**. Use the path as any other path in your experiment. Keep in mind that the API you are using to read the dataset must support reading from HDFS. Alternatively you could use ``hdfs.copy_to_local("Resources/train.tfrecords", "")`` which will download the dataset to your executor so it can be used by any API.
 
 ::
 
@@ -68,18 +64,30 @@ The path returned is to the root directory in Hopsworks.
     
     ... Experiment code ...
     
+    
+The programming model: Wrap your Machine Learning code in a function
+####################################################################
+
+To be able to run your TensorFlow code on Hops, the code for the whole program needs to be provided and put inside a wrapper function. Everything, from importing libraries to reading data and defining the model and running the program, needs to be put inside a wrapper function. The arguments of the wrapper function would map directly to the name of your hyperparameters.
+
+::
+
+    # Hyperparameter are learning rate and dropout
+    def training(learning_rate, dropout):
+        # Experiment code (including reading data, defining model, starting training...)
+    
    
 
 Experiment
 ----------
 
-A single experiment
+A single experiment...
     
 Parallel Experiments
 --------------------
 
 
-Hyperparameter optimization is critical to achieve the best accuracy for your model. With Hops, hyperparameter optimization is easier than ever. We provide grid-search or state-of-the-art evolutionary optimization which will automatically learn what hyperparameters are the best and iteratively improve metrics such as model accuracy.
+Hyperparameter optimization is critical to achieve the best accuracy for your model. With HopsML, hyperparameter optimization is easier than ever. We provide grid-search or state-of-the-art evolutionary optimization which will automatically learn what hyperparameters are the best and iteratively improve metrics such as model accuracy.
 
 **Grid search**
 
@@ -92,6 +100,8 @@ To define the hyperparameters, simply create a dictionary with the keys matching
 
     def training(learning_rate, dropout):
         # Training code
+        metric = model.eval(learning_rate, dropout)
+        return metric
 
 
 .. csv-table:: Job number and hyperparameters
@@ -111,15 +121,17 @@ After defining the training code, the hyperparameter combinations and the direct
 ::
 
     from hops import experiment
-    experiment.grid_search(spark, training, args_dict, direction='max')
+    experiment.grid_search(training, args_dict, direction='max')
 
 
-Its input argument is simply the `spark` SparkSession object, which is automatically created when the first cell is evaluated in the notebook, in addition to the wrapper function and the dictionary with the hyperparameters. `experiment.grid_search` will simply run the wrapper function and generate the grid of hyperparameters and inject the value of each hyperparameter that you have specified.
+Its input argument is simply the wrapper function and the dictionary with the hyperparameters. `experiment.grid_search` will simply run the wrapper function and generate the grid of hyperparameters and inject the value of each hyperparameter that you have specified.
 
 Differential Evolution
 ----------------------
 
-With differential evolution a search space for each hyperparameter needs to be defined. To define the search space, simply create a dictionary with the keys matching the arguments of your wrapper function, and a list with two values corresponding to the lower and upper bound of the search space. Compared to grid search, a metric needs to be returned by your code that will correspond to the fitness value of your configuration. You can then specify the direction to optimize, 'min' or 'max'.
+In evolutionary computation, differential evolution (DE) is a method that optimizes a problem by iteratively trying to improve a candidate solution with regard to a given measure of quality. A neural network can be thought of as an optimization problem, given a set of hyperparameters and a lower and upper bound for each hyperparameter value there should be a configuration for which the `quality` (accuracy on the testing set) is highest.
+
+In HopsML, we support differential evolution, and a search space for each hyperparameter needs to be defined. To define the search space, simply create a dictionary with the keys matching the arguments of your wrapper function, and a list with two values corresponding to the lower and upper bound of the search space. Compared to grid search, a metric needs to be returned by your code that will correspond to the fitness value of your configuration. You can then specify the direction to optimize, 'min' or 'max'.
 
 ::
   
@@ -135,12 +147,18 @@ After defining the training code and the hyperparameter bounds, the next step is
 ::
 
     from hops import experiment
-    experiment.evolutionary_search(spark, training, args_dict_grid, direction='max')
+    experiment.evolutionary_search(training, args_dict_grid, direction='max')
     
     
 
 Distributed Training
 --------------------
+
+**What is Distributed Training?**
+
+Compared to Experiment and Parallel Experiments, Distributed Training involves making use of multiple machines with potentially multiple GPUs per machine in order to train the model.
+
+HopsML supports the newly released MirroredStrategy, ParameterServerStrategy and CollectiveAllReduceStrategy in TensorFlow. Making distributed training with TensorFlow or Keras as simple as invoking a function with your code in order to setup the cluster and start the training.
 
 
 Working with TensorBoard
@@ -160,15 +178,15 @@ When you run your job using the experiment API a TensorBoard will be started aut
 **Navigate to TensorBoard in Hopsworks**
 After launching your job using experiment, you can monitor training by observing the TensorBoard.
 
-.. _jupyter.png: ../../_images/jupyter.png
-.. figure:: ../../imgs/jupyter.png
+.. _jupyter.png: ../_images/jupyter.png
+.. figure:: ../imgs/jupyter.png
    :alt: Navigate to TensorBoard 1
    :target: `jupyter.png`_
    :align: center
    :figclass: align-center
 
-.. _overview.png: ../../_images/overview.png
-.. figure:: ../../imgs/overview.png
+.. _overview.png: ../_images/overview.png
+.. figure:: ../imgs/overview.png
    :alt: Navigate to TensorBoard 2
    :target: `overview.png`_
    :align: center
@@ -180,22 +198,32 @@ Execution Logs
 **Navigate to Logs in Hopsworks**
 After launching your job using experiment, you can navigate to Hopsworks to view execution logs.
 
-.. _logs.png: ../../_images/logs.png
-.. figure:: ../../imgs/logs.png
+.. _logs.png: ../_images/logs.png
+.. figure:: ../imgs/logs.png
    :alt: Logs location
    :target: `logs.png`_
    :align: center
    :figclass: align-center
 
-.. _viewlogs.png: ../../_images/viewlogs.png
-.. figure:: ../../imgs/viewlogs.png
+.. _viewlogs.png: ../_images/viewlogs.png
+.. figure:: ../imgs/viewlogs.png
    :alt: View execution logs
    :target: `viewlogs.png`_
    :align: center
    :figclass: align-center
 
 
-Where do I go from here?
-------------------------
+Experiments service
+-------------------
+
+.. _tensorboard.png: ../_images/tensorboard.png
+.. figure:: ../imgs/tensorboard.png
+    :alt: TensorBoard
+    :target: `tensorboard.png`_
+    :align: center
+    :figclass: align-center
 
 We have prepared several notebooks in the TensorFlow tour on Hopsworks with examples for running parallel experiments on Hops.
+
+.. _hops-py: http://hops-py.logicalclocks.com
+.. _hops-examples: https://github.com/logicalclocks/hops-examples/tree/master/tensorflow/notebooks
