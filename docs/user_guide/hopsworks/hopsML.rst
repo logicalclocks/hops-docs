@@ -24,7 +24,7 @@ Code examples: hops-examples_
 PySpark
 -------
 
-The HopsML pipeline makes use of `Apache Spark <https://spark.apache.org/>`_ to leverage distributed processing capabilities. Spark, as defined by its creators is a fast and general engine for large-scale data processing. There are three main use-cases for Spark in the HopsML pipeline.
+The HopsML pipeline makes use of `Apache Spark <https://spark.apache.org/>`_ to leverage distributed processing capabilities. Spark is a fast and general engine for large-scale data processing. There are three main use-cases for Spark in the HopsML pipeline.
 
 1. Data validation and quality
 
@@ -41,12 +41,13 @@ Data can also be ingested using Kafka or Spark Streaming.
 Data Transformation & Verification
 ----------------------------------
 
-It is important to validate the datasets used in your pipeline since imbalanced datasets 
-Big data and machine learning deal with data. So, its important to keep the data correct in the system. If data is not accurate, it not only reduces the efficiency of the system, but also leads to some unfavourable insights. One of the big steps toward ensuring the correctness of data is through data quality and validation. With an increasing volume of data, and the noise that goes along with that, new methods or checks are getting added every day to ensure this data's quality. Since the amount of data is huge, one more thing which needs to be considered here is how to ensure fast processing of all of these checks and validations; i.e., a system which can go through each and every record ingested in a highly distributed way. This post talks about some examples of data quality and validation checks and how easy it is to programmatically ensure data quality with the help of Apache Spark and Scala.
+It is important to validate the datasets used in your pipeline, for example imbalanced classes may lead to Machine Learning models being biased towards more frequently occuring labels in the dataset.  Therefore it is of outmost importance for input data to be balanced and representative of the domain from which the data came. One of the big steps toward ensuring the correctness of data is through data quality and validation checks. Machine Learning models, as have been observed empirically and in papers_, reduce their generalization error for larger datasets. Therefore it is also critical to have a data wrangling and validation engine which scales for ever increasing datasets. The solution for this is to go distributed in order to process every single record, but still have a rich API for perform quality checks and manipulating the data. The pipeline makes use of Spark to provide these capabilities.
 
-Spark Dataframes can be used to transform and validate large datasets in a distributed manner. For example schemas can be used to validate the datasets. Useful insights can be calculated such as class imbalance, null values for fields and value ranges. Datasets can be transformed by dropping or filtering fields.
+Spark Dataframes can be used to transform and validate large datasets in a distributed manner. For example schemas can be used to validate the datasets. Useful insights can be calculated such as class imbalance, null values for fields and making sure values are inside certain ranges. Datasets can be transformed by dropping or filtering fields.
 
 Validation and visualization is easily done in Jupyter. See visualizations_ here.
+
+
 
 Feature Extraction
 ------------------
@@ -77,3 +78,4 @@ See model_serving_ for more information.
 .. _hops-py: http://hops-py.logicalclocks.com
 .. _hops-examples: https://github.com/logicalclocks/hops-examples/tree/master/tensorflow/notebooks
 .. _visualizations: https://github.com/logicalclocks/hops-examples/blob/master/tensorflow/notebooks/Plotting/Data_Visualizations.ipynb
+.. _papers: https://arxiv.org/abs/1707.02968
