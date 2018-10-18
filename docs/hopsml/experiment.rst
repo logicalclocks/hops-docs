@@ -32,8 +32,8 @@ Reading from HopsFS (HDFS)
 The path returned is to the root directory in Hopsworks of your project.
 
 
-.. _datasets-browser.png: ../../_images/datasets-browser.png
-.. figure:: ../../imgs/datasets-browser.png
+.. _datasets-browser.png: ../_images/datasets-browser.png
+.. figure:: ../imgs/datasets-browser.png
    :alt: Dataset browser
    :target: `datasets-browser.png`_
    :align: center
