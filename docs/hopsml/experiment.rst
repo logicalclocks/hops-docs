@@ -113,6 +113,7 @@ Parallel Experiments
 
 
 Hyperparameter optimization is critical to achieve the best accuracy for your model. With HopsML, hyperparameter optimization is easier than ever. We provide grid-search or state-of-the-art evolutionary optimization which will automatically learn what hyperparameters are the best and iteratively improve metrics such as model accuracy.
+
 See parallel_experiment_ for full examples.
 
 **Grid search**
