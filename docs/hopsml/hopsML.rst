@@ -35,7 +35,7 @@ It is important to validate the datasets used in your pipeline, for example imba
 
 Spark Dataframes can be used to transform and validate large datasets in a distributed manner. For example schemas can be used to validate the datasets. Useful insights can be calculated such as class imbalance, null values for fields and making sure values are inside certain ranges. Datasets can be transformed by dropping or filtering fields.
 
-Visual validation and quality checks is supported in Jupyter. See visualizations_ here.
+For visualizations on datasets See spark-magic_ or facets_ here. 
 
 Feature Extraction
 ------------------
@@ -100,6 +100,7 @@ See model_serving_ for more information.
 .. _hops-py: http://hops-py.logicalclocks.com
 .. _experiment: http://hops-py.logicalclocks.com/hops.html#module-hops.experiment
 .. _hops-examples: https://github.com/logicalclocks/hops-examples/tree/master/tensorflow/notebooks
-.. _visualizations: https://github.com/logicalclocks/hops-examples/blob/master/tensorflow/notebooks/Plotting/Data_Visualizations.ipynb
+.. _spark-magic: https://github.com/logicalclocks/hops-examples/blob/master/tensorflow/notebooks/Plotting/Data_Visualizations.ipynb
+.. _facets: https://github.com/logicalclocks/hops-examples/blob/master/tensorflow/notebooks/Plotting/facets-overview.ipynb
 .. _papers: https://arxiv.org/abs/1707.02968
 .. _jupyter: ../user_guide/hopsworks/jupyter.html
