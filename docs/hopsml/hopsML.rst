@@ -1,17 +1,28 @@
 HopsML
 ======
 
-The Pipeline
+Python-First ML Pipelines
 ------------
 
-.. _pipeline.png: ../_images/pipeline.png
-.. figure:: ../imgs/pipeline.png
-    :alt: Increasing throughput
-    :target: `pipeline.png`_
+.. _hopsml-pipeline.png: ../_images/hopsml-pipeline.png
+.. figure:: ../imgs/hopsml-pipeline.png
+    :alt: HopsML Pipeline
+    :target: `hopsml-pipeline.png`_
     :align: center
     :figclass: align-center
-    
-    
+
+
+
+	       
+.. _hopsml-hopsfs-pipeline.png: ../_images/hopsml-hopsfs-pipeline.png
+.. figure:: ../imgs/hopsml-hopsfs-pipeline.png
+    :alt: HopsML Pipeline with HopsFS
+    :target: `hopsml-hopsfs-pipeline.png`_
+    :align: center
+    :figclass: align-center
+
+
+	       
 Hops Python Library
 -------------------
 
@@ -101,3 +112,17 @@ See model_serving_ for more information.
 .. _facets: https://github.com/logicalclocks/hops-examples/blob/master/tensorflow/notebooks/Plotting/facets-overview.ipynb
 .. _papers: https://arxiv.org/abs/1707.02968
 .. _jupyter: ../user_guide/hopsworks/jupyter.html
+
+
+Pipeline Orchestration
+-------
+
+HopsML pipelines are typically run as Airflow pipelines. A workflow is defined as a directed acyclic graph (DAG) of tasks to be executed, and Airflow adds orchestration rules, failure handling, and notifications. 
+
+.. _hopsml-airflow.png: ../_images/hopsml-airflow.png
+.. figure:: ../imgs/hopsml-airflow.png
+    :alt: HopsML Pipeline orchestrated by Airflow
+    :target: `hopsml-airflow.png`_
+    :align: center
+    :figclass: align-center
+
