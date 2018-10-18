@@ -100,6 +100,8 @@ To define the hyperparameters, simply create a dictionary with the keys matching
 
     def training(learning_rate, dropout):
         # Training code
+        metric = model.eval(learning_rate, dropout)
+        return metric
 
 
 .. csv-table:: Job number and hyperparameters
@@ -119,15 +121,17 @@ After defining the training code, the hyperparameter combinations and the direct
 ::
 
     from hops import experiment
-    experiment.grid_search(spark, training, args_dict, direction='max')
+    experiment.grid_search(training, args_dict, direction='max')
 
 
-Its input argument is simply the `spark` SparkSession object, which is automatically created when the first cell is evaluated in the notebook, in addition to the wrapper function and the dictionary with the hyperparameters. `experiment.grid_search` will simply run the wrapper function and generate the grid of hyperparameters and inject the value of each hyperparameter that you have specified.
+Its input argument is simply the wrapper function and the dictionary with the hyperparameters. `experiment.grid_search` will simply run the wrapper function and generate the grid of hyperparameters and inject the value of each hyperparameter that you have specified.
 
 Differential Evolution
 ----------------------
 
-With differential evolution a search space for each hyperparameter needs to be defined. To define the search space, simply create a dictionary with the keys matching the arguments of your wrapper function, and a list with two values corresponding to the lower and upper bound of the search space. Compared to grid search, a metric needs to be returned by your code that will correspond to the fitness value of your configuration. You can then specify the direction to optimize, 'min' or 'max'.
+In evolutionary computation, differential evolution (DE) is a method that optimizes a problem by iteratively trying to improve a candidate solution with regard to a given measure of quality. A neural network can be thought of as an optimization problem, given a set of hyperparameters and a lower and uppper bound for each hyperparameter value there should be a configuration for which the `quality` (accuracy on the testing set) is highest.
+
+In HopsML, we support differential evolution, and a search space for each hyperparameter needs to be defined. To define the search space, simply create a dictionary with the keys matching the arguments of your wrapper function, and a list with two values corresponding to the lower and upper bound of the search space. Compared to grid search, a metric needs to be returned by your code that will correspond to the fitness value of your configuration. You can then specify the direction to optimize, 'min' or 'max'.
 
 ::
   
@@ -143,7 +147,7 @@ After defining the training code and the hyperparameter bounds, the next step is
 ::
 
     from hops import experiment
-    experiment.evolutionary_search(spark, training, args_dict_grid, direction='max')
+    experiment.evolutionary_search(training, args_dict_grid, direction='max')
     
     
 
