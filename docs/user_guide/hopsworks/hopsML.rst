@@ -41,13 +41,11 @@ Data can also be ingested using Kafka or Spark Streaming.
 Data Transformation & Verification
 ----------------------------------
 
-It is important to validate the datasets used in your pipeline, for example imbalanced classes may lead to Machine Learning models being biased towards more frequently occuring labels in the dataset.  Therefore it is of outmost importance for input data to be balanced and representative of the domain from which the data came. One of the big steps toward ensuring the correctness of data is through data quality and validation checks. Machine Learning models, as have been observed empirically and in papers_, reduce their generalization error for larger datasets. Therefore it is also critical to have a data wrangling and validation engine which scales for ever increasing datasets. The solution for this is to go distributed in order to process every single record, but still have a rich API for perform quality checks and manipulating the data. The pipeline makes use of Spark to provide these capabilities.
+It is important to validate the datasets used in your pipeline, for example imbalanced classes may lead to Machine Learning models being biased towards more frequently occurring labels in the dataset.  Therefore it is of outmost importance for input data to be balanced and representative of the domain from which the data came. One of the big steps toward ensuring the correctness of data is through data quality and validation checks. Machine Learning models, as have been observed empirically and in papers_, reduce their generalization error for larger datasets. Therefore it is also critical to have a data wrangling and validation engine which scales for ever increasing datasets. The solution for this is to go distributed in order to process every single record, but still have a rich API for perform quality checks and manipulating the data. The pipeline makes use of Spark to provide these capabilities.
 
 Spark Dataframes can be used to transform and validate large datasets in a distributed manner. For example schemas can be used to validate the datasets. Useful insights can be calculated such as class imbalance, null values for fields and making sure values are inside certain ranges. Datasets can be transformed by dropping or filtering fields.
 
-Validation and visualization is easily done in Jupyter. See visualizations_ here.
-
-
+Visual validation and quality checks is supported in Jupyter. See visualizations_ here.
 
 Feature Extraction
 ------------------
@@ -58,7 +56,7 @@ This part of the pipeline is still in development. The plan is to release a Feat
 Experimentation, Training and Testing
 -------------------------------------
 
-This section will give an overview of running Machine Learning experiments on Hops. 
+This section will give an overview of running Machine Learning experiments on Hops.
 
 See experiments_ for more information.
 
