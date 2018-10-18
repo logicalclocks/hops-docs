@@ -210,7 +210,12 @@ After launching your job using experiment, you can navigate to Hopsworks to view
 Experiments service
 -------------------
 
-
+.. _tensorboard.png: ../_images/tensorboard.png
+.. figure:: ../imgs/tensorboard.png
+    :alt: TensorBoard
+    :target: `tensorboard.png`_
+    :align: center
+    :figclass: align-center
 
 We have prepared several notebooks in the TensorFlow tour on Hopsworks with examples for running parallel experiments on Hops.
 
