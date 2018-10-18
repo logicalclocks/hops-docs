@@ -81,7 +81,30 @@ To be able to run your TensorFlow code on Hops, the code for the whole program n
 Experiment
 ----------
 
-A single experiment...
+The simple Experiment abstraction corresponds to a single Python ML program, for example any hyperparameters or other configuration is hard-coded in the code itself.
+
+::
+
+    def code_to_run():
+        import tensorflow as tf
+        # Import hops helper modules
+        from hops import hdfs
+        from hops import tensorboard
+        dropout = 0.5
+        learning_rate = 0.001
+        
+        # Point to tfrecords dataset in your project
+        dataset = tf.data.TFRecordDataset(hdfs.project_path() + '/Resources/train.tfrecords')
+        
+        logdir = tensorboard.logdir()
+        
+        # Dummy training code... replace with actual
+        metric = model.train(learning_rate, dropout, logdir...)
+        return metric
+    
+    from hops import experiment
+    experiment.launch(code_to_run)
+
     
 Parallel Experiments
 --------------------
