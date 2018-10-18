@@ -6,8 +6,6 @@ The Experiments abstraction
 In PySpark, Hops runs a different experiment on each executor – not all of the experiments will finish at the same time. Some experiments may finish early, some later. And GPUs cannot currently be shared (multiplexed) by concurrent applications. Population-based approaches for AutoML, typically proceed in stages or iterations, meaning all experiments wait for other experiments to finish, resulting in idle GPU time. That is, GPUs lie idle waiting for other experiments to finish.
 
 As such, we have the problem of how to free up the GPUs as soon as its experiment is finished. Hops leverages dynamic executors in PySpark/YARN to free up the GPU(s) attached to an executor immediately if it sits idle waiting for other experiments to finish, ensuring that (expensive) GPUs are held no longer than needed.
-
-Each Spark executor runs a local TensorFlow process. Hops also supports cluster-wide Conda for managing python library dependencies. Hops supports the creation of projects, and each project has its own conda environment, replicated at all hosts in the cluster. When you launch a PySpark job, it uses the local conda environment for that project. This way, users can install whatever libraries they like using conda and pip, and then use them directly inside Spark Executors. It makes programming PySpark one step closer to the single-host experience of programming Python. Hops also supports Jupyter and the SparkMagic kernel for running PySpark jobs.   
     
 The programming model: Wrap your Machine Learning code in a function
 ####################################################################
@@ -23,7 +21,7 @@ To be able to run your TensorFlow code on Hops, the code for the whole program n
 Reading from HopsFS (HDFS)
 ##########################
 
-**Step 1**. The first step is to upload a dataset to your project in Hopsworks. After having uploaded the dataset, your Machine Learning input pipeline code must read from the path in HopsFS where that particular dataset is stored. The first step is to get the root path to your project in HopsFS. This is easily done by the code below.
+**Step 1**. The first step is to ingest data to your experiment. The first step is to get the root path to your project in HopsFS. This is easily done by using the hdfs module as below.
 
 
 ::
@@ -35,7 +33,7 @@ Reading from HopsFS (HDFS)
 
     ... Experiment code ...
     
-The path returned is to the root directory in Hopsworks.
+The path returned is to the root directory in Hopsworks of your project.
 
 
 .. _datasets-browser.png: ../../_images/datasets-browser.png
@@ -46,7 +44,7 @@ The path returned is to the root directory in Hopsworks.
    :figclass: align-center
 
 
-**Step 2**. Append the relative path of your dataset to the root path. Assuming you uploaded a file named ``train.tfrecord`` s in the Resources dataset, the path pointing to that particular dataset would then be.
+**Step 2**. Append the relative path of your dataset to the root path. Assuming you uploaded a file named ``train.tfrecords`` in the Resources dataset, the path pointing to that particular dataset would then be.
 
 ::
 
@@ -58,7 +56,7 @@ The path returned is to the root directory in Hopsworks.
 
     ... Experiment code ...
 
-**Step 3**. Use the path as any other path in a TensorFlow module
+**Step 3**. Use the path as any other path in your experiment. Keep in mind that the API you are using to read the dataset must support reading from HDFS. Alternatively you could use ``hdfs.copy_to_local("Resources/train.tfrecords", "")`` which will download the dataset to your executor so it can be used by any API.
 
 ::
 
@@ -73,7 +71,7 @@ The path returned is to the root directory in Hopsworks.
 Experiment
 ----------
 
-A single experiment
+A single experiment...
     
 Parallel Experiments
 --------------------
@@ -160,15 +158,15 @@ When you run your job using the experiment API a TensorBoard will be started aut
 **Navigate to TensorBoard in Hopsworks**
 After launching your job using experiment, you can monitor training by observing the TensorBoard.
 
-.. _jupyter.png: ../../_images/jupyter.png
-.. figure:: ../../imgs/jupyter.png
+.. _jupyter.png: ../_images/jupyter.png
+.. figure:: ../imgs/jupyter.png
    :alt: Navigate to TensorBoard 1
    :target: `jupyter.png`_
    :align: center
    :figclass: align-center
 
-.. _overview.png: ../../_images/overview.png
-.. figure:: ../../imgs/overview.png
+.. _overview.png: ../_images/overview.png
+.. figure:: ../imgs/overview.png
    :alt: Navigate to TensorBoard 2
    :target: `overview.png`_
    :align: center
@@ -180,15 +178,15 @@ Execution Logs
 **Navigate to Logs in Hopsworks**
 After launching your job using experiment, you can navigate to Hopsworks to view execution logs.
 
-.. _logs.png: ../../_images/logs.png
-.. figure:: ../../imgs/logs.png
+.. _logs.png: ../_images/logs.png
+.. figure:: ../imgs/logs.png
    :alt: Logs location
    :target: `logs.png`_
    :align: center
    :figclass: align-center
 
-.. _viewlogs.png: ../../_images/viewlogs.png
-.. figure:: ../../imgs/viewlogs.png
+.. _viewlogs.png: ../_images/viewlogs.png
+.. figure:: ../imgs/viewlogs.png
    :alt: View execution logs
    :target: `viewlogs.png`_
    :align: center
