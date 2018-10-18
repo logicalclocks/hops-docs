@@ -53,20 +53,41 @@ Feature Extraction
 This part of the pipeline is still in development. The plan is to release a Feature Store.
 
 
-Experimentation, Training and Testing
--------------------------------------
+Experimentation
+---------------
 
 This section will give an overview of running Machine Learning experiments on Hops.
 
-See experiments_ for more information.
+In HopsML we offer a rich experiment_ API for data scientists to run their Machine Learning code, whether it be TensorFlow, Keras PyTorch or another framework with a Python API. To mention some of features it provides versioning of notebooks and managing TensorBoard.
 
-See jupyter_ for development using Jupyter notebooks.
+
+.. _tensorboard.png: ../../_images/tensorboard.png
+.. figure:: ../../imgs/tensorboard.png
+    :alt: Increasing throughput
+    :target: `tensorboard.png`_
+    :align: center
+    :figclass: align-center
+
+
+
+
+
+
+HopsML enables AutoML, automated search for good neural network architectures and hyperparameters by running parallel experiments on different combinations of hyperparameters and model architectures.
+
+
+
+Hops uses PySpark to manage resource allocation of CPU, Memory and GPUs, in addition to transparently distribute the python code to run. In PySpark, Hops runs a different experiment on each executor – not all of the experiments will finish at the same time. Some experiments may finish early, some later. And GPUs cannot currently be shared (multiplexed) by concurrent applications. Population-based approaches for AutoML, typically proceed in stages or iterations, meaning all experiments wait for other experiments to finish, resulting in idle GPU time. That is, GPUs lie idle waiting for other experiments to finish.
 
 In PySpark, Hops runs a different experiment on each executor – not all of the experiments will finish at the same time. Some experiments may finish early, some later. And GPUs cannot currently be shared (multiplexed) by concurrent applications. Population-based approaches for AutoML, typically proceed in stages or iterations, meaning all experiments wait for other experiments to finish, resulting in idle GPU time. That is, GPUs lie idle waiting for other experiments to finish.
 
 As such, we have the problem of how to free up the GPUs as soon as its experiment is finished. Hops leverages dynamic executors in PySpark to free up the GPU(s) attached to an executor immediately if it sits idle waiting for other experiments to finish, ensuring that (expensive) GPUs are held no longer than needed.
 
 Each Spark executor runs a local TensorFlow process. Hops also supports cluster-wide Conda for managing python library dependencies. Hops supports the creation of projects, and each project has its own conda environment, replicated at all hosts in the cluster. When you launch a PySpark job, it uses the local conda environment for that project. This way, users can install whatever libraries they like using conda and pip, and then use them directly inside Spark Executors. It makes programming PySpark one step closer to the single-host experience of programming Python.
+
+See experiments_ for more information.
+
+See jupyter_ for development using Jupyter notebooks.
 
 Serving
 -------
@@ -78,6 +99,7 @@ See model_serving_ for more information.
 .. _experiments: ../hopsml/experiment.html
 .. _model_serving: ../hopsml/model_serving.html
 .. _hops-py: http://hops-py.logicalclocks.com
+.. _experiment: http://hops-py.logicalclocks.com/hops.html#module-hops.experiment
 .. _hops-examples: https://github.com/logicalclocks/hops-examples/tree/master/tensorflow/notebooks
 .. _visualizations: https://github.com/logicalclocks/hops-examples/blob/master/tensorflow/notebooks/Plotting/Data_Visualizations.ipynb
 .. _papers: https://arxiv.org/abs/1707.02968
