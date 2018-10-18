@@ -245,6 +245,9 @@ After launching your job using experiment, you can navigate to Hopsworks to view
 Experiments service
 -------------------
 
+Experiments service makes it possible to a TensorBoard that aggregates all the TensorBoard events for a particular run. Since applications can write TensorBoard events to HDFS as they are training this TensorBoard provides a unified view over the whole training process as it is happening over multiple machines. It may also be used to view experiments which have already completed. In the example image below a Parallel Experiment was run using Differential Evolution, as can be seen two hyperparameter combinations were evaluated at the same time (X-axis is wall-clock time).
+
+
 .. _tensorboard.png: ../_images/tensorboard.png
 .. figure:: ../imgs/tensorboard.png
     :alt: TensorBoard
@@ -252,7 +255,6 @@ Experiments service
     :align: center
     :figclass: align-center
 
-We have prepared several notebooks in the TensorFlow tour on Hopsworks with examples for running parallel experiments on Hops.
 
 .. _hops-py: http://hops-py.logicalclocks.com
 .. _hops-examples: https://github.com/logicalclocks/hops-examples/tree/master/tensorflow/notebooks
@@ -261,6 +263,3 @@ We have prepared several notebooks in the TensorFlow tour on Hopsworks with exam
 .. _parallel_experiment: https://github.com/logicalclocks/hops-examples/tree/master/tensorflow/notebooks/Parallel_Experiments
 .. _distributed_training: https://github.com/logicalclocks/hops-examples/tree/master/tensorflow/notebooks/Distributed_Training
 
-
-
-https://github.com/logicalclocks/hops-examples/tree/master/tensorflow/notebooks/Distributed_Training
