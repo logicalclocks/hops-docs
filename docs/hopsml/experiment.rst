@@ -285,7 +285,7 @@ After launching your job using experiment, you can navigate to Hopsworks to view
 Experiments service
 -------------------
 
-Experiments service provides a unified view of all the experiments run using the experiment API in the hops python library.
+Experiments service provides a unified view of all the experiments run using the experiment API in the hops python library. As demonstrated in the picture it provides general information about the experiment and the resulting metric.
 
 .. _experiments_service.png: ../_images/experiments_service.png
 .. figure:: ../imgs/experiments_service.png
