@@ -21,7 +21,7 @@ Jupyter is provided as a micro-service on Hopsworks and can be found in the main
 
 **Start a Jupyter notebook server**
 
-When you start a Jupyter notebook server you have the possibility to specify Spark properties of the notebooks you will create on the server. Hopsworks provides *Machine Learning-as-a-Service* with Tensorflow, Spark, supporting distributed training, parallel experiments, hyperparameter tuning, and model serving (HopsML). If you are doing machine learning on hops you probably want to select the notebook servers "Experiment", "Parallel Experiment" or "Distributed training" as shown in the figure below. For more information about *HopsML*, see the hops-tensorflow_ documentation. For general purpose notebooks, select the type "Spark (Static)" or "Spark (Dynamic)".
+When you start a Jupyter notebook server you have the possibility to specify Spark properties of the notebooks you will create on the server. Hopsworks provides *Machine Learning-as-a-Service* with Tensorflow, Spark, supporting distributed training, parallel experiments, hyperparameter tuning, and model serving (HopsML). If you are doing machine learning on hops you probably want to select the notebook servers "Experiment", "Parallel Experiment" or "Distributed training" as shown in the figure below. See HopsML_ for more information on the Machine Learning pipeline. For general purpose notebooks, select the type "Spark (Static)" or "Spark (Dynamic)".
 
 .. _jupyter2.png: ../../_images/jupyter2.png
 .. figure:: ../../imgs/jupyter2.png
@@ -219,9 +219,9 @@ When you download a dataframe from spark to pandas with sparkmagic, it gives you
 Want to Learn More?
 -------------------
 
-We have provided a large number of example notebooks, available here_. Go to Hopsworks and try them out! You can do this either by taking one of the built-in *tours* on Hopsworks, or by uploading one of the example notebooks to your project and run it through the Jupyter service. You can also have a look at HopsML (hops-tensorflow_), which enables large-scale distributed deep learning on Hops.
+We have provided a large number of example notebooks, available here_. Go to Hopsworks and try them out! You can do this either by taking one of the built-in *tours* on Hopsworks, or by uploading one of the example notebooks to your project and run it through the Jupyter service. You can also have a look at HopsML_, which enables large-scale distributed deep learning on Hops.
 
 .. _here: https://github.com/logicalclocks/hops-examples
-.. _hops-tensorflow: ./tensorflow.html
+.. _HopsML: ../../hopsml/hopsML.html
 .. _sparkmagic: https://github.com/jupyter-incubator/sparkmagic
 .. _livy: https://github.com/apache/incubator-livy
