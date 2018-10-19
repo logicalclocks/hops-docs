@@ -177,6 +177,33 @@ After defining the training code and the hyperparameter bounds, the next step is
     experiment.evolutionary_search(training, args_dict_grid, direction='max')
     
     
+Provided that you selected a wide enough search space for every hyperparameter you should see a gradual improvement as you train for an increasing number of generations. 
+
+
+.. _generation0.png: ../_images/generation0.png
+.. figure:: ../imgs/generation0.png
+   :alt: Dataset browser
+   :target: `generation0.png`_
+   :align: center
+   :figclass: align-center
+
+
+.. _generation1.png: ../_images/generation1.png
+.. figure:: ../imgs/generation1.png
+   :alt: Dataset browser
+   :target: `generation1.png`_
+   :align: center
+   :figclass: align-center
+ 
+
+.. _generation2.png: ../_images/generation2.png
+.. figure:: ../imgs/generation2.png
+   :alt: Dataset browser
+   :target: `generation2.png`_
+   :align: center
+   :figclass: align-center
+    
+    
 
 Distributed Training
 --------------------
