@@ -11,7 +11,7 @@ HopsML is a Python-first framework for building machine learning pipelines. Hops
     :alt: HopsML Pipeline
     :target: `hopsml-pipeline.png`_
     :align: center
-    :scale: 50 %
+    :scale: 75 %
     :figclass: align-center
 
 A machine learning (ML) pipeline is a series of processing steps that:
@@ -35,7 +35,7 @@ For ML pipelines processing large amounts of data, developers can write a sepera
     :alt: HopsML Pipeline with HopsFS
     :target: `hopsml-hopsfs-pipeline.png`_
     :align: center
-    :scale: 50 %
+    :scale: 75 %
     :figclass: align-center
 
 	       
@@ -89,7 +89,7 @@ Hopsworks provides a feature store to curate, store, and document features for u
     :alt: Feature Store
     :target: `hopsworks_feature_store.png`_
     :align: center
-    :scale: 60 %
+    :scale: 55 %
     :figclass: align-center
 	       
 
@@ -108,7 +108,7 @@ Hops uses PySpark to manage resource allocation of CPU, Memory and GPUs. PySpark
     :alt: Increasing throughput
     :target: `pyspark_tf.png`_
     :align: center
-    :scale: 60 %
+    :scale: 35 %
     :figclass: align-center
 
 Hops supports cluster-wide Conda for managing Python library dependencies. Hops supports the creation of projects, and each project has its own conda environment, replicated at all hosts in the cluster. When you launch a PySpark job, it uses the local conda environment for that project. This way, users can install whatever libraries they like using conda and pip package managers, and then use them directly inside Spark Executors. It makes programming PySpark one step closer to the single-host experience of programming Python.
@@ -123,7 +123,7 @@ HopsML comes with a novel Experiments service for overviewing history of Machine
     :alt: TensorBoard
     :target: `tensorboard.png`_
     :align: center
-    :scale: 80 %	    
+    :scale: 60 %	    
     :figclass: align-center
 
 
@@ -167,7 +167,7 @@ Typical tasks in a production Airflow ML pipeline on Hops involve Data Prep as a
 .. figure:: ../imgs/hopsml-airflow.png
     :alt: HopsML Pipeline orchestrated by Airflow
     :target: `hopsml-airflow.png`_
-    :scale: 60 %
+    :scale: 66 %
     :align: center
     :figclass: align-center
 
