@@ -34,10 +34,10 @@ Reading from HopsFS (HDFS)
 The path returned is to the root directory in Hopsworks of your project.
 
 
-.. _datasets-browser.png: ../_images/datasets-browser.png
-.. figure:: ../imgs/datasets-browser.png
+.. _datasets.png: ../_images/datasets.png
+.. figure:: ../imgs/datasets.png
    :alt: Dataset browser
-   :target: `datasets-browser.png`_
+   :target: `datasets.png`_
    :align: center
    :figclass: align-center
 
@@ -151,7 +151,14 @@ After defining the training code, the hyperparameter combinations and the direct
     experiment.grid_search(training, args_dict, direction='max')
 
 
-Its input argument is simply the wrapper function and the dictionary with the hyperparameters. `experiment.grid_search` will simply run the wrapper function and generate the grid of hyperparameters and inject the value of each hyperparameter that you have specified.
+Its input argument is simply the wrapper function and the dictionary with the hyperparameters. `experiment.grid_search` will simply run the wrapper function and generate the grid of hyperparameters and inject the value of each hyperparameter that you have specified. The above hyperparameters can simply be visualized in the same TensorBoard to provide a detailed overview.
+
+.. _grid_search.png: ../_images/grid_search.png
+.. figure:: ../imgs/grid_search.png
+   :alt: Dataset browser
+   :target: `grid_search.png`_
+   :align: center
+   :figclass: align-center
 
 Differential Evolution
 ----------------------
@@ -177,6 +184,35 @@ After defining the training code and the hyperparameter bounds, the next step is
     experiment.evolutionary_search(training, args_dict_grid, direction='max')
     
     
+Provided that you selected a wide enough search space for every hyperparameter you should see a gradual improvement as you train for an increasing number of generations. 
+
+**Generation 1**
+
+.. _generation0.png: ../_images/generation0.png
+.. figure:: ../imgs/generation0.png
+   :alt: Dataset browser
+   :target: `generation0.png`_
+   :align: center
+   :figclass: align-center
+
+**Generation 2**
+
+.. _generation1.png: ../_images/generation1.png
+.. figure:: ../imgs/generation1.png
+   :alt: Dataset browser
+   :target: `generation1.png`_
+   :align: center
+   :figclass: align-center
+ 
+**Generation 3**
+
+.. _generation2.png: ../_images/generation2.png
+.. figure:: ../imgs/generation2.png
+   :alt: Dataset browser
+   :target: `generation2.png`_
+   :align: center
+   :figclass: align-center   
+    
 
 Distributed Training
 --------------------
@@ -187,7 +223,11 @@ Compared to Experiment and Parallel Experiments, Distributed Training involves m
 
 HopsML supports the newly released MirroredStrategy, ParameterServerStrategy and CollectiveAllReduceStrategy in TensorFlow. Making distributed training with TensorFlow or Keras as simple as invoking a function with your code in order to setup the cluster and start the training.
 
+In order to run distributed training using one of the DistributionStrategies one would need to figure out the IP address of every machine and a free port to use for each worker process. After that an environment variable named TF_CONFIG needs to be exported and every process started manually on each machine. TF_CONFIG contains information about where all the other workers are in the cluster in addition to what role the current process is playing in the training (worker, parameter server or chief). All this is done automatically by HopsML, in addition to reserving the specified number of GPUs for your worker and chief processes, parameter servers are run on CPU. Each process runs on a Dynamic Spark executor which is reclaimed by the resource manager when training is finished.
+
 See distributed_training_ for full examples.
+
+See distribution_strategies_ for DistributionStrategy github page.
 
 
 Working with TensorBoard
@@ -245,6 +285,15 @@ After launching your job using experiment, you can navigate to Hopsworks to view
 Experiments service
 -------------------
 
+Experiments service provides a unified view of all the experiments run using the experiment API in the hops python library. As demonstrated in the picture it provides general information about the experiment and the resulting metric.
+
+.. _experiments_service.png: ../_images/experiments_service.png
+.. figure:: ../imgs/experiments_service.png
+    :alt: TensorBoard
+    :target: `experiments_service.png`_
+    :align: center
+    :figclass: align-center
+
 Experiments service makes it possible to a TensorBoard that aggregates all the TensorBoard events for a particular run. Since applications can write TensorBoard events to HDFS as they are training this TensorBoard provides a unified view over the whole training process as it is happening over multiple machines. It may also be used to view experiments which have already completed. In the example image below a Parallel Experiment was run using Differential Evolution, as can be seen two hyperparameter combinations were evaluated at the same time (X-axis is wall-clock time).
 
 
@@ -262,4 +311,5 @@ Experiments service makes it possible to a TensorBoard that aggregates all the T
 .. _experiment: https://github.com/logicalclocks/hops-examples/tree/master/tensorflow/notebooks/Experiment
 .. _parallel_experiment: https://github.com/logicalclocks/hops-examples/tree/master/tensorflow/notebooks/Parallel_Experiments
 .. _distributed_training: https://github.com/logicalclocks/hops-examples/tree/master/tensorflow/notebooks/Distributed_Training
+.. _distribution_strategies: https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/distribute
 

@@ -41,7 +41,7 @@ For ML pipelines processing large amounts of data, developers can write a sepera
 	       
 HopsML uses HopsFS, a next-generation version of HDFS, to coordinate the different steps of an ML pipeline. Input data for pipelines can come from external sources, such as an existing Hadoop cluster or a S3 datalake, a feature store, or existing training datasets. External datasources can push data to HopsFS using either the Hopsworks REST-API or using Kafka in Hopsworks.
 
-During a ML pipeline HopsFS acts as a central coordinator for sharing data between the different stages. Examples of such data include features from the store, existing training data, PySpark/TensorFlow application logs, Tensorboard events (aggregate from many different executors/GPUs), output models, checkpoints, partial/full results from hyperparameter optimization. 
+During a ML pipeline HopsFS acts as a central coordinator for sharing data between the different stages. Examples of such data include features from the store, existing training data, PySpark/TensorFlow application logs, TensorBoard events (aggregate from many different executors/GPUs), output models, checkpoints, partial/full results from hyperparameter optimization. 
 
 
 	       
@@ -59,7 +59,7 @@ Data Collection
 
 The datasets that you are working with will reside in your project in HopsFS. Data can be uploaded to your project in a number of ways, such as using the hops-cli client, the REST API or the uploader in the Hopsworks UI. HopsFS is the filesystem of Hops, it is essentially an optimized fork of Apache HDFS, and is compliant with any API that can read data from an HDFS path, such as TensorFlow, Spark and Pandas.
 
-Data Transformation & Verification
+Data Preparation
 ----------------------------------
 
 It is important to validate the datasets used in your pipeline, for example imbalanced classes may lead to Machine Learning models being biased towards more frequently occurring labels in the dataset.  Therefore it is of outmost importance for input data to be balanced and representative of the domain from which the data came. One of the big steps toward ensuring the correctness of data is through data quality and validation checks. Machine Learning models, as have been observed empirically and in papers_, reduce their generalization error for larger datasets. Therefore it is also critical to have a data wrangling and validation engine which scales for ever increasing datasets. The solution for this is to go distributed in order to process every single record, but still have a rich API for perform quality checks and manipulating the data. The pipeline makes use of Spark to provide these capabilities.
@@ -115,7 +115,19 @@ Hops supports cluster-wide Conda for managing Python library dependencies. Hops 
 
 
 
-HopsML comes with a novel Experiments service for overviewing history of Machine Learning experiments.
+HopsML comes with a novel Experiments service for overviewing history of Machine Learning experiments and monitoring during training.
+
+
+.. _experiments_service.png: ../_images/experiments_service.png
+.. figure:: ../imgs/experiments_service.png
+    :alt: TensorBoard
+    :target: `experiments_service.png`_
+    :align: center
+    :scale: 60 %	    
+    :figclass: align-center
+    
+    
+The follwing is a TensorBoard visualizing Differential Evolution for hyperparameter optimization on two PySpark Executors. The X-axis being the wall-clock time.
 
 
 .. _tensorboard.png: ../_images/tensorboard.png
