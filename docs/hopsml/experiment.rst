@@ -151,7 +151,14 @@ After defining the training code, the hyperparameter combinations and the direct
     experiment.grid_search(training, args_dict, direction='max')
 
 
-Its input argument is simply the wrapper function and the dictionary with the hyperparameters. `experiment.grid_search` will simply run the wrapper function and generate the grid of hyperparameters and inject the value of each hyperparameter that you have specified.
+Its input argument is simply the wrapper function and the dictionary with the hyperparameters. `experiment.grid_search` will simply run the wrapper function and generate the grid of hyperparameters and inject the value of each hyperparameter that you have specified. The above hyperparameters can simply be visualized in the same TensorBoard to provide a detailed overview.
+
+.. _grid_search.png: ../_images/grid_search.png
+.. figure:: ../imgs/grid_search.png
+   :alt: Dataset browser
+   :target: `grid_search.png`_
+   :align: center
+   :figclass: align-center
 
 Differential Evolution
 ----------------------
