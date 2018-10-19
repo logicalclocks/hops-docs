@@ -126,7 +126,9 @@ HopsML comes with a novel Experiments service for overviewing history of Machine
     :scale: 60 %	    
     :figclass: align-center
     
-This shows a timeline of running Differential Evolution for hyperparameter optimization on two PySpark Executors.
+    
+The follwing is a TensorBoard visualizing Differential Evolution for hyperparameter optimization on two PySpark Executors. The X-axis being the wall-clock time.
+
 
 .. _tensorboard.png: ../_images/tensorboard.png
 .. figure:: ../imgs/tensorboard.png
