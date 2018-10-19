@@ -179,6 +179,7 @@ After defining the training code and the hyperparameter bounds, the next step is
     
 Provided that you selected a wide enough search space for every hyperparameter you should see a gradual improvement as you train for an increasing number of generations. 
 
+**Generation 1**
 
 .. _generation0.png: ../_images/generation0.png
 .. figure:: ../imgs/generation0.png
@@ -187,6 +188,7 @@ Provided that you selected a wide enough search space for every hyperparameter y
    :align: center
    :figclass: align-center
 
+**Generation 2**
 
 .. _generation1.png: ../_images/generation1.png
 .. figure:: ../imgs/generation1.png
@@ -195,14 +197,14 @@ Provided that you selected a wide enough search space for every hyperparameter y
    :align: center
    :figclass: align-center
  
+**Generation 3**
 
 .. _generation2.png: ../_images/generation2.png
 .. figure:: ../imgs/generation2.png
    :alt: Dataset browser
    :target: `generation2.png`_
    :align: center
-   :figclass: align-center
-    
+   :figclass: align-center   
     
 
 Distributed Training
