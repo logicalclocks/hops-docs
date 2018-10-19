@@ -218,6 +218,8 @@ HopsML supports the newly released MirroredStrategy, ParameterServerStrategy and
 
 See distributed_training_ for full examples.
 
+See distribution_strategies_ for DistributionStrategy github page.
+
 
 Working with TensorBoard
 ########################
@@ -291,4 +293,5 @@ Experiments service makes it possible to a TensorBoard that aggregates all the T
 .. _experiment: https://github.com/logicalclocks/hops-examples/tree/master/tensorflow/notebooks/Experiment
 .. _parallel_experiment: https://github.com/logicalclocks/hops-examples/tree/master/tensorflow/notebooks/Parallel_Experiments
 .. _distributed_training: https://github.com/logicalclocks/hops-examples/tree/master/tensorflow/notebooks/Distributed_Training
+.. _distribution_strategies: https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/distribute
 
