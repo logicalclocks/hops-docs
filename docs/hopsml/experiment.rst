@@ -285,6 +285,15 @@ After launching your job using experiment, you can navigate to Hopsworks to view
 Experiments service
 -------------------
 
+Experiments service provides a unified view of all the experiments run using the experiment API in the hops python library.
+
+.. _experiments_service.png: ../_images/experiments_service.png
+.. figure:: ../imgs/experiments_service.png
+    :alt: TensorBoard
+    :target: `experiments_service.png`_
+    :align: center
+    :figclass: align-center
+
 Experiments service makes it possible to a TensorBoard that aggregates all the TensorBoard events for a particular run. Since applications can write TensorBoard events to HDFS as they are training this TensorBoard provides a unified view over the whole training process as it is happening over multiple machines. It may also be used to view experiments which have already completed. In the example image below a Parallel Experiment was run using Differential Evolution, as can be seen two hyperparameter combinations were evaluated at the same time (X-axis is wall-clock time).
 
 
