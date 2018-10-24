@@ -18,7 +18,7 @@ This document contains four different guides: installation, user, administration
 
   * User Guide
 
-* Hops Developers
+* Hopsworks Developers
 
   * Installation Guide
   * User Guide

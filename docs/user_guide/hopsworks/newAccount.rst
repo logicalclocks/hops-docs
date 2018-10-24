@@ -44,7 +44,7 @@ If you click on the link supplied in the registration email, it will validate yo
 
 .. rubric:: Footnotes
 
-.. [#f1] If you are an administrator, you can jump now to the Hops Administration Guide to see how to validate account registrations, if you have administrator privileges.
+.. [#f1] If you are an administrator, you can jump now to the Hopsworks Administration Guide to see how to validate account registrations, if you have administrator privileges.
 
 After your account has been approved, you can now go to HopsWork's login page and start your Google Authenticator application on your smartphone. On Hopsworks login page, you will need to enter
 

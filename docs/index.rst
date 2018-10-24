@@ -1,4 +1,4 @@
-Hops Documentation
+Hopsworks Documentation
 ==================================================
 
 .. _getting-started:
