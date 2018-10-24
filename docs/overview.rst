@@ -1,4 +1,4 @@
-Hops Overview
+Hopsworks Overview
 ===========================
 
 .. toctree::
