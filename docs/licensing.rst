@@ -1,11 +1,11 @@
 .. _hops-licensing:
 
-*********************
-License Compatibility
-*********************
+***************************
+Hops License Compatibility
+***************************
 
 
-We combine Apache and GPL licensed code, from Hops and MySQL Cluster, respectively, by
+Hops combines Apache and GPLv2 licensed code, from Hops and MySQL Cluster, respectively, by
 providing a DAL API (similar to JDBC). We dynamically link our DAL implementation for
 MySQL Cluster with the Hops code. Both binaries are distributed separately.
 Hops derives from Hadoop and, as such, it is available under the Apache version 2.0 open-
@@ -26,3 +26,10 @@ are free to develop your own DAL API client and run Hops on a different database
 The main requirements for the database are support for transactions, read/write locks and at least read-committed isolation.
 
 .. figure:: imgs/license-work-around.png
+
+
+***************************
+Hopsworks Community License
+***************************
+Hopsworks is provided under the AGPLv3 open-source license.
+
