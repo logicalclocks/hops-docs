@@ -64,7 +64,7 @@ Next click on the model button to select from your project the model you want to
    :align: center
    :figclass: align-center
 
-This will open a popup window that will allow you to browse your project and select directory containing  the model you want to serve. You should select the model directory, meaning the directory containing the sub-directories with the different versions of your model. In the example below we have exported two versions of the *mnist* model. In this step we select the *mnist* directory containing the two versions. 
+This will open a popup window that will allow you to browse your project and select directory containing  the model you want to serve. You should select the model directory, meaning the directory containing the sub-directories with the different versions of your model. In the example below we have exported two versions of the *mnist* model. In this step we select the *mnist* directory containing the two versions. The *select* button will be enabled (it will become green) when you browse into a valid model directory. 
    
 .. _serving3.png: ../_images/serving/serving3.png
 .. figure:: ../imgs/serving/serving3.png
@@ -88,6 +88,8 @@ By clicking on *Advanced* you can access the advanced configuration for your ser
 By default a new Kafka topic is created for each new serving (*CREATE*). You can avoid logging your inference requests by selecting *NONE* from the dropdown menu.  
 You can also re-use an existing Kafka topic as long as its schema meets the requirement of the inference logger.
 
+At this stage you can also configure the TensorFlow Serving server to process the requests in batches.  
+
 .. _serving5.png: ../_images/serving/serving5.png
 .. figure:: ../imgs/serving/serving5.png
    :alt: Advanced configuration 
@@ -109,7 +111,27 @@ After having created the serving instance, a new entry is added to the list.
    :figclass: align-center
 
 Click on the *Run* button to start the serving instance. After a few seconds the instance will be up and running, ready to start processing incoming inference requests.
-    
+
+You can check the logs of the TensorFlow Serving instance by *clicking* on the *logs* button. This will bring you to the Kibana UI, from which you will be able to see if the the serving instance managed to load the model correctly or not.   
+ 
+.. _serving8.png: ../_images/serving/serving8.png
+.. figure:: ../imgs/serving/serving8.png
+   :alt: Start the serving
+   :target: `serving8.png`_
+   :align: center
+   :figclass: align-center   
+
+   Log button
+
+.. _serving9.png: ../_images/serving/serving9.png
+.. figure:: ../imgs/serving/serving9.png
+   :alt: Start the serving
+   :target: `serving9.png`_
+   :align: center
+   :figclass: align-center   
+
+   Kibana UI
+
 **Step 4.**
 
 After a while your model will become stale and you will have to re-train it and export it again. To update your serving instance to serve the newer version of the model, click on the edit button. You don't need to stop your serving instance, you can update the model version while the serving server is running.
