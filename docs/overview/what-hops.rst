@@ -1,15 +1,52 @@
 ===========================
-What is Hops?
+What is Hopsworks?
 ===========================
 
-Hops is a next-generation distribution of Apache Hadoop that supports:
+Hopsworks is a full-stack platform for scale-out data science, with support for both GPUs and Big Data, in a familiar development environment. Hopsworks unique features are:
 
-* Hadoop-as-a-Service,
-* Project-Based Multi-Tenancy,
-* Secure sharing of DataSets across projects,
-* Extensible metadata that supports free-text search using Elasticsearch,
-* YARN quotas for projects.
+* User-friendly UI for Developing with the latest open-source platforms for Data Science (Jupyter, Conda, etc),
+* Github-like Projects to manage teams/products/workflows/data,
+* Managed GPUs as a Resources - scale out Deep Learning training and hyperparameter optimization,
+* World's fastest, most-scalable distributed hierarchical filesystem.
+* Unified REST API for the whole Hopsworks Platform,
+* TLS Certificate based security model with extensive auditing and data provenance capabilities,
+* End-to-end support for Python-based Deep Learning workflows with: a Feature Store, Data and Model Validation, Model Serving on Kubernetes, workflow orchestration in Airflow.
 
-The key innovation that enables these features is a new architecture for scale-out, consistent metadata for both the Hadoop Filesystem (HDFS) and YARN (Hadoop's Resource Manager). The new metadata layer enables us to support multiple stateless NameNodes and TBs of metadata stored in MySQL Cluster Network Database (NDB). NDB is a distributed, relational, in-memory, open-source database. This enabled us to provide services such as tools for designing extended metadata (whose integrity with filesystem data is ensured through foreign keys in the database), and also extending HDFS' metadata to enable new features such as erasure-coded replication, reducing storage requirements by 50\% compared to triple replication in Apache HDFS. Extended metadata has enabled us to implement quota-based scheduling for YARN, where projects can be given quotas of CPU hours/minutes and memory, thus enabling resource usage in Hadoop-as-a-Service to be accounted and enforced.
+Hopsworks supports the following open-source platforms for Data Science:
 
-Hops builds on YARN to provide support for application and resource management. All YARN frameworks can run on Hops, but currently we only provide UI support for general data-parallel processing frameworks such as Apache Spark, Apache Flink, and MapReduce. We also support frameworks used by BiobankCloud for data-parallel bioinformatics workflows, including SAASFEE and Adam. In future, other frameworks will be added to the mix.
+* Development: Jupyter, plugin to IDEs (vi the REST API), Conda/Pip;
+* Machine Learning: TensorFlow, Keras, PyTorch, ScikitLearn;  
+* Data Analytics/BI: Spark, Hive;
+* Stream Processing: Spark-Streaming, Flink, Kafka;
+* Model Serving: Kubernetes/Docker.
+
+
+Projects
+=====================  
+
+
+.. figure:: ../imgs/projects/hopsworks-projects-medium.png
+  :alt: Projects in Hopsworks
+  :scale: 60
+  :figclass: align-center
+
+  Just like Github is made up of repositories, Hopsworks is made up of lots of *Projects*. A Project is, in turn, a collection of users, data assets, and programs (code). 
+
+
+.. figure:: ../imgs/projects/hopsworks-projects-detailed.png
+  :alt: Detailed view of Projects in Hopsworks
+  :scale: 60
+  :figclass: align-center
+
+  Projects also have quotas associated with them - CPU/GPU and how much data they can store.
+  
+
+
+  
+Small-Scale Machine Learning Workflows
+========================
+
+
+
+Large-Scale Machine Learning Workflows
+========================
