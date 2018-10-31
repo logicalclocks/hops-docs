@@ -12,33 +12,23 @@ What is Hopsworks?
 
 Hopsworks is a full-stack platform for scale-out data science, with support for both GPUs and Big Data, in a familiar development environment. Hopsworks unique features are:
 
-* User-friendly UI for Data Science with Jupyter supported by TensorFlow/Keras/PyTorch/PySpark,
-* Github-like Projects to manage teams/products/workflows/data/libraries,
-* Python-first platform - each project has its own conda environment in the cluster,
-* Managed GPUs-as-a-Resource - efficiently share GPUs between teams and scale-out training and  hyperparameter optimization to tens/hundreds of GPUs,
-* World's fastest, most-scalable HDFS (HopsFS),
-* Programmatic access through a single REST API for the Hopsworks Platform,
-* TLS-Certificate security model with extensive auditing, data provenance, and data governance capabilities,
-* Python-based ML workflows with: a Feature Store, Data and Model Validation, Model Serving on Kubernetes, workflow orchestration in Airflow.
+* a user-friendly UI for development with the latest open-source platforms for Data Science (Jupyter, Conda, etc),
+* Github-like Projects to manage teams/products/workflows/data,
+* managed GPUs as a Resources - scale out Deep Learning training and hyperparameter optimization,
+* the world's fastest, most-scalable distributed hierarchical filesystem.
+* a REST API for the whole Hopsworks Platform,
+* a TLS Certificate based security model with extensive auditing and data provenance capabilities,
+* end-to-end support for Python-based Deep Learning workflows with: a Feature Store, Data and Model Validation, Model Serving on Kubernetes, workflow orchestration in Airflow.
 
 Hopsworks supports the following open-source platforms for Data Science:
 
-* Development: Jupyter, Conda/pip, IDE plugins (via the REST API);
-* Machine Learning: TensorFlow, Keras, PyTorch, scikit-learn; 
-* Data Analytics/BI: Spark, SparkSQL/Parquet, Hive;
-* Stream Processing: Spark-Streaming, Flink, Kafka;
-* Model Serving: Kubernetes/Docker.
-
-.. figure:: ../imgs/projects/hopsworks-metadata-layer.png
-  :alt: Hopsworks frameworks
-  :scale: 60
-  :figclass: align-center
-
-  Hopsworks unifies many open-source frameworks for scalable data science in a single, secure platform.
-
+* development: Jupyter, plugin to IDEs (vi the REST API), Conda/Pip;
+* machine learning frameworks: TensorFlow, Keras, PyTorch, ScikitLearn;  
+* data analytics and BI: SparkSQL, Hive;
+* stream processing: Spark streaming, Flink, Kafka;
+* model serving: Kubernetes/Docker.
 
 Concepts: Projects, Datasets, Users
-=====================  
 
 Hopsworks provides a new stronger, GDPR-coompliant security model for managing sensitive data in a shared data platform. Hopsworks' security model is built around Projects, which are analogous to Github repositories. A project contains datasets, users, and programs (code). Sensitive datasets can be sandboxed inside a project, so that users are prevented from exporting that data from the project or cross-linking that data with data in other projects. Note, this capability is provided in competitor data platforms by creating a whole new cluster for the sensitive dataset. In Hopsworks, sharing data does not involve copying data.
 Datasets can still be securely shared between projects, without the need for duplicating the dataset. Supported datasets in Hopsworks include Hive databases, Kafka topics, and subtrees in HopsFS (HDFS). 
@@ -59,4 +49,15 @@ Hopsworks implements its project-based multi-tenancy security model by supportin
 
   Projects also have quotas associated with them - CPU/GPU and how much data they can store.
  
+  
 
+Unified Scale-Out Metadata
+=======================
+
+.. figure:: ../imgs/projects/hopsworks-metadata-layer.png
+  :alt: Scale-out Metadata in Hopsworks
+  :scale: 60
+  :figclass: align-center
+  Hopsworks unifies many open-source frameworks for scalable data science in a single, secure platform.
+
+Hopsworks is enabled by a unified, scale-out metadata layer - a strongly consistent in-memory data layer that stores metadata for everything from Projects/Users/Datasets in Hopsworks, Filesystem metadata in HopsFS, Kafka ACLs, and YARN quota information. Hopsworks' metadata layer is kept consistent by mutating it using transactions and its integrity is ensured using foreign keys.
