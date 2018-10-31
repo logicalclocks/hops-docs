@@ -64,7 +64,7 @@ Next click on the model button to select from your project the model you want to
    :align: center
    :figclass: align-center
 
-This will open a popup window that will allow you to browse your project and select directory containing  the model you want to serve. You should select the model directory, meaning the directory containing the sub-directories with the different versions of your model. In the example below we have exported two versions of the *mnist* model. In this step we select the *mnist* directory containing the two versions. The *select* button will be enabled (it will become green) when you browse into a valid model directory. 
+This will open a popup window that will allow you to browse your project and select the directory containing the model you want to serve. You should select the model directory, meaning the directory containing the sub-directories with the different versions of your model. In the example below we have exported two versions of the *mnist* model. In this step we select the *mnist* directory containing the two versions. The *select* button will be enabled (it will turn green) when you browse into a valid model directory. 
    
 .. _serving3.png: ../_images/serving/serving3.png
 .. figure:: ../imgs/serving/serving3.png
@@ -112,7 +112,7 @@ After having created the serving instance, a new entry is added to the list.
 
 Click on the *Run* button to start the serving instance. After a few seconds the instance will be up and running, ready to start processing incoming inference requests.
 
-You can check the logs of the TensorFlow Serving instance by *clicking* on the *logs* button. This will bring you to the Kibana UI, from which you will be able to see if the the serving instance managed to load the model correctly or not.   
+You can check the logs of the TensorFlow Serving instance by *clicking* on the *logs* button. This will bring you to the Kibana UI, from which you will be able to see if the the serving instance managed to load the model correctly.
  
 .. _serving8.png: ../_images/serving/serving8.png
 .. figure:: ../imgs/serving/serving8.png
