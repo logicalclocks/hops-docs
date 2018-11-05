@@ -19,7 +19,7 @@ Hopsworks provides first-class support for DataSets and Projects. Each DataSet h
 
 Hopsworks implements dynamic role-based access control for projects. That is, users do not have static global privileges. A user's privileges depend on what the user's active project is. For example, the user may be a *Data Owner* in one project, but only a *Data Scientist* in another project. Depending on which project is active, the user may be a *Data Owner* or a *Data Scientist*.
 
-.. figure:: ../imgs/dynamic_roles.png
+.. figure:: ../../imgs/dynamic_roles.png
   :alt: Dynamic Roles ensures strong multi-tenancy in Hopsworks
   :scale: 60
   :figclass: align-center

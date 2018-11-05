@@ -28,8 +28,8 @@ The main requirements for the database are support for transactions, read/write 
 .. figure:: imgs/license-work-around.png
 
 
-***************************
 Hopsworks Community License
-***************************
+=================================
+
 Hopsworks is provided under the AGPLv3 open-source license.
 

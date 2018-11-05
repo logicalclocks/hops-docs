@@ -2,9 +2,9 @@
 What is Hopsworks?
 ===========================
 
-.. figure:: ../imgs/projects/hopsworks.png
+.. figure:: ../../imgs/projects/hopsworks.png
   :alt: Hopsworks
-  :scale: 60
+  :scale: 90
   :figclass: align-center
 
   Hopsworks unifies a number of open-source analytics and ML frameworks behind a unified REST API.
@@ -34,17 +34,17 @@ Hopsworks provides a new stronger, GDPR-coompliant security model for managing s
 Datasets can still be securely shared between projects, without the need for duplicating the dataset. Supported datasets in Hopsworks include Hive databases, Kafka topics, and subtrees in HopsFS (HDFS). 
 Hopsworks implements its project-based multi-tenancy security model by supporting TLS certificates (instead of Kerberos) for user authenticawtion, with a new certificate created for every use in every project. Hopsworks also provides role-based access control within projects, with pre-defined DataOwner and DataScientists roles provided for GDPR compliance (Data owners are responsible for the data and access to the data, while Data Scientists are processors of the data).
 
-.. figure:: ../imgs/projects/hopsworks-projects-medium.png
+.. figure:: ../../imgs/projects/hopsworks-projects-medium.png
   :alt: Projects in Hopsworks
-  :scale: 60
+  :scale: 66
   :figclass: align-center
 
   Just like Github is made up of repositories, Hopsworks is made up of lots of *Projects*. A Project is, in turn, a collection of users, data assets, and programs (code). 
 
 
-.. figure:: ../imgs/projects/hopsworks-projects-detailed.png
+.. figure:: ../../imgs/projects/hopsworks-projects-detailed.png
   :alt: Detailed view of Projects in Hopsworks
-  :scale: 60
+  :scale: 80
   :figclass: align-center
 
   Projects also have quotas associated with them - CPU/GPU and how much data they can store.
@@ -54,10 +54,10 @@ Hopsworks implements its project-based multi-tenancy security model by supportin
 Unified Scale-Out Metadata
 =======================
 
-.. figure:: ../imgs/projects/hopsworks-metadata-layer.png
+.. figure:: ../../imgs/projects/hopsworks-metadata-layer.png
   :alt: Scale-out Metadata in Hopsworks
-  :scale: 60
   :figclass: align-center
-  Hopsworks unifies many open-source frameworks for scalable data science in a single, secure platform.
+
+  Hopsworks includes open-source frameworks for scalable data science in a single, secure platform.
 
 Hopsworks is enabled by a unified, scale-out metadata layer - a strongly consistent in-memory data layer that stores metadata for everything from Projects/Users/Datasets in Hopsworks, Filesystem metadata in HopsFS, Kafka ACLs, and YARN quota information. Hopsworks' metadata layer is kept consistent by mutating it using transactions and its integrity is ensured using foreign keys.
