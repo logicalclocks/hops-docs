@@ -52,7 +52,7 @@ Hopsworks implements its project-based multi-tenancy security model by supportin
   
 
 Unified Scale-Out Metadata
-=======================
+--------------------
 
 .. figure:: ../../imgs/projects/hopsworks-metadata-layer.png
   :alt: Scale-out Metadata in Hopsworks

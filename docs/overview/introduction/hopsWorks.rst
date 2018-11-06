@@ -1,5 +1,5 @@
 ===========================
-Hopsworks
+Concepts in Hopsworks
 ===========================
 
 .. contents:: Contents

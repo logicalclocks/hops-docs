@@ -31,5 +31,8 @@ The main requirements for the database are support for transactions, read/write 
 Hopsworks Community License
 =================================
 
-Hopsworks is provided under the AGPLv3 open-source license.
+Hopsworks is provided under the AGPLv3 open-source license. See the list of Hopsworks' dependencies and their licenses `here`_.
+
+
+.. _here: https://github.com/logicalclocks/hopsworks/blob/master/LICENSE_OF_DEPENDENCIES.md
 
