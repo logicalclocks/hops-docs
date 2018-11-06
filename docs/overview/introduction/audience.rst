@@ -3,20 +3,17 @@ Audience
 ===========================
 
 
-This document contains four different guides: installation, user, administration, and developer guides. For the following different types of readers, we recommend reading the guides:
+This document contains different guides for installation, users, administration, and developers. For the following different types of readers, we recommend reading the guides:
 
-* Data Scientists
+* Data Scientists and Data Engineers
 
+  * HopsML (Machine Learning Guide)
   * User Guide
 
-* Hadoop Administrators
+* Administrators
 
   * Installation Guide
   * Administration Guide
-
-* Data Curators
-
-  * User Guide
 
 * Hopsworks Developers
 

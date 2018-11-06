@@ -4,9 +4,8 @@ Hops Overview
 .. toctree::
    :maxdepth: 1
 
-   overview/audience
-   overview/revision-history
-   overview/what-hops
-   overview/hopsWorks
-   overview/hopsFS
-   overview/hopsYarn
+   overview/introduction/audience
+   overview/introduction/revision-history
+   overview/introduction/what-hops
+   overview/introduction/hopsWorks
+   overview/introduction/hopsFS

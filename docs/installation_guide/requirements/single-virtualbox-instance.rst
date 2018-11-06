@@ -10,8 +10,7 @@ You can run Hopsworks and the entire Hops stack on a single virtualbox instance 
 **Component**             **Minimum Requirements**
 ==================   ================================
 Operating System      Linux, Mac, Windows (using Virtualbox)
-RAM                   **10 GB of RAM**
+RAM                   **16 GB of RAM**
 CPU                   2 GHz dual-core minimum. 64-bit.
-Hard disk space       15 GB free space
-Network               1 Gb Ethernet
+Hard disk space       50 GB free space
 ==================   ================================
