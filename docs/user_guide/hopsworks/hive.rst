@@ -42,7 +42,7 @@ There are two ways to run queries against Hive from Hopsworks:
 Running Queries using Zeppelin
 ----------------
 
-Users can  run queries using *Apache Zeppelin* (the Zeppelin service needs to be enabled for the project). To run a query, users need to create a notebook and use ``HopsHive`` as the interpreter. This can be done in either one of three ways:
+Users can  run queries using *Apache Zeppelin*. To run a query, users need to create a notebook and use ``HopsHive`` as the interpreter. This can be done in either one of three ways:
 
 1. Selecting ``hopshive`` from the interpreter list when creating the notebook
 
