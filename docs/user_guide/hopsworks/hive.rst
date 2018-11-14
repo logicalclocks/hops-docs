@@ -14,11 +14,35 @@ This page serves as a guide on how to use Hive from within Hopsworks. For inform
 Using HopsHive with Hopsworks
 ------------------------------
 
-In order to use HopsHive from Hopsworks, users first need to create a database. Each project can have *at most one* Hive database, which is created when the Hive service is enabled for the project. Users can enable the Hive service either when creating a new project or via the *Settings* section.
+In order to use HopsHive from Hopsworks, users first need to create a database. Each project that is created with the Hive service enabled gets a Hive database. Users can enable the Hive service either when creating a new project or via the *Settings* section.
+
+.. _hive1.png: ../../_images/hive1.png
+.. figure:: ../../imgs/hive1.png
+    :alt: Enable the Hive service for a project
+    :target: `hive1.png`_
+    :scale: 100%
+    :align: center
+    :figclass: align-center
 
 Once the database is created, users are able to see in the *Datasets* view a new dataset called ``projectName.db``. This new dataset is the Hive database for the project and contains Hive's data.
 
-Users can then run queries using *Apache Zeppelin* (the Zeppelin service needs to be enabled for the project). To run a query, users need to create a notebook and use ``HopsHive`` as the interpreter. This can be done in either one of three ways:
+.. _hive2.png: ../../_images/hive2.png
+.. figure:: ../../imgs/hive2.png
+    :alt: Hive database dataset in Hopsworks
+    :target: `hive2.png`_
+    :scale: 100%
+    :align: center
+    :figclass: align-center
+
+There are two ways to run queries against Hive from Hopsworks:
+
+- Using *Apache Zeppelin* and the ``HopsHive`` interpreter
+- Using ``SparkSQL`` inside *Jobs* or *Jupyter Notebooks*
+
+Running Queries using Zeppelin
+----------------
+
+Users can  run queries using *Apache Zeppelin*. To run a query, users need to create a notebook and use ``HopsHive`` as the interpreter. This can be done in either one of three ways:
 
 1. Selecting ``hopshive`` from the interpreter list when creating the notebook
 
@@ -29,8 +53,8 @@ Users can then run queries using *Apache Zeppelin* (the Zeppelin service needs t
 After that, users can start writing and running queries.
 One caveat when writing queries in Zeppelin is that the ``;`` character at the end of a query is not allowed and, in general, it is good practice to spread queries over multiple paragraphs.
 
-Workflow example
-----------------
+Hive with Zeppelin Workflow example
+~~~~~~~~~~~~~~~~~~~~~~
 
 The following is an example of a standard workflow when using Hive.
 
@@ -93,7 +117,7 @@ The next step is to convert the data from CSV to ORC, to do that users can run t
 
 
 Session based configuration
-----------------------------
+~~~~~~~~~~~~~~~~~~~~~~
 
 Hive default configuration cannot be modified by users. What they can do though is change the values of certain configuration parameters for their sessions.
 Example: By default Hive is configured to not allow dynamic partitions, this means that the query shown previously at point *3* that inserts the data in the new table **will** fail.
@@ -105,10 +129,10 @@ To do that users can create a new paragraph in the Zeppelin notebook and execute
 
 This would enable dynamic partitioning for that session, other users will not be affected by this change and if users launch another ``hopshive`` interpreter they will find the default configuration.
 
-All the parameters that can be set or modified are listed in the Hive wiki under `Tez <https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-Tez>`_. 
+All the parameters that can be set or modified are listed in the Hive wiki under `Tez <https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-Tez>`_.
 
 Try it out
-------------
+~~~~~~~~~~~~~~~~~~~~~~
 
 To try HopsHive out, users can download a sample notebook_ and a csv file_ containing sample data. Users should then create an editable dataset (without README.md) and upload the data.
 From the Zeppelin interface, users can import the notebook, by clicking on *Import note* and selecting the Json file representing the notebook from their computers. Before running it, users should modify the LOCATION filled in the first paragraph to be *'/Projects/<projectName>/<datasetName>'* where *<datasetName>* is the name of the dataset containing the csv file.
@@ -118,6 +142,28 @@ Users should also make sure to select the HopsHive interpreter by clicking on th
 .. _file: http://snurran.sics.se/hops/hive/Sacramentorealestatetransactions.csv
 
 
+Running Queries using SparkSQL
+----------------
+
+Users can run queries to their Hive database using SparkSQL. The spark configuration for Hive is set up automatically when you create a Jupyter notebook. To view all tables in your project's Hive database with pyspark inside a Jupyter notebook, run:
+
+.. code-block:: python
+
+    from hops import hdfs as hopsfs
+    PROJECT_NAME = hopsfs.project_name()
+
+    spark.sql("use " + PROJECT_NAME)
+    spark.sql("show tables").show()
+
+When you start Jupyter notebooks on Hopsworks, the spark session is automatically created for you with Hive enabled. If you are running Spark jobs on Hopsworks, you need to enable Hive in your spark session as follows:
+
+.. code-block:: scala
+
+    val spark = SparkSession.builder().config(sparkConf).enableHiveSupport().getOrCreate()
+
+
+An example notebook that shows more advanced queries is available here: hops_examples_.
+
 
 LLAP Admin
 ----------------
@@ -126,3 +172,5 @@ Hopsworks Admin users have the possibility of managing the lifecycle of the LLAP
 In the admin UI they have the possibility of specifying the number of instances, the amount of memory each instance should get for the LLAP executors running inside the instance, the amount of memory for the cache and how many threads to use for the executors and for the IO.
 
 Normal users can by default use the LLAP cluster in all the projects. By default Hive decides which fragments of the query execute on the LLAP cluster and which in a separate container. Users can change this behavior by changing the session based configuration as explained above.
+
+.. _hops_examples: https://github.com/logicalclocks/hops-examples
