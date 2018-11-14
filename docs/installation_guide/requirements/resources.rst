@@ -11,11 +11,11 @@ The recommended setup for these machines in production (on a cost-performance ba
 .. tabularcolumns:: {| p{\dimexpr 0.3\linewidth-2\tabcolsep} | p{\dimexpr 0.7\linewidth-2\tabcolsep}|}
 
 ==================   ================================
-**Component**        **Recommended (2018)**
+**Component**        **Recommended (late 2015)**
 ==================   ================================
 Operating System      Linux, Mac, Windows (using Virtualbox)
-RAM                   256 GB RAM
-CPU                   Two CPUs with at least 12 cores. 64-bit.
-Hard disk             12 x 10 TB SATA disks
-Network               10/25 Gb/s Ethernet
+RAM                   128 GB RAM
+CPU                   Two CPUs with 12 cores. 64-bit.
+Hard disk             12 x 4 TB SATA disks
+Network               1 Gb Ethernet
 ==================   ================================
