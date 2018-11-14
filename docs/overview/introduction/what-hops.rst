@@ -4,7 +4,7 @@ What is Hopsworks?
 
 .. figure:: ../../imgs/projects/hopsworks.png
   :alt: Hopsworks
-  :scale: 90
+  :scale: 75
   :figclass: align-center
 
   Hopsworks unifies a number of open-source analytics and ML frameworks behind a unified REST API.
@@ -36,7 +36,7 @@ Hopsworks implements its project-based multi-tenancy security model by supportin
 
 .. figure:: ../../imgs/projects/hopsworks-projects-medium.png
   :alt: Projects in Hopsworks
-  :scale: 66
+  :scale: 60
   :figclass: align-center
 
   Just like Github is made up of repositories, Hopsworks is made up of lots of *Projects*. A Project is, in turn, a collection of users, data assets, and programs (code). 
@@ -44,7 +44,7 @@ Hopsworks implements its project-based multi-tenancy security model by supportin
 
 .. figure:: ../../imgs/projects/hopsworks-projects-detailed.png
   :alt: Detailed view of Projects in Hopsworks
-  :scale: 80
+  :scale: 66
   :figclass: align-center
 
   Projects also have quotas associated with them - CPU/GPU and how much data they can store.
