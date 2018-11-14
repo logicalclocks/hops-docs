@@ -61,3 +61,22 @@ Unified Scale-Out Metadata
   Hopsworks includes open-source frameworks for scalable data science in a single, secure platform.
 
 Hopsworks is enabled by a unified, scale-out metadata layer - a strongly consistent in-memory data layer that stores metadata for everything from Projects/Users/Datasets in Hopsworks, Filesystem metadata in HopsFS, Kafka ACLs, and YARN quota information. Hopsworks' metadata layer is kept consistent by mutating it using transactions and its integrity is ensured using foreign keys.
+
+
+HopsML - Machine Learning Lifecycle
+--------------------
+
+.. figure:: ../../imgs/hopsml/ml-lifecycle.png
+  :alt: HopsML 
+  :figclass: align-center
+
+  Hopsworks manages the full machine learning lifecycle.
+
+Hopsworks provides HopsML as a set of services and platforms to support the full machine learning lifecycle, including:
+
+* data management with HopsFS, Hive, Kafka, and Elasticsearch;
+* training machine learning models on both GPUs and CPUs, including distributed training on GPUs;
+* serving of models in production using Kubernetes, with Hopsworks providing authorized, audited access to scale-out models on TensorFlowServing, SparkML, or ScikitLearn;
+* model management and monitoring with a Spark Streaming application analyzing model usage in near-realtime.
+    
+
