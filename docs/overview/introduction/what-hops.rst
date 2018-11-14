@@ -68,6 +68,7 @@ HopsML - Machine Learning Lifecycle
 
 .. figure:: ../../imgs/hopsml/ml-lifecycle.png
   :alt: HopsML 
+  :scale: 50
   :figclass: align-center
 
   Hopsworks manages the full machine learning lifecycle.
