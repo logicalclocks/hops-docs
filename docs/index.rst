@@ -1,13 +1,6 @@
 Hopsworks Documentation
 ==================================================
 
-.. _overview:
-.. toctree::
-   :maxdepth: 3
-   :glob:
-
-   overview/overview
-
 .. _getting-started:
 
 .. toctree::
@@ -54,11 +47,22 @@ Hopsworks Documentation
 
    developer_guide/hops_developer_guide
 
+.. _hops-overview:
+
+.. toctree::
+   :maxdepth: 3
+   :glob:
+
+   overview
+
+.. _hops-license:
+
 .. toctree::
    :maxdepth: 3
    :glob:
 
    licensing
+
 
 .. .. _hops-contributers:
 
