@@ -18,8 +18,8 @@ Once you are logged in, click on `Launch Instance` to launch a machine instance 
 
     Start the launching process
 
-**Step 1** requires you to select the AMI. Select `Community AMIs` (1) and search for `hopsworks-ami` (2). 
-Click select (3) to progress with the launch.
+**Step 1** requires you to select the AMI. Select `Community AMIs` (1) and search for `hopsworks` (2). 
+Click select on the desired version (3) to progress with the launch.
 
 .. _ami3.png: ../../_images/ami/ami3.png 
 .. figure:: ../../imgs/ami/ami3.png
