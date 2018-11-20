@@ -51,7 +51,7 @@ Click on *Next: Configure Instance Details* to proceed to step 3.
     :align: center
     :figclass: align-center
 
-    Procede with the next step 
+    Proceed with the next step 
 
 **Step 3** requires you to configure the instance details. You can leave the default values and proceed with configuring storage.
 
