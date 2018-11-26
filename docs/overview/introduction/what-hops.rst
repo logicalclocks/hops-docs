@@ -1,83 +1,24 @@
 ===========================
-What is Hopsworks?
+What is Hops?
 ===========================
 
-.. figure:: ../../imgs/projects/hopsworks.png
-  :alt: Hopsworks
-  :scale: 75
-  :figclass: align-center
 
-  Hopsworks unifies a number of open-source analytics and ML frameworks behind a unified REST API.
+Hops is a next-generation distribution of Apache Hadoop, with a heavily adapted impelementation of HDFS, called HopsFS.
+HopsFS is a new implementation of the the Hadoop Filesystem (HDFS) based on `Apache Hadoop`_ 2.8, that supports multiple stateless NameNodes, where the metadata is stored in an in-memory distributed database (NDB). HopsFS enables NameNode metadata to be both customized and analyzed, because it can be easily accessed via SQL or the native API (NDB API).
 
+.. figure:: ../../imgs/hopsfs-arch.png
+   :alt: HopsFS Architecture
+   :scale: 100
+   :figclass: align-center
 
-Hopsworks is a full-stack platform for scale-out data science, with support for both GPUs and Big Data, in a familiar development environment. Hopsworks unique features are:
+   HopsFS Architeture.
 
-* a user-friendly UI for development with the latest open-source platforms for Data Science (Jupyter, Conda, etc),
-* Github-like Projects to manage teams/products/workflows/data,
-* managed GPUs as a Resources - scale out Deep Learning training and hyperparameter optimization,
-* the world's fastest, most-scalable distributed hierarchical filesystem.
-* a REST API for the whole Hopsworks Platform,
-* a TLS Certificate based security model with extensive auditing and data provenance capabilities,
-* end-to-end support for Python-based Deep Learning workflows with: a Feature Store, Data and Model Validation, Model Serving on Kubernetes, workflow orchestration in Airflow.
+HopsFS replaces HDFS's Active-Standby Replication architecture with a set of stateless (redundant) NameNodes backed by an in-memory, shared nothing NewSQL database. HopsFS provides the DAL-API as an abstraction layer over the database, and implements a leader election protocol using the database. This means HopsFS no longer needs the following services required by Apache HDFS: quorum journal nodes, Zookeeper, and the Snapshot server.
 
-Hopsworks supports the following open-source platforms for Data Science:
-
-* development: Jupyter, plugin to IDEs (vi the REST API), Conda/Pip;
-* machine learning frameworks: TensorFlow, Keras, PyTorch, ScikitLearn;  
-* data analytics and BI: SparkSQL, Hive;
-* stream processing: Spark streaming, Flink, Kafka;
-* model serving: Kubernetes/Docker.
-
-Concepts: Projects, Datasets, Users
-
-Hopsworks provides a new stronger, GDPR-coompliant security model for managing sensitive data in a shared data platform. Hopsworks' security model is built around Projects, which are analogous to Github repositories. A project contains datasets, users, and programs (code). Sensitive datasets can be sandboxed inside a project, so that users are prevented from exporting that data from the project or cross-linking that data with data in other projects. Note, this capability is provided in competitor data platforms by creating a whole new cluster for the sensitive dataset. In Hopsworks, sharing data does not involve copying data.
-Datasets can still be securely shared between projects, without the need for duplicating the dataset. Supported datasets in Hopsworks include Hive databases, Kafka topics, and subtrees in HopsFS (HDFS). 
-Hopsworks implements its project-based multi-tenancy security model by supporting TLS certificates (instead of Kerberos) for user authenticawtion, with a new certificate created for every use in every project. Hopsworks also provides role-based access control within projects, with pre-defined DataOwner and DataScientists roles provided for GDPR compliance (Data owners are responsible for the data and access to the data, while Data Scientists are processors of the data).
-
-.. figure:: ../../imgs/projects/hopsworks-projects-medium.png
-  :alt: Projects in Hopsworks
-  :scale: 60
-  :figclass: align-center
-
-  Just like Github is made up of repositories, Hopsworks is made up of lots of *Projects*. A Project is, in turn, a collection of users, data assets, and programs (code). 
+.. _Apache Hadoop: http://hadoop.apache.org/releases.html
 
 
-.. figure:: ../../imgs/projects/hopsworks-projects-detailed.png
-  :alt: Detailed view of Projects in Hopsworks
-  :scale: 66
-  :figclass: align-center
+You can read more about HopsFS in this `HopsFS paper`_.
 
-  Projects also have quotas associated with them - CPU/GPU and how much data they can store.
- 
-  
-
-Unified Scale-Out Metadata
---------------------
-
-.. figure:: ../../imgs/projects/hopsworks-metadata-layer.png
-  :alt: Scale-out Metadata in Hopsworks
-  :figclass: align-center
-
-  Hopsworks includes open-source frameworks for scalable data science in a single, secure platform.
-
-Hopsworks is enabled by a unified, scale-out metadata layer - a strongly consistent in-memory data layer that stores metadata for everything from Projects/Users/Datasets in Hopsworks, Filesystem metadata in HopsFS, Kafka ACLs, and YARN quota information. Hopsworks' metadata layer is kept consistent by mutating it using transactions and its integrity is ensured using foreign keys.
-
-
-HopsML - Machine Learning Lifecycle
---------------------
-
-.. figure:: ../../imgs/hopsml/ml-lifecycle.png
-  :alt: HopsML 
-  :scale: 50
-  :figclass: align-center
-
-  Hopsworks manages the full machine learning lifecycle.
-
-Hopsworks provides HopsML as a set of services and platforms to support the full machine learning lifecycle, including:
-
-* data management with HopsFS, Hive, Kafka, and Elasticsearch;
-* training machine learning models on both GPUs and CPUs, including distributed training on GPUs;
-* serving of models in production using Kubernetes, with Hopsworks providing authorized, audited access to scale-out models on TensorFlowServing, SparkML, or ScikitLearn;
-* model management and monitoring with a Spark Streaming application analyzing model usage in near-realtime.
-    
+.. _HopsFS paper: https://www.usenix.org/conference/fast17/technical-sessions/presentation/niazi
 

@@ -6,7 +6,6 @@ Hopsworks Overview
 
    introduction/audience
    introduction/revision-history
+   introduction/what-hopsworks
    introduction/what-hops
-   introduction/hopsworks
-   introduction/hopsFS
-..   introduction/hopsYarn
+
