@@ -2,6 +2,7 @@
 Data Set Browser
 ===========================
 
+
 The Data Set tab enables you to browse Data Sets, files and directories in this project.
 It is mostly used as a file browser for the project's HDFS subtree. You cannot navigate to
 directories outside of this project's subtree. For a quick preview of

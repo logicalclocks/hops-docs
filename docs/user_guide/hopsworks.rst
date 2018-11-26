@@ -12,6 +12,7 @@ Hopsworks User Guide
    hopsworks/goesWrong.rst
    hopsworks/newProject.rst
    hopsworks/deleteProject.rst
+   hopsworks/datasets.rst
    hopsworks/dataSetBrowser.rst
    hopsworks/uploadData.rst
    hopsworks/compress.rst
