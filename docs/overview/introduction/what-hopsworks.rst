@@ -15,7 +15,7 @@ Hopsworks is a managed platform for scale-out data science, with support for bot
 * a user-friendly UI for development with the latest open-source platforms for Data Science (Jupyter, Conda, etc),
 * Github-like Projects to manage teams/products/workflows/data,
 * managed GPUs as a Resources - scale out Deep Learning training and hyperparameter optimization,
-* the world's fastest, most-scalable distributed hierarchical filesystem.
+* the world's fastest, most-scalable distributed hierarchical filesystem,
 * a REST API for the whole Hopsworks Platform,
 * a TLS Certificate based security model with extensive auditing and data provenance capabilities,
 * end-to-end support for Python-based Deep Learning workflows with: a Feature Store, Data and Model Validation, Model Serving on Kubernetes, workflow orchestration in Airflow.
@@ -87,7 +87,7 @@ Hopsworks provides HopsML as a set of services and platforms to support the full
 Security
 ---------------------
 
-Hopsworks' security model is designed to support the processing of sensitive Datasets in a shared (multi-tenant) cluster. The solution is based on Projects. Within a Project, a use may have one of two different roles, a *Data Owner* - who is like a superuser, and a *Data Scientist* - who is allowed run programs (do analysis), but not allowed to:
+Hopsworks' security model is designed to support the processing of sensitive Datasets in a shared (multi-tenant) cluster. The solution is based on Projects. Within a Project, a user may have one of two different roles, a *Data Owner* - who is like a superuser, and a *Data Scientist* - who is allowed to run programs (do analysis), but not allowed to:
 
 * copy data either in or out of the Project,
 * cross-link the data in the Project with data in other Projects (even if she is a member of the other projects).
