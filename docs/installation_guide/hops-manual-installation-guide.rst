@@ -54,19 +54,16 @@ Download the source code for Hops::
 This generates a hadoop distribution folder ``./hadoop-dist`` that uses Hops instead of Hadoop.
 
 
-Installing Distributed Database
+Installing the Backend Database
 -------------------------------
 
-Hops uses NDB to store the filesystem metadata. NDB can be install using `Karamel`_. Karamel comes with many sample installation recopies for NDB that can be found in the ``examples`` folder of the Karamel installation. 
-
-Instructions for manually installing NDB is out of the scope of this documentation. We refer you to official `NDB Installation Manual`_ for installing NDB. 
+Hops uses NDB to store the filesystem metadata. NDB can be install using `Karamel`_. Karamel comes with many sample installation recopies for NDB that can be found in the ``examples`` folder of the Karamel installation. Instructions for manually installing NDB is out of the scope of this documentation. We refer you to official `NDB Installation Manual`_ for installing NDB. 
 
 
 Hops Cluster Setup 
 ------------------
 
 Installation involves copying the ``hadoop-dist`` folder on all the machines in the cluster. Ensure that all the machines have Java 1.7.X or higher installed. 
-
 
 
 Configuring Hops in Non-Secure Mode
