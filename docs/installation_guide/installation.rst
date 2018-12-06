@@ -14,6 +14,7 @@ Installation
    platforms/osx.rst
    platforms/cookbooks.rst
    requirements.rst
+   upgrades.rst
 
 The Hopsworks stack includes a number of services, but also requires the installation of a number of third-party distributed services:
 
