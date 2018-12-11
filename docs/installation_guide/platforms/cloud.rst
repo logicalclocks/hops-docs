@@ -38,14 +38,14 @@ We now provide two recommended setup:
 **Single Node Setup**
 You can run the entire Hopsworks application platform on a single node. You will have a NodeGroup with the following services on the single node:
 
-#. Hopsworks, Elasticsearch, Zeppelin, MySQL Server, NDB Mgmt Server, HDFS NameNode, YARN ResourceManager, NDB Data Node(s), HDFS DataNode, YARN NodeManager
+#. Hopsworks, Elasticsearch, MySQL Server, NDB Mgmt Server, HDFS NameNode, YARN ResourceManager, NDB Data Node(s), HDFS DataNode, YARN NodeManager
 
 
 **Tiny Cluster Setup**
 
 We recommend the following setup that includes the following NodeGroups, and requires at least 2 nodes to be deployed:
 
-#. Hopsworks, Elasticsearch, Zeppelin, MySQL Server, NDB Mgmt Server, HDFS NameNode, YARN ResourceManager, NDB Data Node
+#. Hopsworks, Elasticsearch, MySQL Server, NDB Mgmt Server, HDFS NameNode, YARN ResourceManager, NDB Data Node
 #. HDFS DataNode, YARN NodeManager
 
 This is really only a test setup, but you will have one node dedicated to YARN applications and file storage, while the other node handles the metadata layer services.
@@ -55,7 +55,7 @@ This is really only a test setup, but you will have one node dedicated to YARN a
 
 We recommend the following setup that includes four NodeGroups, and requires at least 4 nodes to be deployed:
 
-#. Hopsworks, Elasticsearch, Zeppelin, MySQL Server, NDB Mgmt Server,
+#. Hopsworks, Elasticsearch, MySQL Server, NDB Mgmt Server,
 #. HDFS NameNode, YARN ResourceManager, MySQL Server
 #. NDB Data Node
 #. HDFS DataNode, YARN NodeManager
@@ -67,7 +67,7 @@ A highly available small cluster would require at least two instances of the las
 We recommend the following setup that includes six NodeGroups, and requires at least 4 nodes to be deployed:
 
 #. Elasticsearch
-#. Hopsworks, Zeppelin, MySQL Server, NDB Mgmt Server
+#. Hopsworks, MySQL Server, NDB Mgmt Server
 #. HDFS NameNode, MySQL Server
 #. YARN ResourceManager, MySQL Server
 #. NDB Data Node

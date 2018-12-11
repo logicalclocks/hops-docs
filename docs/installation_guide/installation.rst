@@ -27,7 +27,6 @@ The Hopsworks stack includes a number of services, but also requires the install
 * ELK Stack (Elastic, Logstash, Kibana, Filebeat)
 * Influxdb, Telegraf, Grafana
 * Kafka + Zookeeper
-* Apache Zeppelin
 * Jupyter Notebook
 * Nvidia Cuda/cuDNN/NCCL-2 (if using Nvidia GPUs)
 * Apache Airflow

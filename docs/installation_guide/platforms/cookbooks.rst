@@ -1,6 +1,6 @@
-===========================
+========================
 Hopsworks Chef Cookbooks
-===========================
+========================
 
 Hopsworks' automated installation is orchestrated by Karamel and the installation/configuration logic is written as ruby programs in Chef. Chef supports the modularization of related programs in a unit of software, called a Chef *cookbook*. A Chef cookbook can be seen as a collection of programs, where each program contains instructions for how to install and configure software services. A cookbook may consist one or more programs that are known as *recipes*. These Chef recipes are executed by either a Chef client (that can talk to a Chef server) or chef-solo, a standalone program that has no dependencies on a Chef Server. Karamel uses chef-solo to execute Chef recipes on nodes. The benefit of this approach is that it is agentless. That is, Karamel only needs ssh to be installed on the target machine to be able to install and setup Hopsworks. Karamel also provides dependency injection for Chef recipes, supplying the parameters (*Chef attributes*) used to execute recipes. Some stages/recipes return results (such as the IP address of the NameNode) that are used in subsequent recipes (for example, to generate configuration files containing the IP address of the NameNode, such as core-site.xml).
 

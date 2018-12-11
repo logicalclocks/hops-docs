@@ -82,7 +82,8 @@ Inference requests log entries follow this *Avro* schema:
 
 In particular the *inferenceRequest* field contains the payload sent by the client and the *inferenceResponse* contains the answer given by the serving server.
 
-Check out the :doc:`../hopsworks/kafka` documentation, the hops-util-py_ and HopsUtil_ libraries to learn how you can read the inference logs from the Kafka topic and make the most out of them. 
+Check out our Kafka documentation under User Guide, the hops-util-py_ and HopsUtil_ libraries to learn how you
+can read the inference logs from the Kafka topic and make the most out of them.
 
 .. _hops-util-py: https://github.com/logicalclocks/hops-util-py
 .. _HopsUtil: https://github.com/logicalclocks/hops-util

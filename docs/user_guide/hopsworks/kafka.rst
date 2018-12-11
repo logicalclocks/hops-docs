@@ -1,6 +1,6 @@
-===========================
+============
 Apache Kafka
-===========================
+============
 
 Hopsworks provides Kafka-as-a-Service for streaming applications.
 Hopsworks provides by default the `HopsUtil`_ and `hops-util-py`_ libraries which make programming easier by abstracting away all the configuration boilerplate code such as Kafka endpoints, topics etc. Using these libraries, you can be up and running a simple Kafka on Hopsworks `in minutes`.
@@ -14,7 +14,7 @@ The following sections demonstrate different ways for writing Kafka applications
 Our service is tightly coupled with our project-based model so only members of a project can use a specific Kafka topic, unless specified otherwise. The Kafka service on Hops is multi-tenant, allowing users to share topics between projects as desired.
 
 Kafka Tour
------------------------
+----------
 
 If users prefer to be guided through the rest of the guide in Hopsworks, they can
 follow the `Kafka Tour` by selecting it from the available tours in the landing page.
@@ -29,7 +29,7 @@ follow the `Kafka Tour` by selecting it from the available tours in the landing 
 
 
 Example Spark Streaming Jobs with Kafka on Hopsworks
------------------------
+----------------------------------------------------
 
 **Download and compile the example application**
 
@@ -204,7 +204,7 @@ A sample output would look like the following:
 .. _hops-util-py: https://github.com/logicalclocks/hops-util-py
 
 Example Python Notebook with Kafka Producer and Consumer
------------------------
+--------------------------------------------------------
 
 You can find several example notebooks using kafka at hops_examples_.
 

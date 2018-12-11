@@ -35,7 +35,7 @@ the picture below.
 
 On the left-hand side of the project main page is the Project
 Menu. On the top section are the currently active services for your
-project such as ``Zeppelin``, the ``Job`` launcher UI and ``History
+project such as the ``Job`` launcher UI and ``History
 service``, ``Kafka`` etc In the middle
 section is the ``Data Sets`` browser menu where you can explore your
 project's datasets. Finally, on the bottom section is various settings
