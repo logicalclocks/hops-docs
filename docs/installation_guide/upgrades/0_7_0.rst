@@ -1,0 +1,53 @@
+=============
+Version 0.7.0
+=============
+
+Version 0.7.0 depends on Hops 2.8.2.6. This Hops version requires a change of the type of the Inode ID. This requires modifications to the cluster definition and some manual intervention. 
+
+Changes to the cluster definition
+---------------------------------
+
+1. In the global `attrs` section add the current version attribute. The attribute should be set to your current installed version. Example: 
+
+.. code-block:: yaml
+
+    attrs:                                                                                                         
+        install:                                                                                                     
+            current_version: "0.6.1"
+
+2. The upgrade requires rebuilding the Elasticsearch index for projects and datasets. Force the rebuilding by adding the following attribute to the cluster definition: 
+
+.. code-block:: yaml
+
+    elastic:
+        projects:
+            reindex: "true"
+
+3. If your installation includes Hive, and you are installing it using the `hive2::default` or `hive2` entries in your  recipes list, you should replace it with: 
+
+.. code-block:: yaml
+
+    recipes:
+        - hive2::db                                                                                              
+        - hive2::tez                                                                                             
+        - hive2::server2                                                                                         
+        - hive2::metastore       
+
+
+Manual actions required
+-----------------------
+
+The Inode ID type change requires serveral modifications of the database schema. Before starting the upgrade, make sure you have a backup of your database. 
+Before starting the upgrade you should disable the foreign key checks in MySQL. 
+
+.. code-block:: sql 
+ 
+    set global FOREIGN_KEY_CHECKS=0;
+
+Once the `hive2::db` recipe has run successfully you can procede to re-enable the foreign key checks.
+
+.. code-block:: sql 
+ 
+    set global FOREIGN_KEY_CHECKS=1;
+
+As heads up, the setting is restored to 1 if you restart your MySQL server.
