@@ -37,7 +37,7 @@ Changes to the cluster definition
 Manual actions required
 -----------------------
 
-The Inode ID type change requires serveral modifications of the database schema. Before starting the upgrade, make sure you have a backup of your database. 
+The Inode ID type change requires several modifications of the database schema. Before starting the upgrade, make sure you have a backup of your database. 
 Before starting the upgrade you should disable the foreign key checks in MySQL. 
 
 .. code-block:: sql 
@@ -50,4 +50,4 @@ Once the `hive2::db` recipe has run successfully you can procede to re-enable th
  
     set global FOREIGN_KEY_CHECKS=1;
 
-As heads up, the setting is restored to 1 if you restart your MySQL server.
+As a heads up, the setting is restored to 1 if you restart your MySQL server.
