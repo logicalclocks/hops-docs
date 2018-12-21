@@ -33,7 +33,14 @@ Changes to the cluster definition
         - hive2::server2                                                                                         
         - hive2::metastore       
 
+4. In version 0.7.0 we have promoted `conda` to a first-level Chef cookbook. For every nodes group in the `groups` section, add the
+   following block in the `recipes` section. Order does not matter.
 
+.. code-block:: yaml
+
+	- conda
+
+      
 Manual actions required
 -----------------------
 
@@ -44,7 +51,7 @@ Before starting the upgrade you should disable the foreign key checks in MySQL.
  
     set global FOREIGN_KEY_CHECKS=0;
 
-Once the `hive2::db` recipe has run successfully you can procede to re-enable the foreign key checks.
+Once the `hive2::db` recipe has run successfully you can proceed to re-enable the foreign key checks.
 
 .. code-block:: sql 
  
