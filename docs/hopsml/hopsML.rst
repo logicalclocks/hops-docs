@@ -29,7 +29,7 @@ Typically all programs in the pipeline are written in Python, although Scala/Jav
 For ML pipelines processing small amounts of data, developers can write a Keras/TensorFlow/PyTorch application to perform both ETL and training in a single program, although developers should be careful that the ETL stage is not so CPU intensive that GPUs cannot be fully utilized when training. For example, in an image processing pipeline, if the same Keras/TensorFlow/PyTorch application is used to both decode/scale/rotate images as well as train a deep neural network (DNN), the application will probably be CPU-bound or I/O bound, and GPUs will be underutilized.
 
 For ML pipelines processing large amounts of data, developers can write a seperate Spark or PySpark application to perform ETL and generate training data. When that application has completed, Airflow will then schedule a PySpark application with Keras/TensorFlow/PyTorch to train the DNN, on possibly many GPUs. The training data will be read from a distributed filesystem (HopsFS), and all logs, TensorBoard events, checkpoints, and the model will be written to the same distributed filesystem. When training has completed, Airflow can schedule a simple Python/Bash job to optimize the trained model (e.g., quantize model weights, remove batch norm layers,  shrink models for mobile devices), using either Nvidia's TensorRT library or TensorFlow's *transform_graph* utility. The optimized model (a .pb (protocol buffers) file in TensorFlow) can then be deployed directly from HopsFS to a model serving server (TensorFlow serving Server on Kubernetes) using a REST call on Hopsworks. Finally, Airflow can start a Spark Streaming job to monitor the deployed model by consuing logs for the deployed model from Kafka.
-	       
+
 .. _hopsml-hopsfs-pipeline.png: ../_images/hopsml-hopsfs-pipeline.png
 .. figure:: ../imgs/hopsml-hopsfs-pipeline.png
     :alt: HopsML Pipeline with HopsFS
@@ -38,21 +38,21 @@ For ML pipelines processing large amounts of data, developers can write a sepera
     :scale: 75 %
     :figclass: align-center
 
-	       
+
 HopsML uses HopsFS, a next-generation version of HDFS, to coordinate the different steps of an ML pipeline. Input data for pipelines can come from external sources, such as an existing Hadoop cluster or a S3 datalake, a feature store, or existing training datasets. External datasources can push data to HopsFS using either the Hopsworks REST-API or using Kafka in Hopsworks.
 
-During a ML pipeline HopsFS acts as a central coordinator for sharing data between the different stages. Examples of such data include features from the store, existing training data, PySpark/TensorFlow application logs, TensorBoard events (aggregate from many different executors/GPUs), output models, checkpoints, partial/full results from hyperparameter optimization. 
+During a ML pipeline HopsFS acts as a central coordinator for sharing data between the different stages. Examples of such data include features from the store, existing training data, PySpark/TensorFlow application logs, TensorBoard events (aggregate from many different executors/GPUs), output models, checkpoints, partial/full results from hyperparameter optimization.
 
 
-	       
+
 Hops Python Library
 -------------------
 
 The Hops Python Library simply named *hops* is used for running Python applications and consequently a library which is used throughout the entire pipeline. It simplifies interacting with services such as Kafka, Model Serving and TensorBoard. The experiment module provides a rich API for running versioned Machine Learning experiments, whether it be a simple single-process Python application or RingAllReduce over many machines.
 
-Documentation: hops-py_ 
+Documentation: hops-py_
 
-Code examples: hops-examples_ 
+Code examples: hops-examples_
 
 Data Collection
 ---------------
@@ -66,7 +66,7 @@ It is important to validate the datasets used in your pipeline, for example imba
 
 Spark Dataframes can be used to transform and validate large datasets in a distributed manner. For example schemas can be used to validate the datasets. Useful insights can be calculated such as class imbalance, null values for fields and making sure values are inside certain ranges. Datasets can be transformed by dropping or filtering fields.
 
-For visualizations on datasets, see spark-magic_ or facets_ examples here. 
+For visualizations on datasets, see spark-magic_ or facets_ examples here.
 
 Feature Store
 ------------------
@@ -76,22 +76,24 @@ Feature Store
 
 .. _Michelangelo: https://eng.uber.com/michelangelo
 
-Hopsworks provides a feature store to curate, store, and document features for use in ML pipelines. The feature store requires a change data engineers and data scientists extract features and use features from data sources. Feature engineering now becomes a separate, documented step that enables:
+Hopsworks provides a feature store to curate, store, and document features for use in ML pipelines. The feature store serves as the interface between data engineering and data science in HopsML pipelines. The feature store requires a change in mindset for data engineerings and data scientists, instead of writing custom pipelines where each model have their own feature storage, it is encouraged to assemble all features in the feature store so that features can be shared between several models and projects.
+
+requires a change for data engineers and data scientists extract features and use features from data sources. Feature engineering now becomes a separate, documented step that enables:
 
 1. Feature Reuse/Collaboration,
 2. Feature Documentation,
 3. Feature Backfilling,
 4. Feature Versioning,
-5. DRY (not repeat yourself) feature engineering.
+5. Automatic Feature Analysis,
+6. DRY (not repeat yourself) feature engineering.
 
-.. _hopsworks_feature_store.png: ../_images/hopsworks_feature_store.png
-.. figure:: ../imgs/hopsworks_feature_store.png
-    :alt: Feature Store
+.. _hopsworks_feature_store.png: ../_images/feature_store/overview_new.png
+.. figure:: ../imgs/feature_store/overview_new.png
+    :alt: A feature store is the interface between feature engineering and model development.
     :target: `hopsworks_feature_store.png`_
     :align: center
     :scale: 55 %
     :figclass: align-center
-	       
 
 Experimentation
 ---------------
@@ -123,10 +125,10 @@ HopsML comes with a novel Experiments service for overviewing history of Machine
     :alt: TensorBoard
     :target: `experiments_service.png`_
     :align: center
-    :scale: 60 %	    
+    :scale: 60 %
     :figclass: align-center
-    
-    
+
+
 The follwing is a TensorBoard visualizing Differential Evolution for hyperparameter optimization on two PySpark Executors. The X-axis being the wall-clock time.
 
 
@@ -135,7 +137,7 @@ The follwing is a TensorBoard visualizing Differential Evolution for hyperparame
     :alt: TensorBoard
     :target: `tensorboard.png`_
     :align: center
-    :scale: 60 %	    
+    :scale: 60 %
     :figclass: align-center
 
 
@@ -182,4 +184,3 @@ Typical tasks in a production Airflow ML pipeline on Hops involve Data Prep as a
     :scale: 66 %
     :align: center
     :figclass: align-center
-
