@@ -1,5 +1,5 @@
 Feature Store
-======
+==============
 
 In this tutorial we cover the feature store service in Hopsworks, how it should be used, how it fits into the machine learning pipeline, and the tech-stack behind it.
 
@@ -87,7 +87,7 @@ We introduce three new concepts to our users for modeling data in the feature st
 The API
 ~~~~~~~~~~~~~~~~~~~~~~
 
-The feature store in Hopsworks has both a Python API and a Scala/Java API. You'll see in the code snippets below that the python API have a lot of optional arguments that are explicit in the Java API, but apart from that the APIs are identical. This section will just give an overview of the API and show examples of the most common API methods, to get a full overview please see the API docs available here: TODO and the example notebooks available here: featurestore_example_notebooks_.
+The feature store in Hopsworks has both a Python API and a Scala/Java API. You'll see in the code snippets below that the python API contains optional arguments that are explicit in the Java API, but apart from that, the APIs are identical. This section gives an overview of the API and show examples of the most common API methods. To get a full overview of the API please see the API-docs_ and the featurestore_example_notebooks_.
 
 **Creating New Features**
 
@@ -173,7 +173,7 @@ To read features from the feature store, users can use either SQL or APIs in Pyt
 
     Users query the feature store programmatically or using SQL. The output is provided as Pandas, Numpy or Spark dataframes.
 
-For example, to fetch the features average_attendance and average_player_age from the feature store, all the user have to write is:
+For example, to fetch the features average_attendance and average_player_age from the feature store, all the user has to write is:
 
 .. code-block:: python
 
@@ -190,9 +190,9 @@ and using the Scala/Java API:
 
 **Creating Training Datasets**
 
-Organizations typically have many different types of raw datasets that can be used to extract features. For example, in the context of user recommendation there might be one dataset with demographic data of users and another dataset with user activities. Features from the same dataset are naturally grouped into a feature group, producing one feature group per dataset. When training a model, you want to include all features that have predictive power for the prediction task, these features can potentially span multiple feature groups. The training dataset abstraction in Hops Feature Store is used for this purpose, allowing users to group a set of features with labels for training a model to do a particular prediction task.
+Organizations typically have many different types of raw datasets that can be used to extract features. For example, in the context of user recommendation there might be one dataset with demographic data of users and another dataset with user activities. Features from the same dataset are naturally grouped into a feature group, producing one feature group per dataset. When training a model, you want to include all features that have predictive power for the prediction task, these features can potentially span multiple feature groups. The training dataset abstraction in Hopsworks Feature Store is used for this purpose, allowing users to group a set of features with labels for training a model to do a particular prediction task.
 
-Once a user have fetched a set of features from different feature groups in the feature store, the features can be materialized into a training dataset. By creating a training dataset using the feature store API, the dataset becomes managed by the feature store. Managed training datasets are automatically analyzed for data anomalies, versioned, documented, and shared with the organization.
+Once a user has fetched a set of features from different feature groups in the feature store, the features can be materialized into a training dataset. By creating a training dataset using the feature store API, the dataset becomes managed by the feature store. Managed training datasets are automatically analyzed for data anomalies, versioned, documented, and shared with the organization.
 
   .. _featurestore_pipeline.png: ../../_images/feature_store/pipeline.png
 .. figure:: ../../imgs/feature_store/pipeline.png
@@ -250,7 +250,7 @@ To create a managed training dataset, the user supplies a Pandas, Numpy or Spark
 
 **Reading a Training Dataset for Training a Model**:
 
-Once the training dataset have been created, the dataset is discoverable in the feature
+Once the training dataset has been created, the dataset is discoverable in the feature
 registry and users can use it to train models. Below is an example code snippet for training a
 model using a training dataset stored distributed in the tfrecords format on HopsFS.
 
@@ -376,7 +376,7 @@ When a feature group or training dataset is updated in the feature store, a data
 
 **Feature Data Dependencies**
 
-When the feature store increases in size, scheduling of jobs to recompute features should be automated to avoid a potential management bottleneck. Feature groups and training datasets in Hops feature store are linked to Spark/Numpy/Pandas jobs which allows to reproduce and recompute the features when necessary. Moreover, each feature group and training dataset can have a set of data dependencies. By linking feature groups and training datasets to jobs and data dependencies, the features in Hops feature store can be automatically back-filled using work-flow management systems such as Airflow.
+When the feature store increases in size, scheduling of jobs to recompute features should be automated to avoid a potential management bottleneck. Feature groups and training datasets in Hops feature store are linked to Spark/Numpy/Pandas jobs which allows to reproduce and recompute the features when necessary. Moreover, each feature group and training dataset can have a set of data dependencies. By linking feature groups and training datasets to jobs and data dependencies, the features in Hops feature store can be automatically back-filled using workflow management systems such as Airflow.
 
 .. _hopsworks_featurestore_open_deps.png: ../../_images/feature_store/open_deps.png
 .. figure:: ../../imgs/feature_store/open_deps.png
@@ -406,7 +406,7 @@ When the feature store increases in size, scheduling of jobs to recompute featur
     :scale: 55 %
     :figclass: align-center
 
-    By tracking data dependencies, features can be automatically back-filled by recomputing the associated feature engineering job when a data dependency have been updated.
+    By tracking data dependencies, features can be automatically back-filled by recomputing the associated feature engineering job when a data dependency has been updated.
 
 **Other Actions Available in the Feature Registry**
 
@@ -467,7 +467,7 @@ A Multi-tenant Feature Store Service
 
 Despite the benefit of centralizing features, we have identified a need to enforce access control to features. Several organizations that we have talked to are working partially with sensitive data that requires specific access rights that is not granted to everyone in the organization. For example, it might not be feasible to publish features that are extracted from sensitive data to a feature store that is public within the organization.
 
-To solve this problem we utilize the multi-tenancy property built-in to the architecture of the Hopsworks platform. Feature stores in Hopsworks are by default project-private and can be shared across projects, which means that an organization can combine public and private feature stores. An organization can have a central public feature store that is shared with everyone in the organization as well as private feature stores containing features of sensitive nature that are only accessible by users with the appropriate permissions.
+To solve this problem we utilize the multi-tenant model of Hopsworks. Feature stores in Hopsworks are by default project-private and can be shared across projects, which means that an organization can combine public and private feature stores. An organization can have a central public feature store that is shared with everyone in the organization as well as private feature stores containing features of sensitive nature that are only accessible by users with the appropriate permissions.
 
 .. _hopsworks_featurestore_multitenant.png: ../../_images/feature_store/multitenant.png
 .. figure:: ../../imgs/feature_store/multitenant.png
@@ -516,7 +516,7 @@ When you have multiple feature stores shared with your project you can select wh
 Technical Details on the Architecture
 ------------
 
-A feature store consist of five main components:
+A feature store consists of five main components:
 
 * The feature engineering jobs, the jobs used to compute the features and insert into the feature store.
 * The storage layer for storing the feature data.
@@ -585,25 +585,4 @@ We have provided a large number of example notebooks, available here_. Go to Hop
 .. _HopsML: ../../hopsml/hopsML.html
 .. _jobs: ./jobs.html
 .. _featurestore_example_notebooks: https://github.com/Limmen/hops-examples/tree/HOPSWORKS-721/notebooks/featurestore
-..  LocalWords:  Feature this tutorial we go over the feature on png
-..  LocalWords:  Hopsworks. Hopsworks datasets hopsworks figclass csv
-..  LocalWords:  APIs versioning featurestore browsable versioned tsv
-..  LocalWords:  Numpy dataset HopsFS tfrecords API Scala TODO UI df
-..  LocalWords:  dataframe metadata featuregroup scala featuresDf SQL
-..  LocalWords:  insertIntoFeaturegroup featureName descriptiveStats
-..  LocalWords:  featuregroupVersion featureCorr featureHistograms tf
-..  LocalWords:  clusterAnalysis statColumns numBins corrMethod jobId
-..  LocalWords:  numClusters asJava primaryKey spanish getFeatures td
-..  LocalWords:  createFeaturegroup getProjectFeaturestore dataFormat
-..  LocalWords:  trainingDatasetName trainingDatasetVersion dir proto
-..  LocalWords:  latestVersion createTrainingDataset tensorflow num
-..  LocalWords:  schemas MLP relu mse spe getTrainingDataset lr ITER
-..  LocalWords:  transformedDf VectorAssembler setInputCols PARAM fs
-..  LocalWords:  setOutputCol LinearRegression setLabelCol setMaxIter
-..  LocalWords:  setFeaturesCol setRegParam setElasticNetParam RMSE
-..  LocalWords:  lrModel trainingSummary println numIterations deps
-..  LocalWords:  totalIterations objectiveHistory covariate outliers
-..  LocalWords:  rootMeanSquaredError depenencies backfilling Multi
-..  LocalWords:  multi multitenant PySpark fg scalable ORC petastorm
-..  LocalWords:  projectname NDB MySQL Jupyter HopsML dataframes html
-..  LocalWords:  programmatically discoverable
+.. _API-Docs: http://hops-py.logicalclocks.com/

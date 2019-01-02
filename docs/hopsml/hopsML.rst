@@ -76,9 +76,9 @@ Feature Store
 
 .. _Michelangelo: https://eng.uber.com/michelangelo
 
-Hopsworks provides a feature store to curate, store, and document features for use in ML pipelines. The feature store serves as the interface between data engineering and data science in HopsML pipelines. The feature store requires a change in mindset for data engineerings and data scientists, instead of writing custom pipelines where each model have their own feature storage, it is encouraged to assemble all features in the feature store so that features can be shared between several models and projects.
+Hopsworks provides a feature store to curate, store, and document features for use in ML pipelines. The feature store serves as the interface between data engineering and data science in HopsML pipelines. The feature store requires a change in mindset for data engineering and data scientists, instead of writing custom pipelines where models have their own feature storage, it is encouraged to assemble all features in the feature store so that features can be shared between several models and projects.
 
-requires a change for data engineers and data scientists extract features and use features from data sources. Feature engineering now becomes a separate, documented step that enables:
+The Feature Store enables the following best-practices for feature engineering:
 
 1. Feature Reuse/Collaboration,
 2. Feature Documentation,
