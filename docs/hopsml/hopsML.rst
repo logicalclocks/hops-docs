@@ -87,12 +87,11 @@ The Feature Store enables the following best-practices for feature engineering:
 5. Automatic Feature Analysis,
 6. DRY (not repeat yourself) feature engineering.
 
-.. _hopsworks_feature_store.png: ../_images/feature_store/overview_new.png
+.. _hopsworks_feature_store.png: ../_images/overview_new.png
 .. figure:: ../imgs/feature_store/overview_new.png
     :alt: A feature store is the interface between feature engineering and model development.
     :target: `hopsworks_feature_store.png`_
     :align: center
-    :scale: 55 %
     :figclass: align-center
 
 Experimentation
