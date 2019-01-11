@@ -20,7 +20,8 @@ Download and Compile Sources
 ----------------------------
 Hops consists of two modules:
 
-* the Data Access Layer (DAL) and its' implementation (for a target database such as MySQL Cluster).
+* the Data Access Layer (DAL) and its implementation (for a target database such as MySQL Cluster).
+* the GPU abstraction layer and its implementation (for NVIDIA GPUs).
 * Hops Hadoop;
 
 Separating the data access layer permits different (distributed) transactional database storage engines with different licensing models. :ref:`More ... <hops-licensing>`
@@ -41,6 +42,21 @@ Download the source code for Data Access Layer Implementation for MySQL Cluster 
    > mvn install
 
 This generates a driver jar file ``./target/hops-metadata-dal-impl-ndb-1.0-SNAPSHOT.jar`` which is used by the HopsFS to communicate with the database. 
+
+Building the GPU Driver
+-------------------------------
+
+Download the source code for the GPU Layer Interface::
+
+  > git clone https://github.com/hopshadoop/hops-gpu-management.git
+  > cd hops-gpu-management
+  > mvn install -DskipTests
+
+Download the source code for the GPU layer Implementation for NVIDIA::
+
+  > git clone https://github.com/hopshadoop/hops-gpu-management-impl-nvidia.git
+  > cd hops-gpu-management-impl-nvidia
+  > mvn install -DskipTests
 
 Building Hops
 ----------------
