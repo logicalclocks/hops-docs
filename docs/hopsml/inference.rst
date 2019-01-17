@@ -37,10 +37,10 @@ The following is a python skeleton that shows how you can send inference request
     request_data['instances'] = image[0].reshape(1, image[0].size).tolist()
 
     # Send the actual request. The path should be composed as follow:
-    # https://<host>:<ip>/hopsworks-api/api/project/hboard<project_id>/models/<model_name>:predict
-    r = requests.post("http://localhost:8080/hopsworhboardks-api/api/project/80/inference/models/mnist:predict",
-                      cookies=login_request.cookies,hboard
-                      data=json.dumps(request_data))hboard
+    # https://<host>:<ip>/hopsworks-api/api/project/<project_id>/models/<model_name>:predict
+    r = requests.post("http://localhost:8080/hopsworks-api/api/project/80/inference/models/mnist:predict",
+                      cookies=login_request.cookies,
+                      data=json.dumps(request_data))
 
 
 
