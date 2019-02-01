@@ -13,6 +13,7 @@ Installation
    platforms/windows.rst
    platforms/osx.rst
    platforms/cookbooks.rst
+   attributes_table.rst
    requirements.rst
    upgrades.rst
 
