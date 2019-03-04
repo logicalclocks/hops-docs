@@ -29,6 +29,7 @@ Hopsworks User Guide
    hopsworks/metaDataDesigner.rst
    hopsworks/metaDataAttachment.rst
    hopsworks/featurestore.rst
+   hopsworks/airflow.rst
 
 
 If you are using 2-Factor authentication, jump ahead to "First Login with 2-Factor Authentication".
