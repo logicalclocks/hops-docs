@@ -102,59 +102,21 @@ The feature store is agnostic to the method for computing the features. The only
 .. code-block:: scala
 
     import io.hops.util.Hops
-    Hops.insertIntoFeaturegroup(
-    featuresDf,
-    spark,
-    featureName,
-    featurestore,
-    featuregroupVersion,
-    mode,
-    descriptiveStats,
-    featureCorr,
-    featureHistograms,
-    clusterAnalysis,
-    statColumns,
-    numBins,
-    corrMethod,
-    numClusters
-    )
+    Hops.insertIntoFeaturegroup(featuregroupName).setDataframe(sampleDF).setMode("append").write()
 
 * Creating a new feature group using the Python API:
 
 .. code-block:: python
 
     from hops import featurestore
-    featurestore.create_featuregroup(
-		features_df,
-		feature_name,
-		description=feature_description
-		)
+    featurestore.create_featuregroup(features_df, featuregroup_name)
 
 * Creating a new feature group using the Scala/Java API:
 
 .. code-block:: scala
 
     import io.hops.util.Hops
-    val jobId = null
-    val dependencies = List[String]().asJava
-    val primaryKey = null
-    val descriptiveStats = false
-    val featureCorr = false
-    val featureHistograms = false
-    val clusterAnalysis = false
-    val statColumns = List[String]().asJava
-    val numBins = null
-    val corrMethod = null
-    val numClusters = null
-    val description = "a spanish version of teams_features"
-
-    Hops.createFeaturegroup(
-		spark, featuresDf, description, Hops.getProjectFeaturestore,
-		1, description, jobId,
-		dependencies, primaryKey, descriptiveStats, featureCorr,
-		featureHistograms, clusterAnalysis, statColumns, numBins,
-		corrMethod, numClusters
-		)
+    Hops.createFeaturegroup(featuregroupName).setDataframe(featuresDf).write()
 
 **Reading From the Feature Store**
 
@@ -181,8 +143,7 @@ and using the Scala/Java API:
 .. code-block:: scala
 
     import io.hops.util.Hops
-    val features = List("average_attendance", "average_player_age")
-    val featuresDf = Hops.getFeatures(spark, features, Hops.getProjectFeaturestore)
+    val features_df = Hops.getFeatures(List("average_attendance", "average_player_age")).read()
 
 **Creating Training Datasets**
 
@@ -206,40 +167,14 @@ To create a managed training dataset, the user supplies a Pandas, Numpy or Spark
 .. code-block:: python
 
     from hops import featurestore
-    featurestore.create_training_dataset(features_df,
-                                 training_dataset_name,
-                                 training_dataset_description,
-                                 computation_job,
-                                 training_dataset_version,
-                                 data_format="tfrecords"
-                                 )
+    featurestore.create_training_dataset(features_df,training_dataset_name,data_format="tfrecords")
 
 * Creating a training dataset using the Scala/Java API:
 
 .. code-block:: scala
 
     import io.hops.util.Hops
-    val features = List("average_attendance", "average_player_age")
-    val featuresDf = Hops.getFeatures(spark, features, Hops.getProjectFeaturestore)
-    val trainingDatasetName = "team_position_prediction"
-    val jobId = null
-    val dependencies = List[String]().asJava
-    val primaryKey = null
-    val dataFormat = "tfrecords"
-    val descriptiveStats = false
-    val featureCorr = false
-    val featureHistograms = false
-    val clusterAnalysis = false
-    val statColumns = List[String]().asJava
-    val numBins = null
-    val corrMethod = null
-    val numClusters = null
-    val description = "a dataset with features for football teams, used for training a model to predict league-position"
-    val trainingDatasetVersion = latestVersion + 1
-    Hops.createTrainingDataset(spark, featuresDf, trainingDatasetName, Hops.getProjectFeaturestore,
-		trainingDatasetVersion, description, jobId, dataFormat, dependencies, descriptiveStats, featureCorr,
-		featureHistograms, clusterAnalysis, statColumns, numBins,
-		corrMethod, numClusters)
+    Hops.createTrainingDataset(training_dataset_name).setDataframe(featuresDf).setDataFormat("tfrecords").write()
 
 
 
@@ -283,7 +218,7 @@ model using a training dataset stored distributed in the tfrecords format on Hop
 .. code-block:: scala
 
     import io.hops.util.Hops
-    val dataset_df = Hops.getTrainingDataset(spark, "team_position_prediction", Hops.getProjectFeaturestore, 1)
+    val dataset_df = Hops.getTrainingDataset("team_position_prediction").read()
     val transformedDf = new VectorAssembler().setInputCols(Array( "average_player_rating","average_attendance", "sum_player_rating",
                      "sum_position", "sum_player_worth", "average_player_age", "average_player_worth",
                      "team_budget", "average_position", "sum_player_age", "sum_attendance")).
