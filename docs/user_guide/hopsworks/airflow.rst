@@ -157,22 +157,31 @@ end our ``example_dag.py`` will look like the following.
 .. code-block:: python
 		
    import airflow
+
+   from datetime import datetime, timedelta
    from airflow import DAG
 
    from hopsworks_plugin.operators.hopsworks_operator import HopsworksLaunchOperator
    from hopsworks_plugin.sensors.hopsworks_sensor import HopsworksJobSuccessSensor
 
+   delta = timedelta(minutes=-10)
+   now = datetime.now()
+
    args = {
        # Username in Hopsworks
        'owner': 'meb10000',
        'depends_on_past': False,
-       'start_date': airflow.utils.dates.days_ago(2)
+
+       # Start date is 10 minutes ago
+       'start_date': now + delta
    }
  
    dag = DAG(
        dag_id = 'windflow_dag',
        default_args = args,
-       schedule_interval = '@daily'
+       
+       # Run every seven minutes
+       schedule_interval = '*/7 * * * *'
    )
 
    # Project ID extracted from URL
@@ -198,8 +207,9 @@ tasks if your username is not correct. You can get your username by
 clicking on the *Account* button on the top right drop-down menu.
 
 Next we define the DAG name which can be anything, it is an identifier
-used in Airflow. Also, we schedule the task to run once a day using
-the annotation ``@daily``.
+used in Airflow. Also, we schedule the task to run every seven minutes
+starting 10 minutes ago. This will produce a DAG run already when we
+upload it since the scheduler is trying to catch up the missed runs.
 
 Another **very important** parameter is the project ID. In the current
 version you must get the project ID from the URL. For example, when
