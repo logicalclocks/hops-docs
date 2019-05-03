@@ -12,6 +12,7 @@ HopsFS User Guide
    hopsfs/quota-management.rst
    hopsfs/block.rst
    hopsfs/acls
+   hopsfs/xattrs.rst
 
 HopsFS consists of the following types of nodes: NameNodes, DataNodes, and Clients. All the configurations parameters are defined in ``core-site.xml`` and ``hdfs-site.xml`` files.
 
