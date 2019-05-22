@@ -2,74 +2,62 @@
 Inference service
 =================
 
-Hopsworks provides a REST API for submitting inference requests to the serving server. 
-Currently the API only supports, as backend, the TensorFlow model server, but it will be expanded in the future. 
-
-**A word of caution: Please note that the Inference REST API is currently in a beta state. The API is experimental as breaking changes might be introduced in the upcoming releases due to integrating further serving technologies.**
+Hopsworks provides a REST API for submitting inference requests to the serving servers.
+Currently the API supports, as backend, the TensorFlow model server and Flask Servers for SkLearn Models, it will be expanded in the future to support more model types as well.
 
 Send a request
 --------------
 
-The following is a python skeleton that shows how you can send inference requests to Hopsworks. The skeleton makes uses of the *requests* library. 
+The code snippet below shows how you can send 20 inference requests to Hopsworks for a Tensorflow Serving Server serving a model with the name "mnist" that expects a vector of shape 784 as input.
 
-.. code-block:: python 
+.. code-block:: python
 
-    # Login with Hopsworks using username and password
-    credentials = {}
-    credentials['email'] = "user@email.com"
-    credentials['password'] = "userpassword"
+    from hops import serving
+    for i in range(20):
+        data = {
+                    "signature_name": 'predict_images',
+                    "instances": [np.random.rand(784).tolist()]
+                }
+        response = serving.make_inference_request("mnist", data)
 
-    login_request = requests.post('http://localhost:8080/hopsworks-api/api/auth/login',
-                                  data=credentials)
 
-    # Load the data. This example uses mnist. You can download
-    # the Python helper script to download the dataset here: 
-    # https://github.com/tensorflow/serving/blob/master/tensorflow_serving/example/mnist_input_data.py 
-    test_data_set = mnist_input_data.read_data_sets(work_dir).test
+The code snippet below shows how you can send 20 inference requests to Hopsworks for a Flask Server serving a SkLearn model with the name "IrisFlowerClassifier" that expects a vector of shape 4 as input.
 
-    # Get an image from the dataset
-    image, label = test_data_set.next_batch(1)
+.. code-block:: python
 
-    # Prepare the JSON payload. The format of the payload should respect the format
-    # expected by the TensorFlow model server: https://www.tensorflow.org/serving/api_rest
-    request_data = {}
-    request_data['signature_name'] = 'predict_images'
-    request_data['instances'] = image[0].reshape(1, image[0].size).tolist()
-
-    # Send the actual request. The path should be composed as follow:
-    # https://<host>:<ip>/hopsworks-api/api/project/<project_id>/models/<model_name>:predict
-    r = requests.post("http://localhost:8080/hopsworks-api/api/project/80/inference/models/mnist:predict",
-                      cookies=login_request.cookies,
-                      data=json.dumps(request_data))
+    from hops import serving
+    for i in range(20):
+        data = {"inputs" : [[random.uniform(1, 8) for i in range(4)]]}
+        response = serving.make_inference_request("IrisFlowerClassifier", data)
 
 
 
 Request Logging
 ---------------
 
-If during the serving instance creation you have specified a Kafka Topic to log the inference requests, each request will be logged in the topic. 
+If during the serving instance creation you have specified a Kafka Topic to log the inference requests, each request will be logged in the topic.
 
-Inference requests log entries follow this *Avro* schema: 
+Inference requests log entries follow this *Avro* schema:
 
 .. code-block:: json
 
     {
         "fields": [{
-            "name": "modelId", 
+            "name": "modelId",
             "type": "int"
             },{
             "name": "modelName",
-            "type": "string" 
+            "type": "string"
             },{
             "name": "modelVersion",
-            "type": "int" 
+            "type": "int"
             },{
             "name": "requestTimestamp",
-            "type": "long" 
+            "type": "long"
             },{
             "name": "responseHttpCode",
             "type": "int"
-            },{ 
+            },{
             "name": "inferenceRequest",
             "type": "string"
             },{
@@ -82,8 +70,32 @@ Inference requests log entries follow this *Avro* schema:
 
 In particular the *inferenceRequest* field contains the payload sent by the client and the *inferenceResponse* contains the answer given by the serving server.
 
-Check out our Kafka documentation under User Guide, the hops-util-py_ and HopsUtil_ libraries to learn how you
-can read the inference logs from the Kafka topic and make the most out of them.
+Below is a python code-snippet showing how you can read 10 inference logs from Kafka for a Serving Instance with the name "mnist":
+
+.. code-block:: python
+
+    from hops import serving, kafka
+    from confluent_kafka import Producer, Consumer, KafkaError
+    topic = serving.get_serving_kafka_topic("IrisFlowerClassifier")
+    config = kafka.get_kafka_default_config()
+    config['default.topic.config'] = {'auto.offset.reset': 'earliest'}
+    consumer = Consumer(config)
+    topics = [topic]
+    consumer.subscribe(topics)
+    json_schema = kafka.get_schema(topic)
+    avro_schema = kafka.convert_json_schema_to_avro(json_schema)
+
+    for i in range(0, 10):
+        msg = consumer.poll(timeout=1.5)
+        if msg is not None:
+            value = msg.value()
+            event_dict = kafka.parse_avro_msg(value, avro_schema)
+
+
+
+Check out our Kafka documentation under User Guide, the hops-util-py_ and HopsUtil_ libraries to learn more about how you
+can read the inference logs from the Kafka topic and make the most out of them. Example notebooks are available here_.
 
 .. _hops-util-py: https://github.com/logicalclocks/hops-util-py
 .. _HopsUtil: https://github.com/logicalclocks/hops-util
+.. _here: https://github.com/logicalclocks/hops-examples
