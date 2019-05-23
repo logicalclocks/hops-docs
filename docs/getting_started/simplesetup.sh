@@ -12,7 +12,6 @@ if [ "$INSTALL_DEPENDENCIES" = true ] ; then
   echo "Installing vagrant..."
   wget -P $DOWNLOAD_DIR https://releases.hashicorp.com/vagrant/2.0.2/vagrant_2.0.2_x86_64.deb
   sudo dpkg -i $DOWNLOAD_DIR/vagrant_2.0.2_x86_64.deb
-  
   echo "Installing virtualbox..."
   wget -P $DOWNLOAD_DIR https://download.virtualbox.org/virtualbox/5.2.6/virtualbox-5.2_5.2.6-120293~Ubuntu~xenial_amd64.deb
   sudo dpkg -i $DOWNLOAD_DIR/virtualbox-5.2_5.2.6-120293~Ubuntu~xenial_amd64.deb
@@ -28,7 +27,7 @@ git clone https://github.com/hopshadoop/karamel-chef.git
 
 echo "Creating VM"
 cd karamel-chef
-./run.sh ubuntu 1 hopsworks-0.6.0
+./run.sh ubuntu 1 hopsworks
 
 HOPSWORKS_PORT=$(./run.sh ports | grep "8080 ->" | awk '{print $3}') 
 
