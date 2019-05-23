@@ -67,7 +67,7 @@ When the installation finishes you can access Hopsworks from your browser at htt
 
 ::
 
-  username: admin@kth.se
+  username: admin@hopsworks.com
   password: admin
 
 

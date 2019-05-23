@@ -96,7 +96,7 @@ Here are some of the most important security parameters to set when installing s
   
 - Administration username and password for Hopsworks
 
-  - Default: 'admin@kth.se' and 'admin'
+  - Default: 'admin@hopsworks.com' and 'admin'
 
 Here are some of the most important sizing configuration parameters to set when installing services:
 

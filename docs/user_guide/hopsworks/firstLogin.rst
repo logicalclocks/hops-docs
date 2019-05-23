@@ -16,7 +16,7 @@ First Login (without 2-Factor Authentication)
 On initial installation, you can login with the default username and password.
 ::
 
-    username: admin@kth.se
+    username: admin@hopsworks.com
     password: admin
 
 Upon successful login, you will arrive on the landing page:
