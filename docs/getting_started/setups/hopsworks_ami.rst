@@ -159,7 +159,7 @@ Once all the services are up and running, open the browser and visit `http://<pu
 
 You can log into Hopsworks using the following credentials:
 
-- username : admin@hopsworks.com
+- username : admin@hopsworks.ai
 - password : admin
 
 
