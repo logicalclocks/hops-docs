@@ -67,7 +67,7 @@ When the installation finishes you can access Hopsworks from your browser at htt
 
 ::
 
-  username: admin@hopsworks.com
+  username: admin@hopsworks.ai
   password: admin
 
 
