@@ -156,10 +156,11 @@ In the pipeline we support a scalable architecture for serving of TensorFlow and
     :align: center
     :figclass: align-center
 
-See model_serving_ and inferencing_ for more information.
+See tf_model_serving_, sklearn_model_serving_ and inferencing_ for more information.
 
 .. _experiments: ./experiment.html
-.. _model_serving: ./model_serving.html
+.. _tf_model_serving: ./tf_model_serving.html
+.. _sklearn_model_serving: ./sklearn_model_serving.html
 .. _inferencing: ./inference.html
 .. _hops-py: http://hops-py.logicalclocks.com
 .. _experiment: http://hops-py.logicalclocks.com/hops.html#module-hops.experiment
