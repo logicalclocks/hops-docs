@@ -4,7 +4,7 @@ Single Machine Installation
 
 The easiest way to install Hops is to run the installer script.
 
-If you are using a debian based distribution, you can run the :download:`simplesetup.sh <../simplesetup.sh>` script. (Tested on Ubuntu 16.04 LTS)
+If you are using a debian based distribution, you can run the :download:`simplesetup.sh <../simplesetup.sh>` script. (Tested on Ubuntu 18.04 LTS)
 ::
 
     ./simplesetup.sh

@@ -9,12 +9,15 @@ fi
 
 if [ "$INSTALL_DEPENDENCIES" = true ] ; then
   echo "Installing dependencies"
-  echo "Installing vagrant..."
-  wget -P $DOWNLOAD_DIR https://releases.hashicorp.com/vagrant/2.0.2/vagrant_2.0.2_x86_64.deb
-  sudo dpkg -i $DOWNLOAD_DIR/vagrant_2.0.2_x86_64.deb
   echo "Installing virtualbox..."
-  wget -P $DOWNLOAD_DIR https://download.virtualbox.org/virtualbox/5.2.6/virtualbox-5.2_5.2.6-120293~Ubuntu~xenial_amd64.deb
-  sudo dpkg -i $DOWNLOAD_DIR/virtualbox-5.2_5.2.6-120293~Ubuntu~xenial_amd64.deb
+  wget -P $DOWNLOAD_DIR https://download.virtualbox.org/virtualbox/6.0.8/virtualbox-6.0_6.0.8-130520~Ubuntu~bionic_amd64.deb
+  sudo dpkg -i $DOWNLOAD_DIR/virtualbox-6.0_6.0.8-130520~Ubuntu~bionic_amd64.deb
+  echo "Installing vagrant..."
+  wget -P $DOWNLOAD_DIR https://releases.hashicorp.com/vagrant/2.2.4/vagrant_2.2.4_x86_64.deb
+  sudo dpkg -i $DOWNLOAD_DIR/vagrant_2.2.4_x86_64.deb
+  echo "Installing chefdk..."
+  wget -P $DOWNLOAD_DIR https://packages.chef.io/files/stable/chefdk/4.0.60/ubuntu/18.04/chefdk_4.0.60-1_amd64.deb
+  sudo dpkg -i $DOWNLOAD_DIR/chefdk_4.0.60-1_amd64.deb
 
   echo "Completing dependency installation"
   sudo apt -f -y install
@@ -32,9 +35,9 @@ cd karamel-chef
 HOPSWORKS_PORT=$(./run.sh ports | grep "8080 ->" | awk '{print $3}') 
 
 echo "Removing installers"
-rm $DOWNLOAD_DIR/vagrant_2.0.2_x86_64.deb
-rm $DOWNLOAD_DIR/chefdk_2.4.17-1_amd64.deb
-rm $DOWNLOAD_DIR/virtualbox-5.2_5.2.6-120293~Ubuntu~xenial_amd64.deb
+rm $DOWNLOAD_DIR/vagrant_2.2.4_x86_64.deb
+rm $DOWNLOAD_DIR/chefdk_4.0.60-1_amd64.deb
+rm $DOWNLOAD_DIR/virtualbox-6.0_6.0.8-130520~Ubuntu~bionic_amd64.deb
 
 echo "VM Initialization started. Run \"tail -f karamel-chef/nohup.out\" to track progress."
 echo "Once you see the success message, navigate to 127.0.0.1:$HOPSWORKS_PORT/hopsworks"
