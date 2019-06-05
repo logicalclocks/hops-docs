@@ -11,13 +11,13 @@ Both ways are described in detail below.
 Importing an ova image
 ----------------------
 
-To successfully import and start the image, it is necessary to have virtualbox installed on your workstation and at
+To successfully import and start the image, it is necessary to have VirtualBox installed on your workstation and at
 least 20GB of storage and 16GB of main memory available. You can then follow these steps to import Hopsworks:
 
 1. Download the 15G image_.
-2. Import the image from the VirtualBox GUI or from the command line with ``vboxmanage import hopsworksimage.ova``
+2. Import the image from the VirtualBox GUI or from the command line with ``vboxmanage import hopsworks-master.ova``
 3. Start the vm in **headless** mode from the VirtualBox GUI or from the command line with ``vboxmanage startvm hopsworks0 --type headless``
-4. Wait for 3 minutes until all services have started and then access the Hopsworks at https://localhost:52988/hopsworks/ and login with username: admin@hopsworks.ai and password: admin. For further details on how to use Hopsworks, see :ref:`userguide`.
+4. Wait for approximately 3 minutes until all services have started and then access the Hopsworks at https://localhost:52988/hopsworks/ and login with username: admin@hopsworks.ai and password: admin. For further details on how to use Hopsworks, see :ref:`userguide`.
 
 Advanced users might want to ssh in the vm. To do this, you need to:
 
