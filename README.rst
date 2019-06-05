@@ -9,6 +9,8 @@ Build the documentation
    # Install sphinx
 
    pip install sphinx sphinx-autobuild recommonmark sphinx_rtd_theme jupyter_sphinx_theme
+   
+   apt-get install python-sphinx
 
    cd docs
 
