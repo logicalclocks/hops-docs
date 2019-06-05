@@ -26,13 +26,13 @@ if [ "$INSTALL_DEPENDENCIES" = true ] ; then
 fi
 
 echo "Getting the installer"
-git clone https://github.com/hopshadoop/karamel-chef.git
+git clone https://github.com/logicalclocks/karamel-chef.git
 
 echo "Creating VM"
 cd karamel-chef
 ./run.sh ubuntu 1 hopsworks
 
-HOPSWORKS_PORT=$(./run.sh ports | grep "8080 ->" | awk '{print $3}') 
+HOPSWORKS_PORT=$(./run.sh ports | grep "8181 ->" | awk '{print $3}') 
 
 echo "Removing installers"
 rm $DOWNLOAD_DIR/vagrant_2.2.4_x86_64.deb
@@ -40,5 +40,5 @@ rm $DOWNLOAD_DIR/chefdk_4.0.60-1_amd64.deb
 rm $DOWNLOAD_DIR/virtualbox-6.0_6.0.8-130520~Ubuntu~bionic_amd64.deb
 
 echo "VM Initialization started. Run \"tail -f karamel-chef/nohup.out\" to track progress."
-echo "Once you see the success message, navigate to 127.0.0.1:$HOPSWORKS_PORT/hopsworks"
+echo "Once you see the success message, navigate to https://127.0.0.1:$HOPSWORKS_PORT/hopsworks"
 echo "on your host machine with credentials user: admin@hopsworks.ai password: admin"
