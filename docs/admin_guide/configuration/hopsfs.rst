@@ -6,6 +6,7 @@ HopsFS Configuration
 .. toctree::
    :maxdepth: 1
 
+   sfsconfig/small-files.rst
    sfsconfig/election.rst
    sfsconfig/cache.rst
    sfsconfig/transaction.rst
