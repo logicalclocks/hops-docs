@@ -1,0 +1,85 @@
+==============
+Version 0.10.0
+==============
+
+Version 0.10.0 requires some changes to the cluster definition. 
+
+Changes to the cluster definition
+---------------------------------
+
+1. In the global `attrs` section add the current version attribute. The attribute should be set to your current installed version. Example: 
+
+.. code-block:: yaml
+
+    attrs:                                                                                                         
+        install:                                                                                                     
+            current_version: "0.9.1"
+
+2. Hopsworks 0.10.0 drops support for Zeppelin. As such, the Zeppelin cookbook is not maintained anymore. Please remove the `- zeppelin` entry from your cluster definition
+
+3. Hopsworks 0.10 add support for PyTorch. PyTorch is installed in the base environments and it will be available in all the newly created environments after the upgrade. PyTorch is installed from the Conda repository. If you are using an internal mirror you need to make the `PyTorch <https://anaconda.org/pytorch/repo>`_ channel available. Alternatively you can rely on the public mirror, but be careful about rate limiting! The attributes to specify the Conda internal mirrors have changed to:
+
+.. code-block:: yaml
+
+    attrs:                                                                                                         
+        conda:
+            channels:
+                default_mirrors: "[main/free mirror location]"
+                pytorch: "[pytorch mirror location]"
+            use_defaults: "false"
+
+4. Hopsworks 0.10 makes available to the users more logging information related to operations to the python environments. This is achieved using filebeat. In the cluster definition, on all the node groups, you should add `      - hopslog::_filebeat-kagent` in the recipe list.
+
+5. Remember to add the `hopsworks::migrate` recipe in the same node group which the Hopsworks webapp belongs to. This will run `Expat` which will migrate old job configurations to the new format and create the Kibana index pattern for the Python environment logs. Migrate will also change the storage type of the `/Project` directory on HopsFS to use, whenever possible, NVME disks as storage.
+
+6. To be more consistent, the attribute to specify the HTTPS port has changed to: 
+
+.. code-block:: yaml
+
+    attrs:                                                                                                         
+        hopsworks:
+            https:
+                port: 443 
+
+
+7. Add the following as an additional protection against accidental formatting of the FileSystem:
+
+.. code-block:: yaml
+
+    attrs:
+        hops: 
+            format: false
+
+
+8. Hopsworks 0.10.0 add support to Sqoop. To install it, you can add the Sqoop recipe `- hops_airflow::sqoop` in the same group as the Hopsworks webapp.
+
+9. In Hopsworks 0.10.0 we simplyfied the configuration for Hops TLS. Now you can just specify: 
+
+.. code-block:: yaml
+
+    attrs:
+        hops: 
+            tls:
+                enabled: true
+                prod: true [If you want to enable certificate validation/hostname verification]
+
+
+FAQ
+---
+
+- **The Resource Manager doesn't start after the update. How can I solve it?**
+
+This happens in the case there were Yarn applications running before starting the upgrade. Hops 2.8.2.8 introduces the management of JWT on behalf of the users so they can be able to make REST call to Hopsworks from their applications.
+When the Resource Manager restarts after the upgrade, it will try to recover the JWT for the running applications (started with the old Hops version) and it will fail. If you end up in this state, you should format the Resource Manager state store 
+
+.. code-block:: bash
+
+    /srv/hops/hadoop/bin/yarn resourcemanager -format-state-store
+
+- **Kafka brokers don't start. How can I solve it?**
+
+This might happen when you are running with multiple Kafka brokers. We have a bug in the Chef recipe which makes that the broker ids get mixed. You can fix the `server.properties` manually and put back the old ids.
+
+- **I can't reach Hopsworks on port HTTP anymore**
+
+To improve security, we decided to disable HTTP in Hopsworks by default. If, for any reason, you want to keep using HTTP you can re-enabled it from the Glassfish admin UI which is available on port `4848` on the Hopsworks webapp server. From there you can also setup automatic redirect to HTTPS.
