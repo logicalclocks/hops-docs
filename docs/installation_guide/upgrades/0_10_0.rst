@@ -67,15 +67,6 @@ Changes to the cluster definition
 FAQ
 ---
 
-- **The Resource Manager doesn't start after the update. How can I solve it?**
-
-This happens in the case there were Yarn applications running before starting the upgrade. Hops 2.8.2.8 introduces the management of JWT on behalf of the users so they can be able to make REST call to Hopsworks from their applications.
-When the Resource Manager restarts after the upgrade, it will try to recover the JWT for the running applications (started with the old Hops version) and it will fail. If you end up in this state, you should format the Resource Manager state store by running the following command as `yarn` user:
-
-.. code-block:: bash
-
-    /srv/hops/hadoop/bin/yarn resourcemanager -format-state-store
-
 - **Kafka brokers don't start. How can I solve it?**
 
 This might happen when you are running with multiple Kafka brokers. We have a bug in the Chef recipe which makes that the broker ids get mixed. You can fix the `server.properties` manually and put back the old ids.
