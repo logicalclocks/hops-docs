@@ -24,7 +24,8 @@ Advanced users might want to ssh in the vm. To do this, you need to:
 
 1. Download the ssh key_.
 2. Then do ``ssh -p 31989 -i insecure_private_key vagrant@localhost``
-3. To find a particular forwarded port, you can do `` vboxmanage showvminfo hopsworks0 | grep <port>``
+3. To view the status of all services, you can do ``sudo /srv/hops/kagent/kagent/bin/status-all-local-services.sh``
+4. To find a particular forwarded port, you can do `` vboxmanage showvminfo hopsworks0 | grep <port>``
 
 
 -------------------------------------
