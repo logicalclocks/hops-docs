@@ -15,7 +15,7 @@ To successfully import and start the image, it is necessary to have VirtualBox i
 least 20GB of storage and 16GB of memory available. You can then follow these steps to import Hopsworks:
 
 1. Download the image_.
-2. Import the image from the VirtualBox GUI or from the command line with ``vboxmanage import hopsworks-master.ova``
+2. Import the image from the VirtualBox GUI or from the command line with ``vboxmanage import hopsworks-0.10.0.ova``
 3. Start the vm in **headless** mode from the VirtualBox GUI or from the command line with ``vboxmanage startvm hopsworks0 --type headless``
 4. Wait for approximately 3 minutes until all services have started and then access Hopsworks at https://localhost:64724/hopsworks/ and login with username: admin@hopsworks.ai and password: admin. For further details on how to use Hopsworks, see :ref:`userguide`.
 
