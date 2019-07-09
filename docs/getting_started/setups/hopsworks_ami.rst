@@ -9,7 +9,7 @@ The AMI is currently available in the London and Ohio regions.
 
 Once you are logged in, click on `Launch Instance` to launch a machine instance based on the AMI.
 
-.. _ami1.png: ../../_images/ami/ami1.png 
+.. _ami1.png: ../../_images/ami1.png
 .. figure:: ../../imgs/ami/ami1.png
     :alt: Launch instance 
     :target: `ami1.png`_
@@ -21,7 +21,7 @@ Once you are logged in, click on `Launch Instance` to launch a machine instance 
 **Step 1** requires you to select the AMI. Select `Community AMIs` (1) and search for `hopsworks` (2). 
 Click select on the desired version (3) to progress with the launch.
 
-.. _ami3.png: ../../_images/ami/ami3.png 
+.. _ami3.png: ../../_images/ami3.png
 .. figure:: ../../imgs/ami/ami3.png
     :alt: Select Hopsworks AMI 
     :target: `ami3.png`_
@@ -33,7 +33,7 @@ Click select on the desired version (3) to progress with the launch.
 In **step 2** you have to select which instance type you want to use. Currently the AMI is not configured to use GPUs. So you can run the AMI on instances of type *T* (general purpose) or *C* (compute optimized). Make sure the instance you launch has at least 16 GB of memory and 4 vCPUs available.
 We suggest using either the *t2.xlarge* or the *t3.xlarge*. Select the type and proceed with the instance configuration.
 
-.. _ami4.png: ../../_images/ami/ami4.png 
+.. _ami4.png: ../../_images/ami4.png
 .. figure:: ../../imgs/ami/ami4.png
     :alt: Select instance type 
     :target: `ami4.png`_
@@ -44,7 +44,7 @@ We suggest using either the *t2.xlarge* or the *t3.xlarge*. Select the type and 
 
 Click on *Next: Configure Instance Details* to proceed to step 3.
 
-.. _ami9.png: ../../_images/ami/ami9.png 
+.. _ami9.png: ../../_images/ami9.png
 .. figure:: ../../imgs/ami/ami9.png
     :alt: Select instance type 
     :target: `ami9.png`_
@@ -55,7 +55,7 @@ Click on *Next: Configure Instance Details* to proceed to step 3.
 
 **Step 3** requires you to configure the instance details. You can leave the default values and proceed with configuring storage.
 
-.. _ami5.png: ../../_images/ami/ami5.png 
+.. _ami5.png: ../../_images/ami5.png
 .. figure:: ../../imgs/ami/ami5.png
     :alt: Configure instance details 
     :target: `ami5.png`_
@@ -67,7 +67,7 @@ Click on *Next: Configure Instance Details* to proceed to step 3.
 
 In **step 4** you will be asked to configure the disk space. You can change the size of the Root volume as you wish, however we recommend you configure the volume with at least 40 GB of space.
 
-.. _ami6.png: ../../_images/ami/ami6.png 
+.. _ami6.png: ../../_images/ami6.png
 .. figure:: ../../imgs/ami/ami6.png
     :alt: Configure storage 
     :target: `ami6.png`_
@@ -78,9 +78,10 @@ In **step 4** you will be asked to configure the disk space. You can change the 
 
 In **step 5** you can add tags to your instance. You can skip this step.
 
-In **step 6** you need to configure the security group. Make sure you allow incoming traffic from outside on both port 22 (for SSH connections) and on port 80 (for HTTP connections). Click *Add Rule* and select HTTP from the drop-down menu.
+In **step 6** you need to configure the security group. Make sure you allow incoming traffic from outside on both
+port 22 (for SSH connections) and on port 443 (for HTTPS connections). Click *Add Rule* and select HTTPS from the drop-down menu.
 
-.. _ami7.png: ../../_images/ami/ami7.png 
+.. _ami7.png: ../../_images/ami7.png
 .. figure:: ../../imgs/ami/ami7.png
     :alt: Configure security group 
     :target: `ami7.png`_
@@ -91,7 +92,7 @@ In **step 6** you need to configure the security group. Make sure you allow inco
 
 Once you are done with the configuration, you can launch you instance by clicking *Review and Launch* and finally on *Launch*. 
 
-.. _ami10.png: ../../_images/ami/ami10.png 
+.. _ami10.png: ../../_images/ami10.png
 .. figure:: ../../imgs/ami/ami10.png
     :alt: Review the configuration and launch 
     :target: `ami10.png`_
@@ -103,7 +104,7 @@ Once you are done with the configuration, you can launch you instance by clickin
 In this **final step** AWS will ask you which key you want to use to SSH into the machine. 
 Create a new pair (1), give it a name (2) and download the key (3). Finally click Launch Instances (4)
 
-.. _ami8.png: ../../_images/ami/ami8.png 
+.. _ami8.png: ../../_images/ami8.png
 .. figure:: ../../imgs/ami/ami8.png
     :alt: SSH Key 
     :target: `ami8.png`_
@@ -120,7 +121,7 @@ Please refer to the AWS documentation_ for more information on how to launch an 
 
 The instance is now starting. Go back to the instance panel (Instances entry in the left panel) to check the launch progress. 
 
-.. _ami2.png: ../../_images/ami/ami2.png 
+.. _ami2.png: ../../_images/ami2.png
 .. figure:: ../../imgs/ami/ami2.png
     :alt: Instances panel 
     :target: `ami2.png`_
