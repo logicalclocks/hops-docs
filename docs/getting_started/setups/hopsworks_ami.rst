@@ -156,7 +156,7 @@ Once you log into the instance, you will find in the home directory of the ubunt
 The script will ask you to type in the email to register the instance and will start all the services (this step might take few minutes).
 
 
-Once all the services are up and running, open the browser and visit `http://<public_ip>/hopsworks` where `public_ip` is the public ip of your instance.  
+Once all the services are up and running, open the browser and visit `https://<public_ip>/hopsworks` where `public_ip` is the public ip of your instance.  
 
 You can log into Hopsworks using the following credentials:
 
