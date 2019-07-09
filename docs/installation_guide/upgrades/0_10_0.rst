@@ -28,9 +28,9 @@ Changes to the cluster definition
                 pytorch: "[pytorch mirror location]"
             use_defaults: "false"
 
-4. Hopsworks 0.10 makes available to the users more logging information related to operations to the python environments. This is achieved using filebeat. In the cluster definition, on all the node groups, you should add `      - hopslog::_filebeat-kagent` in the recipe list.
+4. Hopsworks 0.10 makes available to the users more logging information related to operations to the python environments. This is achieved using filebeat. In the cluster definition, on all the node groups, you should add ``- hopslog::_filebeat-kagent`` in the recipe list.
 
-5. Remember to add the `hopsworks::migrate` recipe in the same node group which the Hopsworks recipe belongs to. This will run `Expat` which will migrate old job configurations to the new format and create the Kibana index pattern for the Python environment logs. Migrate will also change the storage type of the `/Project` directory on HopsFS to use, whenever possible, NVME disks as storage.
+5. Remember to add the `hopsworks::migrate` recipe in the same node group which the Hopsworks recipe belongs to. This will run `Expat` which will migrate old job configurations to the new format and create the Kibana index pattern for the Python environment logs. Migrate will also change the storage type of the `/Project` directory on HopsFS to use, whenever possible, NVME disks as storage. Migrate will **not** manage your old Jupyter configuration, which means already existing Jupyter configuration will be lost. Users need to manually backup this configuration. 
 
 6. To be more consistent, the attribute to specify the HTTPS port has changed to: 
 
