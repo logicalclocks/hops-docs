@@ -20,6 +20,12 @@ Features are the fuel for AI systems, as we use them to train machine learning m
 
     A feature store is the interface between feature engineering and model development.
 
+From talking with many organizations that work with data and machine learning, the feature store also has a natural fit in the organizational structure, where it works as an interface between data engineers and data scientists.
+
+*Data Engineers* write features into the feature store. Typically they will (1) read some raw or structured data from a data lake: (2) apply transformations on the data using som data processing framework like Spark; (3) store the transformed feature data in the feature store; (4) add documentation, versioning information, and statistics to the feature data in the feature store.
+
+*Data Scientists* read features from the feature store. A data scientist tend to read features from the feature store for (1) training machine learning models and experimenting with different combination of features; and (2) serving features into machine learning models.
+
 Motivation for the Feature Store
 --------------------------------
 
@@ -31,7 +37,19 @@ Machine learning systems have a tendency to assemble technical debt. Examples of
 * Features used for training and serving are inconsistent.
 * When new data arrives, there is no way to pin down exactly which features need to be recomputed, rather the entire pipeline needs to be run to update features.
 
-Using a feature store is a best practice that can reduce the technical debt of machine learning work-flows. When the feature store is built up with more features, it becomes easier and cheaper to build new models as the new models can re-use features that exist in the feature store.
+Using a feature store is a best practice that can reduce the technical debt of machine learning work-flows. When the feature store is built up with more features, it becomes easier and cheaper to build new models as the new models can re-use features that exist in the feature store. The Feature Store provides, among other things:
+
+* Feature reuse
+* Feature discoverability
+* Feature backfilling and precomputation
+* Improved documentation and analysis of features
+* Software engineering principles applied to machine learning features: versioning, documentation, access-control
+* Scale; The feature store needs to be able to store and manage huge feature sets (multi-terabyte at least).
+* Flexibility; Data scientists must be able to read from the feature store and use the data in different machine learning frameworks, like Tensorflow, Keras, Scikit learn, and PyTorch.
+* Analysis; Data scientists need an understanding of the feature data to be able to make most use of it in their models. They should be able to analyze the features, view their distributions over time, their correlations with each other etc.
+* Point-in-time correctness; It can be valuable to be able to extract the value of a feature at a specific point-in-time to be able to later on change the value of the feature.
+* Real-time; for client-facing models, features must be available in real-time (< 10ms) for making predictions to avoid destroying the user-experience for the user.
+* Online/Offline Consistency; when a feature is used for both training and serving, and stored in two different storage layers, you want to make sure that the value and semantics of the feature is consistent.
 
 How to Use the Feature Store
 ----------------------------
@@ -84,7 +102,7 @@ We introduce three new concepts to our users for modeling data in the feature st
 The API
 ~~~~~~~
 
-The feature store in Hopsworks has both a Python API and a Scala/Java API. You'll see in the code snippets below that the python API contains optional arguments that are explicit in the Java API, but apart from that, the APIs are identical. This section gives an overview of the API and show examples of the most common API methods. To get a full overview of the API please see the API-Docs-Python_, API-Docs-Scala_ and the featurestore_example_notebooks_.
+The feature store in Hopsworks has a REST API that is accessible with any REST-client, or with the provided Python Scala/Java SDKs. This section gives an overview of the API and how to work with either the Python SDK or the Scala/Java SDK. We will show examples of the most common API methods. To get a full overview of the API please see the API-Docs-Python_, API-Docs-Scala_ and the featurestore_example_notebooks_.
 
 **Creating New Features**
 
@@ -120,7 +138,7 @@ The feature store is agnostic to the method for computing the features. The only
 
 **Reading From the Feature Store**
 
-To read features from the feature store, users can use either SQL or APIs in Python and Scala. Based on our experience with users on our platform, data scientists can have diverse backgrounds. Although some data scientists are very comfortable with SQL, others prefer higher level APIs. This motivated us to develop a query-planner to simplify user queries. The query-planner enables users to express the bare minimum information to fetch features from the feature store. For example, a user can request 100 features that are spread across 20 different feature groups by just providing a list of feature names. The query planner uses the metadata in the feature store to infer where to fetch the features from and how to join them together.
+To read features from the feature store, users can use either SQL directly or the API-functions available in Python and Scala. Based on our experience with users on our platform, data scientists can have diverse backgrounds. Although some data scientists are very comfortable with SQL, others prefer higher level APIs. This motivated us to develop a query-planner to simplify user queries. The query-planner enables users to express the bare minimum information to fetch features from the feature store. For example, a user can request 100 features that are spread across 20 different feature groups by just providing a list of feature names. The query planner uses the metadata in the feature store to infer where to fetch the features from and how to join them together.
 
   .. _featurestore_query_planner.png: ../../_images/query_optimizer.png
 .. figure:: ../../imgs/feature_store/query_optimizer.png
@@ -131,7 +149,7 @@ To read features from the feature store, users can use either SQL or APIs in Pyt
 
     Users query the feature store programmatically or using SQL. The output is provided as Pandas, Numpy or Spark dataframes.
 
-For example, to fetch the features average_attendance and average_player_age from the feature store, all the user has to write is:
+For example, to fetch the features `average_attendance` and `average_player_age` from the feature store, all the user has to write is:
 
 .. code-block:: python
 
@@ -149,7 +167,7 @@ and using the Scala/Java API:
 
 Organizations typically have many different types of raw datasets that can be used to extract features. For example, in the context of user recommendation there might be one dataset with demographic data of users and another dataset with user activities. Features from the same dataset are naturally grouped into a feature group, producing one feature group per dataset. When training a model, you want to include all features that have predictive power for the prediction task, these features can potentially span multiple feature groups. The training dataset abstraction in Hopsworks Feature Store is used for this purpose, allowing users to group a set of features with labels for training a model to do a particular prediction task.
 
-Once a user has fetched a set of features from different feature groups in the feature store, the features can be materialized into a training dataset. By creating a training dataset using the feature store API, the dataset becomes managed by the feature store. Managed training datasets are automatically analyzed for data anomalies, versioned, documented, and shared with the organization.
+Once a user has fetched a set of features from different feature groups in the feature store, the features can be materialized into a training dataset. By creating a training dataset using the feature store API, the dataset becomes managed by the feature store. Managed training datasets are automatically analyzed for data anomalies, versioned, documented, and shared with the rest of the organization.
 
   .. _featurestore_pipeline.png: ../../_images/pipeline.png
 .. figure:: ../../imgs/feature_store/pipeline.png
@@ -177,12 +195,9 @@ To create a managed training dataset, the user supplies a Pandas, Numpy or Spark
     Hops.createTrainingDataset(training_dataset_name).setDataframe(featuresDf).setDataFormat("tfrecords").write()
 
 
-
 **Reading a Training Dataset for Training a Model**:
 
-Once the training dataset has been created, the dataset is discoverable in the feature
-registry and users can use it to train models. Below is an example code snippet for training a
-model using a training dataset stored distributed in the tfrecords format on HopsFS.
+Once the training dataset has been created, the dataset is discoverable in the feature registry and users can use it to train models. Below is an example code snippet for training a model using a training dataset stored distributed in the tfrecords format on HopsFS.
 
 * Using the Python API:
 
@@ -262,7 +277,7 @@ The feature registry provides:
 * Keyword search on feature/feature group/training dataset metadata.
 * Create/Update/Delete/View operations on feature/feature group/training dataset metadata.
 * Automatic feature analysis.
-* Feature dependency tracking.
+* Feature dependency/provenance tracking.
 * Feature job tracking.
 
 **Finding Features**
@@ -280,7 +295,7 @@ In the registry you can search for features, feature groups and training dataset
 
 **Automatic Feature Analysis**
 
-When a feature group or training dataset is updated in the feature store, a data analysis step is performed. In particular, we look at cluster analysis, feature correlation, feature histograms and descriptive statistics. We have found that these are the most common type of statistics that our users find useful in the feature modeling phase. For example, feature correlation information can be used to identify redundant features, feature histograms can be used to monitor feature distributions between different versions of a feature to discover covariate shift, and cluster analysis can be used to spot outliers. Having such statistics accessible in the feature registry helps users decide on which features to use.
+When a feature group or training dataset is updated in the feature store, a data analysis step is performed. In particular, we look at cluster analysis, feature correlation, feature histograms and descriptive statistics. We have found that these are the most common type of statistics that our users find useful in the feature modeling phase. For example, feature correlation information can be used to identify redundant features, feature histograms can be used to monitor feature distributions between different versions of a feature to discover covariate shift, and cluster analysis can be used to spot outliers. Having such statistics accessible in the feature registry helps data scientists decide on which features to use.
 
 .. _hopsworks_featurestore_opening_stats_tab.png: ../../_images/opening_stats_tab.png
 .. figure:: ../../imgs/feature_store/opening_stats_tab.png
@@ -292,104 +307,75 @@ When a feature group or training dataset is updated in the feature store, a data
 
     Opening that statistics for a feature group.
 
-.. _hopsworks_featurestore_corr_analysis.png: ../../_images/corr2.png
-.. figure:: ../../imgs/feature_store/corr2.png
-    :alt: View feature correlation analysis for a training dataset.
-    :target: `hopsworks_featurestore_corr_analysis.png`_
-    :align: center
-    :scale: 55 %
-    :figclass: align-center
-
-    Viewing the feature correlation analysis for a training dataset.
-
-
-**Feature Data Dependencies**
-
-When the feature store increases in size, scheduling of jobs to recompute features should be automated to avoid a potential management bottleneck. Feature groups and training datasets in Hops feature store are linked to Spark/Numpy/Pandas jobs which allows to reproduce and recompute the features when necessary. Moreover, each feature group and training dataset can have a set of data dependencies. By linking feature groups and training datasets to jobs and data dependencies, the features in Hops feature store can be automatically back-filled using workflow management systems such as Airflow.
-
-.. _hopsworks_featurestore_open_deps.png: ../../_images/open_deps.png
-.. figure:: ../../imgs/feature_store/open_deps.png
-    :alt: Open the data depenencies for a feature group or training dataset.
-    :target: `hopsworks_featurestore_open_deps.png`_
-    :align: center
-    :scale: 55 %
-    :figclass: align-center
-
-    Open the tab to view the data dependencies of a feature group.
-
-.. _hopsworks_featurestore_deps.png: ../../_images/deps.png
-.. figure:: ../../imgs/feature_store/deps.png
-    :alt: Feature group data dependencies.
-    :target: `hopsworks_featurestore_deps.png`_
-    :align: center
-    :scale: 55 %
-    :figclass: align-center
-
-    Feature dependency tracking.
-
-.. _hopsworks_featurestore_deps2.png: ../../_images/deps2.png
-.. figure:: ../../imgs/feature_store/deps2.png
-    :alt: Feature group automatic backfilling notification.
-    :target: `hopsworks_featurestore_deps2.png`_
-    :align: center
-    :scale: 55 %
-    :figclass: align-center
-
-    By tracking data dependencies, features can be automatically back-filled by recomputing the associated feature engineering job when a data dependency has been updated.
-
 **Other Actions Available in the Feature Registry**
 
-A common practice using the feature store is that the data of feature groups and training datasets are inserted using the APIs in Python/Java/Scala, but the metadata is filled in the feature registry UI.
-
-* Creating a new feature group with metadata from the UI registry:
-
-.. _hopsworks_featurestore_create_fg1.png: ../../_images/create_fg1.png
-.. figure:: ../../imgs/feature_store/create_fg1.png
-    :alt: Creating a new feature group with metadata from the feature registry UI.
-    :target: `hopsworks_featurestore_create_fg1.png`_
-    :align: center
-    :scale: 55 %
-    :figclass: align-center
-
-    Creating a new feature group with metadata from the feature registry UI.
-
-.. _hopsworks_featurestore_create_fg2.png: ../../_images/create_fg2.png
-.. figure:: ../../imgs/feature_store/create_fg2.png
-    :alt: Creating a new feature group with metadata from the feature registry UI.
-    :target: `hopsworks_featurestore_create_fg2.png`_
-    :align: center
-    :scale: 55 %
-    :figclass: align-center
-
-    Creating a new feature group with metadata from the feature registry UI.
-
-* Updating metadata of a feature group using the UI registry:
-
-.. _hopsworks_featurestore_edit_fg1.png: ../../_images/edit_fg1.png
-.. figure:: ../../imgs/feature_store/edit_fg1.png
-    :alt: Creating a new feature group with metadata from the UI registry.
-    :target: `hopsworks_featurestore_edit_fg1.png`_
-    :align: center
-    :scale: 55 %
-    :figclass: align-center
-
-    Editing the metadata of a feature from the feature registry UI.
-
-.. _hopsworks_featurestore_edit_fg2.png: ../../_images/edit_fg2.png
-.. figure:: ../../imgs/feature_store/edit_fg2.png
-    :alt: Creating a new feature group with metadata from the UI registry.
-    :target: `hopsworks_featurestore_edit_fg2.png`_
-    :align: center
-    :scale: 55 %
-    :figclass: align-center
-
-    Editing the metadata of a feature from the feature registry UI.
-
-Other actions available in the feature registry are:
+A common practice using the feature store is that the data of feature groups and training datasets are inserted using the APIs in Python/Java/Scala, but the metadata is filled and edited from the feature registry UI. In addition to editing metadata about features, the registry also provides the following functionality:
 
 * Create/Update/Delete operations on feature groups and training datasets
 * Preview feature group data
 * View feature group and training dataset schemas
+* Create new Training Datasets by grouping features together
+* Configuring storage connectors
+
+On-Demand and Cached Features
+------------------------------------
+
+There are two types of feature groups in the Feature Store:
+
+* **Cached Feature Group**: This type of feature group is the most common, it will store the computed features inside the Hopsworks Feature Store.
+* **On-Demand Feature Groups**: This type of feature group is not stored in Hopsworks, rather it is computed *on-demand*. To create an on-demand feature group you must configure a JDBC connector and a SQL query to compute the features. On-demand feature groups are typically used when an organization have feature data available in external storage systems and don't want to duplicate the data in Hopsworks feature store.
+
+The code-snippets below illustrates the different APIs for creating a cached vs an on-demand feature group using the Scala SDK:
+
+.. code-block:: scala
+
+    //Cached Feature Group
+    Hops.createFeaturegroup(fgName).setDataframe(df).write()
+
+    //On-Demand Feature Group
+    Hops.createFeaturegroup(fgName).setOnDemand(true).setJdbcConnector(sc).setSqlQuery(query).write()
+
+
+External and HopsFS Training Datasets
+------------------------------------
+
+There are two storage types for training datasets in the Feature Store:
+
+* **HopsFS**: The default storage type for training datasets is HopsFS, a state-of-the-art scalable file system that comes bundled with the Hopsworks stack.
+* **S3**: The feature store SDKs also provides the functionality to store training datasets external to a Hopsworks installation, e.g in S3. When training datasets are stored in S3, only the metadata is managed in Hopsworks and the actual data is stored in S3. To be able to create external training datasets, you must first configure a storage connector to S3.
+
+The code-snippets below illustrates the different APIs for creating a training dataset stored in HopsFS vs a training dataset stored in S3, using the Scala SDK:
+
+.. code-block:: scala
+
+    //Training Dataset stored in HopsFS (default sink)
+    Hops.createTrainingDataset(tdName).setDataframe(df).write()
+
+    //External Training Dataset
+    Hops.createTrainingDataset(tdName).setDataframe(df).setSink(s3Connector).write()
+
+
+Configuring Storage Connectors for the Feature Store
+------------------------------------
+
+By default, a feature store created in Hopsworks will have three storage connectors:
+
+- `projectname`, a JDBC connector for the project's general-purpose Hive database
+- `projectname_featurestore`, a JDBC connector for the project's feature store database (this is where cached feature groups are stored)
+- `projectname_Training_Datasets`, a HopsFS connector for storing training datasets inside the project
+
+To configure new storage connectors, e.g S3, HopsFS, or JDBC connectors, use the form available in the feature registry UI.
+
+.. _hopsworks_featurestore_new_sc.png: ../../_images/new_sc.png
+.. figure:: ../../imgs/feature_store/new_sc.png
+    :alt: New storage connectors can be configured from the Feature Store UI.
+    :target: `hopsworks_featurestore_new_sc.png`_
+    :align: center
+    :scale: 55 %
+    :figclass: align-center
+
+    Storage Connectors can be configured from the Feature Store UI in Hopsworks.
+
 
 A Multi-tenant Feature Store Service
 ------------------------------------
@@ -420,15 +406,6 @@ To share a feature store with another project, share the dataset containing the 
 
     Feature stores can be shared across project boundaries.
 
-.. _hopsworks_featurestore_share_fs2.png: ../../_images/share_fs2.png
-.. figure:: ../../imgs/feature_store/share_fs2.png
-    :alt: Feature stores can be shared across project boundaries.
-    :target: `hopsworks_featurestore_share_fs2.png`_
-    :align: center
-    :scale: 55 %
-    :figclass: align-center
-
-    Feature stores can be shared across project boundaries.
 
 When you have multiple feature stores shared with your project you can select which one to view in the feature registry:
 
@@ -445,14 +422,6 @@ When you have multiple feature stores shared with your project you can select wh
 Technical Details on the Architecture
 -------------------------------------
 
-A feature store consists of five main components:
-
-* The feature engineering jobs, the jobs used to compute the features and insert into the feature store.
-* The storage layer for storing the feature data.
-* The metadata layer used for storing code to compute features, versioning, analysis data, and documentation.
-* The API, used for reading/writing features from/to the feature store.
-* The feature registry, a user interface (UI) service where data scientists can share, discover, and order computation of features.
-
 The architecture of the feature store in hopsworks is depicted in the image below.
 
 .. _hopsworks_featurestore_architecture.png: ../../_images/arch_w_pandas_numpy.png
@@ -466,44 +435,24 @@ The architecture of the feature store in hopsworks is depicted in the image belo
     Architecture of Hops Feature Store.
 
 
-Feature Engineering Frameworks
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+A feature store consists of five main components:
 
-At Logical Clocks we specialize in Python-first ML pipelines, and for feature engineering we focus our support on Spark, PySpark, Numpy, and Pandas. Users can submit feature engineering jobs on the platform using notebooks, python files or .jar files. The jobs can later on be linked to the feature group or training dataset that it computes to enable automatic backfilling.
+* The feature engineering jobs, the jobs used to compute the features and insert into the feature store.
+* The storage layer for storing the feature data.
+* The metadata layer used for storing code to compute features, versioning, analysis data, and documentation.
+* The API, used for reading/writing features from/to the feature store.
+* The feature registry, a user interface (UI) service where data scientists can share, discover, and order computation of features.
 
-.. _hopsworks_featurestore_link_fg_to_job.png: ../../_images/link_fg_to_job.png
-.. figure:: ../../imgs/feature_store/link_fg_to_job.png
-    :alt: Link a Hopsworks job to a particular feature group or training dataset
-    :target: `hopsworks_featurestore_link_fg_to_job.png`_
+
+.. _hopsworks_featurestore_stack.png: ../../_images/fs_stack.png
+.. figure:: ../../imgs/feature_store/fs_stack.png
+    :alt: Hopsworks feature store components
+    :target: `hopsworks_featurestore_stack.png`_
     :align: center
-    :scale: 55 %
+    :scale: 85 %
     :figclass: align-center
 
-    Training datasets and feature groups can be linked to jobs in hopsworks (see documentation on jobs_.)
-
-The Storage Layer
-~~~~~~~~~~~~~~~~~
-
-We have built the storage layer for the feature data on top of Hive/HopsFS with additional abstractions for modeling feature data. The reason for using Hive as the underlying storage layer is two-fold (1) it is not uncommon that our users are working with datasets in terabyte-scale or larger, demanding scalable solutions that can be deployed on HopsFS (See blog post on HopsFS [9]); and (2) data modeling of features is naturally done in a relational manner, grouping relational features into tables and using SQL to query the feature store. This type of data modeling and access patterns fits well with Hive in combination with columnar storage formats such as Parquet or ORC.
-
-For each project with the feature store service enabled you can find a dataset called *projectname_featurestore.db* which is the Hive database where the features are stored.
-
-Training datasets are not stored directly in the Hive database, rather they are stored in a separate dataset called *Training Datasets* in your project. Training datasets are not stored in Hive as they are generally stored in formats optimized for machine learning frameworks, such as tfrecords or petastorm.
-
-.. _hopsworks_featurestore_storage_layer.png: ../../_images/storage_layer.png
-.. figure:: ../../imgs/feature_store/storage_layer.png
-    :alt: Storage layout of the feature store
-    :target: `hopsworks_featurestore_storage_layer.png`_
-    :align: center
-    :scale: 55 %
-    :figclass: align-center
-
-    Storage layout of the feature store.
-
-The Metadata Layer
-~~~~~~~~~~~~~~~~~~
-
-To provide automatic versioning, documentation, feature analysis, and feature sharing we store extended metadata about features in a metadata store. For the metadata store we utilize NDB (MySQL Cluster) which allows us to keep feature metadata that is strongly consistent with other metadata in Hopsworks, such as metadata about feature engineering jobs and datasets.
+    Feature Store Component Hierarchy.
 
 Want to Learn More?
 -------------------
