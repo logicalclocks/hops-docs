@@ -2,9 +2,6 @@
 Apache Flink
 ============
 
-Introduction
-------------
-
 Apache Flink is a framework  and distributed processing engine for stateful computations over unbounded and bounded
 data streams (link_). Hopsworks supports running Apache Flink jobs as part of the Jobs service within a Hopsworks
 project. Running Flink jobs on Hopsworks involves starting a Flink session cluster from the Hopsworks UI and then
@@ -108,16 +105,40 @@ Flink History Server
 --------------------
 
 Users have access to the Flink history server, which shows jobs that have ran only in projects the user is a member
-of. Projects act like sandboxes across data and jobs. The server is accessible from the same menu
+of, as projects act like sandboxes across data and jobs. The server is accessible from the same menu
 as the Dashboard, by clicking on the ``History Server`` button.
 
-.. _flink_historyserver.png: ../../_images/flink_historyserver.png
-.. figure:: ../../imgs/flink_historyserver.png
-    :alt: Flink application id
-    :target: `flink_historyserver.png`_
+.. _flink_history_server.png: ../../_images/flink_history_server.png
+.. figure:: ../../imgs/flink_history_server.png
+    :alt: Flink history server
+    :target: `flink_history_server.png`_
     :align: center
     :figclass: align-center
+
 
 Logs
 ----
 
+Users can access logs of the Flink session cluster JobManager and TaskManager, in real time, by clicking the ``Logs``
+ button of the Job UI. These logs are collected in real time from each machine the Flink cluster is deployed at, and
+ then users can do free-text search on their Logs from within Hopsworks.
+
+.. _flink_realtime_logs.png: ../../_images/flink_realtime_logs.png
+.. figure:: ../../imgs/flink_realtime_logs.png
+    :alt: Flink real time logs
+    :target: `flink_realtime_logs.png`_
+    :align: center
+    :figclass: align-center
+
+
+Additionally, users can access the same logs after the Flink session cluster has shut down, by clicking on the Flink job
+and navigating to the bottom of the page where both the ``Execution`` and the ``Error`` logs are available. These
+logs contain output from the JobManager and the TaskManagers and are collected by Apache Hadoop YARN, where the Flink
+session cluster is running on.
+
+.. _flink_yarn_logs.png: ../../_images/flink_yarn_logs.png
+.. figure:: ../../imgs/flink_yarn_logs.png
+    :alt: Flink YARN logs
+    :target: `flink_yarn_logs.png`_
+    :align: center
+    :figclass: align-center
