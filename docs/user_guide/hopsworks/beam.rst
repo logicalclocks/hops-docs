@@ -89,6 +89,7 @@ The arguments of the programs can be found in the image below,
     :align: center
     :figclass: align-center
 
+
 TensorFlow Extended (TFX)
 -------------------------
 
@@ -97,4 +98,6 @@ express ML pipelines consisting of TFX components (`link <https://github.com/ten
 program. Hopsworks leverages its first-class support for Apache Beam to provide also first class support for running
 and orchestrating Machine Learning pipelines. Apache Airflow is used as the orchestrator.
 
-For detailed instructions how to use TFX in Hopsworks, please refer to hops-examples_.
+TFX is used along with the Experiments service in Hopsworks for a great experience building ML models with TensorFlow.
+
+For detailed instructions how to use TFX in Hopsworks, we refer you to hops-examples_.
