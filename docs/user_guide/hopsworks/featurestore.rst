@@ -454,6 +454,68 @@ A feature store consists of five main components:
 
     Feature Store Component Hierarchy.
 
+Connecting from Amazon SageMaker
+--------------------------------
+Connecting to the Feature Store from Amazon SageMaker requires a Feature Store API key to be stored in the AWS Secrets Manager. Additionally, read access to this API key needs to be given to the AWS role used by SageMaker and hops-util-py needs to be installed on SageMaker.
+
+**Generating an API Key and storing it in the AWS Secrets Manager**
+
+In Hopsworks, click on your username in the top-right corner and select *Settings* to open the user settings. Select *Api keys*. Give the key a name and select the *featurestore* and *project* scopes before creating the key. Copy the key into your clipboard for the next step.
+
+.. _hopsworks_api_key.png: ../../_images/api_key.png
+.. figure:: ../../imgs/feature_store/api_key.png
+    :alt: Hopsworks feature store api key
+    :target: `hopsworks_api_key.png`_
+    :align: center
+    :scale: 30 %
+    :figclass: align-center
+
+**Storing the API Key in the AWS Secrets Manager**
+
+In the AWS management console ensure that you active region is the region you use for SageMaker. Go to the *AWS Secrets Manager* and select *Store new secret*. Select *Other type of secrets* and add *api-key* as the key and paste the API key created in the previous step as the value. Click next.
+
+.. _hopsworks_secrets_manager.png: ../../_images/secrets_manager.png
+.. figure:: ../../imgs/feature_store/secrets_manager.png
+    :alt: Hopsworks feature store secrets manager step 1
+    :target: `hopsworks_secrets_manager.png`_
+    :align: center
+    :scale: 20 %
+    :figclass: align-center
+
+As secret name enter *hopsworks/project/[MY_HOPSWORKS_PROJECT]/role/[MY_SAGEMAKER_ROLE]* replacing [MY_HOPSWORKS_PROJECT] with the name of the project hosting the Feature Store in Hopsworks and [MY_SAGEMAKER_ROLE] with the AWS role used by the SageMaker instance that should access the Feature Store. Select next twice and finally store the secret. Then click on the secret in the secrets list and take note of the *Secret ARN*.
+
+.. _hopsworks_secrets_manager2.png: ../../_images/secrets_manager2.png
+.. figure:: ../../imgs/feature_store/secrets_manager2.png
+    :alt: Hopsworks feature store secrets manager step 2
+    :target: `hopsworks_secrets_manager2.png`_
+    :align: center
+    :scale: 20 %
+    :figclass: align-center
+
+**Granting access to the secret to the SageMaker notebook role**
+
+In the AWS management console go to *IAM*, select *Roles* and then the role that is used when creating SageMaker notebook instances. Select *Add inline policy*. Choose *Secrets Manager* as service, expand the *Read* access level and check *GetSecretValue*. Expand Resources and select *Add ARN*. Paste the ARN of the secret created in the previous step. Click on *Review*, give the policy a name und click on *Create policy*.
+
+.. _hopsworks_aws_policy.png: ../../_images/aws_policy.png
+.. figure:: ../../imgs/feature_store/aws_policy.png
+    :alt: Hopsworks feature store set policy
+    :target: `hopsworks_aws_policy.png`_
+    :align: center
+    :scale: 20 %
+    :figclass: align-center
+
+**Installing hops-util-py and connecting to the Feature Store**
+To be able to access the Hopsworks Feature Store the hops-util-py library needs to be installed. One way of achieving this is opening a Python notebook in SageMaker and installing the latest hops-util-py together with a native depdendency using the following command. This requires root access on the notebook. Note that the library will not be persistent. For information around how to permanently install a library to Sagemaker see `Install External Libraries and Kernels in Notebook Instances <https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-add-external.html>`_. ::
+
+    !sudo yum -y install cyrus-sasl-devel && pip install git+https://github.com/logicalclocks/hops-util-py.git
+
+You can now connect to the Feature Store::
+
+    import hops.featurestore as fs
+    fs.connect('my_instance.us-east-2.compute.amazonaws.com', 'my_project')
+
+If you have trouble connecting, then ensure that the Security Group of your Hopsworks instance on AWS are configured to allow incoming traffic from your SageMaker instance. See `VPC Security Groups <https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html>`_. for more information.
+
 Want to Learn More?
 -------------------
 
