@@ -507,9 +507,29 @@ In the AWS management console go to *IAM*, select *Roles* and then the role that
 **Installing hops-util-py and connecting to the Feature Store**
 To be able to access the Hopsworks Feature Store the hops-util-py library needs to be installed. One way of achieving this is opening a Python notebook in SageMaker and installing the latest hops-util-py together with a native depdendency using the following command. This requires root access on the notebook. Note that the library will not be persistent. For information around how to permanently install a library to Sagemaker see `Install External Libraries and Kernels in Notebook Instances <https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-add-external.html>`_. ::
 
-    !sudo yum -y install cyrus-sasl-devel && pip install git+https://github.com/logicalclocks/hops-util-py.git
+    !pip install hops
 
 You can now connect to the Feature Store::
+
+    import hops.featurestore as fs
+    fs.connect('my_instance.us-east-2.compute.amazonaws.com', 'my_project')
+
+If you have trouble connecting, then ensure that the Security Group of your Hopsworks instance on AWS are configured to allow incoming traffic from your SageMaker instance. See `VPC Security Groups <https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html>`_. for more information.
+
+Connecting from Databricks notebooks
+------------------------------------
+
+**Setting up roles and API keys**
+
+Follow the steps descibed in `Connecting from Amazon SageMaker`_ for setting up Hopsworks API keys and AWS roles and access to secrets. Ensure to use the role that is specified in the *Advanced Options* when creating a Spark cluster in Databricks. 
+
+**Installing hops-util-py**
+
+The feature store library needs to be installed to connect to it. In the Databricks UI, go to *Clusters* and select your cluster. Select *Libraries* and then *Install New*. As *Library Source* choose *PyPI* and fill in *hops* into the *Package* field. Additionally, you'll need to upgrade the *boto3* library to be able to read secrets from the *AWS Secrets Manger*. Do so by repating the process with the package *boto3==1.9.227*.
+
+**Connecting to the Feature Store**
+
+In the Databricks notebooks connected to the prepared cluster use the following code to connect to the feature store::
 
     import hops.featurestore as fs
     fs.connect('my_instance.us-east-2.compute.amazonaws.com', 'my_project')
