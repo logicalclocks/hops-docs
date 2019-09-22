@@ -42,7 +42,9 @@ Java EE updates
 12. Add the new REST service to se.kth.rest.application.config.ApplicationConfig.java.
 13. Create new Entity beans for the tables defined in step 6. Use the Netbeans wizard to do this - run vagrant and forward port 3306 on mysql to a port you can access. Then connect to the database ‘hopsworks’ with username/password ‘kthfs’/’kthfs’. Make sure to include the full entity name (catalog name) in the definition - ‘hopsworks’.
 14. Add the beans to the persistence.xml file in /src/resources/../persistence.xml and the microservice should be added to ProjectServiceEnum.java.
+
 Connect up the components:
+    
   a. Javascript - HTML -> Controller -> Service -> …………. 
   b. Java              -> REST-> Facade -> EntityBean
 

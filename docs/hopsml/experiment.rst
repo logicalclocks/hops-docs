@@ -1,5 +1,5 @@
 ===========================
-The Experiments abstraction
+Experiments
 ===========================
 .. highlight:: python
 

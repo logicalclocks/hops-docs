@@ -6,7 +6,7 @@ SkLearn Model Serving
 Hopsworks supports serving of SkLearn models using Flask servers. The Flask servers can be put behind a load-balancer for scaling up and down dynamically based on load.
 
 Export your model
------------------
+----------------------------------
 
 The first step to serving your model is to export it as a servable model. This is typically done using the `joblib` library
 
@@ -20,7 +20,7 @@ The first step to serving your model is to export it as a servable model. This i
     hdfs.copy_to_hdfs("iris_knn.pkl", "Resources", overwrite=True)
 
 Serving SkLearn Models in Hopsworks
---------------------------
+--------------------------------------------
 
 **Step 1.**
 
@@ -162,7 +162,7 @@ To edit your serving, click on the edit button.
    Update the serving instance
 
 Where do I go from here?
-========================
+================================================
 
 Take a look at the :doc:`inference` documentation to see how you can send inference requests to the serving server serving your model.
 

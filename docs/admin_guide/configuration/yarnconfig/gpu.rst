@@ -5,7 +5,7 @@ Configuring Hops YARN GPU support
 In order for a NodeManager to offers GPUs to be scheduled by the ResourceManager certain configuration properties need to be set.
 
 Configuration parameters:
-=================
+==================================
 
 * **yarn.nodemanager.resource.gpus.enabled**: Boolean ``true`` or ``false`` depending on if the NodeManager should offer GPUs from the machine to the scheduler Default, ``false``.
 

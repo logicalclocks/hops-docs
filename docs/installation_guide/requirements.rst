@@ -4,6 +4,17 @@ System Requirements
 .. toctree::
    :maxdepth: 1
 
+   requirements/hardware.rst
+   requirements/os.rst
+   requirements/db.rst
+   requirements/gpu.rst
+   requirements/java.rst	      
+   requirements/network.rst
+   requirements/data-at-rest.rst
+   requirements/browser.rst
+   requirements/cloud-support.rst
+   requirements/virtualization-support.rst
+
    requirements/setup.rst
    requirements/single-baremetal-machine.rst
    requirements/single-virtualbox-instance.rst

@@ -17,10 +17,6 @@ The following is a brief description of the Chef cookbooks that we have develope
 
    * This cookbook contains recipes for installing MySQL Cluster services: NDB Management Server (ndb::mgmd), NDB Data Node (ndb::ndbd), MySQL Server (ndb::mysqld), Memcached for MySQL Cluster (ndb::memcached).
 
-* logicalclocks/zeppelin-chef
-
-   * This cookbook contains a default recipe for installing Apache Zeppelin.
-
 * logicalclocks/hopsworks-chef
 
    * This cookbook contains a default recipe for installing Hopsworks.
@@ -36,10 +32,6 @@ The following is a brief description of the Chef cookbooks that we have develope
 * logicalclocks/elasticsearch-chef
 
    * This cookbook is a wrapper cookbook for the official Elasticsearch Chef cookbook, but it has been extended with Karamel orchestration rules.
-
-* logicalclocks/dr-elephant-chef
-
-   * This cookbook contains recipes for installing Dr Elephant.
 
 * logicalclocks/livy-chef
 
@@ -69,3 +61,11 @@ The following is a brief description of the Chef cookbooks that we have develope
 
    * This cookbook contains recipes for installing Airflow to work with Hopsworks.
      
+* logicalclocks/kagent-chef
+
+   * This cookbook contains recipes for installing kagent, a python service run on Hopsworks servers for management operations.
+
+* logicalclocks/conda-chef
+
+   * This cookbook contains recipes for installing conda on Hopsworks servers.
+

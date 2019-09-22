@@ -9,4 +9,3 @@ User Guide
 
    hopsworks.rst
    hopsfs.rst
-   hopsyarn.rst

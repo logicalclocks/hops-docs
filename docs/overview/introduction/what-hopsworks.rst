@@ -2,7 +2,7 @@
 What is Hopsworks?
 ===========================
 
-.. figure:: ../../imgs/projects/hopsworks.png
+.. figure:: ../../imgs/hopsworks.png
   :alt: Hopsworks
   :scale: 75
   :figclass: align-center
@@ -31,7 +31,7 @@ Hopsworks supports the following open-source platforms for Data Science:
 
   
 Concepts: Projects, Datasets, Users
---------
+------------------------------------------------
 
 Hopsworks provides a new stronger, GDPR-coompliant security model for managing sensitive data in a shared data platform. Hopsworks' security model is built around Projects, which are analogous to Github repositories. A project contains datasets, users, and programs (code). Sensitive datasets can be sandboxed inside a project, so that users are prevented from exporting that data from the project or cross-linking that data with data in other projects. Note, this capability is provided in competitor data platforms by creating a whole new cluster for the sensitive dataset. In Hopsworks, sharing data does not involve copying data.
 Datasets can still be securely shared between projects, without the need for duplicating the dataset. Supported datasets in Hopsworks include Hive databases, Kafka topics, and subtrees in HopsFS (HDFS). 
@@ -55,7 +55,7 @@ Hopsworks implements its project-based multi-tenancy security model by supportin
   
 
 Unified Scale-Out Metadata
---------------------
+------------------------------------------------
 
 .. figure:: ../../imgs/projects/hopsworks-metadata-layer.png
   :alt: Scale-out Metadata in Hopsworks
@@ -67,7 +67,7 @@ Hopsworks is enabled by a unified, scale-out metadata layer - a strongly consist
 
 
 HopsML - Machine Learning Lifecycle
---------------------
+------------------------------------------------
 
 .. figure:: ../../imgs/hopsml/ml-lifecycle.png
   :alt: HopsML 

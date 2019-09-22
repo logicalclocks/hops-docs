@@ -2,7 +2,7 @@ Hopsworks User Guide
 ====================
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    hopsworks/firstLogin.rst
    hopsworks/twoFactorLogin.rst
@@ -30,6 +30,6 @@ Hopsworks User Guide
    hopsworks/metaDataAttachment.rst
    hopsworks/featurestore.rst
    hopsworks/airflow.rst
-
+   hopsyarn.rst
 
 If you are using 2-Factor authentication, jump ahead to "First Login with 2-Factor Authentication".
