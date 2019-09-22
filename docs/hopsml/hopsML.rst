@@ -1,8 +1,8 @@
 HopsML
-======
+============
 
 Python-First ML Pipelines
-------------
+------------------------------------
 
 HopsML is a Python-first framework for building machine learning pipelines. HopsML is enabled by unique support for project-specific conda environments in Hopsworks. As every project in Hopsworks has its own conda environment, replicated at all data processing hosts in the cluster, Data Scientists can simply 'pip install' Python libraries in Hopsworks and immediately use them in their PySpark/TensorFlow/PyTorch applications, enabling interactive application development. This contrasts with an immutable infrastructure approach, where Data Scientists need to write Dockerfiles and write YML files describing cluster specifications just to install a Python library. The other unique aspect of HopsML is the use of HopsFS (a distributed filesystem) to coordinate the different steps in a pipeline. HopsFS integrates seamlessly with Estimator APIs in TensorFlow/Keras, enabling the transparent management and aggregation of logs, checkpoints, TensorBoard events, and models across many Executors in a cluster. HopsML extends these Estimator artifacts with versioned notebooks and Python environments, enabling a view of *experiments* that have been run and now can be easily reproduced.
 
@@ -46,7 +46,7 @@ During a ML pipeline HopsFS acts as a central coordinator for sharing data betwe
 
 
 Hops Python Library
--------------------
+-------------------------------
 
 The Hops Python Library simply named *hops* is used for running Python applications and consequently a library which is used throughout the entire pipeline. It simplifies interacting with services such as Kafka, Model Serving and TensorBoard. The experiment module provides a rich API for running versioned Machine Learning experiments, whether it be a simple single-process Python application or RingAllReduce over many machines.
 
@@ -55,7 +55,7 @@ Documentation: hops-py_
 Code examples: hops-examples_
 
 Data Collection
----------------
+---------------------------
 
 The datasets that you are working with will reside in your project in HopsFS. Data can be uploaded to your project in a number of ways, such as using the hops-cli client, the REST API or the uploader in the Hopsworks UI. HopsFS is the filesystem of Hops, it is essentially an optimized fork of Apache HDFS, and is compliant with any API that can read data from an HDFS path, such as TensorFlow, Spark and Pandas.
 
@@ -95,7 +95,7 @@ The Feature Store enables the following best-practices for feature engineering:
     :figclass: align-center
 
 Experimentation
----------------
+---------------------------
 
 This section will give an overview of running Machine Learning experiments on Hops.
 
@@ -145,7 +145,7 @@ See experiments_ for more information.
 See jupyter_ for development using Jupyter notebooks.
 
 Serving
--------
+-------------------
 
 In the pipeline we support a scalable architecture for serving of TensorFlow and Keras models. We use the TensorFlow Serving server running on Kubernetes to scale up the number of serving instances dynamically and handle load balancing. There is support for using either the grpc client or the REST API to send inference requests. Furthermore we also support a monitoring system that logs the inference requests and allows users to implement custom functionality for retraining of models.
 
@@ -172,7 +172,7 @@ See tf_model_serving_, sklearn_model_serving_ and inferencing_ for more informat
 
 
 Pipeline Orchestration
--------
+-------------------------------
 
 HopsML pipelines are typically run as Airflow DAGs, written in Python. An Airflow pipline is a directed acyclic graph (DAG) of tasks to be executed, orchestration rules, failure handling logic, and notifications. Airflow DAGs can be scheduled to run periodically, for example, once per hour, or Airflow can wait for an event (with sensors) before executing a task - for example, wait for _SUCCESS file in a parquet directory before understanding that the Parquet file(s) are finished being written.
 Typical tasks in a production Airflow ML pipeline on Hops involve Data Prep as a PySpark job, training using HopsML (PySpark + TensorFlow), model optimization using a PySpark job or a bash job, and model deployment as either a Python program or bash script.

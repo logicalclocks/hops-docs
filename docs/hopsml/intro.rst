@@ -1,5 +1,5 @@
 HopsML
-============
+======
 
 Python Programs in HopsML
 ------------------------------------
@@ -33,11 +33,11 @@ Logging in the Executor
 
 
 Plotting with Sparkmagic in Jupyter
----------------------------------------------
+------------------------------------------
 
 
 References
----------------------
+------------
 
 - https://github.com/logicalclocks/hops-examples/blob/master/tensorflow/notebooks/Plotting/Data_Visualizations.ipynb 
 - https://github.com/jupyter-incubator/sparkmagic/blob/master/examples/Magics%20in%20IPython%20Kernel.ipynb 

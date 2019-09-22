@@ -3,7 +3,7 @@ Hopsworks Documentation
 
 .. _overview:
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 4
    :glob:
 
    overview/overview
@@ -11,7 +11,7 @@ Hopsworks Documentation
 .. _getting-started:
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 4
    :glob:
 
    getting_started/gettingstarted
@@ -19,29 +19,29 @@ Hopsworks Documentation
 .. _hops-installation:
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 4
    :glob:
 
    installation_guide/installation
 
 .. _hops-userguide:
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 4
    :glob:
 
    user_guide/user_guide.rst
 
 .. _hops-ml:
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 4
    :glob:
 
-   hopsml/hopsML.rst
+   hopsml/index
 
 .. _hops-admin-guide:
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 4
    :glob:
 
    admin_guide/hops_admin_guide
@@ -55,7 +55,7 @@ Hopsworks Documentation
    developer_guide/hops_developer_guide
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 4
    :glob:
 
    licensing
@@ -63,7 +63,7 @@ Hopsworks Documentation
 .. .. _hops-contributers:
 
 .. .. toctree::
-..   :maxdepth: 3
+..   :maxdepth: 4
 ..   :glob:
 
 .. ..   authors

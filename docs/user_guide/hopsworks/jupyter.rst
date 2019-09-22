@@ -4,7 +4,7 @@ Jupyter Notebooks
 This tutorial will go over the basics of using Jupyter notebooks on Hopsworks.
 
 Jupyter Notebooks Basics
--------------------
+--------------------------------------
 
 **Open the Jupyter Service**
 
@@ -141,7 +141,7 @@ In addition to having access to a regular python interpreter as well as the spar
     Printing a list of all sparkmagic commands
 
 Plotting with Pyspark Kernel
--------------------
+---------------------------------------------------------
 So far throughout this tutorial, the Jupyter notebook have behaved more or less identical to how it does if you start the notebook server locally on your machine using a python kernel, without access to a Hadoop cluster. However, there is one main difference from a user-standpoint when using pyspark notebooks instead of regular python notebooks, this is related to *plotting*.
 
 Since the code in a pyspark notebook is being executed remotely, in the spark cluster, regular python plotting will not work. What you can do however, is to use sparkmagic to download your remote spark dataframe as a local pandas dataframe and plot it using matplotlib, seaborn, or sparkmagics built in visualization. To do this we use the magics: `%%sql`, `%%spark`, and `%%local`. The steps to do plotting using a pyspark notebook are illustrated below. Using this approach, you can have large scale cluster computation and plotting in the same notebook.
@@ -217,7 +217,7 @@ When you download a dataframe from spark to pandas with sparkmagic, it gives you
 
 
 Want to Learn More?
--------------------
+---------------------------------------------------------
 
 We have provided a large number of example notebooks, available here_. Go to Hopsworks and try them out! You can do this either by taking one of the built-in *tours* on Hopsworks, or by uploading one of the example notebooks to your project and run it through the Jupyter service. You can also have a look at HopsML_, which enables large-scale distributed deep learning on Hops.
 

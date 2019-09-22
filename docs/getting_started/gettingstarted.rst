@@ -6,3 +6,4 @@ Getting Started
 
    setups/single_machine.rst
    setups/hopsworks_ami.rst
+   setups/hopsworks_gcp.rst	      
