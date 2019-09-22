@@ -2,7 +2,7 @@
 What is Hopsworks?
 ===========================
 
-.. figure:: ../../imgs/projects/hopsworks.png
+.. figure:: ../../imgs/hopsworks.png
   :alt: Hopsworks
   :scale: 75
   :figclass: align-center
