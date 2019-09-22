@@ -23,17 +23,10 @@ If you want to run a Python program, e.g.,  to train a neural network on a GPU o
 The good news is that all you will need to do to get started is to move your code inside a function, see table below. You need to define a function - this code will get run on the Executors, and you need to invoke that function from the Driver (the main part of your Python program). 
 
 
-Logging in the Driver
+Logging
 ---------------------------------
 
-
-Logging in the Executor
----------------------------------
-
-
-
-Plotting with Sparkmagic in Jupyter
----------------------------------------------
+You can use the hops library (hops.log("msg")) to log to the Logs directory in your project (stored in HopsFS). Logs are also written in real-time to Kibana, viewable by viewing the monitoring panel for the Spark application in Hopsworks. Finally, logging of all Executors and the Driver is possible using Maggy, where the Executor logs are written out in real-time to the Jupyter notebook cell that was used to launch the experiment.
 
 
 References

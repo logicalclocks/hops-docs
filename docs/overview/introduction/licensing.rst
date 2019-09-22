@@ -1,9 +1,6 @@
-.. _hops-licensing:
-
-
-==================================
-Hopsworks Community License
-=================================
+==========================================================
+Open-Source License
+==========================================================
 
 Hopsworks is provided under the AGPLv3 open-source license. See the list of Hopsworks' dependencies and their licenses `here`_.
 
@@ -13,9 +10,9 @@ Hopsworks is provided under the AGPLv3 open-source license. See the list of Hops
 
 
 
-***************************
-Hops License Compatibility
-***************************
+==========================================================
+Hops Open-Source License
+==========================================================
 
 Hops combines Apache and GPLv2 licensed code, from Hops and MySQL Cluster, respectively, by
 providing a DAL API (similar to JDBC). We dynamically link our DAL implementation for
@@ -37,5 +34,5 @@ for different databases are possible. Although, we only currently support MySQL 
 are free to develop your own DAL API client and run Hops on a different database.
 The main requirements for the database are support for transactions, read/write locks and at least read-committed isolation.
 
-.. figure:: imgs/license-work-around.png
+.. figure:: ../imgs/license-work-around.png
 
