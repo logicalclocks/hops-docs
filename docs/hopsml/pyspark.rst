@@ -1,7 +1,7 @@
-HopsML
-============
+PySpark 
+===================
 
-Python Programs in HopsML
+Python Programs as PySpark apps
 ------------------------------------
 
 Hops uses PySpark to distribute the execution of Python programs in a cluster. PySpark applications consist of two main components, a Driver and one to many Executors. The Driver and the Executors can be started on potentially any host in the cluster and use both the network and the HDFS filesystem to coordinate.
@@ -17,7 +17,7 @@ If you want to run a Python program, e.g.,  to train a neural network on a GPU o
     :alt: HopsML Python Program
     :target: `hopsml-pyspark.png`_
     :align: center
-    :scale: 75 %
+    :scale: 25 %
     :figclass: align-center
 
 The good news is that all you will need to do to get started is to move your code inside a function, see table below. You need to define a function - this code will get run on the Executors, and you need to invoke that function from the Driver (the main part of your Python program). 

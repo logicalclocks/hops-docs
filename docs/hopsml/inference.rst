@@ -1,9 +1,8 @@
 =================
-Inference service
+Inference
 =================
 
-Hopsworks provides a REST API for submitting inference requests to the serving servers.
-Currently the API supports, as backend, the TensorFlow model server and Flask Servers for SkLearn Models, it will be expanded in the future to support more model types as well.
+Hopsworks provides a REST API for submitting inference requests to the serving servers. Currently the API supports, as backend, the TensorFlow model server and Flask Servers for SkLearn Models, it will be expanded in the future to support more model types as well.
 
 Send a request
 --------------

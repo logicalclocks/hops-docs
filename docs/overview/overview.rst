@@ -8,4 +8,4 @@ Hopsworks Overview
    introduction/revision-history
    introduction/what-hopsworks
    introduction/what-hops
-
+   introduction/licensing
