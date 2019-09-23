@@ -34,5 +34,5 @@ for different databases are possible. Although, we only currently support MySQL 
 are free to develop your own DAL API client and run Hops on a different database.
 The main requirements for the database are support for transactions, read/write locks and at least read-committed isolation.
 
-.. figure:: ../imgs/license-work-around.png
+.. figure:: ../../imgs/license-work-around.png
 
