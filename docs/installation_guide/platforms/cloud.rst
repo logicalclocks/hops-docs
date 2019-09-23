@@ -1,5 +1,5 @@
 =====================================
-Cloud Platforms (AWS, GCE, OpenStack)
+Cloud Platforms (AWS, GCP, OpenStack)
 =====================================
 
 .. contents:: Contents
