@@ -18,5 +18,5 @@ User Administration
    user-administration/reactivate.rst
    user-administration/project-quota.rst
    user-administration/enable.rst
-   user-administration/ubikeys.rst
+
 
