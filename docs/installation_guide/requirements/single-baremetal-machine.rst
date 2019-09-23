@@ -1,8 +1,8 @@
 ==================================================
-Entire Hops platform on a single baremetal machine
+Hopsworks on a single baremetal machine
 ==================================================
 
-You can run Hopsworks and the entire Hops stack on a bare-metal single machine for development or testing purposes, but you will need at least:
+You can run the entire Hopsworks stack on a bare-metal single machine for development, testing or even production purposes, but you will need at least:
 
 .. tabularcolumns:: {| p{\dimexpr 0.3\linewidth-2\tabcolsep} | p{\dimexpr 0.7\linewidth-2\tabcolsep}|}
 

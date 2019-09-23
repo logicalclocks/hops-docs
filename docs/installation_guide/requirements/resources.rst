@@ -1,8 +1,8 @@
-========================================================================
-NameNode, ResourceManager, NDB Data Nodes, Hopsworks, and ElasticSearch
-========================================================================
+======================================================================================
+NameNode, ResourceManager, NDB Data Nodes, Hopsworks, Kafka, and ElasticSearch
+======================================================================================
 
-NameNodes, ResourceManagers, NDB database nodes, ElasticSearch, and the Hopsworks application server require relatively more memory and not as much hard-disk space as DataNodes. The machines can be blade servers with only a disk or two. SSDs will not give significant performance improvements to any of these services, except the Hopsworks application server if you copy a lot of data in and out of the cluster via Hopsworks. The  NDB database nodes will require free disk space that is at least 20 times the size of the RAM they use. Depending on how large your cluster is, the ElasticSearch server can be colocated with the Hopsworks application server or moved to its own machine with lower RAM and CPU requirements than the other services.
+NameNodes, ResourceManagers, NDB database nodes, ElasticSearch, and the Hopsworks application server require relatively more memory and not as much hard-disk space as DataNodes. The machines can be blade servers with only a disk or two. SSDs will not give significant performance improvements to any of these services, except the Hopsworks application server if you copy a lot of data in and out of the cluster via Hopsworks. The  NDB database nodes will require free disk space that is at least 20 times the size of the RAM they use. Depending on how large your cluster is, the ElasticSearch server and Kafka brokers can be colocated with the Hopsworks application server or moved to its own machine with lower RAM and CPU requirements than the other services.
 
 1 GbE gives great performance, but 10 GbE really makes it rock! You can deploy 10 GbE incrementally: first between the NameNodes/ResourceManagers <--> NDB database nodes to improve metadata processing performance, and then on the wider cluster.
 
