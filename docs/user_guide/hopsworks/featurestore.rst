@@ -61,7 +61,7 @@ Creating a Project on Hopsworks with The Feature Store Service Enabled
 
 To create a project with the feature store service, mark the check-box available when you create a new project in Hopsworks.
 
-  .. _featurestore_create_project.png: ../../_images/create_project.png
+.. _featurestore_create_project.png: ../../_images/create_project.png
 .. figure:: ../../imgs/feature_store/create_project.png
     :alt: Create a new project with the feature store service enabled.
     :target: `featurestore_create_project.png`_
@@ -72,7 +72,7 @@ To create a project with the feature store service, mark the check-box available
 
 Inside the project you can find the feature registry (where all the feature store data is browsable) in the feature store page that is accessible by clicking the feature store icon on the left.
 
-  .. _featurestore_open_registry.png: ../../_images/opening_feature_registry.png
+.. _featurestore_open_registry.png: ../../_images/opening_feature_registry.png
 .. figure:: ../../imgs/feature_store/opening_feature_registry.png
     :alt: Opening the feature store registry
     :target: `featurestore_open_registry.png`_
@@ -90,7 +90,7 @@ We introduce three new concepts to our users for modeling data in the feature st
 * The **feature group** is a documented and versioned group of features stored as a Hive table. The feature group is linked to a specific Spark/Numpy/Pandas job that takes in raw data and outputs the computed features.
 * The **training dataset** is a versioned and managed dataset of features and labels (potentially from multiple different feature groups). Training datasets are stored in HopsFS as tfrecords, parquet, csv, or tsv files.
 
-  .. _featurestore_concepts.png: ../../_images/concepts.png
+.. _featurestore_concepts.png: ../../_images/concepts.png
 .. figure:: ../../imgs/feature_store/concepts.png
     :alt: Feature Store API
     :target: `featurestore_concepts.png`_
@@ -140,7 +140,7 @@ The feature store is agnostic to the method for computing the features. The only
 
 To read features from the feature store, users can use either SQL directly or the API-functions available in Python and Scala. Based on our experience with users on our platform, data scientists can have diverse backgrounds. Although some data scientists are very comfortable with SQL, others prefer higher level APIs. This motivated us to develop a query-planner to simplify user queries. The query-planner enables users to express the bare minimum information to fetch features from the feature store. For example, a user can request 100 features that are spread across 20 different feature groups by just providing a list of feature names. The query planner uses the metadata in the feature store to infer where to fetch the features from and how to join them together.
 
-  .. _featurestore_query_planner.png: ../../_images/query_optimizer.png
+.. _featurestore_query_planner.png: ../../_images/query_optimizer.png
 .. figure:: ../../imgs/feature_store/query_optimizer.png
     :alt: Feature Store Query Planner
     :target: `featurestore_query_planner.png`_
@@ -169,7 +169,7 @@ Organizations typically have many different types of raw datasets that can be us
 
 Once a user has fetched a set of features from different feature groups in the feature store, the features can be materialized into a training dataset. By creating a training dataset using the feature store API, the dataset becomes managed by the feature store. Managed training datasets are automatically analyzed for data anomalies, versioned, documented, and shared with the rest of the organization.
 
-  .. _featurestore_pipeline.png: ../../_images/pipeline.png
+.. _featurestore_pipeline.png: ../../_images/pipeline.png
 .. figure:: ../../imgs/feature_store/pipeline.png
     :alt: Feature Store Pipeline
     :target: `featurestore_pipeline.png`_
@@ -336,8 +336,92 @@ The code-snippets below illustrates the different APIs for creating a cached vs 
     Hops.createFeaturegroup(fgName).setOnDemand(true).setJdbcConnector(sc).setSqlQuery(query).write()
 
 
+Online and Offline Feature Groups
+---------------------------------
+
+To explain the need for the separation into online and offline features, it is useful to review the use-cases of the feature store. The feature store has a natural fit in the machine learning workflow. The feature store works as an interface between data engineers and data scientists.
+
+- **Data Engineers** write features into the feature store. Typically they will (1) read some raw or structured data from a data lake: (2) apply transformations on the data using som data processing framework like Spark; (3) store the transformed feature data in the feature store; (4) add documentation, versioning information, and statistics to the feature data in the feature store.
+- **Data Scientists** tend to read features from the feature store for (1) training machine learning models and experimenting with different combination of features; and (2) serving features into machine learning models. These two-use cases of the feature store has very different characteristics, motivating the need for a separation between *online* store of features and an *offline* store of features.
+
+When reading from the feature store for training/experimentation, there are requirements on the feature store such as
+
+- **Scale**; The feature store needs to be able to store and manage huge feature sets (multi-terabyte at least).
+- **Flexibility**; Data scientists must be able to read from the feature store and use the data in different machine learning frameworks, like Tensorflow, Keras, Scikit learn, and PyTorch.
+- **Analysis**; Data scientists need an understanding of the feature data to be able to make most use of it in their models. They should be able to analyze the features, view their distributions over time, their correlations with each other etc.
+- **Point-in-time correctness**; It can be valuable to be able to extract the value of a feature at a specific point-in-time to be able to later on change the value of the feature. For example, say that we at point in time X have a feature-vector for customer C1, and at time X we don’t know that C1 is doing fraud, so the label of C1 is “benign customer”. Later on at time Y we find out that customer C1 actually was taking part in fraudulent activity at time X. Then we want to be able to go back and modify the label of C1 to “malign customer” and re-train our model or re-evaluate the model. I.e it should be possible to re-create old training data from future predictions. Ideally, this point-in-time correctness of a feature should be possible without having to store the value of a feature at every single point in time, rather it should be possible to re-compute the value of a feature at a specific point in time dynamically.
+
+On the other hand, when reading from the feature store for serving models there are very specific requirements that differ from the requirements for training/serving:
+
+- **Real-time**; for client-facing models, features must be available in real-time for making predictions to avoid destroying the user-experience for the user. The limits for what is considered real-time depends on the context. Hopsworks feature store can serve features in < 5 ms.
+- **Online/Offline Consistency**; when a feature is used for both training and serving, and stored in two different storage layers, you want to make sure that the value and semantics of the feature is consistent. Offline/online consistency has a lot to do with that you have to rewrite code between train and serving, if you can use the same code for both, then a lot is solved as the transformation to compute the feature happens before it gets to the feature store, if the code for computing the feature is consistent between training/serving you can store the feature data in two different storage layers for training/serving and still be confident in its consistency. However, if you have to rewrite the pipeline to compute batch features to a new pipeline for computing online features, you might get consistency issues. The data that you give the model during serving has to look exactly the same as the data you train the model with, otherwise your model will behave weird and bad.
+
+Due to the very different requirements on batch and real-time features, it is common to split the feature store into two parts, a batch feature store for storing features for training and a real-time feature store for storing features for serving. In Hopsworks we store offline feature data in **Hive** and online feature data in **MySQL Cluster**.
+
+
+.. _hopsworks_online_featurestore.png: ../../_images/online_featurestore.png
+.. figure:: ../../imgs/feature_store/online_featurestore.png
+    :alt: Hopsworks Feature Store Architecture. Online features are stored in MySQL Cluster and Offline Features are stored in Hive
+    :target: `hopsworks_online_featurestore.png`_
+    :align: center
+    :figclass: align-center
+
+    Hopsworks Feature Store Architecture. Online features are stored in MySQL Cluster and Offline Features are stored in Hive.
+
+The feature store service on Hopsworks unifies the Online/Offline feature data under a single API, making the underlying infrastructure transparent to the data scientist.
+
+.. _hopsworks_online_featurestore2.png: ../../_images/online_featurestore2.png
+.. figure:: ../../imgs/feature_store/online_featurestore2.png
+    :alt: Data is typically ingested into the Feature Store through Kafka and historical data is stored in the offline feature store (Hive) and recent data for online-serving is stored in the online feature store (MySQL Cluster). The feature store provides connectors to common ML frameworks and platforms.
+    :target: `hopsworks_online_featurestore2.png`_
+    :align: center
+    :figclass: align-center
+
+    Data is typically ingested into the Feature Store through Kafka and historical data is stored in the offline feature store (Hive) and recent data for online-serving is stored in the online feature store (MySQL Cluster). The feature store provides connectors to common ML frameworks and platforms.
+
+The code-snippets below illustrates the different APIs for creating feature groups with online/offline storage enabled:
+
+.. code-block:: python
+
+    from hops import featurestore
+
+    # create feature group and insert data only in the online storage
+    featurestore.create_featuregroup(spark_df, featuregroup_name, online=True, primary_key="id")
+
+    # create feature group and insert data only in the offline storage
+    featurestore.create_featuregroup(spark_df, featuregroup_name, online=False, offline=True, primary_key="id")
+
+    # create feature group and insert data in both the online and the offline storage
+    featurestore.create_featuregroup(spark_df, featuregroup_name, online=True, offline=True, primary_key="id")
+
+    # insert into an existing online feature group
+    featurestore.insert_into_featuregroup(sample_df, "online_featuregroup_test", online=True, offline=False, mode="append")
+
+    # insert into an existing offline feature group
+    featurestore.insert_into_featuregroup(sample_df, "online_featuregroup_test", online=Offline, offline=True, mode="append")
+
+    # insert into an existing online & offline feature group
+    featurestore.insert_into_featuregroup(sample_df, "online_featuregroup_test", online=True, offline=True, mode="append")
+
+The same methods for reading the offline feature store can be used to read from the online feature store by setting the argument `online=True`. However, please note that as the online feature store is supposed to be used for feature serving, it should be queried with primary-key lookups for getting the best performance. In fact, it is highly discouraged to use the online feature serving for doing full-table-scans. If you find yourself frequently needing to use `get_featuregroup(online=True)` to get the entire feature group (full-table scan), you are probably better of using the offline feature store. The online feature store is intended for quick primary key lookups, not data analysis. The code-snippets below illustrates the different APIs for reading from the online/offline feature store.
+
+.. code-block:: python
+
+    from hops import featurestore
+
+    # primary key lookup in the online feature store using SQL
+    df = featurestore.sql("SELECT feature FROM featuregroup_name WHERE primary_key=x", online=True)
+
+    # read all values of a given featuregroup in the online featurestore
+    df = featurestore.get_featuregroup(featuregroup_name, online=True)
+
+    # read all values of a given feature in the online featurestore
+    df = featurestore.get_feature(feature_name, online=True)
+
+More examples of using feature store Python and Scala SDK to read/write from/to the online feature store are available at featurestore_example_notebooks_.
+
 External and HopsFS Training Datasets
-------------------------------------
+-------------------------------------
 
 There are two storage types for training datasets in the Feature Store:
 
@@ -356,7 +440,7 @@ The code-snippets below illustrates the different APIs for creating a training d
 
 
 Configuring Storage Connectors for the Feature Store
-------------------------------------
+----------------------------------------------------
 
 By default, a feature store created in Hopsworks will have three storage connectors:
 
@@ -376,6 +460,22 @@ To configure new storage connectors, e.g S3, HopsFS, or JDBC connectors, use the
 
     Storage Connectors can be configured from the Feature Store UI in Hopsworks.
 
+
+Incremental Ingestion to the Feature Store using Apache Hudi
+------------------------------------------------------------
+
+Hopsworks Feature Store supports Apache Hudi (hudi_) for efficient upserts and time-travel in the feature store. Below is a code-snippet illustrating how to use Hudi when inserting into feature groups and for time-travel.
+
+.. code-block:: scala
+
+    import io.hops.util.Hops
+    Hops.createFeaturegroup(featuregroup_name)
+                         .setHudi(true)
+                         .setPartitionBy(partitionCols)
+                         .setDataframe(sparkDf)
+                         .setPrimaryKey(primaryKeyName).write()
+
+    Hops.queryFeaturestore("select id, value from featuregroup_name WHERE _hoodie_commit_time = X").read.show(5)
 
 A Multi-tenant Feature Store Service
 ------------------------------------
@@ -521,7 +621,7 @@ Connecting from Databricks notebooks
 
 **Setting up roles and API keys**
 
-Follow the steps descibed in `Connecting from Amazon SageMaker`_ for setting up Hopsworks API keys and AWS roles and access to secrets. Ensure to use the role that is specified in the *Advanced Options* when creating a Spark cluster in Databricks. 
+Follow the steps descibed in `Connecting from Amazon SageMaker`_ for setting up Hopsworks API keys and AWS roles and access to secrets. Ensure to use the role that is specified in the *Advanced Options* when creating a Spark cluster in Databricks.
 
 **Installing hops-util-py**
 
@@ -547,3 +647,4 @@ We have provided a large number of example notebooks, available here_. Go to Hop
 .. _featurestore_example_notebooks: https://github.com/Limmen/hops-examples/tree/HOPSWORKS-721/notebooks/featurestore
 .. _API-Docs-Python: http://hops-py.logicalclocks.com/
 .. _API-Docs-Scala: http://snurran.sics.se/hops/hops-util-javadoc/
+.. _hudi: http://hudi.apache.org/
