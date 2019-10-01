@@ -307,6 +307,84 @@ When a feature group or training dataset is updated in the feature store, a data
 
     Opening that statistics for a feature group.
 
+**Features Unit testing**
+
+We envision the Feature Store as a task in the software engineering life cycle. In traditional software engineering testing is an essential part of the life cycle, it even drives the development of a product.
+Feature Store sits right before start training machine learning models which might take hours or days to converge. Data flowing into the Feature Store might contain invalid values which will eventually end up
+training your model.
+
+Those "bugs" in best case they brake some functional requirements of the model training application which will fail the whole pipeline. For example a nil value
+that was not supposed to be there and the data scientist did not contemplate. The application will panic and you will have to run the it again. The second type of bugs do not violate any functional requirement but their value is erroneous. The trained model will manifest an erroneous behaviour. Proper testing on the trained model would expose the
+problem but it is very hard to find the root of the problem and maybe too late.
+
+In Hopsworks we do Features unit testing to identify "bugs" in feature store before you start your training pipeline. We provide an easy to use UI to compose validation rules on different **feature groups**. Internally we use
+`Deequ <https://github.com/awslabs/deequ>`_ to launch a Spark job to perform the validation on TBs of data. Power users can also use Deequ directly to get the most out of the tool.
+
+To compose validation rules or view the result of a previous run, click on the ``More`` button of a feature group and select ``Data Validation``. The main page will show up
+where you can compose new validation project, view already composed rules and fetch previous validation result.
+
+.. _hopsworks_featurestore_data_validation_main.png: ../../_images/data_validation_main.png
+.. figure:: ../../imgs/feature_store/data_validation_main.png
+    :alt: Features unit testing main page
+    :target: `hopsworks_featurestore_data_validation_main.png`_
+    :align: center
+    :scale: 55%
+    :figclass: align-center
+
+    Features unit testing main page.
+
+Clicking on `Toggle new data validation` button shows up a new page where you can start composing validation rules. A small description is given for every predicate and by clicking `Add` you can edit the predicate's properties
+as shown in the figure below. We provide a reasonable subset of Deequ's rules, each rule has a different interpretation of Min and Max values so it is advisable to read the description.
+When adding a new predicate to rules you can select if it will be Warning or Error level, on which features of the group applies, minimum and maximum acceptable values for the predicate and
+a small hint to be printed in the result.
+
+In the figure below we used ``players_features`` feature group from the Feature Store demo project. It is a valid assumption that none of the features has nil values as this might fail our training job.
+We selected all features and minimum/maximum thresholds are 1 since we want all to be complete.
+
+.. _hopsworks_featurestore_data_validation_add_predicate.png: ../../_images/data_validation_add_predicate.png
+.. figure:: ../../imgs/feature_store/data_validation_add_predicate.png
+    :alt: Adding predicate to validation rules
+    :target: `hopsworks_featurestore_data_validation_add_predicate.png`_
+    :align: center
+    :scale: 55%
+    :figclass: align-center
+
+    Adding rules to constraint groups
+
+We continue adding constraints until we're satisfied and then we click on `Create validation job` button on the right under `Checkout rules`.
+For the sake of the example we added more constraints such as players' minimum average age is between 18 - 20, maximum between 25 and 30, team ID is unique and the average player rating is between
+100 and 700. Finally, the validation rules basket would look like the following:
+
+.. _hopsworks_featurestore_data_validation_checkout_rules.png: ../../_images/data_validation_checkout_rules.png
+.. figure:: ../../imgs/feature_store/data_validation_checkout_rules.png
+    :alt: Checkout validation rules
+    :target: `hopsworks_featurestore_data_validation_checkout_rules.png`_
+    :align: center
+    :scale: 50%
+    :figclass: align-center
+
+    Checking out validation rules.
+
+Clicking on `Create validation job` button will redirect you to Jobs UI where the unit testing job has been created and we can click on `Run` button to start testing our feature group values.
+After the job has finished we can go back to ``Data Validation`` page, click on `Fetch validation result` and see the results. For the example we did above, the results
+are the following:
+    
+.. _hopsworks_featurestore_data_validation_result.png: ../../_images/data_validation_result.png
+.. figure:: ../../imgs/feature_store/data_validation_result.png
+    :alt: Feature group unit testing result
+    :target: `hopsworks_featurestore_data_validation_result.png`_
+    :align: center
+    :scale: 50%
+    :figclass: align-center
+
+    Feature group unit testing result.
+
+From the results we can see that all ``team_id`` s are unique, there is no nil value and the maximum average player age is indeed between 25 and 30.
+Our mean constraint has failed since there is a mean value of 71738 which is not between 100 and 700. Also, the minimum average player age constraint has failed.
+
+As we see from this example, the functional requirements of the program are met - we don't have any duplicate or nil values. The "erroneous" minimum average player age
+value or mean player rating could have changed the predictive power of our model and we would not have noticed it in time.
+
 **Other Actions Available in the Feature Registry**
 
 A common practice using the feature store is that the data of feature groups and training datasets are inserted using the APIs in Python/Java/Scala, but the metadata is filled and edited from the feature registry UI. In addition to editing metadata about features, the registry also provides the following functionality:
