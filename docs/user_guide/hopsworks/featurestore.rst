@@ -6,7 +6,7 @@ In this tutorial we cover the feature store service in Hopsworks, how it should 
 Feature Store: The Data Management Layer for Machine Learning in Hopsworks
 --------------------------------------------------------------------------
 
-The feature store is as a central place to store curated features for machine learning pipelines in Hopsworks. A feature is a measurable property of some data-sample. It could be for example an image-pixel, a word from a piece of text, the age of a person, a coordinate emitted from a sensor, or an aggregate value like the average number of purchases within the last hour. Features can come directly from tables or files or can be derived values, computed from one or more data sources.
+The feature store is the central place to store curated features for machine learning pipelines in Hopsworks. A feature is a measurable property of some data-sample. It could be for example an image-pixel, a word from a piece of text, the age of a person, a coordinate emitted from a sensor, or an aggregate value like the average number of purchases within the last hour. Features can come directly from tables or files or can be derived values, computed from one or more data sources.
 
 Features are the fuel for AI systems, as we use them to train machine learning models so that we can make predictions for feature values that we have never seen before. In this tutorial we will see best practices for transforming raw/structured data into *features* that can be included in *training datasets* for training models.
 
@@ -398,7 +398,7 @@ The code-snippets below illustrates the different APIs for creating feature grou
     featurestore.insert_into_featuregroup(sample_df, "online_featuregroup_test", online=True, offline=False, mode="append")
 
     # insert into an existing offline feature group
-    featurestore.insert_into_featuregroup(sample_df, "online_featuregroup_test", online=Offline, offline=True, mode="append")
+    featurestore.insert_into_featuregroup(sample_df, "online_featuregroup_test", online=False, offline=True, mode="append")
 
     # insert into an existing online & offline feature group
     featurestore.insert_into_featuregroup(sample_df, "online_featuregroup_test", online=True, offline=True, mode="append")
@@ -475,7 +475,7 @@ Hopsworks Feature Store supports Apache Hudi (hudi_) for efficient upserts and t
                          .setDataframe(sparkDf)
                          .setPrimaryKey(primaryKeyName).write()
 
-    Hops.queryFeaturestore("select id, value from featuregroup_name WHERE _hoodie_commit_time = X").read.show(5)
+    Hops.queryFeaturestore("SELECT id, value FROM featuregroup_name WHERE _hoodie_commit_time = X").read.show(5)
 
 A Multi-tenant Feature Store Service
 ------------------------------------
@@ -604,7 +604,7 @@ In the AWS management console go to *IAM*, select *Roles* and then the role that
     :scale: 20 %
     :figclass: align-center
 
-**(Alternative 2) Storing the API Key in the AWS Stystems Manager Parameter Store**
+**(Alternative 2) Storing the API Key in the AWS Systems Manager Parameter Store**
 
 In the AWS management console ensure that your active region is the region you use for SageMaker. Go to the *AWS Systems Manager* choose *Parameter Store* and select *Create Parameter*. As name enter */hopsworks/project/[MY_HOPSWORKS_PROJECT]/role/[MY_SAGEMAKER_ROLE]/type/api-key* replacing [MY_HOPSWORKS_PROJECT] with the name of the project hosting the Feature Store in Hopsworks and [MY_SAGEMAKER_ROLE] with the AWS role used by the SageMaker instance that should access the Feature Store. Select *Secure String* as type and create the parameter.
 
@@ -650,7 +650,7 @@ Follow the steps descibed in `Connecting from Amazon SageMaker`_ for setting up 
 
 **Installing hopsworks-cloud-sdk**
 
-The feature store library needs to be installed to connect to it. In the Databricks UI, go to *Clusters* and select your cluster. Select *Libraries* and then *Install New*. As *Library Source* choose *PyPI* and fill in *hopsworks-cloud-sdk* into the *Package* field. Additionally, you'll need to upgrade the *boto3* library to be able to read secrets from the *AWS Secrets Manger*. Do so by repating the process with the package *boto3==1.9.227*.
+The feature store library needs to be installed to connect to it. In the Databricks UI, go to *Clusters* and select your cluster. Select *Libraries* and then *Install New*. As *Library Source* choose *PyPI* and fill in *hopsworks-cloud-sdk* into the *Package* field. Additionally, you'll need to upgrade the *boto3* library to be able to read secrets from the *AWS Secrets Manger*. Do so by repeating the process with the package *boto3==1.9.227*.
 
 **Connecting to the Feature Store**
 
