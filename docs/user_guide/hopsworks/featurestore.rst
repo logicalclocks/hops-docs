@@ -268,7 +268,7 @@ Once the training dataset has been created, the dataset is discoverable in the f
 
 
 The Feature Registry
-~~~~~~~~~~~~~~~~~~~~
+----------------------
 
 The feature registry is the user interface for publishing and discovering features and training datasets. The feature registry also serves as a tool for analyzing feature evolution over time by comparing feature versions. When a new data science project is started, data scientists within the project typically begin by scanning the feature registry for available features, and only add new features for their model that do not already exist in the feature store.
 
@@ -384,6 +384,32 @@ Our mean constraint has failed since there is a mean value of 71738 which is not
 
 As we see from this example, the functional requirements of the program are met - we don't have any duplicate or nil values. The "erroneous" minimum average player age
 value or mean player rating could have changed the predictive power of our model and we would not have noticed it in time.
+
+We can schedule the whole process as Airflow tasks that will run periodically before start training your model. If you want to learn more about Airflow check our
+:doc:`documentation <airflow>`. Assuming that you have already composed the validation rules, we will use Airflow operators to launch the validation job and when it finishes we will fetch the result. If the validation
+is not successful then the DAG will fail without executing any other tasks. The operators would look like the following:
+
+.. code-block:: python
+
+    # Run validation job
+    validation = HopsworksLaunchOperator(dag=dag,
+                                         project_name=PROJECT_NAME,
+                                         # Arbitrary task name
+                                         task_id="validation_job",
+                                         job_name=VALIDATION_JOB_NAME)
+
+    # Fetch validation result
+    result = HopsworksFeatureValidationResult(dag=dag,
+                                              project_name=PROJECT_NAME,
+                                              # Arbitrary task name
+                                              task_id="parse_validation",
+                                              feature_group_name=FEATURE_GROUP_NAME)
+
+    # Run first the validation job and then evaluate the result
+    validation >> result
+
+
+For the full validation DAG example and more visit our `GitHub repo <https://github.com/logicalclocks/hops-examples/tree/master/airflow>`_
 
 **Other Actions Available in the Feature Registry**
 
