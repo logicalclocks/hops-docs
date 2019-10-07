@@ -686,14 +686,14 @@ In the AWS management console ensure that your active region is the region you u
     :scale: 20 %
     :figclass: align-center
 
-As secret name enter *hopsworks/project/[MY_HOPSWORKS_PROJECT]/role/[MY_SAGEMAKER_ROLE]* replacing [MY_HOPSWORKS_PROJECT] with the name of the project hosting the Feature Store in Hopsworks and [MY_SAGEMAKER_ROLE] with the AWS role used by the SageMaker instance that should access the Feature Store. Select next twice and finally store the secret. Then click on the secret in the secrets list and take note of the *Secret ARN*.
+As secret name enter *hopsworks/role/[MY_SAGEMAKER_ROLE]* replacing [MY_SAGEMAKER_ROLE] with the AWS role used by the SageMaker instance that should access the Feature Store. Select next twice and finally store the secret. Then click on the secret in the secrets list and take note of the *Secret ARN*.
 
 .. _hopsworks_secrets_manager2.png: ../../_images/secrets_manager2.png
 .. figure:: ../../imgs/feature_store/secrets_manager2.png
     :alt: Hopsworks feature store secrets manager step 2
     :target: `hopsworks_secrets_manager2.png`_
     :align: center
-    :scale: 20 %
+    :scale: 30 %
     :figclass: align-center
 
 **(Alternative 1) Granting access to the secret to the SageMaker notebook role**
@@ -705,12 +705,12 @@ In the AWS management console go to *IAM*, select *Roles* and then the role that
     :alt: Hopsworks feature store set policy
     :target: `hopsworks_aws_policy.png`_
     :align: center
-    :scale: 20 %
+    :scale: 30 %
     :figclass: align-center
 
 **(Alternative 2) Storing the API Key in the AWS Systems Manager Parameter Store**
 
-In the AWS management console ensure that your active region is the region you use for SageMaker. Go to the *AWS Systems Manager* choose *Parameter Store* and select *Create Parameter*. As name enter */hopsworks/project/[MY_HOPSWORKS_PROJECT]/role/[MY_SAGEMAKER_ROLE]/type/api-key* replacing [MY_HOPSWORKS_PROJECT] with the name of the project hosting the Feature Store in Hopsworks and [MY_SAGEMAKER_ROLE] with the AWS role used by the SageMaker instance that should access the Feature Store. Select *Secure String* as type and create the parameter.
+In the AWS management console ensure that your active region is the region you use for SageMaker. Go to the *AWS Systems Manager* choose *Parameter Store* and select *Create Parameter*. As name enter */hopsworks/role/[MY_SAGEMAKER_ROLE]/type/api-key* replacing [MY_SAGEMAKER_ROLE] with the AWS role used by the SageMaker instance that should access the Feature Store. Select *Secure String* as type and create the parameter.
 
 .. _hopsworks_parameter_store.png: ../../_images/parameter_store.png
 .. figure:: ../../imgs/feature_store/parameter_store.png
@@ -722,7 +722,7 @@ In the AWS management console ensure that your active region is the region you u
 
 **(Alternative 2) Granting access to the secret to the SageMaker notebook role**
 
-In the AWS management console go to *IAM*, select *Roles* and then the role that is used when creating SageMaker notebook instances. Select *Add inline policy*. Choose *Systems Manager* as service, expand the *Read* access level and check *GetParameter*. Expand Resources and select *Add ARN*. Fill in the region of the *Systems Manager* as well as the name of the parameter **WITHOUT the leading slash** e.g. *hopsworks/project/[MY_HOPSWORKS_PROJECT]/role/[MY_SAGEMAKER_ROLE]/type/api-key* and click *Add*. Click on *Review*, give the policy a name und click on *Create policy*.
+In the AWS management console go to *IAM*, select *Roles* and then the role that is used when creating SageMaker notebook instances. Select *Add inline policy*. Choose *Systems Manager* as service, expand the *Read* access level and check *GetParameter*. Expand Resources and select *Add ARN*. Fill in the region of the *Systems Manager* as well as the name of the parameter **WITHOUT the leading slash** e.g. *hopsworks/role/[MY_SAGEMAKER_ROLE]/type/api-key* and click *Add*. Click on *Review*, give the policy a name und click on *Create policy*.
 
 .. _hopsworks_aws_policy2.png: ../../_images/aws_policy2.png
 .. figure:: ../../imgs/feature_store/aws_policy2.png
