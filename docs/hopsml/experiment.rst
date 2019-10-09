@@ -306,10 +306,10 @@ Experiments service makes it possible to a TensorBoard that aggregates all the T
 
 
 .. _hops-py: http://hops-py.logicalclocks.com
-.. _hops-examples: https://github.com/logicalclocks/hops-examples/tree/master/tensorflow/notebooks
+.. _hops-examples: https://github.com/logicalclocks/hops-examples/tree/master/notebooks/ml
 
-.. _experiment: https://github.com/logicalclocks/hops-examples/tree/master/tensorflow/notebooks/Experiment
-.. _parallel_experiment: https://github.com/logicalclocks/hops-examples/tree/master/tensorflow/notebooks/Parallel_Experiments
-.. _distributed_training: https://github.com/logicalclocks/hops-examples/tree/master/tensorflow/notebooks/Distributed_Training
-.. _distribution_strategies: https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/distribute
+.. _experiment: https://github.com/logicalclocks/hops-examples/tree/master/notebooks/ml/Experiment
+.. _parallel_experiment: https://github.com/logicalclocks/hops-examples/tree/master/notebooks/ml/Parallel_Experiments
+.. _distributed_training: https://github.com/logicalclocks/hops-examples/tree/master/notebooks/ml/Distributed_Training
+.. _distribution_strategies: https://github.com/tensorflow/tensorflow/tree/master/tensorflow/python/distribute
 
