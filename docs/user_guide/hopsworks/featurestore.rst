@@ -368,7 +368,7 @@ For the sake of the example we added more constraints such as players' minimum a
 Clicking on `Create validation job` button will redirect you to Jobs UI where the unit testing job has been created and we can click on `Run` button to start testing our feature group values.
 After the job has finished we can go back to ``Data Validation`` page, click on `Fetch validation result` and see the results. For the example we did above, the results
 are the following:
-    
+
 .. _hopsworks_featurestore_data_validation_result.png: ../../_images/data_validation_result.png
 .. figure:: ../../imgs/feature_store/data_validation_result.png
     :alt: Feature group unit testing result
@@ -781,3 +781,472 @@ We have provided a large number of example notebooks, available here_. Go to Hop
 .. _API-Docs-Python: http://hops-py.logicalclocks.com/
 .. _API-Docs-Scala: http://snurran.sics.se/hops/hops-util-javadoc/
 .. _hudi: http://hudi.apache.org/
+
+FAQ
+--------------------------------------------------------------------------
+
+General
+~~~~~~~~~~~~~~~~~~~~~~
+
+**What is a featurestore?**
+
+A feature store is a data management layer for machine learning. It is a place to store curated, versioned, access-controlled, and documented features. The idea with the feature store is to make features for machine learning a first-class citizen in the data lake of the organization, and to democratize access to feature data. Instead of storing features in ad-hoc files spread across the organization, the features are centralized in the feature store.
+
+Centralizing features and making feature data a first-class citizen comes with many benefits, such as: (1) feature reuse; (2) feature discoverability; (3) feature backfilling and pre-computation; (4) improved documentation and analysis of features; and (5) software engineering principles applied to features, such as versioning, documentation and access control.
+
+**How is a Featurestore different from a Data Lake?**
+
+The featurestore is a data management layer explicitly designed for machine learning — with built-in integrations for machine learning frameworks and support for common machine learning use-cases — as opposed to a traditional data lake which is more general. A common setup is to use a data lake as the input-source for computing features that in turn are stored in the featurestore.
+
+**When is a Featurestore useful for me and my organization?**
+
+A featurestore is useful when you have a team of data scientists larger than three or four people, or expect that your data scientist team will grow in the future. The featurestore makes it possible for data scientists and engineers to cooperate and perform collaborative data science. The featurestore encourages feature reuse, as well as following software engineering principles in machine learning workflows.
+
+**What are some non-goals for Hopsworks Featurestore?**
+
+- The featurestore is not intended as a general database to replace your data warehouse.
+- The featurestore will not compute or define the feature data for you.
+- The featurestore will not replace your existing machine learning frameworks.
+
+
+**What is the difference between Hopsworks Platform and Hopsworks Featurestore?**
+
+The Hopsworks platform is a superset of the Hopsworks Featurestore. The Featurestore uses about 66% of Hopsworks’ services, but Hopsworks also provides infrastructure for training of models (using Jupyter notebooks and GPUs), real-time serving of models, ML pipelines orchestrated by Airflow, the HopsFS distributed file system, support for Spark/Beam/Flink, Kafka, and project-based multi-tenancy models for managing sensitive data on a shared cluster.
+
+
+**How is a Featurestore used by Data Engineers, and Data Scientists, respectively?**
+
+From talking with many organizations that work with data and machine learning, the feature store has a natural fit in the organizational structure, where it works as an interface between data engineers and data scientists.
+
+Data Engineers *write* features into the feature store. Typically they will (1) read some raw or structured data from a data lake: (2) apply transformations on the data using som data processing framework like Spark; (3) store the transformed feature data in the feature store; (4) add documentation, versioning information, and statistics to the feature data in the feature store.
+
+Data Scientists *read* features from the feature store. A data scientist tend to read features from the feature store for (1) training machine learning models and experimenting with different combination of features; and (2) serving features into machine learning models.
+
+Installation
+~~~~~~~~~~~~~~~~~~~~~~
+
+**How can I try out Hopsworks Featurestore to evaluate it?**
+
+Reach out to us and we’ll help you set it up: `https://www.logicalclocks.com/contact <https://www.logicalclocks.com/contact>`_.
+
+**How can I use Hopsworks Featurestore on premise?**
+
+Instructions for installing Hopsworks (which comes with the feature store) on premise are available here: `https://hopsworks.readthedocs.io/en/latest/installation_guide/platforms/baremetal.html <https://hopsworks.readthedocs.io/en/latest/installation_guide/platforms/baremetal.html>`_.
+
+**How can I use Hopsworks Featurestore on Google Cloud Platform?**
+
+Instructions for installing Hopsworks (which comes with the feature store) on Google Cloud Platform are available here: `https://hopsworks.readthedocs.io/en/latest/installation_guide/platforms/cloud.html <https://hopsworks.readthedocs.io/en/latest/installation_guide/platforms/cloud.html>`_.
+
+**How can I use Hopsworks Featurestore on AWS?**
+
+Instructions for installing Hopsworks (which comes with the feature store) on AWS are available here: `https://hopsworks.readthedocs.io/en/latest/installation_guide/platforms/cloud.html <https://hopsworks.readthedocs.io/en/latest/installation_guide/platforms/cloud.html>`_.
+
+**How can I use Hopsworks Featurestore from Amazon Sagemaker?**
+
+Documentation for accessing Hopsworks Featurestore from Amazon Sagemaker is available here: `https://hopsworks.readthedocs.io/en/latest/user_guide/hopsworks/featurestore.html#connecting-from-amazon-sagemaker <https://hopsworks.readthedocs.io/en/latest/user_guide/hopsworks/featurestore.html#connecting-from-amazon-sagemaker>`_.
+
+**How can I use Hopsworks Featurestore from Databricks Platform?**
+
+Documentation for accessing Hopsworks Featurestore from Databricks Platform is available here: `https://hopsworks.readthedocs.io/en/latest/user_guide/hopsworks/featurestore.html#connecting-from-databricks-notebooks <https://hopsworks.readthedocs.io/en/latest/user_guide/hopsworks/featurestore.html#connecting-from-databricks-notebooks>`_.
+
+**How do I migrate to Hopsworks Featurestore?**
+
+Logical Clocks (`https://www.logicalclocks.com <https://www.logicalclocks.com>`_) is the vendor of Hopsworks Featurestore and have experience in helping customers migrate from cloud infrastructure (such as S3 and GCP) as well as from on-premise installations (such as Hortonworks or Cloudera) to Hopsworks Featurestore. Reach out to us at `https://www.logicalclocks.com <https://www.logicalclocks.com>`_ for suggestions on how to migrate.
+
+
+Usage
+~~~~~~~~~~~~~~~~~~~~~~
+
+**How can I access the Featurestore API from Python?**
+
+The Python SDK can be installed with "`pip install hops`" (`https://pypi.org/project/hops/ <https://pypi.org/project/hops/>`_). After installation, the library can be imported inside your python script or Jupyter notebook:
+
+.. code-block:: python
+
+    from hops import featurestore
+
+Inside a Hopsworks installation, the Python SDK is automatically configured and you can skip the installation step.
+
+API documentation for the Java/Scala SDK for Hopsworks Featurestore is available here: http://hops-py.logicalclocks.com/.
+
+If you are in a cloud environment (outside of Hopsworks) and are only interested in using the featurestore, a trimmed down version of the python API can be installed with: "`pip install hopsworks-cloud-sdk`" (https://pypi.org/project/hopsworks-cloud-sdk/).
+
+**How can I access the Featurestore API from Scala?**
+
+The Scala SDK can be included as a maven dependency:
+
+.. code-block:: XML
+
+    <dependency>
+         <groupId>io.hops</groupId>
+         <artifactId>hops-util</artifactId>
+         <version>1.1.0-SNAPSHOT</version>
+         <scope>provided</scope>
+    </dependency>
+
+To build the project from scratch, you can clone it from Logical Clocks github: `https://github.com/logicalclocks/hops-util <https://github.com/logicalclocks/hops-util>`_.
+
+.. code-block:: bash
+
+    git clone https://github.com/logicalclocks/hops-util
+    cd hops-util
+    mvn clean install
+
+API documentation for the Java/Scala SDK for Hopsworks Featurestore is available here: `http://snurran.sics.se/hops/hops-util-javadoc/ <http://snurran.sics.se/hops/hops-util-javadoc/>`_.
+
+**How does Hopsworks Featurestore Integrate with my machine learning framework?**
+
+The featurestore is designed to work seamlessly with Tensorflow, Keras, PyTorch, and Scikit-Learn. Below are some examples of using the featurestore with different machine learning frameworks.
+
+*Scikit Learn:*
+
+.. code-block:: python
+
+    from hops import featurestore
+    train_df = featurestore.get_featuregroup("iris_features", dataframe_type="pandas")
+    x_df = train_df[['sepal_length', 'sepal_width', 'petal_length', 'petal_width']]
+    y_df = train_df[["label"]]
+    X = x_df.values
+    y = y_df.values.ravel()
+    iris_knn = KNeighborsClassifier()
+    iris_knn.fit(X, y)
+
+*TensorFlow:*
+
+.. code-block:: python
+
+    from hops import featurestore
+    features_df = featurestore.get_features(
+        ["team_budget", "average_attendance", "average_player_age",
+        "team_position", "sum_attendance",
+         "average_player_rating", "average_player_worth", "sum_player_age",
+         "sum_player_rating", "sum_player_worth", "sum_position",
+         "average_position"
+        ]
+    )
+    featurestore.create_training_dataset(features_df, "team_position_prediction", data_format="tfrecords")
+
+    def create_tf_dataset():
+        dataset_dir = featurestore.get_training_dataset_path("team_position_prediction")
+        input_files = tf.gfile.Glob(dataset_dir + "/part-r-*")
+        dataset = tf.data.TFRecordDataset(input_files)
+        tf_record_schema = featurestore.get_training_dataset_tf_record_schema("team_position_prediction")
+        feature_names = ["team_budget", "average_attendance", "average_player_age", "sum_attendance",
+             "average_player_rating", "average_player_worth", "sum_player_age", "sum_player_rating", "sum_player_worth",
+             "sum_position", "average_position"
+            ]
+        label_name = "team_position"
+
+        def decode(example_proto):
+            example = tf.parse_single_example(example_proto, tf_record_schema)
+            x = []
+            for feature_name in feature_names:
+                x.append(example[feature_name])
+            y = [tf.cast(example[label_name], tf.float32)]
+            return x,y
+
+        dataset = dataset.map(decode).shuffle(SHUFFLE_BUFFER_SIZE).batch(BATCH_SIZE).repeat(NUM_EPOCHS)
+        return dataset
+    tf_dataset = create_tf_dataset()
+
+*PyTorch*:
+
+.. code-block:: python
+
+    from hops import featurestore
+    df_train=...
+    featurestore.create_training_dataset(df_train, "MNIST_train_petastorm", data_format="petastorm")
+
+    from petastorm.pytorch import DataLoader
+    train_dataset_path = featurestore.get_training_dataset_path("MNIST_train_petastorm")
+    device = torch.device('cuda' if use_cuda else 'cpu')
+    with DataLoader(make_reader(train_dataset_path, num_epochs=5, hdfs_driver='libhdfs', batch_size=64) as train_loader:
+            model.train()
+            for batch_idx, row in enumerate(train_loader):
+                data, target = row['image'].to(device), row['digit'].to(device)
+
+
+**How is a Featurestore used in a typical machine learning pipeline?**
+
+A feature store is a data management layer to allow sharing, versioning, discovering, and documenting features for ML pipelines. One of the main motivations for a feature store is that, in large companies, there are hundreds of different types of models that should be trained on the available datasets. In this context, it is desirable to have the different data science-teams that are responsible for building the models to be able to reuse the same features and code.
+
+Even though different models have different feature-sets, there is a substantial amount of overlap between the feature-sets. That's where the feature store fills an important use-case.
+A feature store provides a central location to store features for documentation and reuse, which enables data scientists to share part of their machine learning pipelines.
+
+**How is data stored in Hopsworks Featurestore?**
+
+Feature data in the Hopsworks Featurestore is stored in Apache Hive for historical offline feature data (used for training machine learning models), and in MySQL Cluster for online feature data (for sub-millisecond queries to use in model serving).
+
+- In the offline featurestore, feature data is stored as Hive tables on HopsFS with extended metadata stored in NDB. A single feature is represented as a column in a Hive table and a feature group (a logical grouping of features) is represented as an Hive table.
+- In the online featurestore, feature data is stored as tables in MySQL Cluster. A single online-feature is represented as a column in the MySQL Cluster tables, and a feature group is represented as an individual MySQL Cluster table.
+
+Training datasets can include features spanning multiple feature groups and are in general immutable, stored in data formats that can be read from machine learning frameworks, such as TFRecords, Petastorm, Parquet, Avro, ORC, CSV, TSV or raw images.
+
+**What is the difference between a feature group and a training dataset?**
+
+There are three abstractions for modeling the data in the feature store (1) a single feature; (2) a feature group; and (3) a training dataset. A feature group is a logical grouping of features that belong together — typically features that are computed in the same feature engineering process are stored in the same feature group. A training dataset is a grouping of features for a particular prediction task. Training datasets often contain features spanning multiple feature groups.
+
+**How do I decide which features should be put in the same feature group?**
+
+A Feature group is a logical grouping of features. Typically, features that are computed in the same feature engineering process are stored in the same feature group.
+
+**How do I create training datasets from feature data?**
+
+You can use the featurestore APIs provided in Scala and Python, or use plain SQL.
+
+*Python API:*
+
+.. code-block:: python
+
+    features_df = featurestore.get_features(
+        ["team_budget", "average_attendance", "average_player_age",
+        "team_position", "sum_attendance",
+         "average_player_rating", "average_player_worth", "sum_player_age",
+         "sum_player_rating", "sum_player_worth", "sum_position",
+         "average_position"
+        ]
+    )
+    featurestore.create_training_dataset(features_df, "td_name")
+
+
+*Scala API:*
+
+.. code-block:: scala
+
+    val features = List("team_budget", "average_attendance", "average_player_age", "team_position","sum_attendance", "average_player_rating", "average_player_worth", "sum_player_age","sum_player_rating", "sum_player_worth", "sum_position", "average_position")
+    val featuresDf = Hops.getFeatures(features).read()
+
+    Hops.createTrainingDataset("td_name").setDataframe(featuresDf).write()
+
+*SQL API:*
+
+.. code-block:: scala
+
+    val featuresDf = spark.sql(“
+    SELECT team_budget, average_position, sum_player_rating,
+    average_attendance, average_player_worth, sum_player_worth,
+    sum_position, sum_attendance, average_player_rating,
+    team_position, sum_player_age, average_player_age
+    FROM teams_features_1
+    JOIN season_scores_features_1
+    JOIN players_features_1
+    JOIN attendances_features_1
+    ON teams_features_1.`team_id`=season_scores_features_1.`team_id`
+    AND teams_features_1.`team_id`=players_features_1.`team_id`
+    AND teams_features_1.`team_id`=attendances_features_1.`team_id`
+    ”)
+    Hops.createTrainingDataset("td_name").setDataframe(featuresDf).write()
+
+
+**How do I store validation and test datasets in the Featurestore?**
+
+The *training dataset* abstraction in the featurestore can be used to store both validation and test datasets as well as training datasets for machine learning.
+
+**What does the query planner in Hopsworks Featurestore do?**
+
+The query-planner enables data scientists to query the featurestore with high-level APIs rather than using SQL directly. As an example, compare the two queries below, where the first one is using the query planner and the second one is using plain SQL:
+
+.. code-block:: python
+
+    features_df = featurestore.get_features(
+        ["team_budget", "average_attendance", "average_player_age",
+        "team_position", "sum_attendance",
+         "average_player_rating", "average_player_worth", "sum_player_age",
+         "sum_player_rating", "sum_player_worth", "sum_position",
+         "average_position"
+        ]
+    )
+
+
+.. code-block:: python
+
+    features_df = spark.sql(“
+    SELECT team_budget, average_position, sum_player_rating,
+    average_attendance, average_player_worth, sum_player_worth,
+    sum_position, sum_attendance, average_player_rating,
+    team_position, sum_player_age, average_player_age
+    FROM teams_features_1
+    JOIN season_scores_features_1
+    JOIN players_features_1
+    JOIN attendances_features_1
+    ON teams_features_1.`team_id`=season_scores_features_1.`team_id`
+    AND teams_features_1.`team_id`=players_features_1.`team_id`
+    AND teams_features_1.`team_id`=attendances_features_1.`team_id`
+    ”)
+
+
+**How can I perform data validation of feature data in Hopsworks Featurestore?**
+
+Data validation in Hopsworks Featurestore is done using the Deequ library (`https://github.com/awslabs/deequ <https://github.com/awslabs/deequ>`_.), instructions are available here: `https://hopsworks.readthedocs.io/en/latest/user_guide/hopsworks/featurestore.html#the-feature-registry <https://hopsworks.readthedocs.io/en/latest/user_guide/hopsworks/featurestore.html#the-feature-registry>`_.
+
+**How can I ingest data from Kafka into Hopsworks Featurestore?**
+
+The featurestore API is built around Spark — to ingest data from Kafka, use Spark to read from Kafka and then use the Featurestore as a sink to write the data.
+
+**What is the difference between the online and offline storage in Hopsworks Featurestore?**
+
+There are two broad use-cases of the featurestore (1) using feature data for model training; and (2) using feature data for model serving. As these two use-cases have completely different requirements, the  feature store has two different storage backends: an offline-storage backend for storing potentially large amounts of feature data for model training and an online-storage backend for for low-latency access to feature data for online model serving.
+
+When reading from the feature store for training/experimentation, there are requirements on the feature store such as:
+
+- *Scale*; The feature store needs to be able to store and manage huge feature sets (multi-terabyte at least).
+- *Flexibility*; Data scientists must be able to read from the feature store and use the data in different machine learning frameworks, like Tensorflow, Keras, Scikit learn, and PyTorch.
+- *Analysis*; Data scientists need an understanding of the feature data to be able to make most use of it in their models. They should be able to analyze the features, view their distributions over time, their correlations with each other etc.
+- *Point-in-time correctness*; It can be valuable to be able to extract the value of a feature at a specific point-in-time.
+
+On the other hand, when reading from the feature store for serving models there are very specific requirements that differ from the requirements for training/serving:
+
+- *Real-time*; for client-facing models, features must be available in real-time for making predictions to avoid destroying the user-experience for the user.
+- *Online/Offline Consistency*;  when a feature is used for both training and serving, and stored in two different storage layers, you want to make sure that the value and semantics of the feature is consistent.
+
+
+**What is the difference between an on-demand and cached feature group in Hopsworks featurestore?**
+
+There are two types of feature groups in the Feature Store:
+
+- *Cached Feature Group*: This type of feature group is the most common, it will store the computed features inside the Hopsworks Feature Store.
+- *On-Demand Feature Groups*: This type of feature group is not stored in Hopsworks, rather it is computed on-demand. To create an on-demand feature group you must configure a JDBC connector and a SQL query to compute the features. On-demand feature groups are typically used when an organization have feature data available in external storage systems and don’t want to duplicate the data in Hopsworks feature store.
+
+**What are different ways to query Hopsworks Featurestore?**
+
+Currently, Hopsworks Featurestore can be queried in the following ways: SparkSQL, SQL over JDBC/ODBC, Python API, and Scala API.
+
+**How can I apply custom feature logic to data stored in Hopsworks Featurestore?**
+
+When using the feature store API to insert feature data in the featurestore, the user provides a Spark dataframe as an argument to the write operation. The spark dataframe is evaluated lazily, this means that the user has the freedom to apply custom feature logic to the data before inserting it in the featurestore. Below is an example of doing custom feature engineering before saving the feature data to the featurestore.
+
+.. code-block:: python
+
+    sum_houses_sold_df = houses_sold_data_spark_df.groupBy("area_id").sum()
+    count_houses_sold_df = houses_sold_data_spark_df.groupBy("area_id").count()
+    sum_count_houses_sold_df = sum_houses_sold_df.join(count_houses_sold_df, "area_id")
+    sum_count_houses_sold_df = sum_count_houses_sold_df \
+        .withColumnRenamed("sum(number_of_bidders)", "sum_number_of_bidders") \
+        .withColumnRenamed("sum(sold_for_amount)", "sum_sold_for_amount") \
+        .withColumnRenamed("count", "num_rows")
+
+    featurestore.create_featuregroup(
+        houses_sold_features_df,
+        "houses_sold_featuregroup",
+        description="aggregate features of sold houses per area"
+    )
+
+**How can I do time-travel operations on data in Hopsworks Featurestore?**
+
+Hopsworks Featurestore supports Apache Hudi (https://hudi.apache.org/) for incremental data ingestion and time-travel operations, this is illustrated below.
+
+.. code-block:: scala
+
+    import io.hops.util.Hops
+    Hops.createFeaturegroup(featuregroup_name)
+                         .setHudi(true)
+                         .setPartitionBy(partitionCols)
+                         .setDataframe(sparkDf)
+                         .setPrimaryKey(primaryKeyName).write()
+
+    Hops.queryFeaturestore("SELECT id, value FROM featuregroup_name WHERE _hoodie_commit_time = X").read.show(5)
+
+**Where can I find documentation and get support for Hopsworks Featurestore?**
+
+Logical Clocks (https://www.logicalclocks.com/) is the vendor and creator of the Hopsworks Featurestore and provides enterprise support. Get in touch with us here: https://www.logicalclocks.com/contact.
+
+Featurestore documentation is available here:
+
+- *Official documentation*: https://hopsworks.readthedocs.io/en/latest/user_guide/hopsworks/featurestore.html
+- *Code examples*: https://github.com/logicalclocks/hops-examples
+- *Blogpost*: https://www.logicalclocks.com/blog/feature-store-the-missing-data-layer-in-ml-pipelines
+- *Presentation at Bay Area AI*: video: https://www.youtube.com/watch?v=N1BjPk1smdg, slides: https://www.slideshare.net/dowlingjim/the-feature-store-in-hopsworks
+- *Presentation at PyData Meetup*: slides: https://www.slideshare.net/dowlingjim/pydata-meetup-feature-store-for-hopsworks-and-ml-pipelines
+- *Presentation at FOSDEM:* slides & video: https://archive.fosdem.org/2019/schedule/event/feature_store/
+- *HopsML Meetup in Palo Alto*: slides: https://www.slideshare.net/KimHammar/hopsworks-hands-onfeaturestorepaloaltokimhammar23april2019
+- *HopsML Meetup in Stockholm*: slides: https://www.slideshare.net/KimHammar/kim-hammar-feature-store-the-missing-data-layer-in-ml-pipelines-hopsml-meetup-stockholm
+- *Spotify Meetup*: slides: https://www.slideshare.net/KimHammar/kim-hammar-spotify-ml-guild-meetup-feature-stores
+
+**How can I use Hopsworks Featurestore for Model Inference?**
+
+Online feature data in Hopsworks Featurestore is stored in a highly performant and scalable in-memory database called MySQL Cluster (NDB). From the Featurestore Python or Scala API you can insert data in the online featurestore and then query it from your serving-application using the JDBC connection.
+
+.. code-block:: python
+
+    featurestore.create_featuregroup(sample_df, "online_featuregroup_test", online=True, primary_key="id")
+
+    df = featurestore.get_featuregroup("online_featuregroup_test", online=True)
+    #primary key lookup in MySQL
+    df = featurestore.sql("SELECT val_1 FROM online_featuregroup_test_1 WHERE id=999", online=True)
+    storage_connector = featurestore.get_online_featurestore_connector()
+
+**How can I use Petastorm in Hopsworks Featurestore?**
+
+Hopsworks Featurestore supports Petastorm as a format for storing training datasets.
+Petastorm is an open source data access library. The main motivation for this library is to make it easier for data scientists to work with big data stored in Hadoop-like data lakes. The benefits of Petastorm are the following:
+
+- It enables to use a single data format that can be used for both Tensorflow and PyTorch datasets.
+
+  - Petastorm datasets integrate very well in Apache Spark, the main processing engine used in Hopsworks. Petastorm datasets are built on top of Parquet, which has better support in Spark than for example TFRecords or HDF5.
+
+  - A Petastorm dataset is self-contained, the data is stored together with its schema, which means that a data scientist can read a dataset into tensorflow or Pytorch without having to specify the schema to parse the data. As compared to TFRecords, where you need the schema at read-time, and if any discrepancy between your schema and the data on disk you might run into errors where you have to manually inspect protobuf files to figure out the serialization errors.
+
+- When training deep learning models it is important that you can stream data in a way that does not starve your GPUs, Petastorm is designed to be performant and usable for deep learning from the beginning. Moreover, petastorm have support for partitioning data to optimize for distributed deep learning
+
+**What is the difference between external and internal training datasets in Hopsworks Featurestore?**
+
+There are two storage types for training datasets in the Feature Store:
+
+- *HopsFS*: The default storage type for training datasets is HopsFS, a state-of-the-art scalable file system that comes bundled with the Hopsworks stack.
+
+- *S3*: The feature store SDKs also provides the functionality to store training datasets external to a Hopsworks installation, e.g in S3. When training datasets are stored in S3, only the metadata is managed in Hopsworks and the actual data is stored in S3. To be able to create external training datasets, you must first configure a storage connector to S3.
+
+The code-snippets below illustrates the different APIs for creating a training dataset stored in HopsFS vs a training dataset stored in S3, using the Scala SDK:
+
+.. code-block:: scala
+
+    //Training Dataset stored in HopsFS (default sink)
+    Hops.createTrainingDataset(tdName).setDataframe(df).write()
+
+    //External Training Dataset
+    Hops.createTrainingDataset(tdName).setDataframe(df).setSink(s3Connector).write()
+
+How can I compute statistics for feature data in Hopsworks Featurestore?
+The featurestore APIs in Python and Scala have a list of functions for computing common statistics for features. For custom statistics, users can read features from Hopsworks featurestore in Spark, Pandas or Numpy data structures and apply custom statistics.
+
+.. code-block:: python
+
+    featurestore.update_featuregroup_stats(
+        "featuregroup_name",
+        featuregroup_version=1,
+        featurestore=featurestore.project_featurestore(),
+        descriptive_statistics=True,
+        feature_correlation=True,
+        feature_histograms=True,
+        cluster_analysis=True,
+        stat_columns=[col1, col2,...])
+
+Performance
+~~~~~~~~~~~~~~~~~~~~~~
+
+**What performance can I expect for reading/writing from/to Hopsworks Featurestore?**
+
+For reading/writing to the offline feature storage (Apache Hive), Hopsworks Featurestore relies on Spark — hence the performance depends on the size of your Spark cluster. For the online feature storage, Hopsworks provides sub-millisecond query latency (<5 ms).
+
+**How can I scale Hopsworks Featurestore to my Cluster-size?**
+
+By being built around two *distributed* databases — Apache Hive and MySQL Cluster — Hopsworks Feature Store is horizontally Scalable.
+
+Security, Governance and Fault-Tolerance
+~~~~~~~~~~~~~~~~~~~~~~
+
+**How is access control managed in Hopsworks Featurestore?**
+
+Hopsworks featurestore follows the multi-tenant and self-serviced model for access control used in Hopsworks, which is based on TLS certificates (https://www.logicalclocks.com/blog/introducing-hopsworks).
+
+**How can I use Hopsworks Featurestore in an HA-environment?**
+
+Logical Clocks provides support for deploying Hopsworks Featurestore in an HA-environment for enterprise customers. Contact us at https://www.logicalclocks.com/contact for a quote.
+
+**How can I track governance of data in Hopsworks Featurestore?**
+
+Hopsworks Featurestore integrates with the rest of Hopsworks platform to provide end-to-end provenance of feature data, machine learning experiments, and models. The governance framework in Hopsworks provides an API where users can ask queries such as:
+
+- “What features were used to train this machine learning model?”, and
+
+- “How did the feature data change between these two machine learning experiments?”.
