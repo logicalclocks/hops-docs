@@ -59,7 +59,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'Documentation'
-copyright = u'©2018 Logical Clocks AB. All Rights Reserved.'
+copyright = u'©2019 Logical Clocks AB. All Rights Reserved.'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
