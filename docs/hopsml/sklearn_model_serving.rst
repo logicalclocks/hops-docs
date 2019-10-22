@@ -104,16 +104,18 @@ For using the python API, import the `serving` module from hops-util-py (API-Doc
 .. code-block:: python
 
     from hops import serving
-    model_path = "Resources/iris_knn.pkl"
-    serving.export(model_path, "IrisFlowerClassifier", 1, overwrite=True)
-    model_path = "Resources/iris_flower_classifier.py"
-    serving.export(model_path, "IrisFlowerClassifier", 1, overwrite=True)
+    from hops import model
+
+    # Resources/iris path containing .pkl and .py script to export as a model
+    model_path = "Resources/iris"
+
+    model.export(model_path, "IrisFlowerClassifier", model_version=1, overwrite=True)
+
     script_path = "Models/IrisFlowerClassifier/1/iris_flower_classifier.py"
     if serving.exists("IrisFlowerClassifier"):
         serving.delete_serving("IrisFlowerClassifier")
     serving.create_or_update_serving(script_path, "IrisFlowerClassifier", serving_type="SKLEARN", model_version=1)
     serving.start_serving("IrisFlowerClassifier")
-
 
 **Step 3.**
 

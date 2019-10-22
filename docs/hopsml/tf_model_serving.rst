@@ -40,7 +40,7 @@ In order to serve a TensorFlow model on Hopsworks, the .pb file and the variable
 
 TensorFlow serving expects the model directory (in this case *mnist*) to contain one or more sub-directories.
 The name of each sub-directory is a number representing the version of the model, the higher the version, the more recent the model.
-Inside each version directory TensorFlow serving expects a file named *saved_mode.pb*, which contains the model graph, and a directory called *variables* which contains the weights of the model.
+Inside each version directory TensorFlow serving expects a file named *saved_model.pb*, which contains the model graph, and a directory called *variables* which contains the weights of the model.
 
 **Step 2.**
 
@@ -106,8 +106,9 @@ For using the python API, import the `serving` module from hops-util-py (API-Doc
 .. code-block:: python
 
     from hops import serving
+    from hops import model
     model_path = "Resources/mnist/"
-    serving.export(model_path, "mnist", 2, overwrite=True)
+    model.export(model_path, "mnist", model_version=2, overwrite=True)
     model_path = "Models/mnist/2/"
     if serving.exists("mnist"):
         serving.delete_serving("mnist")
