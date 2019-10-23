@@ -782,7 +782,7 @@ We have provided a large number of example notebooks, available here_. Go to Hop
 .. _API-Docs-Scala: http://snurran.sics.se/hops/hops-util-javadoc/
 .. _hudi: http://hudi.apache.org/
 
-FAQ
+Frequently Asked Questions (FAQ)
 --------------------------------------------------------------------------
 
 General
@@ -1233,7 +1233,7 @@ For reading/writing to the offline feature storage (Apache Hive), Hopsworks Feat
 By being built around two *distributed* databases — Apache Hive and MySQL Cluster — Hopsworks Feature Store is horizontally Scalable.
 
 Security, Governance and Fault-Tolerance
-~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 **How is access control managed in Hopsworks Featurestore?**
 
@@ -1250,3 +1250,107 @@ Hopsworks Featurestore integrates with the rest of Hopsworks platform to provide
 - “What features were used to train this machine learning model?”, and
 
 - “How did the feature data change between these two machine learning experiments?”.
+
+Feature Store Use-Case Examples - Scalable and Consistent Data Management for Machine Learning
+-------------------------------------------------------------------------
+
+Machine learning is becoming ubiquitous in software applications and making new advanced use-cases possible, such as computer vision and self-driving cars. However, machine learning systems are only as good as the data they are trained on, and getting the data in the right format at the right time for training models and making predictions is a challenge.
+
+    How to store feature data for training machine learning models at scale and without data quality issues?
+
+    How to deliver data to machine learning models in production to make predictions in real-time?
+
+    How to ensure that the feature data used to train models is consistent with feature data used to make predictions in production? I.e how to ensure online/offline consistency?
+
+    How to share feature data between experiments?
+
+As opposed to traditional software applications, the control and behavior of machine learning (ML) applications is decided by data and not by humans. This means that there is a need for a different set of tools and systems for managing and ensuring the consistency of ML applications, with a focus on *data management*. Moreover, considering that ML applications are taking over several critical aspects of our lives, such as health-care applications and self-driving cars; it is vital to secure the quality of the data - as it influences the decisions made by the ML applications.
+
+In the past years, several companies in the forefront of applied ML have identified the need for an advanced storage platform for ML, often referred to as a feature store [1-8]. ML systems are trained using sets of features. A feature can be as simple as the value of a column in a database record, or it can be a complex value that is computed from diverse sources. A feature store is a central vault for storing documented and curated features. The feature store makes the feature data a first-class citizen in the data lake and provides strong guarantees in terms of access control, feature analysis, versioning, point-in-time correctness, consistency, and real-time query latency.
+
+The only open-source feature store available in the world is Hopsworks Feature Store (released in 2018). Below is an example use-case from one of our clients that have been using Hopsworks Feature Store in production for over a year.
+
+Feature Store Use-Case
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Hopsworks Feature Store is general in the sense that it has connectors for various different types of storage engines and ingestion frameworks, such as: Kafka, S3, Databricks, HDFS, Hive, MySQL, SAP, DB2, etc. This means that the feature store can be integrated in your current data landscape.
+
+This tutorial will focus on a particular organization using the feature store that had an existing data lake in HDFS. This tutorial will explain how they complemented their existing data lake with Hopsworks Feature Store to make their machine learning work-flows more effective.
+
+In this example, the organization had an existing data lake in HDFS that was updated with data from production systems every night (see figure below). Once the data was inserted in the data lake, it was available to data scientists and data engineers in the organization for analysis and machine learning. However, the data in the data lake could not be used directly for machine learning use-cases as feature engineering had not yet been applied to the data. Although the data in the data lake had some structure, from a data scientists perspective, it contained **"raw"** data — not feature data.
+
+.. _snapshot_load.png: ../../_images/snapshot_load.png
+.. figure:: ../../imgs/feature_store/snapshot_load.png
+    :alt: Data Lake Ingestion
+    :target: `snapshot_load.png`_
+    :align: center
+    :figclass: align-center
+    :scale: 15 %
+
+    A Data Lake is a typical place to put structured general-purpose data, before any feature engineering has been applied to the data.
+
+In order to use the data lake for machine learning, data scientists and data engineers in the organization were required to do feature engineering on the data in the data lake before they could use the data in machine learning experiments. In fact, in retrospect, *data scientists and data engineers were spending most of their time in the phase of feature engineering, much more than the time they spent on actual model development* — feature engineering became the bottleneck.
+
+.. _bottleneck.png: ../../_images/bottleneck.png
+.. figure:: ../../imgs/feature_store/bottleneck.png
+    :alt: Feature Engineering Bottleneck
+    :target: `bottleneck.png`_
+    :align: center
+    :figclass: align-center
+    :scale: 5 %
+
+    Without a Feature Store, feature engineering tend to become a bottleneck in the machine learning work-flow.
+
+Another problem that is common without a feature store is that if an organization have many data scientists, perhaps spread across different teams, this results in siloed feature data (see figure below). This is exactly what happened for this organization. The organization had in total over 30 data scientists spread out geographically across several offices. Due to the geographical distribution and no central feature store, each data scientist in the organization was maintaining their own feature pipeline, with little or no possibility of feature reuse.
+
+.. _siloed_f.png: ../../_images/siloed_f.png
+.. figure:: ../../imgs/feature_store/siloed_f.png
+    :alt: Siloed Feature Data
+    :target: `siloed_f.png`_
+    :align: center
+    :figclass: align-center
+    :scale: 10 %
+
+    Without a feature store, many organizations have problems with feature data being put in silos without any provision, documentation, or quality validation.
+
+By complementing the organization's data lake with a feature store — a data management layer **specifically designed for the machine learning use-case** — the organization was able to harmonize the siloed feature data in a single place. By centralizing the feature data, data scientists were able to reuse and share features with each other. Moreover, the feature store improved the quality of the organization's feature data by applying software engineering principles to the feature data; such as versioning, validation, lineage, and access control.
+
+The feature store typically works as an *interface between data engineers and data scientists*. Data engineers write data processing pipelines that compute features and inserts them in the feature store. Data scientists use machine learning frameworks such as TensorFlow or Keras to read from the feature store and run machine learning experiments (see figure below).
+
+.. _de_ds_interface.png: ../../_images/de_ds_interface.png
+.. figure:: ../../imgs/feature_store/de_ds_interface.png
+    :alt: Feature Store: Interface between data engineers and data scientists
+    :target: `de_ds_interface.png`_
+    :align: center
+    :figclass: align-center
+    :scale: 8 %
+
+**Data Engineers: Writing to the Feature Store**
+
+Data engineers can use the feature store as a sink for their data pipelines that compute features for machine learning. The feature store can store any type of feature data, whether it is time-window aggregations, embeddings, images, text, or sound. For writing to the feature store, data engineers can use their framework of choice, for example Spark, Flink, Numpy, or Pandas.
+
+**Data Scientists: Using feature data in ML Experiments**:
+
+Data scientists can read from the feature store for doing machine learning experiments using their favorite machine learning framework, such as TensorFlow, Keras, Sci-kit learn, or PyTorch.
+
+References
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- [1] Scaling Machine Learning as a Service (Uber), http://proceedings.mlr.press/v67/li17a.html
+
+- [2] Applied Machine Learning at Facebook: A Datacenter Infrastructure Perspective, https://research.fb.com/publications/applied-machine-learning-at-facebook-a-datacenter-infrastructure-perspective/
+
+- [3] TFX: A TensorFlow-Based Production-Scale Machine Learning Platform (Google), https://www.kdd.org/kdd2017/papers/view/tfx-a-tensorflow-based-production-scale-machine-learning-platform
+
+- [4] Horizontally Scalable ML Pipelines with a Feature Store (Logical Clocks), https://www.sysml.cc/doc/2019/demo_7.pdf
+
+- [5] Distributed Time Travel for Feature Generation (Netflix),
+https://medium.com/netflix-techblog/distributed-time-travel-for-feature-generation-389cccdd3907
+
+- [6] Yoda: Scaling Machine Learning at Careem, https://medium.com/@akamal8/yoda-scaling-machine-learning-careem-d4bc8b1be195
+
+- [7] Zipline: Airbnb’s Machine Learning Data Management Platform, https://databricks.com/session/zipline-airbnbs-machine-learning-data-management-platform
+
+- [8] Introducing Feast: an open source feature store for machine learning (Google and GO-JEK),
+https://cloud.google.com/blog/products/ai-machine-learning/introducing-feast-an-open-source-feature-store-for-machine-learning
+
+- [9] Hidden Technical Debt in Machine Learning Systems (Google), https://papers.nips.cc/paper/5656-hidden-technical-debt-in-machine-learning-systems.pdf
