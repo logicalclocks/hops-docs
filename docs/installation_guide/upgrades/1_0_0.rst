@@ -21,7 +21,7 @@ Changes to the cluster definition
    - `hopsmonitor::node_exporter` should be added to all the nodes of the cluster
    - `hopsmonitor::purge_telegraf` should be added to all the nodes of the cluster to remove previously installed versions of telegraf.
 
-Moreover, if you add the `hopsmonitor::alertmanager` recipe, you should also add the attributes to instruct the alertmanager on to where to send the alerts. The recipes currently support email and/or slack configuration:
+Moreover, if you add the `hopsmonitor::alertmanager` recipe, you should also add the attributes to instruct the alertmanager where to send the alerts. The recipes currently support email and/or slack configuration:
 
 .. code-block:: yaml
 
@@ -46,4 +46,4 @@ Moreover, if you add the `hopsmonitor::alertmanager` recipe, you should also add
 
 4. In Hopsworks 1.0.0, to speed up Spark applications startup, we cache more artifacts on the node managers. You should add `livy::install` and `hadoop_spark::certs` on all the nodes where there is a node manager (`hops::nm`). `hadoop_spark::certs` should also be added to node where Hopsworks is located.
 
-5. From Hopsworks 1.0.0 the attribute `kagent/network/interface` should be removed.
+5. From Hopsworks 1.0.0 the attribute `kagent/network/interface` is dropped. 
