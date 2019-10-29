@@ -1,0 +1,49 @@
+=============
+Version 1.0.0
+=============
+
+Version 1.0.0 requires some changes to the cluster definition. 
+
+Changes to the cluster definition
+---------------------------------
+
+1. In the global `attrs` section add the current version attribute. The attribute should be set to your current installed version. Example: 
+
+.. code-block:: yaml
+
+    attrs:                                                                                                         
+        install:                                                                                                     
+            current_version: "0.10.0"
+
+2. Hopsworks 1.0.0 improves monitoring capabilities of the platform using Prometheus. You should add the following recipes to the cluster definition:
+
+   - `hopsmonitor::prometheus` and `hopsmonitor::alertmanager` should be added to a single node.
+   - `hopsmonitor::node_exporter` should be added to all the nodes of the cluster
+   - `hopsmonitor::purge_telegraf` should be added to all the nodes of the cluster to remove previously installed versions of telegraf.
+
+Moreover, if you add the `hopsmonitor::alertmanager` recipe, you should also add the attributes to instruct the alertmanager where to send the alerts. The recipes currently support email and/or slack configuration:
+
+.. code-block:: yaml
+
+    attrs:                                                                                                         
+        alertmanager:    
+            email:    
+                to: sre@logicalclocks.com    
+                from: hopsworks@logicalclocks.com    
+                smtp_host: mail.hello.com    
+
+.. code-block:: yaml
+
+    attrs:                                                                                                         
+        alertmanager:    
+            slack:    
+                api_url: <api_url> 
+                channel: hopsworks 
+                username: alertmanager  
+
+
+3. Hopsworks 1.0.0 supports Flink and Beam. During the upgrade you should add the `flink::yarn` and `hopslog::_filebeat-beam` recipes on all the nodes where there is a node manager (`hops::nm`) and on the Hopsworks node. `flink::historyserver` should also be added to the Hopsworks node
+
+4. In Hopsworks 1.0.0, to speed up Spark applications startup, we cache more artifacts on the node managers. You should add `livy::install` and `hadoop_spark::certs` on all the nodes where there is a node manager (`hops::nm`). `hadoop_spark::certs` should also be added to node where Hopsworks is located.
+
+5. From Hopsworks 1.0.0 the attribute `kagent/network/interface` is dropped. 
