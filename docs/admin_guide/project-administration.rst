@@ -44,7 +44,7 @@ Administrators can disable the Yarn quota on a per project basis by changing the
    :align: center
    :figclass: align-cente
 
-    Disable Yarn quota on a per-project basis
+   Disable Yarn quota on a per-project basis
 
 Kafka Topics
 ____________
@@ -58,7 +58,7 @@ This quota puts a limit on the amount of Kafka Topic a project can have. The def
    :align: center
    :figclass: align-cente
 
-    Kafka Topics quota
+   Kafka Topics quota
 
 Storage Quota
 _____________
@@ -74,7 +74,7 @@ Setting the quota to -1 disables it.
    :align: center
    :figclass: align-cente
 
-    Storage quota
+   Storage quota
 
 Each project has a storage quota for the project directory itself (subdirectoy of `/Projects`) which affects all the project datasets except for the Featurestore and the Hive database. 
 Both the Featurestore and the Hive database have a different storage quota.
