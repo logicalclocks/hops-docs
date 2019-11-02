@@ -2,29 +2,8 @@
 Single Machine Installation
 ===========================
 
-The easiest way to start using Hopsworks locally is to import a VirtualBox appliance (ova) or let the Karamel
+The easiest way to start using Hopsworks locally is to let the Karamel
 installation software install Hopsworks in a vm by running the :download:`simplesetup.sh <../simplesetup.sh>` script.
-
-Both ways are described in detail below.
-
-----------------------
-Importing an ova image
-----------------------
-
-To successfully import and start the image, it is necessary to have VirtualBox installed on your workstation and at
-least 20GB of storage and 16GB of memory available. You can then follow these steps to import Hopsworks:
-
-1. Download the image_.
-2. Import the image from the VirtualBox GUI or from the command line with ``vboxmanage import hopsworks-0.10.0.ova``
-3. Start the vm in **headless** mode from the VirtualBox GUI or from the command line with ``vboxmanage startvm hopsworks0 --type headless``
-4. Wait for approximately 3 minutes until all services have started and then access Hopsworks at https://localhost:64724/hopsworks/ and login with username: admin@hopsworks.ai and password: admin. For further details on how to use Hopsworks, see :ref:`userguide`.
-
-Advanced users might want to ssh in the vm. To do this, you need to:
-
-1. Download the ssh key_.
-2. Then do ``ssh -p 31989 -i insecure_private_key vagrant@localhost``
-3. To view the status of all services, you can do ``sudo /srv/hops/kagent/kagent/bin/status-all-local-services.sh``
-4. To find a particular forwarded port, you can do `` vboxmanage showvminfo hopsworks0 | grep <port>``
 
 
 -------------------------------------
@@ -62,6 +41,3 @@ Going further
 -------------
 
 For detailed instructions on how to perform production deployments in-house or in the cloud, see :ref:`installation`.
-
-.. _image: http://snurran.sics.se/hops/ova/hopsworks-0.10.0.ova
-.. _key: http://snurran.sics.se/hops/ova/insecure_private_key

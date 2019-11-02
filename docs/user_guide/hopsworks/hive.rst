@@ -106,7 +106,7 @@ The next step is to convert the data from CSV to ORC, to do that users can run t
 
   insert overwrite table orc_table select * from sales
 
-4. *Query the data*: finally the data is efficiently loaded into Hive and ready to be queried.
+4. **Query the data**: finally the data is efficiently loaded into Hive and ready to be queried.
 
 .. _here: https://orc.apache.org/
 

@@ -1,8 +1,15 @@
-=================
+=========
 Inference
-=================
+=========
 
 Hopsworks provides a REST API for submitting inference requests to the serving servers. Currently the API supports, as backend, the TensorFlow model server and Flask Servers for SkLearn Models, it will be expanded in the future to support more model types as well.
+
+
+Limitations
+-----------
+
+Using the REST API provided by Hopsworks for inference is the recommended approach. TensorFlow Serving Server also supports grpc which requires the ``tensorflow-serving-api`` python client. We have noticed that installing that library may lead to not being able to export the Anaconda environment for the project.
+
 
 Send a request
 --------------
