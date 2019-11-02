@@ -4,7 +4,7 @@ Installation
 ============
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    platforms/cloud.rst
    platforms/baremetal.rst
