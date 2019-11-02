@@ -9,4 +9,4 @@ Supported JDKs:
 * OpenJDK 1.8
 * Oracle JDK 1.8
 
-
+We recommend OpenJDK due to its more permissive open-source license.

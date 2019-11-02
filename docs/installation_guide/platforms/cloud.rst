@@ -2,14 +2,10 @@
 Cloud Platforms (AWS, GCP, OpenStack)
 =====================================
 
-.. contents:: Contents
-   :local:
-   :depth: 2
-
-Hops can be installed on a cloud platform using Karamel/Chef.
+Hops can be installed on a cloud platform using a AMI (for AWS), a GCP image or more flexibly using Karamel and Chef Solo.
 
 
-Karamel/Chef
+Karamel
 -------------------------------------
 
 #. Download and install Karamel (http://www.karamel.io).
@@ -21,7 +17,7 @@ Karamel/Chef
    #. OpenStack
    #. On-premises (bare metal)
 
-For more information on how to configure cloud-based installations, go to help documentation at http://www.karamel.io.
+Example cluster definitions can be found at: https://github.com/logicalclocks/karamel-chef/tree/master/cluster-defns.
 For on-premises installations, we provide some additional installation details and tips later in this section.
 
 
@@ -87,9 +83,6 @@ Karamel Chef recipes support a large number of parameters that can be set while 
 
 Here are some of the most important security parameters to set when installing services:
 
-- Superuser username and password for the MySQL Server(s)
-
-  - Default: 'kthfs' and 'kthfs'
 - Administration username and password for the Glassfish administration account(s)
       
   - Default: 'adminuser' and 'adminpw'
