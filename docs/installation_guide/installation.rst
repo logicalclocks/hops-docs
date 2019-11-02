@@ -30,7 +30,6 @@ The Hopsworks stack may require the installation of a number of third-party dist
 * Nvidia Cuda/cuDNN/NCCL-2
 * ROCm (AMD)
 * Apache Airflow
-* RStudio
 * Apache Livy
 * PyTorch
 * Conda
