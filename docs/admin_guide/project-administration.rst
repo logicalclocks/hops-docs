@@ -2,7 +2,7 @@
 Project administration
 =======================
 
-Clicking on the *Projects Management* icon on the admin panel, will lead you to the project administration panel.
+Clicking on the *Projects Management* icon on the admin panel, will lead to the project administration panel.
 From here you will be able to see and manage projects.
 
 Quotas

@@ -2,7 +2,7 @@
 Nodes administration
 =====================
 
-Clicking on the *Manage cluster Nodes* icon on the admin panel, will lead you to the node management panel.
+Clicking on the *Manage cluster Nodes* icon on the admin panel, will lead to the node management panel.
 From here the administrator able to get an overview of the nodes in the cluster.
 
 For each node the page displays:
@@ -53,8 +53,8 @@ Clicking on the button will show a pop up to insert the hostname and the private
 Once the node has been added in Hopsworks, the administrator should instruct Kagent to register. To do so, he/she should edit Kagent's configuration file (Default `/srv/hops/kagent/etc/config.ini`) and run the `/srv/hops/kagent/host-certs/run_csr.sh` script. The script will register with Hopsworks and get a valid X.509 certificate for the host.
 When the process is done, the administrator can start the remaining servers.
 
-Rotate host keys
-----------------
+Rotate host certificates 
+------------------------
 
 By default hosts certificate have a 10 years validity period. However, we encourage administrators to preiodically rotate the certificates. To rotate the certificates of one or more hosts, administrators can select the desired hosts in the UI and click the `Rotate host keys` button. 
 

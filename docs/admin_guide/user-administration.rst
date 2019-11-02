@@ -4,7 +4,7 @@
 User administration
 ===================
 
-Clicking on the *User administration* icon on the admin panel, will lead you to the user administration panel. 
+Clicking on the *User administration* icon on the admin panel, will lead to the user administration panel. 
 From here you will be able to see and manage the registered users.
 
 Activating users

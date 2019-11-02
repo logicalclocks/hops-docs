@@ -1,3 +1,3 @@
 =================================
-Jupyter notebooks administraation 
+Jupyter notebooks administration 
 =================================

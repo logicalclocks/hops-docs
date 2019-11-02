@@ -39,5 +39,5 @@ The panel gives you access to:
     conda.rst
     nodes.rst
     jupyter.rst
-
-
+    ldap.rst
+    sso.rst
