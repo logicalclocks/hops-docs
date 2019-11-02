@@ -67,16 +67,15 @@ If a user fails to enter their credential correctly for more than 5 times in a r
 Increase users' number of projects
 ----------------------------------
 
-Users have a limited number of projects they can created. By default it's 5. Please note that project deletions do not decrease the number of projects. This is to prevent abuses of the Yarn quota system.
+Users have a limited number of projects they can create. By default it's 5. Please note that project deletion does not decrease the number of projects. This is to prevent abuses of the Yarn quota system.
 
-If a user runs out of projects and wants to create more, they should contact an administrator. An administrator can increase the number of projects a user is able to create, by editing their profile and in the *Change Settings* section, increase the number of projects.
+If a user runs out of projects and wants to create more, they should contact an administrator. An administrator can increase the number of projects a user is able to create by editing their profile and, in the *Change Settings* section, increase the number of projects.
 
 .. _user-admin4.png: ../_images/admin/user-admin4.png
 .. figure:: ../imgs/admin/user-admin4.png
-   :alt: Edit user 
+   :alt: Increase number of projects 
    :target: `user-admin4.png`_
    :align: center
-   :figclass: align-cente
+   :figclass: align-center
 
   Increase number of projects 
-
