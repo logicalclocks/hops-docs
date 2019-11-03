@@ -4,8 +4,8 @@ What is Hopsworks?
 
 .. figure:: ../../imgs/hopsworks.png
   :alt: Hopsworks
-  :width 1439px
-  :height 990px
+  :width: 1439px
+  :height: 990px
   :figclass: align-center
 
   Hopsworks unifies a number of open-source analytics and ML frameworks behind a unified REST API.
