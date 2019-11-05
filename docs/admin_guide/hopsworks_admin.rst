@@ -34,6 +34,7 @@ The panel gives you access to:
     user-administration.rst
     project-administration.rst
     monitoring.rst
+    variables.rst
     yarn-ui.rst
     hopsfs-ui.rst
     conda.rst

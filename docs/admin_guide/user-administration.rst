@@ -64,8 +64,8 @@ If an administration deems necessary to prevent a user to log in into the platfo
 
 If a user fails to enter their credential correctly for more than 5 times in a row, their account will be blocked. Users will have to contact an administrator to get their account unblocked. Administrators, from the same UI, will be able to change the account status from *Blocked_Account* back to *Activated_Account*.
 
-Increase users' number of projects
-----------------------------------
+Increase users' max number of projects
+--------------------------------------
 
 Users have a limited number of projects they can create. By default it's 5. Please note that project deletion does not decrease the number of projects. This is to prevent abuses of the Yarn quota system.
 
@@ -78,4 +78,4 @@ If a user runs out of projects and wants to create more, they should contact an 
    :align: center
    :figclass: align-center
 
-  Increase number of projects 
+   Increase number of projects 
