@@ -1,5 +1,5 @@
 ====================================
-Anaconda environments administration 
+Anaconda environment administration 
 ====================================
 
-Clickling on the *Manage Conda* icon on the admin panel, will lead to the 
+Clicking on the *Manage Conda* icon on the admin panel, will lead to 

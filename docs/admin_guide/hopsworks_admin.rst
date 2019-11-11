@@ -2,9 +2,9 @@
 Hopsworks administration
 =========================
 
-Hopsworks has an administrator application that allows you, the administrator, to perform management actions, monitor and control Hopsworks and Hops.
+Hopsworks has an administrator application that allows you, the administrator, to perform management actions, monitor and control Hopsworks.
 
-To access the administrator panel you should log in into Hopsworks using you administrator account. On the top right corner, click on your email address and then on *Admin*.
+To access the administrator panel you should log in into Hopsworks using your administrator account. On the top right corner, click on your email address and then on *Admin*.
 
 .. _admin1.png: ../_images/admin/admin1.png
 .. figure:: ../imgs/admin/admin1.png
@@ -15,7 +15,7 @@ To access the administrator panel you should log in into Hopsworks using you adm
 
    Access administration panel
 
-This will bring you to the administration panel which looks like the figure below: 
+This will bring you to the administration panel that looks like the figure below: 
 
 .. _admin2.png: ../_images/admin/admin2.png
 .. figure:: ../imgs/admin/admin2.png

@@ -1,5 +1,5 @@
 .. _hopsworks-administration:
 
-=================================
-Jupyter notebooks administration 
-=================================
+===============================
+Jupyter notebook administration 
+===============================

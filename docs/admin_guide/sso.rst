@@ -1,13 +1,13 @@
 =======================
-Kerberos Single Sign On
+Kerberos Single Sign-On
 =======================
 
-Hopsworks enterprise edition supports Single Sign On (SSO) using Kerberos
+Hopsworks enterprise edition supports Single Sign-On (SSO) using Kerberos
 
 Karamel/Chef configuration
 --------------------------
 
-Kerberos SSO can be configured from the cluster definition, by specifyinig the following attributes:
+Kerberos SSO can be configured from the cluster definition, by specifying the following attributes:
 
 .. code-block:: yaml
 
@@ -42,4 +42,4 @@ Kerberos SSO can be configured from the cluster definition, by specifyinig the f
     referral: "follow"
     additional_props: ""
 
-Both the `Kerberos` and `LDAP`
+Both the `Kerberos` and `LDAP` 
