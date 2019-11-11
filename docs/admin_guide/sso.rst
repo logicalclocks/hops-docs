@@ -2,12 +2,12 @@
 Kerberos Single Sign-On
 =======================
 
-Hopsworks enterprise edition supports Single Sign-On (SSO) using Kerberos
+Hopsworks enterprise edition supports Single Sign-On (SSO) using SPNEGO. 
 
 Karamel/Chef configuration
 --------------------------
 
-Kerberos SSO can be configured from the cluster definition, by specifying the following attributes:
+SSO can be configured from the cluster definition, by specifying the following attributes:
 
 .. code-block:: yaml
 
@@ -42,4 +42,34 @@ Kerberos SSO can be configured from the cluster definition, by specifying the fo
     referral: "follow"
     additional_props: ""
 
-Both the `Kerberos` and `LDAP` 
+Both the `Kerberos` and `LDAP` attributes need to be specified, however differently from the :doc:`ldap`, only the `kerberos/enabled` attribute needs to be set to true.
+
+- `krb_conf_path` contains the path to the `krb5.conf` used by SPNEGO get information about the default domain and the location of the Kerberos KDC. The file is copied by the recipe in `/srv/hops/domains/domain1/config`.
+
+- `krb_server_key_tab_path` contains the path to the Kerberos service keytab. The keytab is copied by the recipe in `/srv/hops/domains/domain/config` with the name set in the `krb_server_key_tab_name` attribute.
+
+- `spnego_server_conf` contains the configuration to be put in Glassfish `login.conf` to be able to configure the SPNEGO plugin. In particular it should contain `useKeyTab=true`, and the principal name to be used in the authentication phase. `isInitiator` should be set to `false`. 
+
+The definition for the LDAP attributes is available at :doc:`ldap`.
+
+Without Karamel/Chef
+--------------------
+
+An already deployed instance can be configured with Single Sign-On without the need of running Karamel/Chef.
+Administrators should create a `JNDI` resource for the LDAP connector as described in the :doc:`ldap` documentation.
+
+Moreover, administrators should manually copy `krb5.conf` and the `service.keytab` in `/srv/hops/domains/domain1/config`. They should also edit the file `/srv/hops/domains/domain/login.conf` with the value they would set for the attribute `spnego_server_conf`.
+
+As for the LDAP instructions, administrators should set `kerberos_auth` to `True` in the :doc:`variables` panel. This will make the LDAP configuration option appear in the Admin panel. From the LDAP configuration panel, they will be able to configure Hopsworks' LDAP connection.
+
+Migrating existing users
+------------------------
+
+Using Expat_ there is the possibility of migrating existing local users and map them to LDAP users. 
+
+.. _Expat: https://github.com/logicalclocks/expat
+
+Allow non-LDAP users
+--------------------
+
+As for the :doc:`ldap`, even with Single Sign-On enabled, users will still be able to register with their email addresses. It's up to the administrators to enforce a Single Sign-On-only account policy. 

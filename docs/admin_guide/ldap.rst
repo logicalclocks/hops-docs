@@ -105,5 +105,5 @@ Using Expat_ there is the possibility of migrating existing local users and map 
 Allow non-LDAP users
 --------------------
 
-Even with LDAP enabled, users will still be able to register with their email address. It's up to the administrators to enforce a LDAP-only account policy. 
+Even with LDAP enabled, users will still be able to register with their email addresses. It's up to the administrators to enforce a LDAP-only account policy. 
 Users registered with their email address will have to be activated manually by the administrators as described in :doc:`user-administration`.
