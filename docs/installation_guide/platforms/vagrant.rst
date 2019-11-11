@@ -8,6 +8,7 @@ You can install Hopsworks and Hops on your laptop/desktop  with Vagrant. You wil
 * git
 * vagrant
 * vagrant omnibus plugin
+* vagrant-disksize plugin 
 * virtualbox
 
 
