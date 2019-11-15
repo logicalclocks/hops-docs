@@ -1,6 +1,6 @@
-===========================
+====================
 Vagrant (Virtualbox)
-===========================
+====================
 
 You can install Hopsworks and Hops on your laptop/desktop  with Vagrant. You will need to have the following software packages installed:
 
@@ -11,6 +11,7 @@ You can install Hopsworks and Hops on your laptop/desktop  with Vagrant. You wil
 * vagrant-disksize plugin 
 * virtualbox
 
+Also you need to run `vagrant plugin install vagrant-disksize` before continuing with the installation.
 
 The first step to setup the whole Hopsworks stack is to clone
 `karamel-chef` cookbook which will orchestrate the running of the
