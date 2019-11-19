@@ -21,7 +21,11 @@ Jupyter is provided as a micro-service on Hopsworks and can be found in the main
 
 **Start a Jupyter notebook server**
 
-When you start a Jupyter notebook server you have the possibility to specify Spark properties of the notebooks you will create on the server. Hopsworks provides *Machine Learning-as-a-Service* with Tensorflow, Spark, supporting distributed training, parallel experiments, hyperparameter tuning, and model serving (HopsML). If you are doing machine learning on hops you probably want to select the notebook servers "Experiment", "Parallel Experiment" or "Distributed training" as shown in the figure below. See HopsML_ for more information on the Machine Learning pipeline. For general purpose notebooks, select the type "Spark (Static)" or "Spark (Dynamic)".
+When you start a Jupyter notebook server you can select the 'Python' option, which enables the Python kernel in JupyterLab, the notebook server behaves the same as running Jupyter on your local workstation.
+
+If you are doing Machine Learning you should pick the Experiments tab. See HopsML_ for more information on the Machine Learning pipeline.
+
+For general purpose notebooks, select the Spark tab and run with Static or Dynamic Spark Executors.
 
 .. _jupyter2.png: ../../_images/jupyter2.png
 .. figure:: ../../imgs/jupyter2.png
