@@ -265,6 +265,84 @@ Once the training dataset has been created, the dataset is discoverable in the f
     println(s"RMSE: ${trainingSummary.rootMeanSquaredError}")
     println(s"r2: ${trainingSummary.r2}")
 
+**Attaching Custom Metadata to a Feature Group**:
+
+The feature store APIs allows users to attach custom metadata to a feaure group. Currently, only Cached Feature Groups are supported. The users need to supply a metadata dictionary.
+
+* Using the Python API:
+
+.. code-block:: python
+
+    from hops import featurestore
+    metadataDict = {"key1" : "value1", "key2": "value2"}
+    featurestore.add_metadata(featuregroup_name, metadataDict)
+
+* Using the Scala/Java API:
+
+.. code-block:: scala
+
+    import io.hops.util.Hops
+    import scala.collection.JavaConversions._
+    import collection.JavaConverters._
+
+    val metadataDict = Map("key1" -> "value1", "key2" -> "value2")
+    Hops.addMetadata(featuregroup_name).setMetadata(metadataDict).write()
+
+
+**Reading Custom Metadata attached to a Feature Group**:
+
+Users can retrieve all metadata attached to a feature group or only specific metadata by their keys.
+
+* Using the Python API:
+
+.. code-block:: python
+
+    from hops import featurestore
+    # get all metadata 
+    featurestore.get_metadata(featuregroup_name)
+    # get metadata for key1
+    featurestore.get_metadata(featuregroup_name, ["key1"])
+    # get metadata for key1 and key2
+    featurestore.get_metadata(featuregroup_name, ["key1", "key2"])
+    
+* Using the Scala/Java API:
+
+.. code-block:: scala
+
+    import io.hops.util.Hops
+    import scala.collection.JavaConversions._
+    import collection.JavaConverters._
+
+    // get all metadata
+    Hops.getMetadata(featuregroup_name).read()
+    // get metadata for key1
+    Hops.getMetadata(featuregroup_name).setKeys("key1").read()
+    // get metadata for key1, key2
+    Hops.getMetadata(featuregroup_name).setKeys("key1", "key2").read()
+    
+**Removing Custom Metadata attached to a Feature Group**:
+
+Users can remove the metadata attached to a feature group by their keys.
+
+* Using the Python API:
+
+.. code-block:: python
+
+    from hops import featurestore
+    
+    # remove metadata for key1 and key2
+    featurestore.remove_metadata(featuregroup_name, ["key1", "key2"])
+    
+* Using the Scala/Java API:
+
+.. code-block:: scala
+
+    import io.hops.util.Hops
+    import scala.collection.JavaConversions._
+    import collection.JavaConverters._
+
+    // remove metadata for key1, key2
+    Hops.removeMetadata(featuregroup_name).setKeys("key1", "key2").write()
 
 
 The Feature Registry
