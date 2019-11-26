@@ -19,7 +19,7 @@ other cookbooks.
 
 ::
    
-   git clone https://github.com/hopshadoop/karamel-chef.git
+   git clone https://github.com/logicalclocks/karamel-chef.git
 
 Then ``cd karamel-chef/``. In the directory ``cluster-defns/`` there are some
 predefined cluster definitions. The number at the beginning of the

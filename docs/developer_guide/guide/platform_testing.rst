@@ -33,7 +33,7 @@ The PR on the ``hops-testing`` repo will be picked up by Jenkins which then star
 
 Please add a comment to each PR in the other repos with the link of the ``hops-testing`` PR, so it will be easier for maintainers to check your PRs and merge them.
 
-.. _repo: https://github.com/hopshadoop/hops-testing
+.. _repo: https://github.com/logicalclocks/hops-testing
 
 Developer Guide
 -------------------
@@ -57,7 +57,7 @@ The workflow (pipeline) of a Jenkins build is defined in the ``Jenkinsfile`` and
 
 1. Jenkins is notified by GitHub that there is a new PR to test.
 2. Jenkins runs a clean up, kills the VMs of the previous run and removes from all the repos the branch ``test_platform`` (both locally and from GitHub). The clean up is done at this stage, and not at the end of the previous testing iteration, to allow developers to look into the VMs for Karamel output in case of a failure in the deployment.
-3. Jenkins updates all the local clones pulling from the master of the Hopshadoop organization.
+3. Jenkins updates all the local clones pulling from the master of the logicalclocks organization.
 4. Jenkins creates for each repo a ``test_platform`` branch, merges the changes in the repos specified in the ``test_manifesto``, rewrites all the links in the Berksfiles to point to the forks of the Hopsworksjenkins user (``test_platform`` branches) and finally, it pushes everything to GitHub.
 5. Jenkins starts the VMs using the Vagrantfiles inlcuded in the templates directory. The VMs have two shared folder: the .m2 directory, to cache maven artifacts across Jenkins builds and speed up the testing, and the test-report directory, to get the results of the test out of the VMs and make them available to Jenkins for publishing them.
 6. Vagrant starts chef which as first step will clone ``hopsworksjenkins/hopsworks`` repo, compile it and put the artifacts in the `chef_file_cache` dir to be picked up during the deployments
