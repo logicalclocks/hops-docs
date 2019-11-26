@@ -19,7 +19,6 @@ Hopsworks User Guide
    hopsworks/dataSetShare.rst
    hopsworks/textSearch.rst
    hopsworks/jobs.rst
-   hopsworks/workflows.rst
    hopsworks/logs.rst
    hopsworks/jobMetrics.rst
    hopsworks/jupyter.rst

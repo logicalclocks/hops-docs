@@ -199,8 +199,8 @@ A sample output would look like the following:
 
     Kafka output
 
-.. _here: https://github.com/hopshadoop/hops-kafka-examples/tree/master/spark
-.. _HopsUtil: https://github.com/hopshadoop/hops-util
+.. _here: https://github.com/logicalclocks/hops-examples/tree/master/spark/src/main/scala/io/hops/examples/spark/kafka
+.. _HopsUtil: https://github.com/logicalclocks/hops-util
 .. _hops-util-py: https://github.com/logicalclocks/hops-util-py
 
 Example Python Notebook with Kafka Producer and Consumer
