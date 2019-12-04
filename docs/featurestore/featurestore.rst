@@ -10,8 +10,8 @@ The feature store is the central place to store curated features for machine lea
 
 Features are the fuel for AI systems, as we use them to train machine learning models so that we can make predictions for feature values that we have never seen before. In this tutorial we will see best practices for transforming raw/structured data into *features* that can be included in *training datasets* for training models.
 
-.. _hopsworks_feature_store.png: ../../_images/overview_new.png
-.. figure:: ../../imgs/feature_store/overview_new.png
+.. _hopsworks_feature_store.png: ../_images/overview_new.png
+.. figure:: ../imgs/feature_store/overview_new.png
     :alt: A feature store is the interface between feature engineering and model development.
     :target: `hopsworks_feature_store.png`_
     :align: center
@@ -61,8 +61,8 @@ Creating a Project on Hopsworks with The Feature Store Service Enabled
 
 To create a project with the feature store service, mark the check-box available when you create a new project in Hopsworks.
 
-.. _featurestore_create_project.png: ../../_images/create_project.png
-.. figure:: ../../imgs/feature_store/create_project.png
+.. _featurestore_create_project.png: ../_images/create_project.png
+.. figure:: ../imgs/feature_store/create_project.png
     :alt: Create a new project with the feature store service enabled.
     :target: `featurestore_create_project.png`_
     :align: center
@@ -72,8 +72,8 @@ To create a project with the feature store service, mark the check-box available
 
 Inside the project you can find the feature registry (where all the feature store data is browsable) in the feature store page that is accessible by clicking the feature store icon on the left.
 
-.. _featurestore_open_registry.png: ../../_images/opening_feature_registry.png
-.. figure:: ../../imgs/feature_store/opening_feature_registry.png
+.. _featurestore_open_registry.png: ../_images/opening_feature_registry.png
+.. figure:: ../imgs/feature_store/opening_feature_registry.png
     :alt: Opening the feature store registry
     :target: `featurestore_open_registry.png`_
     :align: center
@@ -90,8 +90,8 @@ We introduce three new concepts to our users for modeling data in the feature st
 * The **feature group** is a documented and versioned group of features stored as a Hive table. The feature group is linked to a specific Spark/Numpy/Pandas job that takes in raw data and outputs the computed features.
 * The **training dataset** is a versioned and managed dataset of features and labels (potentially from multiple different feature groups). Training datasets are stored in HopsFS as tfrecords, parquet, csv, or tsv files.
 
-.. _featurestore_concepts.png: ../../_images/concepts.png
-.. figure:: ../../imgs/feature_store/concepts.png
+.. _featurestore_concepts.png: ../_images/concepts.png
+.. figure:: ../imgs/feature_store/concepts.png
     :alt: Feature Store API
     :target: `featurestore_concepts.png`_
     :align: center
@@ -140,8 +140,8 @@ The feature store is agnostic to the method for computing the features. The only
 
 To read features from the feature store, users can use either SQL directly or the API-functions available in Python and Scala. Based on our experience with users on our platform, data scientists can have diverse backgrounds. Although some data scientists are very comfortable with SQL, others prefer higher level APIs. This motivated us to develop a query-planner to simplify user queries. The query-planner enables users to express the bare minimum information to fetch features from the feature store. For example, a user can request 100 features that are spread across 20 different feature groups by just providing a list of feature names. The query planner uses the metadata in the feature store to infer where to fetch the features from and how to join them together.
 
-.. _featurestore_query_planner.png: ../../_images/query_optimizer.png
-.. figure:: ../../imgs/feature_store/query_optimizer.png
+.. _featurestore_query_planner.png: ../_images/query_optimizer.png
+.. figure:: ../imgs/feature_store/query_optimizer.png
     :alt: Feature Store Query Planner
     :target: `featurestore_query_planner.png`_
     :align: center
@@ -169,8 +169,8 @@ Organizations typically have many different types of raw datasets that can be us
 
 Once a user has fetched a set of features from different feature groups in the feature store, the features can be materialized into a training dataset. By creating a training dataset using the feature store API, the dataset becomes managed by the feature store. Managed training datasets are automatically analyzed for data anomalies, versioned, documented, and shared with the rest of the organization.
 
-.. _featurestore_pipeline.png: ../../_images/pipeline.png
-.. figure:: ../../imgs/feature_store/pipeline.png
+.. _featurestore_pipeline.png: ../_images/pipeline.png
+.. figure:: ../imgs/feature_store/pipeline.png
     :alt: Feature Store Pipeline
     :target: `featurestore_pipeline.png`_
     :align: center
@@ -298,13 +298,13 @@ Users can retrieve all metadata attached to a feature group or only specific met
 .. code-block:: python
 
     from hops import featurestore
-    # get all metadata 
+    # get all metadata
     featurestore.get_metadata(featuregroup_name)
     # get metadata for key1
     featurestore.get_metadata(featuregroup_name, ["key1"])
     # get metadata for key1 and key2
     featurestore.get_metadata(featuregroup_name, ["key1", "key2"])
-    
+
 * Using the Scala/Java API:
 
 .. code-block:: scala
@@ -319,7 +319,7 @@ Users can retrieve all metadata attached to a feature group or only specific met
     Hops.getMetadata(featuregroup_name).setKeys("key1").read()
     // get metadata for key1, key2
     Hops.getMetadata(featuregroup_name).setKeys("key1", "key2").read()
-    
+
 **Removing Custom Metadata attached to a Feature Group**:
 
 Users can remove the metadata attached to a feature group by their keys.
@@ -329,10 +329,10 @@ Users can remove the metadata attached to a feature group by their keys.
 .. code-block:: python
 
     from hops import featurestore
-    
+
     # remove metadata for key1 and key2
     featurestore.remove_metadata(featuregroup_name, ["key1", "key2"])
-    
+
 * Using the Scala/Java API:
 
 .. code-block:: scala
@@ -362,8 +362,8 @@ The feature registry provides:
 
 In the registry you can search for features, feature groups and training datasets in the search bar. Features are automatically grouped by versions in the search results.
 
-.. _hopsworks_featurestore_finding_features.png: ../../_images/finding_features.png
-.. figure:: ../../imgs/feature_store/finding_features.png
+.. _hopsworks_featurestore_finding_features.png: ../_images/finding_features.png
+.. figure:: ../imgs/feature_store/finding_features.png
     :alt: Searching for features in the feature registry.
     :target: `hopsworks_featurestore_finding_features.png`_
     :align: center
@@ -375,8 +375,8 @@ In the registry you can search for features, feature groups and training dataset
 
 When a feature group or training dataset is updated in the feature store, a data analysis step is performed. In particular, we look at cluster analysis, feature correlation, feature histograms and descriptive statistics. We have found that these are the most common type of statistics that our users find useful in the feature modeling phase. For example, feature correlation information can be used to identify redundant features, feature histograms can be used to monitor feature distributions between different versions of a feature to discover covariate shift, and cluster analysis can be used to spot outliers. Having such statistics accessible in the feature registry helps data scientists decide on which features to use.
 
-.. _hopsworks_featurestore_opening_stats_tab.png: ../../_images/opening_stats_tab.png
-.. figure:: ../../imgs/feature_store/opening_stats_tab.png
+.. _hopsworks_featurestore_opening_stats_tab.png: ../_images/opening_stats_tab.png
+.. figure:: ../imgs/feature_store/opening_stats_tab.png
     :alt: Searching for features in the feature registry.
     :target: `hopsworks_featurestore_opening_stats_tab.png`_
     :align: center
@@ -401,8 +401,8 @@ In Hopsworks we do Features unit testing to identify "bugs" in feature store bef
 To compose validation rules or view the result of a previous run, click on the ``More`` button of a feature group and select ``Data Validation``. The main page will show up
 where you can compose new validation project, view already composed rules and fetch previous validation result.
 
-.. _hopsworks_featurestore_data_validation_main.png: ../../_images/data_validation_main.png
-.. figure:: ../../imgs/feature_store/data_validation_main.png
+.. _hopsworks_featurestore_data_validation_main.png: ../_images/data_validation_main.png
+.. figure:: ../imgs/feature_store/data_validation_main.png
     :alt: Features unit testing main page
     :target: `hopsworks_featurestore_data_validation_main.png`_
     :align: center
@@ -419,8 +419,8 @@ a small hint to be printed in the result.
 In the figure below we used ``players_features`` feature group from the Feature Store demo project. It is a valid assumption that none of the features has nil values as this might fail our training job.
 We selected all features and minimum/maximum thresholds are 1 since we want all to be complete.
 
-.. _hopsworks_featurestore_data_validation_add_predicate.png: ../../_images/data_validation_add_predicate.png
-.. figure:: ../../imgs/feature_store/data_validation_add_predicate.png
+.. _hopsworks_featurestore_data_validation_add_predicate.png: ../_images/data_validation_add_predicate.png
+.. figure:: ../imgs/feature_store/data_validation_add_predicate.png
     :alt: Adding predicate to validation rules
     :target: `hopsworks_featurestore_data_validation_add_predicate.png`_
     :align: center
@@ -433,8 +433,8 @@ We continue adding constraints until we're satisfied and then we click on `Creat
 For the sake of the example we added more constraints such as players' minimum average age is between 18 - 20, maximum between 25 and 30, team ID is unique and the average player rating is between
 100 and 700. Finally, the validation rules basket would look like the following:
 
-.. _hopsworks_featurestore_data_validation_checkout_rules.png: ../../_images/data_validation_checkout_rules.png
-.. figure:: ../../imgs/feature_store/data_validation_checkout_rules.png
+.. _hopsworks_featurestore_data_validation_checkout_rules.png: ../_images/data_validation_checkout_rules.png
+.. figure:: ../imgs/feature_store/data_validation_checkout_rules.png
     :alt: Checkout validation rules
     :target: `hopsworks_featurestore_data_validation_checkout_rules.png`_
     :align: center
@@ -447,8 +447,8 @@ Clicking on `Create validation job` button will redirect you to Jobs UI where th
 After the job has finished we can go back to ``Data Validation`` page, click on `Fetch validation result` and see the results. For the example we did above, the results
 are the following:
 
-.. _hopsworks_featurestore_data_validation_result.png: ../../_images/data_validation_result.png
-.. figure:: ../../imgs/feature_store/data_validation_result.png
+.. _hopsworks_featurestore_data_validation_result.png: ../_images/data_validation_result.png
+.. figure:: ../imgs/feature_store/data_validation_result.png
     :alt: Feature group unit testing result
     :target: `hopsworks_featurestore_data_validation_result.png`_
     :align: center
@@ -541,8 +541,8 @@ On the other hand, when reading from the feature store for serving models there 
 Due to the very different requirements on batch and real-time features, it is common to split the feature store into two parts, a batch feature store for storing features for training and a real-time feature store for storing features for serving. In Hopsworks we store offline feature data in **Hive** and online feature data in **MySQL Cluster**.
 
 
-.. _hopsworks_online_featurestore.png: ../../_images/online_featurestore.png
-.. figure:: ../../imgs/feature_store/online_featurestore.png
+.. _hopsworks_online_featurestore.png: ../_images/online_featurestore.png
+.. figure:: ../imgs/feature_store/online_featurestore.png
     :alt: Hopsworks Feature Store Architecture. Online features are stored in MySQL Cluster and Offline Features are stored in Hive
     :target: `hopsworks_online_featurestore.png`_
     :align: center
@@ -552,8 +552,8 @@ Due to the very different requirements on batch and real-time features, it is co
 
 The feature store service on Hopsworks unifies the Online/Offline feature data under a single API, making the underlying infrastructure transparent to the data scientist.
 
-.. _hopsworks_online_featurestore2.png: ../../_images/online_featurestore2.png
-.. figure:: ../../imgs/feature_store/online_featurestore2.png
+.. _hopsworks_online_featurestore2.png: ../_images/online_featurestore2.png
+.. figure:: ../imgs/feature_store/online_featurestore2.png
     :alt: Data is typically ingested into the Feature Store through Kafka and historical data is stored in the offline feature store (Hive) and recent data for online-serving is stored in the online feature store (MySQL Cluster). The feature store provides connectors to common ML frameworks and platforms.
     :target: `hopsworks_online_featurestore2.png`_
     :align: center
@@ -632,8 +632,8 @@ By default, a feature store created in Hopsworks will have three storage connect
 
 To configure new storage connectors, e.g S3, HopsFS, or JDBC connectors, use the form available in the feature registry UI.
 
-.. _hopsworks_featurestore_new_sc.png: ../../_images/new_sc.png
-.. figure:: ../../imgs/feature_store/new_sc.png
+.. _hopsworks_featurestore_new_sc.png: ../_images/new_sc.png
+.. figure:: ../imgs/feature_store/new_sc.png
     :alt: New storage connectors can be configured from the Feature Store UI.
     :target: `hopsworks_featurestore_new_sc.png`_
     :align: center
@@ -666,8 +666,8 @@ Despite the benefit of centralizing features, we have identified a need to enfor
 
 To solve this problem we utilize the multi-tenant model of Hopsworks. Feature stores in Hopsworks are by default project-private and can be shared across projects, which means that an organization can combine public and private feature stores. An organization can have a central public feature store that is shared with everyone in the organization as well as private feature stores containing features of sensitive nature that are only accessible by users with the appropriate permissions.
 
-.. _hopsworks_featurestore_multitenant.png: ../../_images/multitenant.png
-.. figure:: ../../imgs/feature_store/multitenant.png
+.. _hopsworks_featurestore_multitenant.png: ../_images/multitenant.png
+.. figure:: ../imgs/feature_store/multitenant.png
     :alt: Based on the organization need, features can be divided into several feature stores to preserve data access control.
     :target: `hopsworks_featurestore_multitenant.png`_
     :align: center
@@ -678,8 +678,8 @@ To solve this problem we utilize the multi-tenant model of Hopsworks. Feature st
 
 To share a feature store with another project, share the dataset containing the feature groups and features (**projectname_featurestore.db**) as well as the dataset that contains the training datasets (**projectname_Training_Datasets**). To share datasets in Hopsworks simply right-click the feature store inside of your project dataset browser:
 
-.. _hopsworks_featurestore_share_fs.png: ../../_images/share_fs.png
-.. figure:: ../../imgs/feature_store/share_fs.png
+.. _hopsworks_featurestore_share_fs.png: ../_images/share_fs.png
+.. figure:: ../imgs/feature_store/share_fs.png
     :alt: Feature stores can be shared across project boundaries.
     :target: `hopsworks_featurestore_share_fs.png`_
     :align: center
@@ -691,8 +691,8 @@ To share a feature store with another project, share the dataset containing the 
 
 When you have multiple feature stores shared with your project you can select which one to view in the feature registry:
 
-.. _hopsworks_featurestore_select_fs.png: ../../_images/select_fs.png
-.. figure:: ../../imgs/feature_store/select_fs.png
+.. _hopsworks_featurestore_select_fs.png: ../_images/select_fs.png
+.. figure:: ../imgs/feature_store/select_fs.png
     :alt: Select feature store in the feature registry
     :target: `hopsworks_featurestore_select_fs.png`_
     :align: center
@@ -706,8 +706,8 @@ Technical Details on the Architecture
 
 The architecture of the feature store in hopsworks is depicted in the image below.
 
-.. _hopsworks_featurestore_architecture.png: ../../_images/arch_w_pandas_numpy.png
-.. figure:: ../../imgs/feature_store/arch_w_pandas_numpy.png
+.. _hopsworks_featurestore_architecture.png: ../_images/arch_w_pandas_numpy.png
+.. figure:: ../imgs/feature_store/arch_w_pandas_numpy.png
     :alt: Hopsworks feature store architecture
     :target: `hopsworks_featurestore_architecture.png`_
     :align: center
@@ -726,8 +726,8 @@ A feature store consists of five main components:
 * The feature registry, a user interface (UI) service where data scientists can share, discover, and order computation of features.
 
 
-.. _hopsworks_featurestore_stack.png: ../../_images/fs_stack.png
-.. figure:: ../../imgs/feature_store/fs_stack.png
+.. _hopsworks_featurestore_stack.png: ../_images/fs_stack.png
+.. figure:: ../imgs/feature_store/fs_stack.png
     :alt: Hopsworks feature store components
     :target: `hopsworks_featurestore_stack.png`_
     :align: center
@@ -744,8 +744,8 @@ Connecting to the Feature Store from Amazon SageMaker requires a Feature Store A
 
 In Hopsworks, click on your username in the top-right corner and select *Settings* to open the user settings. Select *Api keys*. Give the key a name and select the *featurestore* and *project* scopes before creating the key. Copy the key into your clipboard for the next step.
 
-.. _hopsworks_api_key.png: ../../_images/api_key.png
-.. figure:: ../../imgs/feature_store/api_key.png
+.. _hopsworks_api_key.png: ../_images/api_key.png
+.. figure:: ../imgs/feature_store/api_key.png
     :alt: Hopsworks feature store api key
     :target: `hopsworks_api_key.png`_
     :align: center
@@ -756,8 +756,8 @@ In Hopsworks, click on your username in the top-right corner and select *Setting
 
 In the AWS management console ensure that your active region is the region you use for SageMaker. Go to the *AWS Secrets Manager* and select *Store new secret*. Select *Other type of secrets* and add *api-key* as the key and paste the API key created in the previous step as the value. Click next.
 
-.. _hopsworks_secrets_manager.png: ../../_images/secrets_manager.png
-.. figure:: ../../imgs/feature_store/secrets_manager.png
+.. _hopsworks_secrets_manager.png: ../_images/secrets_manager.png
+.. figure:: ../imgs/feature_store/secrets_manager.png
     :alt: Hopsworks feature store secrets manager step 1
     :target: `hopsworks_secrets_manager.png`_
     :align: center
@@ -766,8 +766,8 @@ In the AWS management console ensure that your active region is the region you u
 
 As secret name enter *hopsworks/role/[MY_SAGEMAKER_ROLE]* replacing [MY_SAGEMAKER_ROLE] with the AWS role used by the SageMaker instance that should access the Feature Store. Select next twice and finally store the secret. Then click on the secret in the secrets list and take note of the *Secret ARN*.
 
-.. _hopsworks_secrets_manager2.png: ../../_images/secrets_manager2.png
-.. figure:: ../../imgs/feature_store/secrets_manager2.png
+.. _hopsworks_secrets_manager2.png: ../_images/secrets_manager2.png
+.. figure:: ../imgs/feature_store/secrets_manager2.png
     :alt: Hopsworks feature store secrets manager step 2
     :target: `hopsworks_secrets_manager2.png`_
     :align: center
@@ -778,8 +778,8 @@ As secret name enter *hopsworks/role/[MY_SAGEMAKER_ROLE]* replacing [MY_SAGEMAKE
 
 In the AWS management console go to *IAM*, select *Roles* and then the role that is used when creating SageMaker notebook instances. Select *Add inline policy*. Choose *Secrets Manager* as service, expand the *Read* access level and check *GetSecretValue*. Expand Resources and select *Add ARN*. Paste the ARN of the secret created in the previous step. Click on *Review*, give the policy a name und click on *Create policy*.
 
-.. _hopsworks_aws_policy.png: ../../_images/aws_policy.png
-.. figure:: ../../imgs/feature_store/aws_policy.png
+.. _hopsworks_aws_policy.png: /_images/aws_policy.png
+.. figure:: ../imgs/feature_store/aws_policy.png
     :alt: Hopsworks feature store set policy
     :target: `hopsworks_aws_policy.png`_
     :align: center
@@ -790,8 +790,8 @@ In the AWS management console go to *IAM*, select *Roles* and then the role that
 
 In the AWS management console ensure that your active region is the region you use for SageMaker. Go to the *AWS Systems Manager* choose *Parameter Store* and select *Create Parameter*. As name enter */hopsworks/role/[MY_SAGEMAKER_ROLE]/type/api-key* replacing [MY_SAGEMAKER_ROLE] with the AWS role used by the SageMaker instance that should access the Feature Store. Select *Secure String* as type and create the parameter.
 
-.. _hopsworks_parameter_store.png: ../../_images/parameter_store.png
-.. figure:: ../../imgs/feature_store/parameter_store.png
+.. _hopsworks_parameter_store.png: ../_images/parameter_store.png
+.. figure:: ../imgs/feature_store/parameter_store.png
     :alt: Hopsworks feature store parameter store
     :target: `hopsworks_parameter_store.png`_
     :align: center
@@ -802,8 +802,8 @@ In the AWS management console ensure that your active region is the region you u
 
 In the AWS management console go to *IAM*, select *Roles* and then the role that is used when creating SageMaker notebook instances. Select *Add inline policy*. Choose *Systems Manager* as service, expand the *Read* access level and check *GetParameter*. Expand Resources and select *Add ARN*. Fill in the region of the *Systems Manager* as well as the name of the parameter **WITHOUT the leading slash** e.g. *hopsworks/role/[MY_SAGEMAKER_ROLE]/type/api-key* and click *Add*. Click on *Review*, give the policy a name und click on *Create policy*.
 
-.. _hopsworks_aws_policy2.png: ../../_images/aws_policy2.png
-.. figure:: ../../imgs/feature_store/aws_policy2.png
+.. _hopsworks_aws_policy2.png: ../_images/aws_policy2.png
+.. figure:: ../imgs/feature_store/aws_policy2.png
     :alt: Hopsworks feature store set policy
     :target: `hopsworks_aws_policy2.png`_
     :align: center
@@ -1357,8 +1357,8 @@ This tutorial will focus on a particular organization using the feature store th
 
 In this example, the organization had an existing data lake in HDFS that was updated with data from production systems every night (see figure below). Once the data was inserted in the data lake, it was available to data scientists and data engineers in the organization for analysis and machine learning. However, the data in the data lake could not be used directly for machine learning use-cases as feature engineering had not yet been applied to the data. Although the data in the data lake had some structure, from a data scientists perspective, it contained **"raw"** data — not feature data.
 
-.. _snapshot_load.png: ../../_images/snapshot_load.png
-.. figure:: ../../imgs/feature_store/snapshot_load.png
+.. _snapshot_load.png: ../_images/snapshot_load.png
+.. figure:: ../imgs/feature_store/snapshot_load.png
     :alt: Data Lake Ingestion
     :target: `snapshot_load.png`_
     :align: center
@@ -1369,8 +1369,8 @@ In this example, the organization had an existing data lake in HDFS that was upd
 
 In order to use the data lake for machine learning, data scientists and data engineers in the organization were required to do feature engineering on the data in the data lake before they could use the data in machine learning experiments. In fact, in retrospect, *data scientists and data engineers were spending most of their time in the phase of feature engineering, much more than the time they spent on actual model development* — feature engineering became the bottleneck.
 
-.. _bottleneck.png: ../../_images/bottleneck.png
-.. figure:: ../../imgs/feature_store/bottleneck.png
+.. _bottleneck.png: ../_images/bottleneck.png
+.. figure:: ../imgs/feature_store/bottleneck.png
     :alt: Feature Engineering Bottleneck
     :target: `bottleneck.png`_
     :align: center
@@ -1381,8 +1381,8 @@ In order to use the data lake for machine learning, data scientists and data eng
 
 Another problem that is common without a feature store is that if an organization have many data scientists, perhaps spread across different teams, this results in siloed feature data (see figure below). This is exactly what happened for this organization. The organization had in total over 30 data scientists spread out geographically across several offices. Due to the geographical distribution and no central feature store, each data scientist in the organization was maintaining their own feature pipeline, with little or no possibility of feature reuse.
 
-.. _siloed_f.png: ../../_images/siloed_f.png
-.. figure:: ../../imgs/feature_store/siloed_f.png
+.. _siloed_f.png: ../_images/siloed_f.png
+.. figure:: ../imgs/feature_store/siloed_f.png
     :alt: Siloed Feature Data
     :target: `siloed_f.png`_
     :align: center
@@ -1395,8 +1395,8 @@ By complementing the organization's data lake with a feature store — a data ma
 
 The feature store typically works as an *interface between data engineers and data scientists*. Data engineers write data processing pipelines that compute features and inserts them in the feature store. Data scientists use machine learning frameworks such as TensorFlow or Keras to read from the feature store and run machine learning experiments (see figure below).
 
-.. _de_ds_interface.png: ../../_images/de_ds_interface.png
-.. figure:: ../../imgs/feature_store/de_ds_interface.png
+.. _de_ds_interface.png: ../_images/de_ds_interface.png
+.. figure:: ../imgs/feature_store/de_ds_interface.png
     :alt: Feature Store: Interface between data engineers and data scientists
     :target: `de_ds_interface.png`_
     :align: center
