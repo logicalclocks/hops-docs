@@ -30,7 +30,6 @@ Hopsworks User Guide
    hopsworks/metaDataManagement.rst
    hopsworks/metaDataDesigner.rst
    hopsworks/metaDataAttachment.rst
-   hopsworks/featurestore.rst
    hopsworks/airflow.rst
    hopsyarn.rst
 

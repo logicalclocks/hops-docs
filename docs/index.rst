@@ -31,6 +31,14 @@ Hopsworks Documentation
 
    user_guide/user_guide.rst
 
+.. _featurestore:
+.. toctree::
+   :maxdepth: 4
+   :glob:
+
+   featurestore/featurestore.rst
+
+
 .. _hops-ml:
 .. toctree::
    :maxdepth: 4
