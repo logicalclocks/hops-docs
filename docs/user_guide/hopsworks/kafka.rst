@@ -243,3 +243,17 @@ Create a new notebook and paste the following
 
 
 .. _hops_examples: https://github.com/logicalclocks/hops-examples
+
+Schema Management
+--------------------------------------------------------
+The management of Kafka Avro schemas in Hopsworks is compatible with Confluent Schema Registry v5.3.1. The client should be able to replace the base URL used for the Schema Registry and manage their schemas without any disruption.  
+
+Change the base URL used by Confluent Schema Registry (localhost:8081) to **localhost:8181/project/{projectId}/kafka**.
+
+**Schema Compatibility**
+
+By default, all schemas in Hopsworks are backward compatible. It is configurable using the **/config** endpoints. For more details see https://docs.confluent.io/5.3.0/schema-registry/develop/api.html#config .
+
+**Documentation**
+
+For a detailed description of the endpoints please see Confluent Schema Registry documentation v5.3.1: https://docs.confluent.io/5.3.0/schema-registry/develop/api.html 
