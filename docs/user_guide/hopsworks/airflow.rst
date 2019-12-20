@@ -87,11 +87,15 @@ jobs visit our :doc:`jobs` documentation. As this operator extends the
 extra arguments that **should** be passed to this operator are the following:
 
 - ``job_name``: The name of the job created from Jobs UI
-- ``project_id``: Numeric ID of the project job belongs to
+- ``project_name``: The name of the project the job belongs to
+- ``job_arguments``: The runtime arguments to be passed to this job
 
 The operator does **NOT** wait for job completion. It just sends the
 request to Hopsworks to launch the job. To wait for completion there
 are two special kind of operators called *sensors*.
+
+An example of a DAG using the HopsworksLaunchOperator is `launch_jobs.py <https://github
+.com/logicalclocks/hops-examples/blob/release-1.1/airflow/launch_jobs.py>`__
 
 HopsworksJobFinishSensor
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -210,13 +214,6 @@ Next we define the DAG name which can be anything, it is an identifier
 used in Airflow. Also, we schedule the task to run every seven minutes
 starting 10 minutes ago. This will produce a DAG run already when we
 upload it since the scheduler is trying to catch up the missed runs.
-
-Another **very important** parameter is the project ID. In the current
-version you must get the project ID from the URL. For example, when
-you navigate to Airflow service in Hopsworks, the URL in your browser
-would look like the following
-``https://localhost:8181/hopsworks/#!/project/6/airflow``. Here the
-project ID is **6**.
 
 As we mentioned earlier, each `HopsworksLaunchOperator` has a
 ``job_name`` argument which is the name of the job in Hopsworks to
