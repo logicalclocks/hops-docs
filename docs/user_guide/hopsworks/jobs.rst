@@ -32,7 +32,7 @@ follow the steps below:
   parameters.
 * Step 7: Click on the ``Create`` button
 * Step 8: Click on the ``Run`` button to launch your job, a dialog textbox will ask for any runtime arguments the job
- may require. If this job requires no arguments, the field can be left empty. The figure below shows the dialog.
+  may require. If this job requires no arguments, the field can be left empty. The figure below shows the dialog.
 
 .. _jobs-ui-args.png: ../../_images/jobs-ui-args.png
 .. figure:: ../../imgs/jobs-ui-args.png
