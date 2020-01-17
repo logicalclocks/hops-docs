@@ -7,6 +7,7 @@ HopsML
 
    hopsML.rst
    experiment.rst
+   model.rst
    inference.rst
    pyspark.rst
    maggy.rst
