@@ -40,21 +40,10 @@ HopsML uses HopsFS, a next-generation version of HDFS, to coordinate the differe
 
 During a ML pipeline HopsFS acts as a central coordinator for sharing data between the different stages. Examples of such data include features from the store, existing training data, PySpark/TensorFlow application logs, TensorBoard events (aggregate from many different executors/GPUs), output models, checkpoints, partial/full results from hyperparameter optimization.
 
-
-
-Hops Python Library
--------------------------------
-
-The Hops Python Library simply named *hops* is used for running Python applications and consequently a library which is used throughout the entire pipeline. It simplifies interacting with services such as Kafka, Model Serving and TensorBoard. The experiment module provides a rich API for running versioned Machine Learning experiments, whether it be a simple single-process Python application or RingAllReduce over many machines.
-
-Documentation: hops-py_
-
-Code examples: hops-examples_
-
 Data Collection
 ---------------------------
 
-The datasets that you are working with will reside in your project in HopsFS. Data can be uploaded to your project in a number of ways, such as using the hops-cli client, the REST API or the uploader in the Hopsworks UI. HopsFS is the filesystem of Hops, it is essentially an optimized fork of Apache HDFS, and is compliant with any API that can read data from an HDFS path, such as TensorFlow, Spark and Pandas.
+The datasets that you are working with will reside in your project in HopsFS. Data can be uploaded to your project in a number of ways, such as using the hops-cli client, the REST API or the uploader in the Hopsworks UI. HopsFS is the filesystem of Hopsworks, it is a next-generation version of Apache HDFS with distributed metadata, and is compatible with any API that can read data from an HDFS path, such as TensorFlow, Spark and Pandas.
 
 Data Preparation
 ----------------------------------
@@ -91,29 +80,16 @@ The Feature Store enables the following best-practices for feature engineering:
     :align: center
     :figclass: align-center
 
+See feature_store_ for more information.
+
 Experimentation
 ---------------------------
 
-This section will give an overview of running Machine Learning experiments on Hops.
+In HopsML we offer a rich experiment_ API for data scientists to run their Machine Learning code, whether it be TensorFlow, Keras, PyTorch or another framework with a Python API.
 
-In HopsML we offer a rich experiment_ API for data scientists to run their Machine Learning code, whether it be TensorFlow, Keras PyTorch or another framework with a Python API. To mention some of features it provides versioning of notebooks and other resources, AutoML algorithms that will find the best hyperparameters for your model and managing TensorBoard.
+Hopsworks supports cluster-wide Conda for managing Python library dependencies. Hopsworks is organized around projects, and each project has its own conda environment, replicated at all hosts in the cluster. When you launch a PySpark job, both the Driver and Executors run in the conda environment for that project (the conda environment is replicated at all hosts in the cluster and available locally). This way, users can install whatever libraries they like using conda and pip package managers, and then use them directly inside Spark Executors. It makes programming PySpark one step closer to the single-host experience of programming Python.
 
-Hops uses PySpark to manage resource allocation of CPU, Memory and GPUs. PySpark is also used to transparently distribute the Python code making up the experiment to Executors which executes it. Certain hyperparameter optimization algorithms such as random search and grid search are parallelizable by nature, which means that different Executors will run different hyperparameter combinations. If a particular Executor sits idle it will be reclaimed by the cluster, which means that GPUs will be optimally used in the cluster. This is made possible by Dynamic Spark Executors.
-
-
-.. _pyspark_tf.png: ../_images/pyspark_tf.png
-.. figure:: ../imgs/pyspark_tf.png
-    :alt: Increasing throughput
-    :target: `pyspark_tf.png`_
-    :align: center
-    :scale: 35 %
-    :figclass: align-center
-
-Hops supports cluster-wide Conda for managing Python library dependencies. Hops supports the creation of projects, and each project has its own conda environment, replicated at all hosts in the cluster. When you launch a PySpark job, it uses the local conda environment for that project. This way, users can install whatever libraries they like using conda and pip package managers, and then use them directly inside Spark Executors. It makes programming PySpark one step closer to the single-host experience of programming Python.
-
-
-
-HopsML comes with a novel Experiments service for overviewing history of Machine Learning experiments and monitoring during training.
+HopsML comes with a novel Experiments service for curating results of Machine Learning experiments, comparing hyperparameters and metrics for hyperparameter optimization tasks. In addition to attaching hyperparameters and metrics to experiments, files may also be attached such logs or images.
 
 
 .. _experiments_service.png: ../_images/experiments_service.png
@@ -121,11 +97,10 @@ HopsML comes with a novel Experiments service for overviewing history of Machine
     :alt: TensorBoard
     :target: `experiments_service.png`_
     :align: center
-    :scale: 60 %
     :figclass: align-center
 
 
-The follwing is a TensorBoard visualizing Differential Evolution for hyperparameter optimization on two PySpark Executors. The X-axis being the wall-clock time.
+The following is a TensorBoard visualizing hyperparameter optimization using differential evolution.
 
 
 .. _tensorboard.png: ../_images/tensorboard.png
@@ -133,7 +108,6 @@ The follwing is a TensorBoard visualizing Differential Evolution for hyperparame
     :alt: TensorBoard
     :target: `tensorboard.png`_
     :align: center
-    :scale: 60 %
     :figclass: align-center
 
 
@@ -141,10 +115,27 @@ See experiments_ for more information.
 
 See jupyter_ for development using Jupyter notebooks.
 
+Model Repository
+-------------------
+
+The model repository lists all the models which have been exported in the project. When a model is exported, any number of metrics can be attached to reflect the performance of the model, such as model accuracy.
+In pipelines, users can query the model repository to find the best version for a given model name. This is done by supplying the name of the metric to consider and whether the value should be maximized or minimized to find the best version.
+For example below we see that version 3 is the best model given the accuracy metric, and is also the one which should be served for online inference. 
+
+.. _models_service.png: ../_images/models_service.png
+.. figure:: ../imgs/models_service.png
+    :alt: Model Repository
+    :target: `models_service.png`_
+    :align: center
+    :figclass: align-center
+
+
+See models_ for more information.
+
 Serving
 -------------------
 
-In the pipeline we support a scalable architecture for serving of TensorFlow and Keras models. We use the TensorFlow Serving server running on Kubernetes to scale up the number of serving instances dynamically and handle load balancing. There is support for using either the grpc client or the REST API to send inference requests. Furthermore we also support a monitoring system that logs the inference requests and allows users to implement custom functionality for retraining of models.
+In the pipeline we support a scalable architecture for serving of TensorFlow, Keras and scikit-learn models. We use the TensorFlow Serving server running on Kubernetes to scale up the number of serving instances dynamically and handle load balancing. There is support for using either the grpc client or the REST API to send inference requests. Furthermore we also support a monitoring system that logs the inference requests and allows users to implement custom functionality for retraining of models. For scikit-learn users implement a REST API themselves using a python file template which loads the model in memory and responds to inference requests.
 
 .. _serving_architecture.png: ../_images/serving_architecture.png
 .. figure:: ../imgs/serving_architecture.png
@@ -156,6 +147,8 @@ In the pipeline we support a scalable architecture for serving of TensorFlow and
 See tf_model_serving_, sklearn_model_serving_ and inferencing_ for more information.
 
 .. _experiments: ./experiment.html
+.. _models: ./model.html
+.. _feature_store: ../user_guide/hopsworks/featurestore.html
 .. _tf_model_serving: ./tf_model_serving.html
 .. _sklearn_model_serving: ./sklearn_model_serving.html
 .. _inferencing: ./inference.html
@@ -172,7 +165,7 @@ Pipeline Orchestration
 -------------------------------
 
 HopsML pipelines are typically run as Airflow DAGs, written in Python. An Airflow pipline is a directed acyclic graph (DAG) of tasks to be executed, orchestration rules, failure handling logic, and notifications. Airflow DAGs can be scheduled to run periodically, for example, once per hour, or Airflow can wait for an event (with sensors) before executing a task - for example, wait for _SUCCESS file in a parquet directory before understanding that the Parquet file(s) are finished being written.
-Typical tasks in a production Airflow ML pipeline on Hops involve Data Prep as a PySpark job, training using HopsML (PySpark + TensorFlow), model optimization using a PySpark job or a bash job, and model deployment as either a Python program or bash script.
+Typical tasks in a production Airflow ML pipeline on Hopsworks involve Data Prep as a PySpark job, training using HopsML (PySpark + TensorFlow), model optimization using a PySpark job or a bash job, and model deployment as either a Python program or bash script.
 
 .. _hopsml-airflow.png: ../_images/hopsml-airflow.png
 .. figure:: ../imgs/hopsml-airflow.png
