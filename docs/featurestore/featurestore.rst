@@ -1,4 +1,4 @@
-Feature Store
+eature Store
 ==============
 
 In this tutorial we cover the feature store service in Hopsworks, how it should be used, how it fits into the machine learning pipeline, and the tech-stack behind it.
@@ -829,20 +829,12 @@ Connecting to the Feature Store from a Databricks cluster requires a Feature Sto
 Read access to this API key needs to be given to the AWS role used by the Databricks cluster. 
 Finally, a helper library needs to be installed on the Databricks cluster to connect to the Feature Store.
 
-.. figure:: ../imgs/feature_store/feature-store-connect-databricks.png
-    :alt: Connect to feature store from Databricks
-    :target: `feature-store-connect-databricks.png`_
-    :align: center
-    :scale: 30 %
-    :figclass: align-center
-
-
 There exist two helper libraries: hopsworks-cloud-sdk and hops. 
 Hopsworks-cloud-sdk does not require a Spark environment (and is easier to set up) but does not provide some advanced spark-based functionality present in hops. If you intend to use the hops library follow the instructions in "Setting up roles and API keys" then jump directly to "Installing hops library".
 
 **Setting up roles and API keys**
 
-Follow the steps described in `Connecting from Amazon SageMaker`_ for setting up Hopsworks API keys and AWS roles and access to secrets. **Note that only the parameter store (Alternative 2) is currently being supported for Databricks.** Ensure to use the role that is specified in the *Advanced Options* when creating a Spark cluster in Databricks.
+Follow the steps described in `Connecting from Amazon SageMaker`_ for setting up Hopsworks API keys and AWS roles and access to secrets. **Note that only the parameter store (Alternative 2) is currently being supported for Databricks.** Note that you should use the same region as your Databricks notebook is running in when you add the API key as a parameter to the parameter store. You also need to ensure to use the role that is specified in the *Advanced Options* when creating a Spark cluster in Databricks. 
 
 **Installing hopsworks-cloud-sdk**
 
@@ -854,7 +846,14 @@ Hopsworks relies on certificates being available in the Databricks cluster in or
 
 **Connecting to the Feature Store**
 
-In the Databricks notebooks connected to the prepared cluster use the following code to connect to the feature store::
+.. figure:: ../imgs/feature_store/feature-store-connect-databricks.png
+    :alt: Connect to feature store from Databricks
+    :target: `feature-store-connect-databricks.png`_
+    :align: center
+    :scale: 30 %
+    :figclass: align-center
+
+In the Databricks notebooks connected to the prepared cluster, use the following commands to connect to the feature store (see screenshot above for how to change 'myinstance' to the hostname of your Hopsworks feature store and how to change 'my_project' to the project containing your feature store):
 
     import hops.featurestore as fs
     fs.connect('my_instance', 'my_project', region_name='my_aws_region', cert_folder='/dbfs/certs/')
