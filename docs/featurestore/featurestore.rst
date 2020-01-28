@@ -836,8 +836,7 @@ Hopsworks-cloud-sdk does not require a Spark environment (and is easier to set u
 
 **Setting up roles and API keys**
 
-You also need to ensure to use the role that is specified in the *Advanced Options* when creating a Spark cluster in Databricks. 
-Follow the steps described in `Connecting from Amazon SageMaker`_ for setting up Hopsworks API keys and AWS roles and access to secrets. Ensure that you specify the same role that is selected in the *Advanced Options* when you create the Spark cluster in Databricks. 
+Follow the steps described in `Connecting from Amazon SageMaker`_ for setting up Hopsworks API keys and AWS roles and access to secrets. Ensure that you specify the same role that is selected in the *Advanced Options* when you create the Spark cluster in Databricks.  
 
 **Installing hopsworks-cloud-sdk**
 
