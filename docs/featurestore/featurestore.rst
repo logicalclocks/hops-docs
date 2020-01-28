@@ -1,4 +1,4 @@
-eature Store
+Feature Store
 ==============
 
 In this tutorial we cover the feature store service in Hopsworks, how it should be used, how it fits into the machine learning pipeline, and the tech-stack behind it.
@@ -846,14 +846,15 @@ Hopsworks relies on certificates being available in the Databricks cluster in or
 
 **Connecting to the Feature Store**
 
+.. _feature-store-connect-databricks.png: ../_images/feature_store/feature-store-connect-databricks.png
 .. figure:: ../imgs/feature_store/feature-store-connect-databricks.png
     :alt: Connect to feature store from Databricks
     :target: `feature-store-connect-databricks.png`_
     :align: center
-    :scale: 30 %
+    :scale: 35 %
     :figclass: align-center
 
-In the Databricks notebooks connected to the prepared cluster, use the following commands to connect to the feature store (see screenshot above for how to change 'myinstance' to the hostname of your Hopsworks feature store and how to change 'my_project' to the project containing your feature store):
+In the Databricks notebooks connected to the prepared cluster, use the following commands to connect to the feature store (see screenshot above for how to change 'myinstance' to the hostname of your Hopsworks feature store and how to change 'my_project' to the project containing your feature store)::
 
     import hops.featurestore as fs
     fs.connect('my_instance', 'my_project', region_name='my_aws_region', cert_folder='/dbfs/certs/')
