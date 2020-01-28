@@ -25,8 +25,10 @@ Contribute
 Support
 -------
 
-If you are having issues, please let us know.
-We have a mailing list located at: hopshadoop@google-groups.com
+If you are having issues, please let us know by joining our `support forum`_.
+
+.. _`support forum`: https://community.hopsworks.ai
+
 
 License
 -------
