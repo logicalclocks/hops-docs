@@ -840,9 +840,13 @@ Follow the steps described in `Connecting from Amazon SageMaker`_ for setting up
 
 The feature store library needs to be installed to connect to it. In the Databricks UI, go to *Clusters* and select your cluster. Select *Libraries* and then *Install New*. As *Library Source* choose *PyPI* and fill in *hopsworks-cloud-sdk* into the *Package* field.
 
-**Mounting a bucket for storing certificates**
+**Creating a DBFS folder to store certificates**
 
-Hopsworks relies on certificates being available in the Databricks cluster in order to connect to some services inside Hopsworks. To ensure that these certificates can be distributed to all nodes in a Databricks cluster, Hopsworks relies on mounting an S3 bucket with read/write permission using the databricks file system. Please follow Databrick's guide for setting up a mount: `Mount S3 Buckets with DBFS <https://docs.databricks.com/data/data-sources/aws/amazon-s3.html#mount-s3-buckets-with-dbfs>`_
+Hopsworks relies on certificates being available in the Databricks cluster to connect to some services inside Hopsworks. To ensure that these certificates can be distributed to all nodes in a Databricks cluster, Hopsworks relies on them being stored in the `Databricks file system <https://docs.databricks.com/data/databricks-file-system.html>`_.
+For this purpose, you should create a cert folder in DBFS. This can be done by running the following in a Databricks notebook connected to the prepared cluster::
+
+    dbutils.fs.mkdirs("dbfs:/certs/")
+
 
 **Connecting to the Feature Store**
 
