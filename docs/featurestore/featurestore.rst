@@ -738,7 +738,9 @@ A feature store consists of five main components:
 
 Connecting from Amazon SageMaker
 --------------------------------
+
 Connecting to the Feature Store from Amazon SageMaker requires a Feature Store API key to be stored in the AWS Parameter Store or Secrets Manager. Additionally, read access to this API key needs to be given to the AWS role used by SageMaker and hopsworks-cloud-sdk needs to be installed on SageMaker.
+
 
 **Generating an API Key and storing it in the AWS Secrets Manager**
 
@@ -829,12 +831,12 @@ Connecting to the Feature Store from a Databricks cluster requires a Feature Sto
 Read access to this API key needs to be given to the AWS role used by the Databricks cluster. 
 Finally, a helper library needs to be installed on the Databricks cluster to connect to the Feature Store.
 
-There exist two helper libraries: hopsworks-cloud-sdk and hops-util-py. 
-Hopsworks-cloud-sdk is easier to set up but does not provide some advanced functionalities present in hops-util-py. If you intend to use hops-util-py follow the instructions in "Setting up roles and API keys" then jump directly to "Installing hops-util-py".
+There exist two helper libraries: hopsworks-cloud-sdk and hops. 
+Hopsworks-cloud-sdk does not require a Spark environment (and is easier to set up) but does not provide some advanced spark-based functionality present in hops. If you intend to use the hops library follow the instructions in "Setting up roles and API keys" then jump directly to "Installing hops library".
 
 **Setting up roles and API keys**
 
-Follow the steps described in `Connecting from Amazon SageMaker`_ for setting up Hopsworks API keys and AWS roles and access to secrets. Ensure to use the role that is specified in the *Advanced Options* when creating a Spark cluster in Databricks.
+Follow the steps described in `Connecting from Amazon SageMaker`_ for setting up Hopsworks API keys and AWS roles and access to secrets. Ensure that you specify the same role that is selected in the *Advanced Options* when you create the Spark cluster in Databricks.  
 
 **Installing hopsworks-cloud-sdk**
 
@@ -850,7 +852,15 @@ For this purpose, you should create a cert folder in DBFS. This can be done by r
 
 **Connecting to the Feature Store**
 
-In the Databricks notebooks connected to the prepared cluster use the following code to connect to the feature store::
+.. _feature-store-connect-databricks.png: ../_images/feature_store/feature-store-connect-databricks.png
+.. figure:: ../imgs/feature_store/feature-store-connect-databricks.png
+    :alt: Connect to feature store from Databricks
+    :target: `feature-store-connect-databricks.png`_
+    :align: center
+    :scale: 35 %
+    :figclass: align-center
+
+In the Databricks notebooks connected to the prepared cluster, use the following commands to connect to the feature store (see screenshot above for how to change 'myinstance' to the hostname of your Hopsworks feature store and how to change 'my_project' to the project containing your feature store)::
 
     import hops.featurestore as fs
     fs.connect('my_instance', 'my_project', region_name='my_aws_region', cert_folder='/dbfs/certs/')
@@ -861,17 +871,17 @@ In the Databricks notebooks connected to the prepared cluster use the following 
 
 If you have trouble connecting, then ensure that the Security Group of your Hopsworks instance on AWS is configured to allow incoming traffic from your Databricks instance. See `VPC Security Groups <https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html>`_. for more information. If the Hopsworks instance is not accessible from the internet then you will need to configure `VPC Peering <https://docs.databricks.com/administration-guide/cloud-configurations/aws/vpc-peering.html>`_.
 
-**Installing hops-util-py**
+**Installing hops library**
 
 .. warning:: 
  - This is an advanced setup, if you are not sure that you need it or if you are not sure of what you are doing, please use hopsworks-cloud-sdk. 
  - Hopsworks-cloud-sdk needs to be able to connect directly to the ip on which the hops name node and hive metastore are listening. This means that if you deployed Hopsworks on AWS you will need to set up `VPC Peering <https://docs.databricks.com/administration-guide/cloud-configurations/aws/vpc-peering.html>`_ between your Databricks cluster and the Hopsworks one.
 
-In the Databricks UI, go to *Clusters* and select your cluster. Select *Libraries*. Make sure that hopsworks-cloud-sdk is not installed, make sure to uninstall it if that's the case. Then *Install New*. As *Library Source* choose *PyPI* and fill in *hops-util-py* into the *Package* field.
+In the Databricks UI, go to *Clusters* and select your cluster. Select *Libraries*. Make sure that hopsworks-cloud-sdk is not installed, make sure to uninstall it if that's the case. Then *Install New*. As *Library Source* choose *PyPI* and fill in *hops* into the *Package* field.
 
-**Setting up the cluster to use hops-util-py**
+**Setting up the cluster to use hops**
 
-After installing the hops-util-py library, restart the cluster and open a Databrick notebooks connected to this cluster. Run the following command in this notebook::
+After installing the hops library, restart the cluster and open a Databrick notebooks connected to this cluster. Run the following command in this notebook::
 
  import hops.featurestore as fs
  fs.setup_databricks('my_instance', 'my_project', region_name='my_aws_region')

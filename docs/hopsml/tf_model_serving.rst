@@ -101,7 +101,7 @@ At this stage you can also configure the TensorFlow Serving server to process th
 
 Finally click on *Create Serving* to create the serving instance.
 
-For using the python API, import the `serving` module from hops-util-py (API-Docs-Python_) and use the helper functions.
+For using the python API, import the `serving` module from the hops library (API-Docs-Python_) and use the helper functions.
 
 .. code-block:: python
 

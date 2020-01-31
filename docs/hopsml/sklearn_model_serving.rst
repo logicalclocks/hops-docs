@@ -99,7 +99,7 @@ You can also re-use an existing Kafka topic as long as its schema meets the requ
 
 Finally click on *Create Serving* to create the serving instance.
 
-For using the python API, import the `serving` module from hops-util-py (API-Docs-Python_) and use the helper functions.
+For using the python API, import the `serving` module from the hops library (API-Docs-Python_) and use the helper functions.
 
 .. code-block:: python
 
