@@ -11,6 +11,7 @@ Hopsworks User Guide
    hopsworks/updatePassword.rst
    hopsworks/goesWrong.rst
    hopsworks/newProject.rst
+   hopsworks/projectMembers.rst
    hopsworks/deleteProject.rst
    hopsworks/datasets.rst
    hopsworks/dataSetBrowser.rst

@@ -850,6 +850,7 @@ In the Databricks notebooks connected to the prepared cluster use the following 
 
     import hops.featurestore as fs
     fs.connect('my_instance', 'my_project', region_name='my_aws_region', cert_folder='/dbfs/certs/')
+
 +------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Replace *my_instance* by the address of your instance, *my_project* by the name of your project and *my_aws_region* by the AWS region in which you stored the API Key. |
 +------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -871,6 +872,7 @@ After installing the hops-util-py library, restart the cluster and open a Databr
 
  import hops.featurestore as fs
  fs.setup_databricks('my_instance', 'my_project', region_name='my_aws_region')
+
 +------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Replace *my_instance* by the address of your instance, *my_project* by the name of your project and *my_aws_region* by the AWS region in which you stored the API Key. |
 +------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -890,6 +892,7 @@ In the Databricks notebooks connected to the prepared cluster use the following 
 
  import hops.featurestore as fs
  fs.connect('my_instance', 'my_project', region_name='my_aws_region')
+
 +------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Replace *my_instance* by the address of your instance, *my_project* by the name of your project and *my_aws_region* by the AWS region in which you stored the API Key. |
 +------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -1383,7 +1386,7 @@ Hopsworks Featurestore integrates with the rest of Hopsworks platform to provide
 - “How did the feature data change between these two machine learning experiments?”.
 
 Feature Store Use-Case Examples - Scalable and Consistent Data Management for Machine Learning
--------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
 
 Machine learning is becoming ubiquitous in software applications and making new advanced use-cases possible, such as computer vision and self-driving cars. However, machine learning systems are only as good as the data they are trained on, and getting the data in the right format at the right time for training models and making predictions is a challenge.
 
@@ -1474,14 +1477,12 @@ References
 
 - [4] Horizontally Scalable ML Pipelines with a Feature Store (Logical Clocks), https://www.sysml.cc/doc/2019/demo_7.pdf
 
-- [5] Distributed Time Travel for Feature Generation (Netflix),
-https://medium.com/netflix-techblog/distributed-time-travel-for-feature-generation-389cccdd3907
+- [5] Distributed Time Travel for Feature Generation (Netflix), https://medium.com/netflix-techblog/distributed-time-travel-for-feature-generation-389cccdd3907
 
 - [6] Yoda: Scaling Machine Learning at Careem, https://medium.com/@akamal8/yoda-scaling-machine-learning-careem-d4bc8b1be195
 
 - [7] Zipline: Airbnb’s Machine Learning Data Management Platform, https://databricks.com/session/zipline-airbnbs-machine-learning-data-management-platform
 
-- [8] Introducing Feast: an open source feature store for machine learning (Google and GO-JEK),
-https://cloud.google.com/blog/products/ai-machine-learning/introducing-feast-an-open-source-feature-store-for-machine-learning
+- [8] Introducing Feast: an open source feature store for machine learning (Google and GO-JEK), https://cloud.google.com/blog/products/ai-machine-learning/introducing-feast-an-open-source-feature-store-for-machine-learning
 
 - [9] Hidden Technical Debt in Machine Learning Systems (Google), https://papers.nips.cc/paper/5656-hidden-technical-debt-in-machine-learning-systems.pdf
