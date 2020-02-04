@@ -6,9 +6,11 @@ Data Set sharing and access-control
 Share
 -----
 
-Data Sets can be shared with one or more other projects and only `data owners` have privileges to share Data sets. To
-share a Data Set, navigate to the ``Data Sets`` browser from the services menu on the left, right-click on the Data Set
-to be shared and from the ``Share with`` option select either ``project`` or ``cluster``.
+The basic principle of the Project - Data Set abstraction is that no data can be copied/moved outside of a
+project's scope, making a project effectively a sandbox for data and programs. However, Data Sets can be shared with one
+or more other projects and only `data owners` have privileges to share Data sets. To share a Data Set, navigate to
+the ``Data Sets`` browser from the services menu on the left, right-click on the Data Set to be shared and from the
+``Share with`` option select either ``project`` or ``cluster``.
 
 .. _share-ds-1.png: ../../_images/share-ds-1.png
 .. figure:: ../../imgs/share-ds-1.png
