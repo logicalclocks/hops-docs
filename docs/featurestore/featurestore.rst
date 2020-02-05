@@ -625,14 +625,14 @@ Configuring Storage Connectors for the Feature Store
 ----------------------------------------------------
 
 Storage connectors allow users to integrate Hopsworks Feature Store with external systems such as S3 or RedShift.
-By default, a feature store created in Hopsworks has three storage connectors:
+By default, a feature store created in Hopsworks has four storage connectors:
 
-- `projectname`, a JDBC connector for the project's general-purpose Hive database
-- `projectname_featurestore`, a JDBC connector for the project's feature store database (this is where cached feature groups are stored)
-- `projectname_username_onlinefeaturestore`, a JDBC connector for the project's online feature store. 
-- `projectname_Training_Datasets`, a HopsFS connector for storing training datasets inside the project
+- `projectname`, a JDBC connector for the project's built-in Hive database
+- `projectname_featurestore`, a JDBC connector for the project's built-in feature store database (this is where cached feature groups are stored)
+- `projectname_username_onlinefeaturestore`, a JDBC connector for the project's built-in online feature store. 
+- `projectname_Training_Datasets`, a HopsFS connector for storing training datasets on HopsFS inside the project. 
 
-To configure new storage connectors, e.g S3, HopsFS, or JDBC connectors, use the form available in the feature registry UI.
+To configure new storage connectors, e.g S3 or another JDBC connection, use the form available in the Storage Connectors UI.
 
 .. _hopsworks_featurestore_new_sc.png: ../_images/new_sc.png
 .. figure:: ../imgs/feature_store/new_sc.png
@@ -647,12 +647,14 @@ To configure new storage connectors, e.g S3, HopsFS, or JDBC connectors, use the
 
 **Configure S3 Storage connector**
 
-To be able to use Hops util library to ingest feature group data from S3 or export training datasets to S3 you need to create a storage connector. 
+To be able to use the Hops libraries to ingest feature group data from S3 or export training datasets to S3 you need to create a new storage connector. 
 
-By clicking on the `New` button shown in the figure above, you will be prompted with the dialog to create a new storage connector. 
-Here you can add the connector name, an optional description and pick the type of the connector. When selecting `S3 Connector`, 3 additional options will appear. At this stage you will be able to add the bucket name, your AWS access key and the S3 secret key. 
+By clicking on the `New` button shown in the figure above, a dialog will be displayed which allows you to create new storage connectors. 
+Here you can add the connector name, an optional description and pick the type of the connector. When selecting the `S3 Connector`, three additional options will appear. At this stage you will be able to add the bucket name, your AWS access key and the S3 secret key. 
 
-The Hops util libraries will use those credentials to configure *Apache Spark* when reading and/or writing to the bucket.
+The Hops libraries will use these credentials to configure *Apache Spark* when reading and/or writing to the bucket.
+
+If you don't want to use the AWS access key and secret key, you can configure the Hopsworks nodes with an `Instance Role <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html>`_ which is allowed to read/write the S3 buckets. If you are using the an *Instance Role* you can leave the AWS access key and secret key empty.
 
 .. _s3_sc.png: ../_images/s3_sc.png
 .. figure:: ../imgs/feature_store/s3_sc.png
@@ -664,10 +666,8 @@ The Hops util libraries will use those credentials to configure *Apache Spark* w
 
     S3 Storage connector can be configured from the Feature Store UI in Hopsworks. 
 
-If you don't want to use the AWS access key and secret key, you can configure the Hopsworks nodes with an `Instance Role <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html>`_ which is allowed to read/write the S3 buckets. If you are using the an *Instance Role* you can leave the AWS access key and secret key empty.
-
 .. note::
-    If you are an administrator you can enforce an `Instance Role` only policy by setting the `aws_instance_role` setting to true in the variables configuration. You can also set the attribute `install/aws/instance_role` to true in the cluster definition.
+    If you are an administrator you can enforce an `Instance Role` only policy by setting the `aws_instance_role` setting to true in the variables configuration. For this to work you need to set the attribute `install/aws/instance_role` to true in the cluster definition.
 
 
 Incremental Ingestion to the Feature Store using Apache Hudi
