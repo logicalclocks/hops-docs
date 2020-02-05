@@ -66,7 +66,7 @@ By default, Data Scientints of the project owning the Data Set and members of pr
 with are allowed only ``read-only`` access to all file and directories of the Data Set. There are two more access
 levels that give higher privileges to projects that can access this Data Set. All access-levels are:
 
-- Owner only: Sets default permissions setting of a data set. Only Data Owners will be able to upload/remove files, either via the Data Sets Browser or via Jobs and Jupyter notebooks.
+- Owner only: Sets default permissions setting of a data set. Only Data Owners will be able to upload/remove files via the Data Sets Browser and only the data set owner via Jobs and Jupyter notebooks.
 
 - Group writable and sticky-bit set: This enables Data Scientists of the parent project and members of projects the data set has been shared with to create directories upload files in the Data Set but are allowed to only remove files/dirs they own, via the Data Sets browser.
 
