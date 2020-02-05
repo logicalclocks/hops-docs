@@ -62,17 +62,17 @@ fine-grained access control to original data to other members/departments withou
 over the data. Essentially that means that data organized in Data Sets can be shared with other projects so that
 other users of Hopsworks can access and make use of this data in their AI pipelines and programs.
 
-By default, Data Scientints of the project owning the Dataset and members of projects which a Data Set has been shared
+By default, Data Scientints of the project owning the Data Set and members of projects which a Data Set has been shared
 with are allowed only ``read-only`` access to all file and directories of the Data Set. There are two more access
-levels that give stronger privileges to projects that can access this Data Set. All access-levels are:
+levels that give higher privileges to projects that can access this Data Set. All access-levels are:
 
-- Owner only: Sets default permissions setting of a Dataset. Only Data Owners will be able to upload/remove files, either via the Dataset Browser or via Jobs and Jupyter notebooks.
+- Owner only: Sets default permissions setting of a data set. Only Data Owners will be able to upload/remove files, either via the Data Sets Browser or via Jobs and Jupyter notebooks.
 
-- Group writable and sticky-bit set: This enables Data Scientists of the parent project and members of projects the Data Set has been shared with to create directories upload files in the Data Set but are allowed to only remove files/dirs they own, via the Data Sets browser.
+- Group writable and sticky-bit set: This enables Data Scientists of the parent project and members of projects the data set has been shared with to create directories upload files in the Data Set but are allowed to only remove files/dirs they own, via the Data Sets browser.
 
-- Group writable: This is the least strict setting. It allows both Data Owners and Data Scientists to upload/remove files either via the Dataset Browser or via Jobs/Notebooks.
+- Group writable: This is the least strict setting. It allows both Data Owners and Data Scientists to upload/remove files either via the Data Set Browser or via Jobs/Notebooks.
 
-Changing the access level can be done with a right-click on the dataset, permissions and click on one of the
+Changing the access level can be done with a right-click on the Data Set, permissions and click on one of the
 available access levels as shown in the figure below.
 
 .. _share-ds-5.png: ../../_images/share-ds-5.png
