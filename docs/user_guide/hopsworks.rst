@@ -23,6 +23,7 @@ Hopsworks User Guide
    hopsworks/logs.rst
    hopsworks/jobMetrics.rst
    hopsworks/jupyter.rst
+   hopsworks/python.rst
    hopsworks/flink.rst
    hopsworks/beam.rst
    hopsworks/kafka.rst
