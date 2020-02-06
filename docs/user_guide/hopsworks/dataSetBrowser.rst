@@ -1,6 +1,6 @@
-===========================
-Data Set Browser
-===========================
+================
+Data Sets Browser
+================
 
 
 The Data Set tab enables you to browse Data Sets, files and directories in this project.
@@ -13,10 +13,11 @@ with a new sample dataset. You can add new datasets pressing the
 ``Create New Dataset`` button. You can edit the datasets by right
 clicking on them. A README file is auto-generated for every dataset.
 
-.. figure:: ../../imgs/datasets-browser.png
-    :alt: Datasets Browser
-    :scale: 100
+.. _datasets-browser.gif: ../../_images/datasets-browser.gif
+.. figure:: ../../imgs/datasets-browser.gif
+    :alt: Data Sets browser
+    :target: `datasets-browser.gif`_
     :align: center
     :figclass: align-center
 
-    Datasets Browser
+    Data Sets browser (click image to enlarge)

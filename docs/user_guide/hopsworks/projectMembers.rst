@@ -28,8 +28,10 @@ same screen by any Data Owner.
 
 .. _project-member-1.png: ../../_images/project-member-1.png
 .. figure:: ../../imgs/project-member-1.png
-    :alt: Access-levels of a Data Set
+    :alt: Manage project members and their roles
     :target: `project-member-1.png`_
     :scale: 25%
     :align: center
     :figclass: align-center
+
+    Manage project members and their roles

@@ -8,7 +8,7 @@ Share
 
 The basic principle of the Project - Data Set abstraction is that no data can be copied/moved outside of a
 project's scope, making a project effectively a sandbox for data and programs. However, Data Sets can be shared with one
-or more other projects and only `data owners` have privileges to share Data sets. To share a Data Set, navigate to
+or more other projects and only `data owners` have privileges to share Data Sets. To share a Data Set, navigate to
 the ``Data Sets`` browser from the services menu on the left, right-click on the Data Set to be shared and from the
 ``Share with`` option select either ``project`` or ``cluster``.
 
@@ -20,17 +20,20 @@ the ``Data Sets`` browser from the services menu on the left, right-click on the
     :align: center
     :figclass: align-center
 
+    Share a Data Set
+
 In the case of ``project``, a popup dialog will then prompt users to select a target project with which the *Data
 Set* is to be share with. It is also feasible to filter projects by name as shown in the image below.
 
 .. _share-ds-2.png: ../../_images/share-ds-2.png
 .. figure:: ../../imgs/share-ds-2.png
-    :alt: Project to share the Data Set with
+    :alt: Select a project to share the Data Set with
     :target: `share-ds-2.png`_
     :scale: 25%
     :align: center
     :figclass: align-center
 
+    Select a project to share the Data Set with
 
 To complete the sharing process, a Data Owner in the target project has to click on the shared Data Set,
 and then click on ``Acccept`` to complete the process, ``Reject`` to reject the shared Data Set or ``cancel`` for no
@@ -43,6 +46,8 @@ action.
     :scale: 30%
     :align: center
     :figclass: align-center
+
+    Accept a shared Data Set
 
 Unshare
 -------
@@ -66,9 +71,9 @@ By default, Data Scientints of the project owning the Data Set and members of pr
 with are allowed only ``read-only`` access to all file and directories of the Data Set. There are two more access
 levels that give higher privileges to projects that can access this Data Set. All access-levels are:
 
-- Owner only: Sets default permissions setting of a data set. Only Data Owners will be able to upload/remove files via the Data Sets Browser and only the data set owner via Jobs and Jupyter notebooks.
+- Owner only: Sets default permissions setting of a Data Set. Only Data Owners will be able to upload/remove files via the Data Sets Browser and only the data set owner via Jobs and Jupyter notebooks.
 
-- Group writable and sticky-bit set: This enables Data Scientists of the parent project and members of projects the data set has been shared with to create directories upload files in the Data Set but are allowed to only remove files/dirs they own, via the Data Sets browser.
+- Group writable and sticky-bit set: This enables Data Scientists of the parent project and members of projects the Data Set has been shared with to create directories upload files in the Data Set but are allowed to only remove files/dirs they own, via the Data Sets browser.
 
 - Group writable: This is the least strict setting. It allows both Data Owners and Data Scientists to upload/remove files either via the Data Set Browser or via Jobs/Notebooks.
 
@@ -82,3 +87,5 @@ available access levels as shown in the figure below.
     :scale: 25%
     :align: center
     :figclass: align-center
+
+    Access-levels of a Data Set
