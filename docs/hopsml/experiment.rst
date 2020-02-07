@@ -34,12 +34,14 @@ Reading from HopsFS (HDFS)
 The path returned is to the root directory in Hopsworks of your project.
 
 
-.. _datasets.png: ../_images/datasets.png
-.. figure:: ../imgs/datasets.png
-   :alt: Dataset browser
-   :target: `datasets.png`_
-   :align: center
-   :figclass: align-center
+.. _datasets-browser.gif: ../../_images/datasets-browser.gif
+.. figure:: ../../imgs/datasets-browser.gif
+    :alt: Data Sets browser
+    :target: `datasets-browser.gif`_
+    :align: center
+    :figclass: align-center
+
+    Data Sets browser (click image to enlarge)
 
 
 **Step 2**. Append the relative path of your dataset to the root path. Assuming you uploaded a file named ``train.tfrecords`` in the Resources dataset, the path pointing to that particular dataset would then be.
