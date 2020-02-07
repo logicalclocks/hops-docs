@@ -36,7 +36,7 @@ Set* is to be share with. It is also feasible to filter projects by name as show
     Select a project to share the Data Set with
 
 To complete the sharing process, a Data Owner in the target project has to click on the shared Data Set,
-and then click on ``Acccept`` to complete the process, ``Reject`` to reject the shared Data Set or ``cancel`` for no
+and then click on ``Accept`` to complete the process, ``Reject`` to reject the shared Data Set or ``cancel`` for no
 action.
 
 .. _share-ds-3.png: ../../_images/share-ds-3.png
