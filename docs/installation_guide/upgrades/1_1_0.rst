@@ -1,0 +1,6 @@
+=============
+Version 1.1.0
+=============
+
+Upgrading to version 1.1.0 will remove all the pending conda commands from the Hopsworks database. That means
+pending operations such as adding or removing Python libraries will be lost and users need to apply them again.
