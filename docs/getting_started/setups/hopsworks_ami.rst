@@ -1,11 +1,11 @@
-======================
-Hopsworks Cloud on AWS
-======================
+================
+Hopsworks on AWS
+================
 
-Hopsworks Cloud Community
--------------------------
+Hopsworks.ai Community
+----------------------
 
-`Hopsworks Cloud Community <https://www.hopsworks.ai>`_ allows users to try the latest version of Hopsworks Enterprise in their AWS account for free.
+`Hopsworks.ai Community <https://www.hopsworks.ai>`_ allows users to try the latest version of Hopsworks Enterprise in their AWS account for free.
 
 Going further
 -------------
