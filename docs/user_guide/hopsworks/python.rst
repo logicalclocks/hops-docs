@@ -6,7 +6,7 @@ This tutorial will go over how Python environments are managed.
 Python Environment Basics
 -------------------------
 
-Hopsworks provides two premade environments for machine learning and data science development, one for python 2.7 and the other for python 3.6 The environments contain the most popular machine learning libraries including TensorFlow, Keras, PyTorch and scikit-learn.
+Hopsworks provides a premade environment for machine learning and data science development using python 3.6. The environment contain the most popular machine learning libraries including TensorFlow, Keras, PyTorch and scikit-learn.
 
 The environment ensures compatibility between the machine learning libraries and CUDA/cuDNN in case of NVIDIA GPUs and ROCm in case of AMD GPUs.
 
@@ -33,7 +33,7 @@ When a project is created, the python 3.6 environment is automatically enabled. 
 Listing installed libraries
 ---------------------------
 
-The preinstalled libraries are listed under the *Installed Python Libraries* tab.
+The preinstalled libraries are listed under the *Manage Environment* tab.
 
 .. _python2.gif: ../../_images/python/python2.gif
 .. figure:: ../../imgs/python/python2.gif
@@ -96,7 +96,7 @@ The **CREATE** operation is the operation for cloning the premade environment, a
 Uninstalling libraries
 ----------------------
 
-To uninstall a library navigate to the *Installed Python Libraries* tab and click the *Uninstall* button the the library to remove. Keep in mind that this will also clone the environment before actually performing the uninstall operation.
+To uninstall a library navigate to the *Manage Environment* tab and click the *Uninstall* button the the library to remove. Keep in mind that this will also clone the environment before actually performing the uninstall operation.
 
 .. _python6.gif: ../../_images/python/python6.gif
 .. figure:: ../../imgs/python/python6.gif
@@ -110,7 +110,7 @@ To uninstall a library navigate to the *Installed Python Libraries* tab and clic
 Recreating environment
 ----------------------
 
-Sometimes it may be desirable to recreate the environment in case it ended up in a bad state. In order to do that, first click *Remove Environment* in the *Installed Python Libraries* tab.
+Sometimes it may be desirable to recreate the environment in case it ended up in a bad state. In order to do that, first click *Remove Environment* in the *Manage Environment* tab.
 After removing the environment select the python version to use in the new environment.
 
 .. _python7.gif: ../../_images/python/python7.gif
