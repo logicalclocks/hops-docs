@@ -4,6 +4,16 @@ Cloud Platforms (AWS, GCP, OpenStack)
 
 Hops can be installed on a cloud platform using a AMI (for AWS), a GCP image or more flexibly using Karamel and Chef Solo.
 
+Quickstart
+-------------------------------------
+
+Download and run a script that installs Hopsworks on a single server:
+
+   > wget https://raw.githubusercontent.com/logicalclocks/karamel-chef/master/cluster-defns/hopsworks-installer.yml
+   > chmod +x hopsworks-installer.sh
+   > ./hopsworks-installer.sh
+
+The above script will download and install Karamel on the same server that runs the script. To find out more about Karamel, read on below.
 
 Karamel
 -------------------------------------
