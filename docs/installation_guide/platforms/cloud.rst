@@ -11,7 +11,7 @@ Download and run a script that installs Hopsworks on a single server:
 
 .. code-block:: bash
 
-   wget https://raw.githubusercontent.com/logicalclocks/karamel-chef/master/cluster-defns/hopsworks-installer.yml
+   wget https://raw.githubusercontent.com/logicalclocks/karamel-chef/master/hopsworks-installer.sh
    chmod +x hopsworks-installer.sh
    ./hopsworks-installer.sh
 
