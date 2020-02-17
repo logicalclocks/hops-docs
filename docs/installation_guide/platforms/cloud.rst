@@ -9,9 +9,11 @@ Quickstart
 
 Download and run a script that installs Hopsworks on a single server:
 
-   > wget https://raw.githubusercontent.com/logicalclocks/karamel-chef/master/cluster-defns/hopsworks-installer.yml
-   > chmod +x hopsworks-installer.sh
-   > ./hopsworks-installer.sh
+.. code-block:: bash
+
+   wget https://raw.githubusercontent.com/logicalclocks/karamel-chef/master/cluster-defns/hopsworks-installer.yml
+   chmod +x hopsworks-installer.sh
+   ./hopsworks-installer.sh
 
 The above script will download and install Karamel on the same server that runs the script. To find out more about Karamel, read on below.
 
