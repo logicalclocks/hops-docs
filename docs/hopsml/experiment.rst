@@ -35,7 +35,7 @@ The path returned is to the root directory in Hopsworks of your project.
 
 
 .. _datasets-browser.gif: ../../_images/datasets-browser.gif
-.. figure:: ../../imgs/datasets-browser.gif
+.. figure:: ../imgs/datasets-browser.gif
     :alt: Data Sets browser
     :target: `datasets-browser.gif`_
     :align: center
@@ -250,7 +250,7 @@ See distributed_training_ for full examples.
 See distribution_strategies_ for DistributionStrategy github page.
 
 Viewing TensorBoard while an Experiment is running
-########################
+##################################################
 
 When you run your job using the experiment API a TensorBoard will be started automatically. To interact with TensorBoard, import the tensorboard module from the hops python library. In addition to writing summaries and your TensorBoard events of course.
 
