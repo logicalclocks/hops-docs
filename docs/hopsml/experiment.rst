@@ -1,6 +1,6 @@
-===========================
+===========
 Experiments
-===========================
+===========
 .. highlight:: python
 
 In HopsML we offer a rich experiment API for data scientists to run their Machine Learning code, whether it be TensorFlow, Keras, PyTorch or another framework with a Python API. HopsML provides features such as automatic versioning of notebooks and the python environment, parallel hyperparameter tuning algorithms, and managed TensorBoard. With the `Maggy <https://maggy.readthedocs.io>`_ framework, we also provide asynchronous algorithms for parallel hyperparameter tuning and parallel ablation studies.
@@ -34,7 +34,7 @@ Reading from HopsFS (HDFS)
 The path returned is to the root directory in Hopsworks of your project.
 
 
-.. _datasets-browser.gif: ../../_images/datasets-browser.gif
+.. _datasets-browser.gif: ../_images/datasets-browser.gif
 .. figure:: ../imgs/datasets-browser.gif
     :alt: Data Sets browser
     :target: `datasets-browser.gif`_
