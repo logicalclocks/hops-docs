@@ -903,7 +903,7 @@ If you have trouble connecting, then ensure that the Security Group of your Hops
 
 .. warning:: 
  - This is an advanced setup, if you are not sure that you need it or if you are not sure of what you are doing, please use hopsworks-cloud-sdk. 
- - Hopsworks-cloud-sdk needs to be able to connect directly to the ip on which the hops name node and hive metastore are listening. This means that if you deployed Hopsworks on AWS you will need to set up `VPC Peering <https://docs.databricks.com/administration-guide/cloud-configurations/aws/vpc-peering.html>`_ between your Databricks cluster and the Hopsworks one.
+ - Hopsworks-cloud-sdk needs to be able to connect directly to the ip on which the hops name node and hive metastore are listening. This means that if you deploy Hopsworks on AWS you will either need to start Hopsworks in the same VPC as your Databricks cluster or to set up `VPC Peering <https://docs.databricks.com/administration-guide/cloud-configurations/aws/vpc-peering.html>`_ between your Databricks cluster and the Hopsworks one.
 
 In the Databricks UI, go to *Clusters* and select your cluster. Select *Libraries*. Make sure that hopsworks-cloud-sdk is not installed, make sure to uninstall it if that's the case. Then *Install New*. As *Library Source* choose *PyPI* and fill in *hops* into the *Package* field.
 
