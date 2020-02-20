@@ -28,8 +28,8 @@ add a scope to limit the access rights given to the key.
    Create new API key
 
 
-API Security
-------------
+API key Security
+----------------
 Treat your secret API key as you would any other password:
 
 1. Give API key the minimum required scope.
