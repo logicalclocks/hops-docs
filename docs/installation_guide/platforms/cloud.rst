@@ -1,13 +1,23 @@
-=====================================
-Cloud Platforms (AWS, GCP, OpenStack)
-=====================================
+==========================================================
+Cloud Platforms (AWS, GCP, Azure)
+==========================================================
 
 Hops can be installed on a cloud platform using a AMI (for AWS), a GCP image or more flexibly using Karamel and Chef Solo.
 
-Quickstart
+Quickstart on AWS 
 -------------------------------------
 
-Download and run a script that installs Hopsworks on a single server:
+You can use Hopsworks.ai_ as a managed platform on AWS at:
+
+
+.. _Hopsworks.ai: https://www.hopsworks.ai
+
+   
+
+Quickstart on AWS and GCP (Single-Host Installation)
+-----------------------------------------------------
+
+First, you need to create a virtual machine on AWS EC2 or GCP Compute Engine where Hopsworks will be installed (Centos/RHEL 7.x and Ubuntu 18.04 are supported). Then, from the account with sudo access, download and run the following script that installs Hopsworks:
 
 .. code-block:: bash
 
@@ -15,9 +25,76 @@ Download and run a script that installs Hopsworks on a single server:
    chmod +x hopsworks-installer.sh
    ./hopsworks-installer.sh
 
-The above script will download and install Karamel on the same server that runs the script. To find out more about Karamel, read on below.
+The above script will download and install Karamel on the same server that runs the script. Installation takes roughly 1 hr. To find out more about Karamel, read more below.
 
-Karamel
+
+
+Quickstart on AWS and GCP (Multi-Host Installation)
+-----------------------------------------------------
+
+First, you need to create the virtual machines on AWS EC2 or GCP Compute Engine where Hopsworks will be installed (Centos/RHEL 7.x and Ubuntu 18.04 are supported). You pick one VM as the head node and on the account on that server with sudo access, you need to setup password ssh access to all the worker nodes.
+
+
+Password-less SSH Access from the Head node to Worker nodes
+==============================================================
+
+First, on the head node, you should create an openssh keypair without a password:
+
+.. code-block:: bash
+
+   cat /dev/zero | ssh-keygen -q -N "" 
+   cat ~/.ssh/id_rsa.pub
+
+The second line above will print the public key for the sudo account on the head node. Copy that public key, and add it to the authorized_keys for all worker nodes, so that that the sudo account on the head node can SSH into the worker nodes without a password. If you have a custom image, you may need to configure your sshd daemon (sshd_config_ and sshlogin_) to allow openssh-key based login.
+
+.. _sshlogin: https://www.cyberciti.biz/faq/ubuntu-18-04-setup-ssh-public-key-authentication/
+
+.. _sshd_config: https://linuxize.com/post/how-to-setup-passwordless-ssh-login/
+
+For GCP, you can edit the "VM Instance Details" and add the SSH key of the head node to all worker nodes. Alternatively, for both Ubuntu and Centos/RHEL, and assuming the sudo account is 'ubuntu' and our three worker nodes have hostnames 'vm1', 'vm2', and 'vm3', then you could run the following:
+
+.. code-block:: bash
+
+   ssh-copy-id -i $HOME/.ssh/id_rsa.pub ubuntu@vm1
+   ssh-copy-id -i $HOME/.ssh/id_rsa.pub ubuntu@vm2
+   ssh-copy-id -i $HOME/.ssh/id_rsa.pub ubuntu@vm3
+
+Test that you now have passwordless SSH acess to all the worker nodes from the head node (assuming 'ubuntu' is the sudo account):
+
+.. code-block:: bash
+
+   ssh ubuntu@vm1
+   ssh ubuntu@vm2
+   ssh ubuntu@vm3
+
+
+
+Multi-node installation
+============================
+
+
+On the head node, in the sudo account, download and run this script that installs Hopsworks on all hosts. It will ask you to enter the IP address of all the workers during installation:
+
+.. code-block:: bash
+
+   wget https://raw.githubusercontent.com/logicalclocks/karamel-chef/master/hopsworks-installer.sh
+   chmod +x hopsworks-installer.sh
+   ./hopsworks-installer.sh
+
+The above script will download and install Karamel on the same server that runs the script. Karamel will install Hopsworks across all hosts. Installation takes roughly 1 hr, slightly longer for large clusters. To find out more about Karamel, read more below.
+
+
+
+
+Quickstart on Azure 
+-------------------------------------
+
+Azure VMs do not support private DNS by default, so you will need to add support for a private DNS space to the VMs used in Hopsworks. Follow these instructions AzureDNS_ to create the virtual machines for use in Hopsworks. Once VMs have been created with a private DNS name, you can follow the instructions above for single-host and multi-host installations for AWS and GCP.
+
+.. _AzureDNS: https://docs.microsoft.com/en-us/azure/dns/private-dns-getstarted-portal
+
+
+Karamel-based Installation
 -------------------------------------
 
 #. Download and install Karamel (http://www.karamel.io).
