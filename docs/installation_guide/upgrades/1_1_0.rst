@@ -4,3 +4,7 @@ Version 1.1.0
 
 Upgrading to version 1.1.0 will remove all the pending conda commands from the Hopsworks database. That means
 pending operations such as adding or removing Python libraries will be lost and users need to apply them again.
+
+A new service for tracking experiments has been introduced which replaces the existing one. Experiments ran
+prior to this upgrade will not be visible in the new experiments service. The Experiments dataset will not
+be modified so the output files of the old experiments are not deleted and will continue to be accessible.
