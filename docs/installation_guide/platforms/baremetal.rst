@@ -129,7 +129,7 @@ If you decide to call your hosts 'hadoop1..hadoopN', then the hostname ‘hadoop
 Install an nginx server to the host deployment files for installation.
 Edit nginx' port (do not use the default port 80, as it will clash with Hopsworks).
 Copy the installation fiiles to '/var/www/html/software'.
-On Ubuntu 16.04, run the following:
+On Ubuntu 18.04, run the following:
 
 .. code-block:: bash
 
