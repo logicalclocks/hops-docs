@@ -88,16 +88,3 @@ The arguments of the programs can be found in the image below,
     :target: `beam-wordcount-java.png`_
     :align: center
     :figclass: align-center
-
-
-TensorFlow Extended (TFX)
--------------------------
-
-TensorFlow Extended (TFX) is a Machine Learning platform based on TensorFlow. It provides a configuration framework to
-express ML pipelines consisting of TFX components (`link <https://github.com/tensorflow/tfx>`__ and runs as an Beam
-program. Hopsworks leverages its first-class support for Apache Beam to provide also first class support for running
-and orchestrating Machine Learning pipelines. Apache Airflow is used as the orchestrator.
-
-TFX is used along with the Experiments service in Hopsworks for a great experience building ML models with TensorFlow.
-
-For detailed instructions how to use TFX in Hopsworks, we refer you to hops-examples_.
