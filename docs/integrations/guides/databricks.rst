@@ -108,11 +108,11 @@ In the Databricks notebooks connected to the prepared cluster, use the following
     fs.connect('my_instance', 'my_project', region_name='my_aws_region', cert_folder='/dbfs/certs/')
 
 +------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Replace *my_instance* by the address of your instance, *my_project* by the name of your project and *my_aws_region* by the AWS region in which you stored the API Key. |
+| Replace *my_instance* by the address of your instance, *my_project* by the name of your project and *my_aws_region* with the AWS region in which you stored the API Key. |
 +------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
-If you have trouble connecting, then ensure that the Security Group of your Hopsworks instance on AWS is configured to allow incoming traffic from your Databricks clusters. See `VPC Security Groups <https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html>`_. for more information. If the Hopsworks instance is not accessible from the internet then you will need to configure `VPC Peering <https://docs.databricks.com/administration-guide/cloud-configurations/aws/vpc-peering.html>`_.
+If you have trouble connecting, then ensure that the Security Group of your Hopsworks instance on AWS is configured to allow incoming traffic from your Databricks clusters. See `VPC Security Groups <https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html>`_. for more information. If the Hopsworks instance is not accessible from the Internet, then you will need to configure `VPC Peering <https://docs.databricks.com/administration-guide/cloud-configurations/aws/vpc-peering.html>`_.
 
 **Installing hops library**
 
@@ -130,7 +130,7 @@ After installing the hops library, restart the cluster and open a Databrick note
  fs.setup_databricks('my_instance', 'my_project', region_name='my_aws_region')
 
 +------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Replace *my_instance* by the address of your instance, *my_project* by the name of your project and *my_aws_region* by the AWS region in which you stored the API Key. |
+| Replace *my_instance* by the address of your instance, *my_project* by the name of your project and *my_aws_region* with the AWS region in which you stored the API Key. |
 +------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 This will return two configurations that you need to add to your cluster configuration. To set them go to *Clusters*, select your cluster and click *Edit*. 
@@ -150,7 +150,7 @@ In the Databricks notebooks connected to the prepared cluster, use the following
  fs.connect('my_instance', 'my_project', region_name='my_aws_region')
 
 +------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Replace *my_instance* by the address of your instance, *my_project* by the name of your project and *my_aws_region* by the AWS region in which you stored the API Key. |
+| Replace *my_instance* by the address of your instance, *my_project* by the name of your project and *my_aws_region* with the AWS region in which you stored the API Key. |
 +------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 .. note::
