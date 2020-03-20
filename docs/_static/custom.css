@@ -33,10 +33,6 @@ p.first.admonition-title {
     overflow-y: none;
 }
 
-.current > a {
-    background-color: #e5e3e9;
-} 
-
 .bs-sidenav {
     max-height: 80vh;
     overflow-y: auto;
@@ -59,6 +55,10 @@ p.first.admonition-title {
 
 .bs-sidenav .nav .nav > li > a {
     padding-left: 40px;
+}
+
+.bs-sidenav .nav .nav .nav > li > a {
+    padding-left: 60px;
 }
 
 .navbar-brand {
