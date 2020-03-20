@@ -1,5 +1,5 @@
-Integrating with Databricks
-===========================
+Using the Feature Store from Databricks
+=======================================
 
 Connecting from Databricks notebooks
 ------------------------------------
@@ -8,7 +8,7 @@ Read access to this API key needs to be given to the AWS role used by the Databr
 Finally, a helper library needs to be installed on the Databricks cluster to connect to the Feature Store.
 
 There exist two helper libraries: hopsworks-cloud-sdk and hops. 
-Hopsworks-cloud-sdk does not require a Spark environment (and is easier to set up) but does not provide some advanced spark-based functionality present in hops. If you intend to use the hops library follow the instructions in "Setting up roles and API keys" then jump directly to "Installing hops library".
+Hopsworks-cloud-sdk does not require a Spark environment (and is easier to set up) but does not provide some advanced spark-based functionality present in the hops library. If you intend to use the hops library follow the instructions in "Setting up roles and API keys" then jump directly to "Installing hops library".
 
 **Generating an API Key and storing it in the AWS Secrets Manager**
 
@@ -86,8 +86,8 @@ The feature store library needs to be installed to connect to it. In the Databri
 
 **Creating a DBFS folder to store certificates**
 
-Hopsworks relies on certificates being available in the Databricks cluster to connect to some services inside Hopsworks. To ensure that these certificates can be distributed to all nodes in a Databricks cluster, Hopsworks relies on them being stored in the `Databricks file system <https://docs.databricks.com/data/databricks-file-system.html>`_.
-For this purpose, you should create a cert folder in DBFS. This can be done by running the following in a Databricks notebook connected to the prepared cluster::
+The Hopsworks Feature Store relies on certificates being available in the Databricks cluster to connect to some services inside Hopsworks. To ensure that these certificates can be distributed to all nodes in a Databricks cluster, Hopsworks relies on them being stored in the `Databricks file system <https://docs.databricks.com/data/databricks-file-system.html>`_.
+For this purpose, you should create a certs folder in DBFS. This can be done by executing the following statement in a Databricks notebook connected to the prepared cluster::
 
     dbutils.fs.mkdirs("dbfs:/certs/")
 
@@ -102,7 +102,7 @@ For this purpose, you should create a cert folder in DBFS. This can be done by r
     :scale: 35 %
     :figclass: align-center
 
-In the Databricks notebooks connected to the prepared cluster, use the following commands to connect to the feature store (see screenshot above for how to change 'myinstance' to the hostname of your Hopsworks feature store and how to change 'my_project' to the project containing your feature store)::
+In the Databricks notebooks connected to the prepared cluster, use the following statements to connect to the feature store (see screenshot above for how to change 'myinstance' to the hostname of your Hopsworks feature store and how to change 'my_project' to the project containing your feature store)::
 
     import hops.featurestore as fs
     fs.connect('my_instance', 'my_project', region_name='my_aws_region', cert_folder='/dbfs/certs/')
@@ -118,13 +118,13 @@ If you have trouble connecting, then ensure that the Security Group of your Hops
 
 .. warning:: 
  - This is an advanced setup, if you are not sure that you need it or if you are not sure of what you are doing, please use hopsworks-cloud-sdk. 
- - Hopsworks-cloud-sdk needs to be able to connect directly to the ip on which the hops name node and hive metastore are listening. This means that if you deploy Hopsworks on AWS you will either need to start Hopsworks in the same VPC as your Databricks cluster or to set up `VPC Peering <https://docs.databricks.com/administration-guide/cloud-configurations/aws/vpc-peering.html>`_ between your Databricks cluster and the Hopsworks one.
+ - Hopsworks-cloud-sdk needs to be able to connect directly to the ip on which the Hops NameNode and Hive Metastore are listening. This means that if you deploy Hopsworks on AWS you will either need to start Hopsworks in the same VPC as your Databricks cluster or to set up `VPC Peering <https://docs.databricks.com/administration-guide/cloud-configurations/aws/vpc-peering.html>`_ between your Databricks cluster and the Hopsworks one.
 
 In the Databricks UI, go to *Clusters* and select your cluster. Select *Libraries*. Make sure that hopsworks-cloud-sdk is not installed, make sure to uninstall it if that's the case. Then *Install New*. As *Library Source* choose *PyPI* and fill in *hops* into the *Package* field.
 
 **Setting up the cluster to use hops**
 
-After installing the hops library, restart the cluster and open a Databrick notebooks connected to this cluster. Run the following command in this notebook::
+After installing the hops library, restart the cluster and open a Databrick notebooks connected to this cluster. Execute the following statements in this notebook::
 
  import hops.featurestore as fs
  fs.setup_databricks('my_instance', 'my_project', region_name='my_aws_region')
@@ -138,13 +138,13 @@ Then, select *Configuration* and *Advanced Options*.
 
 For the first configuration select *Init Scripts* and copy the init script path returned by *setup_databricks* in *Init Script Path* and click *Add*.
 
-For the second configuration select *Spark* and copy the spark configuration returned by *setup_databricks* in *Spark Config*.
+For the second configuration, select *Spark* and copy the spark configuration returned by *setup_databricks* in *Spark Config*.
 
 Once you have set these two configurations, click *Confirm and Restart*.
 
 **Connecting to the Feature Store**
 
-In the Databricks notebooks connected to the prepared cluster use the following code to connect to the feature store::
+In the Databricks notebooks connected to the prepared cluster, use the following code to connect to the feature store::
 
  import hops.featurestore as fs
  fs.connect('my_instance', 'my_project', region_name='my_aws_region')

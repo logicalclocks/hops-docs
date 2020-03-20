@@ -1,5 +1,5 @@
-Integrating with AWS SageMaker
-==============================
+Using the Feature Store from SageMaker
+======================================
 
 Connecting from Amazon SageMaker
 --------------------------------
@@ -79,7 +79,7 @@ In the AWS management console go to *IAM*, select *Roles* and then the role that
 
 **Installing hopsworks-cloud-sdk and connecting to the Feature Store**
 
-To be able to access the Hopsworks Feature Store, the hopsworks-cloud-sdk library needs to be installed. One way of achieving this is by opening a Python notebook in SageMaker and installing the latest hopsworks-cloud-sdk. Note that the library will not be persistent. For information around how to permanently install a library to Sagemaker see `Install External Libraries and Kernels in Notebook Instances <https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-add-external.html>`_. ::
+To be able to access the Hopsworks Feature Store, the hopsworks-cloud-sdk library needs to be installed. One way of achieving this is by opening a Python notebook in SageMaker and installing the latest hopsworks-cloud-sdk. Note that the library will not be persistent. For information around how to permanently install a library to Sagemaker, see `Install External Libraries and Kernels in Notebook Instances <https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-add-external.html>`_. ::
 
     !pip install hopsworks-cloud-sdk
 
