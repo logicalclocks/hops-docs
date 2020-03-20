@@ -20,6 +20,32 @@ p.first.admonition-title {
 	  color: #ffffff;
 }
 
+.current > .nav::-webkit-scrollbar {
+    display: none;
+}
+  
+.current > .nav {
+    -ms-overflow-style: none;
+}
+
+.current > .nav {
+    max-height: auto;
+    overflow-y: none;
+}
+
+.current > a {
+    background-color: #e5e3e9;
+} 
+
+.bs-sidenav {
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.bs-sidenav::-webkit-scrollbar {
+    display: none;
+}
+
 .bs-sidenav .nav > li > a {
     display: block;
     color: #222222;
@@ -29,8 +55,10 @@ p.first.admonition-title {
 .bs-sidenav .nav > li > a:hover, .bs-sidenav .nav > li > a:focus {
     text-decoration: none;
     background-color: #e5e3e9;
-    border-right: 1px solid #dbd8e0;
-    border-left: 2px solid #563d7c;
+}
+
+.bs-sidenav .nav .nav > li > a {
+    padding-left: 40px;
 }
 
 .navbar-brand {

@@ -500,7 +500,7 @@ A common practice using the feature store is that the data of feature groups and
 * Configuring storage connectors
 
 On-Demand and Cached Features
-------------------------------------
+-----------------------------
 
 There are two types of feature groups in the Feature Store:
 
