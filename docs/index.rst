@@ -16,13 +16,12 @@ Hopsworks Documentation
 
    getting_started/gettingstarted
 
-.. _hops-installation:
-
+.. _cloud:
 .. toctree::
    :maxdepth: 4
    :glob:
 
-   installation_guide/installation
+   cloud/cloud.rst
 
 .. _hops-userguide:
 .. toctree::
@@ -31,13 +30,19 @@ Hopsworks Documentation
 
    user_guide/user_guide.rst
 
+.. _integrations:
+.. toctree::
+   :maxdepth: 4
+   :glob:
+
+   integrations/integrations.rst
+
 .. _featurestore:
 .. toctree::
    :maxdepth: 4
    :glob:
 
    featurestore/featurestore.rst
-
 
 .. _hops-ml:
 .. toctree::
@@ -54,11 +59,10 @@ Hopsworks Documentation
 
    admin_guide/hops_admin_guide
 
+.. licensing:
 
-.. .. _hops-contributers:
+.. toctree::
+   :maxdepth: 4
+   :glob:
 
-.. .. toctree::
-..   :maxdepth: 4
-..   :glob:
-
-.. ..   authors
+   overview/introduction/licensing
