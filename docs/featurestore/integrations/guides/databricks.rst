@@ -1,3 +1,5 @@
+.. _databricks:
+
 Using the Feature Store from Databricks
 =======================================
 
@@ -5,7 +7,7 @@ Connecting to the Feature Store from Databricks requires setting up a Feature St
 a Feature Store SDK on your Databricks cluster. This guide explains step by step how to connect to the Feature Store from Databricks.
 
 The Feature Store offers a Python API and a Spark DataFrames API. The Python API is easy to set up and get started with but does not
-offer full functionality. If you want to seemlesly integrate with Spark and read and write DataFrame to the Featue Store then you should
+offer full functionality. If you want to seamlessly integrate with Spark and read and write DataFrame to the Feature Store then you should
 use the Spark DataFrames API.
 
 .. contents:: :local:
@@ -16,25 +18,14 @@ For this guide you need to know the *AWS Region*, *Availability Zone* and *IAM R
 *Public/Private DNS* name of your Feature Store instance. The following steps show how to
 gather this information.
 
+.. include-1-start
 
-Step 1.1: Identifying your Databricks region
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Your Databricks *AWS Region* can be found in the AWS Account Settings of your Databricks account. Talk to your Databricks administrator
-if you don't have access to these settings:
-
-.. _databricks_region.png: ../../../_images/databricks_region.png
-.. figure:: ../../../imgs/feature_store/databricks_region.png
-    :alt: Identifying your Databricks region
-    :target: `databricks_region.png`_
-    :align: center
-    :figclass: align-center
-
-Step 1.2: Identifying your Databricks Availability Zone and IAM Role
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Step 1.1: Identifying your Databricks Region, Availability Zone and IAM Role
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The *Availability Zone* and *IAM Role* of your Databricks cluster can be found in the configuration section of your Databricks cluster.
-Alternatively, they can be chosen when creating a new cluster:
+The *Region* of you Databricks cluster is part of the availability zone. In the example, the *Availability Zone* is
+*us-west-2c* which means the *Region* is *us-west-2*. Alternatively, these values can be chosen when creating a new Databricks cluster:
 
 .. _databricks_zone_and_role.png: ../../../_images/databricks_zone_and_role.png
 .. figure:: ../../../imgs/feature_store/databricks_zone_and_role.png
@@ -43,7 +34,9 @@ Alternatively, they can be chosen when creating a new cluster:
     :align: center
     :figclass: align-center
 
-Step 1.3: Identifying your Feature Store instance
+.. include-1-stop
+
+Step 1.2: Identifying your Feature Store instance
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The *Public DNS* and *Private DNS* of your Feature Store instance deployed on AWS can be found in EC2 on the AWS Management Console:
@@ -54,6 +47,8 @@ The *Public DNS* and *Private DNS* of your Feature Store instance deployed on AW
     :target: `hopsworks_instance.png`_
     :align: center
     :figclass: align-center
+
+.. include-2-start
 
 Step 2: Generating an API Key
 -----------------------------
@@ -69,6 +64,8 @@ Copy the key into your clipboard for the next step.
     :align: center
     :figclass: align-center
 
+.. include-2-stop
+
 Step 3: Storing the API Key
 ---------------------------
 
@@ -79,7 +76,7 @@ Option 1: Using the AWS Systems Manager Parameter Store
 
 In the AWS Management Console, ensure that your active region is the region you use for Databricks.
 Go to the *AWS Systems Manager* choose *Parameter Store* and select *Create Parameter*.
-As name enter */hopsworks/role/[MY_DATABRICKS_ROLE]/type/api-key* replacing [MY_DATABRICKS_ROLE] with the
+As name enter */hopsworks/role/[MY_DATABRICKS_ROLE]* replacing [MY_DATABRICKS_ROLE] with the
 AWS role used by the Databricks cluster that should access the Feature Store. Select *Secure String* as
 type and create the parameter.
 
@@ -96,7 +93,7 @@ type and create the parameter.
 In the AWS Management Console, go to *IAM*, select *Roles* and then the role that is used when creating Databricks clusters.
 Select *Add inline policy*. Choose *Systems Manager* as service, expand the *Read* access level and check *GetParameter*.
 Expand Resources and select *Add ARN*. Enter the region of the *Systems Manager* as well as the name of the parameter
-**WITHOUT the leading slash** e.g. *hopsworks/role/[MY_DATABRICKS_ROLE]/type/api-key* and click *Add*. Click on *Review*,
+**WITHOUT the leading slash** e.g. *hopsworks/role/[MY_DATABRICKS_ROLE]* and click *Add*. Click on *Review*,
 give the policy a name und click on *Create policy*.
 
 .. _databricks_parameter_store_policy.png: ../../../_images/databricks_parameter_store_policy.png
@@ -110,6 +107,8 @@ Option 2: Using the AWS Secrets Manager
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 **Storing the API Key in the AWS Secrets Manager**
+
+.. include-3-start
 
 In the AWS management console ensure that your active region is the region you use for Databricks.
 Go to the *AWS Secrets Manager* and select *Store new secret*. Select *Other type of secrets* and add *api-key*
@@ -146,6 +145,8 @@ Click on *Review*, give the policy a name und click on *Create policy*.
     :target: `databricks_secrets_manager_policy.png`_
     :align: center
     :figclass: align-center
+
+.. include-3-stop
 
 Step 4 (Option 1): Using the Spark DataFrames API
 -------------------------------------------------
@@ -210,6 +211,9 @@ in the source field. Selecting any of the *dbe-worker* Security Groups will be s
 
 Step 4.3: Installing the hops SDK
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. include-4-start
+
 In the Databricks UI, go to *Clusters* and select your cluster. Select *Libraries*.
 Make sure that hopsworks-cloud-sdk is not installed, make sure to uninstall it if that's the case.
 Then *Install New*. As *Library Source* choose *PyPI* and enter *hops~=YOUR_HOPSWORKS_VERSION*
@@ -231,10 +235,14 @@ You can find your Hopsworks version under Settings/Versions inside your Hopswork
     :align: center
     :figclass: align-center
 
+.. include-4-stop
+
 Step 4.4: Configuring Databricks to use the Feature Store
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-After installing the hops library, restart the cluster and open a Databrick notebooks connected to this cluster.
+.. include-5-start
+
+After installing the hops library, restart the cluster and open a Databricks notebooks connected to this cluster.
 Execute the following statements in this notebook:
 
 .. code-block:: python
@@ -272,8 +280,12 @@ This will return two configurations that you need to add to your Databricks clus
 
 * Once you have set these two configurations, click *Confirm and Restart*.
 
+.. include-5-stop
+
 Step 4.5: Connecting to the Feature Store
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. include-6-start
 
 .. warning::
 
@@ -291,6 +303,8 @@ In the Databricks notebooks connected to the prepared cluster, use the following
     region_name='my_aws_region',           # AWS region in which you stored the API Key
     secrets_store='secretsmanager')        # Either parameterstore or secretsmanager
 
+.. include-6-stop
+
 .. note::
 
     If you have trouble connecting, then ensure that the Security Group of your Hopsworks instance on AWS is configured to allow
@@ -302,7 +316,7 @@ In the Databricks notebooks connected to the prepared cluster, use the following
 Step 4 (Option 2): Using the Python API
 ---------------------------------------
 .. note:: 
- - The Python API offers an easy way to get started with the Feature Store but doesn not seemlesly integrate with Spark.
+ - The Python API offers an easy way to get started with the Feature Store but does not seamlessly integrate with Spark.
  - If you want to access the Feature Store using Spark DataFrames, see `Using the Spark DataFrames API`_
 
 Step 4.1: Installing hopsworks-cloud-sdk

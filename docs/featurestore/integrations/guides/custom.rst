@@ -1,9 +1,9 @@
-Using the Feature Store from any Python environment (Kubeflow)
+Using the Feature Store from any Python environment (KubeFlow)
 ==============================================================
 
 Connecting to the Feature Store requires setting up a Feature Store API Key
 and installing the SDK. This guide explains step by step how to connect to the Feature
-Store from any Python environment such as Kubeflow.
+Store from any Python environment such as KubeFlow.
 
 .. contents:: :local:
 
