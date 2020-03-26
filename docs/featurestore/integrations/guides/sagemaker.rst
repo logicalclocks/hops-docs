@@ -106,12 +106,24 @@ Step 3: Installing the Pandas SDK
 ---------------------------------
 
 To be able to access the Hopsworks Feature Store, the hopsworks-cloud-sdk library needs to be installed.
-One way of achieving this is by opening a Python notebook in SageMaker and installing the latest
-hopsworks-cloud-sdk. Note that the library will not be persistent. For information around how to permanently
+One way of achieving this is by opening a Python notebook in SageMaker and installing the
+hopsworks-cloud-sdk. The major version of hopsworks-cloud-sdk needs to match the major version
+of Hopsworks. Note that the library will not be persistent. For information around how to permanently
 install a library to Sagemaker, see
-`Install External Libraries and Kernels in Notebook Instances <https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-add-external.html>`_. ::
+`Install External Libraries and Kernels in Notebook Instances <https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-add-external.html>`_.
 
-    !pip install hopsworks-cloud-sdk
+.. code-block:: bash
+
+    !pip install hopsworks-cloud-sdk~=YOUR_HOPSWORKS_VERSION
+
+You can find your Hopsworks version under Settings/Versions inside your Hopsworks project:
+
+.. _hopsworks_version.png: ../../../_images/hopsworks_version.png
+.. figure:: ../../../imgs/feature_store/hopsworks_version.png
+    :alt: Creating a Feature Store API Key
+    :target: `hopsworks_version.png`_
+    :align: center
+    :figclass: align-center
 
 Step 4: Connecting to the Feature Store
 ---------------------------------------

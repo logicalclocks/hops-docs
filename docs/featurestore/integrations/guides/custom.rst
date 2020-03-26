@@ -15,10 +15,10 @@ Select *Api keys*. Give the key a name and select the *job*, *featurestore* and 
 Copy the key into your clipboard and put it in a file called featurestore.key on the environment from which you want to
 access the Feature Store.
 
-.. _sagemaker_api_key.png: ../../../_images/sagemaker_api_key.png
-.. figure:: ../../../imgs/feature_store/sagemaker_api_key.png
+.. _custom_api_key.png: ../../../_images/custom_api_key.png
+.. figure:: ../../../imgs/feature_store/custom_api_key.png
     :alt: Creating a Feature Store API Key
-    :target: `sagemaker_api_key.png`_
+    :target: `custom_api_key.png`_
     :align: center
     :figclass: align-center
 
@@ -26,9 +26,21 @@ Step 2: Installing the Pandas SDK
 ---------------------------------
 
 To be able to access the Hopsworks Feature Store, the hopsworks-cloud-sdk library needs to be installed.
-You can install the SDK with pip::
+You can install the SDK with pip. The major version of hopsworks-cloud-sdk needs to match the major version
+of Hopsworks.
 
-    !pip install hopsworks-cloud-sdk
+.. code-block:: bash
+
+    pip install hopsworks-cloud-sdk~=YOUR_HOPSWORKS_VERSION
+
+You can find your Hopsworks version under Settings/Versions inside your Hopsworks project:
+
+.. _hopsworks_version.png: ../../../_images/hopsworks_version.png
+.. figure:: ../../../imgs/feature_store/hopsworks_version.png
+    :alt: Creating a Feature Store API Key
+    :target: `hopsworks_version.png`_
+    :align: center
+    :figclass: align-center
 
 Step 3: Connecting to the Feature Store
 ---------------------------------------

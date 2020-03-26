@@ -213,12 +213,22 @@ Step 4.3: Installing the DataFrames SDK
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 In the Databricks UI, go to *Clusters* and select your cluster. Select *Libraries*.
 Make sure that hopsworks-cloud-sdk is not installed, make sure to uninstall it if that's the case.
-Then *Install New*. As *Library Source* choose *PyPI* and fill in *hops* into the *Package* field.
+Then *Install New*. As *Library Source* choose *PyPI* and fill in *hops~=YOUR_HOPSWORKS_VERSION*
+into the *Package* field (YOUR_HOPSWORKS_VERSION needs to match the major version of Hopsworks):
 
 .. _databricks_install_hops.png: ../../../_images/databricks_install_hops.png
 .. figure:: ../../../imgs/feature_store/databricks_install_hops.png
     :alt: Installing the DataFrames SDK on Databricks
     :target: `databricks_install_hops.png`_
+    :align: center
+    :figclass: align-center
+
+You can find your Hopsworks version under Settings/Versions inside your Hopsworks project:
+
+.. _hopsworks_version.png: ../../../_images/hopsworks_version.png
+.. figure:: ../../../imgs/feature_store/hopsworks_version.png
+    :alt: Creating a Feature Store API Key
+    :target: `hopsworks_version.png`_
     :align: center
     :figclass: align-center
 
@@ -300,12 +310,22 @@ Step 4.1: Installing the Pandas SDK
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The feature store library needs to be installed to connect to it. In the Databricks UI, go to *Clusters* and select your cluster.
-Select *Libraries* and then *Install New*. As *Library Source* choose *PyPI* and fill in *hopsworks-cloud-sdk* into the *Package* field:
+Select *Libraries* and then *Install New*. As *Library Source* choose *PyPI* and fill in *hopsworks-cloud-sdk~=YOUR_HOPSWORKS_VERSION*
+into the *Package* field (YOUR_HOPSWORKS_VERSION needs to match the major version of Hopsworks):
 
 .. _databricks_install_cloud.png: ../../../_images/databricks_install_cloud.png
 .. figure:: ../../../imgs/feature_store/databricks_install_cloud.png
     :alt: Installing the Pandas SDK on Databricks
     :target: `databricks_install_cloud.png`_
+    :align: center
+    :figclass: align-center
+
+You can find your Hopsworks version under Settings/Versions inside your Hopsworks project:
+
+.. _hopsworks_version.png: ../../../_images/hopsworks_version.png
+.. figure:: ../../../imgs/feature_store/hopsworks_version.png
+    :alt: Creating a Feature Store API Key
+    :target: `hopsworks_version.png`_
     :align: center
     :figclass: align-center
 
