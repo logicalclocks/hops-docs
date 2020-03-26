@@ -501,9 +501,10 @@ A common practice using the feature store is that the data of feature groups and
 * Create new Training Datasets by grouping features together
 * Configuring storage connectors
 
-Connecting from Databricks or Amazon SageMaker
-----------------------------------------------
-The Hopsworks Feature Store integrates seemlessly with Databricks and AWS SageMaker, see Integrations_ for more information.
+Connecting from Databricks, Amazon SageMaker or KubeFlow
+--------------------------------------------------------
+The Hopsworks Feature Store integrates seemlessly with Databricks, AWS SageMaker and Python environments such as KubeFlow,
+see Integrations_ for more information.
 
 On-Demand and Cached Features
 -----------------------------
