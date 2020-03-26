@@ -1,9 +1,9 @@
-Using the Feature Store from any Python environment
-===================================================
+Using the Feature Store from any Python environment (Kubeflow)
+==============================================================
 
 Connecting to the Feature Store requires setting up a Feature Store API Key
-and installing the Pandas SDK. This guide explains step by step how to connect to the Feature
-Store from any Python environment.
+and installing the SDK. This guide explains step by step how to connect to the Feature
+Store from any Python environment such as Kubeflow.
 
 .. contents:: :local:
 
@@ -22,8 +22,8 @@ access the Feature Store.
     :align: center
     :figclass: align-center
 
-Step 2: Installing the Pandas SDK
----------------------------------
+Step 2: Installing hopsworks-cloud-sdk
+--------------------------------------
 
 To be able to access the Hopsworks Feature Store, the hopsworks-cloud-sdk library needs to be installed.
 You can install the SDK with pip. The major version of hopsworks-cloud-sdk needs to match the major version
@@ -58,5 +58,5 @@ You can connect to the Feature Store by executing connect:
 
 .. note::
 
-    If you have trouble connecting, then ensure that your Feature Store instances
+    If you have trouble connecting, then ensure that your Feature Store
     can receive incoming traffic from your Python environment on ports *443*, *9083* and *9085*.

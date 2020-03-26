@@ -2,7 +2,7 @@ Using the Feature Store from AWS SageMaker
 ==========================================
 
 Connecting to the Feature Store from SageMaker requires setting up a Feature Store API Key for SageMaker
-and installing the Pandas SDK on SageMaker. This guide explains step by step how to connect to the Feature
+and installing the SDK on SageMaker. This guide explains step by step how to connect to the Feature
 Store from SageMaker.
 
 .. contents:: :local:
@@ -29,9 +29,9 @@ Option 1: Using the AWS Systems Manager Parameter Store
 
 **Storing the API Key in the AWS Systems Manager Parameter Store**
 
-In the AWS management console ensure that your active region is the region you use for SageMaker.
+In the AWS Management Console, ensure that your active region is the region you use for SageMaker.
 Go to the *AWS Systems Manager* choose *Parameter Store* and select *Create Parameter*.
-As name enter */hopsworks/role/[MY_SAGEMAKER_ROLE]/type/api-key* replacing [MY_SAGEMAKER_ROLE]
+As name, enter */hopsworks/role/[MY_SAGEMAKER_ROLE]/type/api-key* replacing [MY_SAGEMAKER_ROLE]
 with the AWS role used by the SageMaker instance that should access the Feature Store.
 Select *Secure String* as type and create the parameter.
 
@@ -45,10 +45,10 @@ Select *Secure String* as type and create the parameter.
 
 **Granting access to the Parameter Store to the SageMaker notebook role**
 
-In the AWS management console go to *IAM*, select *Roles* and then the role that is used when
+In the AWS Management Console, go to *IAM*, select *Roles* and then the role that is used when
 creating SageMaker notebook instances. Select *Add inline policy*. Choose *Systems Manager* as service,
 expand the *Read* access level and check *GetParameter*. Expand Resources and select *Add ARN*.
-Fill in the region of the *Systems Manager* as well as the name of the parameter **WITHOUT the leading slash**
+Enter the region of the *Systems Manager* as well as the name of the parameter **WITHOUT the leading slash**
 e.g. *hopsworks/role/[MY_SAGEMAKER_ROLE]/type/api-key* and click *Add*. Click on *Review*, give the policy
 a name und click on *Create policy*.
 
@@ -64,7 +64,7 @@ Option 2: Using the AWS Secrets Manager
 
 **Storing the API Key in the AWS Secrets Manager**
 
-In the AWS management console ensure that your active region is the region you use for SageMaker.
+In the AWS Management Console, ensure that your active region is the region you use for SageMaker.
 Go to the *AWS Secrets Manager* and select *Store new secret*. Select *Other type of secrets* and add
 *api-key* as the key and paste the API key created in the previous step as the value. Click next.
 
@@ -76,7 +76,7 @@ Go to the *AWS Secrets Manager* and select *Store new secret*. Select *Other typ
     :align: center
     :figclass: align-center
 
-As secret name enter *hopsworks/role/[MY_SAGEMAKER_ROLE]* replacing [MY_SAGEMAKER_ROLE] with the AWS
+As secret name, enter *hopsworks/role/[MY_SAGEMAKER_ROLE]* replacing [MY_SAGEMAKER_ROLE] with the AWS
 role used by the SageMaker instance that should access the Feature Store. Select next twice and finally
 store the secret. Then click on the secret in the secrets list and take note of the *Secret ARN*.
 
@@ -90,7 +90,7 @@ store the secret. Then click on the secret in the secrets list and take note of 
 
 **Granting access to the SecretsManager to the SageMaker notebook role**
 
-In the AWS management console go to *IAM*, select *Roles* and then the role that is used when creating
+In the AWS Management Console, go to *IAM*, select *Roles* and then the role that is used when creating
 SageMaker notebook instances. Select *Add inline policy*. Choose *Secrets Manager* as service, expand the
 *Read* access level and check *GetSecretValue*. Expand Resources and select *Add ARN*. Paste the ARN of
 the secret created in the previous step. Click on *Review*, give the policy a name und click on *Create policy*.
@@ -102,8 +102,8 @@ the secret created in the previous step. Click on *Review*, give the policy a na
     :align: center
     :figclass: align-center
 
-Step 3: Installing the Pandas SDK
----------------------------------
+Step 3: Installing hopsworks-cloud-sdk
+--------------------------------------
 
 To be able to access the Hopsworks Feature Store, the hopsworks-cloud-sdk library needs to be installed.
 One way of achieving this is by opening a Python notebook in SageMaker and installing the

@@ -4,7 +4,7 @@ Using the Feature Store from Databricks
 Connecting to the Feature Store from Databricks requires setting up a Feature Store API Key for Databricks and installing 
 a Feature Store SDK on your Databricks cluster. This guide explains step by step how to connect to the Feature Store from Databricks.
 
-The Feature Store offers a Pandas API and a Spark DataFrames API. The Pandas API is easy to set up and get started with but does not
+The Feature Store offers a Python API and a Spark DataFrames API. The Python API is easy to set up and get started with but does not
 offer full functionality. If you want to seemlesly integrate with Spark and read and write DataFrame to the Featue Store then you should
 use the Spark DataFrames API.
 
@@ -77,7 +77,7 @@ Option 1: Using the AWS Systems Manager Parameter Store
 
 **Storing the API Key in the AWS Systems Manager Parameter Store**
 
-In the AWS management console ensure that your active region is the region you use for Databricks.
+In the AWS Management Console, ensure that your active region is the region you use for Databricks.
 Go to the *AWS Systems Manager* choose *Parameter Store* and select *Create Parameter*.
 As name enter */hopsworks/role/[MY_DATABRICKS_ROLE]/type/api-key* replacing [MY_DATABRICKS_ROLE] with the
 AWS role used by the Databricks cluster that should access the Feature Store. Select *Secure String* as
@@ -93,9 +93,9 @@ type and create the parameter.
 
 **Granting access to the secret to the Databricks notebook role**
 
-In the AWS management console go to *IAM*, select *Roles* and then the role that is used when creating Databricks clusters.
+In the AWS Management Console, go to *IAM*, select *Roles* and then the role that is used when creating Databricks clusters.
 Select *Add inline policy*. Choose *Systems Manager* as service, expand the *Read* access level and check *GetParameter*.
-Expand Resources and select *Add ARN*. Fill in the region of the *Systems Manager* as well as the name of the parameter
+Expand Resources and select *Add ARN*. Enter the region of the *Systems Manager* as well as the name of the parameter
 **WITHOUT the leading slash** e.g. *hopsworks/role/[MY_DATABRICKS_ROLE]/type/api-key* and click *Add*. Click on *Review*,
 give the policy a name und click on *Create policy*.
 
@@ -122,7 +122,7 @@ as the key and paste the API key created in the previous step as the value. Clic
     :align: center
     :figclass: align-center
 
-As secret name enter *hopsworks/role/[MY_DATABRICKS_ROLE]* replacing [MY_DATABRICKS_ROLE] with the AWS role used
+As secret name, enter *hopsworks/role/[MY_DATABRICKS_ROLE]* replacing [MY_DATABRICKS_ROLE] with the AWS role used
 by the Databricks instance that should access the Feature Store. Select next twice and finally store the secret.
 Then click on the secret in the secrets list and take note of the *Secret ARN*.
 
@@ -135,7 +135,7 @@ Then click on the secret in the secrets list and take note of the *Secret ARN*.
 
 **Granting access to the secret to the Databricks notebook role**
 
-In the AWS management console go to *IAM*, select *Roles* and then the role that is used when creating Databricks clusters.
+In the AWS Management Console, go to *IAM*, select *Roles* and then the role that is used when creating Databricks clusters.
 Select *Add inline policy*. Choose *Secrets Manager* as service, expand the *Read* access level and check *GetSecretValue*.
 Expand Resources and select *Add ARN*. Paste the ARN of the secret created in the previous step.
 Click on *Review*, give the policy a name und click on *Create policy*.
@@ -151,11 +151,11 @@ Step 4 (Option 1): Using the Spark DataFrames API
 -------------------------------------------------
 .. warning:: 
  - The Spark DataFrames API requires your Databricks cluster to be able to reach the private network of your Feature Store cluster.
- - See `Step 4 (Option 2): Using the Pandas API`_. for an alternative that does not require private networking.
+ - See `Step 4 (Option 2): Using the Python API`_. for an alternative that does not require private networking.
 
 Step 4.1: Ensuring up network connectivity
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-The DataFrames SDK needs to be able to connect directly to the IP on which the Feature Store is listening.
+The Spark DataFrames API needs to be able to connect directly to the IP on which the Feature Store is listening.
 This means that if you deploy the Feature Store on AWS you will either need to deploy the Feature Store in the same VPC as your Databricks
 cluster or to set up `VPC Peering <https://docs.databricks.com/administration-guide/cloud-configurations/aws/vpc-peering.html>`_
 between your Databricks VPC and the Feature Store VPC.
@@ -201,7 +201,6 @@ from the Databricks Security Group:
 Connectivity form the Databricks Security Group can be allowed by opening the Security Group, adding a port to the Inbound rules and searching for *dbe-worker*
 in the source field. Selecting any of the *dbe-worker* Security Groups will be sufficient:
 
-
 .. _databricks_security_group_details.png: ../../../_images/databricks_security_group_details.png
 .. figure:: ../../../imgs/feature_store/databricks_security_group_details.png
     :alt: Hopsworks Feature Store Security Group details
@@ -209,16 +208,16 @@ in the source field. Selecting any of the *dbe-worker* Security Groups will be s
     :align: center
     :figclass: align-center
 
-Step 4.3: Installing the DataFrames SDK
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Step 4.3: Installing the hops SDK
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 In the Databricks UI, go to *Clusters* and select your cluster. Select *Libraries*.
 Make sure that hopsworks-cloud-sdk is not installed, make sure to uninstall it if that's the case.
-Then *Install New*. As *Library Source* choose *PyPI* and fill in *hops~=YOUR_HOPSWORKS_VERSION*
+Then *Install New*. As *Library Source* choose *PyPI* and enter *hops~=YOUR_HOPSWORKS_VERSION*
 into the *Package* field (YOUR_HOPSWORKS_VERSION needs to match the major version of Hopsworks):
 
 .. _databricks_install_hops.png: ../../../_images/databricks_install_hops.png
 .. figure:: ../../../imgs/feature_store/databricks_install_hops.png
-    :alt: Installing the DataFrames SDK on Databricks
+    :alt: Installing hops on Databricks
     :target: `databricks_install_hops.png`_
     :align: center
     :figclass: align-center
@@ -232,8 +231,8 @@ You can find your Hopsworks version under Settings/Versions inside your Hopswork
     :align: center
     :figclass: align-center
 
-Step 4.4: Setting up the cluster to use the DataFrames SDK
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Step 4.4: Configuring Databricks to use the Feature Store
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 After installing the hops library, restart the cluster and open a Databrick notebooks connected to this cluster.
 Execute the following statements in this notebook:
@@ -300,22 +299,22 @@ In the Databricks notebooks connected to the prepared cluster, use the following
     If the Hopsworks instance is not accessible from the Internet, then you will need to configure
     `VPC Peering <https://docs.databricks.com/administration-guide/cloud-configurations/aws/vpc-peering.html>`_.
 
-Step 4 (Option 2): Using the Pandas API
+Step 4 (Option 2): Using the Python API
 ---------------------------------------
 .. note:: 
- - The Pandas API offers an easy way to get started with the Feature Store but doesn not seemlesly integrate with Spark.
+ - The Python API offers an easy way to get started with the Feature Store but doesn not seemlesly integrate with Spark.
  - If you want to access the Feature Store using Spark DataFrames, see `Using the Spark DataFrames API`_
 
-Step 4.1: Installing the Pandas SDK
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Step 4.1: Installing hopsworks-cloud-sdk
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The feature store library needs to be installed to connect to it. In the Databricks UI, go to *Clusters* and select your cluster.
-Select *Libraries* and then *Install New*. As *Library Source* choose *PyPI* and fill in *hopsworks-cloud-sdk~=YOUR_HOPSWORKS_VERSION*
+Select *Libraries* and then *Install New*. As *Library Source* choose *PyPI* and enter *hopsworks-cloud-sdk~=YOUR_HOPSWORKS_VERSION*
 into the *Package* field (YOUR_HOPSWORKS_VERSION needs to match the major version of Hopsworks):
 
 .. _databricks_install_cloud.png: ../../../_images/databricks_install_cloud.png
 .. figure:: ../../../imgs/feature_store/databricks_install_cloud.png
-    :alt: Installing the Pandas SDK on Databricks
+    :alt: Installing hopsworks-cloud-sdk on Databricks
     :target: `databricks_install_cloud.png`_
     :align: center
     :figclass: align-center
