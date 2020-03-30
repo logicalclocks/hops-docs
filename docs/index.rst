@@ -66,3 +66,11 @@ Hopsworks Documentation
    :glob:
 
    overview/introduction/licensing
+
+.. support:
+
+.. toctree::
+   :maxdepth: 4
+   :glob:
+
+   support/support.rst
