@@ -2,12 +2,10 @@
 Cloud Platforms (AWS, GCP, Azure)
 ==========================================================
 
-Hops can be installed on a cloud platform using a AMI (for AWS), a GCP image or more flexibly using Karamel and Chef Solo.
-
 Quickstart on AWS 
 -------------------------------------
 
-You can use Hopsworks.ai_ as a managed platform on AWS at:
+You can use Hopsworks.ai_ as a managed platform on AWS, see :ref:`hopsworks-ai`
 
 
 .. _Hopsworks.ai: https://www.hopsworks.ai
