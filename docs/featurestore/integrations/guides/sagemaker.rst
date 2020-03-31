@@ -169,7 +169,8 @@ You can connect to the Feature Store by executing connect:
     fs.connect(
         'my_instance',                      # DNS of your Feature Store instance
         'my_project',                       # Name of your Hopsworks Feature Store project
-        secrets_store = 'secretsmanager')   # Either parameterstore or secretsmanager
+        secrets_store = 'secretsmanager',   # Either parameterstore or secretsmanager
+        hostname_verification=True)         # Disable for self-signed certificates   
 
 .. note::
 

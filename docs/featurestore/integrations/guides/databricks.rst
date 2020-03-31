@@ -240,8 +240,6 @@ You can find your Hopsworks version under Settings/Versions inside your Hopswork
 Step 4.4: Configuring Databricks to use the Feature Store
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. include-5-start
-
 After installing the hops library, restart the cluster and open a Databricks notebooks connected to this cluster.
 Execute the following statements in this notebook:
 
@@ -252,7 +250,10 @@ Execute the following statements in this notebook:
     'my_instance.region.compute.internal', # Private DNS of your Feature Store instance
     'my_project',                          # Name of your Hopsworks Feature Store project
     region_name='my_aws_region',           # AWS region in which you stored the API Key
-    secrets_store='secretsmanager')        # Either parameterstore or secretsmanager
+    secrets_store='secretsmanager',        # Either parameterstore or secretsmanager
+    hostname_verification=True)            # Disable for self-signed certificates  
+
+.. include-5-start
 
 This will return two configurations that you need to add to your Databricks cluster configuration:
 
@@ -271,6 +272,9 @@ This will return two configurations that you need to add to your Databricks clus
 
 * Select *Spark* and copy the spark configuration returned by *setup_databricks* in *Spark Config*:
 
+.. include-5-stop
+.. include-5.1-start
+
     .. _databricks_spark_config.png: ../../../_images/databricks_spark_config.png
     .. figure:: ../../../imgs/feature_store/databricks_spark_config.png
         :alt: Configuring Spark on the Databricks cluster
@@ -280,7 +284,7 @@ This will return two configurations that you need to add to your Databricks clus
 
 * Once you have set these two configurations, click *Confirm and Restart*.
 
-.. include-5-stop
+.. include-5.1-stop
 
 Step 4.5: Connecting to the Feature Store
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -294,6 +298,8 @@ Step 4.5: Connecting to the Feature Store
 
 In the Databricks notebooks connected to the prepared cluster, use the following code to connect to the feature store:
 
+.. include-6-stop
+
 .. code-block:: python
 
  import hops.featurestore as fs
@@ -301,9 +307,8 @@ In the Databricks notebooks connected to the prepared cluster, use the following
     'my_instance.region.compute.internal', # Private DNS of your Feature Store instance
     'my_project',                          # Name of your Hopsworks Feature Store project
     region_name='my_aws_region',           # AWS region in which you stored the API Key
-    secrets_store='secretsmanager')        # Either parameterstore or secretsmanager
-
-.. include-6-stop
+    secrets_store='secretsmanager',        # Either parameterstore or secretsmanager
+    hostname_verification=True)            # Disable for self-signed certificates   
 
 .. note::
 
@@ -376,7 +381,8 @@ In the Databricks notebooks connected to the prepared cluster, use the following
         'my_project',                   # Name of your Hopsworks Feature Store project
         cert_folder='/dbfs/certs/',     # The certificate folder as created earlier
         region_name='my_aws_region',    # AWS region in which you stored the API Key
-        secrets_store='secretsmanager') # Either parameterstore or secretsmanager
+        secrets_store='secretsmanager', # Either parameterstore or secretsmanager
+        hostname_verification=True)     # Disable this self-signed certificates   
 
 .. note::
 
