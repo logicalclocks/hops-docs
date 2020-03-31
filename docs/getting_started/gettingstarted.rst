@@ -6,3 +6,4 @@ Getting Started
 
    installation_guide/installation.rst   
    hopsworksai/hopsworksai.rst
+   examples/examples.rst
