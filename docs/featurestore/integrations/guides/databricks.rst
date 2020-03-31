@@ -249,10 +249,10 @@ Execute the following statements in this notebook:
 
  import hops.featurestore as fs
  fs.setup_databricks(
-    'my_instance.region.compute.internal', # Private DNS of your Feature Store instance
-    'my_project',                          # Name of your Hopsworks Feature Store project
-    region_name='my_aws_region',           # AWS region in which you stored the API Key
-    secrets_store='secretsmanager')        # Either parameterstore or secretsmanager
+    'my_cluster.aws.hopsworks.ai',  # Public address of your Feature Store instance
+    'my_project',                   # Name of your Hopsworks Feature Store project
+    region_name='my_aws_region',    # AWS region in which you stored the API Key
+    secrets_store='secretsmanager') # Either parameterstore or secretsmanager
 
 This will return two configurations that you need to add to your Databricks cluster configuration:
 
