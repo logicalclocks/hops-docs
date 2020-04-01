@@ -130,7 +130,8 @@ Check out our other guides for how to get started with Hopsworks and the Feature
 
 .. hlist:
 
-* `Feature Store Tour Notebook <https://github.com/logicalclocks/hops-examples/blob/master/notebooks/featurestore/FeaturestoreTourPython.ipynb>`_
+* `Feature Store Quick Start notebook <https://github.com/logicalclocks/hops-examples/blob/master/notebooks/featurestore/databricks/FeatureStoreQuickStartDatabricks.ipynb>`_
+* `Feature Store Tour notebook <https://github.com/logicalclocks/hops-examples/blob/master/notebooks/featurestore/FeaturestoreTourPython.ipynb>`_
 * Get started with the :ref:`feature-store`
 * Get started with Machine Learning on Hopsworks: :ref:`hops-ml`
 * Get started with Hopsworks: :ref:`userguide`

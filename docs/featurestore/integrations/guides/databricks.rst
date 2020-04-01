@@ -388,3 +388,16 @@ In the Databricks notebooks connected to the prepared cluster, use the following
     `VPC Security Groups <https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html>`_. for more information.
     If the Hopsworks instance is not accessible from the Internet, then you will need to configure
     `VPC Peering <https://docs.databricks.com/administration-guide/cloud-configurations/aws/vpc-peering.html>`_.
+
+Step 5: Next steps
+------------------
+Check out our other guides for how to get started with Hopsworks and the Feature Store:
+
+.. hlist:
+
+* `Feature Store Quick Start notebook <https://github.com/logicalclocks/hops-examples/blob/master/notebooks/featurestore/databricks/FeatureStoreQuickStartDatabricks.ipynb>`_
+* `Feature Store Tour notebook <https://github.com/logicalclocks/hops-examples/blob/master/notebooks/featurestore/FeaturestoreTourPython.ipynb>`_
+* Get started with the :ref:`feature-store`
+* Get started with Machine Learning on Hopsworks: :ref:`hops-ml`
+* Get started with Hopsworks: :ref:`userguide`
+* Code examples and notebooks: `hops-examples <https://github.com/logicalclocks/hops-examples>`_
