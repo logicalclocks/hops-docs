@@ -253,9 +253,9 @@ Execute the following statements in this notebook:
     secrets_store='secretsmanager',        # Either parameterstore or secretsmanager
     hostname_verification=True)            # Disable for self-signed certificates  
 
-.. include-5-start
-
 This will return two configurations that you need to add to your Databricks cluster configuration:
+
+.. include-5-start
 
 .. hlist:
 
@@ -272,9 +272,6 @@ This will return two configurations that you need to add to your Databricks clus
 
 * Select *Spark* and copy the spark configuration returned by *setup_databricks* in *Spark Config*:
 
-.. include-5-stop
-.. include-5.1-start
-
     .. _databricks_spark_config.png: ../../../_images/databricks_spark_config.png
     .. figure:: ../../../imgs/feature_store/databricks_spark_config.png
         :alt: Configuring Spark on the Databricks cluster
@@ -284,7 +281,7 @@ This will return two configurations that you need to add to your Databricks clus
 
 * Once you have set these two configurations, click *Confirm and Restart*.
 
-.. include-5.1-stop
+.. include-5-stop
 
 Step 4.5: Connecting to the Feature Store
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -74,28 +74,38 @@ Step 4.1: Installing the hops SDK
 Step 4.2: Configuring Databricks to use the Feature Store
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. include:: ../../../featurestore/integrations/guides/databricks.rst
-  :start-after: .. include-5-start
-  :end-before:  .. include-5-stop
+After installing the hops library, restart the cluster and open a Databricks notebooks connected to this cluster.
+Execute the following statements in this notebook:
+
+.. code-block:: python
+
+ import hops.featurestore as fs
+ fs.setup_databricks(
+    'my_instance.aws.hopsworks.ai', # Hopsworks.ai address of your Feature Store instance
+    'my_project',                   # Name of your Hopsworks Feature Store project
+    region_name='my_aws_region',    # AWS region in which you stored the API Key
+    secrets_store='secretsmanager', # Either parameterstore or secretsmanager
+    hostname_verification=True)     # Disable for self-signed certificates  
+
+This will return two configurations that you need to add to your Databricks cluster configuration.
 
 .. note::
 
-  You have to change **spark.hadoop.hive.metastore.uris** in the config to point at the Private DNS of the Feature Store
-  for it to be reachable. For instance, change the config entry
-  spark.hadoop.hive.metastore.uris thrift://my-instance.aws.hopsworks.ai:9083 to 
-  spark.hadoop.hive.metastore.uris thrift://my-instance.us-west-2.compute.internal:9083.
+  **You have to update the configuration returned by setup_databricks:**
 
-  The *Private DNS* of your Feature Store instance deployed can be found in EC2 on the AWS Management Console:
+  spark.hadoop.hive.metastore.uris=thrift://REPLACE-WITH-PRIVATE-DNS:9083
 
-  .. _hopsworks_instance.png: ../../../_images/hopsworks_instance.png
-  .. image:: ../../../imgs/feature_store/hopsworks_instance.png
-      :alt: Identifiying your Feature Store DNS name
-      :target: `hopsworks_instance.png`_
-      :align: center
+The *Private DNS* of your Feature Store instance deployed can be found in EC2 on the AWS Management Console:
+
+.. _hopsworks_instance.png: ../../../_images/hopsworks_instance.png
+.. image:: ../../../imgs/feature_store/hopsworks_instance.png
+    :alt: Identifiying your Feature Store DNS name
+    :target: `hopsworks_instance.png`_
+    :align: center
 
 .. include:: ../../../featurestore/integrations/guides/databricks.rst
-  :start-after: .. include-5.1-start
-  :end-before:  .. include-5.1-stop
+  :start-after: .. include-5-start
+  :end-before:  .. include-5-stop
 
 Step 4.3: Connecting to the Feature Store
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
