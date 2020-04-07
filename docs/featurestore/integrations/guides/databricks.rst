@@ -76,7 +76,7 @@ Option 1: Using the AWS Systems Manager Parameter Store
 
 In the AWS Management Console, ensure that your active region is the region you use for Databricks.
 Go to the *AWS Systems Manager* choose *Parameter Store* and select *Create Parameter*.
-As name enter */hopsworks/role/[MY_DATABRICKS_ROLE]* replacing [MY_DATABRICKS_ROLE] with the
+As name enter */hopsworks/role/[MY_DATABRICKS_ROLE]/type/api-key* replacing [MY_DATABRICKS_ROLE] with the
 AWS role used by the Databricks cluster that should access the Feature Store. Select *Secure String* as
 type and create the parameter.
 
@@ -93,7 +93,7 @@ type and create the parameter.
 In the AWS Management Console, go to *IAM*, select *Roles* and then the role that is used when creating Databricks clusters.
 Select *Add inline policy*. Choose *Systems Manager* as service, expand the *Read* access level and check *GetParameter*.
 Expand Resources and select *Add ARN*. Enter the region of the *Systems Manager* as well as the name of the parameter
-**WITHOUT the leading slash** e.g. *hopsworks/role/[MY_DATABRICKS_ROLE]* and click *Add*. Click on *Review*,
+**WITHOUT the leading slash** e.g. *hopsworks/role/[MY_DATABRICKS_ROLE]/type/api-key* and click *Add*. Click on *Review*,
 give the policy a name und click on *Create policy*.
 
 .. _databricks_parameter_store_policy.png: ../../../_images/databricks_parameter_store_policy.png
