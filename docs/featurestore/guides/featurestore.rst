@@ -55,7 +55,7 @@ Using a feature store is a best practice that can reduce the technical debt of m
 How to Use the Feature Store
 ----------------------------
 
-When adopting the feature store in your machine learning work-flows, you can think of it as the interface between data engineering and data science. It has two APIs, one for writing to the feature store and one for reading features. At the end of your data engineering pipeline, instead of writing features to a custom storage location, write the features to the feature store and get benefits such as automatic documentation, versioning, feature analysis, and feature sharing. As a data scientist, when you start a new machine learning project, you can search through the feature store for available features and only add new features if they do not already exist in the feature store. We encourage to reuse features as much as possible to avoid doing unnecessary work and to make features consistent between different models.
+When adopting the feature store in your machine learning work-flows, you can think of it as the interface between data engineering and data science. It has two APIs, one for writing to the feature store and one for reading features. At the end of your data engineering pipeline, instead of writing features to a custom storage location, write the features to the feature store and get benefits such as automatic documentation, versioning, feature analysis, feature tagging and feature sharing. As a data scientist, when you start a new machine learning project, you can search through the feature store for available features and only add new features if they do not already exist in the feature store. We encourage to reuse features as much as possible to avoid doing unnecessary work and to make features consistent between different models.
 
 Creating a Project on Hopsworks with The Feature Store Service Enabled
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -268,17 +268,46 @@ Once the training dataset has been created, the dataset is discoverable in the f
     println(s"RMSE: ${trainingSummary.rootMeanSquaredError}")
     println(s"r2: ${trainingSummary.r2}")
 
-**Attaching Custom Metadata to a Feature Group**:
+Tagging Feature Groups and Training Datasets
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The feature store APIs allows users to attach custom metadata to a feaure group. Currently, only Cached Feature Groups are supported. The users need to supply a metadata dictionary.
+The feature store enables users to attach tags to a feature group or training dataset in order to make them discoverable across feature stores.
+A tag is a simple {key: value} association, providing additional information about the data, such as for example geographic origin.
+This is useful in an organization as data engineers can discover new feature groups to work with and share them with other data engineers.
+Furthermore, making training datasets easier to discover for data scientists, reduces duplicated work in terms of for example data preparation.
+The tagging feature is only available in the enterprise version.
+
+**Define tags that can be attached**
+
+The first step is to define a set of tags that can be attached. Such as for example "Country" to tag data as being from a certain geographic location and "Sport" to further associate a type of Sport with the data.
+
+.. _creating_tags.gif: ../../_images/creating_tags.gif
+.. figure:: ../../imgs/feature_store/creating_tags.gif
+    :alt: Defining tags.
+    :target: `creating_tags.gif`_
+    :align: center
+    :figclass: align-center
+
+**Attach tags using the UI**
+
+Tags can then be attached using the feature store UI or programmatically using the API.
+
+.. _attach_tags.gif: ../../_images/attach_tags.gif
+.. figure:: ../../imgs/feature_store/attach_tags.gif
+    :alt: Attaching tags to feature group.
+    :target: `attach_tags.gif`_
+    :align: center
+    :figclass: align-center
 
 * Using the Python API:
 
 .. code-block:: python
 
     from hops import featurestore
-    metadataDict = {"key1" : "value1", "key2": "value2"}
-    featurestore.add_metadata(featuregroup_name, metadataDict)
+    # Get a list of tags that can be attached
+    # Assuming value is ["Country", "Sport"]
+
+    featurestore.set_featuregroup_tag(featuregroup_name, "Country", value="Sweden")
 
 * Using the Scala/Java API:
 
@@ -288,25 +317,20 @@ The feature store APIs allows users to attach custom metadata to a feaure group.
     import scala.collection.JavaConversions._
     import collection.JavaConverters._
 
-    val metadataDict = Map("key1" -> "value1", "key2" -> "value2")
-    Hops.addMetadata(featuregroup_name).setMetadata(metadataDict).write()
+    Hops.setTagForFeaturegroup("teams_features").setTag("Country").setValue("Sweden").write()
+    Hops.setTagForFeaturegroup("teams_features").setTag("Sport").setValue("Football").write()
 
 
-**Reading Custom Metadata attached to a Feature Group**:
+**Reading Tags attached to a Feature Group**:
 
-Users can retrieve all metadata attached to a feature group or only specific metadata by their keys.
+Users can also retrieve all tags attached to a feature group or training dataset using the API.
 
 * Using the Python API:
 
 .. code-block:: python
 
     from hops import featurestore
-    # get all metadata
-    featurestore.get_metadata(featuregroup_name)
-    # get metadata for key1
-    featurestore.get_metadata(featuregroup_name, ["key1"])
-    # get metadata for key1 and key2
-    featurestore.get_metadata(featuregroup_name, ["key1", "key2"])
+    featurestore.get_featuregroup_tags(featuregroup_name)
 
 * Using the Scala/Java API:
 
@@ -316,36 +340,8 @@ Users can retrieve all metadata attached to a feature group or only specific met
     import scala.collection.JavaConversions._
     import collection.JavaConverters._
 
-    // get all metadata
-    Hops.getMetadata(featuregroup_name).read()
-    // get metadata for key1
-    Hops.getMetadata(featuregroup_name).setKeys("key1").read()
-    // get metadata for key1, key2
-    Hops.getMetadata(featuregroup_name).setKeys("key1", "key2").read()
-
-**Removing Custom Metadata attached to a Feature Group**:
-
-Users can remove the metadata attached to a feature group by their keys.
-
-* Using the Python API:
-
-.. code-block:: python
-
-    from hops import featurestore
-
-    # remove metadata for key1 and key2
-    featurestore.remove_metadata(featuregroup_name, ["key1", "key2"])
-
-* Using the Scala/Java API:
-
-.. code-block:: scala
-
-    import io.hops.util.Hops
-    import scala.collection.JavaConversions._
-    import collection.JavaConverters._
-
-    // remove metadata for key1, key2
-    Hops.removeMetadata(featuregroup_name).setKeys("key1", "key2").write()
+    // get all tags
+    Hops.getTagsForFeaturegroup(featuregroup_name).read()
 
 The Feature Registry
 ----------------------
@@ -364,10 +360,10 @@ The feature registry provides:
 
 In the registry you can search for features, feature groups and training datasets in the search bar. Features are automatically grouped by versions in the search results.
 
-.. _hopsworks_featurestore_finding_features.png: ../../_images/finding_features.png
-.. figure:: ../../imgs/feature_store/finding_features.png
+.. _hopsworks_featurestore_finding_features.gif: ../../_images/finding_features.gif
+.. figure:: ../../imgs/feature_store/finding_features.gif
     :alt: Searching for features in the feature registry.
-    :target: `hopsworks_featurestore_finding_features.png`_
+    :target: `hopsworks_featurestore_finding_features.gif`_
     :align: center
     :figclass: align-center
 
@@ -377,12 +373,11 @@ In the registry you can search for features, feature groups and training dataset
 
 When a feature group or training dataset is updated in the feature store, a data analysis step is performed. In particular, we look at cluster analysis, feature correlation, feature histograms and descriptive statistics. We have found that these are the most common type of statistics that our users find useful in the feature modeling phase. For example, feature correlation information can be used to identify redundant features, feature histograms can be used to monitor feature distributions between different versions of a feature to discover covariate shift, and cluster analysis can be used to spot outliers. Having such statistics accessible in the feature registry helps data scientists decide on which features to use.
 
-.. _hopsworks_featurestore_opening_stats_tab.png: ../../_images/opening_stats_tab.png
-.. figure:: ../../imgs/feature_store/opening_stats_tab.png
+.. _hopsworks_featurestore_opening_stats_tab.gif: ../../_images/opening_stats_tab.gif
+.. figure:: ../../imgs/feature_store/opening_stats_tab.gif
     :alt: Searching for features in the feature registry.
-    :target: `hopsworks_featurestore_opening_stats_tab.png`_
+    :target: `hopsworks_featurestore_opening_stats_tab.gif`_
     :align: center
-    :scale: 55 %
     :figclass: align-center
 
     Opening that statistics for a feature group.
@@ -400,7 +395,7 @@ problem but it is very hard to find the root of the problem and maybe too late.
 In Hopsworks we do Features unit testing to identify "bugs" in feature store before you start your training pipeline. We provide an easy to use UI to compose validation rules on different **feature groups**. Internally we use
 `Deequ <https://github.com/awslabs/deequ>`_ to launch a Spark job to perform the validation on TBs of data. Power users can also use Deequ directly to get the most out of the tool.
 
-To compose validation rules or view the result of a previous run, click on the ``More`` button of a feature group and select ``Data Validation``. The main page will show up
+To compose validation rules or view the result of a previous run, click on the feature group to display the detailed sidebar and click the ``Data Validation`` button. The main page will show up
 where you can compose new validation project, view already composed rules and fetch previous validation result.
 
 .. _hopsworks_featurestore_data_validation_main.png: ../../_images/data_validation_main.png
