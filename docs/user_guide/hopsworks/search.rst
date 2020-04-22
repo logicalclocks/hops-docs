@@ -52,7 +52,6 @@ Results will also have highlighted the reason why they matched your search query
 	* Description
 	* Metadata
 
-.. global_search_request.png: ../../_images/global_search_request.png
 .. figure:: ../../imgs/search/global_search_request.png
     :alt: Request access to data
     :scale: 30%
@@ -61,12 +60,11 @@ Results will also have highlighted the reason why they matched your search query
 
 When searching globally, if you discover an interesting item, you can click on the paper plane icon in order to send a request to have access to its data. When requesting access you need to provide a project that you want to save this shared item in. If the owner of the item accepts your request, you will now be able to access its contents from the project you selected.
 
-.. global_search_goto.png: ../../_images/global_search_goto.png
 .. figure:: ../../imgs/search/global_search_goto.png
     :alt: Go to location
     :scale: 30%
     :align: center
     :figclass: align-center
 
-When searching globally if you have access to a particular item, you can see the "goto" icon. In the case of shared items it can be the case that you can access this item from multiple projects, which is why you can the select to which project you want to navigate to.
+When searching globally if you have access to a particular item, you can see the "goto" icon. In the case of shared items it can be the case that you can access this item from multiple projects, which is why you can select to which project you want to navigate to.
   
