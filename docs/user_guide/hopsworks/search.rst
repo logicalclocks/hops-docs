@@ -4,32 +4,24 @@ Search
 The search on the navigation bar can be used to search for Projects, Datasets, Feature groups, Features and Training datasets.
 Depending on the page you are in, landing page or project dashboard, the search scope will cover all projects or the specific project you are in.
 
-.. global_search.png: ../../_images/global_search.png
 .. figure:: ../../imgs/search/global_search.png
     :alt: Global Search
-    :target: `global_search.png`_
     :scale: 30%
-    :align: center
     :figclass: align-center
 
 In the case of searching on the landing page, as we can see in the image above, your search will target all items that have not been marked explicitly as being private when they were create. By default all the metadata of items(Projects, Datasets, Feature Groups, Features, Training Datasets) are public and searchable by all users in the cluster. The data however is always private and requires access granting by the owners in order to have access to it. When searching globaly you can narrow your search to the categories: Projects/Datasets/Featurestore(Featuregroup, Features and Training Datasets) by selecting the appropriate drop down option.
 
-.. project_search.png: ../../_images/project_search.png
 .. figure:: ../../imgs/search/project_search.png
     :alt: Project Search
-    :target: `project_search.png`_
     :scale: 30%
     :align: center
     :figclass: align-center
 
 In the case of searching in the project dashboard, your search will target all items that this project has access to (access to their data) - this includes items that were created within this project as well as items that have been shared with this project. When searching within the project you can narrow your search to the categories: Datasets/Featurestore(Featuregroup, Features and Training Datasets).
 
-.. global_search_results.png: ../../_images/global_search_results.png
 .. figure:: ../../imgs/search/global_search_results.png
     :alt: Global Search Results
-    :target: `global_search_results.png`_
     :scale: 30%
-    :align: center
     :figclass: align-center
 
 Search results are divided in four tabs:
@@ -42,7 +34,8 @@ Search results are divided in four tabs:
 
 * Others (Project and Datasets) 
 
-Results will also have highlighted the reason why they matched you search query:
+Results will also have highlighted the reason why they matched your search query:
+
 * Featuregroup
 	* Name
 	* Description
@@ -62,7 +55,6 @@ Results will also have highlighted the reason why they matched you search query:
 .. global_search_request.png: ../../_images/global_search_request.png
 .. figure:: ../../imgs/search/global_search_request.png
     :alt: Request access to data
-    :target: `global_search_request.png`_
     :scale: 30%
     :align: center
     :figclass: align-center
@@ -72,7 +64,6 @@ When searching globally, if you discover an interesting item, you can click on t
 .. global_search_goto.png: ../../_images/global_search_goto.png
 .. figure:: ../../imgs/search/global_search_goto.png
     :alt: Go to location
-    :target: `global_search_goto.png`_
     :scale: 30%
     :align: center
     :figclass: align-center
