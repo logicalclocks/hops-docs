@@ -1,7 +1,7 @@
 Search
 ========================
 
-The search on the navigation bar can be used to search for Projects, Datasets, Feature groups, Features and Training datasets.
+The search on the navigation bar can be used to search for Datasets, Feature groups, Features and Training datasets.
 Depending on the page you are in, landing page or project dashboard, the search scope will cover all projects or the specific project you are in.
 
 .. figure:: ../../imgs/search/global_search.png
@@ -32,7 +32,7 @@ Search results are divided in four tabs:
 
 * Feature 
 
-* Others (Project and Datasets) 
+* Others (Datasets) 
 
 Results will also have highlighted the reason why they matched your search query:
 
@@ -47,7 +47,7 @@ Results will also have highlighted the reason why they matched your search query
 	* Tags
 * Feature 
 	* Name
-* Others (Project and Datasets) 
+* Others (Datasets) 
 	* Name
 	* Description
 	* Metadata
