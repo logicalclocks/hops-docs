@@ -72,11 +72,10 @@ p.first.admonition-title {
 
 .navbar-brand>img {
     display: inline-block;
-    margin-left: 20px;
+    margin-left: 0px;
     margin-top: 3px;
     margin-bottom: 3px;
     margin-right: 20px;
-    width: 180px;
 }
 
 @media only screen and (max-width: 500px) {
@@ -99,6 +98,6 @@ p.first.admonition-title {
 }
 
 .navbar-inverse {
-  background-color: #2e343d;
+  background-color: #1EB182;
 }
 
