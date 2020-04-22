@@ -6,7 +6,7 @@ SageMaker Quick Start
 Step 1: Deploying Hopsworks
 ---------------------------
 
-In Hopsworks.ai, select *Run a new instance*:
+In Hopsworks.ai, select *Create cluster*:
 
 .. _create-instance.png: ../../../_images/create-instance.png
 .. figure:: ../../../imgs/hopsworksai/create-instance.png
@@ -15,31 +15,37 @@ In Hopsworks.ai, select *Run a new instance*:
     :align: center
     :figclass: align-center
 
-Select the region of your SageMaker instance as location and click *Deploy*.
+Select the region of your SageMaker instance as region and create the cluster.
 
 .. note::
 
   If you choose to use an existing VPC, then use the same VPC and subnet as for your SageMaker instance.
 
-.. _configure-instance.png: ../../../_images/configure-instance.png
-.. figure:: ../../../imgs/hopsworksai/configure-instance.png
+.. _configure_databricks_step_1.png: ../../../_images/configure_databricks_step_1.png
+.. figure:: ../../../imgs/hopsworksai/configure_databricks_step_1.png
     :alt: Configuring the Hopsworks cluster
-    :target: `configure-instance.png`_
+    :target: `configure_databricks_step_1.png`_
     :align: center
     :figclass: align-center
 
 By default, only the Hopsworks UI is exposed (made available to clients on external networks, like the Internet)
-by your Hopsworks instance. To reach the Feature Store from SageMaker, you have
+by your Hopsworks cluster. To reach the Feature Store from SageMaker, you have
 to expose it. Under *Exposed services*, select *Feature Store* and *Online Feature Store* and press *Update*.
-This will update the *Security Group* attached to the Hopsworks instance to allow incoming traffic on the relevant ports.
-
-Use the provide
-instance link and credentials to log in to your Hopsworks instance.
+This will update the *Security Group* attached to the Hopsworks cluster to allow incoming traffic on the relevant ports.
 
 .. _open-ports.png: ../../../_images/open-ports.png
 .. figure:: ../../../imgs/hopsworksai/open-ports.png
     :alt: Outside Access to the Feature Store
     :target: `open-ports.png`_
+    :align: center
+    :figclass: align-center
+
+Use the provided link and credentials to log in to your Hopsworks cluster.
+
+.. _credentials.png: ../../../_images/credentials.png
+.. figure:: ../../../imgs/hopsworksai/credentials.png
+    :alt: Hopsworks Access
+    :target: `credentials.png`_
     :align: center
     :figclass: align-center
 

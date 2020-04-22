@@ -19,7 +19,7 @@ VPC as your Databricks clusters. For other options, including VPC peering, see :
 Step 1.3: Deploying a new Hopsworks clusters
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In Hopsworks.ai, select *Run a new instance*:
+In Hopsworks.ai, select *Create cluster*:
 
 .. _create-instance.png: ../../../_images/create-instance.png
 .. figure:: ../../../imgs/hopsworksai/create-instance.png
@@ -28,25 +28,49 @@ In Hopsworks.ai, select *Run a new instance*:
     :align: center
     :figclass: align-center
 
-As location, choose the region you use for Databricks. Select the VPC with a name starting with *databricks-*.
-Finally, select the subnet in the *Availability Zone* of your Databricks cluster and deploy.
+As region, choose the region you use for Databricks:
 
-.. _configure_databricks.png: ../../../_images/configure_databricks.png
-.. figure:: ../../../imgs/hopsworksai/configure_databricks.png
+.. _configure_databricks_step_1.png: ../../../_images/configure_databricks_step_1.png
+.. figure:: ../../../imgs/hopsworksai/configure_databricks_step_1.png
     :alt: Deploying Hopsworks in the Databricks VPC
-    :target: `configure_databricks.png`_
+    :target: `configure_databricks_step_1.png`_
+    :align: center
+    :figclass: align-center
+
+Select the VPC with a name starting with *databricks-*:
+
+.. _configure_databricks_step_2.png: ../../../_images/configure_databricks_step_2.png
+.. figure:: ../../../imgs/hopsworksai/configure_databricks_step_2.png
+    :alt: Deploying Hopsworks in the Databricks VPC
+    :target: `configure_databricks_step_2.png`_
+    :align: center
+    :figclass: align-center
+
+Finally, select the subnet in the *Availability Zone* of your Databricks cluster and create the cluster:
+
+.. _configure_databricks_step_3.png: ../../../_images/configure_databricks_step_3.png
+.. figure:: ../../../imgs/hopsworksai/configure_databricks_step_3.png
+    :alt: Deploying Hopsworks in the Databricks VPC
+    :target: `configure_databricks_step_3.png`_
     :align: center
     :figclass: align-center
 
 Wait for the cluster to start. After starting, select *Feature Store* and *Online Feature Store* under *Exposed Services*
-and press *Update*. This will update the *Security Group* attached to the Hopsworks instance to allow incoming traffic on the relevant ports.
-
-You can now log in to Hopsworks with the given link and credentials:
+and press *Update*. This will update the *Security Group* attached to the Hopsworks cluster to allow incoming traffic on the relevant ports.
 
 .. _open-ports.png: ../../../_images/open-ports.png
 .. figure:: ../../../imgs/hopsworksai/open-ports.png
     :alt: Outside Access to the Feature Store
     :target: `open-ports.png`_
+    :align: center
+    :figclass: align-center
+
+You can now log in to Hopsworks with the given link and credentials:
+
+.. _credentials.png: ../../../_images/credentials.png
+.. figure:: ../../../imgs/hopsworksai/credentials.png
+    :alt: Hopsworks Access
+    :target: `credentials.png`_
     :align: center
     :figclass: align-center
 
