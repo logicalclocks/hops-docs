@@ -58,7 +58,7 @@ Results will also have highlighted the reason why they matched your search query
     :align: center
     :figclass: align-center
 
-When you search from the landing page, if you discover an interesting item, you can click on the paper plane icon in order to send a request to have access to its data. When requesting access you need to provide a project that you want to save this shared item in. If the owner of the item accepts your request, you will now be able to access its contents from the project you selected.
+When you search from the landing page, if you discover an interesting item, you can click on the paper plane icon in order to send a request to be granted access. When requesting access you need to provide a project that you want to save this shared item in. If the owner of the item accepts your request, you will now be able to access its contents from the project you selected.
 
 .. figure:: ../../imgs/search/global_search_goto.png
     :alt: Go to location
