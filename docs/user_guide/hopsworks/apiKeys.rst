@@ -13,6 +13,7 @@ using the ApiKey authentication scheme.
    Host: server.hopsworks.ai
    Authorization: ApiKey <api_key>
 
+.. _api-key-generate:
 Generate an API key
 ~~~~~~~~~~~~~~~~~~~~
 

@@ -1,16 +1,16 @@
-====
 Jobs
 ====
 
-Members of a project in Hopsworks, can launch the following types of application via the Jobs service of a project:
+Members of a project in Hopsworks, can launch the following types of applications through a project's Jobs service:
 
+* Python (*Hopsworks Enterprise only*)
 * Apache Spark
 * Apache Flink
-* Apache Beam with the Apache Flink runner.
 
-If you are a beginner it is **highly** advisable to click on the ``Spark``
+If you are a beginner it is **highly** recommended to click on the ``Spark``
 button at landing page under the available tours. It will guide you through launching your
-first Spark application!
+first Spark application and the steps for launching any job type are similar. Details on running Python programs
+are provided in the Python section below.
 
 .. _guided_tours.png: ../../_images/guided_tours.png
 .. figure:: ../../imgs/guided_tours.png
@@ -41,6 +41,8 @@ follow the steps below:
     :align: center
     :figclass: align-center
 
+    Job input arguments
+
 After creating a job by following the new job wizard, you can manage all jobs and their runs from the landing page of
 the Jobs service. The figure below shows a project with 6 jobs where 5 jobs are shown per page. When a job has run
 at least once, all past and current runs are then shown in the UI.
@@ -52,6 +54,7 @@ at least once, all past and current runs are then shown in the UI.
     :align: center
     :figclass: align-center
 
+    Jobs UI
 
 Users can interact with the jobs in the following ways:
 
@@ -70,6 +73,8 @@ Users can interact with the jobs in the following ways:
     :align: center
     :figclass: align-center
 
+    Job real-time logs
+
 8. View a job's details
 
 .. _jobs-ui-jobdetails.png: ../../_images/jobs-ui-jobdetails.png
@@ -78,6 +83,8 @@ Users can interact with the jobs in the following ways:
     :target: `jobs-ui-jobdetails.png`_
     :align: center
     :figclass: align-center
+
+    Job details
 
 9. Make a **copy** of a job
 10. **Export** a job, which prompts the user to download a json file. A job can then be imported by clicking on the New
@@ -93,7 +100,41 @@ Additionally, users click on a job and view additional information about their r
 
 .. _jobs-ui-exec-logs.png: ../../_images/jobs-ui-exec-logs.png
 .. figure:: ../../imgs/jobs-ui-exec-logs.png
-    :alt: Job run logs
+    :alt: Job logs
     :target: `jobs-ui-exec-logs.png`_
     :align: center
     :figclass: align-center
+
+    Job aggregated logs
+
+Python
+------
+(*Available in Hopsworks Enterprise only*)
+
+There are three ways of running Python programs in Hopsworks:
+
+* Jupyter notebooks: Covered in the Jupyter section of the user guide.
+* Jobs UI
+* Programmatically
+
+The GIF below demonstrates how to create a Python job from the **Jobs UI** by selecting a python file that is already
+uploaded in a Hopsworks dataset and attaching a few other files to be immediately available to the application at
+runtime. However, any file can be made available to the application at runtime by using in the Python app to run, the
+``copy_to_local`` function of the ``hdfs`` module of the ``hops`` Python library
+http://hops-py.logicalclocks.com/hops.html#module-hops.hdfs
+
+.. _python-new-job.gif: ../../_images/python-new-job.gif
+.. figure:: ../../imgs/python-new-job.gif
+    :alt: Python new job UI
+    :target: `python-new-job.gif`_
+    :align: center
+    :figclass: align-center
+
+    Create a new Python job from the Jobs UI
+
+You do not have to upload the Python program UI to run it. That can be done so from within the Python program by using
+``upload`` function of the ``dataset`` module of the ``hops`` Python library http://hops-py.logicalclocks.com
+
+To do that, first generate an API key for your project, see :ref:`Generate an API key<api-key-generate>`,
+and then use the ``project.connect()`` function of the same
+library to connect to a project of your Hopsworks cluster and then ``dataset.upload``.
