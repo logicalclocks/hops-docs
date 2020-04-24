@@ -3,7 +3,7 @@ Jobs
 
 Members of a project in Hopsworks, can launch the following types of applications through a project's Jobs service:
 
-* Python
+* Python (*Hopsworks Enterprise only*)
 * Apache Spark
 * Apache Flink
 
@@ -109,6 +109,7 @@ Additionally, users click on a job and view additional information about their r
 
 Python
 ------
+(*Available in Hopsworks Enterprise only*)
 
 There are three ways of running Python programs in Hopsworks:
 
