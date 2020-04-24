@@ -132,7 +132,7 @@ http://hops-py.logicalclocks.com/hops.html#module-hops.hdfs
 
     Create a new Python job from the Jobs UI
 
-The executable Python program does not need to be uploaded from the UI, it can also be done so by using in the Python app to run, the
+You do not have to upload the Python program UI to run it. That can be done so from within the Python program by using
 ``upload`` function of the ``dataset`` module of the ``hops`` Python library http://hops-py.logicalclocks.com
 
 To do that, first generate an API key for your project, see :ref:`Generate an API key<api-key-generate>`,
