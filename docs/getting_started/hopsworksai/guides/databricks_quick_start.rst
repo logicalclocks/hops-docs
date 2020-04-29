@@ -113,18 +113,18 @@ Execute the following statements in this notebook:
 
 This will return two configurations that you need to add to your Databricks cluster configuration.
 
-.. note::
+.. warning::
 
   **You have to update the configuration returned by setup_databricks:**
 
   spark.hadoop.hive.metastore.uris=thrift://REPLACE-WITH-PRIVATE-DNS:9083
 
-The *Private DNS* of your Feature Store instance deployed can be found in EC2 on the AWS Management Console:
+The *Private DNS* of your Feature Store instance can be found under Details:
 
-.. _hopsworks_instance.png: ../../../_images/hopsworks_instance.png
-.. image:: ../../../imgs/feature_store/hopsworks_instance.png
+.. _private_dns.png: ../../../_images/private_dns.png
+.. image:: ../../../imgs/hopsworksai/private_dns.png
     :alt: Identifiying your Feature Store DNS name
-    :target: `hopsworks_instance.png`_
+    :target: `private_dns.png`_
     :align: center
 
 .. include:: ../../../featurestore/integrations/guides/databricks.rst
