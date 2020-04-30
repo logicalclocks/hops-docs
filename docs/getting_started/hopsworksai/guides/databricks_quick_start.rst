@@ -111,21 +111,7 @@ Execute the following statements in this notebook:
     secrets_store='secretsmanager', # Either parameterstore or secretsmanager
     hostname_verification=True)     # Disable for self-signed certificates  
 
-This will return two configurations that you need to add to your Databricks cluster configuration.
-
-.. warning::
-
-  **You have to update the configuration returned by setup_databricks:**
-
-  spark.hadoop.hive.metastore.uris=thrift://REPLACE-WITH-PRIVATE-DNS:9083
-
-The *Private DNS* of your Feature Store instance can be found under Details:
-
-.. _private_dns.png: ../../../_images/private_dns.png
-.. image:: ../../../imgs/hopsworksai/private_dns.png
-    :alt: Identifiying your Feature Store DNS name
-    :target: `private_dns.png`_
-    :align: center
+**This will return two configurations that you need to add to your Databricks cluster configuration.**
 
 .. include:: ../../../featurestore/integrations/guides/databricks.rst
   :start-after: .. include-5-start
