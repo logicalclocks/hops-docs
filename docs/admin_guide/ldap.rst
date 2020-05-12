@@ -55,7 +55,7 @@ Without Karamel/Chef
 --------------------
 
 An already deployed instance can be configured to connect to LDAP without the need of running Karamel/Chef. 
-Administrators should create a new `JNDI` custom resource in Payara. The name of the resource should be `ldap/LdapResource`. 
+Administrators should create a new `JNDI` external resource in Payara. The name of the resource should be `ldap/LdapResource`. 
 This can be done either through the Payara Web UI (as shown below) or though the `asadmin` binary from command line.
 
 .. _ldap-resource.png: ../_images/admin/ldap-resource.png
