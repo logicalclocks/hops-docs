@@ -19,7 +19,7 @@ First, you need to create a virtual machine on AWS EC2 or GCP Compute Engine whe
 
 .. code-block:: bash
 
-   wget https://raw.githubusercontent.com/logicalclocks/karamel-chef/master/hopsworks-installer.sh
+   wget https://raw.githubusercontent.com/logicalclocks/karamel-chef/1.3/hopsworks-installer.sh
    chmod +x hopsworks-installer.sh
    ./hopsworks-installer.sh
 
@@ -75,7 +75,7 @@ On the head node, in the sudo account, download and run this script that install
 
 .. code-block:: bash
 
-   wget https://raw.githubusercontent.com/logicalclocks/karamel-chef/master/hopsworks-installer.sh
+   wget https://raw.githubusercontent.com/logicalclocks/karamel-chef/1.3/hopsworks-installer.sh
    chmod +x hopsworks-installer.sh
    ./hopsworks-installer.sh
 
