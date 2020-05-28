@@ -11,7 +11,7 @@ You will need an account with sudo access. From that account, download and run t
 
 .. code-block:: bash
 
-   wget https://raw.githubusercontent.com/logicalclocks/karamel-chef/master/hopsworks-installer.sh
+   wget https://raw.githubusercontent.com/logicalclocks/karamel-chef/1.3/hopsworks-installer.sh
    chmod +x hopsworks-installer.sh
    ./hopsworks-installer.sh
 
@@ -21,15 +21,15 @@ The above script will download and install Karamel on the same server that runs 
 Quickstart (Multi-Host Installation)
 -----------------------------------------------------
 
-First, you need to identify hosts where Hopsworks will be installed (Centos/RHEL 7.x and Ubuntu 18.04 are supported). We recommend at least 32GB RAM, 8 CPUs, and 100 GB of free hard-disk space. If this server is air-gapped (has no Internet access), contact Logical Clocks for support. You pick one server as the head node and on the account on that server with sudo access, you need to setup password ssh access to all the worker nodes. You then need to setup passwordless ssh access - following instructions eariler passwordless_ssh_.
+First, you need to identify hosts where Hopsworks will be installed (Centos/RHEL 7.x and Ubuntu 18.04 are supported). We recommend at least 32GB RAM, 8 CPUs, and 100 GB of free hard-disk space. If this server is air-gapped (has no Internet access), contact Logical Clocks for support. You pick one server as the head node and on the account on that server with sudo access, you need to setup password ssh access to all the worker nodes. You then need to setup passwordless ssh access - following instructions here: passwordless_ssh_.
 
 On the head node, in the sudo account, download and run this script that installs Hopsworks on all hosts. It will ask you to enter the IP address of all the workers during installation:
 
-.. _passwordless_ssh: http://snurran.sics.se/hops/tmp/html/installation_guide/platforms/cloud.html#password-less-ssh-access-from-the-head-node-to-worker-nodes
+.. _passwordless_ssh: ./cloud.html#password-less-ssh-access-from-the-head-node-to-worker-nodes
 
 .. code-block:: bash
 
-   wget https://raw.githubusercontent.com/logicalclocks/karamel-chef/master/hopsworks-installer.sh
+   wget https://raw.githubusercontent.com/logicalclocks/karamel-chef/1.3/hopsworks-installer.sh
    chmod +x hopsworks-installer.sh
    ./hopsworks-installer.sh
 
