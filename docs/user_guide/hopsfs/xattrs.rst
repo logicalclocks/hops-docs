@@ -14,9 +14,11 @@ Extended attributes in HopsFS are modeled after extended attributes in Linux (se
 Namespaces and Permissions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In HopsFS, as in Linux, there are four valid namespaces: ``user``, ``trusted``, ``system``, and ``security``. Each of these namespaces have different access restrictions.
+In HopsFS, as in Linux, there are four valid namespaces: ``user``, ``provenance``, ``trusted``, ``system``, and ``security``. Each of these namespaces have different access restrictions.
 
 The ``user`` namespace will commonly be used by client applications. Access to extended attributes in the user namespace is controlled by the corresponding file permissions.
+
+The ``provenance`` namespace is reserved for provenance related extended attributes.
 
 The ``trusted`` namespace is available only to HopsFS superusers.
 
@@ -74,11 +76,11 @@ Whether support for extended attributes is enabled on the NameNode. By default, 
 
 *   ``dfs.namenode.fs-limits.max-xattrs-per-inode``
 
-The maximum number of extended attributes per inode. By default, this limit is 32. The maximum allowed number is 255 extended attributes per inode.
+The maximum number of extended attributes per inode. By default, this limit is 32. The maximum allowed number is 127 extended attributes per inode.
 
 *   ``dfs.namenode.fs-limits.max-xattr-size``
 
-The maximum combined size of the name and value of an extended attribute in bytes. By default, the maximum allowed limit is 13985, where the name can take up to 255 bytes, and the value size can take up to 13730 bytes.
+The maximum combined size of the name and value of an extended attribute in bytes. It should be larger than 0 and less than or equal to the maximum size (hard limit), which is 3442755. By default, this limit is 13755 bytes, where the name can take up to 255 bytes, and the value size can take up to 13500 bytes.
 
 Compatibility with HDFS
 -----------------------
