@@ -18,7 +18,7 @@ Hopsworks User Guide
    hopsworks/uploadData.rst
    hopsworks/compress.rst
    hopsworks/dataSetShare.rst
-   hopsworks/textSearch.rst
+   hopsworks/search.rst
    hopsworks/apiKeys.rst
    hopsworks/jobs.rst
    hopsworks/logs.rst
