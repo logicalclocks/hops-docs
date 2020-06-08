@@ -271,7 +271,7 @@ Give a name to the secret, paste the API token from the previous step and finall
 Starting Jupyter with Git
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To start versioning your Jupyter notebooks is quite trivial. First copy the web URL of your repository from GitHub.
+To start versioning your Jupyter notebooks is quite trivial. First copy the web URL of your repository from GitHub or GitLab.
 
 .. _github_copy_url.png: ../../_images/_github_copy_url.png
 .. figure:: ../../imgs/jupyterlab_git/github_copy_url.png
@@ -283,12 +283,12 @@ To start versioning your Jupyter notebooks is quite trivial. First copy the web 
     Copy repository web URL from GitHub
 
 Navigate into a Project and head over to Jupyter from the left panel. Regardless of the mode, Git options are the same. For
-brevity, here we use Python mode. Expand the **Advanced configuration** and enable **Git**. More options will appear as shown in figure
+brevity, here we use Python mode. Expand the **Advanced configuration** and enable **Git** by choosing **GITHUB** or **GITLAB**, here we use GitHub. More options will appear as shown in figure
 below. Paste the repository's web URL from the previous step into *GitHub repository URL* and from the *API key* dropdown select
 the name of the *Secret* you entered.
 
-.. _launch_jupyter_git.png: ../../_images/launch_jupyter_git.png
-.. figure:: ../../imgs/jupyterlab_git/launch_jupyter_git.png
+.. _launch_jupyter_git.png: ../../_images/launch_jupyter_git.svg
+.. figure:: ../../imgs/jupyterlab_git/launch_jupyter_git.svg
     :alt: Launching JupyterLab with Git integration
     :target: `launch_jupyter_git.png`_
     :align: center
@@ -309,7 +309,7 @@ push to remote.
 Finally hit the **Start** button on the top right corner!
 
 From within JupyterLab you can perform all the common git operations such as diff a file, commit your changes, see the history of your branch,
-pull from a remote or push to a remote etc. For more comlicated operations you can always fall back to good old terminal.
+pull from a remote or push to a remote etc. For more complicated operations you can always fall back to good old terminal.
 
 .. _jupyterlab_git.gif: ../../_images/jupyterlab_git.gif
 .. figure:: ../../imgs/jupyterlab_git/jupyterlab_git.gif
