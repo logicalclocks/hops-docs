@@ -10,15 +10,6 @@ Jupyter Notebooks Basics
 
 Jupyter is provided as a micro-service on Hopsworks and can be found in the main UI inside a project.
 
-.. _jupyter1.png: ../../_images/jupyter1.png
-.. figure:: ../../imgs/jupyter1.png
-    :alt: Open the Jupyter service on Hopsworks
-    :target: `jupyter1.png`_
-    :align: center
-    :figclass: align-center
-
-    Open the Jupyter service on Hopsworks
-
 **Start a Jupyter notebook server**
 
 When you start a Jupyter notebook server you can select the 'Python' option, which enables the Python kernel in JupyterLab, the notebook server behaves the same as running Jupyter on your local workstation.
@@ -27,14 +18,37 @@ If you are doing Machine Learning you should pick the Experiments tab. See HopsM
 
 For general purpose notebooks, select the Spark tab and run with Static or Dynamic Spark Executors.
 
-.. _jupyter2.png: ../../_images/jupyter2.png
-.. figure:: ../../imgs/jupyter2.png
+Hopsworks supports both JupyterLab and classic Jupyter as Jupyter development frameworks. Clicking `Start` as shown
+in the image below, will start JupyterLab by default. You can select to start with classic Jupyter by clicking on
+the arrow next to the start button. Also, you can switch from JupyterLab to classic Jupyter from within JupyterLab
+and then `Help-Launch Classic Notebook`.
+
+.. _jupyter1.png: ../../_images/jupyter1.png
+.. figure:: ../../imgs/jupyter1.png
     :alt: Start a Jupyter notebook server
-    :target: `jupyter2.png`_
+    :target: `jupyter1.png`_
     :align: center
     :figclass: align-center
 
     Start a Jupyter notebook server
+
+**Logs**
+
+It can be useful to look at the Jupyter server logs in case of errors as they can provide more details compared to the
+error notification that is shown in the Jupyter dashboard. For example if Jupyter cannot start, simply click the
+`Logs` button next to the `Start` button in Jupyter dashboard.
+
+This will open a new tab (*make sure your browser does not block the new tab!*) with the Jupyter logs as shown in the
+figure below.
+
+.. _jupyter-logs-kibana.png: ../../_images/jupyter-logs-kibana.png
+.. figure:: ../../imgs/jupyter-logs-kibana.png
+    :alt: Jupyter server logs
+    :target: `jupyter-logs-kibana.png`_
+    :align: center
+    :figclass: align-center
+
+    Jupyter logs UI
 
 **Jupyter + Spark on Hopsworks**
 
