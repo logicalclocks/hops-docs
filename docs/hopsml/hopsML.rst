@@ -148,7 +148,7 @@ See tf_model_serving_, sklearn_model_serving_ and inferencing_ for more informat
 
 .. _experiments: ./experiment.html
 .. _models: ./model.html
-.. _feature_store: ../user_guide/hopsworks/featurestore.html
+.. _feature_store: ../featurestore/guides/featurestore.html
 .. _tf_model_serving: ./tf_model_serving.html
 .. _sklearn_model_serving: ./sklearn_model_serving.html
 .. _inferencing: ./inference.html
