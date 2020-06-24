@@ -4,7 +4,7 @@ OAuth2 integration
 
 Hopsworks enterprise edition supports OAuth2 integration for user login.
 
-To start using OAuth2 for user authentication enable oauth from the admin page by setting oauth_enabled to true as shown in the image below. 
+To start using OAuth2 for user authentication enable oauth from the admin page by setting `oauth_enabled` to `true` and then click `Reload variables` as shown in the image below. 
 
 .. _enable-oauth2.png: ../_images/admin/enable-oauth2.png
 .. figure:: ../imgs/admin/enable-oauth2.png
