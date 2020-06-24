@@ -55,4 +55,6 @@ The search on the top of the page can be used to test the connection to the auth
     * `Provider URI` is the base URI of the OpenId provider.
     * `Provider Metadata Endpoint Supported` if the OpenId provider supports metadata discovery. This can be used to retrieve openid-configuration if available.
 
-After filling in all the required fields, save the new client and hopsworks should be ready to use with OAuth. 
+After filling in all the required fields, save the new client.
+
+Finally logout from hopsworks and you should see a second login option with the provider name and logo of the newly registered client.
