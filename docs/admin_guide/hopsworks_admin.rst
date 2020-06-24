@@ -42,3 +42,4 @@ The panel gives you access to:
     jupyter.rst
     ldap.rst
     sso.rst
+    oauth2.rst
