@@ -1,7 +1,7 @@
 Search
 ========================
 
-You can search on the navigation bar for Datasets, Feature Groups, Features, and Training datasets.
+You can search on the navigation bar for Datasets, Projects, Feature Groups, Features, and Training datasets.
 The search bar behaves differently depending on whether you are on the landing page or inside a project. When you are on the landing page, as we can see from the below image, search can return any items that have not been marked explicitly as private when they were created. That is, unless you mark your Datasets, Features, Feature Groups, and Training Datasets private, they can be discovered (but not necessarily accessed) from the landing page.
 
 .. figure:: ../../imgs/search/global_search.png
@@ -24,7 +24,7 @@ In the case of searching in the project dashboard, your search will target all i
     :scale: 30%
     :figclass: align-center
 
-Search results are divided in four tabs:
+Search results are divided in six tabs:
 
 * Featuregroup
 
@@ -32,7 +32,11 @@ Search results are divided in four tabs:
 
 * Feature 
 
-* Others (Datasets) 
+* Projects
+
+* Datasets
+
+* Others (Directories and Files) 
 
 Results will also have highlighted the reason why they matched your search query:
 
@@ -47,10 +51,15 @@ Results will also have highlighted the reason why they matched your search query
 	* Tags
 * Feature 
 	* Name
-* Others (Datasets) 
+* Projects
+    * Name
+    * Description
+* Datasets
+    * Name
+    * Description
+    * Metadata
+* Others (Directories and Files) 
 	* Name
-	* Description
-	* Metadata
 
 .. figure:: ../../imgs/search/global_search_request.png
     :alt: Request access to data
@@ -58,7 +67,7 @@ Results will also have highlighted the reason why they matched your search query
     :align: center
     :figclass: align-center
 
-When you search from the landing page, if you discover an interesting item, you can click on the paper plane icon in order to send a request to be granted access. When requesting access you need to provide a project that you want to save this shared item in. If the owner of the item accepts your request, you will now be able to access its contents from the project you selected.
+When you search from the landing page, if you discover an interesting item, you can click on the name or "Request access" menu in order to send a request to be granted access. When requesting access you need to provide a project that you want to save this shared item in. If the owner of the item accepts your request, you will now be able to access its contents from the project you selected.
 
 .. figure:: ../../imgs/search/global_search_goto.png
     :alt: Go to location
@@ -66,5 +75,5 @@ When you search from the landing page, if you discover an interesting item, you 
     :align: center
     :figclass: align-center
 
-When searching globally if you have access to a particular item, you can see the "goto" icon. In the case of shared items it can be the case that you can access this item from multiple projects, which is why you can select to which project you want to navigate to.
+When searching globally if you have access to a particular item, you can see the link icon beside the name. In the case of shared items it can be the case that you can access this item from multiple projects, which is why you can select to which project you want to navigate to.
   
