@@ -33,6 +33,19 @@ If you want to modify these values on a live cluster, you can do this in the `/s
         <name>dfs.namenode.fs-limits.max-xattr-size</name>
         <value>...</value>
         <description>
-            The maximum combined size of the name and value of an extended attribute in bytes. It should be larger than 0 and less than or equal to the maximum size (hard limit), which is 3442755. By default, this limit is 13755 bytes, where the name can take up to 255 bytes, and the value size can take up to 13500 bytes.
+            The maximum combined size of the name and value of an extended attribute in bytes. It should be larger than 0 and less than or equal to the maximum size (hard limit), which is 3442755. By default, this limit is 1039755 bytes, where the name can take up to 255 bytes, and the value size can take up to 1039500 bytes.
         </description>
     </property>
+
+Since these xattr are used for attaching provenance information, as a rough estimate(with max name size and other details) you can use:
+Featuregroups:
+* 67755 - max 1000 features per featuregroup
+* 634755 - max 10000 features per featuregroup
+* 1039755 - max 16000 features per featuregroup
+* 34427552 - max 54000 features per featuregroup
+
+Training datasets:
+* 67755 - max 1000 features coming from about 10 featuregroups
+* 634755 - max 10000 features coming from about 20 featuregroups
+* 1039755 - max 16000 features coming from about 20 featuregroups
+* 34427552 - max 54000 features coming from about 20 featuregroups
