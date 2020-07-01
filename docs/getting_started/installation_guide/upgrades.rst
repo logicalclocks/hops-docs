@@ -17,3 +17,4 @@ During an update, use the same cluster definition you used for the installation.
    upgrades/1_0_0.rst
    upgrades/1_1_0.rst
    upgrades/1_3_0.rst
+   upgrades/1_4_0.rst
