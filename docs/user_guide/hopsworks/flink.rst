@@ -81,11 +81,11 @@ Therefore, user can submit their Flink jobs, typically jar files, by making http
 endpoints the API_ provides.
 
 .. _API: https://ci.apache.org/projects/flink/flink-docs-stable/monitoring/rest_api.html
-.. _flinkclient: https://github.com/logicalclocks/hops-examples
+.. _hops-examples: https://github.com/logicalclocks/hops-examples
 
 Hopsworks comes with a Python based client that enables users to submit their Flink programs to Hopsworks
 remotely without having to usethe Hopsworks UI. Instructions how to use the Hopsworks Flink command-line
-client are available at flinkclient_. Job progress can still be monitored from the Hopsworks UI.
+client are available at hops-examples_. Job progress can still be monitored from the Hopsworks UI.
 
 
 Flink History Server
