@@ -241,7 +241,7 @@ Distributed Training
 
 Compared to Experiment and Parallel Experiments, Distributed Training involves making use of multiple machines with potentially multiple GPUs per machine in order to train the model.
 
-HopsML supports the  MirroredStrategy, MultiWorkerMirroredStrategy ParameterServerStrategy and CollectiveAllReduceStrategy in TensorFlow. Making distributed training with TensorFlow or Keras as simple as invoking a function with your code in order to setup the cluster and start the training.
+HopsML supports all the Distribution Strategies in TensorFlow. Making distributed training with TensorFlow or Keras as simple as invoking a function with your code in order to setup the cluster and start the training.
 
 In TensorFlow without Hopsworks, setting up distributed training with one of the Distribution Strategies requires finding out the IP address of every machine in the cluster and the free port that will be used by each worker process. After that an environment variable named TF_CONFIG needs to be exported and every process started manually on each machine. TF_CONFIG contains information about where all the other workers are in the cluster in addition to what role the current process is playing in the training (worker, parameter server or chief). All this is done automatically by HopsML, in addition to reserving the specified number of GPUs for your worker and chief processes, parameter servers are run on CPU. Each process runs on a Dynamic Spark executor which is reclaimed by the resource manager when training is finished.
 
