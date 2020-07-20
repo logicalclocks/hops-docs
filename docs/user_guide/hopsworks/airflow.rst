@@ -293,6 +293,101 @@ be scheduled for execution. Then go to the file manager in Hopsworks,
 switch to column view from the right corner, right click on the DAG
 file and delete. Finally, go to Airflow UI and delete the entry.
 
+
+Integration with external Airflow
+---------------------------------
+
+Apache Airflow comes together with Hopsworks in a default installation. If your organization
+already provisions Airflow you can skip the ``airflow`` Chef recipes and follow the instructions
+below on how you can integrated it with Hopsworks.
+
+Installing Hopsworks plugin
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To be able to launch Jobs in Hopsworks from an external Airflow you must install our plugin. Follow
+the instructions `here <https://airflow.apache.org/docs/stable/plugins.html#plugins>`__ and download
+`Hopsworks plugin <https://github.com/logicalclocks/airflow-chef/tree/master/files/default/hopsworks_plugin>`__
+to ``$AIRFLOW_HOME/plugins`` folder. Finally, restart Airflow webserver and scheduler.
+
+Configuring connection to Hopsworks
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When installing Hopsworks with Airflow it is automatically configured with Hopsworks endpoint, but when
+you're using your own Airflow you need to let it know where is Hopsworks. For that you need to create a
+`Connection` in Airflow. As an administration in Airflow go to `Admin > Connections` and click on the `Create` tab.
+`Conn Id` is an arbitrary identifier that you can refer to this connection from DAGs - if you name it ``hopsworks_default``
+you **won't need to over-write it in DAGs**. In the figure below replace `HOPSWORKS_IP_ADDRESS` and `HOPSWORKS_LISTENING_PORT`
+with their respective values.
+
+.. figure:: ../../imgs/airflow/connection.png
+   :alt: Airflow Hopsworks connection
+   :figclass: align-center
+   :scale: 80%
+
+   Airflow Hopsworks connection
+
+Authentication
+~~~~~~~~~~~~~~
+
+In a default installation authentication is handled transparently to the user. When using an external Airflow you must be
+able to authenticate yourself to Hopsworks to be able to submit jobs. This is achieved by generating an API token, follow
+the :ref:`API keys` instructions and copy your API key - you will need it later.
+
+Composing a DAG
+~~~~~~~~~~~~~~~
+
+In you DAG definition you should add the API key generated in the previous step in ``args`` and refer to the custom Connection ID
+in Hopsworks Operators by overloading the ``hopsworks_conn_id`` argument **unless** if you named it ``hopsworks_default``.
+The DAG would look like the following. Note the ``params`` with the API key in ``args`` dictionary and the overloaded ``hopsworks_conn_id``
+when instantiating the operators.
+
+.. code-block:: python
+
+   import airflow
+   from datetime import datetime, timedelta
+   from airflow import DAG
+
+   from hopsworks_plugin.operators.hopsworks_operator import HopsworksLaunchOperator
+
+   DAG_OWNER = 'meb10000'
+   PROJECT_NAME = 'demo_project'
+   JOB_NAME_0 = "job-0"
+   JOB_NAME_1 = "job-1"
+   delta = timedelta(minutes=-10)
+   now = datetime.now()
+
+   args = {
+      'owner': DAG_OWNER,
+      'depends_on_past': False,
+      'start_date': now + delta,
+      'params': {'hw_api_key': 'YOUR_API_KEY'}
+   }
+
+   dag = DAG(
+      dag_id = "job_launcher_dag",
+      default_args = args,
+      schedule_interval = "@once"
+   )
+
+   task0 = HopsworksLaunchOperator(dag=dag,
+                                 hopsworks_conn_id = 'MY_CUSTOM_HOPSWORKS_CONNECTION'
+                                 project_name=PROJECT_NAME,
+                                 # Arbitrary task name
+                                 task_id="run_{0}".format(JOB_NAME_0),
+                                 #job_arguments="--key val", #runtime arguments to be passed to the job
+                                 job_name=JOB_NAME_0)
+
+   task1 = HopsworksLaunchOperator(dag=dag,
+                                 hopsworks_conn_id = 'MY_CUSTOM_HOPSWORKS_CONNECTION'
+                                 project_name=PROJECT_NAME,
+                                 # Arbitrary task name
+                                 task_id="run_{0}".format(JOB_NAME_1),
+                                 #job_arguments="--key val", #runtime arguments to be passed to the job
+                                 job_name=JOB_NAME_1)
+
+   task0 >> task1
+
+
 Conclusion
 ----------
 
