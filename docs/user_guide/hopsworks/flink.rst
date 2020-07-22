@@ -81,24 +81,11 @@ Therefore, user can submit their Flink jobs, typically jar files, by making http
 endpoints the API_ provides.
 
 .. _API: https://ci.apache.org/projects/flink/flink-docs-stable/monitoring/rest_api.html
+.. _hops-examples: https://github.com/logicalclocks/hops-examples
 
-The only additional steps compared to the API are:
-- Login to Hopsworks to obtain a JWT, or generate an api-key token. Either can be used to authenticate against the
-Hopsworks REST API.
-- The endpoint should be submitted to Hopsworks and not the Flink Master directly. The url for submitting the
-WordCount.jar of the previous example looks like
-*https://<your_hopsworks_domain>:<hopsworks_secure_port>/hopsworks-api/flinkmaster/application_1565943008698_0001*/jars/30518c30-7d26-4c66-a1f0-8b46deb9c826_WordCount.jar/run?entry-class=org.apache.flink.streaming.examples
-.wordcount.WordCount&parallelism=1
-
-In this example, you need to replace the Application Id with the one of the running Flink session cluster. You can
-retrieve the Application Id by clicking on the name of the job from the Jobs view.
-
-.. _flink_appid.png: ../../_images/flink_appid.png
-.. figure:: ../../imgs/flink_appid.png
-    :alt: Flink application id
-    :target: `flink_appid.png`_
-    :align: center
-    :figclass: align-center
+Hopsworks comes with a Python based client that enables users to submit their Flink programs to Hopsworks
+remotely without having to usethe Hopsworks UI. Instructions how to use the Hopsworks Flink command-line
+client are available at hops-examples_. Job progress can still be monitored from the Hopsworks UI.
 
 
 Flink History Server
