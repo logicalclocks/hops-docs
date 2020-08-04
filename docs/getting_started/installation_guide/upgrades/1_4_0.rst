@@ -63,9 +63,10 @@ Python environment provided by Hopsworks, so all additional Python libraries tha
 
 Users can find a YAML file that contains the exported Anaconda environment of the project including any
 user-installed libraries. This file can be found in the `Resources` dataset with a name `python_env_<project>.yml`
-where <project> is the project name. Users can use this YAML file to import back their Python environment by using
-the Hopsworks UI `Import` option or just skim through and use this file as a backup of their project's
-previous Python environment.
+where <project> is the project name. Users can use this YAML file to refer to previously installed Python libraries
+and then manually install them through the UI or the REST API. Importing the exported environment is discouraged as
+the base environment has been modified from the previous version and certain libraries such as TensorFlow will
+malfunction.
 
 
 TensorFlow 1.x dropped
