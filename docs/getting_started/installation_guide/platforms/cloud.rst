@@ -5,14 +5,108 @@ Cloud Platforms (AWS, GCP, Azure)
 Quickstart on AWS 
 -------------------------------------
 
-You can use Hopsworks.ai_ as a managed platform on AWS, see :ref:`hopsworks-ai`
+You can use Hopsworks.ai_ as a managed platform on AWS, see :ref:`hopsworks-ai`.
 
 
 .. _Hopsworks.ai: https://www.hopsworks.ai
 
+You can also install Hopsworks on existing virtual machines (VMs) using :ref:`hopsworks-installer`.
+
+
+Quickstart on Azure
+-------------------------------------
+
+You can use Hopsworks.ai_ as a managed platform on Azure, see :ref:`hopsworks-ai`.
+
+
+.. _Hopsworks.ai: https://www.hopsworks.ai
+
+
+You can also install Hopsworks and create its virtual machines (VMs) on Azure using the  :ref:`hopsworks-cloud-installer` (requires Azure CLI tools).
+
+You can also install Hopsworks on existing virtual machines (VMs) using :ref:`hopsworks-installer`.
+
+
+Quickstart on GCP
+-------------------------------------
+
+You can install Hopsworks and create its virtual machines (VMs) on GCP using the  :ref:`hopsworks-cloud-installer` (requires GCP CLI tools).
+
+You can also install Hopsworks on existing virtual machines (VMs) using :ref:`hopsworks-installer`.
+
+
+
+.. _hopsworks-cloud-installer:
+
+Hopsworks Cloud Installer (uses GCP, Azure CLI tools)
+=======================================
+
+
+GCP CLI Tools or Azure CLI Supported Installation
+-----------------------------------------------------
+
+This nstallation requires a Linux machine (Ubuntu or Redhat/Centos). It will create the virtual machines on which Hopsworks will be installated and perform the installation. You can run the script interactively or non-interactively.
+
+
+Interactive Installation
+
+.. code-block:: bash
+
+   wget https://raw.githubusercontent.com/logicalclocks/karamel-chef/2.0/hopsworks-cloud-installer.sh
+   chmod +x hopsworks-cloud-installer.sh
+   ./hopsworks-cloud-installer.sh
+   
+   The above script will create the VMs using either the gcloud tools or azure tools (and install and configure them if they are not already installed). It will then download and install Hopsworks using the hopsworks-installer.sh script below.
+   You can configure your cluser before installing it by running
+
+Non-Interactive Installation
+
+Single-host Community Non-Interactive Installation
+.. code-block:: bash
+
+   ./hopsworks-cloud-installer.sh -ni -i community
+
+Multi-host Community Non-Interactive Installation with GPUs
+
+This will install 8 GPU workers along with a head node.
+.. code-block:: bash
+
+   ./hopsworks-cloud-installer.sh -ni -i community-cluster -gt v100 --num-gpu-workers 8
+
+
+Enterprise Installation
+You will need to contact a Logical Clocks sales representative to acquire a URL, username, and password.
+
+Then, you can install a single-host enterprise cluster with 8 Nvidia GPUs using:
+.. code-block:: bash
+
+   ./hopsworks-cloud-installer.sh -ni -i enterprise -gt v100 -gpus 8 -d <URL> -du <username> -dp <password>
+   
    
 
-Quickstart on AWS and GCP (Single-Host Installation)
+Customize your Cluster Installation
+
+.. code-block:: bash
+
+   ./hopsworks-cloud-installer.sh --dry-run
+
+   # Then edit the cluster definition(s) you want to change
+   vim cluster-defns/hopsworks-installer.yml
+   vim cluster-defns/hopsworks-worker.yml   
+   vim cluster-defns/hopsworks-worker-gpu.yml
+		
+   # Now run the installer script
+   ./hopsworks-cloud-installer.sh    
+
+
+
+.. _hopsworks-installer:
+
+Installing Hopsworks on existing VMs (GCP, Azure, AWS, VMWare, OpenStack, other Clouds)
+=======================================
+   
+   
+AWS and GCP (Single-Host Installation)
 -----------------------------------------------------
 
 First, you need to create a virtual machine on AWS EC2 or GCP Compute Engine where Hopsworks will be installed (Centos/RHEL 7.x and Ubuntu 18.04 are supported). Then, from the account with sudo access, download and run the following script that installs Hopsworks:
@@ -27,7 +121,7 @@ The above script will download and install Karamel on the same server that runs 
 
 
 
-Quickstart on AWS and GCP (Multi-Host Installation)
+AWS and GCP (Multi-Host Installation)
 -----------------------------------------------------
 
 First, you need to create the virtual machines on AWS EC2 or GCP Compute Engine where Hopsworks will be installed (Centos/RHEL 7.x and Ubuntu 18.04 are supported). You pick one VM as the head node and on the account on that server with sudo access, you need to setup password ssh access to all the worker nodes.
