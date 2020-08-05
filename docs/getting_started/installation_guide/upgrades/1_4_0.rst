@@ -58,7 +58,7 @@ Python environment migration
 ============================
 
 Hopsworks back end mechanism for managing projects' Python environment is now more scalable and robust by moving to
-Docker based Anaconda environments. That means Python environments of existing projects will defaut back to the base
+Docker based Anaconda environments. That means Python environments of existing projects will default back to the base
 Python environment provided by Hopsworks, so all additional Python libraries that were installed will be lost.
 
 Users can find a YAML file that contains the exported Anaconda environment of the project including any
@@ -69,8 +69,7 @@ the base environment has been modified from the previous version and certain lib
 malfunction.
 
 
-TensorFlow 1.x dropped
+TensorFlow 2.x support
 ======================
 
-As of this Hopsworks version only TensorFlow 2.x is supported. TensorFlow 1.x is not included in a project's default
-Python environment.
+As of this version, Hopsworks projects are shipped by default with TensorFlow 2
