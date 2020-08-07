@@ -1,6 +1,6 @@
 .. _hopsworks-ai:
 
-Hopsworks.ai (Managed Hopsworks on AWS)
+Hopsworks.ai (SaaS)
 =======================================
 
 .. toctree:: :maxdepth: 1

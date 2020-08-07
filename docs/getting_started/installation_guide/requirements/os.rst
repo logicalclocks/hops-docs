@@ -8,4 +8,4 @@ Hopsworks runs on the Linux operating system, and has been tested on the followi
 * RedHat 7.6+
 * Centos 7.6+
 
-Hopsworks has not been tested on other Linux distributions.
+Hopsworks is not tested on other Linux distributions.

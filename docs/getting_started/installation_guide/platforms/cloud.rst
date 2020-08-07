@@ -1,54 +1,35 @@
 ==========================================================
-Cloud Platforms (AWS, GCP, Azure)
+Installation in the Cloud
 ==========================================================
 
-Quickstart on AWS 
--------------------------------------
+AWS 
+===========
 
-You can use Hopsworks.ai_ as a managed platform on AWS, see :ref:`hopsworks-ai`.
-
-
-.. _Hopsworks.ai: https://www.hopsworks.ai
-
-You can also install Hopsworks on existing virtual machines (VMs) using :ref:`hopsworks-installer`.
+- :ref:`hopsworks-ai`
+- :ref:`hopsworks-installer`.
 
 
-Quickstart on Azure
--------------------------------------
+Azure
+===========
 
-You can use Hopsworks.ai_ as a managed platform on Azure, see :ref:`hopsworks-ai`.
+- :ref:`hopsworks-ai`
+- :ref:`hopsworks-installer`;
+- AZ CLI tools installation with :ref:`hopsworks-cloud-installer`.
 
+GCP
+===========
 
-.. _Hopsworks.ai: https://www.hopsworks.ai
-
-
-You can also install Hopsworks and create its virtual machines (VMs) on Azure using the  :ref:`hopsworks-cloud-installer` (requires Azure CLI tools).
-
-You can also install Hopsworks on existing virtual machines (VMs) using :ref:`hopsworks-installer`.
-
-
-Quickstart on GCP
--------------------------------------
-
-You can install Hopsworks and create its virtual machines (VMs) on GCP using the  :ref:`hopsworks-cloud-installer` (requires GCP CLI tools).
-
-You can also install Hopsworks on existing virtual machines (VMs) using :ref:`hopsworks-installer`.
-
+- :ref:`hopsworks-installer`.
+- GCP CLI tools installation with :ref:`hopsworks-cloud-installer`.
 
 
 .. _hopsworks-cloud-installer:
 
-Hopsworks Cloud Installer (uses GCP, Azure CLI tools)
-=======================================
+Hopsworks Cloud Installer
+===============================
 
+This installation requires the command-line on a  Linux machine (Ubuntu or Redhat/Centos). It will create the VMs on which Hopsworks will be installed using CLI tools (az or gcloud), and then install Hopsworks on those VMs. 
 
-GCP CLI Tools or Azure CLI Supported Installation
------------------------------------------------------
-
-This nstallation requires a Linux machine (Ubuntu or Redhat/Centos). It will create the virtual machines on which Hopsworks will be installated and perform the installation. You can run the script interactively or non-interactively.
-
-
-Interactive Installation
 
 .. code-block:: bash
 
@@ -56,58 +37,112 @@ Interactive Installation
    chmod +x hopsworks-cloud-installer.sh
    ./hopsworks-cloud-installer.sh
    
-   The above script will create the VMs using either the gcloud tools or azure tools (and install and configure them if they are not already installed). It will then download and install Hopsworks using the hopsworks-installer.sh script below.
-   You can configure your cluser before installing it by running
+The above script will create the VMs using either the gcloud tools or azure tools. If the tools are not already installed, it will prompt for their installation. After the script has provisioned and configured the VMs, it will download both the :ref:`hopsworks-installer` script and the cluster definitions and call the :ref:`hopsworks-installer` script to install Hopsworks.
 
-Non-Interactive Installation
+Example Installation Commands
+-------------------------------------
 
-Single-host Community Non-Interactive Installation
+The commands shown below can also be run non-interactively with the '-ni' switch.
+
 .. code-block:: bash
 
-   ./hopsworks-cloud-installer.sh -ni -i community
+   # Single-host Community Installation for GCP
+   ./hopsworks-cloud-installer.sh -i community -c gcp
+   # Single-host Community Installation for Azure
+   ./hopsworks-cloud-installer.sh -i community -c azure
 
-Multi-host Community Non-Interactive Installation with GPUs
 
-This will install 8 GPU workers along with a head node.
 .. code-block:: bash
 
-   ./hopsworks-cloud-installer.sh -ni -i community-cluster -gt v100 --num-gpu-workers 8
+   # Multi-host Community Installation with 8 Nvidia V100 GPUs on a 8 VMs
+   ./hopsworks-cloud-installer.sh -c gcp -i community-cluster -gt v100 --num-gpu-workers 8
+
+   # Single-host Community Installation with 8 Nvidia P100 GPUs on one VM
+   ./hopsworks-cloud-installer.sh -c gcp -i community-gpu -gt p100 -gpus 8
 
 
-Enterprise Installation
-You will need to contact a Logical Clocks sales representative to acquire a URL, username, and password.
+For the Enterprise installation, you will need to contact a Logical Clocks sales representative to acquire a URL, username, and password.
 
-Then, you can install a single-host enterprise cluster with 8 Nvidia GPUs using:
 .. code-block:: bash
 
-   ./hopsworks-cloud-installer.sh -ni -i enterprise -gt v100 -gpus 8 -d <URL> -du <username> -dp <password>
-   
+   # Single-host enterprise VM with 8 Nvidia GPUs using:
+   ./hopsworks-cloud-installer.sh -c gcp -i enterprise -gt v100 -gpus 8 -d <URL> -du <username> -dp <password>
+
+
+List at the running VMs:
+
+.. code-block:: bash
+
+   ./hopsworks-cloud-installer.sh -c azure -l
    
 
 Customize your Cluster Installation
+-------------------------------------
+
+If you want to configure the Hopsworks cluster before installation (change the set of installed services, configure resources for services, configure username/passwords, etc), you can do so by first calling the script with the '--dry-run' switch. This will download the templates for the cluster definitions that will be used to install the head (master) VM and any worker VMs (with or without GPUs). More information on editing cluster definitions is in :ref:`hopsworks-cloud-installer`.
 
 .. code-block:: bash
 
+   # First download the cluster definitions by calling with '--dry-run'
    ./hopsworks-cloud-installer.sh --dry-run
 
    # Then edit the cluster definition(s) you want to change
-   vim cluster-defns/hopsworks-installer.yml
+   vim cluster-defns/hopsworks-head.yml
    vim cluster-defns/hopsworks-worker.yml   
    vim cluster-defns/hopsworks-worker-gpu.yml
 		
-   # Now run the installer script
+   # Now run the installer script and it will install a cluster based on your updated cluster definitions
    ./hopsworks-cloud-installer.sh    
 
+   
+Installation Script Options
+-------------------------------------
+
+There are many command options that can be set when running the script. When the VM is created, it is given a name, that by defaul is prefixed by the Unix username. This VM name prefix can be changed using the '-n' argument. If you set your own prefix, you need to use it when listing and deleting VMs, passing the prefix for those listing and VM deletion commands ('-n <prefix> -rm'). If you have already created the VMs with the script but want to re-run the installation again on the existing VMs, you can pass the '-sc' argument that skips the creation of the VMs that Hopsworks will be installed on
+
+.. code-block:: bash
+		
+  ./hopsworks-cloud-installer.sh -h
+  usage: [sudo] ./
+  [-h|--help]      help message
+  [-i|--install-action community|community-gpu|community-cluster|enterprise|kubernetes]
+  'community' installs Hopsworks Community on a single VM
+  'community-gpu' installs Hopsworks Community on a single VM with GPU(s)
+  'community-cluster' installs Hopsworks Community on a multi-VM cluster
+  'enterprise' installs Hopsworks Enterprise (single VM or multi-VM)
+  'kubernetes' installs Hopsworks Enterprise (single VM or multi-VM) alson with open-source Kubernetes
+  'purge' removes any existing Hopsworks Cluster (single VM or multi-VM) and destroys its VMs
+  [-c|--cloud gcp|aws|azure] Name of the public cloud
+  [-dr|--dry-run]  generates cluster definition (YML) files, allowing customization of clusters.
+  [-g|--num-gpu-workers num] Number of workers (with GPUs) to create for the cluster.
+  [-gpus|--num-gpus-per-worker num] Number of GPUs per worker.
+  [-gt|--gpu-type type]
+  'v100' Nvidia Tesla V100
+  'p100' Nvidia Tesla P100
+  't4' Nvidia Tesla T4
+  'k80' Nvidia K80
+  [-d|--download-enterprise-url url] downloads enterprise binaries from this URL.
+  [-dc|--download-url url] downloads binaries from this URL.
+  [-du|--download-user username] Username for downloading enterprise binaries.
+  [-dp|--download-password password] Password for downloading enterprise binaries.
+  [-l|--list-public-ips] List the public ips of all VMs.
+  [-n|--vm-name-prefix name] The prefix for the VM name created.
+  [-ni|--non-interactive] skip license/terms acceptance and all confirmation screens.
+  [-rm|--remove] Delete a VM - you will be prompted for the name of the VM to delete.
+  [-sc|--skip-create] skip creating the VMs, use the existing VM(s) with the same vm_name(s).
+  [-w|--num-cpu-workers num] Number of workers (CPU only) to create for the cluster.
 
 
 .. _hopsworks-installer:
 
-Installing Hopsworks on existing VMs (GCP, Azure, AWS, VMWare, OpenStack, other Clouds)
-=======================================
+Installing Hopsworks on existing VMs
+=========================================
+
+The hopsworks-installer.sh script downloads, configures, and installs Hopsworks. It is typically run interactively, prompting the user about details of what to be is installed and where. It can also be run non-interactively (no user prompts) using the '-ni' switch.
    
-   
+
 AWS and GCP (Single-Host Installation)
------------------------------------------------------
+-----------------------------------------
 
 First, you need to create a virtual machine on AWS EC2 or GCP Compute Engine where Hopsworks will be installed (Centos/RHEL 7.x and Ubuntu 18.04 are supported). Then, from the account with sudo access, download and run the following script that installs Hopsworks:
 
@@ -122,13 +157,13 @@ The above script will download and install Karamel on the same server that runs 
 
 
 AWS and GCP (Multi-Host Installation)
------------------------------------------------------
+-----------------------------------------
 
 First, you need to create the virtual machines on AWS EC2 or GCP Compute Engine where Hopsworks will be installed (Centos/RHEL 7.x and Ubuntu 18.04 are supported). You pick one VM as the head node and on the account on that server with sudo access, you need to setup password ssh access to all the worker nodes.
 
 
 Password-less SSH Access from the Head node to Worker nodes
-==============================================================
+-----------------------------------------------------------------
 
 First, on the head node, you should create an openssh keypair without a password:
 
@@ -162,7 +197,7 @@ Test that you now have passwordless SSH acess to all the worker nodes from the h
 
 
 Multi-node installation
-============================
+-----------------------------------
 
 
 On the head node, in the sudo account, download and run this script that installs Hopsworks on all hosts. It will ask you to enter the IP address of all the workers during installation:
@@ -176,10 +211,40 @@ On the head node, in the sudo account, download and run this script that install
 The above script will download and install Karamel on the same server that runs the script. Karamel will install Hopsworks across all hosts. Installation takes roughly 1 hr, slightly longer for large clusters. To find out more about Karamel, read more below.
 
 
+Installation Script Options
+-----------------------------------
+
+.. code-block:: bash
+		
+  ./hopsworks-installer.sh -h
+  usage: [sudo] ./hopsworks-installer.sh
+  [-h|--help]      help message
+  [-i|--install-action localhost|localhost-tls|cluster|enterprise|karamel|purge|purge-all]
+  'localhost' installs a localhost Hopsworks cluster
+  'localhost-tls' installs a localhost Hopsworks cluster with TLS enabled
+  'cluster' installs a multi-host Hopsworks cluster
+  'enterprise' installs a multi-host Enterprise  Hopsworks cluster
+  'kubernetes' installs a multi-host Enterprise Hopsworks cluster with Kubernetes
+  'karamel' installs and starts Karamel
+  'purge' removes Hopsworks completely from this host
+  'purge-all' removes Hopsworks completely from ALL hosts
+  [-cl|--clean]    removes the karamel installation
+  [-dr|--dry-run]  does not run karamel, just generates YML file
+  [-c|--cloud      on-premises|gcp|aws|azure]
+  [-w|--workers    IP1,IP2,...,IPN|none] install on workers with IPs in supplied list (or none). Uses default mem/cpu/gpus for the workers.
+  [-d|--download-enterprise-url url] downloads enterprise binaries from this URL.
+  [-dc|--download-url] downloads binaries from this URL.
+  [-du|--download-user username] Username for downloading enterprise binaries.
+  [-dp|--download-password password] Password for downloading enterprise binaries.
+  [-ni|--non-interactive)] skip license/terms acceptance and all confirmation screens.
+  [-p|--https-proxy) url] URL of the https proxy server. Only https (not http_proxy) with valid certs supported.
+  [-pwd|--password password] sudo password for user running chef recipes.
+  [-y|--yml yaml_file] yaml file to run Karamel against.
+  
 
 
-Quickstart on Azure 
--------------------------------------
+Important Notes on Azure 
+-----------------------
 
 Azure VMs do not support private DNS by default, so you will need to add support for a private DNS space to the VMs used in Hopsworks. Follow these instructions AzureDNS_ to create the virtual machines for use in Hopsworks - but make sure your DNS zone name is very short (like 'hp' (2 chars)) and your VM name is short (like 'h1' (2 chars)). If it is longer, you total fully qualified domain name might exceed 60 chars, and it will not work with OpenSSL/TLS. An error message will appear during installation duing the kagent::install.rb recipe, like this:
 

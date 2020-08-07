@@ -1,5 +1,5 @@
 ====================================================
-EncryptedData-at-Rest Requirements
+Encrypted Data-at-Rest Requirements
 ====================================================
 
 We recommend 
