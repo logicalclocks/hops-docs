@@ -15,4 +15,5 @@ HopsML
    maggy.rst
    sklearn_model_serving.rst   
    tf_model_serving.rst
+   provenance.rst
 
