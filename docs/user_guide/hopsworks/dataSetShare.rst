@@ -35,7 +35,7 @@ Set* is to be shared with. It is also feasible to filter projects by name as sho
  
    Select a project to share the Data Set with
  
-When shareing a data set you can also choose share permissions. Available permissions are shown in the image below.
+When sharing a Data Set you can also choose share permissions. Available permissions are shown in the image below.
  
 .. _share-permission.png: ../../_images/datasets/share-permission.png
 .. figure:: ../../imgs/datasets/share-permission.png
@@ -77,7 +77,7 @@ Changing share permission
 -------------------------
  
 To change permission of a shared Data Set `data owners` can right-click on the Data Set and click ``Share permission``. This will open a popup
-dialog with a table listing all projects the dataset is shared with.
+dialog with a table listing all projects the Data Set is shared with.
  
 .. _change-share-permission.png: ../../_images/datasets/change-share-permission.png
 .. figure:: ../../imgs/datasets/change-share-permission.png
@@ -100,7 +100,7 @@ fine-grained access control to original data to other members/departments withou
 over the data. Essentially that means that data organized in Data Sets can be shared with other projects so that
 other users of Hopsworks can access and make use of this data in their AI pipelines and programs.
  
-By default, all members of the project owning the Data Set are allowed only ``read-only`` access to all files and directories of the Data Set. There are two more access
+By default, all members of the project the Data Set was created in, are allowed only ``read-only`` access to all files and directories of the Data Set. There are two more access
 levels that give higher privileges to members that can access this Data Set. All access-levels are:
  
 - **Everyone can read**: gives read only access to all members of the project the Data Set is shared with.
