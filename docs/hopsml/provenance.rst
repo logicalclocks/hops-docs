@@ -1,16 +1,16 @@
 Provenance
 ==========
-The provenance layer in Hopsworks allows for the tracking of file(HopsFS) and application(Yarn) operations in order to provide users with aditional details.
+The provenance layer in Hopsworks allows for the tracking of file(HopsFS) and application(YARN) operations in order to provide users with additional details.
 There are currently four types of provenance:
 
 * DISABLED
-* META - enables search of projects/datasets.
-* MIN - enables search of featuregroups/training datasets/features including attached tags.
-* FULL - allows linking of feature groups/training datasets/experiments/models.
+* META - enables search of projects and datasets.
+* MIN - enables search of featuregroups, training datasets and features including attached tags.
+* FULL - allows linking of feature groups, training datasets, experiments and models.
 
 **Note:** Linking of ML artifacts (FULL provenance) is a Hopsworks Enterprise feature.
 
-Temporary provisions (These will be updated soon)
+Temporary limitations:
 
 * Provenance can only be set cluster wide, by an administrator, under Hopsworks :numref:`Variables<prov_cluster_var>`.  The variable of interest is **provenance_type** and it can take the values *DISABLED / META / MIN / FULL*.
 * Changing provenance type only affects newly created projects. 
