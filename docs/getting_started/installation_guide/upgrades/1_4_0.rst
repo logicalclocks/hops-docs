@@ -1,6 +1,10 @@
 =============
 Version 1.4.0
 =============
+
+Provenance
+==========
+
 When upgrading to version 1.4.0 you can enable large xattr. 
 By default xattr max size is 13500(13KB) and 255 for its name. You can increase this value to 3442755(3MB) by changing the hops config. 
 Another limitation is the number of different xattrs that can be attached to each file. By default the number is 32. This can also be increased to 127 by changing the hops config.
@@ -59,3 +63,23 @@ Training datasets:
 * 634755 - max 10000 features coming from about 20 featuregroups
 * 1039755 - max 16000 features coming from about 20 featuregroups
 * 34427552 - max 54000 features coming from about 20 featuregroups
+
+Python environment migration
+============================
+
+Hopsworks back end mechanism for managing projects' Python environment is now more scalable and robust by moving to
+Docker based Anaconda environments. That means Python environments of existing projects will default back to the base
+Python environment provided by Hopsworks, so all additional Python libraries that were installed will be lost.
+
+Users can find a YAML file that contains the exported Anaconda environment of the project including any
+user-installed libraries. This file can be found in the `Resources` dataset with a name `python_env_<project>.yml`
+where <project> is the project name. Users can use this YAML file to refer to previously installed Python libraries
+and then manually install them through the UI or the REST API. Importing the exported environment is discouraged as
+the base environment has been modified from the previous version and certain libraries such as TensorFlow will
+malfunction.
+
+
+TensorFlow 2.x support
+======================
+
+As of this version, Hopsworks projects are shipped by default with TensorFlow 2.
