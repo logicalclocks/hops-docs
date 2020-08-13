@@ -49,6 +49,7 @@ Results will also have highlighted the reason why they matched your search query
 	* Name
 	* Description
 	* Tags
+    * Features
 * Feature 
 	* Name
 * Projects
@@ -77,3 +78,20 @@ When you search from the landing page, if you discover an interesting item, you 
 
 When searching globally if you have access to a particular item, you can see the link icon beside the name. In the case of shared items it can be the case that you can access this item from multiple projects, which is why you can select to which project you want to navigate to.
   
+.. _search_by_feature_components:
+
+Search By Feature Components
+----------------------------
+As can be seen in the previous section, Feature Groups and Training Datasets can be searched by their component features. This is based on HopsFS XAttr and thus the size of component features is going to be related to the maximum size configured for XAttrs. You can read more on how to configure XAttr size in :ref:`HopsFS XAttr Configuration <hopsfs_xattr_config>`.
+
+For rough estimates of XAttr size related to number of features per
+Feature Group/Training Dataset:
+
+* XAttr size: 67755    - max  1000 features
+* XAttr size: 634755   - max 10000 features
+* XAttr size: 1039755  - max 16000 features
+* XAttr size: 34427552 - max 54000 features
+
+If the HopsFS XAttr max size is configured to a value smaller than required, the Features Groups/Training Datasets will not be searchable by Features. They will still be available and searchable by the other attributes. 
+
+For example, if your HopsFS is configured to accept XAttr of maximum 634755 size, and you create a Feature Group with 15000 features, this Feature Group will not be searchable by its component feature names, but it will still be searchable by name.

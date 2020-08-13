@@ -65,6 +65,8 @@ Sets an extended attribute name and value for a file or directory.
   | \<path\> | The file or directory. |
 
 
+.. _hopsfs_xattr_config:
+
 Configuration options
 ---------------------
 
