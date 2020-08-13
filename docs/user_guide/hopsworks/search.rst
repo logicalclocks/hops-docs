@@ -40,18 +40,18 @@ Search results are divided in six tabs:
 
 Results will also have highlighted the reason why they matched your search query:
 
-* Featuregroup
+* Feature 
+	* Name
+* Feature Group
 	* Name
 	* Description
 	* Tags
 	* Features
-* Training dataset
+* Training Dataset
 	* Name
 	* Description
 	* Tags
-    * Features
-* Feature 
-	* Name
+	* Features
 * Projects
     * Name
     * Description
@@ -59,8 +59,8 @@ Results will also have highlighted the reason why they matched your search query
     * Name
     * Description
     * Metadata
-* Others (Directories and Files) 
-	* Name
+* Others (Directories and Files)
+    * Name
 
 .. figure:: ../../imgs/search/global_search_request.png
     :alt: Request access to data
