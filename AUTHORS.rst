@@ -5,7 +5,7 @@ Authors
 * Gautier Berthou
 * Salman Niazi
 * Mahmoud Ismail
-* Ermias Gebremelski
+* Ermias Gebremeskel
 * Robin Andersson
 * Kim Hammar
 * Antonis Kouzoupis
