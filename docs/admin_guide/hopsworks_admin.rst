@@ -41,5 +41,6 @@ The panel gives you access to:
     nodes.rst
     jupyter.rst
     ldap.rst
+    ldap_group_to_project_mapping.rst
     sso.rst
     oauth2.rst
