@@ -4,12 +4,13 @@ Installation
 ============
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
-   platforms/cloud.rst
-   platforms/baremetal.rst
+   platforms/options.rst
+   platforms/hopsworks-cloud-installer.rst
+   platforms/hopsworks-installer.rst	      
    platforms/vagrant.rst
-   platforms/cookbooks.rst
+   platforms/custom.rst
    requirements.rst
    upgrades.rst
 	      

@@ -1,6 +1,130 @@
-====================================
-On-Premises Installation
-====================================
+.. _hopsworks-installer:
+
+Hopsworks Installer
+=========================================
+
+The hopsworks-installer.sh script downloads, configures, and installs Hopsworks. It is typically run interactively, prompting the user about details of what to be is installed and where. It can also be run non-interactively (no user prompts) using the '-ni' switch.
+   
+
+Requirements
+-----------------------------------
+You need at least one server or virtual machine on which Hopsworks will be installed with at least the following specification:
+
+* Centos/RHEL 7.x or Ubuntu 18.04;
+* at least 32GB RAM,
+* at least 8 CPUs,
+* 100 GB of free hard-disk space,
+* outside Internet access (if this server is air-gapped, contact Logical Clocks for support),
+* a UNIX user account with sudo privileges.
+
+
+Quickstart 
+-----------------------------------------
+
+On your server/VM, run the following bash commands from your user account with sudo privileges:
+
+.. code-block:: bash
+
+   wget https://raw.githubusercontent.com/logicalclocks/karamel-chef/1.3/hopsworks-installer.sh
+   chmod +x hopsworks-installer.sh
+   ./hopsworks-installer.sh
+
+Installation takes roughly 1 hr, or slower if your server/VM has a low-bandwidth Internet connection.
+
+
+
+Setting up a Cluster for Installation
+-----------------------------------------------------------------
+
+You need to identify a set of servers/VMs and create the same user account with sudo privileges on all the servers. You should identify one server as the head server from which you will perform the installation. You need to configure password-less SSH Access from the Head node to Worker nodes. First, on the head node, you should create an openssh keypair without a password:
+
+.. code-block:: bash
+
+   cat /dev/zero | ssh-keygen -q -N "" 
+   cat ~/.ssh/id_rsa.pub
+
+The second line above will print the public key for the sudo account on the head node. Copy that public key, and append it to the ~/.ssh/authorized_keys files on all worker nodes, so that that the sudo account on the head node can SSH into the worker nodes without a password. It may be that you need to configure your sshd daemon (sshd_config_ and sshlogin_) to allow openssh-key based login, depending on how your server is configured:
+
+.. _sshlogin: https://www.cyberciti.biz/faq/ubuntu-18-04-setup-ssh-public-key-authentication/
+
+.. _sshd_config: https://linuxize.com/post/how-to-setup-passwordless-ssh-login/
+
+For both Ubuntu and Centos/RHEL, and assuming the sudo account is 'ubuntu' and our three worker nodes have hostnames 'vm1', 'vm2', and 'vm3', then you could run the following:
+
+.. code-block:: bash
+
+   ssh-copy-id -i $HOME/.ssh/id_rsa.pub ubuntu@vm1
+   ssh-copy-id -i $HOME/.ssh/id_rsa.pub ubuntu@vm2
+   ssh-copy-id -i $HOME/.ssh/id_rsa.pub ubuntu@vm3
+
+Test that you now have passwordless SSH acess to all the worker nodes from the head node (assuming 'ubuntu' is the sudo account):
+
+.. code-block:: bash
+
+   # from the head VM
+   ssh ubuntu@vm1
+   ssh ubuntu@vm2
+   ssh ubuntu@vm3
+
+
+
+Multi-node installation
+-----------------------------------
+
+
+On the head node, in the sudo account, download and run this script that installs Hopsworks on all hosts. It will ask you to enter the IP address of all the workers during installation:
+
+.. code-block:: bash
+
+   wget https://raw.githubusercontent.com/logicalclocks/karamel-chef/1.3/hopsworks-installer.sh
+   chmod +x hopsworks-installer.sh
+   ./hopsworks-installer.sh
+
+The above script will download and install Karamel on the same server that runs the script. Karamel will install Hopsworks across all hosts. Installation takes roughly 1 hr, slightly longer for large clusters. To find out more about Karamel, read more below.
+
+
+Purge an Existing Cluster Installation
+-----------------------------------------------------------------
+
+.. code-block:: bash
+
+   ./hopsworks-installer.sh -i purge -ni
+
+
+
+Installation from behind a HTPP Proxy (firewall)
+---------------------------------------------------
+
+Installation will not work if your http proxy has a self-signed certificate.
+You can explictly specify the http proxy by passing the '-p' switch to the installer.
+
+.. code-block:: bash
+
+   ./hopsworks-installer.sh -p https://1.2.3.4:3283
+
+If you have set the environment variable http_proxy or https_proxy, hopsworks-installer.sh will use it, even if you don't specify the '-p-' switch. The '-p' switch overrides the environment variable, if both are set. If both http_proxy and https_proxy environment variables are set, it will favour the http_proxy environment variable. You can chanage this behaviour using the following arguments '-p $https_proxy'.
+
+
+Air-gapped installation
+-------------------------------------
+
+Hopsworks can be installed in an air-gapped environment. We recommend that you contact sales@logicalclocks.com for help in installating in an environment without outbound Internet access.
+
+
+Important Notes on Azure 
+----------------------------------------
+
+Azure VMs do not support private DNS by default, so you will need to add support for a private DNS space to the VMs used in Hopsworks. Follow these instructions AzureDNS_ to create the virtual machines for use in Hopsworks - but make sure your DNS zone name is very short (like 'hp' (2 chars)) and your VM name is short (like 'h1' (2 chars)). If it is longer, you total fully qualified domain name might exceed 60 chars, and it will not work with OpenSSL/TLS. An error message will appear during installation duing the kagent::install.rb recipe, like this:
+
+FQDN h1.hops.io.5zchkifi2mmetn0a5saw0eu1me.ax.internal.cloudapp.net is too long! It should not be longer than 60 characters
+
+Once VMs have been created with a short private DNS name, you can follow the instructions above for single-host and multi-host installations for AWS and GCP.
+
+.. _AzureDNS: https://docs.microsoft.com/en-us/azure/dns/private-dns-getstarted-portal
+
+
+
+
 
 Quickstart (Single-Host Installation)
 -----------------------------------------------------
@@ -160,3 +284,40 @@ You need to enable gmail to send emails using a SMTP server. By default, a gmail
 
    Allow less secure apps: ON
 		   
+
+Upgrades
+-----------------------------------------------------------------
+
+When you have completed an installation, a cluster definition file is stored on the head server in `cluster-defns/hopsworks-installation.yml` - relative to the path of `hopsworks-installer.sh`. Move this file to a safe location (it contains any passwords set for different services). The yml file is also needed to perform an upgrade of Hopsworks using `:ref:`karamel`.
+
+
+Installation Script Options
+-----------------------------------
+
+.. code-block:: bash
+		
+  ./hopsworks-installer.sh -h
+  usage: [sudo] ./hopsworks-installer.sh
+  [-h|--help]      help message
+  [-i|--install-action localhost|localhost-tls|cluster|enterprise|karamel|purge|purge-all]
+  'localhost' installs a localhost Hopsworks cluster
+  'localhost-tls' installs a localhost Hopsworks cluster with TLS enabled
+  'cluster' installs a multi-host Hopsworks cluster
+  'enterprise' installs a multi-host Enterprise  Hopsworks cluster
+  'kubernetes' installs a multi-host Enterprise Hopsworks cluster with Kubernetes
+  'karamel' installs and starts Karamel
+  'purge' removes Hopsworks completely from this host
+  'purge-all' removes Hopsworks completely from ALL hosts
+  [-cl|--clean]    removes the karamel installation
+  [-dr|--dry-run]  does not run karamel, just generates YML file
+  [-c|--cloud      on-premises|gcp|aws|azure]
+  [-w|--workers    IP1,IP2,...,IPN|none] install on workers with IPs in supplied list (or none). Uses default mem/cpu/gpus for the workers.
+  [-d|--download-enterprise-url url] downloads enterprise binaries from this URL.
+  [-dc|--download-url] downloads binaries from this URL.
+  [-du|--download-user username] Username for downloading enterprise binaries.
+  [-dp|--download-password password] Password for downloading enterprise binaries.
+  [-ni|--non-interactive)] skip license/terms acceptance and all confirmation screens.
+  [-p|--https-proxy) url] URL of the https proxy server. Only https (not http_proxy) with valid certs supported.
+  [-pwd|--password password] sudo password for user running chef recipes.
+  [-y|--yml yaml_file] yaml file to run Karamel against.
+  

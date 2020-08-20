@@ -319,7 +319,7 @@ Step 4 (Option 2): Using the Python API
 ---------------------------------------
 .. note:: 
  - The Python API offers an easy way to get started with the Feature Store but does not seamlessly integrate with Spark.
- - If you want to access the Feature Store using Spark DataFrames, see `Using the Spark DataFrames API`_
+ - If you want to access the Feature Store using Spark DataFrames, see `Using the Spark DataFrames API`_.
 
 Step 4.1: Installing hopsworks-cloud-sdk
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

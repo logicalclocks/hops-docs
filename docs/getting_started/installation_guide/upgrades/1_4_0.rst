@@ -56,4 +56,4 @@ malfunction.
 TensorFlow 2.x support
 ======================
 
-As of this version, Hopsworks projects are shipped by default with TensorFlow 2.
+As of this version, Hopsworks projects are shipped by default with TensorFlow 2. TensorFlow 1.x is no longer supported automatically configured into the python dependencies of projects..
