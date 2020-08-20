@@ -8,10 +8,10 @@ Installation
 
    platforms/options.rst
    platforms/hopsworks-cloud-installer.rst
-   platforms/hopsworks-installer.rst	      
+   platforms/hopsworks-installer.rst
+   platforms/karamel.rst	      
    platforms/vagrant.rst
    platforms/custom.rst
-   requirements.rst
    upgrades.rst
 	      
 ..

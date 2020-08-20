@@ -1,11 +1,8 @@
-.. _hopsworks-administration:
-
 ==================
 Hopsworks settings
 ==================
 
-Clicking on the *Edit variables* icon on the admin panel, will lead to the configuration management panel.
-From here administrators are able to change the configuration and behavior of Hopsworks.
+Clicking on the *Edit variables* icon on the admin panel, will lead to the configuration management panel. From here administrators are able to change the configuration and behavior of Hopsworks.
 
 Hopsworks UI doesn't have a configuration file, instead the configuration is stored in the database in the `hopsworks.variables` table. 
 

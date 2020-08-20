@@ -20,7 +20,7 @@ the ``Data Sets`` browser from the services menu on the left, right-click on the
     :align: center
     :figclass: align-center
 
-    Share a Data Set
+    Share a Data Set.
 
 In the case of ``project``, a popup dialog will then prompt users to select a target project with which the *Data
 Set* is to be share with. It is also feasible to filter projects by name as shown in the image below.
@@ -33,7 +33,7 @@ Set* is to be share with. It is also feasible to filter projects by name as show
     :align: center
     :figclass: align-center
 
-    Select a project to share the Data Set with
+    Select a project to share the Data Set with.
 
 To complete the sharing process, a Data Owner in the target project has to click on the shared Data Set,
 and then click on ``Accept`` to complete the process, ``Reject`` to reject the shared Data Set or ``cancel`` for no
@@ -59,6 +59,7 @@ and then click ``Remove DataSet``.
 
 
 .. _data-set-access-control:
+
 Data Set access-control
 -----------------------
 
@@ -88,4 +89,4 @@ available access levels as shown in the figure below.
     :align: center
     :figclass: align-center
 
-    Access-levels of a Data Set
+    Access-levels of a Data Set.

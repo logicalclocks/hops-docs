@@ -1,7 +1,8 @@
-.. _karamel:
+.. _karamel-installer:
 
-Install with Karamel
--------------------------------------
+=======================
+Karamel
+=======================
 
 #. Download and install `Karamel <http://www.karamel.io/>`_ 
 #. Run Karamel.

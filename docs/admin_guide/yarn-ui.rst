@@ -13,4 +13,4 @@ Beside these metrics, which can also be found in the :doc:`monitoring` dashboard
    :align: center
    :figclass: align-cente
 
-    Yarn UI
+   Yarn UI

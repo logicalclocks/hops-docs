@@ -28,7 +28,7 @@ Exporting model
 
 
 Querying model repository
-######################
+############################################
 
 When deploying a model to real-time serving infrastructure or loading a model for offline batch inference, applications can query the model repository to find the best version considering the metadata attached to the model versions such as accuracy.
 In the following example the model version for MNIST with the highest accuracy is returned.

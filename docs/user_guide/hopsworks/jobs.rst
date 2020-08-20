@@ -87,6 +87,7 @@ Users can interact with the jobs in the following ways:
     Job details
 
 9. Make a **copy** of a job
+
 10. **Export** a job, which prompts the user to download a json file. A job can then be imported by clicking on the New
 Job and then Import Job button.
 

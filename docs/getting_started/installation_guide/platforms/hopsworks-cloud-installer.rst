@@ -74,7 +74,7 @@ If you want to configure the Hopsworks cluster before installation, you can do s
 Upgrades
 -----------------------------------------------------------------
 
-When you have completed an installation, a cluster definition file is stored on the head server in `cluster-defns/hopsworks-installation.yml` - relative to the path of `hopsworks-installer.sh`. Move this file to a safe location (it contains any passwords set for different services). The yml file is also needed to perform an upgrade of Hopsworks using `:ref:`karamel`.
+When you have completed an installation, a cluster definition file is stored on the head server in `cluster-defns/hopsworks-installation.yml` - relative to the path of `hopsworks-installer.sh`. Move this file to a safe location (it contains any passwords set for different services). The yml file is also needed to perform an upgrade of Hopsworks using: :ref:`karamel-installer`.
 
    
 Installation Script Options
