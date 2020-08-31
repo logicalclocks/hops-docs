@@ -175,7 +175,7 @@ You can also register a remote user (Kerbros or LDAP) by choosing account type '
  
   Register remote user
  
-To register a remote user you need a 'UUID' that is the universally unique id of the remote user in LDAP or Kerberos.
+To register a remote user you need a `UUID` that is the universally unique id of the remote user in LDAP or Kerberos.
 To find this id in Active directory go to "users and computers" management window and right click on the user you want to
 register and choose properties. This should take you to the window shown below where you can find the 'objectUUID'. 
  
