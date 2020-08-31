@@ -188,7 +188,7 @@ register and choose properties. This should take you to the window shown below w
  
   Active directory objectUUID
  
-To find the uuid in LDAP run 'ldapsearch' as shown in the image below.
+To find the `UUID` in LDAP run 'ldapsearch' as shown in the image below.
  
 .. _ldap-entryuuid.png: ../_images/admin/ldap-entryuuid.png
 .. figure:: ../imgs/admin/ldap-entryuuid.png
