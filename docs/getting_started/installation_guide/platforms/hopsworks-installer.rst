@@ -121,16 +121,13 @@ Hopsworks can be installed in an air-gapped environment. We recommend that you c
 Important Notes on Azure 
 ----------------------------------------
 
-Azure VMs do not support private DNS by default, so you will need to add support for a private DNS space to the VMs used in Hopsworks. Follow these instructions AzureDNS_ to create the virtual machines for use in Hopsworks - but make sure your DNS zone name is very short (like 'hp' (2 chars)) and your VM name is short (like 'h1' (2 chars)). If it is longer, you total fully qualified domain name might exceed 60 chars, and it will not work with OpenSSL/TLS. An error message will appear during installation duing the kagent::install.rb recipe, like this:
+Azure VMs do not support private DNS by default, so you will need to add support for a private DNS space to the VMs used in Hopsworks. Follow these instructions AzureDNS_ to create the virtual machines for use in Hopsworks - but make sure your DNS zone name is very short (like 'hp' (2 chars)) and your VM name is short (like 'h1' (2 chars)). If it is longer, your fully qualified domain name might exceed 60 chars, and it will not work with OpenSSL/TLS. An error message will appear during installation duing the kagent::install.rb recipe, like this:
 
 FQDN h1.hops.io.5zchkifi2mmetn0a5saw0eu1me.ax.internal.cloudapp.net is too long! It should not be longer than 60 characters
 
 Once VMs have been created with a short private DNS name, you can follow the instructions above for single-host and multi-host installations for AWS and GCP.
 
 .. _AzureDNS: https://docs.microsoft.com/en-us/azure/dns/private-dns-getstarted-portal
-
-
-
 
 
 Quickstart (Single-Host Installation)
