@@ -14,7 +14,7 @@ Example cluster definitions can be found on `github <https://github.com/logicalc
 **Choosing which services to run on which nodes**
 
 You need to decide which services you will install on which nodes. In Karamel, we design a set of *Node Groups*, where each *Node Group* defines a stack of services to be installed on a machine. Each machine will only have one *Node Group* set of services.
-We now provide two recommended setup:
+Here are some recommended setups:
 
 * a *single node cluster* that includes all services on a single node.
 * a *tiny cluster* set of *heavy* stacks that includes a lot of services on each node.
