@@ -41,7 +41,9 @@ We recommend the following setup that includes three NodeGroups:
 #. HopsFS NameNode, YARN ResourceManager, MySQL Server, NDB Data Node
 #. HopsFS DataNode, YARN NodeManager
 
-A highly available small cluster would require at least two instances in the last three NodeGroups. Hopsworks can also be deployed on mulitple instances, but Elasticsearch needs to be specially configured if it is to be sharded across many insances.
+.. _ElasticHA: https://www.elastic.co/guide/en/elasticsearch/reference/master/high-availability.html
+   
+A highly available small cluster would require at least two instances in the last three NodeGroups. Note that  Elasticsearch needs to be extra configuration if it is to be sharded across many instances, see Elasticsearch documentation for details (ElasticHA_).
 
 **Large Cluster Setup**
 

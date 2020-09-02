@@ -9,7 +9,7 @@ This installation requires the command-line on a  Linux machine (Ubuntu or Redha
 
 .. code-block:: bash
 
-   wget https://raw.githubusercontent.com/logicalclocks/karamel-chef/2.0/hopsworks-cloud-installer.sh
+   wget https://raw.githubusercontent.com/logicalclocks/karamel-chef/1.4/hopsworks-cloud-installer.sh
    chmod +x hopsworks-cloud-installer.sh
    ./hopsworks-cloud-installer.sh
    
@@ -80,7 +80,7 @@ When you have completed an installation, a cluster definition file is stored on 
 Installation Script Options
 -------------------------------------
 
-There are many command options that can be set when running the script. When the VM is created, it is given a name, that by defaul is prefixed by the Unix username. This VM name prefix can be changed using the '-n' argument. If you set your own prefix, you need to use it when listing and deleting VMs, passing the prefix for those listing and VM deletion commands ('-n <prefix> -rm'). If you have already created the VMs with the script but want to re-run the installation again on the existing VMs, you can pass the '-sc' argument that skips the creation of the VMs that Hopsworks will be installed on
+There are many command options that can be set when running the script. When the VM is created, it is given a name, that by default is prefixed by the Unix username. This VM name prefix can be changed using the '-n' argument. If you set your own prefix, you need to use it when listing and deleting VMs, passing the prefix for those listing and VM deletion commands ('-n <prefix> -rm'). If you have already created the VMs with the script but want to re-run the installation again on the existing VMs, you can pass the '-sc' argument that skips the creation of the VMs that Hopsworks will be installed on
 
 .. code-block:: bash
 		

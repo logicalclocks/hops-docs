@@ -29,13 +29,16 @@ On your server/VM, run the following bash commands from your user account with s
    chmod +x hopsworks-installer.sh
    ./hopsworks-installer.sh
 
-Installation takes roughly 1 hr, or slower if your server/VM has a low-bandwidth Internet connection. You can stop and start Hopsworks using the commands:
+   Installation takes roughly 1 hr, or slower if your server/VM has a low-bandwidth Internet connection.
+
+   Once your cluster is up and runnin, you can stop (and start) Hopsworks using the commands:
    
 .. code-block:: bash
 
    sudo /srv/hops/kagent/kagent/bin/shutdown-all-local-services.sh
    sudo /srv/hops/kagent/kagent/bin/start-all-local-services.sh
 
+   Note that all services in Hopsworks are systemd services that are enabled by default, that is, they will restart when VM/server is rebooted. 
 
 Setting up a Cluster for Installation
 -----------------------------------------------------------------

@@ -46,8 +46,8 @@ Where:
   ``no-random-ports`` option.
 
 
-If you want to **destroy** your VMs execute the ``./kill.sh``
-script. This will wipe kill the virtual machines and clean up local configuration files.
+If you want to **destroy** your VMs, execute the ``./kill.sh``
+script. This will purge the virtual machines and clean up local configuration files.
 
 
 Default Setup

@@ -14,5 +14,5 @@ Choose the Installation Tool
 
 **Installation Tips**
    
-If you can use :ref:`hopsworks-ai` to run Hopsworks, that is our recommended approach. It is a managed platform, where we manage upgrades, backups, and provisioning. If you are on GCP or Azure, and you can use GCP tools or AZ tools, respectively, then jump to :ref:`hopsworks-cloud-installer`. Otherwise, the reccommended way to install Hopsworks is to use the :ref:`hopsworks-installer` script. A more manual way to install Hopsworks is to use :ref:`karamel-installer`. Karamel is used to upgrade manually installed Hopsworks clusters.
+If you can use :ref:`hopsworks-ai` to run Hopsworks, that is our recommended approach. It is a managed platform, where we manage upgrades, backups, and provisioning. If you are on GCP or Azure, and you can use GCP tools or AZ tools, respectively, then jump to :ref:`hopsworks-cloud-installer`. Otherwise, the recommended way to install Hopsworks is to use the :ref:`hopsworks-installer` script. A more manual way to install Hopsworks is to use :ref:`karamel-installer`. Karamel is used to upgrade manually installed Hopsworks clusters.
 

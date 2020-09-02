@@ -9,3 +9,4 @@ Hopsworks.ai (SaaS)
   guides/restrictive_permissions.rst 
   guides/databricks_quick_start.rst  
   guides/sagemaker_quick_start.rst
+  guides/eks_ecr_integration.rst
