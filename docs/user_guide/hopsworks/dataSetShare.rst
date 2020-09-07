@@ -49,7 +49,7 @@ When sharing a Data Set you can also choose share permissions. Available permiss
  
 - **Everyone can read**: gives read only access to all members of the project the Data Set is shared with.
 - **Everyone can edit**: gives read/write access to all members of the project the Data Set is shared with.
-- **Data owners can edit**: gives data owners write access and read only access to all other members of the project the Data Set is shared with.
+- **All Data owners can edit**: gives data owners write access and read only access to all other members of the project the Data Set is shared with.
  
 To complete the sharing process, a Data Owner in the target project has to click on the shared Data Set,
 and then click on ``Accept`` to complete the process, ``Reject`` to reject the shared Data Set or ``cancel`` for no
@@ -105,7 +105,7 @@ levels that give higher privileges to members that can access this Data Set. All
  
 - **Everyone can read**: gives read only access to all members of the project the Data Set is shared with.
 - **Everyone can edit**: gives read/write access to all members of the project the Data Set is shared with.
-- **Data owners can edit**: gives data owners write access and read only access to all other members of the project the Data Set is shared with.
+- **All Data owners can edit**: gives data owners write access and read only access to all other members of the project the Data Set is shared with.
  
 Changing the access level can be done with a right-click on the Data Set, permissions and click on one of the
 available access levels as shown in the figure below.
