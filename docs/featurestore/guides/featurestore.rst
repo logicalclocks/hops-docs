@@ -460,7 +460,7 @@ Our mean constraint has failed since there is a mean value of 71738 which is not
 As we see from this example, the functional requirements of the program are met - we don't have any duplicate or nil values. The "erroneous" minimum average player age
 value or mean player rating could have changed the predictive power of our model and we would not have noticed it in time.
 
-We can schedule the whole process as Airflow tasks that will run periodically before start training your model. If you want to learn more about Airflow check our :doc:`documentation <airflow>`. Assuming that you have already composed the validation rules, we will use Airflow operators to launch the validation job and when it finishes we will fetch the result. If the validation
+We can schedule the whole process as Airflow tasks that will run periodically before start training your model. Assuming that you have already composed the validation rules, we will use Airflow operators to launch the validation job and when it finishes we will fetch the result. If the validation
 is not successful then the DAG will fail without executing any other tasks. The operators would look like the following:
 
 .. code-block:: python

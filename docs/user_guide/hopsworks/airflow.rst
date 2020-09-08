@@ -1,3 +1,5 @@
+.. _Airflow:
+
 Apache Airflow
 ==============
 
