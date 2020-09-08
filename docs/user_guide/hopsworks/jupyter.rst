@@ -74,6 +74,9 @@ The three Jupyter kernels we support on Hopsworks are:
 
 All notebooks make use of Spark, since that is the standard way to allocate resources and run jobs in the cluster.
 
+By default all files and folders created by `Spark` are group writable (i.e umask=007). If you want to change this
+default `umask` you can add additional spark property ``spark.hadoop.fs.permissions.umask-mode=<umask>`` in `More Spark Properties` before starting the jupyter server.
+
 In the rest of this tutorial we will focus on the pyspark kernel.
 
 Pyspark notebooks

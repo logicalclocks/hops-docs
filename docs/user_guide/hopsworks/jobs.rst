@@ -108,6 +108,9 @@ Additionally, users click on a job and view additional information about their r
 
     Job aggregated logs
 
+By default all files and folders created by `Spark` are group writable (i.e umask=007). If you want to change this
+default `umask` you can add additional spark property ``spark.hadoop.fs.permissions.umask-mode=<umask>`` in `More Spark Properties` when you create a new job.
+
 Python
 ------
 (*Available in Hopsworks Enterprise only*)
