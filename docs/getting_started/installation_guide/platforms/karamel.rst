@@ -13,8 +13,7 @@ Example cluster definitions can be found on `github <https://github.com/logicalc
 
 **Choosing which services to run on which nodes**
 
-You need to decide which services you will install on which nodes. In Karamel, we design a set of *Node Groups*, where each *Node Group* defines a stack of services to be installed on a machine. Each machine will only have one *Node Group* set of services.
-Here are some recommended setups:
+You need to decide which services you will install on which nodes. In Karamel, we design a set of *Node Groups*, where each *Node Group* defines a stack of services to be installed on a machine. Each machine will be a member of only one *Node Group*. Here are some recommended setups:
 
 * a *single node cluster* that includes all services on a single node.
 * a *tiny cluster* set of *heavy* stacks that includes a lot of services on each node.
@@ -43,7 +42,7 @@ We recommend the following setup that includes three NodeGroups:
 
 .. _ElasticHA: https://www.elastic.co/guide/en/elasticsearch/reference/master/high-availability.html
    
-A highly available small cluster would require at least two instances in the last three NodeGroups. Note that  Elasticsearch needs to be extra configuration if it is to be sharded across many instances, see Elasticsearch documentation for details (ElasticHA_).
+A highly available small cluster would require at least two instances of the above NodeGroups (with 3 NodeGroups, that means 6 instances in total). Note that Elasticsearch needs to be extra configuration if it is to be sharded across many instances, see Elasticsearch documentation for details (ElasticHA_).
 
 **Large Cluster Setup**
 
