@@ -90,6 +90,18 @@ Navigate to your newly created role in `AWS management console <https://console.
         "Version": "2012-10-17",
         "Statement": [
             {
+                "Sid": "AllowPullMainImages",
+                "Effect": "Allow",
+                "Action": [
+                    "ecr:GetDownloadUrlForLayer",
+                    "ecr:BatchGetImage"
+                ],
+                "Resource": [
+                    "arn:aws:ecr:*:*:repository/filebeat",
+                    "arn:aws:ecr:*:*:repository/base"
+                ]
+            },
+            {
                 "Sid": "AllowPushandPullImages",
                 "Effect": "Allow",
                 "Action": [
@@ -101,17 +113,15 @@ Navigate to your newly created role in `AWS management console <https://console.
                     "ecr:InitiateLayerUpload",
                     "ecr:DeleteRepository",
                     "ecr:BatchCheckLayerAvailability",
-                    "ecr:PutImage"
+                    "ecr:PutImage",
+                    "ecr:ListImages",
+                    "ecr:BatchDeleteImage",
+                    "ecr:GetLifecyclePolicy",
+                    "ecr:PutLifecyclePolicy"
                 ],
                 "Resource": [
-                    "arn:aws:ecr:*:*:repository/python36",
-                    "arn:aws:ecr:*:*:repository/tf",
-                    "arn:aws:ecr:*:*:repository/filebeat",
-                    "arn:aws:ecr:*:*:repository/sklearn",
-                    "arn:aws:ecr:*:*:repository/*/python36",
-                    "arn:aws:ecr:*:*:repository/*/tf",
                     "arn:aws:ecr:*:*:repository/*/filebeat",
-                    "arn:aws:ecr:*:*:repository/*/sklearn"
+                    "arn:aws:ecr:*:*:repository/*/base"
                 ]
             },
             {
@@ -134,7 +144,6 @@ Navigate to your newly created role in `AWS management console <https://console.
             }
         ]
     }
-
 
 Step 3: Allow your role to use your EKS cluster 
 -----------------------------------------------
