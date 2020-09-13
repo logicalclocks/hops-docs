@@ -79,7 +79,7 @@ Setting `ldap_auth` to `True` in the :doc:`variables` panel will make the LDAP c
    :align: center
    :figclass: align-cente
 
-    Access to the LDAP configuration
+   Access to the LDAP configuration
     
 Clicking on the LDAP configuration option will lead you to the LDAP configuration panel. From there, administrators will be able to configure the LDAP connection as explained above.
 

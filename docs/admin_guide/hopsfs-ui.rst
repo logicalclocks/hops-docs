@@ -14,8 +14,8 @@ Finally, administrators can from this page determine if the HopsFS cluster is in
    :alt: Edit user 
    :target: `hdfs-ui.png`_
    :align: center
-   :figclass: align-cente
+   :figclass: align-center
 
-    HopsFS UI
+   HopsFS UI
 
 More detailed metrics are available in the :doc:`monitoring` page.

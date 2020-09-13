@@ -14,9 +14,9 @@ If you want to modify the XAttr size values, you can add this to a cluster defin
 .. code-block:: yaml
 
     hops:
-        xattrs:
-            max-xattrs-per-inode: 127
-            max-xattr-size: 3442755
+      xattrs:
+        max-xattrs-per-inode: 127
+        max-xattr-size: 3442755
 
 Existing Live Clusters
 ----------------------
@@ -56,4 +56,4 @@ malfunction.
 TensorFlow 2.x support
 ======================
 
-As of this version, Hopsworks projects are shipped by default with TensorFlow 2
+As of this version, Hopsworks projects are shipped by default with TensorFlow 2. TensorFlow 1.x is no longer supported automatically configured into the python dependencies of projects..

@@ -92,6 +92,7 @@ dialog with a table listing all projects the Data Set is shared with.
 From the shared with dialog you can change share permission or unshare a Data Set from a project.
  
 .. _data-set-access-control:
+
 Data Set access-control
 -----------------------
  

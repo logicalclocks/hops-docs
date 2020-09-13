@@ -206,13 +206,6 @@ subnet and security group. Select *Deploy*.
 .. note::
     We recommend that you always configure an SSH key under advanced options to ensure you can troubleshoot the instance if necessary.
 
-.. _configure-instance.png: ../../../_images/configure-instance.png
-.. figure:: ../../../imgs/hopsworksai/configure-instance.png
-    :alt: Configuring the Hopsworks cluster
-    :target: `configure-instance.png`_
-    :align: center
-    :figclass: align-center
-
 The instance will start. This might take a couple of minutes:
 
 .. _booting.png: ../../../_images/booting.png

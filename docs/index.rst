@@ -16,26 +16,12 @@ Hopsworks Documentation
 
    getting_started/gettingstarted
 
-.. _cloud:
-.. toctree::
-   :maxdepth: 4
-   :glob:
-
-   cloud/cloud.rst
-
 .. _hops-userguide:
 .. toctree::
    :maxdepth: 4
    :glob:
 
    user_guide/user_guide.rst
-
-.. _integrations:
-.. toctree::
-   :maxdepth: 4
-   :glob:
-
-   integrations/integrations.rst
 
 .. _featurestore:
 .. toctree::
@@ -44,7 +30,6 @@ Hopsworks Documentation
 
    featurestore/featurestore.rst
 
-.. _hops-ml:
 .. toctree::
    :maxdepth: 4
    :glob:

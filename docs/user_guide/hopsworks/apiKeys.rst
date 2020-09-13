@@ -16,6 +16,7 @@ using the ApiKey authentication scheme.
    Authorization: ApiKey <api_key>
 
 .. _api-key-generate:
+   
 Generate an API key
 ~~~~~~~~~~~~~~~~~~~~
 

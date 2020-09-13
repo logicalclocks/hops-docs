@@ -1,0 +1,89 @@
+name: HopsworksVagrantSingleNode
+baremetal:
+    username: vagrant
+
+cookbooks:
+  hopsworks:
+    github: logicalclocks/hopsworks-chef
+    branch: 1.3
+
+attrs:
+  install:
+    cloud: gcp
+  ndb:
+    MaxNoOfExecutionThreads: 12
+    DataMemory: 16000
+
+groups:
+  head:
+    size: 1
+    baremetal:
+      ip: 10.0.2.15
+    recipes:
+      - kagent
+      - conda
+      - ndb::mgmd
+      - ndb::ndbd
+      - ndb::mysqld
+      - hops::ndb
+      - hops::rm
+      - hops::nn
+      - hops::jhs
+      - hadoop_spark::yarn
+      - hadoop_spark::historyserver
+      - flink::yarn
+      - flink::historyserver
+      - elastic
+      - livy
+      - kzookeeper
+      - kkafka
+      - epipe
+      - hopsworks
+      - hopsmonitor
+      - hopslog
+      - hopslog::_filebeat-spark
+      - hopslog::_filebeat-serving
+      - hopslog::_filebeat-beam
+      - hopslog::_filebeat-jupyter
+      - hops::dn
+      - hops::nm
+      - tensorflow
+      - hive2
+      - hops_airflow
+      - hops_airflow::sqoop
+      - hopsmonitor::prometheus
+      - hopsmonitor::alertmanager
+      - hopsmonitor::node_exporter
+      - consul::master
+      - hops::docker_registry
+
+  workers:
+    size: 2
+    baremetal:
+      ip: 10.0.2.16
+      ip: 10.0.2.17
+    attrs:
+      cuda:
+        accept_nvidia_download_terms: true
+      hops:
+        yarn:
+          vcores: 16
+          memory_mbs: 48000
+    recipes:
+      - kagent
+      - conda
+      - livy::install
+      - ndb::ndbd
+      - ndb::mysqld
+      - kzookeeper
+      - elastic
+      - hops::dn
+      - hops::nm
+      - kkafka
+      - hadoop_spark::yarn
+      - flink::yarn
+      - hopslog::_filebeat-spark
+      - hopslog::_filebeat-beam
+      - tensorflow
+      - hopsmonitor::node_exporter
+      - consul::slave

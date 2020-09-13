@@ -1,6 +1,6 @@
-================
+================================
 OAuth2 integration
-================
+================================
 
 Hopsworks enterprise edition supports OAuth2 integration for user login.
 
