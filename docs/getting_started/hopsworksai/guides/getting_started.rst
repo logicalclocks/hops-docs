@@ -1,3 +1,5 @@
+.. _getting-started-hopsworks-ai:
+
 Getting started with Hopsworks.ai
 =================================
 
