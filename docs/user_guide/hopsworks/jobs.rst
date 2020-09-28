@@ -26,13 +26,14 @@ follow the steps below:
 * Step 2: Give a name for you job
 * Step 3: Select one of the available job types
 * Step 4: Select the executable file of your job that you have uploaded earlier in a Dataset
-* Step 5 (Optional): Set the main class
-* Step 6: In the *Configure and create* tab you can manually specify
+* Step 5: If the job is a Spark job the main class will be inferred from the jar, but can also be set manually
+* Step 6 (Optional): Configure default arguments to run your job with
+* Step 7: In the *Configure and create* tab you can manually specify
   the configuration you desire for your job and any additional dependencies and arbitrary Spark/Flink
   parameters.
-* Step 7: Click on the ``Create`` button
-* Step 8: Click on the ``Run`` button to launch your job, a dialog textbox will ask for any runtime arguments the job
-  may require. If this job requires no arguments, the field can be left empty. The figure below shows the dialog.
+* Step 8: Click on the ``Create`` button
+* Step 9: Click on the ``Run`` button to launch your job. If no default arguments have been configured, a dialog textbox will ask for any runtime arguments the job
+may require. If this job requires no arguments, the field can be left empty. The figure below shows the dialog.
 
 .. _jobs-ui-args.png: ../../_images/jobs-ui-args.png
 .. figure:: ../../imgs/jobs-ui-args.png
