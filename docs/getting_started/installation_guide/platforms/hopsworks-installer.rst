@@ -25,7 +25,7 @@ On your server/VM, run the following bash commands from your user account with s
 
 .. code-block:: bash
 
-   wget https://raw.githubusercontent.com/logicalclocks/karamel-chef/1.3/hopsworks-installer.sh
+   wget https://raw.githubusercontent.com/logicalclocks/karamel-chef/1.4/hopsworks-installer.sh
    chmod +x hopsworks-installer.sh
    ./hopsworks-installer.sh
 
@@ -83,7 +83,7 @@ On the head node, in the sudo account, download and run this script that install
 
 .. code-block:: bash
 
-   wget https://raw.githubusercontent.com/logicalclocks/karamel-chef/1.3/hopsworks-installer.sh
+   wget https://raw.githubusercontent.com/logicalclocks/karamel-chef/1.4/hopsworks-installer.sh
    chmod +x hopsworks-installer.sh
    ./hopsworks-installer.sh
 
@@ -139,7 +139,7 @@ You will need an account with sudo access. From that account, download and run t
 
 .. code-block:: bash
 
-   wget https://raw.githubusercontent.com/logicalclocks/karamel-chef/1.3/hopsworks-installer.sh
+   wget https://raw.githubusercontent.com/logicalclocks/karamel-chef/1.4/hopsworks-installer.sh
    chmod +x hopsworks-installer.sh
    ./hopsworks-installer.sh
 
@@ -157,7 +157,7 @@ On the head node, in the sudo account, download and run this script that install
 
 .. code-block:: bash
 
-   wget https://raw.githubusercontent.com/logicalclocks/karamel-chef/1.3/hopsworks-installer.sh
+   wget https://raw.githubusercontent.com/logicalclocks/karamel-chef/1.4/hopsworks-installer.sh
    chmod +x hopsworks-installer.sh
    ./hopsworks-installer.sh
 

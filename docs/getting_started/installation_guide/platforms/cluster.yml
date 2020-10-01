@@ -5,7 +5,7 @@ baremetal:
 cookbooks:
   hopsworks:
     github: logicalclocks/hopsworks-chef
-    branch: 1.3
+    branch: 1.4
 
 attrs:
   install:
