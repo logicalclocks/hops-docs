@@ -6,7 +6,7 @@ This tutorial will go over how Python environments are managed.
 Python Environment Basics
 -------------------------
 
-Hopsworks provides a premade environment for machine learning and data science development using python 3.6. The environment contain the most popular machine learning libraries including TensorFlow, Keras, PyTorch and scikit-learn.
+Hopsworks provides a premade environment for machine learning and data science development using python 3.7. The environment contain the most popular machine learning libraries including TensorFlow, Keras, PyTorch and scikit-learn.
 
 The environment ensures compatibility between the machine learning libraries and CUDA/cuDNN in case of NVIDIA GPUs and ROCm in case of AMD GPUs.
 
@@ -28,7 +28,7 @@ Managing the project python environment is provided as a service on Hopsworks an
 
     Open the Python service on Hopsworks
 
-When a project is created, the python 3.6 environment is automatically enabled. So no manual steps are required to start developing your machine learning application.
+When a project is created, the python 3.7 environment is automatically enabled. So no manual steps are required to start developing your machine learning application.
 
 Listing installed libraries
 ---------------------------
