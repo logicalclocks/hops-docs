@@ -1,3 +1,5 @@
+.. _first_login_no_mfa:
+
 =============================================
 First Login (without 2-Factor Authentication)
 =============================================
