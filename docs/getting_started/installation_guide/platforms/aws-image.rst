@@ -3,13 +3,13 @@
 Amazon Machine Images
 =====================
 
-Hopsworks 1.4.1 is available as a community AMI ready to be launched. You can use it to
-easily create a single-node Hopsworks instance potentially with **dedicated GPU**
+Hopsworks is available as a community AMI ready to be launched. You can use it to
+easily create a single-node Hopsworks instance optionally with **dedicated GPU**
 for accelerated Deep Learning.
 
 Launch instance
 ------------------
-To launch an EC2 instance with Hopsworks install you will need an AWS account.
+To launch an EC2 instance with Hopsworks installed, you will need an AWS account.
 
 1. Open Amazon EC2 console https://console.aws.amazon.com/ec2
 2. Click **Launch instance**
@@ -18,7 +18,7 @@ To launch an EC2 instance with Hopsworks install you will need an AWS account.
 5. On the **Choose an Instance Type** page select the hardware configuration for you instance. For a smooth experience we recommend at **minimum** ``t2.2xlarge`` instance type.
 6. Continue with configuring **Instance details** Make sure that:
 
-   - The VPC you select has enabled **Private DNS hostnames** By default when you create a new VPC, it's not enabled. To enabled it follow this guide here_
+   - The VPC you select has **Private DNS hostnames** enabled. By default when you create a new VPC, it's not enabled. To enabled it follow this guide here_
    - You **Assign a Public IP**
 
 7. Next proceed to **Storage** and we recommend at least 300GB. Note: EBS performance varies by the size of the volume and by usage - the more you use the drive the fastest it gets.
