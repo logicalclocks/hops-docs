@@ -72,6 +72,19 @@ The path returned is to the root directory in Hopsworks of your project.
 
     ... Experiment code ...
 
+**Step 2 (optional)**. If you have your data in an s3 bucket you can read the data using TensorFlow by
+setting environment variables AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_SESSION_TOKEN and AWS_REGION
+then 
+
+::
+
+    ... Experiment code ...
+
+    tfrecords_dataset = ["s3://resource/train/train.tfrecords"]
+
+    ... Experiment code ...
+
+
 **Step 3**. Use the path as any other path in your experiment.
 
 ::
