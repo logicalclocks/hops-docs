@@ -31,7 +31,7 @@ On your server/VM, run the following bash commands from your user account with s
 
    Installation takes roughly 1 hr, or slower if your server/VM has a low-bandwidth Internet connection.
 
-   Once your cluster is up and runnin, you can stop (and start) Hopsworks using the commands:
+   Once your cluster is up and running, you can stop (and start) Hopsworks using the commands:
    
 .. code-block:: bash
 
@@ -98,18 +98,19 @@ Purge an Existing Cluster Installation
    ./hopsworks-installer.sh -i purge -ni
 
 
+.. _http-proxy:
 
-Installation from behind a HTPP Proxy (firewall)
+Installation from behind a HTTP Proxy (firewall)
 ---------------------------------------------------
 
 Installation will not work if your http proxy has a self-signed certificate.
-You can explictly specify the http proxy by passing the '-p' switch to the installer.
+You can explicitly specify the http proxy by passing the '-p' switch to the installer.
 
 .. code-block:: bash
 
    ./hopsworks-installer.sh -p https://1.2.3.4:3283
 
-If you have set the environment variable http_proxy or https_proxy, hopsworks-installer.sh will use it, even if you don't specify the '-p-' switch. The '-p' switch overrides the environment variable, if both are set. If both http_proxy and https_proxy environment variables are set, it will favour the http_proxy environment variable. You can chanage this behaviour using the following arguments '-p $https_proxy'.
+If you have set the environment variable http_proxy or https_proxy, hopsworks-installer.sh will use it, even if you don't specify the '-p-' switch. The '-p' switch overrides the environment variable, if both are set. If both http_proxy and https_proxy environment variables are set, it will favour the http_proxy environment variable. You can change this behavior using the following arguments '-p $https_proxy'.
 
 
 Air-gapped installation
