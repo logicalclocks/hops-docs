@@ -18,7 +18,7 @@ to your project settings.
 
  Cloud roles mapped to project.
  
-You can then use the Hops Python and Java APIs to assume the roles listed in your project settings page.
+You can then use the Hops Python and Java APIs to assume the roles listed in your project's settings page.
  
 When calling the assume role method you can pass the role ARN string or use the get role method that takes
 the role id as an argument.
