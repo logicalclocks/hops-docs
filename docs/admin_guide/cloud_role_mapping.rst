@@ -5,7 +5,7 @@ AWS Role chaining
 
 Using an EC2 instance profile enables your Hopsworks cluster to access AWS resources. This forces all Hopsworks users to
 share the instance profile role and the resource access policies attached to that role. To allow for per project access policies 
-you could have your users use AWS credentials directly in their programs which is not recommended or you can and should use
+you could have your users use AWS credentials directly in their programs which is not recommended so you should instead use
 `Role chaining <https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html#iam-term-role-chaining>`_.
 
 To use Role chaining, you need to first setup IAM roles in AWS:
