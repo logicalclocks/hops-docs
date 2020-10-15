@@ -18,7 +18,7 @@ to your project settings.
 
  Cloud roles mapped to project.
  
-You can then use the Hops Util python and java APIs to assume the roles listed in your project settings page.
+You can then use the Hops Python and Java APIs to assume the roles listed in your project settings page.
  
 When calling the assume role method you can pass the role ARN string or use the get role method that takes
 the role id as an argument.
@@ -37,7 +37,7 @@ the role id as an argument.
    spark.read.csv("s3a://resource/test.csv").show()
  
 The assume role method sets spark hadoop configurations that will allow spark to read s3 buckets. The code
-examples above show how to read s3 buckets using python and scala.
+examples above show how to read s3 buckets using Python and Scala.
  
 Assume role also sets environment variables AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY and AWS_SESSION_TOKEN
 so that programs running in the container can use the credentials for the newly assumed role.
