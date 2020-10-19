@@ -13,7 +13,7 @@ You can configure any given service by first looking up its Chef cookbook on the
 
 
 .. literalinclude:: cluster.yml
-		      :language: YAML
+        :language: YAML
 
 
 			 
