@@ -13,7 +13,7 @@ You can configure any given service by first looking up its Chef cookbook on the
 
 
 .. literalinclude:: cluster.yml
-		      :language: YML
+		      :language: YAML
 
 
 			 
@@ -121,11 +121,7 @@ Hopsworks contains many services and all run on x86 CPUs. It is recommended to h
 GPU
 ---------------
 
-Hopsworks supports both Nvidia Cuda and AMD ROCm GPUs (through HopsYARN):
-
-* ROCm 2.6
-
-* Cuda 10.x+
+Hopsworks supports Nvidia Cuda version 11.x+ through Apache Hadoop YARN and Kubernetes.
 
 
 =============================================
@@ -186,53 +182,55 @@ The following components are supported by TLS version 1.2+:
 * Prometheus    
 * Jupyter
 
-Hopsworks uses different user accounts and groups to run services. The actual user accounts and groups needed depends on the services you install. Do not delete these accounts or groups and do not modify their permissions and rights. Ensure that no existing systems prevent these accounts and groups from functioning. For example, if you have scripts that delete user accounts not in a whitelist, add these accounts to the list of permitted accounts. Hopsworks creates and uses the following accounts and groups:  
+Hopsworks uses different user accounts and groups to run services. The actual user accounts and groups needed depends on the services you install. Do not delete these accounts or groups and do not modify their permissions and rights. Ensure that no existing systems prevent these accounts and groups from functioning. For example, if you have scripts that delete user accounts not in a whitelist, add these accounts to the list of permitted accounts. Hopsworks creates and uses the following accounts and groups:
+The table below also provides the port is service is listening at. Not all services need to accessible from
+outside the cluster, therefore is it fine if the ports of such services are blocked by perimeter security. Services
+that need to be accessible from outside the cluster are designated in the table below.
 
-+-------------------+------------+-----------+----------------------+
-| Service           |Unix User ID| Group     | Description          |
-+===================+============+===========+======================+
-| namenode          | hdfs       | hadoop    |                      |
-+-------------------+------------+-----------+----------------------+ 
-| datanode          | hdfs       | hadoop    |                      |
-+-------------------+------------+-----------+----------------------+ 
-| resourcemgr       | yarn       | hadoop    |                      |
-+-------------------+------------+-----------+----------------------+ 
-| nodemanager       | yarn       | hadoop    |                      |
-+-------------------+------------+-----------+----------------------+ 
-| hopsworks         | glassfish  | glassfish |                      |
-+-------------------+------------+-----------+----------------------+ 
-| elasticsearch     | elastic    | elastic   |                      |
-+-------------------+------------+-----------+----------------------+ 
-| logstash          | elastic    | elastic   |                      |
-+-------------------+------------+-----------+----------------------+ 
-| filebeat          | elastic    | elastic   |                      |
-+-------------------+------------+-----------+----------------------+ 
-| kibana            | kibana     | elastic   |                      |
-+-------------------+------------+-----------+----------------------+ 
-| ndmtd             | mysql      | mysql     |                      |
-+-------------------+------------+-----------+----------------------+ 
-| mysqld            | mysql      | mysql     |                      |
-+-------------------+------------+-----------+----------------------+ 
-| ndb_mgmd          | mysql      | mysql     |                      |
-+-------------------+------------+-----------+----------------------+ 
-| hiveserver2       | hive       | hive      |                      |
-+-------------------+------------+-----------+----------------------+ 
-| metastore         | hive       | hive      |                      |
-+-------------------+------------+-----------+----------------------+ 
-| kafka             | kafka      | kafka     |                      |
-+-------------------+------------+-----------+----------------------+ 
-| zookeeper         | zookeeper  | zookeeper |                      |
-+-------------------+------------+-----------+----------------------+ 
-| epipe             | epipe      | epipe     |                      |
-+-------------------+------------+-----------+----------------------+ 
-| kibana            | kibana     | kibana    |                      |
-+-------------------+------------+-----------+----------------------+ 
-| airflow-scheduler | airflow    | airflow   |                      |
-+-------------------+------------+-----------+----------------------+ 
-| sqoop             | airflow    | airflow   |                      |
-+-------------------+------------+-----------+----------------------+ 
-| airflow-webserver | airflow    | airflow   |                      |
-+-------------------+------------+-----------+----------------------+ 
+
++-------------------+------------+-----------+----------------------+----------------------------------------------------------------+
+| Service           |Unix User ID| Group     | Ports                | External access                                                |
++===================+============+===========+======================+================================================================+
+| namenode          | hdfs       | hadoop    | 8020, 50470          | Yes, if external access to HopsFS is needed.                   |
++-------------------+------------+-----------+----------------------+----------------------------------------------------------------+
+| datanode          | hdfs       | hadoop    | 50010, 50020         | Yes, if external access to HopsFS is needed.                   |
++-------------------+------------+-----------+----------------------+----------------------------------------------------------------+
+| resourcemgr       | yarn       | hadoop    | 8032                 | No                                                             |
++-------------------+------------+-----------+----------------------+----------------------------------------------------------------+
+| nodemanager       | yarn       | hadoop    | 8042                 | No                                                             |
++-------------------+------------+-----------+----------------------+----------------------------------------------------------------+
+| hopsworks         | glassfish  | glassfish | 443/8181), 4848      | Yes, only for 443/8181.                                        |
++-------------------+------------+-----------+----------------------+----------------------------------------------------------------+
+| elasticsearch     | elastic    | elastic   | 9200, 9300           | Not required                                                   |
++-------------------+------------+-----------+----------------------+----------------------------------------------------------------+
+| logstash          | elastic    | elastic   | 5044-5052, 9600      | No                                                             |
++-------------------+------------+-----------+----------------------+----------------------------------------------------------------+
+| filebeat          | elastic    | elastic   |        N/A           | No                                                             |
++-------------------+------------+-----------+----------------------+----------------------------------------------------------------+
+| kibana            | kibana     | elastic   | 5601                 | No                                                             |
++-------------------+------------+-----------+----------------------+----------------------------------------------------------------+
+| ndbmtd            | mysql      | mysql     | 10000                | No                                                             |
++-------------------+------------+-----------+----------------------+----------------------------------------------------------------+
+| mysqld            | mysql      | mysql     | 3306                 | No                                                             |
++-------------------+------------+-----------+----------------------+----------------------------------------------------------------+
+| ndb_mgmd          | mysql      | mysql     | 1186                 | No                                                             |
++-------------------+------------+-----------+----------------------+----------------------------------------------------------------+
+| hiveserver2       | hive       | hive      | 9084-9085            | No                                                             |
++-------------------+------------+-----------+----------------------+----------------------------------------------------------------+
+| metastore         | hive       | hive      | 9083                 | Yes if external access to the Feature Store is needed          |
++-------------------+------------+-----------+----------------------+----------------------------------------------------------------+
+| kafka             | kafka      | kafka     | 9091, 9092(external) | Yes for 9092 if external access to the Kafka cluster is needed |
++-------------------+------------+-----------+----------------------+----------------------------------------------------------------+
+| zookeeper         | zookeeper  | zookeeper | 2181                 | No                                                             |
++-------------------+------------+-----------+----------------------+----------------------------------------------------------------+
+| epipe             | epipe      | epipe     | 29191 (metrics)      | No                                                             |
++-------------------+------------+-----------+----------------------+----------------------------------------------------------------+
+| airflow-scheduler | airflow    | airflow   |        N/A           | No                                                             |
++-------------------+------------+-----------+----------------------+----------------------------------------------------------------+
+| sqoop             | airflow    | airflow   | 16000                | No                                                             |
++-------------------+------------+-----------+----------------------+----------------------------------------------------------------+
+| airflow-webserver | airflow    | airflow   | 12358                | No                                                             |
++-------------------+------------+-----------+----------------------+----------------------------------------------------------------+
 
 
 ==========================
