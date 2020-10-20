@@ -43,7 +43,7 @@ On your server/VM, run the following bash commands from your user account with s
 Setting up a Cluster for Installation
 -----------------------------------------------------------------
 
-You need to identify a set of servers/VMs and create the same user account with sudo privileges on all the servers. You should identify one server as the head server from which you will perform the installation. You need to ensure that the nodes can communicate with each other on every port and to configure password-less SSH Access from the Head node to Worker nodes. The set of ports that need to be opened is available at :doc:`custom`. First, on the head node, you should create an openssh keypair without a password:
+You need to identify a set of servers/VMs and create the same user account with sudo privileges on all the servers. You should identify one server as the head server from which you will perform the installation. You need to ensure that the nodes can communicate with each other on every port and to configure password-less SSH Access from the Head node to Worker nodes. The set of ports that need to be opened for external access to the Hopsworks cluster is available at :doc:`custom`. First, on the head node, you should create an openssh keypair without a password:
 
 .. code-block:: bash
 
