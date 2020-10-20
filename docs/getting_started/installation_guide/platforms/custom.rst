@@ -182,9 +182,9 @@ The following components are supported by TLS version 1.2+:
 * Prometheus    
 * Jupyter
 
-Hopsworks uses different user accounts and groups to run services. The actual user accounts and groups needed depends on the services you install. Do not delete these accounts or groups and do not modify their permissions and rights. Ensure that no existing systems prevent these accounts and groups from functioning. For example, if you have scripts that delete user accounts not in a whitelist, add these accounts to the list of permitted accounts. Hopsworks creates and uses the following accounts and groups:
-The table below also provides the port is service is listening at. Not all services need to accessible from
-outside the cluster, therefore is it fine if the ports of such services are blocked by perimeter security. Services
+Hopsworks uses different user accounts and groups to run services. The actual user accounts and groups needed depends on the services you install. Do not delete these accounts or groups and do not modify their permissions and rights. Ensure that no existing systems prevent these accounts and groups from functioning. For example, if you have configuration management tools then you need to whitelist Hopsworks users/groups. Hopsworks creates and uses the following accounts and groups:
+The table below also provides the port a service is listening at. Not all services need to be accessible from
+outside the cluster, therefore it is fine if the ports of such services are blocked by perimeter security. Services
 that need to be accessible from outside the cluster are designated in the table below.
 
 
@@ -195,11 +195,11 @@ that need to be accessible from outside the cluster are designated in the table 
 +-------------------+------------+-----------+----------------------+-------------------------------------------------------------------+
 | datanode          | hdfs       | hadoop    | 50010, 50020         | Yes if external access to HopsFS is needed.                       |
 +-------------------+------------+-----------+----------------------+-------------------------------------------------------------------+
-| resourcemgr       | yarn       | hadoop    | 8032                 | No                                                                |
+| resourcemgr       | rmyarn     | hadoop    | 8032                 | No                                                                |
 +-------------------+------------+-----------+----------------------+-------------------------------------------------------------------+
 | nodemanager       | yarn       | hadoop    | 8042                 | No                                                                |
 +-------------------+------------+-----------+----------------------+-------------------------------------------------------------------+
-| hopsworks         | glassfish  | glassfish | 443/8181), 4848      | Yes, only for 443/8181.                                           |
+| hopsworks         | glassfish  | glassfish | 443/8181, 4848       | Yes, only for 443/8181.                                           |
 +-------------------+------------+-----------+----------------------+-------------------------------------------------------------------+
 | elasticsearch     | elastic    | elastic   | 9200, 9300           | Yes if external applications need to read/write                   |
 +-------------------+------------+-----------+----------------------+-------------------------------------------------------------------+
