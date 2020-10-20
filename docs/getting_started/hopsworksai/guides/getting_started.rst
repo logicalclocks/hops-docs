@@ -208,6 +208,8 @@ subnet and security group. Select *Deploy*.
 .. note::
     We recommend that you always configure an SSH key under advanced options to ensure you can troubleshoot the instance if necessary.
 
+.. include:: ../../../getting_started/hopsworksai/guides/s3_permissions.rst
+
 The instance will start. This might take a couple of minutes:
 
 .. _booting.png: ../../../_images/booting.png

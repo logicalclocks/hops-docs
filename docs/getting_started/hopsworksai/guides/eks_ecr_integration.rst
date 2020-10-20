@@ -137,13 +137,26 @@ Navigate to your newly created role in `AWS management console <https://console.
                 "Resource": "arn:aws:eks:*:*:cluster/*"
             },
             {
-                "Sid": "AllowFullAccessToS3Bucket",
+                "Sid": "HopsFSS3Permissions",
                 "Effect": "Allow",
-                "Action": "s3:*",
-                "Resource": "*"
+                "Action": [
+                    "S3:PutObject",
+                    "S3:ListBucket",
+                    "S3:GetBucketLocation",
+                    "S3:GetObject",
+                    "S3:DeleteObject",
+                    "S3:AbortMultipartUpload",
+                    "S3:ListBucketMultipartUploads"
+                ],
+                "Resource": [
+                    "arn:aws:s3:::bucket.name/*",
+                    "arn:aws:s3:::bucket.name"
+                ]
             }
         ]
     }
+
+Do not forget to replace *bucket.name* with appropriate S3 bucket name. 
 
 Step 3: Allow your role to use your EKS cluster 
 -----------------------------------------------
