@@ -1,5 +1,5 @@
-Databricks Quick Start
-======================
+Databricks Quick Start (AWS)
+============================
 
 This guide shows how to quickly get started with using the Feature Store from Databricks.
 A more complete guide is available: :ref:`databricks`.

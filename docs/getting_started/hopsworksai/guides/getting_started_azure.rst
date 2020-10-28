@@ -12,7 +12,7 @@ SageMaker and KubeFlow. This guide shows how to set up Hopsworks.ai with your or
 Step 1: Connecting your Azure account
 -----------------------------------
 
-Hopsworks.ai deploys Hopsworks clusters to your Azure account. To enable this you have to
+Hopsworks.ai deploys Hopsworks clusters to your Azure account. To enable this, you have to
 create a service principal and a custom role for Hopsworks.ai granting access
 to either a subscription or resource group.
 
@@ -143,7 +143,7 @@ Go back to the Hopsworks.ai Azure account configuration workflow and proceed to 
     :figclass: align-center
 
 Paste the CLI command into your terminal and execute it. Note that you might have multiple entries listed here.
-If so ensure that you pick the subscription that you want to use.
+If so, ensure that you pick the subscription that you want to use.
 
 .. _connect-azure-10.png: ../../../_images/connect-azure-10.png
 .. figure:: ../../../imgs/hopsworksai/connect-azure-10.png
@@ -168,7 +168,7 @@ Congratulations, you have successfully connected you Azure account to Hopsworks.
 Step 2: Deploying a Hopsworks cluster
 -------------------------------------
 
-In Hopsworks.ai, select *Create Cluster*:
+In Hopsworks.ai, select *Create cluster*:
 
 .. _create-instance.png: ../../../_images/create-instance.png
 .. figure:: ../../../imgs/hopsworksai/create-instance.png
