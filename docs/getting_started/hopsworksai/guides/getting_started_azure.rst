@@ -73,7 +73,7 @@ Step 1.2: Creating a custom role for Hopsworks.ai
 
 Proceed to the Azure Portal and open either a *Subscription* or *Resource Group* that you want to use for Hopsworks.ai.
 Select *Add* and choose *Add custom role*. Granting access to a *Subscription* will grant access to all *Resource Groups*
-in that *Subscription*. If you are uncertain if that is you what you want, then start with a *Resource Group*.
+in that *Subscription*. If you are uncertain if that is what you want, then start with a *Resource Group*.
 
 .. _connect-azure-3.png: ../../../_images/connect-azure-3.png
 .. figure:: ../../../imgs/hopsworksai/connect-azure-3.png
