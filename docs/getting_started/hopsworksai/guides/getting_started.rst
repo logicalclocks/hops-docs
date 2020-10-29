@@ -220,7 +220,7 @@ The cluster will start. This might take a couple of minutes:
     :figclass: align-center
 
 As soon as the cluster has started, you will be able to log in to your new Hopsworks cluster with the username
-and password provided. You are also able to stop or terminate the cluster.
+and password provided. You will also able to stop or terminate the cluster.
 
 .. _running.png: ../../../_images/running.png
 .. figure:: ../../../imgs/hopsworksai/running.png
@@ -233,7 +233,7 @@ Step 3: Outside Access to the Feature Store
 -------------------------------------------
 
 By default, only the Hopsworks UI is made available to clients on external networks, like the Internet.
-To integrate with external platforms and access APIs for services such as the Feature Store, you have to open ports.
+To integrate with external platforms and access APIs for services such as the Feature Store, you have to open the service's ports.
 
 Open ports by going to *Services* tab, selecting a service and pressing *Update*. This will update the *Security Group* attached to the 
 Hopsworks cluster to allow incoming traffic on the relevant ports.

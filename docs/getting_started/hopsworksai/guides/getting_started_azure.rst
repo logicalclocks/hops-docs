@@ -41,7 +41,7 @@ The Azure account configuration will show you the required steps and permissions
 Ensure that you have the Azure CLI installed (`Install the Azure CLI <https://docs.microsoft.com/en-us/cli/azure/install-azure-cli>`_)
 and are logged in (`Sign in with Azure CLI <https://docs.microsoft.com/en-us/cli/azure/authenticate-azure-cli>`_).
 
-Copy the Azure CLI command to add a service principal for Hopsworks.ai from the first step and open a terminal:
+Copy the Azure CLI command from the first step and open a terminal:
 
 .. _connect-azure-1.png: ../../../_images/connect-azure-1.png
 .. figure:: ../../../imgs/hopsworksai/connect-azure-1.png
@@ -73,7 +73,7 @@ Step 1.2: Creating a custom role for Hopsworks.ai
 
 Proceed to the Azure Portal and open either a *Subscription* or *Resource Group* that you want to use for Hopsworks.ai.
 Select *Add* and choose *Add custom role*. Granting access to a *Subscription* will grant access to all *Resource Groups*
-in that *Subscription*. If you are uncertain if you want that then start with a *Resource Group*.
+in that *Subscription*. If you are uncertain if that is you what you want, then start with a *Resource Group*.
 
 .. _connect-azure-3.png: ../../../_images/connect-azure-3.png
 .. figure:: ../../../imgs/hopsworksai/connect-azure-3.png
@@ -101,7 +101,15 @@ You can change it here if required. Proceed to the JSON tab:
     :align: center
     :figclass: align-center
 
-Select *Edit* and replace the *actions* part of the JSON with the one from Hopsworks.ai Azure account configuration workflow.
+Select *Edit* and replace the *actions* part of the JSON with the one from Hopsworks.ai Azure account configuration workflow:
+
+.. _connect-azure-5.1.png: ../../../_images/connect-azure-5.1.png
+.. figure:: ../../../imgs/hopsworksai/connect-azure-5.1.png
+    :alt: Hopsworks.ai permission list
+    :target: `connect-azure-5.1.png`_
+    :align: center
+    :figclass: align-center
+
 Press *Save*, proceed to *Review + create* and create the role:
 
 .. _connect-azure-6.png: ../../../_images/connect-azure-6.png
@@ -177,7 +185,7 @@ In Hopsworks.ai, select *Create cluster*:
     :align: center
     :figclass: align-center
 
-Select the *Location*, *Resource Group*, *Instance type* and *Local storage* size, name the cluster and proceed:
+Select the *Location*, *Resource Group*, *Instance type* and *Local storage* size, name the cluster and press *Next*:
 
 .. _connect-azure-11.png: ../../../_images/connect-azure-11.png
 .. figure:: ../../../imgs/hopsworksai/connect-azure-11.png
@@ -251,7 +259,7 @@ The cluster will start. This might take a couple of minutes:
     :figclass: align-center
 
 As soon as the cluster has started, you will be able to log in to your new Hopsworks cluster with the username
-and password provided. You are also able to stop or terminate the cluster.
+and password provided. You will also able to stop or terminate the cluster.
 
 .. _running.png: ../../../_images/running.png
 .. figure:: ../../../imgs/hopsworksai/running.png
@@ -264,7 +272,7 @@ Step 3: Outside Access to the Feature Store
 -------------------------------------------
 
 By default, only the Hopsworks UI is made available to clients on external networks, like the Internet.
-To integrate with external platforms and access APIs for services such as the Feature Store, you have to open ports.
+To integrate with external platforms and access APIs for services such as the Feature Store, you have to open the service's ports.
 
 Open ports by going to *Services* tab, selecting a service and pressing *Update*. This will update the *Security Group* attached to the 
 Hopsworks cluster to allow incoming traffic on the relevant ports.
