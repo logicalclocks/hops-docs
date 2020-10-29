@@ -5,9 +5,9 @@ This guide shows how to quickly get started with using the Feature Store from Da
 
 .. contents:: :local:
 
-Step 1: Setting up VPC peering between Hopsworks and Databricks
+Step 1: Setting up VNet peering between Hopsworks and Databricks
 ---------------------------------------------------------------
-VPC peering between the Hopsworks and the Databricks virtual network is required to be able to connect
+VNet peering between the Hopsworks and the Databricks virtual network is required to be able to connect
 to the Feature Store from Databricks.
 
 In the Azure portal, go to Azure Databricks and go to *Virtual Network Peering*:
@@ -132,7 +132,7 @@ Step 3.1: Installing the hops SDK
 Step 3.2: Configuring Databricks to use the Feature Store
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-After installing the hops library, restart the cluster and open a Databricks notebooks connected to this cluster.
+After installing the hops library, restart the cluster and open a Databricks notebook connected to this cluster.
 Execute the following statements in this notebook.
 
 Ensure to replace YOUR_API_KEY_STRING with the API key created in step 2:
@@ -159,7 +159,7 @@ Ensure to replace YOUR_API_KEY_STRING with the API key created in step 2:
   :start-after: .. include-5-start
   :end-before:  .. include-5-stop
 
-Step 4.3: Connecting to the Feature Store
+Step 3.3: Connecting to the Feature Store
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. include:: ../../../featurestore/integrations/guides/databricks.rst
@@ -176,7 +176,7 @@ Step 4.3: Connecting to the Feature Store
     api_key_file='/dbfs/fs_apikey.txt', # This should point to a path in you Databricks cluster
     hostname_verification=True)         # Disable for self-signed certificates   
 
-Step 3: Next steps
+Step 4: Next steps
 ------------------
 Check out our other guides for how to get started with Hopsworks and the Feature Store:
 

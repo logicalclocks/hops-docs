@@ -100,7 +100,7 @@ Step 4.1: Installing the hops SDK
 Step 4.2: Configuring Databricks to use the Feature Store
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-After installing the hops library, restart the cluster and open a Databricks notebooks connected to this cluster.
+After installing the hops library, restart the cluster and open a Databricks notebook connected to this cluster.
 Execute the following statements in this notebook:
 
 .. code-block:: python
