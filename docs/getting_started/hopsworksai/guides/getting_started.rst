@@ -1,7 +1,7 @@
 .. _getting-started-hopsworks-ai:
 
-Getting started with Hopsworks.ai
-=================================
+Getting started with Hopsworks.ai (AWS)
+=======================================
 
 Hopsworks.ai is our managed platform for running Hopsworks and the Feature Store
 in the cloud. It integrates seamlessly with third party platforms such as Databricks,
@@ -193,7 +193,7 @@ Paste the *Access Key ID* and the *Secret Access Key* into Hopsworks.ai and sele
 Step 2: Deploying a Hopsworks cluster
 -------------------------------------
 
-In Hopsworks.ai, select *Run a new instance*:
+In Hopsworks.ai, select *Create cluster*:
 
 .. _create-instance.png: ../../../_images/create-instance.png
 .. figure:: ../../../imgs/hopsworksai/create-instance.png
@@ -202,15 +202,15 @@ In Hopsworks.ai, select *Run a new instance*:
     :align: center
     :figclass: align-center
 
-Configure the instance by selecting the location, instance type and optionally the VPC,
+Configure the cluster by selecting the location, instance type and optionally the VPC,
 subnet and security group. Select *Deploy*.
 
 .. note::
-    We recommend that you always configure an SSH key under advanced options to ensure you can troubleshoot the instance if necessary.
+    We recommend that you always configure an SSH key under advanced options to ensure you can troubleshoot the cluster if necessary.
 
 .. include:: ../../../getting_started/hopsworksai/guides/s3_permissions.rst
 
-The instance will start. This might take a couple of minutes:
+The cluster will start. This might take a couple of minutes:
 
 .. _booting.png: ../../../_images/booting.png
 .. figure:: ../../../imgs/hopsworksai/booting.png
@@ -219,9 +219,8 @@ The instance will start. This might take a couple of minutes:
     :align: center
     :figclass: align-center
 
-As soon as the instance has started, you will be able to log in to your new Hopsworks instance with the username
-and password provided. We recommend that you change that password after your first login.
-You are also able to stop or terminate the instance.
+As soon as the cluster has started, you will be able to log in to your new Hopsworks cluster with the username
+and password provided. You will also able to stop or terminate the cluster.
 
 .. _running.png: ../../../_images/running.png
 .. figure:: ../../../imgs/hopsworksai/running.png
@@ -233,12 +232,11 @@ You are also able to stop or terminate the instance.
 Step 3: Outside Access to the Feature Store
 -------------------------------------------
 
-By default, only the Hopsworks UI is exposed (made available to clients on external networks, like the Internet)
-by your Hopsworks instance. To integrate with external platforms and
-access APIs for services such as the Feature Store, you have to expose them.
+By default, only the Hopsworks UI is made available to clients on external networks, like the Internet.
+To integrate with external platforms and access APIs for services such as the Feature Store, you have to open the service's ports.
 
-Expose services by selecting them and pressing *Update*. This will update the *Security Group* attached to the 
-Hopsworks instance to allow incoming traffic on the relevant ports.
+Open ports by going to *Services* tab, selecting a service and pressing *Update*. This will update the *Security Group* attached to the 
+Hopsworks cluster to allow incoming traffic on the relevant ports.
 
 .. _open-ports.png: ../../../_images/open-ports.png
 .. figure:: ../../../imgs/hopsworksai/open-ports.png

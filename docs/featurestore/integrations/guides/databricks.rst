@@ -1,7 +1,7 @@
 .. _databricks:
 
-Using the Feature Store from Databricks
-=======================================
+Using the Feature Store from Databricks (AWS)
+=============================================
 
 Connecting to the Feature Store from Databricks requires setting up a Feature Store API Key for Databricks and installing 
 a Feature Store SDK on your Databricks cluster. This guide explains step by step how to connect to the Feature Store from Databricks.
