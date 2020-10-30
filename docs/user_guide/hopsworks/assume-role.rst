@@ -9,24 +9,31 @@ configure this go to :doc:`../../admin_guide/cloud_role_mapping`.
 After an administrator configured role mappings in Hopsworks you can see the roles you can assume by going
 to your project settings.
 
-.. _project-roles.png: ../_images/admin/project-roles.png
-.. figure:: ../../imgs/admin/project-roles.png
+.. _project-cloud-roles.png: ../_images/admin/project-cloud-roles.png
+.. figure:: ../../imgs/admin/project-cloud-roles.png
  :alt: Project roles
- :target: `project-roles.png`_
+ :target: `project-cloud-roles.png`_
  :align: center
  :figclass: align-cente
 
  Cloud roles mapped to project.
  
 You can then use the Hops Python and Java APIs to assume the roles listed in your project's settings page.
- 
+
 When calling the assume role method you can pass the role ARN string or use the get role method that takes
-the role id as an argument.
+the role id as an argument. If you assign a default role for your project you can call
+the assume role method with no argument.
  
+You can assign (if you are a Data owner in that project) a default role to you project by clicking on the **Default** button above the role you want to make default. You can set one default per project role. If a default is set for
+a project role (Data scientist or Data owner) and all members (ALL) the default set for the project role will take precedence over the default set for all members.
+In the image above if a Data scientist called the assume role method with no arguments she will assume the role with id 1029 but if a Data owner
+called the same method she will assume the role with id 1.
+
+
 .. code-block:: python
  
    from hops.credentials_provider import get_role, assume_role
-   credentials = assume_role(get_role(1))
+   credentials = assume_role(role_arn=get_role(1))
    spark.read.csv("s3a://resource/test.csv").show()
  
  
@@ -51,7 +58,7 @@ The code below shows how to read training and validation datasets from s3 bucket
    import tensorflow as tf
    import os
  
-   assume_role(get_role(1))
+   assume_role(role_arn=get_role(1))
    os.environ["AWS_REGION"] = "eu-north-1" # s3 bucket region need to be set for TensorFlow
  
    train_filenames = ["s3://resource/train/train.tfrecords"]

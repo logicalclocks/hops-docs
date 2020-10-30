@@ -68,8 +68,11 @@ to roles we can create a per project mapping from the admin page in hopsworks.
  
   Go to cloud role mapping.
 
-By clicking the cloud role mapping icon in the admin page shown in the image above you can add mappings 
+By clicking the cloud role mapping icon in the admin page shown in the image above you can add mappings
 by entering the project name, which roles in that project can access the cloud role and the role ARN.
+Optionally you can set a role mapping as default by marking the default checkbox. The default roles can be changed from the project setting by a Data owner in that project.
+
+
 
 .. _role-mappings.png: ../_images/admin/role-mappings.png
 .. figure:: ../imgs/admin/role-mappings.png
@@ -83,10 +86,10 @@ by entering the project name, which roles in that project can access the cloud r
 
 Any member of a project can then go to the project settings page to see which roles they can assume.
 
-.. _project-roles.png: ../_images/admin/project-roles.png
-.. figure:: ../imgs/admin/project-roles.png
+.. _project-cloud-roles.png: ../_images/admin/project-cloud-roles.png
+.. figure:: ../imgs/admin/project-cloud-roles.png
   :alt: Project roles
-  :target: `project-roles.png`_
+  :target: `project-cloud-roles.png`_
   :align: center
   :figclass: align-cente
  
