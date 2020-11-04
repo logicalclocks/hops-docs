@@ -25,6 +25,7 @@ Hopsworks User Guide
    hopsworks/logs.rst
    hopsworks/jobMetrics.rst
    hopsworks/jupyter.rst
+   hopsworks/assume-role.rst
    hopsworks/python.rst
    hopsworks/flink.rst
    hopsworks/beam.rst

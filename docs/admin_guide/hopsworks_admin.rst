@@ -44,3 +44,4 @@ The panel gives you access to:
     ldap_group_to_project_mapping.rst
     sso.rst
     oauth2.rst
+    cloud_role_mapping.rst
