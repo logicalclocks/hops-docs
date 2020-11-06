@@ -8,11 +8,11 @@ Python Environment Basics
 
 Hopsworks provides a premade environment for machine learning and data science development using python 3.7. The environment contain the most popular machine learning libraries including TensorFlow, Keras, PyTorch and scikit-learn.
 
-The environment ensures compatibility between the machine learning libraries and CUDA/cuDNN in case of NVIDIA GPUs and ROCm in case of AMD GPUs.
+The environment ensures compatibility between the CUDA version and the installed TensorFlow and PyTorch versions for applications using NVIDIA GPUs.
 
-In each project there is an Anaconda environment, which is replicated at all data processing hosts in the cluster. This means that whenever an operation is issued through the UI such as, installing or uninstalling a library, it is replicated on all the Anaconda environments which keeps them in sync.
+For each project, an Anaconda environment can be managed, which is is stored in a Docker image. Issuing an operation from the Python UI such as installing or uninstalling a library also updates the Anaconda environment.
 
-Each python application running in the project, such as for example PySpark, uses the project's environment.
+Each python application running in the project, such as for example PySpark, uses the project's Anaconda environment. The Docker image is pulled on all hosts to ensure that the running applications gets the updated environment as libraries gets added and are removed.
 
 Navigating to the service
 -------------------------
@@ -47,11 +47,7 @@ The preinstalled libraries are listed under the *Manage Environment* tab.
 Installing libraries
 --------------------
 
-**Select package manager**
-
-Python packages can be installed using either conda or pip package managers. For installing packages through conda click the *Conda Libraries* tab, and for pip click *Pip Libraries*.
-
-The first installation or removal of a library will take longer than subsequent operations. The reason being that when a modification is made to the premade environment the first time, the environment is cloned. All subsequent operations will not involve cloning the environment.
+Python packages can be installed either from PyPi, A conda channel, uploaded packages in the form of an .egg or .whl file, or from a git repository.
 
 .. _python3.gif: ../../_images/python/python3.gif
 .. figure:: ../../imgs/python/python3.gif
@@ -88,15 +84,44 @@ Enter the search term and select the version from the drop down.
 
     Installing library using the search
 
+**Installation option 3: Install from .whl or .egg file**
+
+Select the uploaded package to install by selecting it in the file browser.
+
+.. _python10.gif: ../../_images/python/python10.gif
+.. figure:: ../../imgs/python/python10.gif
+    :alt: Install library from file browser
+    :target: `python10.gif`_
+    :align: center
+    :figclass: align-center
+
+    Installing package uploaded in the file browser
+
+**Installation option 4: Install from .git repository**
+
+To install from a git repository simply provide the repository URL. The same you would provide to git in the command line using *pip install git+{repo_url}*.
+In the case of a private git repository, also select whether it is a GitHub or GitLab repository and the preconfigured access token for the repository.
+
+**Note**: If you are installing from a git repository which is not GitHub or GitLab simply supply the access token in the URL. Keep in mind that in this case the access token may be visible in logs for other users to see.
+
+.. _python11.gif: ../../_images/python/python11.gif
+.. figure:: ../../imgs/python/python11.gif
+    :alt: Install library from git repository
+    :target: `python11.gif`_
+    :align: center
+    :figclass: align-center
+
+    Installing library using from git repository
+
 **Track installation progress**
 
-The progress of libraries being installed and uninstalled on all the replicated Anaconda environment can be tracked in the *Ongoing Operations* tab.
-The **CREATE** operation is the operation for cloning the premade environment, after that operation is finished the **INSTALL** operation will run and install the library in the environment.
+The progress of libraries being installed and uninstalled can be tracked in the *Ongoing Operations* tab.
+The **CREATE** operation is the operation for creating a new Docker image based on the premade Anaconda environment, after that operation is finished the **INSTALL** operation will run and install the library in the new environment.
 
 Uninstalling libraries
 ----------------------
 
-To uninstall a library navigate to the *Manage Environment* tab and click the *Uninstall* button the the library to remove. Keep in mind that this will also clone the environment before actually performing the uninstall operation.
+To uninstall a library navigate to the *Manage Environment* tab and click the *Uninstall* button the the library to remove it.
 
 .. _python6.gif: ../../_images/python/python6.gif
 .. figure:: ../../imgs/python/python6.gif
@@ -111,7 +136,7 @@ Recreating environment
 ----------------------
 
 Sometimes it may be desirable to recreate the environment in case it ended up in a bad state. In order to do that, first click *Remove Environment* in the *Manage Environment* tab.
-After removing the environment select the python version to use in the new environment.
+After removing the environment simply recreate it by clicking *Enable Environment*
 
 .. _python7.gif: ../../_images/python/python7.gif
 .. figure:: ../../imgs/python/python7.gif
