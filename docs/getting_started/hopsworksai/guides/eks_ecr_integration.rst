@@ -269,7 +269,7 @@ Add two rules for HTTP and HTTPS as follows:
 
 Click *Save rules* to save the updated rules to the security group.
 
-Step 5: Alow Hopsworks.ai to delete ECR repositories on your behalf
+Step 5: Allow Hopsworks.ai to delete ECR repositories on your behalf
 -------------------------------------------------------------------
 You need to add another inline policy to your role or user connected to Hopsworks.ai, see :ref:`getting-started-hopsworks-ai`.
 First, navigate to `AWS management console <https://console.aws.amazon.com/iam/home#>`_, then click on *Roles* or *Users* depending on which connection method you have used in Hopsworks.ai, and then search for your role or user name and click on it.  Go to the *Permissions* tab, click on *Add inline policy*, and then go to the *JSON* tab. Paste the following snippet, click on *Review policy*, name it, and click *Create policy*.
