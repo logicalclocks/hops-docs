@@ -1,4 +1,4 @@
-.. _getting-started-hopsworks-ai:
+.. _getting-started-hopsworks-ai-azure:
 
 Getting started with Hopsworks.ai (Azure)
 =========================================
