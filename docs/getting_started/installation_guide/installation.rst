@@ -13,7 +13,9 @@ Installation
    platforms/karamel.rst	      
    platforms/vagrant.rst
    platforms/custom.rst
+   platforms/troubleshooting.rst
    upgrades.rst
+
 	      
 ..
    The Hopsworks platform requires the installation of a number of third-party distributed services:
@@ -26,7 +28,7 @@ Installation
    * MySQL Cluster (NDB)
    * Payara Server
    * ELK Stack (Elastic, Logstash, Kibana, Filebeat)
-   * Influxdb, Telegraf, Grafana
+   * Influxdb, Grafana
    * Kafka + Zookeeper
    * Jupyter Notebook
    * Nvidia Cuda/cuDNN/NCCL-2
