@@ -10,7 +10,7 @@ SageMaker and KubeFlow. This guide shows how to set up Hopsworks.ai with your or
 .. contents:: :local:
 
 Step 1: Connecting your Azure account
------------------------------------
+-------------------------------------
 
 Hopsworks.ai deploys Hopsworks clusters to your Azure account. To enable this, you have to
 create a service principal and a custom role for Hopsworks.ai granting access
@@ -173,7 +173,86 @@ Congratulations, you have successfully connected you Azure account to Hopsworks.
     :align: center
     :figclass: align-center
 
-Step 2: Deploying a Hopsworks cluster
+Step 2: Creating and configuring a storage
+------------------------------------------
+The hopsworks clusters deployed by hopsworks.ai store their data in a container in your Azure accoutn.
+To enable this you need to create a storage account and a User Assigned Managed Identity to give the hopsworks cluster access to the storage.
+
+Step 2.1: Creating a User Assigned Managed Identity
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Proceed to the Azure Portal and open the Resource Group that you want to use for Hopsworks.ai. Click on *Add*.
+
+.. _add-to-resource-group.png: ../../../_images/add-to-resource-group.png
+.. figure:: ../../../imgs/hopsworksai/add-to-resource-group.png
+    :alt: Add to resource group.
+    :target: `add-to-resource-group.png`_
+    :align: center
+    :figclass: align-center
+    :borderWidth: 0.5
+    :borderColor:"black"
+
+
+Search for *User Assigned Managed Identity* and click on it.
+
+.. _search-user-assigned-identity.png: ../../../_images/search-user-assigned-identity.png
+.. figure:: ../../../imgs/hopsworksai/search-user-assigned-identity.png
+    :alt: Search User Assigned Managed Identity.
+    :target: `search-user-assigned-identity.png`_
+    :align: center
+    :figclass: align-center
+
+Click on *Create*. Then, select the Location you want to use and give a name to the identity. Click on *Review + create*. Finally click on *Create*.
+
+.. _create-user-assigned-identity.png: ../../../_images/create-user-assigned-identity.png
+.. figure:: ../../../imgs/hopsworksai/create-user-assigned-identity.png
+    :alt: Create a User Assigned Managed Identity.
+    :target: `create-user-assigned-identity.png`_
+    :align: center
+    :figclass: align-center
+
+Step 2.2: Creating a Storage account
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Proceed to the Azure Portal and open the Resource Group that you want to use for Hopsworks.ai. Click on *Add*.
+
+.. _add-to-resource-group2.png: ../../../_images/add-to-resource-group.png
+.. figure:: ../../../imgs/hopsworksai/add-to-resource-group.png
+    :alt: Add to resource group.
+    :target: `add-to-resource-group.png`_
+    :align: center
+    :figclass: align-center
+
+Search for *Storage account* and click on it.
+
+.. _search-storage-account.png: ../../../_images/search-storage-account.png
+.. figure:: ../../../imgs/hopsworksai/search-user-assigned-identity.png
+    :alt: Search Storage Account Identity.
+    :target: `search-storage-account.png`_
+    :align: center
+    :figclass: align-center
+
+Click on *Create*. Then, give a name to your storage account, select the Location you want to use and click on *Review + create*. Finally click on *Create*.
+
+.. _create-storage-account.png: ../../../_images/create-storage-account.png
+.. figure:: ../../../imgs/hopsworksai/create-storage-account.png
+    :alt: Create a Storage Account.
+    :target: `create-storage-account.png`_
+    :align: center
+    :figclass: align-center
+
+Step 2.3: Give the Managed Identity access to the storage
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Proceed to the Storage Account you just created and click on *Access Control (IAM)* (1). Click on *Add* (2), then click on *Add role assignment* (3).
+In *Role* select *Storage Blob Data Owner* (4). In *Assign access to* select *User assigned managed identity* (5). Select the identity you created in step 2.1 (6).
+Click on *Save* (7).
+
+.. _add-role-to-storage.png: ../../../_images/add-role-to-storage.png
+.. figure:: ../../../imgs/hopsworksai/add-role-to-storage.png
+    :alt: Add role assignment to strage.
+    :target: `add-role-to-storage.png`_
+    :align: center
+    :figclass: align-center
+
+Step 3: Deploying a Hopsworks cluster
 -------------------------------------
 
 In Hopsworks.ai, select *Create cluster*:
@@ -185,7 +264,22 @@ In Hopsworks.ai, select *Create cluster*:
     :align: center
     :figclass: align-center
 
-Select the *Location*, *Resource Group*, *Instance type* and *Local storage* size, name the cluster and press *Next*:
+Select the *Location* in which you want your cluster to run (1), name your cluster (2) and select the *Resource Group* (3) in which you created your *storage account* and *user assigned managed identity* (see above).
+
+Select the *Instance type* (4) and *Local storage* (5) size for the cluster *Head node*. 
+
+Select the number of workers you want to start the cluster with (6).
+Select the *Instance type* (7) and *Local storage* size (8) for the *worker nodes*.
+
+.. note::
+    It is possible to add or remove workers once the cluster is running.
+
+Enter the name of the *storage account* (9) you created above in *Azure Storage account name* and give a name to the container in which the data wil be stored in *Azure Container name* (10).
+
+.. note::
+    You can choose to use a container already existing in you *storage account* by using the name of this container, but you need to fist make sure that this container is empty.
+
+Press *Next* (11):
 
 .. _connect-azure-11.png: ../../../_images/connect-azure-11.png
 .. figure:: ../../../imgs/hopsworksai/connect-azure-11.png
@@ -194,12 +288,21 @@ Select the *Location*, *Resource Group*, *Instance type* and *Local storage* siz
     :align: center
     :figclass: align-center
 
-Select the *SSH* that you want to use to access cluster instances:
+Select the *SSH key* that you want to use to access cluster instances:
 
 .. _connect-azure-12.png: ../../../_images/connect-azure-12.png
 .. figure:: ../../../imgs/hopsworksai/connect-azure-12.png
     :alt: Choose SSH key
     :target: `connect-azure-12.png`_
+    :align: center
+    :figclass: align-center
+
+Select the *User assigned managed identity* that you created above:
+
+.. _connect-azure-identity.png: ../../../_images/connect-azure-identity.png
+.. figure:: ../../../imgs/hopsworksai/connect-azure-identity.png
+    :alt: Choose the User assigned managed identity.
+    :target: `connect-azure-identity.png`_
     :align: center
     :figclass: align-center
 
@@ -231,7 +334,7 @@ Select the *Security group* or choose to automatically create a new one:
     :figclass: align-center
 
 Choose the user management you want. Select *Managed* to manage users via Hopsworks.ai, *LDAP* to integrate with your
-organization's LDAP or *Disabled* to manage users manually from within Hopsworks:
+organization's LDAP/ActiveDirectory server or *Disabled* to manage users manually from within Hopsworks:
 
 .. _connect-azure-16.png: ../../../_images/connect-azure-16.png
 .. figure:: ../../../imgs/hopsworksai/connect-azure-16.png
@@ -249,7 +352,7 @@ Review all information and select *Create*:
     :align: center
     :figclass: align-center
 
-The cluster will start. This might take a couple of minutes:
+The cluster will start. This will take a few minutes:
 
 .. _booting.png: ../../../_images/booting.png
 .. figure:: ../../../imgs/hopsworksai/booting.png
@@ -259,7 +362,7 @@ The cluster will start. This might take a couple of minutes:
     :figclass: align-center
 
 As soon as the cluster has started, you will be able to log in to your new Hopsworks cluster with the username
-and password provided. You will also able to stop or terminate the cluster.
+and password provided. You will also able to stop, restart or terminate the cluster.
 
 .. _running.png: ../../../_images/running.png
 .. figure:: ../../../imgs/hopsworksai/running.png
@@ -271,7 +374,7 @@ and password provided. You will also able to stop or terminate the cluster.
 Step 3: Outside Access to the Feature Store
 -------------------------------------------
 
-By default, only the Hopsworks UI is made available to clients on external networks, like the Internet.
+By default, only the Hopsworks REST API (and UI) is accessible by clients on external networks, like the Internet.
 To integrate with external platforms and access APIs for services such as the Feature Store, you have to open the service's ports.
 
 Open ports by going to *Services* tab, selecting a service and pressing *Update*. This will update the *Security Group* attached to the 
