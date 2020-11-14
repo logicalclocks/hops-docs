@@ -206,7 +206,7 @@ Configure the cluster by selecting the location, instance type and optionally th
 subnet and security group. Select *Deploy*.
 
 .. note::
-    We recommend that you always configure an SSH key under advanced options to ensure you can troubleshoot the cluster if necessary.
+    We recommend that you always configure a SSH key under advanced options to ensure you can troubleshoot the cluster if necessary.
 
 .. include:: ../../../getting_started/hopsworksai/guides/s3_permissions.rst
 
