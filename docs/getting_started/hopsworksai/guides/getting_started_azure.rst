@@ -175,8 +175,8 @@ Congratulations, you have successfully connected you Azure account to Hopsworks.
 
 Step 2: Creating and configuring a storage
 ------------------------------------------
-The hopsworks clusters deployed by hopsworks.ai store their data in a container in your Azure accoutn.
-To enable this you need to create a storage account and a User Assigned Managed Identity to give the hopsworks cluster access to the storage.
+The Hopsworks clusters deployed by hopsworks.ai store their data in a container in your Azure account.
+To enable this you need to create a storage account and a User Assigned Managed Identity to give the Hopsworks cluster access to the storage.
 
 Step 2.1: Creating a User Assigned Managed Identity
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -201,7 +201,7 @@ Search for *User Assigned Managed Identity* and click on it.
     :align: center
     :figclass: align-center
 
-Click on *Create*. Then, select the Location you want to use and give a name to the identity. Click on *Review + create*. Finally click on *Create*.
+Click on *Create*. Then, select the Location you want to use and name the identity. Click on *Review + create*. Finally click on *Create*.
 
 .. _create-user-assigned-identity.png: ../../../_images/create-user-assigned-identity.png
 .. figure:: ../../../imgs/hopsworksai/create-user-assigned-identity.png
@@ -230,7 +230,7 @@ Search for *Storage account* and click on it.
     :align: center
     :figclass: align-center
 
-Click on *Create*. Then, give a name to your storage account, select the Location you want to use and click on *Review + create*. Finally click on *Create*.
+Click on *Create*, name your storage account, select the Location you want to use and click on *Review + create*. Finally click on *Create*.
 
 .. _create-storage-account.png: ../../../_images/create-storage-account.png
 .. figure:: ../../../imgs/hopsworksai/create-storage-account.png
@@ -274,7 +274,7 @@ Select the *Instance type* (7) and *Local storage* size (8) for the *worker node
 .. note::
     It is possible to add or remove workers once the cluster is running.
 
-Enter the name of the *storage account* (9) you created above in *Azure Storage account name* and give a name to the container in which the data wil be stored in *Azure Container name* (10).
+Enter the name of the *storage account* (9) you created above in *Azure Storage account name* and name the container in which the data wil be stored in *Azure Container name* (10).
 
 .. note::
     You can choose to use a container already existing in you *storage account* by using the name of this container, but you need to fist make sure that this container is empty.
