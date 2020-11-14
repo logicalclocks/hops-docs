@@ -105,8 +105,7 @@ The peering should now be *Updating*:
     :align: center
     :figclass: align-center
 
-Wait for the peering to show up as *Connected*. You should now be able to reach the Feature Store from
-Databricks:
+Wait for the peering to show up as *Connected*. There should now be bi-directional network connectivity between the Feature Store and Databricks:
 
 .. _azure-databricks-17.png: ../../../_images/azure-databricks-17.png
 .. figure:: ../../../imgs/hopsworksai/azure-databricks-17.png
@@ -122,8 +121,8 @@ Databricks:
 Step 3: Connecting to the Feature Store from Databricks
 -------------------------------------------------------
 
-Step 3.1: Installing the hops SDK
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Step 3.1: Installing the hops library
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. include:: ../../../featurestore/integrations/guides/databricks.rst
   :start-after: .. include-4-start
