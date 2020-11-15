@@ -64,7 +64,9 @@ If you want to learn more about how this policy works check out:
           "ec2:DescribeKeyPairs",
           "ec2:DescribeInstanceStatus",
           "iam:ListInstanceProfiles",
-          "ec2:DescribeSecurityGroups"
+          "ec2:DescribeSecurityGroups",
+          "ec2:DescribeVpcAttribute",
+          "ec2:DescribeRouteTables"
         ],
         "Resource": "*"
       },
