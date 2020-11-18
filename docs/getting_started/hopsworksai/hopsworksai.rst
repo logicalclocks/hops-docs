@@ -1,7 +1,11 @@
 .. _hopsworks-ai:
 
+.. warning:: 
+    This documentation is deprecated, please refer to the `new documentation <https://docs.hopsworks.ai/>`_
+
 Hopsworks.ai (SaaS)
 =======================================
+
 
 .. toctree:: :maxdepth: 1
 
