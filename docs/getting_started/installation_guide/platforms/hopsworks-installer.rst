@@ -25,7 +25,7 @@ On your server/VM, run the following bash commands from your user account with s
 
 .. code-block:: bash
 
-   wget https://raw.githubusercontent.com/logicalclocks/karamel-chef/1.4/hopsworks-installer.sh
+   wget https://raw.githubusercontent.com/logicalclocks/karamel-chef/master/hopsworks-installer.sh
    chmod +x hopsworks-installer.sh
    ./hopsworks-installer.sh
 
