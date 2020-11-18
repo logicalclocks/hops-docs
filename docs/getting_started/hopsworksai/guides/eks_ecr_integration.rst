@@ -1,3 +1,6 @@
+.. warning:: 
+    This documentation is deprecated, please refer to the `new documentation <https://docs.hopsworks.ai/hopsworksai/aws/eks_ecr_integration/>`_
+
 Integration with Amazon EKS and Amazon ECR
 ==========================================
 
