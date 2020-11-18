@@ -1,4 +1,7 @@
 .. _getting-started-hopsworks-ai:
+.. warning:: 
+    This documentation is deprecated, please refer to the `new documentation <https://docs.hopsworks.ai/hopsworksai/aws/getting_started/>`_
+
 
 Getting started with Hopsworks.ai (AWS)
 =======================================
