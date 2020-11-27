@@ -47,7 +47,13 @@ The preinstalled libraries are listed under the *Manage Environment* tab.
 Installing libraries
 --------------------
 
-Python packages can be installed either from PyPi, A conda channel, uploaded packages in the form of an .egg or .whl file, or from a git repository.
+Python packages can be installed in the following ways:
+
+* PyPi, using pip package manager
+* A conda channel, using conda package manager
+* Packages saved in certain file formats, currently we support .whl or .egg.
+* A public or private git repository
+* A requirements.txt file to install many libraries at a time using pip
 
 .. _python3.gif: ../../_images/python/python3.gif
 .. figure:: ../../imgs/python/python3.gif
@@ -84,7 +90,7 @@ Enter the search term and select the version from the drop down.
 
     Installing library using the search
 
-**Installation option 3: Install from .whl or .egg file**
+**Installation option 3: Install from .whl, .egg or requirements.txt file**
 
 Select the uploaded package to install by selecting it in the file browser.
 
@@ -170,6 +176,20 @@ An environment can be created from an Anaconda yml file.
 .. figure:: ../../imgs/python/python9.gif
     :alt: Create an environment from yml file
     :target: `python9.gif`_
+    :align: center
+    :figclass: align-center
+
+    Create an environment from yml
+
+Create an environment from requirements.txt
+------------------------------
+
+An environment can be created from a requirements.txt file.
+
+.. _python12.gif: ../../_images/python/python12.gif
+.. figure:: ../../imgs/python/python12.gif
+    :alt: Create an environment from requirements.txt file
+    :target: `python12.gif`_
     :align: center
     :figclass: align-center
 
