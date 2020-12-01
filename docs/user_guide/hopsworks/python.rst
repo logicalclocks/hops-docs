@@ -47,13 +47,13 @@ The preinstalled libraries are listed under the *Manage Environment* tab.
 Installing libraries
 --------------------
 
-Python packages can be installed in the following ways:
+Python packages can be installed from the following sources:
 
 * PyPi, using pip package manager
 * A conda channel, using conda package manager
-* Packages saved in certain file formats, currently we support .whl or .egg.
+* Packages saved in certain file formats, currently we support .whl or .egg
 * A public or private git repository
-* A requirements.txt file to install many libraries at a time using pip
+* A requirements.txt file to install many libraries at the same time using pip
 
 .. _python3.gif: ../../_images/python/python3.gif
 .. figure:: ../../imgs/python/python3.gif
