@@ -182,7 +182,7 @@ An environment can be created from an Anaconda yml file.
     Create an environment from yml
 
 Create an environment from requirements.txt
-------------------------------
+-------------------------------------------
 
 An environment can be created from a requirements.txt file.
 
