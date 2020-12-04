@@ -669,6 +669,67 @@ If you don't want to use the AWS access key and secret key, you can configure th
 .. note::
     If you are an administrator you can enforce an `Instance Role` only policy by setting the `aws_instance_role` setting to true in the variables configuration. For this to work you need to set the attribute `install/aws/instance_role` to true in the cluster definition.
 
+You can also use temporary credentials to access S3 buckets. To do that you need an IAM role mapping. 
+For a guide on how to do that go to :doc:`../../admin_guide/cloud_role_mapping`.
+If a role mapping exist for the current project you can use that role to access your S3 bucket with temporary credentials.
+
+.. _s3_connector.png: ../../_images/s3_connector.png
+.. figure:: ../../imgs/feature_store/s3_connector.png
+    :alt: New S3 storage connector with iam role. 
+    :target: `s3_connector.png`_
+    :align: center
+    :scale: 55 %
+    :figclass: align-center
+
+    S3 Storage connector can be configured with an IAM role.
+
+Below is a code-snippet illustrating how to use the S3 connector to read a bucket.
+
+.. code-block:: python
+
+   import hsfs
+   from hsfs.engine import spark
+
+   connection = hsfs.connection()
+   fs = connection.get_feature_store()
+   connector_s3 = fs.get_storage_connector("housing_data_bucket", "S3")
+   spark.Engine().read(connector_s3, "csv", {}, "s3://housing_data_bucket/test.csv").show()
+
+
+**Configure RedShift Storage connector**
+
+To be able to use the Hops libraries to ingest feature group data from RedShift or export training datasets to RedShift you need to create a new RedShift storage connector.
+
+By clicking on the `New` button shown in the figure above, a dialog will be displayed which allows you to create new storage connectors.
+Enter a unique name for your connector and in the Refshift tab fill in the cluster identifier, database driver name, endpoint, database name, database port, and database user fields.
+You can use a password or an IAM role to connect to the database. If you use an IAM role a temporary password will be generated for the user every time you get the connector. 
+The IAM role needs a policy that will allow it to get temporary credentials for the user.
+
+.. _redshift_connector.png: ../../_images/redshift_connector.png
+.. figure:: ../../imgs/feature_store/redshift_connector.png
+    :alt: New redshift storage connector. 
+    :target: `redshift_connector.png`_
+    :align: center
+    :scale: 55 %
+    :figclass: align-center
+
+    RedShift Storage connector can be configured from the Feature Store UI in Hopsworks.
+
+Below is a code-snippet illustrating how to use the Redshift connector to read a table from Redshift cluster. 
+
+.. code-block:: python
+
+   import hsfs
+
+   connection = hsfs.connection()
+   fs = connection.get_feature_store()
+   connector_redshift = fs.get_storage_connector("connector-1", "REDSHIFT")
+   options = connector_redshift.spark_options()
+   telcom = spark.read.format("jdbc").options(**options).load()
+
+.. note::
+   Temporary credentials have a maximum duration of 3600 seconds 1 hour. 
+
 
 Incremental Ingestion to the Feature Store using Apache Hudi
 ------------------------------------------------------------
