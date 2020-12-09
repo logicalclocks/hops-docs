@@ -10,23 +10,15 @@ This document contains different guides for installation, users, administration,
   * HopsML_ (Machine Learning Guide)
   * `User Guide`_
 
-* Administrators
+* Administrators & Developers
 
   * `Installation Guide`_
   * `Administration Guide`_
-
-* Hopsworks Developers
-
-  * `Installation Guide`_
-  * `User Guide`_
-  * `Developer Guide`_
 
 .. _HopsML: ../../hopsml/hopsML.html
 
 .. _`User Guide`: ../../user_guide/user_guide.html
 
-.. _`Installation Guide`: ../../installation_guide/installation.html
+.. _`Installation Guide`: ../../getting_started/installation_guide/installation.html
 
 .. _`Administration Guide`: ../../admin_guide/hops_admin_guide.html
-
-.. _`Developer Guide`:  ../../developer_guide/hops_developer_guide.html
