@@ -143,3 +143,25 @@ You do not have to upload the Python program UI to run it. That can be done so f
 To do that, first generate an API key for your project, see :ref:`Generate an API key<api-key-generate>`,
 and then use the ``project.connect()`` function of the same
 library to connect to a project of your Hopsworks cluster and then ``dataset.upload``.
+
+
+Hopsworks IDE Plugin
+--------------------
+
+It is also possible to work on jobs while developing in your IntelliJ/PyCharm IDE by installing the Hopsworks Plugin from the marketplace.
+
+#### Usage
+
+*   Open the **Hopsworks Job Preferences** UI for specifying user preferences under **Settings -> Tools -> Hopsworks Job Preferences**.
+*   Input the Hopworks project preferences and job details you wish to work on.
+*   Open a Project and within the Project Explorer right click on the program ( .jar, .py, .ipynb) you wish to execute as a job on Hopsworks. Different job actions possible are available in the context menu ( Create, Run, Stop, etc.)
+*   For 'Job Execution Status' and 'Job Execution Logs' actions you have the option of retrieving a particular execution details by specifying the execution id in the 'Hopsworks Job Preferences' UI. If not specified, the last execution for the job name specified is retrieved.
+
+.. _pluginHelp.gif: ../../_images/pluginHelp.gif
+.. figure:: ../../imgs/pluginHelp.gif
+    :alt: Hopworks Plugin
+    :target: `pluginHelp.gif`_
+    :align: center
+    :figclass: align-center
+
+    Working with jobs from Hopsworks IntelliJ/PyCharm plugin
