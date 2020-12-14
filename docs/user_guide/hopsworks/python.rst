@@ -54,6 +54,7 @@ Python packages can be installed from the following sources:
 * Packages saved in certain file formats, currently we support .whl or .egg
 * A public or private git repository
 * A requirements.txt file to install many libraries at the same time using pip
+* An environment.yml file to install many libraries at the same time using conda or pip
 
 .. _python3.gif: ../../_images/python/python3.gif
 .. figure:: ../../imgs/python/python3.gif
@@ -90,7 +91,7 @@ Enter the search term and select the version from the drop down.
 
     Installing library using the search
 
-**Installation option 3: Install from .whl, .egg or requirements.txt file**
+**Installation option 3: Install from .whl, .egg, requirements.txt or environment.yml file**
 
 Select the uploaded package to install by selecting it in the file browser.
 
@@ -156,7 +157,7 @@ After removing the environment, simply recreate it by clicking *Enable Environme
 Exporting an environment
 ------------------------
 
-An existing anaconda environment can be exported as a yml file.
+An existing Anaconda environment can be exported as a yml file.
 
 .. _python8.gif: ../../_images/python/python8.gif
 .. figure:: ../../imgs/python/python8.gif
@@ -167,7 +168,7 @@ An existing anaconda environment can be exported as a yml file.
 
     Exporting an environment
 
-Create an environment from yml
+Create an environment from environment.yml
 ------------------------------
 
 An environment can be created from an Anaconda yml file.
@@ -193,4 +194,4 @@ An environment can be created from a requirements.txt file.
     :align: center
     :figclass: align-center
 
-    Create an environment from yml
+    Create an environment from requirements.txt
