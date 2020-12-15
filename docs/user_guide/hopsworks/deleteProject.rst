@@ -2,10 +2,9 @@
 Delete a Project
 ===========================
 
-Right click on the project to be deleted in the projects box. You have the options to:
+You can delete a project using the Settings menu. In the Project Settings tab, you will find a Danger Zone section where
+ there is an option to delete the project.
 
-* Remove and delete data sets;
-
-  * If the user deletes the project, the files are moved to trash in HopsFS;
-
-* Remove and keep data sets.
+.. figure:: ../../imgs/projects/delete_project.png
+  :alt: Delete Project
+  :figclass: align-center
