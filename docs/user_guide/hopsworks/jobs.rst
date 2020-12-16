@@ -150,19 +150,20 @@ Hopsworks IDE Plugin
 
 It is also possible to work on jobs while developing in your IntelliJ/PyCharm IDE by installing the Hopsworks Plugin from the marketplace.
 
-#### Usage
+**Usage**
 
-*   Open the **Hopsworks Job Preferences** UI for specifying user preferences under **Settings -> Tools -> Hopsworks Job Preferences**.
-*   Input the Hopworks project preferences and job details you wish to work on.
-*   Open a Project and within the Project Explorer right click on the program ( .jar, .py, .ipynb) you wish to execute as a job on Hopsworks. Different job actions possible are available in the context menu ( Create, Run, Stop, etc.)
-* **Note:** The Job Type `Python` only supports Hopsworks-EE 
 
-##### Actions
-* **Create:** Create or update job as specified in Hopsworks Job Preferences
-* **Run:** Uploads the program first to the HDFS path as specficied and runs job 
-* **Stop:** Stops a job
-* **Delete:** Deletes a job
-* **Job Execution Status / Job Execution Logs:** Get the job status or logs respectively. You have the option of retrieving a particular job execution by specifying the execution id in the 'Hopsworks Job Preferences' UI, otherwise default is the last execution for the job name specified. 
+-   Open the **Hopsworks Job Preferences** UI for specifying user preferences under **Settings -> Tools -> Hopsworks Job Preferences**.
+-   Input the Hopworks project preferences and job details you wish to work on.
+-   Open a Project and within the Project Explorer right click on the program ( .jar, .py, .ipynb) you wish to execute as a job on Hopsworks. Different job actions possible are available in the context menu ( Create, Run, Stop, etc.)
+- **Note:** The Job Type `Python` only supports Hopsworks-EE 
+
+**Actions**
+- **Create:** Create or update job as specified in Hopsworks Job Preferences
+- **Run:** Uploads the program first to the HDFS path as specficied and runs job 
+- **Stop:** Stops a job
+- **Delete:** Deletes a job
+- **Job Execution Status / Job Execution Logs:** Get the job status or logs respectively. You have the option of retrieving a particular job execution by specifying the execution id in the 'Hopsworks Job Preferences' UI, otherwise default is the last execution for the job name specified. 
 
 .. _pluginHelp.gif: ../../_images/pluginHelp.gif
 .. figure:: ../../imgs/pluginHelp.gif
