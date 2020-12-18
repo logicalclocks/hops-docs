@@ -244,6 +244,44 @@ Create a new notebook and paste the following
 
 .. _hops_examples: https://github.com/logicalclocks/hops-examples
 
+
+Connecting from an external cluster
+-----------------------------------
+
+Connecting your Java/Scala Producers and Consumers from an external cluster to the one shipped with Hopsworks requires exporting the project certificates, keystore and trustore.
+These are used by the clients to securely connect and authenticate against the Hopsworks Kafka cluster.
+Exporting the certificates is done from the project's Settings page as shown in the gif below. This will download the `keyStore.jks`, `trustStore.jks` and display the certificates' password.
+
+.. _project-exports-certificates.gif: ../../_images/project-exports-certificates.gif
+.. figure:: ../../imgs/project-exports-certificates.gif
+    :alt: Project export certificates
+    :target: `project-exports-certificates.gif`_
+    :align: center
+    :figclass: align-center
+
+    Project export certificates
+
+The Kafka clients' configuration needs to include the following properties:
+
+.. code-block::
+
+    security.protocol=SSL
+    ssl.truststore.location=trustStore.jks
+    ssl.truststore.password=<password>
+    ssl.keystore.location=keyStore.jks
+    ssl.keystore.password=<password>
+    ssl.key.password=<password>
+    ssl.endpoint.identification.algorithm=""
+
+
+For further information, please refer to the Apache Kafka security docs http://kafka.apache.org/23/documentation.html#security_ssl
+
+If the clients can connect directly to the Kafka cluster, then the Kafka INTERNAL advertised listener (default port port 9091) needs to be set in the clients' configuration.
+Otherwise the EXTERNAL advertised listener needs to be used (port 9092).
+
+For further information, please refer to the Apache Kafka broker config docs http://kafka.apache.org/23/documentation.html#brokerconfigs
+
+
 Schema Management
 --------------------------------------------------------
 The management of Kafka Avro schemas in Hopsworks is compatible with Confluent Schema Registry v5.3.1. The client should be able to replace the base URL used for the Schema Registry and manage their schemas without any disruption.  
