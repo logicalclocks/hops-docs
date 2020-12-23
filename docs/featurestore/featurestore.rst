@@ -3,8 +3,5 @@
 Feature Store
 =============
 
-.. toctree::
-   :maxdepth: 1
+The documentation for the feature store has been moved to https://docs.hopsworks.ai
 
-   guides/featurestore.rst
-   integrations/integrations.rst     
