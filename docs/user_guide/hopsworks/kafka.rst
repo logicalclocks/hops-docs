@@ -263,7 +263,7 @@ Exporting the certificates is done from the project's Settings page as shown in 
 
 The Kafka clients' configuration needs to include the following properties:
 
-.. code-block:: text
+::
 
     security.protocol=SSL
     ssl.truststore.location=trustStore.jks
