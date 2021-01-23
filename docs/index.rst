@@ -28,7 +28,7 @@ Hopsworks Documentation
    :maxdepth: 4
    :glob:
 
-   featurestore/featurestore
+   featurestore/featurestore.rst
 
 .. toctree::
    :maxdepth: 4
