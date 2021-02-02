@@ -131,7 +131,7 @@ To uninstall a library navigate to the *Manage Environment* tab and click *Unins
 Debugging the environment
 ----------------------
 
-After each installation or uninstallation of a library the environment is analyzed to find libraries that may not work properly. In order to do so we use the ``pip check`` tool, which is able to identify missing dependencies or if a dependency is installed with the incorrect version.
+After each installation or uninstall of a library, the environment is analyzed to detect libraries that may not work properly. In order to do so we use the ``pip check`` tool, which is able to identify missing dependencies or if a dependency is installed with the incorrect version.
 The alert will automatically show if such an issue was found.
 
 

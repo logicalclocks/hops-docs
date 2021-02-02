@@ -341,7 +341,7 @@ Debug Jupyter installation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Jupyter is installed in the python environment of your project. This means that if a dependency of Jupyter is removed or an incorrect version is installed it may not work properly.
-If the environment ends up in a state where the installation may be compromised then an alert will be shown in the interface explaining the issue.
+If the Python environment ends up in a state with conflicting libraries installed then an alert will be shown in the interface explaining the issue.
 
 .. _jupyter16.png: ../../_images/jupyter16.png
 .. figure:: ../../imgs/jupyter16.png
