@@ -128,6 +128,22 @@ To uninstall a library navigate to the *Manage Environment* tab and click *Unins
 
     Uninstalling a library
 
+Debugging the environment
+----------------------
+
+After each installation or uninstallation of a library the environment is analyzed to find libraries that may not work properly. In order to do so we use the ``pip check`` tool, which is able to identify missing dependencies or if a dependency is installed with the incorrect version.
+The alert will automatically show if such an issue was found.
+
+
+.. _python13.gif: ../../_images/python/python13.gif
+.. figure:: ../../imgs/python/python13.gif
+    :alt: Environment conflicts
+    :target: `python13.gif`_
+    :align: center
+    :figclass: align-center
+
+    Uninstalling a library
+
 Recreating environment
 ----------------------
 
