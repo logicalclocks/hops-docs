@@ -142,7 +142,7 @@ The alert will automatically show if such an issue was found.
     :align: center
     :figclass: align-center
 
-    Uninstalling a library
+    Environment conflicts
 
 Recreating environment
 ----------------------
