@@ -337,6 +337,22 @@ pull from a remote or push to a remote etc. For more complicated operations you 
 
     Notebooks version control
 
+Debug Jupyter installation
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Jupyter is installed in the python environment of your project. This means that if a dependency of Jupyter is removed or an incorrect version is installed it may not work properly.
+If the Python environment ends up in a state with conflicting libraries installed then an alert will be shown in the interface explaining the issue.
+
+.. _jupyter16.png: ../../_images/jupyter16.png
+.. figure:: ../../imgs/jupyter16.png
+    :alt: Alert showing Jupyter installation issues
+    :target: `jupyter16.png`_
+    :align: center
+    :figclass: align-center
+
+    Alert showing Jupyter installation issues
+
+
 Want to Learn More?
 ---------------------------------------------------------
 
