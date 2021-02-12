@@ -1,6 +1,6 @@
 .. _restrictive-permissions:
 .. warning:: 
-    This documentation is deprecated, please refer to the `new documentation <https://docs.hopsworks.ai/hopsworksai/aws/restrictive_permissions/>`_
+    This documentation is deprecated, please refer to the `new documentation <https://docs.hopsworks.ai/latest/hopsworksai/aws/restrictive_permissions/>`_
 Limiting AWS permissions
 ========================
 
