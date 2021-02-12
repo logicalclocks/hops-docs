@@ -1,6 +1,6 @@
 .. _getting-started-hopsworks-ai-azure:
 .. warning:: 
-    This documentation is deprecated, please refer to the `new documentation <https://docs.hopsworks.ai/hopsworksai/azure/getting_started/>`_
+    This documentation is deprecated, please refer to the `new documentation <https://docs.hopsworks.ai/latest/hopsworksai/azure/getting_started/>`_
 
 Getting started with Hopsworks.ai (Azure)
 =========================================
