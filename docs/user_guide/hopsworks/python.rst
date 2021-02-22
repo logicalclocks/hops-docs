@@ -56,8 +56,6 @@ Python packages can be installed from the following sources:
 * A requirements.txt file to install many libraries at the same time using pip
 * An environment.yml file to install many libraries at the same time using conda or pip
 
-**The search bar for pip libraries is not available since Hopsworks 2.1, it will be added back in 2.2.**
-
 .. _python3.gif: ../../_images/python/python3.gif
 .. figure:: ../../imgs/python/python3.gif
     :alt: Select library package manager
@@ -80,7 +78,20 @@ Enter the name and the desired version to install of your python package.
 
     Installing library by name and version
 
-**Installation option 2: Install from .whl, .egg, requirements.txt or environment.yml file**
+**Installation option 2: Search and install**
+
+Enter the search term and select the version from the drop down.
+
+.. _python5.gif: ../../_images/python/python5.gif
+.. figure:: ../../imgs/python/python5.gif
+    :alt: Install library using search
+    :target: `python5.gif`_
+    :align: center
+    :figclass: align-center
+
+    Installing library using the search
+
+**Installation option 3: Install from .whl, .egg, requirements.txt or environment.yml file**
 
 Select the uploaded package to install by selecting it in the file browser.
 
@@ -93,7 +104,7 @@ Select the uploaded package to install by selecting it in the file browser.
 
     Installing package uploaded in the file browser
 
-**Installation option 3: Install from .git repository**
+**Installation option 4: Install from .git repository**
 
 To install from a git repository simply provide the repository URL. The URL you should provide is the same as you would enter on the command line using *pip install git+{repo_url}*.
 In the case of a private git repository, also select whether it is a GitHub or GitLab repository and the preconfigured access token for the repository.
