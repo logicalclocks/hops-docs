@@ -5,5 +5,4 @@ Getting Started
    :maxdepth: 1
 
    installation_guide/installation.rst   
-   hopsworksai/hopsworksai.rst
 
