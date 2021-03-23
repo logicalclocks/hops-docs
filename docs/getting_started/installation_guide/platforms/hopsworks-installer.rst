@@ -126,6 +126,12 @@ Azure VMs do not support private DNS by default, so you will need to add support
 
 FQDN h1.hops.io.5zchkifi2mmetn0a5saw0eu1me.ax.internal.cloudapp.net is too long! It should not be longer than 60 characters
 
+Before proceed further you **must** change the hostname of your virtual machines to the **private** domain name using the command below
+
+.. code-block:: bash
+
+    sudo hostnamectl set-hostname PRIVATE_HOSTNAME
+
 Once VMs have been created with a short private DNS name, you can follow the instructions above for single-host and multi-host installations for AWS and GCP.
 
 .. _AzureDNS: https://docs.microsoft.com/en-us/azure/dns/private-dns-getstarted-portal
