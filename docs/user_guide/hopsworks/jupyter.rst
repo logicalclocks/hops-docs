@@ -32,6 +32,23 @@ and then `Help-Launch Classic Notebook`.
 
     Start a Jupyter notebook server
 
+**Using the previous attached configuration**
+
+When you run a notebook, the jupyter configuration used is stored and attached to the notebook as an xattribute. You can
+use this configuration later to start the jupyter notebook server directly from the notebook file. When the notebook
+you previously run is selected, you will see options to view the previously run configuration or start jupyter server
+from the previous configuration. Click on the Notebook Configuration button to view the previous used configuration.
+Click on the JupyterLab button to start the jupyter notebook server.
+
+.. _notebook_jupyter_configuration.png: ../../_images/notebook_jupyter_configuration.png
+.. figure:: ../../imgs/notebook_jupyter_configuration.png
+    :alt: Notebook attached Jupyter configuration
+    :target: `notebook_jupyter_configuration.png`_
+    :align: center
+    :figclass: align-center
+
+    Start a Jupyter notebook server from the previous configuration attached to notebook.
+
 **Logs**
 
 It can be useful to look at the Jupyter server logs in case of errors as they can provide more details compared to the
