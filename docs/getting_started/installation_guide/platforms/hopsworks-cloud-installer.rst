@@ -9,7 +9,7 @@ This installation requires the command-line on a  Linux machine (Ubuntu or Redha
 
 .. code-block:: bash
 
-   wget https://raw.githubusercontent.com/logicalclocks/karamel-chef/master/cloud/hopsworks-cloud-installer.sh
+   wget https://raw.githubusercontent.com/logicalclocks/karamel-chef/2.1/cloud/hopsworks-cloud-installer.sh
    chmod +x hopsworks-cloud-installer.sh
    ./hopsworks-cloud-installer.sh
    
