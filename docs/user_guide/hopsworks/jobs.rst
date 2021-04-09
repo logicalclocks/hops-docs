@@ -144,6 +144,43 @@ To do that, first generate an API key for your project, see :ref:`Generate an AP
 and then use the ``project.connect()`` function of the same
 library to connect to a project of your Hopsworks cluster and then ``dataset.upload``.
 
+Docker
+------
+(*Available in Hopsworks Enterprise only*)
+
+The Docker job type in Hopsworks enables running your own Docker containers as jobs in Hopsworks. With the Docker job type, users are no longer restricted in
+running only Python, Spark/PySpark and Flink programs, but can now utilize the Hopsworks Jobs service to run any program/service does it packaged in a Docker container.
+
+As seen the screenshot below, users can set the following Docker job specific properties (advanced properties are optional):
+
+- Docker image: The location of the Docker image. Currently only publicly accessible docker registries are supported.
+- Docker command: The command to run the Docker container with
+- Docker command arguments: Comma-separated list of input arguments of the Docker command
+- Output path: The location in Hopsworks datasets where the output of the Job will be persisted, if the programs running inside the container redirect their output
+  to the same container-local path. For example, if the output path is set to `/Projects/myproject/Resources` and the a container runs the command `echo "hello" >> /Projects/myproject/Resources/hello.txt`,
+  then the Hopsworks job upon job completion will copy the entire content of the `/Projects/myproject/Resources` from the docker container to the corresponding path with the same name under Datasets.
+- Environment variables: Comma-separated list of environment variables to be set for the Docker container.
+- Volumes: Comma-separated list of volumes to be mounted with the Docker job.
+- User id / Group Id: Provide the uid and gid to run the Docker container with. For further details, look into the *Admin options* below.
+
+.. _docker_job_details.png: ../../_images/docker_job_details.png
+.. figure:: ../../imgs/docker_job_details.png
+    :alt: Docker new job UI
+    :target: `docker_job_details.png`_
+    :align: center
+    :figclass: align-center
+
+    Create a new Docker job from the Jobs UI
+
+
+**Admin options**
+
+The following options can be set using the Variables service within the Admin UI of Hopsworks:
+
+- docker_job_mounts_list: Comma-separated list of host paths jobs are allowed to mount. Default is empty.
+- docker_job_mounts_allowed: Whether mounting volumes is allowed. Allowed values: `true/false`. Default is `false`.
+- docker_job_uid_strict: Enable or disable strict mode for uig/gid of docker jobs. In strict mode, users cannot set the uid/gid of the job. Default is `true`.
+  If `false` and users do not set uid and gid, the container will run with the uid/gid set in the Dockerfile.
 
 Hopsworks IDE Plugin
 --------------------
