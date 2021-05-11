@@ -6,10 +6,10 @@ Alerts
 =================
  
 Alerts can be sent from jobs and feature group validations. This is done by creating
-job alert or feature group alert for specific job or feature group. Alternatively
+job alerts or feature group alerts for specific jobs or feature groups. Alternatively
 alerts can be created for all jobs or feature group validations in a project.
  
-In order to send alert routes and receivers need to be configured.
+In order to send alerts, routes and receivers need to be configured.
 This is done from the project settings page.
  
  
@@ -61,7 +61,7 @@ Alerts are sent to receivers if they match all the equality (match) or regular e
 matchers (matchRe). Match and matchRe are given as a key value pair as shown in the figure below.
  
 1. **Group wait**: How long to initially wait to send a notification for a group of alerts. Allows to collect more initial alerts for the same group. (Usually ~0s to few minutes.)
-2. **Groupe interval**: How long to wait before sending a notification about new alerts that are added to a group of alerts for which an initial notification has already been sent. (Usually ~5m or more.)
+2. **Group interval**: How long to wait before sending a notification about new alerts that are added to a group of alerts for which an initial notification has already been sent. (Usually ~5m or more.)
 3. **Repeat interval**: How long to wait before sending a notification again if it has already been sent successfully for an alert. (Usually ~3h or more).
 4. **Group by**: The labels by which incoming alerts are grouped together.
 5. **Continue**: If continue is set to false, it stops after the first matching route. If continue is true, the alert will continue matching against subsequent routes.
@@ -109,8 +109,8 @@ alert can be sent by clicking on the paper airplane in the action column.
 2. **Status**: what status (of a job execution or a feature group validation) should send an alert.
 3. **Severity**: the severity of the alert. (info, warning, or critical).
 4. **Alert type**: can be global or project alerts.
-  Global alerts are sent to receivers configured by platform administrators.
-  While project alerts are sent to the project's receivers. 
+
+Global alerts are sent to receivers configured by platform administrators. While project alerts are sent to the project's receivers. 
  
  
 Job alert
@@ -137,8 +137,8 @@ This will open a modal shown below.
 1. **Status**: what final status of the job's execution should send an alert. (Finished, Failed, Killed)
 2. **Severity**: the severity of the alert. (info, warning, or critical).
 3. **Alert type**: can be global or project alerts.
-  Global alerts are sent to receivers configured by platform administrators.
-  While project alerts are sent to the project's receivers.
+
+Global alerts are sent to receivers configured by platform administrators. While project alerts are sent to the project's receivers.
  
 Feature group validation alert
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -156,8 +156,8 @@ feature group's details page and click on the validation alerts accordion.
 1. **Status**: what final status of the feature group validation should send an alert. (Failure, Success, or Warning)
 2. **Severity**: the severity of the alert. (info, warning, or critical).
 3. **Alert type**: can be global or project alerts.
-  Global alerts are sent to receivers configured by platform administrators.
-  While project alerts are sent to the project's receivers.
+
+Global alerts are sent to receivers configured by platform administrators. While project alerts are sent to the project's receivers.
  
 Active alerts
 ~~~~~~~~~~~~~
