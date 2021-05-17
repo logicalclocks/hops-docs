@@ -45,3 +45,4 @@ The panel gives you access to:
     sso.rst
     oauth2.rst
     cloud_role_mapping.rst
+    alerts.rst
