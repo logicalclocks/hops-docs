@@ -154,8 +154,9 @@ running only Python, Spark/PySpark and Flink programs, but can now utilize the H
 As seen the screenshot below, users can set the following Docker job specific properties (advanced properties are optional):
 
 - Docker image: The location of the Docker image. Currently only publicly accessible docker registries are supported.
-- Docker command: The command to run the Docker container with
-- Docker command arguments: Comma-separated list of input arguments of the Docker command
+- Docker command: Comma-separated list of commands to run the docker image with.
+- Default arguments: Optional input arguments to be provided to the docker container.
+- Input paths: Comma-separated list of datasets or directories to be made available to the docker container. Data is copied asynchronously in the container, it is up to the application to wait until all data copy is completed. In the example screenshot below, the application sleeps for 20 seconds before using the data.
 - Output path: The location in Hopsworks datasets where the output of the Job will be persisted, if the programs running inside the container redirect their output
   to the same container-local path. For example, if the output path is set to `/Projects/myproject/Resources` and the a container runs the command `echo "hello" >> /Projects/myproject/Resources/hello.txt`,
   then the Hopsworks job upon job completion will copy the entire content of the `/Projects/myproject/Resources` from the docker container to the corresponding path with the same name under Datasets.
