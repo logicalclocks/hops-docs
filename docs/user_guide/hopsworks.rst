@@ -19,6 +19,7 @@ Hopsworks User Guide
    hopsworks/compress.rst
    hopsworks/dataSetShare.rst
    hopsworks/search.rst
+   hopsworks/tags.rst
    ../hopsml/provenance.rst
    hopsworks/apiKeys.rst
    hopsworks/jobs.rst
