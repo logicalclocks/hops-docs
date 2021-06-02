@@ -27,4 +27,4 @@ You can edit the datasets by right clicking on them. A README file is auto-gener
 Data set name reserved words
 ============================
 
-PROJECTS.
+PROJECTS/DOWNLOAD/UPLOAD/TAGS.
