@@ -32,8 +32,7 @@ follow the steps below:
   the configuration you desire for your job and any additional dependencies and arbitrary Spark/Flink
   parameters.
 * Step 8: Click on the ``Create`` button
-* Step 9: Click on the ``Run`` button to launch your job. If no default arguments have been configured, a dialog textbox will ask for any runtime arguments the job
-may require. If this job requires no arguments, the field can be left empty. The figure below shows the dialog.
+* Step 9: Click on the ``Run`` button to launch your job. If no default arguments have been configured, a dialog textbox will ask for any runtime arguments the job may require. If this job requires no arguments, the field can be left empty. The figure below shows the dialog.
 
 .. _jobs-ui-args.png: ../../_images/jobs-ui-args.png
 .. figure:: ../../imgs/jobs-ui-args.png
@@ -154,25 +153,16 @@ running only Python, Spark/PySpark and Flink programs, but can now utilize the H
 As seen the screenshot below, users can set the following Docker job specific properties (advanced properties are optional):
 
 - Docker image: The location of the Docker image. Currently only publicly accessible docker registries are supported.
-- Docker command: Comma-separated list of commands to run the docker image with.
+- Docker command: Newline delimited list of commands to run the docker image with.
 - Default arguments: Optional input arguments to be provided to the docker container.
-- Input paths: Comma-separated list of datasets or directories to be made available to the docker container. Data is copied asynchronously in the container, it is up to the application to wait until all data copy is completed. In the example screenshot below, the application sleeps for 20 seconds before using the data.
+- Input paths: Newline delimited list of datasets or directories to be made available to the docker container. Data is copied asynchronously in the container, it is up to the application to wait until all data copy is completed. In the example screenshot below, the application sleeps for 20 seconds before using the data.
 - Output path: The location in Hopsworks datasets where the output of the Job will be persisted, if the programs running inside the container redirect their output
   to the same container-local path. For example, if the output path is set to `/Projects/myproject/Resources` and the a container runs the command `echo "hello" >> /Projects/myproject/Resources/hello.txt`,
   then the Hopsworks job upon job completion will copy the entire content of the `/Projects/myproject/Resources` from the docker container to the corresponding path with the same name under Datasets.
-- Environment variables: Comma-separated list of environment variables to be set for the Docker container.
-- Volumes: Comma-separated list of volumes to be mounted with the Docker job.
+- Environment variables: Newline delimited list of environment variables to be set for the Docker container.
+- Volumes: Newline delimited list of volumes to be mounted with the Docker job.
 - User id / Group Id: Provide the uid and gid to run the Docker container with. For further details, look into the *Admin options* below.
-
-.. _docker_job_details.png: ../../_images/docker_job_details.png
-.. figure:: ../../imgs/docker_job_details.png
-    :alt: Docker new job UI
-    :target: `docker_job_details.png`_
-    :align: center
-    :figclass: align-center
-
-    Create a new Docker job from the Jobs UI
-
+- Redirect stdout/stderr: Whether to automatically redirect stdout and stderr to the Logs dataset. Logs will be made available after the job is completed. Disable this setting if you prefer to redirect the logs to another location.
 
 **Admin options**
 
@@ -182,6 +172,61 @@ The following options can be set using the Variables service within the Admin UI
 - docker_job_mounts_allowed: Whether mounting volumes is allowed. Allowed values: `true/false`. Default is `false`.
 - docker_job_uid_strict: Enable or disable strict mode for uig/gid of docker jobs. In strict mode, users cannot set the uid/gid of the job. Default is `true`.
   If `false` and users do not set uid and gid, the container will run with the uid/gid set in the Dockerfile.
+
+Examples
+========
+
+Below you can find some examples showing how to set various Docker job options. Despite all jobs using commands and arguments differently, the output of all jobs is the equivalent.
+You can choose whichever setup is convenient for your use-case, keep in mind that `defaultArgs` and execution `args` are provided in a single line (String variable).
+**If the job fails and no out/error logs are available, make sure the commands and arguments are properly formatted, for example not trailing whitespace characters are present**.
+
+The command to run is `/bin/sh -c sleep 10 && cp /Projects/p1/Jupyter/README.md /Projects/p1/Resources/README_Jupyter.md && ls /`
+
+**Example 1: A job with multiple commands and no arguments**
+
+.. _docker_job_example1.png: ../../_images/docker_job_example1.png
+.. figure:: ../../imgs/docker_job_example1.png
+    :alt: Docker job example 1
+    :target: `docker_job_example1.png`_
+    :align: center
+    :figclass: align-center
+
+    Create a new Docker job from the Jobs UI using only the "command" property
+
+**Example 2: A job with multiple commands and default arguments**
+
+.. _docker_job_example2.png: ../../_images/docker_job_example2.png
+.. figure:: ../../imgs/docker_job_example2.png
+    :alt: Docker job example 2
+    :target: `docker_job_example2.png`_
+    :align: center
+    :figclass: align-center
+
+    Create a new Docker job from the Jobs UI using only the "command" and "defaultArgs" properties
+
+
+**Example 3: A job with multiple commands and no arguments (requested upon execution)**
+
+.. _docker_job_example3.png: ../../_images/docker_job_example3.png
+.. figure:: ../../imgs/docker_job_example3.png
+    :alt: Docker job example 3
+    :target: `docker_job_example3.png`_
+    :align: center
+    :figclass: align-center
+
+    Create a new Docker job from the Jobs UI using the "command" property and execution arguments
+
+
+Below you can see how to view the stdout and stderr job logs.
+
+.. _docker_job_logs.gif: ../../_images/docker_job_logs.gif
+.. figure:: ../../imgs/docker_job_logs.gif
+    :alt: Docker job logs
+    :target: `docker_job_logs.gif`_
+    :align: center
+    :figclass: align-center
+
+    View Docker jobs logs
 
 Hopsworks IDE Plugin
 --------------------
