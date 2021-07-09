@@ -256,3 +256,26 @@ It is also possible to work on jobs while developing in your IntelliJ/PyCharm ID
     :figclass: align-center
 
     Working with jobs from Hopsworks IntelliJ/PyCharm plugin
+
+**Support for running Flink jobs**
+
+-  You can also submit your local program as a flink job using the
+   plugin. Follow the steps to ``Create Job`` to first create a flink
+   job in Hopsworks.
+-  Then click on ``Run Job``. This will first start a flink cluster if
+   there is no active running flink job with same job name. Otherwise it
+   will use an active running flink cluster with same job name. Next it
+   will upload and submit your program to a running flink cluster.
+-  Set your program main class using the ``Main Class`` field in
+   preferences. To pass arguments, simply fill it in the
+   ``User Arguments``, multiple arguments separated by space. e.g.
+   --arg1 a1 --arg2 a2
+
+.. _flink_test_withArgs.gif: ../../_images/flink_test_withArgs.gif
+.. figure:: ../../imgs/flink_test_withArgs.gif
+    :alt: Example:Submitting Flink Job from plugin
+    :target: `flink_test_withArgs.gif`_
+    :align: center
+    :figclass: align-center
+
+    Example:Submitting Flink Job from plugin
