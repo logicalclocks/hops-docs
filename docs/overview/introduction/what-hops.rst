@@ -4,7 +4,7 @@ What is Hops?
 
 
 Hops is a next-generation distribution of Apache Hadoop, with a heavily adapted impelementation of HDFS, called HopsFS.
-HopsFS is a new implementation of the the Hadoop Filesystem (HDFS) based on `Apache Hadoop`_ 2.8, that supports multiple stateless NameNodes, where the metadata is stored in an in-memory distributed database (NDB). HopsFS enables NameNode metadata to be both customized and analyzed, because it can be easily accessed via SQL or the native API (NDB API).
+HopsFS is a new implementation of the Hadoop Filesystem (HDFS) based on `Apache Hadoop`_ 2.8, that supports multiple stateless NameNodes, where the metadata is stored in an in-memory distributed database (NDB). HopsFS enables NameNode metadata to be both customized and analyzed, because it can be easily accessed via SQL or the native API (NDB API).
 
 .. figure:: ../../imgs/hopsfs-arch.png
    :alt: HopsFS Architecture

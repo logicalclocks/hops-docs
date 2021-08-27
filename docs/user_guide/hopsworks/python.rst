@@ -1,3 +1,6 @@
+.. _python_environment:
+
+======
 Python
 ======
 
@@ -140,7 +143,7 @@ To uninstall a library navigate to the *Manage Environment* tab and click *Unins
     Uninstalling a library
 
 Debugging the environment
-----------------------
+--------------------------
 
 After each installation or uninstall of a library, the environment is analyzed to detect libraries that may not work properly. In order to do so we use the ``pip check`` tool, which is able to identify missing dependencies or if a dependency is installed with the incorrect version.
 The alert will automatically show if such an issue was found.
@@ -185,7 +188,7 @@ An existing Anaconda environment can be exported as a yml file.
     Exporting an environment
 
 Create an environment from environment.yml
-------------------------------
+-------------------------------------------
 
 An environment can be created from an Anaconda yml file.
 

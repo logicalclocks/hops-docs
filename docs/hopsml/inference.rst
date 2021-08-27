@@ -1,8 +1,10 @@
+.. _inference:
+
 =========
 Inference
 =========
 
-Hopsworks provides a REST API for submitting inference requests to the serving servers. Currently the API supports, as backend, the TensorFlow model server and Flask Servers for SkLearn Models, it will be expanded in the future to support more model types as well.
+Hopsworks provides a REST API for submitting inference requests to the serving servers. Currently the API supports, as backend, the TensorFlow model server and Flask Servers for Models trained with python-based frameworks such as Sklearn or XGBoost.
 
 
 Limitations
@@ -38,12 +40,12 @@ The code snippet below shows how you can send 20 inference requests to Hopsworks
 
 
 
-Request Logging
----------------
+Requests Logging
+-----------------
 
 If during the serving instance creation you have specified a Kafka Topic to log the inference requests, each request will be logged in the topic.
 
-Inference requests log entries follow this *Avro* schema:
+Inference requests log entries can follow two different *Avro* schemas depending on the serving tool used to deploy the model server. If the serving instance is deployed using Docker or Kubernetes, the inference requests log entries will follow the *Avro* schema:
 
 .. code-block:: json
 
@@ -69,12 +71,54 @@ Inference requests log entries follow this *Avro* schema:
             },{
             "name": "inferenceResponse",
             "type": "string"
+            },{
+            "name": "modelServer",
+            "type": "string"
+            },{
+            "name": "servingTool",
+            "type": "string"
+            }],
+        "name": "inferencelog",
+        "type": "record"
+    }
+    
+In particular the *inferenceRequest* field contains the payload sent by the client and the *inferenceResponse* contains the answer given by the serving server.
+
+By contrast, if the serving instance is deployed using KFServing, the inference requests log entries will follow the *Avro* schema below, where requests and responses are logged separately:
+
+.. code-block:: json
+
+    {
+        "fields": [{
+            "name": "servingId",
+            "type": "int"
+            },{
+            "name": "modelName",
+            "type": "string"
+            },{
+            "name": "modelVersion",
+            "type": "int"
+            },{
+            "name": "requestTimestamp",
+            "type": "long"
+            },{
+            "name": "responseHttpCode",
+            "type": "int"
+            },{
+            "name": "inferenceId",
+            "type": "string"
+            },{
+            "name": "messageType",
+            "type": "string"
+            },{
+            "name": "payload",
+            "type": "string"
             }],
         "name": "inferencelog",
         "type": "record"
     }
 
-In particular the *inferenceRequest* field contains the payload sent by the client and the *inferenceResponse* contains the answer given by the serving server.
+In this case, each log entry contains a unique *inferenceId* that allows you to match requests with the corresponding responses. A *messageType* field indicates whether the log entry is *Request* or *Response* and the *payload* field contains the content of the event (i.e model input or predictions).
 
 Below is a python code-snippet showing how you can read 10 inference logs from Kafka for a Serving Instance with the name "mnist":
 
@@ -82,7 +126,7 @@ Below is a python code-snippet showing how you can read 10 inference logs from K
 
     from hops import serving, kafka
     from confluent_kafka import Producer, Consumer, KafkaError
-    topic = serving.get_serving_kafka_topic("IrisFlowerClassifier")
+    topic = serving.get_kafka_topic("IrisFlowerClassifier")
     config = kafka.get_kafka_default_config()
     config['default.topic.config'] = {'auto.offset.reset': 'earliest'}
     consumer = Consumer(config)

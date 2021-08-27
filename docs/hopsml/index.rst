@@ -13,7 +13,8 @@ HopsML
    inference.rst
    pyspark.rst
    maggy.rst
-   sklearn_model_serving.rst   
+   python_model_serving.rst   
    tf_model_serving.rst
+   kfserving.rst
    provenance.rst
 
