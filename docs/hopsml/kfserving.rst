@@ -18,7 +18,7 @@ Export your model
 -----------------
 
 The first step to serving your model is to train it and export it as a servable model to the Hopsworks Model Registry in your Hopsworks project.
-This can be done by using the `model module` from the Hops python library.
+This can be done by using the `model module`_ from the Hops python library.
 
 An example code snippet, taken from https://examples.hopsworks.ai/ml/experiment/tensorflow/mnist/ , shows how to export a Tensorflow model to the Hopsworks Model Registry:
 
