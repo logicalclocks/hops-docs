@@ -10,9 +10,9 @@ Hopsworks uses PySpark to manage the allocation of resources, such as CPU, Memor
 Python Library
 -------------------
 
-The Hopsworks Python Library named `hops` provides support for running Python applications that interact with Hopsworks and/or leverage PySpark for distribution on the Hopsworks platform. It simplifies interacting with services such as Feature Store, Model Repository, Serving, Inference and TensorBoard. The `experiment` module provides a rich API for running versioned Machine Learning experiments, whether it be a simple single-process Python application or Distributed Training over many machines.
+The Hopsworks Python Library named `hops` provides support for running Python applications that interact with Hopsworks and/or leverage PySpark for distribution on the Hopsworks platform. It simplifies interacting with services such as Feature Store, Model Repository, Serving, Inference and TensorBoard. The `Hops experiment module`_ provides a rich API for running versioned Machine Learning experiments, whether it be a simple single-process Python application or Distributed Training over many machines.
 
-Documentation: hops-py_ 
+Documentation: `Hops experiment module`_ 
 
 Experiment examples: hops-examples_ 
 
@@ -74,7 +74,7 @@ The path returned is to the root directory in Hopsworks of your project.
 
 **Step 2 (optional)**. If you have your data in an s3 bucket you can read the data using TensorFlow by
 setting environment variables AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_SESSION_TOKEN (which can be set using the assume role API
-in Hops util. See :doc:`../user_guide/hopsworks/assume-role` for a full code example.) and AWS_REGION
+in `Hops python library`_. See :doc:`../user_guide/hopsworks/assume-role` for a full code example.) and AWS_REGION
 then 
 
 ::
@@ -174,7 +174,7 @@ To define the hyperparameters, create a dictionary with the keys matching the ar
    "6", "0.0001", "0.7"
 
 
-After defining the training code, the hyperparameter combinations and the direction to optimize (Direction.MIN or Direction.MAX) the next step is to start the actual training. This is done using the *experiment* module from the hops python library.
+After defining the training code, the hyperparameter combinations and the direction to optimize (Direction.MIN or Direction.MAX) the next step is to start the actual training. This is done using the `Hops experiment module`_ from the `Hops python library`_.
 
 ::
 
@@ -209,7 +209,7 @@ If multiple metrics are returned then it should be in a dict, also optimization_
         acc, loss = model.eval(learning_rate, dropout)
         return {'accuracy': acc, 'loss': loss, 'plot': 'image_file.png'}
         
-After defining the training code and the hyperparameter bounds, the next step is to tune some hyperparameters for the differential evolution algorithm and start the actual training. This is done using the *experiment* module from the hops python library.
+After defining the training code and the hyperparameter bounds, the next step is to tune some hyperparameters for the differential evolution algorithm and start the actual training. This is done using the `Hops experiment module`_ from the `Hops python library`_.
 
 ::
 
@@ -318,8 +318,8 @@ After launching your job using experiment, you can navigate to Hopsworks to view
 Experiments service
 -------------------
 
-Experiments service provides a unified view of all the experiments run using the experiment API in the hops python library. As shown in the figure, it provides an overview of the experiment results and the ability to compare hyperparameters and metrics to find the best model.
-Users do not need to register experiments themselves in any explicit way, it is enough to use any of the `experiment` module's functions for the experiment to be registered and tracked.
+Experiments service provides a unified view of all the experiments run using the experiment API in the `Hops python library`_. As shown in the figure, it provides an overview of the experiment results and the ability to compare hyperparameters and metrics to find the best model.
+Users do not need to register experiments themselves in any explicit way, it is enough to use any of the `Hops experiment module`_'s functions for the experiment to be registered and tracked.
 
 The experiment program (notebook or python file) and Anaconda environment yaml file is automatically versioned when an experiment is registered. The artifacts are placed in the *Experiment Directory*.
 
@@ -361,7 +361,10 @@ The TensorBoard is opened in a separate tab in your browser, which means you may
     :figclass: align-center
 
 
-.. _hops-py: http://hops-py.logicalclocks.com/hops.html#module-hops.experiment
+.. _Hops python library: https://hops-py.logicalclocks.com
+.. _Hops java/scala library: https://github.com/logicalclocks/hops-util
+
+.. _Hops experiment module: http://hops-py.logicalclocks.com/hops.html#module-hops.experiment
 .. _hops-examples: https://github.com/logicalclocks/hops-examples/tree/master/notebooks/ml
 
 .. _experiment: https://github.com/logicalclocks/hops-examples/tree/master/notebooks/ml/Experiment

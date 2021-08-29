@@ -132,10 +132,14 @@ For example below we see that version 3 is the best model given the accuracy met
 
 See models_ for more information.
 
-Serving
+Model Serving
 -------------------
 
-In the pipeline we support a scalable architecture for serving of TensorFlow, Keras and scikit-learn models. We use the TensorFlow Serving server running on Kubernetes to scale up the number of serving instances dynamically and handle load balancing. There is support for using either the grpc client or the REST API to send inference requests. Furthermore we also support a monitoring system that logs the inference requests and allows users to implement custom functionality for retraining of models. For scikit-learn users implement a REST API themselves using a python file template which loads the model in memory and responds to inference requests.
+In the pipeline we support a scalable architecture for serving TensorFlow, Keras and scikit-learn models using the TensorFlow Serving server or a Flask server, respectively.
+We run both servers on Kubernetes using Docker or KFServing to scale up the number of serving instances dynamically and handle load balancing.
+There is support for using either the grpc client or the REST API to send inference requests.
+Furthermore, we also support a monitoring system that logs the inference requests and allows users to implement custom functionality for retraining of models.
+Scikit-learn models need to add a python file (we provide a template python file) which loads the model in memory and responds to inference requests over its REST API.
 
 .. _serving_architecture.png: ../_images/serving_architecture.png
 .. figure:: ../imgs/serving_architecture.png
@@ -144,14 +148,15 @@ In the pipeline we support a scalable architecture for serving of TensorFlow, Ke
     :align: center
     :figclass: align-center
 
-See tf_model_serving_, sklearn_model_serving_ and inferencing_ for more information.
+See tf_model_serving_, python_model_serving_, inferencing_ and kfserving_ for more information.
 
 .. _experiments: ./experiment.html
 .. _models: ./model.html
 .. _feature_store: ../featurestore/guides/featurestore.html
 .. _tf_model_serving: ./tf_model_serving.html
-.. _sklearn_model_serving: ./sklearn_model_serving.html
+.. _python_model_serving: ./python_model_serving.html
 .. _inferencing: ./inference.html
+.. _kfserving: ./kfserving.html
 .. _hops-py: http://hops-py.logicalclocks.com
 .. _experiment: http://hops-py.logicalclocks.com/hops.html#module-hops.experiment
 .. _hops-examples: https://github.com/logicalclocks/hops-examples/tree/master/tensorflow/notebooks
