@@ -19,13 +19,11 @@ support of the underlying scheduler. Therefore in Hopsworks, users can write Jup
 a Beam pipeline which will be executed on a Flink runner.
 
 Users can with a few clicks their Portable Beam pipelines running. Hopsworks will take care off launching the Jupyter
-notebook and then with the help of the hops-util-py_ library, to start the Flink runner andd start and attach to it the
+notebook and then with the help of the `Hops python library`_ library, to start the Flink runner andd start and attach to it the
 Beam JobService and lastly, return the Beam pipeline options. `This <https://www.slideshare
 .net/TheofilosKakantousis/endtoend-ml-pipelines-with-beam-flink-tensorflow-and-hopsworks>`__ presentation contains
-details on how Hopsworks deploys and manages Beam pipelines. In hops-util-py_ page you can find instructions on the
+details on how Hopsworks deploys and manages Beam pipelines. In `Hops python library`_ page you can find instructions on the
 Hopsworks Beam API that helps you get started writing Portable Beam pipelines in a Jupyter notebook.
-
-.. _hops-util-py: https://github.com/logicalclocks/hops-util-py/
 
 Please note that you need to enable the **Python2.7** environment in your project for running Apache Beam, as the
 latter does not support Python3.6 yet.
@@ -88,3 +86,6 @@ The arguments of the programs can be found in the image below,
     :target: `beam-wordcount-java.png`_
     :align: center
     :figclass: align-center
+
+
+.. _Hops python library: https://hops-py.logicalclocks.com

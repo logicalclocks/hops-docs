@@ -3,7 +3,7 @@ Apache Kafka
 ============
 
 Hopsworks provides Kafka-as-a-Service for streaming applications.
-Hopsworks provides by default the `HopsUtil`_ and `hops-util-py`_ libraries which make programming easier by abstracting away all the configuration boilerplate code such as Kafka endpoints, topics etc. Using these libraries, you can be up and running a simple Kafka on Hopsworks `in minutes`.
+Hopsworks provides by default the `Hops java/scala library`_ and `Hops python library`_ which make programming easier by abstracting away all the configuration boilerplate code such as Kafka endpoints, topics etc. Using these libraries, you can be up and running a simple Kafka on Hopsworks `in minutes`.
 
 The following sections demonstrate different ways for writing Kafka applications on Hopsworks:
 
@@ -199,10 +199,6 @@ A sample output would look like the following:
 
     Kafka output
 
-.. _here: https://github.com/logicalclocks/hops-examples/tree/master/spark/src/main/scala/io/hops/examples/spark/kafka
-.. _HopsUtil: https://github.com/logicalclocks/hops-util
-.. _hops-util-py: https://github.com/logicalclocks/hops-util-py
-
 Example Python Notebook with Kafka Producer and Consumer
 --------------------------------------------------------
 
@@ -295,3 +291,6 @@ By default, all schemas in Hopsworks are backward compatible. It is configurable
 **Documentation**
 
 For a detailed description of the endpoints please see Confluent Schema Registry documentation v5.3.1: https://docs.confluent.io/5.3.0/schema-registry/develop/api.html 
+
+.. _Hops python library: https://hops-py.logicalclocks.com
+.. _Hops java/scala library: https://github.com/logicalclocks/hops-util

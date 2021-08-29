@@ -135,7 +135,11 @@ See models_ for more information.
 Model Serving
 -------------------
 
-In the pipeline we support a scalable architecture for serving TensorFlow, Keras and scikit-learn models using the TensorFlow Serving server or a Flask server, respectively. We run both servers on Kubernetes using Docker or KFServing to scale up the number of serving instances dynamically and handle load balancing. There is support for using either the grpc client or the REST API to send inference requests. Furthermore we also support a monitoring system that logs the inference requests and allows users to implement custom functionality for retraining of models. For scikit-learn users implement a REST API themselves using a python file template which loads the model in memory and responds to inference requests.
+In the pipeline we support a scalable architecture for serving TensorFlow, Keras and scikit-learn models using the TensorFlow Serving server or a Flask server, respectively.
+We run both servers on Kubernetes using Docker or KFServing to scale up the number of serving instances dynamically and handle load balancing.
+There is support for using either the grpc client or the REST API to send inference requests.
+Furthermore, we also support a monitoring system that logs the inference requests and allows users to implement custom functionality for retraining of models.
+Scikit-learn models need to add a python file (we provide a template python file) which loads the model in memory and responds to inference requests over its REST API.
 
 .. _serving_architecture.png: ../_images/serving_architecture.png
 .. figure:: ../imgs/serving_architecture.png

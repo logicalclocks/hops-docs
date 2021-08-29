@@ -18,7 +18,7 @@ to your project settings.
 
  Cloud roles mapped to project.
  
-You can then use the Hops Python and Java APIs to assume the roles listed in your project's settings page.
+You can then use the `Hops python library`_ and `Hops java/scala library`_ to assume the roles listed in your project's settings page.
 
 When calling the assume role method you can pass the role ARN string or use the get role method that takes
 the role id as an argument. If you assign a default role for your project you can call
@@ -72,3 +72,5 @@ The code below shows how to read training and validation datasets from s3 bucket
        example.ParseFromString(raw_record.numpy())
        print(example)
 
+.. _Hops python library: https://hops-py.logicalclocks.com
+.. _Hops java/scala library: https://github.com/logicalclocks/hops-util

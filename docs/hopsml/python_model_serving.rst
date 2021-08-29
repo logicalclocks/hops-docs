@@ -5,23 +5,27 @@ Python Model Serving
 ========================
 .. highlight:: python
 
-Hopsworks supports serving models trained with python-based frameworks (i.e SkLearn, XGBoost,...) using Flask servers. The Flask servers can be put behind a load-balancer for scaling up and down dynamically based on load.
+Hopsworks supports serving models trained with python-based frameworks (i.e Scikit-Learn, XGBoost,...) using Flask servers. The Flask servers can be put behind a load-balancer for scaling up and down dynamically based on load.
 
-The steps are similar for any python-based framework. The rest of the document takes SkLearn as an example.
+The steps are similar for any python-based framework. The rest of the document takes Scikit-Learn as an example.
 
 Export your model
 ----------------------------------
 
-The first step to serving your model is to train it and export it as a servable model to your Hopsworks project. In case of SkLearn models, this is typically done using the `joblib` library which allows you to export the model as a pickle (.pkl) file.
+The first step to serving your model is to train it and export it as a servable model in your Hopsworks project.
+In case of Scikit-Learn models, this is typically done using the `joblib` library which allows you to export the model as a pickle (.pkl) file.
 
 .. code-block:: python
 
     from sklearn.neighbors import KNeighborsClassifier
+    from sklearn.metrics import accuracy_score
     from sklearn.externals import joblib
     iris_knn = KNeighborsClassifier()
     iris_knn.fit(X, y)
+    y_pred = iris_knn.predict(X_test)
+    acc = accuracy_score(y, y_pred)
     joblib.dump(iris_knn, "iris_knn.pkl")
-    hdfs.copy_to_hdfs("iris_knn.pkl", "Resources", overwrite=True)
+    model.export("iris_knn.pkl", "irisflowerclassifier", metrics={'accuracy': acc})
 
 To demonstrate this we provide an example notebook which is also included in the Deep Learning Tour on Hopsworks (see here_.)
 
@@ -30,9 +34,9 @@ Serving Python-based Models on Hopsworks
 
 **Step 1.**
 
-In order to serve a python-based model on Hopsworks, a python script that handles requests should be placed in the Models dataset in your Hopsworks project. The python script should implement the `Predict` class and the methods `predict`, `classify` and `regress`.
+In order to serve a python-based model on Hopsworks, a python script that handles requests should be stored in the Models dataset (in the subdirectory that contains the version of your model) in your Hopsworks project. The python script should implement the `Predict` class and the methods `predict`, `classify` and `regress`.
 
-Assuming a SkLearn model exported as a pickle file with name `iris_knn.pkl`, an example of the Predict class would look like the following:
+Assuming a Scikit-Learn model exported as a pickle file with name `iris_knn.pkl`, an example of the Predict class would look like the following:
 
 .. code-block:: python
 
@@ -45,9 +49,9 @@ Assuming a SkLearn model exported as a pickle file with name `iris_knn.pkl`, an 
         def __init__(self):
             """ Initializes the serving state, reads a trained model from HDFS"""
             self.model_path = "Models/iris_knn.pkl"
-            print("Copying SKLearn model from HDFS to local directory")
+            print("Copying Scikit-Learn model from HDFS to local directory")
             hdfs.copy_to_local(self.model_path)
-            print("Reading local SkLearn model for serving")
+            print("Reading local Scikit-Learn model for serving")
             self.model = joblib.load("./iris_knn.pkl")
             print("Initialization Complete")
 
@@ -79,7 +83,8 @@ For using the Model Serving service, select the Model Serving service on the lef
    :height: 400px
    :figclass: align-center
 
-Next, select "Python" and click on the "Browse" button next to `Python Script` to select a python script from your project that you want to serve. It is a best practice that this script is put inside the "Models" directory.
+Next, select "Python" and click on the "Browse" button next to `Python Script` to select a python script from your project that you want to serve.
+It is best practice to store this script in the "Models" dataset.
 
 .. _sklearn_serving1.png: ../_images/serving/sklearn_serving1.png
 .. figure:: ../imgs/serving/sklearn_serving1.png
@@ -90,9 +95,18 @@ Next, select "Python" and click on the "Browse" button next to `Python Script` t
 
 This will open a popup window that will allow you to browse your project and select the script file that you want to serve. Once a python script is selected, fields such as `Serving name`, `Model version` and `Artifact version` will be autocompleted based on the script path.
 
-An artifact can be seen as a package containing all the necessary files to deploy a model (e.g model files, scripts, environment, transformer scripts,...). When a serving service is created, an artifact is generated in a folder named `Artifacts` under the model version folder in `Models` dataset. When only the model is served, that is, no transformer component is being deployed, the artifact version is `MODEL-ONLY`. This artifact version is shared between all services for the same model version. Otherwise, when a transformer component is deployed together with the model, the artifact version is set incrementally.
+An artifact can be seen as a package containing all the necessary files to deploy a model (e.g., model files, scripts, dependencies, transformer scripts).
+When a serving service is created, an artifact is generated in a directory named `Artifacts` under the model version directory in the `Models` dataset.
+When only the model is served, that is, no transformer component is deployed, the artifact version is `MODEL-ONLY`.
+This artifact version is shared between all model deployments without transformer that have the same model version number.
+Otherwise, when a transformer component is deployed together with the model, the artifact version is associated with the model.
+That is, the artifact version for a model can be incremented without having to increment the model version. 
+For example, if a model named 'mnist' is version '1', and the artifact version is '1', you get an artifact named 'mnist_1_1'.
+You can upgrade the artifact to version '2', giving you a new artifact named 'mnist_1_2'.
 
-*NOTE:* Currently, serving python-based models does not support KFServing as the serving tool and, therefore, the deployment of transformer components.
+Otherwise, when a transformer component is deployed together with the model, the artifact version is set incrementally.
+
+*NOTE:* Currently, serving python-based models does not support KFServing and, hence, do not support transformer components.
 
 By clicking on *Advanced* you can access the advanced configuration for your serving instance. In particular, you can configure (1) the minimum number of replicas for the model server, (2) the Kafka topic on which the inference requests will be logged into (see :ref:`inference` for more information) and (3) the resouce configuration for the Docker container running the model server. 
 By default, a new Kafka topic is created for each new serving (*CREATE*). You can avoid logging your inference requests by selecting *NONE* from the dropdown menu.
@@ -143,7 +157,7 @@ After having created the serving instance, a new entry is added to the list.
 
 Click on the *Run* button to start the serving instance. After a few seconds the instance will be up and running, ready to start processing incoming inference requests.
 
-You can see more details of the serving instance by *clicking* on the *detailed information* button. This will show a modal with additional information such as the endpoints and port to reach the model server, Kafka topic for inference logging, or number of instances currently running.
+You can see more details of the serving instance by *clicking* on the *detailed information* button. This will show additional information such as the endpoints and port to reach the model server, Kafka topic for inference logging, or number of instances currently running.
 
 .. _serving10.png: ../_images/serving/serving10.png
 .. figure:: ../imgs/serving/serving10.png
@@ -163,7 +177,8 @@ You can see more details of the serving instance by *clicking* on the *detailed 
    
     Detailed information   
 
-You can check the logs of the serving instance by *clicking* on the *logs* button. This will bring you to the Kibana UI, from which you will be able to see if the serving instance managed to load the model correctly.
+You can check the logs of the model deployment by *clicking* on the *logs* button.
+This will bring you to the Kibana UI, from which you will be able to read and search in near real-time the logs printed by the model serving server.
 
 .. _serving8.png: ../_images/serving/serving8.png
 .. figure:: ../imgs/serving/serving8.png
