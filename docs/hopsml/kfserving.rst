@@ -78,6 +78,7 @@ To start serving your model with KFServing, create a serving definition in the H
 
 Once you enable KFServing, you can optionally select a transformer script to be deployed together with the model server for pre- and post-processing of model inputs and predictions.
 The transformer script has to implement the `Transformer` class as well as the methods `preprocess` and `postprocess`. Both methods receive a dictionary containing the model input or predictions, and must also return a dictionary with the transformed values.
+See an example using KFServing with a transformer `here <https://github.com/logicalclocks/hops-examples/blob/master/notebooks/ml/serving/kfserving/tensorflow/model_serving_kfserving_with_transformer_tensorflow.ipynb>`_.
 
 .. code-block:: python
 
@@ -112,7 +113,7 @@ For example, you can test the transformer code in a Job or Jupyter notebook in t
 
 Moreover, transformers scale independently and can make use of the CPU or GPU regardless of how model servers are configured since they are deployed in a different Kubernetes pod.
 One of the potential use cases of transformers is to solve the Training/Serving skew problem, where the features used to create the training data have the same transformations applied to them as the features (model inputs) used in serving.
-Another use case for Transformers is to enrich model input with features retrieved from an (Online) Feature Store `HSFS <https://docs.hopsworks.ai/latest/>`_.
+Another use case for Transformers is to enrich model input with features retrieved from an (Online) Feature Store `HSFS <https://docs.hopsworks.ai/latest/>`_. (See an example for credit card fraud detection `here <https://github.com/logicalclocks/hops-examples/tree/master/notebooks/use_cases/credit_card_fraud_detection>`_).
 
 When a transformer script is selected, the artifact version is set to "CREATE". Each time a model is deployed using KFServing with a transformer, a new artifact is generated with an incremental version in a directory named `Artifacts` under the model version directory in `Models` dataset.
 An artifact can be seen as a package containing all the necessary files to deploy a model (e.g., model files, environment, transformer script,...).
@@ -260,7 +261,7 @@ Where do I go from here?
 ========================
 
 Take a look at the :doc:`inference` documentation to see how you can send inference requests to the serving server serving your model.
-
+ 
 .. _Hops python library: https://hops-py.logicalclocks.com
 .. _Hops java/scala library: https://github.com/logicalclocks/hops-util
 .. _model module: https://hops-py.logicalclocks.com/hops.html#module-hops.model
