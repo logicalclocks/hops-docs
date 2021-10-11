@@ -8,7 +8,7 @@ Karamel
 #. Run Karamel.
 #. Click on the "Load Cluster Definition" menu item in Karamel. You are now prompted to select a cluster definition YAML file.
 
-Example cluster definitions can be found on `github <https://github.com/logicalclocks/karamel-chef/tree/master/cluster-defns>`_.
+Example cluster definitions can be found on `github <https://github.com/logicalclocks/karamel-chef/tree/2.4/cluster-defns>`_.
 
 
 **Choosing which services to run on which nodes**
