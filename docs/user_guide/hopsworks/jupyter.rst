@@ -1,7 +1,7 @@
 Jupyter Notebooks
 =======================
 
-The documentation for the Jupyter notebooks, excepted for the *Jupyter notebooks with version control* section, has moved to https://docs.hopsworks.ai
+The documentation for the Jupyter notebooks, except for the *Jupyter notebooks with version control* section, has moved to https://docs.hopsworks.ai
 
 Jupyter notebooks with version control
 --------------------------------------
