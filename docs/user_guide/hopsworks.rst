@@ -23,8 +23,6 @@ Hopsworks User Guide
    ../hopsml/provenance.rst
    hopsworks/apiKeys.rst
    hopsworks/jobs.rst
-   hopsworks/logs.rst
-   hopsworks/jobMetrics.rst
    hopsworks/jupyter.rst
    hopsworks/assume-role.rst
    hopsworks/python.rst
