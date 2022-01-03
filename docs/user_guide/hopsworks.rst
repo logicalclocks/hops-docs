@@ -27,7 +27,6 @@ Hopsworks User Guide
    hopsworks/assume-role.rst
    hopsworks/python.rst
    hopsworks/flink.rst
-   hopsworks/beam.rst
    hopsworks/kafka.rst
    hopsworks/hive.rst
    hopsworks/metaDataManagement.rst
