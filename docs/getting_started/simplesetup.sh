@@ -30,7 +30,7 @@ git clone https://github.com/logicalclocks/karamel-chef.git
 
 echo "Creating VM"
 cd karamel-chef
-./run.sh ubuntu 1 hopsworks
+./run.sh ubuntu 1 hopsworks-2.5
 
 HOPSWORKS_PORT=$(./run.sh ports | grep "8181 ->" | awk '{print $3}') 
 
