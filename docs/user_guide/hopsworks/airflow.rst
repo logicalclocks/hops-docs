@@ -372,7 +372,7 @@ when instantiating the operators.
    )
 
    task0 = HopsworksLaunchOperator(dag=dag,
-                                 hopsworks_conn_id = 'MY_CUSTOM_HOPSWORKS_CONNECTION'
+                                 hopsworks_conn_id = 'MY_CUSTOM_HOPSWORKS_CONNECTION',
                                  project_name=PROJECT_NAME,
                                  # Arbitrary task name
                                  task_id="run_{0}".format(JOB_NAME_0),
@@ -380,7 +380,7 @@ when instantiating the operators.
                                  job_name=JOB_NAME_0)
 
    task1 = HopsworksLaunchOperator(dag=dag,
-                                 hopsworks_conn_id = 'MY_CUSTOM_HOPSWORKS_CONNECTION'
+                                 hopsworks_conn_id = 'MY_CUSTOM_HOPSWORKS_CONNECTION',
                                  project_name=PROJECT_NAME,
                                  # Arbitrary task name
                                  task_id="run_{0}".format(JOB_NAME_1),
@@ -400,4 +400,3 @@ some basic operators. Future releases of Hopsworks will include more
 operators allowing users to build more complex
 workflows. Also, we `demonstrated <#airflow-primer>`_ how users can begin with Airflow by
 launching basic jobs on the cluster and monitor their status.
-
